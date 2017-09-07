@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UsersService } from './users.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'users',
@@ -16,7 +16,7 @@ export class Users {
     sortBy = "email";
     sortOrder = "asc";
 
-    constructor(private service: UsersService) {
+    constructor(private service: UsersService, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });
@@ -29,5 +29,8 @@ export class Users {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  
+  navigaeToUserDeatils()
+  {
+    this.router.navigate(['/pages/userdetails'])
+  }
 }

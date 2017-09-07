@@ -179,11 +179,13 @@ a {
 
 .amcharts-chart-div > a {
   font-size: 6px !important;
-}
+  
 
 .content-panel {
   padding-left: 22px;
   padding-top: 26px;
+  background: red;
+}
 }
 
 @media (max-width: 590px) {
