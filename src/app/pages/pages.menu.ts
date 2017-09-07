@@ -27,6 +27,18 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'orderbook',
+        data: {
+          menu: {
+            title: 'Orderbook',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
         path: 'editors',
         data: {
           menu: {
