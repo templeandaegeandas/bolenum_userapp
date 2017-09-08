@@ -19,7 +19,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Users',
-            icon: 'ion-android-home',
+            icon: 'fa fa-user',
             selected: false,
             expanded: false,
             order: 0
@@ -30,8 +30,44 @@ export const PAGES_MENU = [
         path: 'orderbook',
         data: {
           menu: {
-            title: 'Orderbook',
+            title: 'Historical OrderBook',
+            icon: 'fa fa-first-order',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+       {
+        path: 'pendingkyc',
+        data: {
+          menu: {
+            title: 'Pending_KYC',
             icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: '',
+        data: {
+          menu: {
+            title: 'Add ERC 20',
+            icon: 'fa fa-plus-circle',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        }
+      },
+      {
+        path: '',
+        data: {
+          menu: {
+            title: 'User Queries',
+            icon: 'fa fa-user',
             selected: false,
             expanded: false,
             order: 0
@@ -51,28 +87,8 @@ export const PAGES_MENU = [
         },
        
       },
-      {
-        path: 'OrderBook',
-        data: {
-          menu: {
-            title: 'general.menu.components',
-            icon: 'ion-gear-a',
-            selected: false,
-            expanded: false,
-            order: 250,
-          }
-        },
-        children: [
-          {
-            path: 'treeview',
-            data: {
-              menu: {
-                title: 'general.menu.tree_view',
-              }
-            }
-          }
-        ]
-      },
+      
+       
       {
         path: 'charts',
         data: {

@@ -25,6 +25,8 @@ export const routes: Routes = [
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'users', loadChildren: './users/users.module#UserModule' },
       { path: 'orderbook', loadChildren: './orderbook/orderbook.module#OrderbookModule' },
+      { path: 'usersqueries', loadChildren: './usersqueries/usersqueries.module#UsersqueriesModule' },
+      { path: 'pendingkyc', loadChildren: './pendingkyc/pendingkyc.module#PendingkycModule' },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

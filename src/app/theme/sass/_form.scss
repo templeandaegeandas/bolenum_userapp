@@ -42,7 +42,7 @@
 .form-control {
   color: $content-text;
   @include placeholderStyle($content-text, 0.7);
-  border: 1px solid $input-border;
+  border: 1px solid #ccc;
   border-radius: 0px;
   background-color: $input-background;
   box-shadow: none;
@@ -389,9 +389,9 @@ label.custom-input-danger {
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-  background-color: $input-background;
+  background-color: #ddd;
   color: $disabled;
-  border-color: $disabled-bg;
+  border-color: #ccc;
   @include placeholderStyle($default-text, 0.5);
 }
 
