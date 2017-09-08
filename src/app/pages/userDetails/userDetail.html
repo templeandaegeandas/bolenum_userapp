@@ -55,6 +55,27 @@
                       <div class="row">
                       <div class="col-md-12">
                       <!--text data-->
+
+                              <div class="col-sm-6 marg0">
+                      <div class="notification">                  
+                    <div class="col-md-12">
+                        <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
+                    </div>
+                    <div class="col-md-12 msg-box">
+                        
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Message"></textarea>
+                            </div>
+                     </div>                  
+                    <div class="col-md-12 text-right">                            
+                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">Send All</button>
+                    </div>
+                </div> 
+                </div>        
+
+
+
                         <div class="row">
                       <div class="col-md-12 actionBtn text-right">
                           <button class="btn btn-primary btn-with-icon"  (click)="isEdit=true" type="button">Edit</button>
@@ -62,12 +83,13 @@
                       </div>
                     <div class="col-md-6">
                         <div class="col-sm-10">
-                          <div class="form-group">
+                           <div class="form-group">
                               <label for="inputFirstName">First Name</label>  
                               <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="First Name" type="text" disabled>
                               <input class="form-control" *ngIf="isEdit" id="inputFirstName" placeholder="First Name" type="text" >
                              
                           </div>
+                          
                          
                              </div>
                     </div>

@@ -6,7 +6,7 @@ import { NgaModule } from '../../theme/nga.module';
 
 import { Dashboard } from './dashboard.component';
 import { routing } from './dashboard.routing';
-
+import { TabViewModule } from 'primeng/primeng';
 import { PopularApp } from './popularApp';
 import { PieChart } from './pieChart';
 import { TrafficChart } from './trafficChart';
@@ -29,7 +29,8 @@ import { UsersMapService } from './usersMap/usersMap.service';
     FormsModule,
     AppTranslationModule,
     NgaModule,
-    routing
+    routing,
+    TabViewModule,
   ],
   declarations: [
     PopularApp,

@@ -6,8 +6,8 @@
 
 <div class="row">
   <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                     cardTitle="dashboard.acquisition_channels" baCardClass="traffic-panel medium-card">
-    <traffic-chart></traffic-chart>
+         cardTitle="dashboard.revenue" baCardClass="medium-card">
+        <line-chart></line-chart>          
   </ba-card>
 
   <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
@@ -21,7 +21,68 @@
     <div class="row">
       <ba-card class="col-xlg-8 col-xl-12 col-lg-12 col-md-7 col-sm-12 col-12"
                cardTitle="dashboard.revenue" baCardClass="medium-card">
-        <line-chart></line-chart>
+   <p-tabView>
+    <p-tabPanel header="BTC">
+       <div class="tab-inner">
+                  <div class="tab-inner1">
+        <div class="vertical-scroll">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+       </tr>
+    <tr>
+      <td>3</td>
+      <td>Larry</td>
+      <td>Bird</td>
+      <td>@twitter</td>
+     </tr>
+    <tr>
+      <td>4</td>
+      <td>John</td>
+      <td>Snow</td>
+      <td>@snow</td>
+    </tr>
+    <tbody>
+  </table>
+</div>
+                  </div>
+                  </div>
+    </p-tabPanel>
+    <p-tabPanel header="Header 2">
+        <div class="tab-inner">
+                  <div class="tab-inner1">
+                    sgsgsg
+                  </div>
+                  </div>
+    </p-tabPanel>
+    <p-tabPanel header="Header 3">
+        <div class="tab-inner">
+                  <div class="tab-inner1">
+                    sgsgsg
+                  </div>
+                  </div>  
+    </p-tabPanel>
+</p-tabView>
+         
+
       </ba-card>
       <ba-card class="col-xlg-4 col-xl-12 col-lg-12 col-md-5 col-sm-12 col-12"
                baCardClass="popular-app medium-card">
@@ -39,7 +100,7 @@
 
 </div>
 
-<div class="row shift-up">
+<!--<div class="row shift-up">
   <ba-card class="col-xlg-3 col-lg-6 col-md-12 col-sm-12 col-12" cardTitle="dashboard.todo_list"
            baCardClass="xmedium-card feed-comply-panel with-scroll todo-panel">
     <todo></todo>
@@ -48,4 +109,4 @@
            baCardClass="xmedium-card feed-comply-panel with-scroll calendar-panel">
     <calendar></calendar>
   </ba-card>
-</div>
+</div>-->

@@ -37,7 +37,7 @@ $card-header-font-size: 16px;
     height: $extra-medium-card-height;
   }
   &.large-card {
-    height: $large-card-height;
+    height: 400px;
   }
   &.viewport100 {
     height: calc(100vh - 218px);

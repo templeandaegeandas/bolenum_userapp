@@ -3,6 +3,9 @@
   & > thead {
     & > tr {
       & > th {
+        background: rgba(221, 221, 221, 0.3);
+        font-weight: 500;
+        padding: 8px 10px;
         border-bottom: 1px solid $border-light;
         white-space: nowrap;
         &:first-child {
@@ -21,7 +24,7 @@
       }
       & > td {
         padding: 0px 8px;
-        line-height: 35px;
+        line-height: 30px;
         border-top: 1px solid $border-light;
         &:first-child {
           text-align: center;
@@ -238,7 +241,7 @@ input.search-input {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td{
-  border: 1px solid $border-light;
+  border: 1px solid #ccc!important;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
