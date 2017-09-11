@@ -29,8 +29,8 @@ export class Usersqueries {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  navigaeToUserDeatils()
+  navigaeToReply()
   {
-    this.router.navigate(['/pages/userdetails'])
+    this.router.navigate(['/pages/reply'])
   }
 }

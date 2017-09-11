@@ -1,0 +1,46 @@
+<div class="widgets">
+   <div class="row">
+      <div class="col-md-12 UserDetail">
+         <ba-card cardTitle="Order Details">
+            <p-tabView>
+               <p-tabPanel header="kyc Details" style="padding:0px;">
+                  <div class="tab-inner">
+                     <div class="tab-inner1">
+                        <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="col-sm-10">
+                                       <div class="col-md-12">
+                                       <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
+                                    </div>
+                                    <div class="form-group">
+                                          <textarea class="form-control" placeholder="Message"></textarea>
+                                       </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="col-sm-10">
+                                        <div class="form-group">
+                                        <label for="inputFirstName">First Name</label>  
+                                        <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="First Name" type="text" disabled>
+                                         <input class="form-control" *ngIf="isEdit" id="inputFirstName" placeholder="First Name" type="text" >
+                                         </div>
+                                       <div class="form-group">
+                                          <label for="inputMobileName">Name of Identity</label>
+                                          <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputMobileName" placeholder="Mobile Name" type="text" disabled>
+                                          <input class="form-control" *ngIf="isEdit" id="inputMobileName" placeholder="Mobile Name" type="text" >
+                                       </div>
+                                     <div class="col-md-12 actionBtn text-right">
+                                    <button class="btn btn-primary btn-with-icon"  (click)="isEdit=true" type="button">Approve</button>
+                                    <button class="btn btn-primary btn-with-icon" (click)="isEdit=false" type="button">DisApprove</button>
+                                    </div>
+                                    </div>
+                                 </div>
+                              </div>
+                     </div>
+                  </div>
+               </p-tabPanel>
+            </p-tabView>
+         </ba-card>
+      </div>
+   </div>
+</div>

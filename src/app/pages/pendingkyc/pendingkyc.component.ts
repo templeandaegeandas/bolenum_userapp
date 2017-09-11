@@ -29,8 +29,8 @@ export class Pendingkyc {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  navigaeToUserDeatils()
+  navigaeToKycDeatils()
   {
-    this.router.navigate(['/pages/userdetails'])
+    this.router.navigate(['/pages/kycDetails']);
   }
 }

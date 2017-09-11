@@ -20,8 +20,8 @@
                         <select class="form-control input-sm" [(ngModel)]="sortBy">
                         <option ngValue="name">Name</option>
                         <option ngValue="email">Email</option>
-                        <option ngValue="age">Age</option>
-                        <option [ngValue]="sortByWordLength">City</option>
+                        <option ngValue="date">Date</option>
+                        <option [ngValue]="reply">Reply</option>
                         </select>
                      </div>
                   </div>
@@ -50,10 +50,10 @@
                      <mfDefaultSorter by="email">Email</mfDefaultSorter>
                   </th>
                   <th style="width: 10%">
-                     <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                     <mfDefaultSorter by="date">Date</mfDefaultSorter>
                   </th>
                   <th style="width: 20%">
-                     <mfDefaultSorter [by]="sortByWordLength">City</mfDefaultSorter>
+                     <mfDefaultSorter [by]="reply">Reply</mfDefaultSorter>
                   </th>
                </tr>
                <tr>
@@ -66,12 +66,12 @@
             <tbody>
                <tr *ngFor="let item of mf.data">
                   <td>
-                     <button (click)="navigaeToUserDeatils()"    class="btn btn-danger">U-Detail</button>
+                     <button (click)="navigaeToReply()"    class="btn btn-danger">Reply</button>
                   </td>
                   <td>{{item.name}}</td>
                   <td>{{item.email}}</td>
-                  <td class="text-right">{{item.age}}</td>
-                  <td>{{item.city | uppercase}}</td>
+                  <td class="text-right">{{item.date}}</td>
+                  <td>{{item.reply}}</td>
                </tr>
             </tbody>
             <tfoot>

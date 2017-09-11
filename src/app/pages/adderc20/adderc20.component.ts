@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { UsersService } from './users.service';
+import { Adderc20Service } from './adderc20.service';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'users',
-  styleUrls: [('./users.scss')],
-  templateUrl: './users.html',
-  providers: [UsersService]
+  selector: 'adderc20',
+  styleUrls: [('./adderc20.scss')],
+  templateUrl: './adderc20.html',
+  providers: [Adderc20Service]
 })
-export class Users {
+export class Adderc20  {
 
    data;
     filterQuery = "";
@@ -16,7 +17,7 @@ export class Users {
     sortBy = "email";
     sortOrder = "asc";
 
-    constructor(private service: UsersService, private router: Router) {
+    constructor(private service: Adderc20Service, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });
@@ -29,8 +30,8 @@ export class Users {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  navigaeToUserDeatils()
+  navigaeToOrderDetails()
   {
-    this.router.navigate(['/pages/userdetails'])
+    this.router.navigate(['/pages/orderdetails'])
   }
 }

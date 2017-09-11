@@ -39,6 +39,18 @@
   padding: 10px;
   background: rgba(255, 255, 255, 0.37);
 }
+.table{
+  border:1px solid #ccc;
+  margin-top: 20px;
+}
+.pagination > li > a, .pagination > li > span{
+  border: 1px solid #ddd;
+}
+button.btn.btn-danger:active, button.btn.btn-danger.active {
+    background: #f95372;
+    border-color: #e13b5a;
+    font-size: 10px;
+}
 @media screen and (min-width: 1620px) {
   .row.shift-up {
     > * {

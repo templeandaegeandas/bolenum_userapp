@@ -29,14 +29,14 @@ export class UsersqueriesService {
   dataTableData = [{
         'name': 'Wing',
         'email': 'tellus.eu.augue@arcu.com',
-        'regDate': '2016-01-09T14:48:34-08:00',
-        'city': 'Paglieta',
+        'date': '2016-01-09T14:48:34-08:00',
+        'reply': 'Paglieta',
         'age': 25
     },
     {
         'name': 'Whitney',
         'email': 'sed.dictum@Donec.org',
-        'regDate': '2017-01-23T20:09:52-08:00',
+        'date': '2017-01-23T20:09:52-08:00',
         'city': 'Bear',
         'age': 32
     },

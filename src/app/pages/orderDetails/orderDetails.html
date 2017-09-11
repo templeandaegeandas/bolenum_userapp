@@ -14,15 +14,11 @@
                            <div class="col-md-6">
                               <div class="col-sm-10">
                                  <div class="form-group">
-                                    <label for="inputFirstName">First Name</label>  
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="First Name" type="text">
-                                    <input class="form-control" *ngIf="isEdit" id="inputFirstName" placeholder="First Name" type="text" >
+                                    <label for="inputFirstName">User Name</label>  
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="User Name" type="text">
+                                    <input class="form-control" *ngIf="isEdit" id="inputUserName" placeholder="User Name" type="text" >
                                  </div>
-                                 <div class="form-group">
-                                    <label for="inputLastName">Last Name</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputLastName" placeholder="Last Name" type="text" >
-                                    <input class="form-control" *ngIf="isEdit" id="inputLastName" placeholder="Last Name" type="text" >
-                                 </div>
+                                
                                  <div class="form-group">
                                     <label for="inputEmailName">Email Name</label>
                                     <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputEmailName" placeholder="First Name" type="text" >
@@ -37,11 +33,27 @@
                                     <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputMobileName" placeholder="Mobile Name" type="text" >
                                     <input class="form-control" *ngIf="isEdit" id="inputMobileName" placeholder="Mobile Name" type="text" >
                                  </div>
-                                 <div class="form-group">
-                                    <label for="inputFaxName">Fax Number</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFaxName" placeholder="Fax Name" type="text" >
-                                    <input class="form-control" *ngIf="isEdit" id="inputFaxName" placeholder="Fax Name" type="text" >
-                                 </div>
+                                  <table class="table table-bordered table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Phone No</th>
+                               </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>abc</td>
+                                    <td>123@</td>
+                                    <td>Thornton</td>
+                                 </tr>
+                                 <tr>
+                                    <td>abc</td>
+                                    <td>123@</td>
+                                    <td>Thornton</td>
+                                    
+                                 </tr>
+                                <tbody>
+                           </table>
                               </div>
                            </div>
                         </div>

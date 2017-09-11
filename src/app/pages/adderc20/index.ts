@@ -1,1 +1,1 @@
-export * from './users.component';
+export * from './adderc20.component';

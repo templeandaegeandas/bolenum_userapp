@@ -27,6 +27,11 @@ export const routes: Routes = [
       { path: 'orderbook', loadChildren: './orderbook/orderbook.module#OrderbookModule' },
       { path: 'usersqueries', loadChildren: './usersqueries/usersqueries.module#UsersqueriesModule' },
       { path: 'pendingkyc', loadChildren: './pendingkyc/pendingkyc.module#PendingkycModule' },
+      { path: 'adderc20', loadChildren: './adderc20/adderc20.module#Adderc20Module' },
+      { path: 'kycDetails', loadChildren: './KycDetails/kycDetails.module#kycDetailsModule' },
+      { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
+      { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
+      { path: 'reply', loadChildren: './reply/reply.module#ReplyModule' },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
@@ -34,9 +39,7 @@ export const routes: Routes = [
       { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
       { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
       { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
-      { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
-      { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
-    ]
+    ]  
   }
 ];
 
