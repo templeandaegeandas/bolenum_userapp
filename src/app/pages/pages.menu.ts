@@ -43,7 +43,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Pending_KYC',
-            icon: 'ion-android-home',
+            icon: 'fa fa-balance-scale',
             selected: false,
             expanded: false,
             order: 0
@@ -51,7 +51,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: '',
+        path: 'addr',
         data: {
           menu: {
             title: 'Add ERC 20',
@@ -63,7 +63,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: '',
+        path: 'usersqueries',
         data: {
           menu: {
             title: 'User Queries',

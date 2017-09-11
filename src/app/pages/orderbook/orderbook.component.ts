@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OrderbookService } from './orderbook.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { OrderbookService } from './orderbook.service';
   templateUrl: './orderbook.html',
   providers: [OrderbookService]
 })
-export class Orderbook {
+export class Orderbook  {
 
    data;
     filterQuery = "";
@@ -16,7 +17,7 @@ export class Orderbook {
     sortBy = "email";
     sortOrder = "asc";
 
-    constructor(private service: OrderbookService) {
+    constructor(private service:OrderbookService, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });
@@ -29,5 +30,8 @@ export class Orderbook {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  
+  navigaeToOrderDetails()
+  {
+    this.router.navigate(['/pages/orderdetails'])
+  }
 }

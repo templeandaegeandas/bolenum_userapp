@@ -20,8 +20,9 @@
                                 <select class="form-control input-sm" [(ngModel)]="sortBy">
                             <option ngValue="name">Name</option>
                             <option ngValue="email">Email</option>
-                            <option ngValue="age">Age</option>
-                            <option [ngValue]="sortByWordLength">City</option>
+                            <option ngValue="age">Price</option>
+                             <option ngValue="age">Amount</option>
+                            <option [ngValue]="sortByWordLength">Date</option>
                         </select>
                             </div>
                         </div>
@@ -38,27 +39,31 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">User information</div>
+                <!--<div class="panel-heading">User information</div>-->
 
                 <table class="table table-striped" [mfData]="data | tableFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
                         <tr>
                             <th style="width: 10%"></th>
-                            <th style="width: 20%">
+                            <th style="width: 10%">
                                 <mfDefaultSorter by="name">Name</mfDefaultSorter>
                             </th>
-                            <th style="width: 40%">
+                            <th style="width: 20%">
                                 <mfDefaultSorter by="email">Email</mfDefaultSorter>
                             </th>
                             <th style="width: 10%">
-                                <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                                <mfDefaultSorter by="price">Price</mfDefaultSorter>
                             </th>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="amount">amount</mfDefaultSorter>
+                            </th>
+                            
                             <th style="width: 20%">
-                                <mfDefaultSorter [by]="sortByWordLength">City</mfDefaultSorter>
+                                <mfDefaultSorter [by]="date">Date</mfDefaultSorter>
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="5">
+                            <th colspan="7">
                                 Filter by name:
                                 <input class="form-control" [(ngModel)]="filterQuery" />
                             </th>
@@ -67,17 +72,18 @@
                     <tbody>
                         <tr *ngFor="let item of mf.data">
                             <td>
-                                <button (click)="remove(item)" class="btn btn-danger">x</button>
+                                <button (click)="navigaeToOrderDetails()" class="btn btn-danger">order</button>
                             </td>
                             <td>{{item.name}}</td>
                             <td>{{item.email}}</td>
-                            <td class="text-right">{{item.age}}</td>
-                            <td>{{item.city | uppercase}}</td>
+                            <td class="text-right">{{item.price}}</td>
+                            <td>{{item.amount | uppercase}}</td>
+                             <td>{{item.date}}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="7">
                                 <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
                             </td>
                         </tr>

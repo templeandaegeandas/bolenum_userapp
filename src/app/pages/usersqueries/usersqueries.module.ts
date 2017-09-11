@@ -11,17 +11,17 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DataTableModule } from "angular2-datatable";
 
 @NgModule({
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
     AppTranslationModule,
     NgaModule,
     routing,
-     Ng2SmartTableModule,
+    Ng2SmartTableModule,
     DataTableModule,
   ],
   declarations: [
- Usersqueries,
+   Usersqueries,
     TableFilterPipe,
   ],
   providers: []

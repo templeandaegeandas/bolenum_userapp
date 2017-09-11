@@ -1,12 +1,12 @@
 {
   "login": {
-    "title": "Sign in to My-admin",
-    "signup_link": "New to My-admin? Sign up!",
+    "title": "Bolenum",
+    "signup_link": " My-admin? Sign up!",
     "email": "Email",
     "password": "Password",
     "sign_in": "Sign in",
     "forgot_password": "Forgot password?",
-    "sign_from_app_text": "or Sign in with one click",
+    "sign_from_app_text": "",
     "share_on_facebook": "Share on Facebook",
     "share_on_twitter": "Share on Twitter",
     "share_on_google_plus": "Share on Google Plus"

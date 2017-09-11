@@ -34,8 +34,8 @@ export const routes: Routes = [
       { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
       { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
       { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
-       { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
-
+      { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
+      { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
     ]
   }
 ];
