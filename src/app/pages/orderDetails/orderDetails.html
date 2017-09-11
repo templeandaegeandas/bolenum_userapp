@@ -15,17 +15,17 @@
                               <div class="col-sm-10">
                                  <div class="form-group">
                                     <label for="inputFirstName">First Name</label>  
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="First Name" type="text" disabled>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFirstName" placeholder="First Name" type="text">
                                     <input class="form-control" *ngIf="isEdit" id="inputFirstName" placeholder="First Name" type="text" >
                                  </div>
                                  <div class="form-group">
                                     <label for="inputLastName">Last Name</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputLastName" placeholder="Last Name" type="text" disabled>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputLastName" placeholder="Last Name" type="text" >
                                     <input class="form-control" *ngIf="isEdit" id="inputLastName" placeholder="Last Name" type="text" >
                                  </div>
                                  <div class="form-group">
                                     <label for="inputEmailName">Email Name</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputEmailName" placeholder="First Name" type="text" disabled>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputEmailName" placeholder="First Name" type="text" >
                                     <input class="form-control" *ngIf="isEdit" id="inputEmailName" placeholder="First Name" type="text" >
                                  </div>
                               </div>
@@ -34,12 +34,12 @@
                               <div class="col-sm-10">
                                  <div class="form-group">
                                     <label for="inputMobileName">Mobile Number</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputMobileName" placeholder="Mobile Name" type="text" disabled>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputMobileName" placeholder="Mobile Name" type="text" >
                                     <input class="form-control" *ngIf="isEdit" id="inputMobileName" placeholder="Mobile Name" type="text" >
                                  </div>
                                  <div class="form-group">
                                     <label for="inputFaxName">Fax Number</label>
-                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFaxName" placeholder="Fax Name" type="text" disabled>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputFaxName" placeholder="Fax Name" type="text" >
                                     <input class="form-control" *ngIf="isEdit" id="inputFaxName" placeholder="Fax Name" type="text" >
                                  </div>
                               </div>
@@ -48,13 +48,13 @@
                      </div>
                   </div>
                </p-tabPanel>
-               <p-tabPanel header="KYC">
+              <!--<p-tabPanel header="KYC">
                   <div class="tab-inner">
                      <div class="tab-inner1">
                         <div class="row">
                            <div class="col-md-12">
                               <!--text data-->
-                              <div class="col-sm-6 marg0">
+                              <!--<div class="col-sm-6 marg0">
                                  <div class="notification">
                                     <div class="col-md-12">
                                        <ba-picture-uploader [picture]="profile.picture" [defaultPicture]="defaultPicture" [uploaderOptions]="uploaderOptions"></ba-picture-uploader>
@@ -69,8 +69,8 @@
                                        <button type="submit" class="btn btn-primary">Send All</button>
                                     </div>
                                  </div>
-                              </div>
-                              <div class="row">
+                              </div>-->
+                              <!--<div class="row">
                                  <div class="col-md-12 actionBtn text-right">
                                     <button class="btn btn-primary btn-with-icon"  (click)="isEdit=true" type="button">Edit</button>
                                     <button class="btn btn-primary btn-with-icon" (click)="isEdit=false" type="button">Close</button>
@@ -103,18 +103,38 @@
                         </div>
                      </div>
                   </div>
-               </p-tabPanel>
-               <p-tabPanel header="Order Book">
+               </p-tabPanel>-->
+               <!--<p-tabPanel header="Order Book">
                   <div class="tab-inner">
                      <div class="tab-inner1">
                         <div class="row">
-                           <div class="col-md-12">
-                              Order Book
+                            <div class="col-md-6">
+                              <div class="col-sm-10">
+                              <div class="form-group">
+                                    <label for="inputFirstName">User Name</label>  
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputUserName" placeholder="User Name" type="text">
+                                    <input class="form-control" *ngIf="isEdit" id="inputUserName" placeholder="User Name" type="text" >
+                                 </div>
+                                  <div class="form-group">
+                                    <label for="inputEmailName">Email Name</label>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputEmailName" placeholder="First Name" type="text" >
+                                    <input class="form-control" *ngIf="isEdit" id="inputEmailName" placeholder="First Name" type="text" >
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="inputEmailName">Phone No</label>
+                                    <input class="form-control" *ngIf="!isEdit" (keydown.enter)="isEdit=false" id="inputEmailName" placeholder="Phone No" type="text" >
+                                    <input class="form-control" *ngIf="isEdit" id="inputPhone No" placeholder="Phone No" type="text" >
+                                 </div>
+                                 <div class="col-md-12 actionBtn text-right">
+                              <button class="btn btn-primary btn-with-icon"  (click)="isEdit=true" type="button">Edit</button>
+                              <button class="btn btn-primary btn-with-icon" (click)="isEdit=false" type="button">Close</button>
+                           </div>
                            </div>
                         </div>
                      </div>
                   </div>
-               </p-tabPanel>
+                  </div>
+               </p-tabPanel>-->
             </p-tabView>
          </ba-card>
       </div>
