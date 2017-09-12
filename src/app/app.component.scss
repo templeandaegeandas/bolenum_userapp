@@ -1,6 +1,10 @@
 @import './theme/sass/conf/conf';
 @import './theme/components/baSidebar/baSidebar';
 
+ul.pagination {
+  float: left;
+}
+
 :host /deep/ {
   @mixin layout-collapsed() {
     .al-main {

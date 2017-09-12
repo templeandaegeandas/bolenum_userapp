@@ -32,7 +32,7 @@ export const routes: Routes = [
       { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
       { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
       { path: 'reply', loadChildren: './reply/reply.module#ReplyModule' },
-      { path: 'adderDetails', loadChildren: './adderDetails/adderDetails.module#AdderDetailsModule' },
+      { path: 'adderdetails', loadChildren: './adderDetails/adderDetails.module#AdderDetailsModule' },
     //   { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
     //   { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
