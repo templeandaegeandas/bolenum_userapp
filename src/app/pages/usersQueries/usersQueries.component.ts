@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { UsersqueriesService } from './usersqueries.service';
+import { UsersQueriesService } from './usersQueries.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'usersqueries',
-  styleUrls: [('./usersqueries.scss')],
-  templateUrl: './usersqueries.html',
-  providers: [UsersqueriesService]
+  selector: 'usersQueries',
+  styleUrls: [('./usersQueries.scss')],
+  templateUrl: './usersQueries.html',
+  providers: [UsersQueriesService]
 })
-export class Usersqueries {
+export class UsersQueries {
 
    data;
-    filterQuery = "";
+    filterQuery = '';
     rowsOnPage = 10;
-    sortBy = "email";
-    sortOrder = "asc";
+    sortBy = 'email';
+    sortOrder = 'asc';
 
-    constructor(private service: UsersqueriesService, private router: Router) {
+    constructor(private service: UsersQueriesService, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });

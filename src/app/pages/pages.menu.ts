@@ -27,7 +27,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'orderbook',
+        path: 'HistoricalOrderBook',
         data: {
           menu: {
             title: 'Historical OrderBook',
@@ -39,7 +39,7 @@ export const PAGES_MENU = [
         }
       },
        {
-        path: 'pendingkyc',
+        path: 'pendingKyc',
         data: {
           menu: {
             title: 'Pending_KYC',
@@ -51,7 +51,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'adderc20',
+        path: 'addErc20',
         data: {
           menu: {
             title: 'Add ERC 20',
@@ -63,7 +63,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'usersqueries',
+        path: 'usersQueries',
         data: {
           menu: {
             title: 'User Queries',

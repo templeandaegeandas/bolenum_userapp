@@ -1,13 +1,13 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { Adderc20 } from './adderc20.component';
+import {PendingKyc} from './pendingKyc.component';
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: Adderc20,
+    component:PendingKyc,
     children: [
       //{ path: 'treeview', component: TreeViewComponent }
     ]

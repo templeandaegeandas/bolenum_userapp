@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
 
-import { Adderc20} from './adderc20.component';
-import { routing } from './adderc20.routing';
+import { HistoricalOrderbook } from './historicalOrderbook.component';
+import { routing } from './historicalOrderbook.routing';
 import { TableFilterPipe } from './table-filter.pipe';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DataTableModule } from "angular2-datatable";
+
 
 @NgModule({
   imports: [
@@ -17,13 +18,13 @@ import { DataTableModule } from "angular2-datatable";
     AppTranslationModule,
     NgaModule,
     routing,
-    Ng2SmartTableModule,
+     Ng2SmartTableModule,
     DataTableModule,
   ],
   declarations: [
-    Adderc20,
+   HistoricalOrderbook,
     TableFilterPipe,
   ],
   providers: []
 })
-export class Adderc20Module {}
+export class HistoricalOrder {}

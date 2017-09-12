@@ -1,4 +1,4 @@
-import { Routes, RouterModule }  from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -24,15 +24,15 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'users', loadChildren: './users/users.module#UserModule' },
-      { path: 'orderbook', loadChildren: './orderbook/orderbook.module#OrderbookModule' },
-      { path: 'usersqueries', loadChildren: './usersqueries/usersqueries.module#UsersqueriesModule' },
-      { path: 'pendingkyc', loadChildren: './pendingkyc/pendingkyc.module#PendingkycModule' },
-      { path: 'adderc20', loadChildren: './Adderc20/adderc20.module#Adderc20Module' },
+      { path: 'HistoricalOrderBook', loadChildren: './historicalOrderbook/historicalOrderbook.module#HistoricalOrder' },
+      { path: 'usersQueries', loadChildren: './usersQueries/usersQueries.module#UsersQueriesModule' },
+      { path: 'pendingKyc', loadChildren: './pendingKyc/pendingKyc.module#PendingKycModule' },
+      { path: 'addErc20', loadChildren: './addErc20/addErc20.module#AddErc20Module' },
       { path: 'kycDetails', loadChildren: './KycDetails/kycDetails.module#kycDetailsModule' },
       { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
       { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
       { path: 'reply', loadChildren: './reply/reply.module#ReplyModule' },
-      { path: 'adderdetails', loadChildren: './adderdetails/adderdetails.module#AdderdetailsModule' },
+      { path: 'adderDetails', loadChildren: './adderDetails/adderDetails.module#AdderDetailsModule' },
     //   { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
     //   { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
     //   { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

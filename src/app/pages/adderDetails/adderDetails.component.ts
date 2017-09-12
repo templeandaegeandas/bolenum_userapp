@@ -3,23 +3,23 @@ import { NgUploaderOptions } from 'ngx-uploader';
 
 
 @Component({
-  selector: 'adderdetails',
-  styleUrls: ['./adderdetails.scss'],
-  templateUrl: './adderdetails.html',
+  selector: 'adderDetails',
+  styleUrls: ['./adderDetails.scss'],
+  templateUrl: './adderDetails.html',
 })
-export class Adderdetails {
+export class AdderDetails {
   
 constructor() {}
    public defaultPicture = 'assets/img/theme/no-photo.png';
-   public profile:any = {
+   public profile: any = {
    picture: 'assets/img/app/profile/Nasta.png',
   };
-  public uploaderOptions:NgUploaderOptions = {
+  public uploaderOptions: NgUploaderOptions = {
     // url: 'http://website.com/upload'
     url: '',
   };
 
-  public fileUploaderOptions:NgUploaderOptions = {
+  public fileUploaderOptions: NgUploaderOptions = {
     // url: 'http://website.com/upload'
     url: '',
   };

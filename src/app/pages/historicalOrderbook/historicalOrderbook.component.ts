@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { OrderbookService } from './orderbook.service';
+import { HistoricalOrderbookService } from './historicalOrderbook.service';
 import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'orderbook',
-  styleUrls: [('./orderbook.scss')],
-  templateUrl: './orderbook.html',
-  providers: [OrderbookService]
+  selector: 'historicalOrderbook',
+  styleUrls: [('./historicalOrderbook.scss')],
+  templateUrl: './historicalOrderbook.html',
+  providers: [HistoricalOrderbookService]
 })
-export class Orderbook  {
+export class HistoricalOrderbook {
 
    data;
-    filterQuery = "";
+    filterQuery = '';
     rowsOnPage = 10;
-    sortBy = "email";
-    sortOrder = "asc";
+    sortBy = 'email';
+    sortOrder = 'asc';
 
-    constructor(private service:OrderbookService, private router: Router) {
+    constructor(private service: HistoricalOrderbookService, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });

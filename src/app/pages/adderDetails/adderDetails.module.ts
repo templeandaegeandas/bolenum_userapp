@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgaModule } from '../../theme/nga.module';
-import { Adderdetails } from './adderdetails.component';
+import { AdderDetails } from './adderDetails.component';
 import { TabViewModule } from 'primeng/primeng';
-import { routing } from './adderdetails.routing';
+import { routing } from './adderDetails.routing';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { routing } from './adderdetails.routing';
    
   ],
   declarations: [
-  Adderdetails,
+  AdderDetails,
   ],
 })
-export class AdderdetailsModule {}
+export class AdderDetailsModule {}

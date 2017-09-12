@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { PendingkycService } from './pendingkyc.service';
+import { PendingKycService } from './pendingKyc.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'pendingkyc',
-  styleUrls: [('./pendingkyc.scss')],
-  templateUrl: './pendingkyc.html',
-  providers: [PendingkycService]
+  selector: 'pendingKyc',
+  styleUrls: [('./pendingKyc.scss')],
+  templateUrl: './pendingKyc.html',
+  providers: [PendingKycService]
 })
-export class Pendingkyc {
+export class PendingKyc {
 
    data;
-    filterQuery = "";
+    filterQuery = '';
     rowsOnPage = 10;
-    sortBy = "email";
-    sortOrder = "asc";
+    sortBy = 'email';
+    sortOrder = 'asc';
 
-    constructor(private service:PendingkycService, private router: Router) {
+    constructor(private service: PendingKycService, private router: Router) {
     this.service.getDataTable().then((data) => {
       this.data = data;
     });
