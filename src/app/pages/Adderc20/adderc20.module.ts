@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../app.translation.module';
 import { NgaModule } from '../../theme/nga.module';
 
-import { Adderc20 } from './adderc20.component';
+import { Adderc20} from './adderc20.component';
 import { routing } from './adderc20.routing';
 import { TableFilterPipe } from './table-filter.pipe';
 import { Ng2SmartTableModule } from 'ng2-smart-table';

@@ -30,8 +30,8 @@ export class Adderc20  {
     sortByWordLength = (a: any) => {
         return a.city.length;
     }
-  navigaeToOrderDetails()
+  navigaeToAdderdetails()
   {
-    this.router.navigate(['/pages/orderdetails'])
+    this.router.navigate(['/pages/adderdetails'])
   }
 }

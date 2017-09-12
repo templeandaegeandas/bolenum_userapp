@@ -9,8 +9,10 @@ button.btn.btn-default {
 }
 
 img.login {
-    margin-left: 184px;
-    padding: 14px;
+   
+    left: 202px;
+    position: relative;
+    bottom: 23px;
 }
 .form-control {
     color: #333;
@@ -21,4 +23,6 @@ img.login {
     font-size: 14px;
     
     }
-    
+    .glyphicon-user:before {
+    content: "\e008";
+}

@@ -51,7 +51,7 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'adderc20 ',
+        path: 'adderc20',
         data: {
           menu: {
             title: 'Add ERC 20',

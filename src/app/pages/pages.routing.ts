@@ -27,18 +27,20 @@ export const routes: Routes = [
       { path: 'orderbook', loadChildren: './orderbook/orderbook.module#OrderbookModule' },
       { path: 'usersqueries', loadChildren: './usersqueries/usersqueries.module#UsersqueriesModule' },
       { path: 'pendingkyc', loadChildren: './pendingkyc/pendingkyc.module#PendingkycModule' },
-      { path: 'adderc20', loadChildren: './adderc20/adderc20.module#Adderc20Module' },
+      { path: 'adderc20', loadChildren: './Adderc20/adderc20.module#Adderc20Module' },
       { path: 'kycDetails', loadChildren: './KycDetails/kycDetails.module#kycDetailsModule' },
       { path: 'userdetails', loadChildren: './userDetails/userDetail.module#UserDetailModule' },
       { path: 'orderdetails', loadChildren: './orderDetails/orderDetails.module#OrderDetailsModule' },
       { path: 'reply', loadChildren: './reply/reply.module#ReplyModule' },
-      { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
-      { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
-      { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-      { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
-      { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
-      { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-      { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
+      { path: 'adderdetails', loadChildren: './adderdetails/adderdetails.module#AdderdetailsModule' },
+    //   { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
+    //   { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
+    //   { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
+    //   { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
+    //   { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
+    //   { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
+    //   { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
+    // 
     ]  
   }
 ];
