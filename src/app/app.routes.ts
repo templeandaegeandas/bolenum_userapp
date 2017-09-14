@@ -10,13 +10,14 @@ import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
 import { LoginComponent } from './login/login.component';
-
+import { SignUpComponent } from './sign-up/sign-up.component';
 import 'rxjs/add/operator/switchMap';
 
 const APP_ROUTES: Routes = [ 
    {path:'dashboard',component:  DashboardComponent}, 
    {path:'tradeNow',component:  TradeNowComponent}, 
    {path:'login',component: LoginComponent}, 
+   {path:'sign-up',component:  SignUpComponent}, 
  ];
 
 
