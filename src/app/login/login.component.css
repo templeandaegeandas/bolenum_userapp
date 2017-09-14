@@ -1,0 +1,114 @@
+
+.login-content {
+    margin-top: 80px;
+    box-shadow: 0px -2px 3px 0px;
+    width: 942px;
+    margin-left: 80px
+}
+img.img-login {
+    width: 411px;
+    height: 650px;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    margin: 11px;
+   font-family: Lato;
+
+}
+img.img-header{
+    
+	top: 0;
+	left: 0;
+}
+.text-center {
+    text-align: center;
+    padding: 26px;
+}
+.text-left {
+    text-align: left;
+    color: #ca1c09;
+    text-transform: uppercase;
+    font-size: 15px;
+
+}
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+   margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 15px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .input-group input{
+    height: 38px;
+  }
+   .input-groups input{
+    height: 38px;
+  }
+  .input-icon{
+    position: relative;
+    float: left;
+    width: 100%;
+    border-radius: 0;
+  }
+  .input-icon input{
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  .input-icon img{
+    right: 10px;
+    position: absolute;
+    top: 8px;
+    z-index: 99999;
+  }
+  .input-icons img{
+    right: 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 99999;
+  }
+  .btn-success {
+    color: #ffffff;
+    width: 140px;
+    background-color: #ca1c09;
+    border-color: #ca1c09;
+    font-family: Lato;
+    margin-left: 11px;
+}
+   .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
+    color: #fff;
+    background-color:#ca1c09;
+    border-color: #ca1c09;
+}
+.col-md-6.forgot-pass-content a{
+    text-decoration: none;
+    color: #D4D4D4;
+}
+.col-md-6.forgot-pass-content {
+    float: right;
+    padding: 2px;
+}
+button.btn.btn-continue {
+    color: #ffffff;
+    width: 179px;
+    background-color: #DB2828;
+    border-color: #DB2828;
+    font-family: Lato;
+    margin-left: 11px;
+     
+}

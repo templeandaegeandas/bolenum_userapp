@@ -1,0 +1,99 @@
+.header-menu {
+  background-color: rgba(8, 93, 9, 0.85);
+}
+
+.header-menu .navbar-default{
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+.insight{
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 700;
+  color: #fff;
+  line-height: 32px;
+  height: auto;
+  margin-left: 0 !important;
+}
+.header-menu ul.nav.navbar-nav li:hover a{
+  background: #fff;
+  color: #000;
+}
+.header-menu ul.nav.navbar-nav.navbar-right{
+  margin-right: 0;
+}
+a.navbar-brand.insight:hover, a.navbar-brand.insight:focus {
+  color: #fff;
+}
+.header-search input{
+  width: 350px;
+  background-color:  #5cb85c;
+  border: 0;
+  border-radius: 30px;
+  box-shadow: none;
+}
+.header-menu .navbar-nav>li>a{
+  color: #fff;
+  line-height: 32px;
+}
+.header-menu .navbar-default .navbar-nav>.open>a{
+  background: #fff;
+  color: #000;
+}
+.status{
+  background-color: #5cb85c;
+  border-radius: 3px;
+  margin: 15px 0;
+  padding: 8px 10px;
+  color: #eee;
+}
+.status span{
+  font-size: 12px;
+  text-align: center;
+  margin-left: 10px;
+  display: inline-block;
+}
+.header-menu .glyphicon-qrcode{
+  margin-right: 3px;
+}
+.header-menu form.navbar-form.navbar-left{
+  margin-top: 15px;
+  border: none;
+  box-shadow: none;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+.header-menu .dropdown-menu{
+  display: block;
+}
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .header-menu .navbar-default .navbar-collapse{
+    border: none;
+    box-shadow: none;
+  }
+  .header-menu{
+    overflow-x: hidden;
+  }
+  .header-menu .navbar{
+    margin-bottom: 0;
+  }
+  .header-menu .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background: none !important;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+  }
+  .collapse{
+    display: block !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .header-menu{
+    overflow-x: hidden;
+  }
+}
