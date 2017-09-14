@@ -13,14 +13,10 @@ import { LoginComponent } from './login/login.component';
 
 import 'rxjs/add/operator/switchMap';
 
-const APP_ROUTES: Routes = [
-   {path: 'header', component: HeaderComponent },
+const APP_ROUTES: Routes = [ 
    {path:'dashboard',component:  DashboardComponent}, 
    {path:'tradeNow',component:  TradeNowComponent}, 
    {path:'login',component: LoginComponent}, 
-   {path:'footer',component: FooterComponent}, 
-  
-   { path: '**',   redirectTo: '/header',pathMatch: 'full'  },
  ];
 
 
