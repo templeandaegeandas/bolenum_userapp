@@ -1,0 +1,78 @@
+<div id="dashboard">
+<div class="main hederstyling">
+	<div class="row">
+	<div class="spinner" *ngIf="flag">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+      <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+         <div class="latest-block-details">
+            <h1>Latest Blocks</h1>
+            <div class="table-responsive"> 
+            <table class="table transaction">
+               <thead>
+                 
+                  <tr>
+                     <th>Block</th>
+                     <th>Hash</th>
+                     <th>Receipent</th>
+                     <th>Amount(GSL)</th>
+                     <th>Timestamp</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr  class="tr-bg my-animation" *ngFor="let i of latestTransaction">
+                     <td><a (click)="navigateToNewinner(i)">{{i.height}}</a></td>
+                     <td><a (click)="navigateToTransaction(i)" class="ellipsis">{{i.txid}}</a></td>
+                     <td>{{i.recipients}}</td>
+                     <td>{{i.amount.toFixed(8)}}</td>
+                     <td>{{i.time |date:"dd-MM-yyyy  h:mm a"}} </td>
+                  </tr>
+                 </tbody>
+            </table>
+         </div>
+         </div>
+         <div class="latest-transaction">
+            <h1>Latest Transactions</h1>
+            <div class="table-responsive">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th class="text-left">Hash</th>
+                        <th class="text-right" >Amount(GSL)</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="tr-bg my-animation" *ngFor="let i of latestBlocks">
+                        <td class="text-left"><a (click)="navigateToNewinner(i)">{{i.hash}}</a></td>
+                        <td class="text-right"> {{i.valueOut.toFixed(8)}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-12 col-lg-4 col-sm-4 col-md-4">
+           <div class="col-gray">
+            <h2>About Block Explorer</h2>
+             <p><strong><a href="http://greenshilling.org/">Greenshilling Block Explorer</a></strong> is an open source web tool that allows you to view information about <a href="https://en.bitcoin.it/wiki/Block">blocks</a>, <a href="https://en.bitcoin.it/wiki/Address">addresses</a>, and <a href="https://en.bitcoin.it/wiki/Transaction">transactions</a> on the Bitcoin blockchain. The <a href="https://github.com/greenshilling">source code</a> is on GitHub.</p>
+             <p>If you are new to Green Coin, check out <a href="">We Use Coins</a> and <a href="http://greenshilling.org/">Greenshilling.org</a>.</p>
+             <p><strong>Public Greenshilling Coin API:</strong> Machine readable stats &amp; blockchain info can be accessed directly through the <a href="http://www.greenshilling.net/api">REST and Websockets APIs</a>.</p>
+             <p><strong>Testnet</strong> is Greenshilling  Coin sandbox. Block Explorer supports viewing
+               both the <a href="">testnet</a> and <a href="">mainnet</a> blockchains.
+            </p>
+             
+             <p>Thanks to <a title="VPN Service">Private
+               Internet Access</a> for hosting the site. They provide a <a title="VPN Service">VPN Service</a> that accepts Bitcoin.
+            </p>
+         <div id="powered" class="row">
+               <div class="powered-text">
+                  <small class="text-muted"><span>Powered by</span></small>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
