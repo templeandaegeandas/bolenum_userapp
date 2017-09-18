@@ -19,6 +19,9 @@ user = new User("","","","","",false);
 
   signUpUser(form) {
     if(form.invalid) return;
+    if(this.user.repassword!=this.user.password){
+      return;
+    }
     this.signUpService.signUp(this.user).subscribe(success => {
       form.resetForm();
       this.toastrService.success(success.message, 'Success!');

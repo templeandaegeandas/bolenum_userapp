@@ -11,7 +11,7 @@
         <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/profile.png"></span>
-            <input id="email" type="text" class="form-control" name="email" [(ngModel)]="login.emailId" #email="ngModel" placeholder="Email" email required>
+            <input id="email" type="email" class="form-control" name="email" [(ngModel)]="login.emailId" #email="ngModel" placeholder="Email" email required>
 
           </div>
           <span *ngIf="email.invalid && loginForm.submitted">
