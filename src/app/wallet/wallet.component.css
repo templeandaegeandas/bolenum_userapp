@@ -1,0 +1,176 @@
+.container-fluid {
+    background: lightgrey;
+    
+}*/
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+body {
+	font-family:Lato;
+	
+}
+
+h1 {
+	color: #ccc;
+	text-align: center;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+
+.tab_container {
+	width: 63%;
+	margin: 0 auto;
+    position: relative;
+}
+
+input, section {
+  clear: both;
+  padding-top: 20px;
+  display: none;
+}
+
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 32%;
+  padding: 1.5em;
+  color: #757575;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
+  display: block;
+  /*padding: 20px;*/
+  /*background:white;*/
+  color: #999;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab_container .tab-content p,
+.tab_container .tab-content h3 {
+  -webkit-animation: fadeInScale 0.7s ease-in-out;
+  -moz-animation: fadeInScale 0.7s ease-in-out;
+  animation: fadeInScale 0.7s ease-in-out;
+}
+.tab_container .tab-content h3  {
+  text-align: center;
+}
+
+.tab_container [id^="tab"]:checked + label {
+  border-bottom: 3px solid #DB2828;;
+  background: #fff;
+}
+
+.tab_container [id^="tab"]:checked + label .fa {
+  color: #DB2828;
+}
+
+label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+button.btn.btn-defaults {
+    width: 186px;
+    margin-left: 481px;
+    color: white;
+    background: #D42828;
+    margin-bottom: 27px;
+}
+
+img.wallet-icon {
+   
+    position: absolute;
+    top: 261px;
+    left: 534px;
+}
+
+p.text1 {
+    font-size: 18px;
+    padding: 8px;
+}
+.img-walet {
+    text-align: -webkit-center;
+    background: #c7c4c4;
+    padding-top: 22px;
+}
+
+/*Media query*/
+@media only screen and (max-width: 930px) {
+  label span {
+    font-size: 14px;
+  }
+  label .fa {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+  a.btn.btn-dark-blue {
+    width: 80%;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 600;
+    color:#DB2828;;
+    border: 2px solid gray;
+}
+
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+  img.wallet-icon {
+   
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	transform: scale(0.9);
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
+}

@@ -1,0 +1,215 @@
+.container-fluid {
+    background: lightgrey;
+    margin: 5px;
+}*/
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+body {
+	font-family:Lato;
+	
+}
+
+h1 {
+	color: #ccc;
+	text-align: center;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+/*Fun begins*/
+.tab_container {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 70px;
+	position: relative;
+}
+
+input, section {
+  clear: both;
+  padding-top: 20px;
+  display: none;
+}
+
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 32%;
+  padding: 1.5em;
+  color: #757575;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
+  display: block;
+  /*padding: 20px;*/
+  /*background:white;*/
+  color: #999;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab_container .tab-content p,
+.tab_container .tab-content h3 {
+  -webkit-animation: fadeInScale 0.7s ease-in-out;
+  -moz-animation: fadeInScale 0.7s ease-in-out;
+  animation: fadeInScale 0.7s ease-in-out;
+}
+.tab_container .tab-content h3  {
+  text-align: center;
+}
+
+.tab_container [id^="tab"]:checked + label {
+  border-bottom: 3px solid #DB2828;;
+  background: #fff;
+}
+
+.tab_container [id^="tab"]:checked + label .fa {
+  color: #DB2828;
+}
+
+label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+p.text1 {
+    margin-top: 76px;
+    font-family: lato;
+    font-size: 18px;
+    color: black;
+}
+p.text2 {
+    font-size: 26px;
+    font-family: lato;
+}
+p.text3 {
+    margin-top:10px ;
+    font-family: lato;
+    font-size: 18px;
+    color: black;
+}
+img.img-profile {
+    position: absolute;
+    top: 54px;
+    width: 30px;
+    color:gray;
+
+}
+p.input-text {
+    position: absolute;
+    top: 92px;
+    margin-left: 58px;
+    font-size: 19px;
+}
+p.icon-name {
+    position: absolute;
+    top: 53px;
+    padding: 1px;
+    color:gray;
+    margin-left: 58px;
+    font-size: 20px;
+
+}
+a.btn.btn-dark-blue {
+    width: 80%;
+    padding: 8px;
+    font-family: lato;
+    font-size: 25px;
+    font-weight: 600;
+    color:#DB2828;
+    border: 2px solid gray;
+}
+span.dolor {
+    color: black;
+}
+p.text-title {
+    position: absolute;
+    top: 27px;
+    font-size: 25px;
+    font-weight: 600;
+}
+p.last-prof {
+    font-size: 19px;
+    font-weight: 600;
+}
+button.btn.btn-defaults {
+    width: 186px;
+    margin-left: 481px;
+    color: white;
+    background: #D42828;
+    margin-bottom: 27px;
+}
+
+
+/*Media query*/
+@media only screen and (max-width: 930px) {
+  label span {
+    font-size: 14px;
+  }
+  label .fa {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+  a.btn.btn-dark-blue {
+    width: 80%;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 600;
+    color:#DB2828;;
+    border: 2px solid gray;
+}
+
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	transform: scale(0.9);
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
+}

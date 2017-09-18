@@ -2,6 +2,74 @@
     
     box-shadow: 2px -2px 4px 3px;
 }
+.top_bar {
+   min-height:20px; 
+   background: #DB2828;
+}
+.topnav { 
+  list-style-type:none;
+  margin-bottom:0px; 
+  float:left; 
+  padding:0px;
+  margin-left:0px;
+  }
+.topnav li {
+    float: left;
+    padding: 7px;
+    color: #FFFFFF;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.topnav  li a {
+   padding:0 10px;
+   font-size:13px;
+   line-height:40px;
+   color:#FFF;
+   }
+
+.rightc { 
+  list-style-type:none; 
+  margin-bottom:0px; 
+  float:right;
+  }
+.rightc li { 
+  margin:0px 10px; 
+  font-size:13px; 
+  float:left; 
+  line-height:40px; 
+  color:#FFF;
+  }
+.rightc li a {  
+   color:#FFF; 
+   }
+
+.navbar-brand img 
+{
+   margin-top:0px; 
+   margin-left:0px;
+   }
+.navbar-brand {
+  padding:0px;
+  }
+
+.header_image {
+   margin-top:-70px;
+    float:left;
+    }
+.nav.navbar-nav.navbar-right span {
+  font-family: Lato; 
+  
+  font-weight:300; 
+  }
+.navbar-right li a {
+  font-family: Lato; 
+  font-size:16px; 
+  }
+.navbar-default .navbar-brand {
+  color: #002433;
+}
+
 .header-menu .navbar-default {
     background: none;
     border: none;
@@ -58,6 +126,25 @@ span.exchange-color {
     display: block;
    
 }
+.dropdown-menu {
+  background-color: gray;
+  color: white;
+  border: 0px;
+  border-radius: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dropdown-menu>li>a {
+  background-color:gray;
+  color: white;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  background-color: gray;
+  color:white;
+}
+
 .header-menu .navbar-collapse{
     float: right;
     padding: 0;
@@ -85,9 +172,14 @@ span.exchange-color {
   .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff !important;
   }
-  .collapse{
-    display: block !important;
-  }
+.logo-img {
+    display: inline-block;
+    width: 63px;
+    vertical-align: middle;
+    margin: -67px -10px 20px -55px;
+    float: left;
+}
+
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){
   .header-menu{
