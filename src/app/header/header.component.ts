@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+token: String;
   constructor() { }
 
   ngOnInit() {
+    this.token = localStorage.getItem("token");
   }
 
 }
