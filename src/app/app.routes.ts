@@ -11,7 +11,7 @@ import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { ForgetComponent } from './forget/forget.component';
+import { ForgotComponent } from './forgot/forgot.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { HeadComponent } from './head/head.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -24,7 +24,7 @@ export const APP_ROUTES: Routes = [
   { path: 'tradeNow', component: TradeNowComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'forget', component: ForgetComponent },
+  { path: 'forgot', component: ForgotComponent },
   { path: 'head', component: HeadComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'wallet', component: WalletComponent },

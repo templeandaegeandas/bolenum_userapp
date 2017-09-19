@@ -1,6 +1,6 @@
 .container-fluid {
-    background: lightgrey;
-    margin: 5px;
+    background: #f8f8f8;
+  
 }*/
 *,
 *:after,
@@ -36,14 +36,39 @@ a {
   outline: none;
 }
 
-/*Fun begins*/
-.tab_container {
-	width: 90%;
-	margin: 0 auto;
-	padding-top: 70px;
-	position: relative;
+.top-header {
+    position: relative;
+}
+.head-icon {
+    position: absolute;
+    top: 23px;
+    margin-left: 205px;
+    /* display: inline-block; */
+    color: white;
+}
+.header-text {
+   position: absolute;
+    bottom: 28%;
+    left: 8%;
+}
+p.top-text{
+    color: white;
+    font-size: 23px;
+    margin-left: 157px;
+    position: absolute;
+    top: 23px;
 }
 
+
+.tab_container {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: -11px;
+    position: relative;
+     margin-bottom: 48px;
+    bottom: 34px;
+    margin-left: 89px;
+}
 input, section {
   clear: both;
   padding-top: 20px;
@@ -73,7 +98,7 @@ label {
   /*padding: 20px;*/
   /*background:white;*/
   color: #999;
-  border-bottom: 2px solid #f0f0f0;
+  
 }
 
 .tab_container .tab-content p,
@@ -86,9 +111,15 @@ label {
   text-align: center;
 }
 
+.tab_container [id^="tab"]:checked + label:active {
+    transform: scale(1,1);
+     
+}
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
+  border-top-left-radius: 5px;
+   border-top-right-radius:5px
 }
 
 .tab_container [id^="tab"]:checked + label .fa {
@@ -116,28 +147,9 @@ p.text3 {
     font-size: 18px;
     color: black;
 }
-img.img-profile {
-    position: absolute;
-    top: 54px;
-    width: 30px;
-    color:gray;
 
-}
-p.input-text {
-    position: absolute;
-    top: 92px;
-    margin-left: 58px;
-    font-size: 19px;
-}
-p.icon-name {
-    position: absolute;
-    top: 53px;
-    padding: 1px;
-    color:gray;
-    margin-left: 58px;
-    font-size: 20px;
 
-}
+
 a.btn.btn-dark-blue {
     width: 80%;
     padding: 8px;
@@ -162,13 +174,56 @@ p.last-prof {
 }
 button.btn.btn-defaults {
     width: 186px;
-    margin-left: 481px;
+    margin-left: 33px;
     color: white;
     background: #D42828;
     margin-bottom: 27px;
 }
+p.icon-name {
+    font-size: 18px;
+    color: black;
+    margin-left: 2px;
+}
+.col-backgrnd {
+   background: white;
+    float: left;
+    width: 105%;
+    padding: 15px;
+    height: 346px;
+    margin: 0px -5px 0 -13px;
+    border-radius: 4px;
+}
 
-
+.email-img 
+{
+   float:left;
+   margin-right: 2px;
+   }
+   p.text-icon {
+    font-size: 15px;
+    margin-left: 3px;
+}
+.email-text
+ {
+    float: left;
+    margin-left: 20px;
+}
+.profile-col {
+    padding: 12px;
+    background: white;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #DB2828;
+}
+.btn-success {
+    color: #fff;
+    background-color: #DB2828;
+    border-color: #DB2828;
+    width: 111px;
+    margin-left: 68px;
+    padding: 9px;
+}
 /*Media query*/
 @media only screen and (max-width: 930px) {
   label span {
@@ -204,7 +259,7 @@ button.btn.btn-defaults {
 /*Content Animation*/
 @keyframes fadeInScale {
   0% {
-  	transform: scale(0.9);
+  	/*transform: scale(0.9);*/
   	opacity: 0;
   }
   
@@ -212,4 +267,68 @@ button.btn.btn-defaults {
   	transform: scale(1);
   	opacity: 1;
   }
+}
+.verify-col {
+    background: #fff;
+    margin: 20px -15px 0;
+    padding: 15px;
+}
+.verify-col .email-part {
+    float: left;
+    width: 50%;
+}
+input#usr {
+    display: block;
+    padding: 6px;
+    width: 217px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
+}
+p.col-id {
+    font-size: 21px;
+    padding: 4px;
+}
+.id-input-details .form-group, .id-input-details button {
+    float: left;
+    padding-right: 15px;
+}
+.prof-verify {
+    /* padding: 20px; */
+    background: white;
+    margin: 20px -15px 0;
+    padding: 15px;
+    border-radius: 4px;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin-left: 97px;
+    margin-right: 102px;
+}
+ p.bank-text {
+    font-size: 18px;
+}
+.bank-backgrnd {
+    padding: back;
+    background: white;
+    padding: 23px;
+}
+.bank-backgrnd.email-text {
+    float: left;
+    margin-left: 162px;
+}
+
+
+img.img-.bakprofile {
+    width: 111px;
+    margin-left: 147px;
+}
+
+p.bank-icon {
+    margin-left: 92px;
 }
