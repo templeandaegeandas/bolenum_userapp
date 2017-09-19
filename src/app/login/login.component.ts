@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private toastrService: ToastrService, private router: Router) {}
 
   ngOnInit() {
+    this.isLoggedIn();
   }
 
   loginUser(form) {
@@ -30,6 +31,14 @@ export class LoginComponent implements OnInit {
     },error=> {
        this.toastrService.error(error.json().message, 'Error!');
     })
+  }
+
+  isLoggedIn() {
+    if(localStorage.getItem("token")!=null) {
+      this.router.navigate(['dashboard']);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 
 }

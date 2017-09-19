@@ -9,13 +9,10 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 token: String;
   constructor() {
-    this.token = localStorage.getItem("token");
-    console.log("constructor"+this.token)
   }
 
   ngOnInit() {
     this.token = localStorage.getItem("token");
-    console.log("onInit"+this.token)
   }
 
 }

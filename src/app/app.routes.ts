@@ -19,7 +19,8 @@ import { WalletComponent } from './wallet/wallet.component';
 import 'rxjs/add/operator/switchMap';
 
 export const APP_ROUTES: Routes = [
-  {path: 'dashboard', component: DashboardComponent },
+  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'tradeNow', component: TradeNowComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -31,4 +32,4 @@ export const APP_ROUTES: Routes = [
 ];
 
 
-export const routing = RouterModule.forRoot(APP_ROUTES, { useHash: true });
+// export const routing = RouterModule.forRoot();

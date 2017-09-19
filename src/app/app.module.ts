@@ -14,7 +14,7 @@ import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
 import { LoginComponent } from './login/login.component';
 import { ForgetComponent } from './forget/forget.component';
-import { routing } from './app.routes';
+import { APP_ROUTES } from './app.routes';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { HeadComponent } from './head/head.component';
@@ -44,16 +44,14 @@ export function highchartsFactory() {
     ProfileComponent,
     WithdrawComponent,
     WalletComponent,
-   
-    
   ],
   imports: [
     BrowserModule,
     ChartModule,
-    routing,
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot()
   ],
   providers: [{
