@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-    private options :any;
+    options :any;
   constructor() {
     this.options = {
            chart: {
@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
         },
     legend: {
        marker : {symbol : 'square',radius : 12 }
-           
+
        },
     xAxis: {
         categories: [
@@ -30,23 +30,23 @@ export class DashboardComponent implements OnInit {
             'JUL',
             'AUG'
         ],
-        
+
     },
     yAxis: {
         title: {
             text: ' '
         }
     },
-    
+
     tooltip: {
         shared: false,
         valueSuffix: ' units'
     },
-    
+
     credits: {
         enabled: false
     },
-    
+
     plotOptions: {
         areaspline: {
             fillOpacity: 0.5
@@ -67,18 +67,18 @@ export class DashboardComponent implements OnInit {
         data: [3, 4, 3, 5, 4, 10, 12],
     }, {
         name: 'ETH',
-        
+
          data: [1, 3, 4, 3, 3, 5, 4]
     }],
     colors: ["#e42d2d","#3ad1e4"]
-            
+
         };
-    
-        
+
+
    }
 
   ngOnInit() {
-    
+
   }
 
 }

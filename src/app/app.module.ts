@@ -13,14 +13,15 @@ import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
 import { LoginComponent } from './login/login.component';
-import { ForgotComponent } from './forgot/forgot.component';
-import { routing } from './app.routes';
+import { ForgetComponent } from './forget/forget.component';
+import { APP_ROUTES } from './app.routes';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { HeadComponent } from './head/head.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
+import {HttpClient} from './app.client.interceptor';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -38,27 +39,25 @@ export function highchartsFactory() {
     TradeNowComponent,
     LoginComponent,
     SignUpComponent,
-    ForgotComponent,
+    ForgetComponent,
     ResetpasswordComponent,
     HeadComponent,
     ProfileComponent,
     WithdrawComponent,
     WalletComponent,
-   
-    
   ],
   imports: [
     BrowserModule,
     ChartModule,
-    routing,
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot()
   ],
   providers: [{
       provide: HighchartsStatic,
-      useFactory: highchartsFactory}],
+      useFactory: highchartsFactory,},HttpClient],
 
   bootstrap: [AppComponent]
 })

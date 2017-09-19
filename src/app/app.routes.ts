@@ -18,17 +18,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { WalletComponent } from './wallet/wallet.component';
 import 'rxjs/add/operator/switchMap';
 
-const APP_ROUTES: Routes = [ 
-   {path:'dashboard',component:  DashboardComponent}, 
-   {path:'tradeNow',component:  TradeNowComponent}, 
-   {path:'login',component: LoginComponent}, 
-   {path:'sign-up',component:  SignUpComponent}, 
-   {path:'forgot',component: ForgotComponent}, 
-   {path:'head',component:HeadComponent  }, 
-   {path:'profile',component:ProfileComponent},
-   {path:'wallet',component:WalletComponent},
-   {path:'resetpassword',component: ResetpasswordComponent}, 
- ];
+export const APP_ROUTES: Routes = [
+  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'tradeNow', component: TradeNowComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'forgot', component: ForgotComponent },
+  { path: 'head', component: HeadComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'wallet', component: WalletComponent },
+  { path: 'resetpassword', component: ResetpasswordComponent },
+];
 
 
-export const routing = RouterModule.forRoot(APP_ROUTES);
+// export const routing = RouterModule.forRoot();
