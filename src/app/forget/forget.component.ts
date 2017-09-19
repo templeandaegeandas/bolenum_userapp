@@ -6,7 +6,7 @@ import { ToastrService } from 'toastr-ng2';
 @Component({
   selector: 'app-forget',
   templateUrl: './forget.component.html',
-  styleUrls: ['./forget.component.css'] ,
+  styleUrls: [] ,
   providers: [ForgetPasswordService]
 })
 export class ForgetComponent implements OnInit {
