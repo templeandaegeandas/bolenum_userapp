@@ -21,6 +21,7 @@ import { HeadComponent } from './head/head.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
+import {HttpClient} from './app.client.interceptor';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -56,7 +57,7 @@ export function highchartsFactory() {
   ],
   providers: [{
       provide: HighchartsStatic,
-      useFactory: highchartsFactory}],
+      useFactory: highchartsFactory,},HttpClient],
 
   bootstrap: [AppComponent]
 })
