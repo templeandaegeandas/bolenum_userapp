@@ -11,11 +11,11 @@
             <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
                <span class="input-group-addon"><img src="assets/images/profile.png"></span>
-               <input id="email" type="email" class="form-control" name="email" [(ngModel)]="login.emailId" #email="ngModel" placeholder="Email" email required>
+               <input id="email" type="email" class="form-control" name="email" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
             </div>
             <span *ngIf="email.invalid && loginForm.submitted">
             <span class="text-danger" *ngIf="email.errors.required">Please enter email</span>
-            <span class="text-danger" *ngIf="email.errors.email && !email.errors.required">Please enter valid email</span>
+            <span class="text-danger" *ngIf="email.errors.pattern">Please enter valid email</span>
             </span>
             <div class="input-group">
                <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
