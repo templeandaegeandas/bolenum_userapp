@@ -10,12 +10,17 @@ import { HeaderService } from './header.service';
   providers: [HeaderService]
 })
 export class HeaderComponent implements OnInit {
+  public isOpen:boolean=false;
+  public subMenu = false;
 token: String;
+fullName: String;
   constructor(private headerService: HeaderService, private router: Router) {
   }
 
   ngOnInit() {
     this.token = localStorage.getItem("token");
+    this.fullName = localStorage.getItem("fName")+" "+localStorage.getItem("lName");
+    console.log(this.token);
   }
 
   signOut() {
@@ -25,6 +30,10 @@ token: String;
     },error => {
       this.router.navigate(['login']);
     })
+  }
+  showDropdown(){
+    console.log("hhhdhsdhs");
+    this.subMenu = !this.subMenu;
   }
 
 }

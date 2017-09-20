@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'toastr-ng2';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { AppHeaderComponent } from './appheader/app.header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartModule } from 'angular2-highcharts';
@@ -17,11 +18,14 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { APP_ROUTES } from './app.routes';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { HeadComponent } from './head/head.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
 import {HttpClient} from './app.client.interceptor';
+import { LoadingModule } from 'ngx-loading';
+import { NoNumberDirective } from './directives/no.number.directive';
+import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
+import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -34,6 +38,7 @@ export function highchartsFactory() {
   declarations: [
     AppComponent,
     HeaderComponent,
+    AppHeaderComponent,
     FooterComponent,
     DashboardComponent,
     TradeNowComponent,
@@ -41,10 +46,12 @@ export function highchartsFactory() {
     SignUpComponent,
     ForgotComponent,
     ResetpasswordComponent,
-    HeadComponent,
     ProfileComponent,
     WithdrawComponent,
     WalletComponent,
+    NoNumberDirective,
+    NoSpecialCharacterDirective,
+    NoNumberSpecialCharacterDirective
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,9 @@ export function highchartsFactory() {
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
-     ToastrModule.forRoot()
+     ToastrModule.forRoot(),
+     LoadingModule,
+     
   ],
   providers: [{
       provide: HighchartsStatic,

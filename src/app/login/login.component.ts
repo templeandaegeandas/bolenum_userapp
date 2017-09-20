@@ -12,6 +12,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   login = new Login("","");
+  loading = false;
   constructor(private loginService: LoginService, private toastrService: ToastrService, private router: Router) {}
 
   ngOnInit() {
@@ -22,12 +23,15 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
         return;
     }
-    console.log(this.login);
+    this.loading = true;
     this.loginService.logIn(this.login).subscribe(success => {
-      console.log(success)
-      this.toastrService.success(success.message, 'Success!');
+      localStorage.setItem("token",success.data.token);
+      localStorage.setItem("fName", success.data.fName);
+      localStorage.setItem("lName", success.data.lName);
       this.router.navigate(['dashboard']);
+      this.loading = false;
     },error=> {
+      this.loading = false;
        this.toastrService.error(error.json().message, 'Error!');
     })
   }

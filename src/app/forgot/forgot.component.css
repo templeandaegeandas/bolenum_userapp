@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+
+
 .login-content {
     margin-top: 80px;
-    box-shadow: 0px -2px 3px 0px;
+    box-shadow:0 0 27px #eee;
     width: 942px;
     margin-left: 80px;
-        margin-bottom: 87px;
+    margin-bottom: 87px;
 }
   img.img-login {
     width: 100%;
@@ -57,11 +61,13 @@ img.img-header{
   .input-group input{
     height: 38px;
   }
-   .input-groups input {
+   
+.input-groups input {
     height: 38px;
-    width: 431px;
-    margin-left: 11px;
+    width: 378px;
+    margin-left: 25px;
 }
+
   .input-icon{
     position: relative;
     float: left;
@@ -81,9 +87,9 @@ img.img-header{
   }
   .input-icons img{
     position: relative;
-    top: -30px;
+    top: -29px;
     z-index: 99999;
-    right: -408px;
+    right: -375px;
   }
   .btn-success {
     color: #ffffff;
@@ -112,7 +118,7 @@ button.btn.btn-continue {
     background-color: #DB2828;
     border-color: #DB2828;
     font-family: Lato;
-    margin-left: 88px;
+      margin-left: 28px;
 }
 h4.text-center {
     margin: 20px;
@@ -121,10 +127,16 @@ h4.text-center {
     color:#DB2828;
     text-align: center;
    
-    font-family: lato regular;
 
 }
 p.text-center {
     text-align: center;
     font-size: 16px;
+}
+.forget-pass {
+    margin-top: 95px;
+}
+.text-danger {
+    color: #a94442;
+    margin-left: 28px;
 }

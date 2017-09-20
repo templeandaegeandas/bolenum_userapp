@@ -13,4 +13,7 @@ export class User {
     this.repassword = repassword;
     this.termConditions = termConditions;
   }
+  setLastName(lastName: String) {
+    this.lastName = lastName;
+  }
 }

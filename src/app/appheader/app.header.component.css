@@ -73,33 +73,10 @@
 .navbar-brand img 
 {
    margin-top:-5px; 
-   margin-left:22px;
+   margin-left:0px;
    }
-   
-   .nav li > a{
-    position: relative;
-    display: block;
-    padding: -6px 35px;
-    cursor: pointer;
-}
 .navbar-brand {
   padding:0px;
-  }
-.custom-dropdown{
-    position: absolute;
-    top: 74px;
-    background: #db2828;
-    padding: 10px 15px;
-    /*width: 100%;*/
-    z-index: 999;
-  }
-  .custom-dropdown li{
-    list-style: none;
-    border-bottom: 1px solid #fff;
-  }
-  .custom-dropdown li a{
-    color: #fff;
-    text-decoration: none;
   }
 
 .header_image {
@@ -245,5 +222,3 @@ a.navbar-brand.insight {
     overflow-x: hidden;
   }
 }
-
-

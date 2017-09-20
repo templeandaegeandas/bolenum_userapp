@@ -5,7 +5,7 @@
         <img src="assets/images/login-img.png" class="img-login">
       </div>
       <div class="col-md-4 col-xs-6">
-
+<div class="sign-block">
         <div class="text-center">
           <img src="assets/images/bolenum.png" class="img-header">
         </div>
@@ -13,22 +13,22 @@
         <form #signUpForm=ngForm (submit)="signUpUser(signUpForm)">
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="FirstName" type="text" class="form-control" name="email" [(ngModel)]="user.emailId" #email="ngModel" placeholder="JonhArr12@gmail.com" email required>
+            <input id="FirstName" type="text" class="form-control" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="JonhArr12@gmail.com" required>
           </div>
           <span *ngIf="email.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="email.errors.required">Please enter email</span>
-          <span class="text-danger" *ngIf="email.errors.email && !email.errors.required">Please enter valid email</span>
+          <span class="text-danger" *ngIf="email.errors.pattern">Please enter valid email</span>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" placeholder="First Name" required>
+            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" placeholder="First Name" required nonumberspecialcharacter>
           </div>
           <span *ngIf="firstName.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="firstName.errors.required">Please enter first name</span>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name" required>
+            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name" nonumberspecialcharacter>
           </div>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
@@ -40,22 +40,25 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Conform Password" required>
+            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Confirm Password" required>
           </div>
           <span *ngIf="repassword.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="repassword.errors.required">Please enter confirm password</span>
           </span>
           <span class="text-danger" *ngIf="user.repassword!=user.password && !repassword.invalid">Passwords did not matched</span>
           <div class="checkbox custom-checkbox">
-             <input type="checkbox" id="test1" />
-            <label for="test1">Red</label>
-            <label>
-			    	    		<input name="remember" type="checkbox" [(ngModel)]="user.termConditions" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
-			    	    	</label>
+            <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
+             <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
+            <label for="test1">I hearby Accept <a>all terms & condition.</a></label>
+            <!--<label>
+			    	    		<input name="remember" type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
+			    	    	</label>-->
           </div>
           <button type="submit" [disabled]=!user.termConditions class="btn btn-success">SIGN UP</button>
 
         </form>
       </div>
     </div>
+    </div>
   </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

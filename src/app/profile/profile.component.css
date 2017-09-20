@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 .container-fluid {
     background: #f8f8f8;
   
@@ -41,25 +42,33 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 23px;
-    margin-left: 205px;
-    /* display: inline-block; */
+    top: 170px;
+    margin-left: 254px;
     color: white;
+    font-size: 20px;
 }
 .header-text {
    position: absolute;
     bottom: 28%;
     left: 8%;
 }
-p.top-text{
+
+p.top-text {
     color: white;
     font-size: 23px;
-    margin-left: 157px;
+    margin-left: 262px;
     position: absolute;
-    top: 23px;
+    top: 138px;
 }
 
-
+.profile-email {
+    position: absolute;
+    top: 209px;
+    margin-left: 258px;
+    font-size: 22px;
+    color: #FFFFFF;
+    /* padding-top: 20px; */
+}
 .tab_container {
     width: 90%;
     margin: 0 auto;
@@ -86,7 +95,9 @@ label {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  background: #f0f0f0;
+  background:#FFFFFF;
+  box-shadow: 2px 1px 2px 1px #eee;
+
 }
 
 #tab1:checked ~ #content1,
@@ -138,17 +149,16 @@ p.text1 {
     color: black;
 }
 p.text2 {
-    font-size: 26px;
-    font-family: lato;
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #CDCDCD;
+    font-weight: 400;
 }
 p.text3 {
     margin-top:10px ;
-    font-family: lato;
     font-size: 18px;
     color: black;
 }
-
-
 
 a.btn.btn-dark-blue {
     width: 80%;
@@ -156,8 +166,8 @@ a.btn.btn-dark-blue {
     font-family: lato;
     font-size: 25px;
     font-weight: 600;
-    color:#DB2828;
-    border: 2px solid gray;
+    color:#fb162B;
+    border: 1px solid #CACACA;
 }
 span.dolor {
     color: black;
@@ -166,32 +176,36 @@ p.text-title {
     position: absolute;
     top: 27px;
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 500;
+    color:#747474;
 }
 p.last-prof {
     font-size: 19px;
-    font-weight: 600;
+    /*font-weight: 600;*/
 }
+
 button.btn.btn-defaults {
     width: 186px;
-    margin-left: 33px;
-    color: white;
+    margin-left: 494px;
+    color: #FFFFFF;
     background: #D42828;
     margin-bottom: 27px;
 }
 p.icon-name {
-    font-size: 18px;
-    color: black;
+    font-size: 20px;
+    color: #747474;
     margin-left: 2px;
+    font-weight: 500;
 }
+  
 .col-backgrnd {
-   background: white;
+    background:#FFFFFF; 
     float: left;
     width: 105%;
-    padding: 15px;
-    height: 346px;
+    height: 340px;
     margin: 0px -5px 0 -13px;
     border-radius: 4px;
+    padding: 34px 3px 47px 43px;
 }
 
 .email-img 
@@ -199,18 +213,24 @@ p.icon-name {
    float:left;
    margin-right: 2px;
    }
-   p.text-icon {
+ p.text-icon {
     font-size: 15px;
     margin-left: 3px;
+    color: #CDCDCD;
+    font-size: 18px;
 }
-.email-text
- {
+
+.email-text{
     float: left;
     margin-left: 20px;
+    padding: 2px;
+    margin-bottom: 24px;
+  
 }
-.profile-col {
-    padding: 12px;
-    background: white;
+.profile-col{
+    background: #FFFFFF;
+    padding: 2px 2px 27px 33px;
+    border-radius: 2px;
 }
 .btn-success:hover {
     color: #fff;
@@ -268,10 +288,11 @@ p.icon-name {
   	opacity: 1;
   }
 }
+
 .verify-col {
     background: #fff;
-    margin: 20px -15px 0;
-    padding: 15px;
+    margin: 24px -15px 0;
+    padding: 20px 2px 8px 29px;
 }
 .verify-col .email-part {
     float: left;
@@ -287,9 +308,12 @@ input#usr {
     border: 2px solid #e2d8d8;
     outline: none;
 }
+
 p.col-id {
-    font-size: 21px;
+    font-size: 19px;
     padding: 4px;
+    color: #8a8787;
+    font-weight: 600;
 }
 .id-input-details .form-group, .id-input-details button {
     float: left;
@@ -323,12 +347,22 @@ hr {
     margin-left: 162px;
 }
 
-
 img.img-.bakprofile {
     width: 111px;
     margin-left: 147px;
 }
-
 p.bank-icon {
     margin-left: 92px;
+}
+img.profile-img {
+    height: 330px;
+    width: 100%;
+
+}
+.profile-new-var {
+    margin-top: 45px;
+}
+
+.custom-data {
+    border-right: 1px solid #ccc;
 }

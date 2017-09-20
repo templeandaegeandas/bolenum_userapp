@@ -13,19 +13,17 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { HeadComponent } from './head/head.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WalletComponent } from './wallet/wallet.component';
 import 'rxjs/add/operator/switchMap';
 
 export const APP_ROUTES: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'tradeNow', component: TradeNowComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'forgot', component: ForgotComponent },
-  { path: 'head', component: HeadComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
