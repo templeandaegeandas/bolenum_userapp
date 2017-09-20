@@ -15,7 +15,9 @@ export class LoginService {
   }
 
   logIn(login: Login) {
-    return this.http.post('/api/v1/login?ipAddress='+this.ip+'&browserName=Chrome', login,)
+    login.setIpAddress(this.ip);
+    login.setBrowserName('Chrome');
+    return this.http.post('/api/v1/login', login,)
       .map(res => res.json());
   }
 
