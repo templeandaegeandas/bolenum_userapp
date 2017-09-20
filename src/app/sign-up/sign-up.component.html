@@ -28,7 +28,7 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name" required>
+            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name">
           </div>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
@@ -61,3 +61,4 @@
     </div>
     </div>
   </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

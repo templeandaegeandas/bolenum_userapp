@@ -22,6 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
 import {HttpClient} from './app.client.interceptor';
+import { LoadingModule } from 'ngx-loading';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -53,7 +54,8 @@ export function highchartsFactory() {
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
-     ToastrModule.forRoot()
+     ToastrModule.forRoot(),
+     LoadingModule
   ],
   providers: [{
       provide: HighchartsStatic,
