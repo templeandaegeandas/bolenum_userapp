@@ -11,11 +11,14 @@ import { HeaderService } from './header.service';
 })
 export class HeaderComponent implements OnInit {
 token: String;
+fullName: String;
   constructor(private headerService: HeaderService, private router: Router) {
   }
 
   ngOnInit() {
     this.token = localStorage.getItem("token");
+    this.fullName = localStorage.getItem("fName")+" "+localStorage.getItem("lName");
+    console.log(this.token);
   }
 
   signOut() {
