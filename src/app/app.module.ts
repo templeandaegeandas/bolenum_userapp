@@ -13,6 +13,10 @@ import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
 import { LoginComponent } from './login/login.component';
+<<<<<<< HEAD
+=======
+import { ForgetComponent } from './forget/forget.component';
+>>>>>>> 0382a4b917d5eb74a1bb22ee45fa004d679a8c55
 import { ForgotComponent } from './forgot/forgot.component';
 import { APP_ROUTES } from './app.routes';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -39,6 +43,10 @@ export function highchartsFactory() {
     TradeNowComponent,
     LoginComponent,
     SignUpComponent,
+<<<<<<< HEAD
+=======
+    ForgetComponent,
+>>>>>>> 0382a4b917d5eb74a1bb22ee45fa004d679a8c55
     ForgotComponent,
     ResetpasswordComponent,
     HeadComponent,
