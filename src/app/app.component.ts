@@ -6,8 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() {}
+  token;
+  constructor() {
+    this.isLoggedIn();
+  }
   title = 'app';
+
+  isLoggedIn() {
+    if(localStorage.getItem("token")!=null) {
+      return true;
+     }
+     else{
+       return false;
+     }
+  }
 
 
 }

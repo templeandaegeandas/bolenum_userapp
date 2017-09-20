@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     this.loginService.logIn(this.login).subscribe(success => {
       console.log(success)
       localStorage.setItem("token",success.data.token);
-      this.toastrService.success(success.message, 'Success!');
+      localStorage.setItem("fName", success.data.fName);
+      localStorage.setItem("lName", success.data.lName);
       this.router.navigate(['dashboard']);
     },error=> {
        this.toastrService.error(error.json().message, 'Error!');
