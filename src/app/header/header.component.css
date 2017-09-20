@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+
 .header-menu {
     
-    box-shadow: 2px -2px 4px 3px;
+    /*box-shadow: -16px 14px 10px -5px #EEE;*/
+     /*box-shadow: 0 0 27px #eee;*/
 }
+
+.logo-img {
+    display: inline-block;
+    width: 60px;
+    vertical-align: middle;
+    margin: 10px 0;
+    float:left;
+}
+
+.insight {
+    font-size: 30px;
+     font-weight: 700;
+     margin-left: 20 !important;
+     float: none;
+    vertical-align: middle;
+    line-height: 50px;
+    color: #fff;
+}
+
 .top_bar {
    min-height:20px; 
    background: #DB2828;
@@ -84,18 +107,15 @@
     font-family: Lato;
 
 }
-.logo-img {
-    display: inline-block;
-    width: 63px;
-    vertical-align: middle;
-    margin: -22px 39px;
-    float: left;
-}
+
 span.exchange-color {
-    color: #a70505;
+    color:#DB2828;
     font-size: 28px;
     font-weight: 600;
-}
+    font-family: Lato;
+    margin-left:  20px
+    }
+
 .header-menu .navbar-default .navbar-nav>.open>a{
   background: #fff;
   color: #000;
@@ -154,7 +174,7 @@ span.exchange-color {
 }
 .header-menu .navbar.navbar-default{
   margin-bottom: 0;
-  box-shadow: 2px 1px 2px #969393;
+  box-shadow: 2px 1px 3px #eee;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px){

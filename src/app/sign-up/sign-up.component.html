@@ -40,15 +40,17 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-            <input id="Conform Password" type="password" class="form-control" name="Confirm Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Conform Password" required>
+            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Conform Password" required>
           </div>
           <span *ngIf="repassword.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="repassword.errors.required">Please enter confirm password</span>
           </span>
           <span class="text-danger" *ngIf="user.repassword!=user.password && !repassword.invalid">Passwords did not matched</span>
-          <div class="checkbox">
+          <div class="checkbox custom-checkbox">
+             <input type="checkbox" id="test1" />
+            <label for="test1">Red</label>
             <label>
-			    	    		<input name="remember" type="checkbox" [(ngModel)]="user.termConditions" value="I hearbly Accept All"> I hearbly Accept All <span class="condition">Term & Condition.</span>
+			    	    		<input name="remember" type="checkbox" [(ngModel)]="user.termConditions" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
 			    	    	</label>
           </div>
           <button type="submit" [disabled]=!user.termConditions class="btn btn-success">SIGN UP</button>
