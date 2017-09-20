@@ -15,7 +15,12 @@ export class LoginService {
   }
 
   logIn(login: Login) {
-    login.setIpAddress(this.ip);
+    if(this.ip==null) {
+      login.setIpAddress("180.165.92.45")
+    }
+    else {
+      login.setIpAddress(this.ip);
+    }
     login.setBrowserName('Chrome');
     return this.http.post('/api/v1/login', login,)
       .map(res => res.json());
