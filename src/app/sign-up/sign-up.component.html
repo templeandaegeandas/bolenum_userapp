@@ -5,7 +5,7 @@
         <img src="assets/images/login-img.png" class="img-login">
       </div>
       <div class="col-md-4 col-xs-6">
-
+<div class="sign-block">
         <div class="text-center">
           <img src="assets/images/bolenum.png" class="img-header">
         </div>
@@ -40,7 +40,7 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Conform Password" required>
+            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Confirm Password" required>
           </div>
           <span *ngIf="repassword.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="repassword.errors.required">Please enter confirm password</span>
@@ -49,7 +49,7 @@
           <div class="checkbox custom-checkbox">
             <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
              <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
-            <label for="test1">I hearby Accept all <span class="condition">term & condition.</span></label>
+            <label for="test1">I hearby Accept <a>all terms & condition.</a></label>
             <!--<label>
 			    	    		<input name="remember" type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
 			    	    	</label>-->
@@ -58,6 +58,7 @@
 
         </form>
       </div>
+    </div>
     </div>
   </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

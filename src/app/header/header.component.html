@@ -35,13 +35,13 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/dashboard"  >DASHBOARD</a></li>
-                <li><a routerLink="/tradeNow">TRADENOW</a></li>
-                 <li><a href="#">MYORDER</a></li>
+                <li  routerLinkActive="active"><a routerLink="/tradeNow">TRADE NOW</a></li>
+                 <li ><a href="#">MYORDER</a></li>
                    <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/login" >LOGIN</a></li>
                 
                    <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" (click)=signOut()>{{fullName}}<b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" >{{fullName}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Inbox</a></li>
                         <li><a href="#">Drafts</a></li>
@@ -49,8 +49,19 @@
                         <li class="divider"></li>
                         <li><a href="#">Trash</a></li>
                     </ul>
-                </li>
+                    </li>
             </ul>
+            
+<!--<li><a> 
+    <ul>
+        <li>vishal</li>
+         <li>vishal</li>
+          <li>vishal</li>
+          </ul>
+        </a>
+</li>-->
+
+
 
 
             <!--<form class="navbar-form navbar-left">

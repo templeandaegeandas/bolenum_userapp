@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+
+
 .login-content {
     margin-top: 80px;
     box-shadow: 0 0 27px #eee;
@@ -119,11 +123,12 @@ img.img-header{
 .col-md-6.forgot-pass-content a{
     text-decoration: none;
     color: #898484;
+   
 }
 .col-md-6.forgot-pass-content {
     float: right;
     padding: 2px;
-    margin-right: 43px;
+    margin-right:34px;
 }
 
 button.btn.btn-continue {

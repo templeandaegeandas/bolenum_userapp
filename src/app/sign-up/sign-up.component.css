@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
 
 
 .login-content {
@@ -42,9 +44,11 @@ img.img-header{
     border-right: 0;
     background: none;
 }
-  .input-group input{
-    height: 38px;
-  }
+  
+  .input-group input {
+    height: 41px;
+    font-size: 15px;
+}
   .input-icon{
     position: relative;
     float: left;
@@ -177,4 +181,16 @@ h4.create-text {
 .text-danger {
     color: #a94442;
     margin: 16px;
+}
+.sign-block {
+     margin: 17px;
+}
+img.img-header {
+    top: 0;
+    left: 0;
+    margin-left: 81px;
+}
+a:focus, a:hover {
+    color: rgba(12, 101, 172, 0.9);
+    text-decoration: underline;
 }
