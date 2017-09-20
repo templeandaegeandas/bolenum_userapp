@@ -47,11 +47,12 @@
           </span>
           <span class="text-danger" *ngIf="user.repassword!=user.password && !repassword.invalid">Passwords did not matched</span>
           <div class="checkbox custom-checkbox">
-             <input type="checkbox" id="test1" />
-            <label for="test1">Red</label>
-            <label>
-			    	    		<input name="remember" type="checkbox" [(ngModel)]="user.termConditions" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
-			    	    	</label>
+            <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
+             <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
+            <label for="test1">I hearby Accept all <span class="condition">term & condition.</span></label>
+            <!--<label>
+			    	    		<input name="remember" type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
+			    	    	</label>-->
           </div>
           <button type="submit" [disabled]=!user.termConditions class="btn btn-success">SIGN UP</button>
 
