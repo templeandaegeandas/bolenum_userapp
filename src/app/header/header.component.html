@@ -10,8 +10,8 @@
 
 <div class="col-md-6">
 <ul class="rightc">
-<li> <img class="navimg" src="assets/images/profile.png" > </li>
-<li><img class="navimg" src="assets/images/settings-icons.png" ></li>
+<li> <img class="navimg" src="assets/images/profile (3).png" > </li>
+<li><img class="navimg" src="assets/images/notification.png" ></li>
 <li> <img class="navimg" src="assets/images/settings-icons.png" >  </li>
 </ul>
 </div>
@@ -27,8 +27,8 @@
                 <span class="icon-bar"></span>
             </button>
             <span><a  class="navbar-brand insight" >
-                  <img class="logo-img" src="assets/images/bolenum.png" >
-                   <span class="exchange-color"> Bolenum </span> Exchnage
+                  <img class="img-responsive logo-img" src="assets/images/bolenum.png" >
+                   <span class="exchange-color"> Bolenum </span> Exchange
               </a></span>
         </div>
         <!-- Collection of nav links, forms, and other content for toggling -->
@@ -38,9 +38,10 @@
                 <li><a routerLink="/tradeNow">TRADENOW</a></li>
                  <li><a href="#">MYORDER</a></li>
                    <li *ngIf="token==null"><a routerLink="/login">LOGIN</a></li>
+                
                    <li *ngIf="token==null"><a routerLink="/sign-up">SIGNUP</a></li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" (click)=signOut()>JohnARR <b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" (click)=signOut()>JOHNARR <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Inbox</a></li>
                         <li><a href="#">Drafts</a></li>
@@ -50,6 +51,7 @@
                     </ul>
                 </li>
             </ul>
+              
 
             <!--<form class="navbar-form navbar-left">
             	<div class="input-group">
