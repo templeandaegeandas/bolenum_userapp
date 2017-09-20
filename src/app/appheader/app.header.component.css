@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+
 .header-menu {
     
-    box-shadow: 2px -2px 4px 3px;
+    /*box-shadow: -16px 14px 10px -5px #EEE;*/
+     /*box-shadow: 0 0 27px #eee;*/
 }
+
+.logo-img {
+    display: inline-block;
+    width: 60px;
+    vertical-align: middle;
+    margin: 10px 0;
+    float:left;
+}
+
+.insight {
+    font-size: 30px;
+     font-weight: 700;
+     margin-left: 20 !important;
+     float: none;
+    vertical-align: middle;
+    line-height: 50px;
+    color: #fff;
+}
+
 .top_bar {
    min-height:20px; 
    background: #DB2828;
@@ -12,6 +35,7 @@
   float:left; 
   padding:0px;
   margin-left:0px;
+  font-family: lato;
   }
 .topnav li {
     float: left;
@@ -20,6 +44,8 @@
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 600;
+    font-family: lato;
+
 }
 .topnav  li a {
    padding:0 10px;
@@ -67,7 +93,7 @@
   font-size:16px; 
   }
 .navbar-default .navbar-brand {
-  color: #002433;
+  color: #DB2828;;
 }
 
 .header-menu .navbar-default {
@@ -81,18 +107,15 @@
     font-family: Lato;
 
 }
-.logo-img {
-    display: inline-block;
-    width: 63px;
-    vertical-align: middle;
-    margin: -22px 39px;
-    float: left;
-}
+
 span.exchange-color {
-    color: #a70505;
+    color:#DB2828;
     font-size: 28px;
     font-weight: 600;
-}
+    font-family: Lato;
+    margin-left:  20px
+    }
+
 .header-menu .navbar-default .navbar-nav>.open>a{
   background: #fff;
   color: #000;
@@ -111,13 +134,13 @@ span.exchange-color {
 
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color:#a70505;
+    color:#DB2828;;
     background: none !important;
    }
    
 .nav li.active a:after{
      content: ""; 
-    background: #a70505;
+    background: #DB2828;;
     padding: 2px;
     width: 40px;
     height: 5px;
@@ -151,7 +174,7 @@ span.exchange-color {
 }
 .header-menu .navbar.navbar-default{
   margin-bottom: 0;
-  box-shadow: 2px 1px 2px #969393;
+  box-shadow: 2px 1px 7px #eee;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px){
@@ -169,6 +192,11 @@ span.exchange-color {
       display: none;
   }
   
+a.navbar-brand.insight {
+    margin-top: -52px;
+    margin-left: -17px;
+    /* padding: 0px; */
+}
   .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff !important;
   }
@@ -180,6 +208,14 @@ span.exchange-color {
     float: left;
 }
 
+.topnav li {
+    float: left;
+    padding: 7px;
+    color: #FFFFFF;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){
   .header-menu{

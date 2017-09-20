@@ -40,7 +40,7 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Conform Password" required>
+            <input id="Conform Password" type="password" class="form-control" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Confirm Password" required>
           </div>
           <span *ngIf="repassword.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="repassword.errors.required">Please enter confirm password</span>
