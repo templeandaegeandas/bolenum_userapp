@@ -23,10 +23,10 @@ export class ForgotComponent implements OnInit {
         return;
     }
 
-    this.forgetpasswordService.forgetpass(this.email).subscribe(success => {
+      this.forgetpasswordService.forgetpass(this.email).subscribe(success => {
       console.log(success);
       this.toastrService.success(success.message, 'Success!');
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['login']);
     },error=> {
        this.toastrService.error(error.json().message, 'Error!');
     })
