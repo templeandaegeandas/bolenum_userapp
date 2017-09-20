@@ -1,6 +1,4 @@
-
-
-.table {
+/* .table {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
@@ -29,4 +27,204 @@ label {
     margin-bottom: 5px;
     font-weight: 700;
     margin-left: 27px;
+} */
+
+
+/* new css for trade now */
+
+.exchange-border-right {
+    border-left: 4px solid #DB2828;
+}
+
+.exchange-pair-text {
+    text-align: center;
+    background-color: #DB2828;
+    border-radius: 19px;
+    padding: 6px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.exchange-pair-text-start {
+    text-align: center;
+    padding: 6px;
+    color: black;
+    border: 2px solid;
+    border-radius: 19px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.order {
+    text-align: center;
+}
+
+.buy-orders {
+    background-color: #DB2828;
+    text-align: left;
+    color: white;
+    padding-top: 14px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+tr th {
+    text-align: center;
+}
+
+.sell-orders {
+    background-color: #DB2828;
+    text-align: left;
+    color: white;
+    padding-top: 14px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+.create-advertisement-button {
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+    margin-top: 11px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.buy-eth{
+        background-color: #DB2828;
+    color: white;
+    width: 100%;
+    padding-top: 23px;
+    padding-left: 10px;
+    padding-bottom: 28px;
+    font-size: 14px;
+}
+
+.padding-top-dropdown{
+    /* padding-top: 90px; */
+        padding-top: 90px;
+    width: 40%;
+    margin-left: 6%;
+}
+
+.drop-down{
+        /* background-color: #DB2828;
+    color: white;
+    width: 85%;
+    text-align: left;
+    padding: 16px;
+    font-size: 14px; */
+    background-color: #DB2828;
+    color: white;
+    width: 100%;
+    text-align: left;
+    padding: 16px;
+    font-size: 14px;
+}
+
+
+.btc{
+    color: #DB2828;
+    font-size: 14px;
+}
+
+
+.price{
+    font-size: 14px;
+}
+
+.pad-top{
+    padding-top: 40px;
+}
+
+.pad-order{
+    padding-bottom: 25px;
+}
+.fee-color{
+    color: #DB2828;
+    font-size: 14px;
+}
+
+
+.buy-button{
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    color: white;
+    /* font-size: 18px; */
+    padding-left: 36px;
+    border-radius: 5px;
+    padding-right: 42px;
+    padding-bottom: 11px;
+    outline: none;
+    padding-top: 10px
+}
+
+
+.padding-buy-button{
+         padding-top: 41px;
+    padding-left: 87px;
+    padding-right: 63px;
+}
+
+.btc-exchange{
+        padding-top: 35px;
+}
+
+
+
+
+h2.border-bot:after {
+    display: table;
+    position: absolute;
+    width: 70px;
+    height: 6px;
+    background: #db2828;
+    content: "";
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+}
+
+.container-padding{
+        padding-top: 25px;
+}
+
+/* .margin-left{
+        margin-left: 68px;
+} */
+
+.padding-fee{
+        padding-left: 17px;
+}
+.table-color{
+        background-color:#f1f0f0;
+}
+
+.background-properties{
+        background-color: #f1f0f0;
+    padding-bottom: 16px;
+}
+
+.text-align-buy{
+    text-align: left;
 }
