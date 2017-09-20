@@ -15,13 +15,13 @@
          <form  #forgetpassForm="ngForm" (submit)=forgetPassword(forgetpassForm)>
               <div class="input-groups">
                <span class="clearfix input-icons">
-                  <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" placeholder="Enter your email" email required>
+                  <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Enter your email" required>
                   <img src="assets/images/Email.png" class="img-responsive"/>
                </span>
                </div>
                <span *ngIf="emailId.invalid && forgetpassForm.submitted">
                <span class="text-danger" *ngIf="emailId.errors.required">Please enter email</span>
-               <span class="text-danger" *ngIf="emailId.errors.email && !emailId.errors.required">Please enter valid email</span>
+               <span class="text-danger" *ngIf="emailId.errors.pattern">Please enter valid email</span>
                </span>
                 <button type="continue" class="btn btn-continue">Send</button>
          </form>

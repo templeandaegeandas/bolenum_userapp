@@ -4,6 +4,7 @@ import { ToastrService } from 'toastr-ng2'
 import { SignUpService } from './sign-up.service';
 import { User } from './entity/user-signup';
 
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',

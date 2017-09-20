@@ -13,22 +13,22 @@
         <form #signUpForm=ngForm (submit)="signUpUser(signUpForm)">
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="FirstName" type="text" class="form-control" name="email" [(ngModel)]="user.emailId" #email="ngModel" placeholder="JonhArr12@gmail.com" email required>
+            <input id="FirstName" type="text" class="form-control" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="JonhArr12@gmail.com" required>
           </div>
           <span *ngIf="email.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="email.errors.required">Please enter email</span>
-          <span class="text-danger" *ngIf="email.errors.email && !email.errors.required">Please enter valid email</span>
+          <span class="text-danger" *ngIf="email.errors.pattern">Please enter valid email</span>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" placeholder="First Name" required>
+            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" placeholder="First Name" required nonumberspecialcharacter>
           </div>
           <span *ngIf="firstName.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="firstName.errors.required">Please enter first name</span>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name">
+            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" placeholder="Last Name" nonumberspecialcharacter>
           </div>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>

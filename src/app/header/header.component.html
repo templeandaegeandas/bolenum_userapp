@@ -38,7 +38,7 @@
                 <li  routerLinkActive="active"><a routerLink="/tradeNow">TRADE NOW</a></li>
                  <li ><a href="#">MYORDER</a></li>
                    <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/login" >LOGIN</a></li>
-                
+
                    <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
@@ -54,8 +54,8 @@
                     </li>
                    
             </ul>
-            
-<!--<li><a> 
+
+<!--<li><a>
     <ul>
         <li>vishal</li>
          <li>vishal</li>
