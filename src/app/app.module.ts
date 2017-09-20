@@ -55,7 +55,8 @@ export function highchartsFactory() {
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot(),
-     LoadingModule
+     LoadingModule,
+     
   ],
   providers: [{
       provide: HighchartsStatic,

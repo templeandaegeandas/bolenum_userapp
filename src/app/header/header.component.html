@@ -41,15 +41,18 @@
                 
                    <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" >{{fullName}}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Inbox</a></li>
-                        <li><a href="#">Drafts</a></li>
-                        <li><a href="#">Sent Items</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Trash</a></li>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
+                
+                    <ul class="custom-dropdown" *ngIf="subMenu">
+                        <li><a a routerLink="/profile">Profile</a></li>
+                        <li><a href="#">Deposit/Withdrawl</a></li>
+                        <li><a href="#" (click)="signOut()">Logout</a></li>
+                        <!--<li class="divider"></li>
+                        <li><a href="#">Trash</a></li>-->
                     </ul>
+                
                     </li>
+                   
             </ul>
             
 <!--<li><a> 

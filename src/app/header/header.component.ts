@@ -10,6 +10,8 @@ import { HeaderService } from './header.service';
   providers: [HeaderService]
 })
 export class HeaderComponent implements OnInit {
+  public isOpen:boolean=false;
+  public subMenu = false;
 token: String;
 fullName: String;
   constructor(private headerService: HeaderService, private router: Router) {
@@ -28,6 +30,10 @@ fullName: String;
     },error => {
       this.router.navigate(['login']);
     })
+  }
+  showDropdown(){
+    console.log("hhhdhsdhs");
+    this.subMenu = !this.subMenu;
   }
 
 }
