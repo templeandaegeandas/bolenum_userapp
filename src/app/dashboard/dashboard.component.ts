@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
          data: [1, 3, 4, 3, 3, 5, 4]
     }],
-    colors: ["#e42d2d","#3ad1e4"]
+    colors: ["#fE6C61","#5472D2"]
 
         };
 

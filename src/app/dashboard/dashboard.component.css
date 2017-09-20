@@ -2,7 +2,7 @@
 
 
 .main {
-    background: #efeded;
+    background: #eee;
     padding: 40px 0;
 }
 .small-box.bg-green {
@@ -39,23 +39,29 @@ p.text-black {
     }
 
 .new-img {
-    padding: 24px 37px;
-    background: #e42d2d;
-    width: 108px;
+    padding: 8px 17px;
+    background: #DB2828;
+    width: 102px;
     border-radius: 7px;
     position: absolute;
+    margin-left: 31px;
+    box-shadow: 1px 5px 3px #eee;
 }
-.new-img1 {
-    padding: 24px 37px;
-    background: #3ad1e4;
-    width: 108px;
+.new-img1{
+    padding: 8px 17px;
+    background: #28DBC8;
+    width: 102px;
     border-radius: 7px;
     position: absolute;
+    margin-left: 31px;
+    box-shadow: 1px 5px 3px #eee;
 }
 .new-img2 {
-    padding: 24px 37px;
-    background: #3ad1e4;
-    width: 108px;
+    padding: 8px 17px;
+    background: #28DB9E;
+    width: 102px;
     border-radius: 7px;
     position: absolute;
+    margin-left: 31px;
+    box-shadow: 1px 5px 3px #eee;
 }

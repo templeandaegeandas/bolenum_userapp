@@ -76,6 +76,12 @@
    margin-left:22px;
    }
    
+   .nav li > a{
+    position: relative;
+    display: block;
+    padding: -6px 35px;
+    cursor: pointer;
+}
 .navbar-brand {
   padding:0px;
   }
@@ -93,6 +99,7 @@
   }
   .custom-dropdown li a{
     color: #fff;
+    text-decoration: none;
   }
 
 .header_image {
