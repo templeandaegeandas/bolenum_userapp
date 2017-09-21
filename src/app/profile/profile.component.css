@@ -42,7 +42,7 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 170px;  box-shadow: 3px -1px 25px 1px #e40909;
+    top: 172px;  
 
     margin-left: 254px;
     color: white;
@@ -271,45 +271,15 @@ span.kyc-color {
     text-align: center;
     font-size: 18px;
 }
-
-/*Media query*/
-@media only screen and (max-width: 930px) {
-  label span {
-    font-size: 14px;
-  }
-  label .fa {
-    font-size: 14px;
-  }
+button.btn.btn-successaddnew {
+    margin-left: 485px;
+    padding: 10px;
+    width: 167px;
+    margin-top: 28px;
+    background: #DB2828;
+    color: #FFFFFF;
+    text-transform: uppercase;
 }
-
-@media only screen and (max-width: 768px) {
-  label span {
-    display: none;
-  }
-  
-
-  label .fa {
-    font-size: 16px;
-  }
-
-  .tab_container {
-    width: 98%;
-  }
-}
-
-/*Content Animation*/
-@keyframes fadeInScale {
-  0% {
-  	/*transform: scale(0.9);*/
-  	opacity: 0;
-  }
-  
-  100% {
-  	transform: scale(1);
-  	opacity: 1;
-  }
-}
-
 .verify-col {
     background: #fff;
     margin: 24px -15px 0;
@@ -428,6 +398,11 @@ p.kyc-text {
 }
 .kyc-col {
     background: #FFFFFF;
+    padding: 20px;
+}
+.bank-backgrnds {
+    background: #FFFFFF;
+    padding: 27px;
 }
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -525,4 +500,42 @@ text-decoration: none;
     font-weight: 400;
     cursor: pointer;
     margin-left: 245px;
+}
+
+/*Media query*/
+@media only screen and (max-width: 930px) {
+  label span {
+    font-size: 14px;
+  }
+  label .fa {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+  
+
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	/*transform: scale(0.9);*/
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
 }
