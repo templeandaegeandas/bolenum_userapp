@@ -42,7 +42,8 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 170px;
+    top: 172px;  
+
     margin-left: 254px;
     color: white;
     font-size: 20px;
@@ -96,7 +97,7 @@ label {
   text-decoration: none;
   text-align: center;
   background:#FFFFFF;
-  box-shadow: 2px 1px 2px 1px #eee;
+  min-height: 130px;
 
 }
 
@@ -131,7 +132,9 @@ label {
   background: #fff;
   border-top-left-radius: 5px;
    border-top-right-radius:5px;
-     box-shadow: 2px 2px #FF0000;
+    
+    box-shadow: 0 0 9px #636363;
+    transform: scale(1.1,1.1)
 }
 
 .tab_container [id^="tab"]:checked + label .fa {
@@ -268,45 +271,15 @@ span.kyc-color {
     text-align: center;
     font-size: 18px;
 }
-
-/*Media query*/
-@media only screen and (max-width: 930px) {
-  label span {
-    font-size: 14px;
-  }
-  label .fa {
-    font-size: 14px;
-  }
+button.btn.btn-successaddnew {
+    margin-left: 485px;
+    padding: 10px;
+    width: 167px;
+    margin-top: 28px;
+    background: #DB2828;
+    color: #FFFFFF;
+    text-transform: uppercase;
 }
-
-@media only screen and (max-width: 768px) {
-  label span {
-    display: none;
-  }
-  
-
-  label .fa {
-    font-size: 16px;
-  }
-
-  .tab_container {
-    width: 98%;
-  }
-}
-
-/*Content Animation*/
-@keyframes fadeInScale {
-  0% {
-  	/*transform: scale(0.9);*/
-  	opacity: 0;
-  }
-  
-  100% {
-  	transform: scale(1);
-  	opacity: 1;
-  }
-}
-
 .verify-col {
     background: #fff;
     margin: 24px -15px 0;
@@ -325,18 +298,16 @@ input#usr {
     box-shadow: none;
     border: 2px solid #e2d8d8;
     outline: none;
+
 }
-label {
-    height: 109px;
-    
-}
-label.btn.btn-default {
+span#fileselector label.btn.btn-default {
     width: 154px;
     padding: 5px;
     background: #DB2828;
     border-color: #DB2828;
     color: white;
     font-size: 15px;
+    min-height: 21px;
 }
 .kyc-input {
     margin-left: 359px;
@@ -369,6 +340,7 @@ hr {
 }
  p.bank-text {
     font-size: 18px;
+    color:#747474;
 }
 .bank-backgrnd {
     padding: back;
@@ -381,12 +353,10 @@ hr {
 }
 
 img.img-.bakprofile {
-    width: 111px;
+    width: 114px;
     margin-left: 147px;
 }
-p.bank-icon {
-    margin-left: 92px;
-}
+
 img.profile-img {
     height: 330px;
     width: 100%;
@@ -394,6 +364,11 @@ img.profile-img {
 }
 .profile-new-var {
     margin-top: 45px;
+}
+p.bank-icon {
+    margin-left: 92px;
+    color: #D4D4D4;
+    font-size: 16px;
 }
 
 .custom-data {
@@ -421,7 +396,14 @@ p.kyc-text {
     text-align: center;
     padding: 11px;
 }
-
+.kyc-col {
+    background: #FFFFFF;
+    padding: 20px;
+}
+.bank-backgrnds {
+    background: #FFFFFF;
+    padding: 27px;
+}
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -518,4 +500,42 @@ text-decoration: none;
     font-weight: 400;
     cursor: pointer;
     margin-left: 245px;
+}
+
+/*Media query*/
+@media only screen and (max-width: 930px) {
+  label span {
+    font-size: 14px;
+  }
+  label .fa {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+  
+
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	/*transform: scale(0.9);*/
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
 }
