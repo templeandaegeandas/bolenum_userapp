@@ -107,6 +107,16 @@ button.btn.btn-defaults {
     margin-bottom: 27px;
 }
 
+a.btn.btn-dark-blue {
+    width: 89%;
+    padding: 5px;
+    font-family: lato;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fb162B;
+    border: 1px solid #CACACA;
+    text-decoration: none!important;
+}
 img.wallet-icon {
    
     position: absolute;
@@ -124,6 +134,8 @@ p.text1 {
     padding-top: 22px;
 }
 
+
+
 /*Media query*/
 @media only screen and (max-width: 930px) {
   label span {
@@ -138,15 +150,6 @@ p.text1 {
   label span {
     display: none;
   }
-  a.btn.btn-dark-blue {
-    width: 80%;
-    font-family: lato;
-    font-size: 18px;
-    font-weight: 600;
-    color:#DB2828;;
-    border: 2px solid gray;
-}
-
   label .fa {
     font-size: 16px;
   }
