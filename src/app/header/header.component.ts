@@ -28,6 +28,7 @@ fullName: String;
       localStorage.clear();
       this.router.navigate(['login']);
     },error => {
+      localStorage.clear();
       this.router.navigate(['login']);
     })
   }
