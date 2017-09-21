@@ -130,7 +130,8 @@ label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
   border-top-left-radius: 5px;
-   border-top-right-radius:5px
+   border-top-right-radius:5px;
+     box-shadow: 2px 2px #FF0000;
 }
 
 .tab_container [id^="tab"]:checked + label .fa {
@@ -229,7 +230,7 @@ p.icon-name {
 }
 .profile-col{
     background: #FFFFFF;
-    padding: 2px 2px 27px 33px;
+    padding: 18px 2px 27px 33px;
     border-radius: 2px;
 }
 .btn-success:hover {
@@ -244,6 +245,30 @@ p.icon-name {
     margin-left: 68px;
     padding: 9px;
 }
+img.img-center {
+    margin: 0a;
+    margin: 0 auto;
+    display: block;
+}
+a.btn.btn-dark-blue {
+    width: 87%;
+    padding: 5px;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 600;
+    color:#fB162B;
+    border: 1px solid #CACACA;
+    text-decoration: none;
+    
+    }
+span.kyc-color {
+    color: #fB162B;
+}
+.kyc-data {
+    text-align: center;
+    font-size: 18px;
+}
+
 /*Media query*/
 @media only screen and (max-width: 930px) {
   label span {
@@ -258,14 +283,7 @@ p.icon-name {
   label span {
     display: none;
   }
-  a.btn.btn-dark-blue {
-    width: 80%;
-    font-family: lato;
-    font-size: 18px;
-    font-weight: 600;
-    color:#DB2828;;
-    border: 2px solid gray;
-}
+  
 
   label .fa {
     font-size: 16px;
@@ -308,7 +326,22 @@ input#usr {
     border: 2px solid #e2d8d8;
     outline: none;
 }
-
+label {
+    height: 109px;
+    
+}
+label.btn.btn-default {
+    width: 154px;
+    padding: 5px;
+    background: #DB2828;
+    border-color: #DB2828;
+    color: white;
+    font-size: 15px;
+}
+.kyc-input {
+    margin-left: 359px;
+    padding: 6px;
+}
 p.col-id {
     font-size: 19px;
     padding: 4px;
@@ -368,7 +401,26 @@ img.profile-img {
 }
 
 
+.text-danger {
+    color: #a94442;
+    margin: 16px;
+}
+.sign-block {
+     margin: 17px;
+}
+img.img-header {
+    top: 0;
+    left: 0;
+    margin-left: 81px;
+}
 
+p.kyc-text {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #747474;
+    text-align: center;
+    padding: 11px;
+}
 
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -380,6 +432,7 @@ img.profile-img {
   position: relative;
   padding-left: 1.95em;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 /* checkbox aspect */
@@ -437,18 +490,7 @@ img.profile-img {
 .custom-checkbox label:hover:before {
   border: 2px solid #D4D4D4!important;
 }
-.text-danger {
-    color: #a94442;
-    margin: 16px;
-}
-.sign-block {
-     margin: 17px;
-}
-img.img-header {
-    top: 0;
-    left: 0;
-    margin-left: 81px;
-}
+
 a:focus, a:hover {
     color:#397FFF;
     text-decoration: underline;
