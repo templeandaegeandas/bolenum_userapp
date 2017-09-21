@@ -1,4 +1,10 @@
 /* new css for trade now */
+.tradeNow-background-img{
+     background-image: url("/assets/images/trade-now.png");
+      background-repeat: no-repeat;
+       background-position: top;
+
+}
 
 .exchange-border-right {
     border-left: 4px solid #DB2828;
@@ -256,4 +262,10 @@ tr th {
 
 .button-extra-padding {
     padding-top: 7px;
+}
+
+hr{
+        width: 97%;
+    height: 1px;
+    background: lightgray;
 }
