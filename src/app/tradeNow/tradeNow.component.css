@@ -1,35 +1,3 @@
-/* .table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    background: gray;
-}
-.btn-primary {
-   color: #ffffff;
-    width: 250px;
-    background-color: #DB2828;
-    border-color: #DB2828;
-    font-family: Lato;
-    padding: 16px;
-   
-}
-.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
-    
-    color: #ffffff;
-    background-color: #DB2828;
-    border-color: #DB2828;
-    font-family: Lato;
-   
-}
-label {
-    display: inline-block;
-    max-width: 86%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    margin-left: 27px;
-} */
-
-
 /* new css for trade now */
 
 .exchange-border-right {
@@ -108,8 +76,8 @@ tr th {
     text-align: left;
 }
 
-.buy-eth{
-        background-color: #DB2828;
+.buy-eth {
+    background-color: #DB2828;
     color: white;
     width: 100%;
     padding-top: 23px;
@@ -118,15 +86,15 @@ tr th {
     font-size: 14px;
 }
 
-.padding-top-dropdown{
+.padding-top-dropdown {
     /* padding-top: 90px; */
-        padding-top: 90px;
+    padding-top: 90px;
     width: 40%;
     margin-left: 6%;
 }
 
-.drop-down{
-        /* background-color: #DB2828;
+.drop-down {
+    /* background-color: #DB2828;
     color: white;
     width: 85%;
     text-align: left;
@@ -140,59 +108,52 @@ tr th {
     font-size: 14px;
 }
 
-
-.btc{
+.btc {
     color: #DB2828;
     font-size: 14px;
 }
 
-
-.price{
+.price {
     font-size: 14px;
 }
 
-.pad-top{
+.pad-top {
     padding-top: 40px;
 }
 
-.pad-order{
+.pad-order {
     padding-bottom: 25px;
 }
-.fee-color{
+
+.fee-color {
     color: #DB2828;
     font-size: 14px;
 }
 
-
-.buy-button{
+.buy-button {
     background-color: #DB2828;
     opacity: none !important;
     border: none;
+    padding: 9px;
     color: white;
-    /* font-size: 18px; */
-    padding-left: 36px;
+    font-size: 14px;
     border-radius: 5px;
-    padding-right: 42px;
-    padding-bottom: 11px;
     outline: none;
-    padding-top: 10px
+    width: 98px;
 }
 
-
-.padding-buy-button{
-         padding-top: 41px;
-    padding-left: 87px;
-    padding-right: 63px;
+.padding-buy-button {
+    /* padding-top: 41px; */
+    /* padding-left: 87px;
+    padding-right: 63px; */
+    margin-top: 40px;
 }
 
-.btc-exchange{
-        padding-top: 35px;
+.btc-exchange {
+    margin-top: 50px;
 }
 
-
-
-
-h2.border-bot:after {
+.border-bot:after {
     display: table;
     position: absolute;
     width: 70px;
@@ -205,26 +166,94 @@ h2.border-bot:after {
     border-radius: 10px;
 }
 
-.container-padding{
-        padding-top: 25px;
+.container-padding {
+    padding-top: 25px;
 }
+
 
 /* .margin-left{
         margin-left: 68px;
 } */
 
-.padding-fee{
-        padding-left: 17px;
-}
-.table-color{
-        background-color:#f1f0f0;
+.padding-fee {
+    padding-left: 17px;
 }
 
-.background-properties{
-        background-color: #f1f0f0;
+.table-color {
+    background-color: #f1f0f0;
+}
+
+.background-properties {
+    background-color: #f1f0f0;
     padding-bottom: 16px;
 }
 
-.text-align-buy{
+.text-align-buy {
     text-align: left;
+}
+
+
+/* new css for drop-dwon */
+
+.left-dropddown {
+    background-color: #DB2828;
+    width: 100%;
+    color: #fff;
+    outline: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 21px;
+    padding-left: 22px;
+}
+
+.drop-down-row {
+    margin-top: 165px;
+}
+
+.drop-down-padding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.buy-eth-list {
+    background-color: #f1f0f0;
+}
+
+.buy-eth-list-item {
+    background-color: #fff;
+}
+
+.gray-padding {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+.buy-text-list-property {
+    color: #DB2828;
+    padding-left: 61px;
+}
+
+.red-color {
+    color: #DB2828;
+}
+
+.list-head {
+    font-weight: bold;
+}
+
+.order-text {
+    font-size: 22px;
+}
+
+.padding-to-all {
+    padding-left: 103px;
+    padding-right: 70px;
+}
+
+.line-height-box {
+    line-height: 27px;
+}
+
+.button-extra-padding {
+    padding-top: 7px;
 }
