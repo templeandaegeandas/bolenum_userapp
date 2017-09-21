@@ -193,14 +193,14 @@
                      <div class="prof-verify clearfix">
                         <p class="last-prof">Once you profile has been verified & you have enable 2FA account security,you may request a higher limit by contacting support
                         <hr>
-                        <div class="checkbox">
-                          <!--<div class="input-chek">
-                           <label><input type="checkbox" value="">checkbox</label>
-                           <img src="assets/images/check_box_uncheck.png">
-                        </div>-->
-                        <button type="submit" class="btn btn-defaults">Save Profile</button>
-                     </div>
+                        
+                        	<button type="submit" class="btn btn-defaults">Save Profile</button>
+                     
                       
+                  <div class="checkbox custom-checkbox label-shadow-none">
+                  <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
+                 <label for="test1">I agree to the <a>Term of Use</a> </label>
+                     </div>
                      </div>
                   </div>
                </div>
