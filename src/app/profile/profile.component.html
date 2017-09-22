@@ -73,7 +73,7 @@
                         <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br>
                            <span> Margin Trading </span><span class="dolor"> Enabled.</span>
                         </p>
-                        <a href="#" class="btn btn-dark-blue">ATTENTION REQURIED</a>		
+                        <a href="#" class="btn btn-dark-blue">ATTENTION REQURIED</a>
                         <p class="text3"> Please upload an image of yourself holding your photo ID and scan of photo IDhttp://poloniex</p>
                      </div>
                   </div>
@@ -280,30 +280,31 @@
                   <div class="col-md-12 col-xs-12">
                       <div class="kyc-col">
                      <div class="kyc-details">
-                        <p class="kyc-text"> identity verification status:<span class="kyc-color">not verified </span></p>
+                        <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                      </div>
                      <div class="img">
-                        <img class="img-center" src="assets/images/id.png" >
+                        <img class="img-center" [src]="document" >
                      </div>
                      <div class="kyc-details">
-                        <p class="kyc-text"> front of voter id  or aadhar card </p>
+                        <p class="kyc-text"> front of national id </p>
                      </div>
                      <div class="kyc-data">
-                        <p clas="kyc-datatext"> please provide a picture of the front of your Voter ID or Aadhar card</p>
+                        <p clas="kyc-datatext"> please provide a picture of the front of your National ID</p>
                      </div>
                      <div class="kyc-input">
                         <div class="id-input-details clearfix">
                            <div class="form-group">
-                              <input type="texts" class="from-newtext" id="usr">
+                              <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr">
                            </div>
-                           <form>
+                           <button (click)="uploadKyc()">
                               <span id="fileselector">
                               <label class="btn btn-default" for="upload-file-selector">
-                              <input id="upload-file-selector" type="file">
-                              <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
+
+                              <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
+
                               </label>
                               </span>
-                           </form>
+                              </button>
                         </div>
                      </div>
                   </div>
@@ -323,3 +324,4 @@
       </div>
    </div>
 </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
