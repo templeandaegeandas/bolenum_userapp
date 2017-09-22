@@ -210,6 +210,7 @@ tr th {
     padding-bottom: 15px;
     font-size: 21px;
     padding-left: 22px;
+        /* -webkit-appearance: none; */
 }
 
 .drop-down-row {
@@ -268,4 +269,11 @@ hr{
         width: 97%;
     height: 1px;
     background: lightgray;
+}
+
+select option {
+    margin: 40px;
+    background:#fff;
+    color: #000;
+    /* text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
 }
