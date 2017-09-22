@@ -33,8 +33,13 @@ fullName: String;
     })
   }
   showDropdown(){
-    console.log("hhhdhsdhs");
-    this.subMenu = !this.subMenu;
+    if(this.subMenu){
+       this.subMenu = false;
+     }
+    else{
+   this.subMenu = true;
+    }
+    
   }
 
 }
