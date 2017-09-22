@@ -116,7 +116,7 @@
   font-size:16px; 
   }
 .navbar-default .navbar-brand {
-  color: #DB2828;;
+   color: #DB2828;;
 }
 
 .header-menu .navbar-default {
@@ -140,8 +140,8 @@ span.exchange-color {
     }
 
 .header-menu .navbar-default .navbar-nav>.open>a{
-  background: #fff;
-  color: #000;
+   background: #fff;
+   color: #000;
 }
 
 .navbar-default .navbar-brand {
@@ -162,15 +162,15 @@ span.exchange-color {
    }
    
 .nav li.active a:after{
-     content: ""; 
+    content: ""; 
     background: #DB2828;;
     padding: 2px;
     width: 40px;
     height: 5px;
-    margin: 0 auto;
+    margin: 6px auto;
     text-align: center;
     display: block;
-   
+    border-radius: 4px;
 }
 .dropdown-menu {
   background-color: gray;
