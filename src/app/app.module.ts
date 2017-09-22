@@ -28,6 +28,12 @@ import { NoSpecialCharacterDirective } from './directives/no.special.character.d
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 import { DepositComponent } from './deposit/deposit.component';
 import { QRCodeModule } from 'angular2-qrcode';
+import { FaqComponent } from './faq/faq.component';
+import { TermsServiceComponent } from './terms-service/terms-service.component';
+import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bolenum-exchange.component';
+import { TeamComponent } from './team/team.component';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -54,7 +60,15 @@ export function highchartsFactory() {
     NoNumberDirective,
     NoSpecialCharacterDirective,
     NoNumberSpecialCharacterDirective,
-    DepositComponent
+    DepositComponent,
+    FaqComponent,
+    TermsServiceComponent,
+   
+    AboutBolenumExchangeComponent,
+    TeamComponent,
+    HowToUseComponent,
+    PrivacyPolicyComponent,
+    
   ],
   imports: [
     BrowserModule,
