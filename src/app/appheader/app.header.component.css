@@ -137,7 +137,7 @@ span.exchange-color {
     color:#DB2828;;
     background: none !important;
    }
-  
+   
 .nav li.active a:after{
      content: ""; 
     background: #DB2828;;
@@ -147,7 +147,6 @@ span.exchange-color {
     margin: 6px auto;
     text-align: center;
     display: block;
-    border-radius: 4px;
    
 }
 .dropdown-menu {
@@ -177,33 +176,6 @@ span.exchange-color {
   margin-bottom: 0;
   box-shadow: 2px 1px 7px #eee;
 }
-a {
-   color:#777;
-    text-decoration: none;
-    display: inline-block;
-    
-}
-.nav li.for-border:after {
-   content: ""; 
-    background: #DB2828;;
-    padding: 2px;
-    width: 40px;
-    height: 5px;
-    margin: 6px auto;
-    text-align: center;
-    display: block;
-    border-radius: 4px;
-}
-.nav li.active span a {
-  color: #DB2828;
-  margin-top:6px;
-  
-  
-}
-.nav li.active span a:after {
-  display: none;
-}
-
 
 @media screen and (min-width: 320px) and (max-width: 767px){
   .header-menu .navbar-default .navbar-collapse{
@@ -250,3 +222,4 @@ a.navbar-brand.insight {
     overflow-x: hidden;
   }
 }
+
