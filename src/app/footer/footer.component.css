@@ -65,10 +65,12 @@ footer {
       }
  .copyright p {
       text-align:left; 
-      color:#D4D4D4;
+      color: #707071;
       padding:20px 0;
       margin-bottom:0;
-        }
+      font-size: 17px;
+      margin-left: -15px;
+}
  .heading7 { 
      font-size:21px; 
      font-weight:700; 
@@ -92,29 +94,17 @@ footer {
        }
  .bottom_ul li { 
      float:left; 
-     line-height:56px; 
-     font-size: 15px; 
+     line-height:60px; 
+     font-size: 17px; 
      color: #707071;
       }
  .bottom_ul li:after {
-    content:""; 
-    color:#D4D4D4;
-    margin-right:8px;
-    margin-left:8px;
+     content:""; 
+     color:#D4D4D4;
+     margin-right:8px;
+     margin-left:8px;
         }
- .bottom_ul li a { color:#FFFFFF; font-size:12px;}
-/*.social-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 15px;
-    background-color: blue;
-    color: #fff;
-    text-align: center;
-    margin-right: 10px;
-    padding-top: 7px;
-    border-radius: 50%;
-}*/
-
+ 
  .footer-social li{
      float:left;
  }
@@ -163,4 +153,22 @@ img.img-resonsive {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     padding: 7px;
+}
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group>.btn, .input-group-btn:first-child>.dropdown-toggle, .input-group-btn:last-child>.btn-group:not(:last-child)>.btn, .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 22px;
+
+}
+.heading7:after{
+    content: ""; 
+    background: #DB2828;;
+    padding: 2px;
+    width: 40px;
+    height: 5px;
+    text-align: center;
+    display: block;
+    border-radius: 4px;
+    margin-top: 4px;
+
 }

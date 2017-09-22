@@ -39,7 +39,7 @@
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/login" >LOGIN</a></li>
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
                <li class="dropdown">
-                  <a data-toggle="dropdown"  class="dropdown-toggle"  (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
+                  <a  data-toggle="dropdown"  class="dropdown-toggle"  (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
                      <li><a  routerLink="/profile">Profile</a></li>
                      <li><a routerLink="/deposit">Deposit</a></li>
