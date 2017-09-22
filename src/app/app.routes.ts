@@ -15,6 +15,8 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WalletComponent } from './wallet/wallet.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 import 'rxjs/add/operator/switchMap';
 
 export const APP_ROUTES: Routes = [
@@ -27,6 +29,8 @@ export const APP_ROUTES: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'deposit', component: DepositComponent },
+  { path: 'withdraw', component: WithdrawComponent },
 ];
 
 

@@ -41,10 +41,10 @@
                <li  class="dropdown">
                   <a  data-toggle="dropdown"  class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}"  (click)="showDropdown()">{{fullName}} <img src="assets/images/pic.png"><img src="/assets/images/drop.png"></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
-                     <li><a (click)="showDropdown()" a routerLink="/profile">Profile</a></li>
-                     <li><a (click)="showDropdown()" href="#">Deposit</a></li>
-                      <li><a (click)="showDropdown()" href="#">Withdraw</a></li>
-                     <li><a (click)="showDropdown()" href="#" (click)="signOut()">Logout</a></li>
+                     <li><a  routerLink="/profile">Profile</a></li>
+                     <li><a routerLink="/deposit">Deposit</a></li>
+                     <li><a routerLink="/withdraw">Withdraw</a></li>
+                     <li><a href="#" (click)="signOut()">Logout</a></li>
                      <!--<li class="divider"></li>
                         <li><a href="#">Trash</a></li>-->
                   </ul>
