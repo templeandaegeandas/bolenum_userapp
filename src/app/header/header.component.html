@@ -41,8 +41,9 @@
                <li class="dropdown">
                   <a data-toggle="dropdown"  class="dropdown-toggle"  (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
-                     <li><a a routerLink="/profile">Profile</a></li>
-                     <li><a href="#">Deposit/Withdrawl</a></li>
+                     <li><a  routerLink="/profile">Profile</a></li>
+                     <li><a routerLink="/deposit">Deposit</a></li>
+                     <li><a routerLink="/withdraw">Withdraw</a></li>
                      <li><a href="#" (click)="signOut()">Logout</a></li>
                      <!--<li class="divider"></li>
                         <li><a href="#">Trash</a></li>-->

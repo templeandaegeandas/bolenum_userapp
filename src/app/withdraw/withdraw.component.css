@@ -1,0 +1,46 @@
+.text-image-div {
+    background-color: #f3f3f3;
+    padding-bottom: 34px;
+    padding-top: 37px;
+}
+
+.balance-text {
+    margin-top: 8px;
+    /* font-size: 24px; */
+    font-size: 21px;
+    color: #b2a89b;
+}
+
+.top-margin-field {
+    margin-top: 33px;
+}
+
+.label-text-color {
+    color: #b2a89b;
+}
+
+.red-text-color {
+    color: #DB2828;
+}
+
+.main-div-margin {
+    margin-bottom: 76px;
+    margin-top: 38px;
+}
+
+.button-padding {
+    padding-left: 43px;
+    padding-top: 5px;
+}
+
+.submit-button {
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 8px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 25%;
+}

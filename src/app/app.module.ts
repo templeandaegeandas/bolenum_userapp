@@ -27,6 +27,7 @@ import { NoNumberDirective } from './directives/no.number.directive';
 import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 import { DepositComponent } from './deposit/deposit.component';
+import { QRCodeModule } from 'angular2-qrcode';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -64,6 +65,7 @@ export function highchartsFactory() {
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot(),
     LoadingModule,
+    QRCodeModule
 
   ],
   providers: [{
