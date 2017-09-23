@@ -33,6 +33,13 @@ import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
 import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
 
+import { FaqComponent } from './faq/faq.component';
+import { TermsServiceComponent } from './terms-service/terms-service.component';
+import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bolenum-exchange.component';
+import { TeamComponent } from './team/team.component';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+
 declare var require: any;
 export function highchartsFactory() {
   const hc = require('highcharts');
@@ -58,7 +65,15 @@ export function highchartsFactory() {
     NoNumberDirective,
     NoSpecialCharacterDirective,
     NoNumberSpecialCharacterDirective,
-    DepositComponent
+    DepositComponent,
+    FaqComponent,
+    TermsServiceComponent,
+
+    AboutBolenumExchangeComponent,
+    TeamComponent,
+    HowToUseComponent,
+    PrivacyPolicyComponent,
+
   ],
   imports: [
     BrowserModule,

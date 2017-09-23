@@ -9,8 +9,8 @@
             </div>
             <div class="col-md-6">
                <ul class="rightc">
-                  <li> <img class="navimg" src="assets/images/profile (3).png" > </li>
-                  <li><img class="navimg" src="assets/images/notification.png" ></li>
+                  <!--<li> <img class="navimg" src="assets/images/profile (3).png" > </li>
+                  <li><img class="navimg" src="assets/images/notification.png" ></li>-->
                   <li> <img class="navimg" src="assets/images/settings-icons.png" >  </li>
                </ul>
             </div>
@@ -35,11 +35,11 @@
             <ul class="nav navbar-nav">
                <li routerLinkActive="active"><a routerLink="/dashboard"  >DASHBOARD</a></li>
                <li  routerLinkActive="active"><a routerLink="/tradeNow">TRADE NOW</a></li>
-               <li ><a href="#">MYORDER</a></li>
+               <li ><a href="#">MY ORDER</a></li>
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/login" >LOGIN</a></li>
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
-               <li class="dropdown">
-                  <a  data-toggle="dropdown"  class="dropdown-toggle"  (click)="showDropdown()">{{fullName}}<b class="caret"></b></a>
+               <li  class="dropdown">
+                  <a  data-toggle="dropdown"  class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}"  (click)="showDropdown()">{{fullName}} <img src="assets/images/pic.png"><img src="/assets/images/drop.png"></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
                      <li><a (click)="showDropdown()" routerLink="/profile">Profile</a></li>
                      <li><a (click)="showDropdown()" routerLink="/deposit">Deposit</a></li>
