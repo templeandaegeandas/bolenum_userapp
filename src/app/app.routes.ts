@@ -18,20 +18,19 @@ import { WalletComponent } from './wallet/wallet.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import 'rxjs/add/operator/switchMap';
+import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
+import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
 
 export const APP_ROUTES: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ PrivateRouteAuthGuard ]  },
   { path: 'tradeNow', component: TradeNowComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: 'forgot', component: ForgotComponent },
+  { path: 'login', component: LoginComponent, canActivate: [ PublicRouteAuthGuard ] },
+  { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },
+  { path: 'forgot', component: ForgotComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'profile', component: ProfileComponent },
   { path: 'wallet', component: WalletComponent },
-  { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'deposit', component: DepositComponent },
   { path: 'withdraw', component: WithdrawComponent },
 ];
-
-
-// export const routing = RouterModule.forRoot();

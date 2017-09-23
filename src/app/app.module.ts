@@ -28,6 +28,10 @@ import { NoSpecialCharacterDirective } from './directives/no.special.character.d
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 import { DepositComponent } from './deposit/deposit.component';
 import { QRCodeModule } from 'angular2-qrcode';
+import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+
+import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
+import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -65,13 +69,14 @@ export function highchartsFactory() {
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot(),
     LoadingModule,
-    QRCodeModule
-
+    QRCodeModule,
+    Ng2DeviceDetectorModule.forRoot()
   ],
-  providers: [{
-    provide: HighchartsStatic,
-    useFactory: highchartsFactory,
-  }, HttpClient],
+  providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
+    HttpClient,
+    PrivateRouteAuthGuard,
+    PublicRouteAuthGuard
+  ],
 
   bootstrap: [AppComponent]
 })

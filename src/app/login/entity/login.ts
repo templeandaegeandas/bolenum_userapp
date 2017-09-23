@@ -3,6 +3,7 @@ export class Login {
   password: String;
   ipAddress: String;
   browserName: String;
+  clientOsName: String;
   constructor(emailId: String, password: String){
     this.emailId = emailId;
     this.password = password;
@@ -13,5 +14,8 @@ export class Login {
   }
   setBrowserName(browserName: String) {
     this.browserName = browserName;
+  }
+  setClientOsName(clientOsName: String) {
+    this.clientOsName = clientOsName;
   }
 }

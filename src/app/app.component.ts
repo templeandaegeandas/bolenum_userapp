@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   token;
-  constructor() {
+  url: String;
+  constructor(private activatedRouter: ActivatedRoute, private router: Router) {
     this.isLoggedIn();
   }
   title = 'app';
 
   isLoggedIn() {
-    if(localStorage.getItem("token")!=null) {
+    if(localStorage.getItem('token')) {
       return true;
-     }
-     else{
-       return false;
-     }
+    }
+    else {
+      return false;
+    }
   }
-
-
 }

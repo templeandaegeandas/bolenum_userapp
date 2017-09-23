@@ -28,6 +28,15 @@ export class HttpClient {
     });
   }
 
+  postWithoutContentType(url, data) {
+    let headers = new Headers();
+    headers.delete("Content-Type");
+    this.createAuthorizationHeader(headers);
+    return this.http.post(url, data, {
+      headers: headers
+    });
+  }
+
   put(url, data) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
