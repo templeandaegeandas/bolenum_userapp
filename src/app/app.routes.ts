@@ -23,7 +23,7 @@ import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.servi
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [ PrivateRouteAuthGuard ]  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ PrivateRouteAuthGuard ] },
   { path: 'tradeNow', component: TradeNowComponent },
   { path: 'login', component: LoginComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },

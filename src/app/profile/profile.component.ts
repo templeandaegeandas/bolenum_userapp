@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'toastr-ng2';
 import { ProfileService } from './profile.service';
 
 @Component({
@@ -11,11 +12,26 @@ export class ProfileComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
+  url: any = {
+    result: String
+  };
   documentStatus: String = "NOT SUBMITTED";
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.getLoggedInUserDetails();
+  }
+
+  readUrl(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event) => {
+        this.url = event.target;
+        this.document = this.url.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   uploadKyc() {
@@ -35,6 +51,10 @@ export class ProfileComponent implements OnInit {
         console.log(error);
         this.loading = false;
       });
+    }
+    else {
+      this.toastrService.error("Please choose file for uploading!", 'Error!')
+      this.loading = false;
     }
   }
 

@@ -8,19 +8,9 @@ import { Login } from './entity/login';
 
 @Injectable()
 export class LoginService {
-  ip: String;
-  deviceInfo: any;
-  constructor(private http: Http, private deviceService: Ng2DeviceService) {
-    this.deviceInfo = this.deviceService.getDeviceInfo();
-    this.getUserIpAddress().subscribe(success => {
-      this.ip = success.ip;
-    });
-  }
+  constructor(private http: Http) { }
 
   logIn(login: Login) {
-    login.setIpAddress(this.ip);
-    login.setBrowserName(this.deviceInfo.browser);
-    login.setClientOsName(this.deviceInfo.os);
     return this.http.post('/api/v1/login', login, )
       .map(res => res.json());
   }

@@ -3,6 +3,7 @@ import { ToastrService } from 'toastr-ng2';
 import { LoginService } from './login.service';
 import { Login } from './entity/login';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,22 @@ export class LoginComponent implements OnInit {
   login = new Login("", "");
   loading = false;
   returnUrl: string;
-  constructor(private route: ActivatedRoute, private loginService: LoginService, private toastrService: ToastrService, private router: Router) { }
+  ip: String;
+  deviceInfo: any;
+  constructor(private route: ActivatedRoute,
+    private loginService: LoginService,
+    private toastrService: ToastrService,
+    private router: Router,
+    private deviceService: Ng2DeviceService) { }
   token: String;
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    if(this.token = this.route.snapshot.queryParams['token']) {
+    if (this.token = this.route.snapshot.queryParams['token']) {
       this.verifyUserEmail(this.token);
     }
+    this.loginService.getUserIpAddress().subscribe(success => {
+      this.ip = success.ip;
+    });
   }
 
   loginUser(form) {
@@ -28,6 +38,11 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    this.login.setIpAddress(this.ip);
+    this.login.setBrowserName(this.deviceInfo.browser);
+    this.login.setClientOsName(this.deviceInfo.os);
+    this.login.setRole('ROLE_USER');
     this.loginService.logIn(this.login).subscribe(success => {
       localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);

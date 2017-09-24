@@ -82,7 +82,7 @@ export function highchartsFactory() {
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,
     QRCodeModule,
     Ng2DeviceDetectorModule.forRoot()
