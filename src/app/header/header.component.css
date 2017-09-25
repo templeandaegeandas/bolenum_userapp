@@ -212,6 +212,12 @@ li.dropdown {
     margin-top: -11px;
     text-transform: uppercase;
 }
+img.drop-icon {
+    width: 29px;
+    padding-left: 8px;
+}
+
+/* start media query */
 @media screen and (min-width: 320px) and (max-width: 767px){
   .header-menu .navbar-default .navbar-collapse{
     border: none;
@@ -226,7 +232,17 @@ li.dropdown {
   .header.logo-img {
       display: none;
   }
-  
+  .navbar-brand img {
+    margin-top: -5px;
+    margin-left: -53px;
+}
+span.exchange-color {
+    display: none;
+    margin-left: 37px;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #ef1515;
+}
 a.navbar-brand.insight {
     margin-top: -52px;
     margin-left: -17px;

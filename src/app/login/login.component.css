@@ -186,4 +186,12 @@ span.input-group-addon {
     margin-right: 37px;
     padding: 8px;
 }
-
+.login-text {
+    /* margin: 2px 2px 61px -22px; */
+    margin-right: 48px;
+}
+img.img-header {
+    top: 0;
+    left: 0;
+    margin-left: -31px;
+}
