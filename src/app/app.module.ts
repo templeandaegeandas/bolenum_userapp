@@ -21,11 +21,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
-<<<<<<< HEAD
-import {HttpClient} from './app.client.interceptor';
-=======
 import { HttpClient } from './app.client.interceptor';
->>>>>>> 451eadf8318c5f8d6ff78a84b98bbc6b87f631e6
 import { LoadingModule } from 'ngx-loading';
 import { NoNumberDirective } from './directives/no.number.directive';
 import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
@@ -89,12 +85,9 @@ export function highchartsFactory() {
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot(),
 
-=======
->>>>>>> 451eadf8318c5f8d6ff78a84b98bbc6b87f631e6
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,
