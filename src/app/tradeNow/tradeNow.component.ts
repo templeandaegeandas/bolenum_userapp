@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tradeNow.component.css']
 })
 export class TradeNowComponent implements OnInit {
+    public beforeLogin:boolean=true;
+    public afterLogin:boolean=false;
   options :any;
   constructor() {
      this.options = {
@@ -76,6 +78,20 @@ export class TradeNowComponent implements OnInit {
    }
 
   ngOnInit() {
+      this.isLogIn();
+  }
+
+  isLogIn(){
+
+      if(localStorage.getItem("token")==null) {
+      return;
+    }
+    else{
+        this.beforeLogin = false;
+        this.afterLogin = true;
+
+    }
+
   }
 
 
