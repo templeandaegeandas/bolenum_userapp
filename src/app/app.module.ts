@@ -22,7 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
 import {HttpClient} from './app.client.interceptor';
-import { LoadingModule } from 'ngx-loading';
+
 import { NoNumberDirective } from './directives/no.number.directive';
 import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
@@ -61,7 +61,7 @@ export function highchartsFactory() {
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot(),
-     LoadingModule
+    
   ],
   providers: [{
       provide: HighchartsStatic,
