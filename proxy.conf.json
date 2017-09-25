@@ -1,6 +1,10 @@
 {
   "/api": {
+<<<<<<< HEAD
     "target": "http://localhost:8080",
+=======
+    "target": "http://165.227.86.165:8080",
+>>>>>>> 451eadf8318c5f8d6ff78a84b98bbc6b87f631e6
     "secure": false
   }
 }

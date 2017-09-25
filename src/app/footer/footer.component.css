@@ -45,7 +45,7 @@ footer {
      font-size:12px;
      }
 .footer-ul li a {
-     color:#D4D4D4;
+     color:#707071;
       transition: color 0.2s linear 0s,
        background 0.2s linear 0s; 
        }
@@ -55,7 +55,7 @@ footer {
 .footer-ul li a:hover {
     transition: color 0.2s linear 0s,
      background 0.2s linear 0s; 
-     color:#ff670f; 
+     color:#DA2828;
      }
 
  .copyright { 
@@ -104,21 +104,7 @@ footer {
      margin-left:8px;
         }
  
- .footer-social li{
-     float:left;
- }
- .linked-in{
-     background-color:#007bb6;
- }
- .facebook{
-     background-color:#3b5998;
- }
- .twitter{
-     background-color:#1da1f2;
- }
- .google{
-     background-color:#f63e28;
- }
+ 
  .text-center {
     text-align: center;
     display: inline;
