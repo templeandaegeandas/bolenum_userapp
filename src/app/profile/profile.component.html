@@ -6,7 +6,16 @@
          </div>
          <div class="header-text">
             <img src="assets/images/default_pic.png">
+              <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
+              <button (click)="uploadProfilePic()">
+                 <span id="fileselector">
+                 <label class="btn btn-default" for="upload-file-selector">
+                 <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
+                 </label>
+                 </span>
+                 </button>
          </div>
+
          <div class="profile-text">
             <p class="top-text">John arr</p>
          </div>

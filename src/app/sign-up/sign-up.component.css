@@ -23,7 +23,7 @@ img.img-login {
 
 }
 img.img-header{
-    
+
 	top: 0;
 	left: 0;
 }
@@ -44,7 +44,7 @@ img.img-header{
     border-right: 0;
     background: none;
 }
-  
+
   .input-group input {
     height: 41px;
     font-size: 15px;
@@ -66,7 +66,7 @@ img.img-header{
     top: 8px;
     z-index: 99999;
   }
-  
+
   .btn-success {
     color: #ffffff;
     width: 320px;
