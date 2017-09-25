@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
+
+import { UserProfile } from './entity/user.profile.entity';
 import { ProfileService } from './profile.service';
 
 @Component({
@@ -16,10 +18,37 @@ export class ProfileComponent implements OnInit {
     result: String
   };
   documentStatus: String = "NOT SUBMITTED";
+  userProfile = new UserProfile();
+  userKyc: any;
+  isDetailsEdit: Boolean = false;
+  isMobileEdit: Boolean =false;
+  emailId: String;
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.getLoggedInUserDetails();
+  }
+
+  editDetails() {
+    this.isDetailsEdit = true;
+  }
+
+  editMobile() {
+    this.isMobileEdit = true;
+  }
+
+  saveMobile() {
+    this.isMobileEdit = false;
+  }
+
+  saveDetails() {
+    this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
+      this.ngOnInit();
+      this.isDetailsEdit = false;
+    }, error => {
+      this.toastrService.error(error.message,"Error!")
+    })
+
   }
 
   readUrl(event) {
@@ -64,6 +93,9 @@ export class ProfileComponent implements OnInit {
         this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
+      this.userProfile = success.data;
+      this.emailId = success.data.emailId;
+      this.userKyc = success.data.userKyc;
     }, error => {
       console.log(error);
     })
