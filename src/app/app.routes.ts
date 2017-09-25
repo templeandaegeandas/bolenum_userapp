@@ -20,6 +20,8 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import 'rxjs/add/operator/switchMap';
 import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
 import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
+import { HistoryComponent } from './history/history.component';
+
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -33,4 +35,5 @@ export const APP_ROUTES: Routes = [
   { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'deposit', component: DepositComponent },
   { path: 'withdraw', component: WithdrawComponent },
+   { path: 'history', component: HistoryComponent },
 ];

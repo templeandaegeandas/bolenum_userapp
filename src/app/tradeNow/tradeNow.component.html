@@ -1,3 +1,26 @@
+<div class="container image-width " *ngIf="beforeLogin">
+  <div class="row image-row-margin top-bg-image">
+    <div class="col-md-12 text-align-center padding-text-image">
+      <!-- <div class="col-md-12"> -->
+        <p class="text-capitalize want-text">want Better Price ?</p>
+        
+        <!-- </div> -->
+         <!-- <div class="col-md-12"> -->
+        <button class="craete-advertisement-button">Create Advertisement</button>
+        <!-- </div> -->
+     
+     
+
+      
+    </div>
+  </div>
+   <div class="text-align-center trade-now">
+          <span class="border-bot order-text">Trade Now</span>
+        </div>
+  
+</div>
+<!-- for images -->
+
 <div class="container container-padding ">
   <div class="row tradeNow-background-img">
     <div class="col-md-12 exchange-border-right ">
@@ -83,14 +106,14 @@
             <!-- thired -->
             <!-- Four -->
             <div class="col-md-12 gray-padding">
-              <div class="col-md-12">
+              <div class="col-md-12" *ngIf=afterLogin>
                 <span class="red-color">Fee:</span>
                 <span>0.12 / 0.25 %</span>
               </div>
             </div>
             <!-- Four -->
             <!-- Five -->
-            <div class="col-md-12 gray-padding">
+            <div class="col-md-12 gray-padding " *ngIf=afterLogin>
               <div class="col-md-12 text-align-center">
                 <button class="buy-button ">BUY</button>
               </div>
@@ -156,7 +179,7 @@
             </div>
             <!-- thired -->
             <!-- Four -->
-            <div class="col-md-12 gray-padding">
+            <div class="col-md-12 gray-padding" *ngIf=afterLogin>
               <div class="col-md-12">
                 <span class="red-color">Fee:</span>
                 <span>0.12 / 0.25 %</span>
@@ -164,7 +187,7 @@
             </div>
             <!-- Four -->
             <!-- Five -->
-            <div class="col-md-12 gray-padding">
+            <div class="col-md-12 gray-padding" *ngIf=afterLogin>
               <div class="col-md-12 text-align-center button-extra-padding">
                 <button class="buy-button ">SELL</button>
               </div>
@@ -176,6 +199,13 @@
       </div>
     </div>
     <!-- for drop-down -->
+    <!-- before login div -->
+    <div class="row">
+      <div class="col-md-12 signin-or-create-account" *ngIf=beforeLogin>
+        <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span> to start Trading
+        </div>
+      </div>
+    <!-- before login div -->
     <!-- order field -->
     <div class="row">
       <div class="col-md-12 order pad-top pad-order ">

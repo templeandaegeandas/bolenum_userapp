@@ -5,13 +5,14 @@
             <img src="assets/images/login-img.png" class="img-login">
          </div>
          <div class="col-md-6 col-xs-12">
+           <div class ="login-text">
             <div class="text-center">
                <img src="assets/images/bolenum.png" class="img-header">
             </div>
             <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
                <span class="input-group-addon"><img src="assets/images/profile.png"></span>
-               <input id="email" type="email" class="form-control" name="email" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
+               <input id="email" type="email" class="form-control" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Username" required>
             </div>
             <span *ngIf="email.invalid && loginForm.submitted">
             <span class="text-danger" *ngIf="email.errors.required">Please enter email</span>
@@ -44,6 +45,7 @@
                </span>
             </div>
             <button type="submit" class="btn btn-continue">continue</button> -->
+         </div>
          </div>
       </div>
    </div>

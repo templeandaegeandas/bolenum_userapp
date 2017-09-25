@@ -1,9 +1,9 @@
 /* new css for trade now */
-.tradeNow-background-img{
-     background-image: url("/assets/images/trade-now.png");
-      background-repeat: no-repeat;
-       background-position: top;
 
+.tradeNow-background-img {
+    background-image: url("/assets/images/trade-now.png");
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
 .exchange-border-right {
@@ -210,7 +210,7 @@ tr th {
     padding-bottom: 15px;
     font-size: 21px;
     padding-left: 22px;
-        /* -webkit-appearance: none; */
+    /* -webkit-appearance: none; */
 }
 
 .drop-down-row {
@@ -265,15 +265,69 @@ tr th {
     padding-top: 7px;
 }
 
-hr{
-        width: 97%;
+hr {
+    width: 97%;
     height: 1px;
     background: lightgray;
 }
 
 select option {
     margin: 40px;
-    background:#fff;
+    background: #fff;
     color: #000;
     /* text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
+}
+
+
+/* top image part */
+
+.image-width {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+.image-row-margin{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.top-bg-image{
+     background-image: url("/assets/images/header.png");
+   
+     background-repeat: no-repeat;
+     height: 371px;
+}
+.craete-advertisement-button{
+        /* text-align: center; */
+    background-color: #DB2828;
+    /* border-radius: 19px; */
+    padding: 9px;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.want-text{
+    color: white;
+    font-size: 27px;
+}
+.padding-text-image{
+    padding-top: 205px;
+}
+
+.trade-now{
+        margin-top: 15px;
+}
+
+.signin-or-create-account{
+        text-align: center;
+    margin-top: 33px;
+}
+
+.signin-for-tradenow{
+        color: #DB2828;
+        cursor: pointer;
 }
