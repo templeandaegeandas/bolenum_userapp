@@ -112,13 +112,15 @@ img.img-header{
     float: right;
     padding: 2px;
 }
+
 button.btn.btn-continue {
     color: #ffffff;
-    width: 262px;
+    width: 135px;
+    padding: 6px;
     background-color: #DB2828;
     border-color: #DB2828;
     font-family: Lato;
-      margin-left: 28px;
+    margin-left: 25px;
 }
 h4.text-center {
     margin: 20px;

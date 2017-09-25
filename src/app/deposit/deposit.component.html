@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 main-div">
+      <div class="pull-right">
+        <ul>
+          <li>
+            <img src="./assets/images/send_uf.png" width="46" height="46">
+          </li>
+          <li>
+            <img src="./assets/images/copy.png" width="46" height="46">
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-md-12 text-center">
+        <div class="qrCode">
+          <qr-code [value]="'All QR Code data goes here!'" [size]="100"></qr-code>
+        </div>
+      </div>
+      <div class="col-md-12 input-box">
+        <div class="form-group">
+          <input type="text" class="form-control" [disabled]="true" id="usr" placeholder="5rere5qwr26fhfgfz5fggdhhgfhdggg6">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <span class="network">Network Fee:</span>
+        <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5
+      </div>
+      <div class="col-md-12 text-center margin-button">
+        <button class="genarate-button">Genarate New Address</button>
+      </div>
+    </div>
+  </div>
+</div>

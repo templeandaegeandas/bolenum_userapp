@@ -1,32 +1,279 @@
+/* new css for trade now */
+.tradeNow-background-img{
+     background-image: url("/assets/images/trade-now.png");
+      background-repeat: no-repeat;
+       background-position: top;
 
+}
 
-.table {
+.exchange-border-right {
+    border-left: 4px solid #DB2828;
+}
+
+.exchange-pair-text {
+    text-align: center;
+    background-color: #DB2828;
+    border-radius: 19px;
+    padding: 6px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.exchange-pair-text-start {
+    text-align: center;
+    padding: 6px;
+    color: black;
+    border: 2px solid;
+    border-radius: 19px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.order {
+    text-align: center;
+}
+
+.buy-orders {
+    background-color: #DB2828;
+    text-align: left;
+    color: white;
+    padding-top: 14px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+tr th {
+    text-align: center;
+}
+
+.sell-orders {
+    background-color: #DB2828;
+    text-align: left;
+    color: white;
+    padding-top: 14px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+.create-advertisement-button {
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+    margin-top: 11px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.buy-eth {
+    background-color: #DB2828;
+    color: white;
     width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    background: gray;
+    padding-top: 23px;
+    padding-left: 10px;
+    padding-bottom: 28px;
+    font-size: 14px;
 }
-.btn-primary {
-   color: #ffffff;
-    width: 250px;
-    background-color: #DB2828;
-    border-color: #DB2828;
-    font-family: Lato;
+
+.padding-top-dropdown {
+    /* padding-top: 90px; */
+    padding-top: 90px;
+    width: 40%;
+    margin-left: 6%;
+}
+
+.drop-down {
+    /* background-color: #DB2828;
+    color: white;
+    width: 85%;
+    text-align: left;
     padding: 16px;
-   
-}
-.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
-    
-    color: #ffffff;
+    font-size: 14px; */
     background-color: #DB2828;
-    border-color: #DB2828;
-    font-family: Lato;
-   
+    color: white;
+    width: 100%;
+    text-align: left;
+    padding: 16px;
+    font-size: 14px;
 }
-label {
-    display: inline-block;
-    max-width: 86%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    margin-left: 27px;
+
+.btc {
+    color: #DB2828;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 14px;
+}
+
+.pad-top {
+    padding-top: 40px;
+}
+
+.pad-order {
+    padding-bottom: 25px;
+}
+
+.fee-color {
+    color: #DB2828;
+    font-size: 14px;
+}
+
+.buy-button {
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 9px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 98px;
+}
+
+.padding-buy-button {
+    /* padding-top: 41px; */
+    /* padding-left: 87px;
+    padding-right: 63px; */
+    margin-top: 40px;
+}
+
+.btc-exchange {
+    margin-top: 50px;
+}
+
+.border-bot:after {
+    display: table;
+    position: absolute;
+    width: 70px;
+    height: 6px;
+    background: #db2828;
+    content: "";
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+}
+
+.container-padding {
+    padding-top: 25px;
+}
+
+
+/* .margin-left{
+        margin-left: 68px;
+} */
+
+.padding-fee {
+    padding-left: 17px;
+}
+
+.table-color {
+    background-color: #f1f0f0;
+}
+
+.background-properties {
+    background-color: #f1f0f0;
+    padding-bottom: 16px;
+}
+
+.text-align-buy {
+    text-align: left;
+}
+
+
+/* new css for drop-dwon */
+
+.left-dropddown {
+    background-color: #DB2828;
+    width: 100%;
+    color: #fff;
+    outline: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 21px;
+    padding-left: 22px;
+        /* -webkit-appearance: none; */
+}
+
+.drop-down-row {
+    margin-top: 165px;
+}
+
+.drop-down-padding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.buy-eth-list {
+    background-color: #f1f0f0;
+}
+
+.buy-eth-list-item {
+    background-color: #fff;
+}
+
+.gray-padding {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+.buy-text-list-property {
+    color: #DB2828;
+    padding-left: 61px;
+}
+
+.red-color {
+    color: #DB2828;
+}
+
+.list-head {
+    font-weight: bold;
+}
+
+.order-text {
+    font-size: 22px;
+}
+
+.padding-to-all {
+    padding-left: 103px;
+    padding-right: 70px;
+}
+
+.line-height-box {
+    line-height: 27px;
+}
+
+.button-extra-padding {
+    padding-top: 7px;
+}
+
+hr{
+        width: 97%;
+    height: 1px;
+    background: lightgray;
+}
+
+select option {
+    margin: 40px;
+    background:#fff;
+    color: #000;
+    /* text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
 }

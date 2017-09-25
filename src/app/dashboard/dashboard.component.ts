@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
          data: [1, 3, 4, 3, 3, 5, 4]
     }],
-    colors: ["#e42d2d","#3ad1e4"]
+    colors: ["#fE6C61","#5472D2"]
 
         };
 
@@ -79,13 +79,13 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.isLoggedIn();
+    // this.isLoggedIn();
   }
 
-  isLoggedIn() {
-    if(localStorage.getItem("token")==null) {
-      this.router.navigate(['login']);
-    }
-  }
+  // isLoggedIn() {
+  //   if(localStorage.getItem("token")==null) {
+  //     this.router.navigate(['login']);
+  //   }
+  // }
 
 }
