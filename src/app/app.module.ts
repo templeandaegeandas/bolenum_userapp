@@ -21,13 +21,30 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ProfileComponent } from './profile/profile.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { WalletComponent } from './wallet/wallet.component';
+<<<<<<< HEAD
+import {HttpClient} from './app.client.interceptor';
+
+=======
 import { HttpClient } from './app.client.interceptor';
 import { LoadingModule } from 'ngx-loading';
+>>>>>>> 0d55cebf0f36490da2277b0087bb965ad76bbc59
 import { NoNumberDirective } from './directives/no.number.directive';
 import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 import { DepositComponent } from './deposit/deposit.component';
 import { QRCodeModule } from 'angular2-qrcode';
+import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+import { MyDatePickerModule } from 'mydatepicker';
+import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
+import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
+
+import { FaqComponent } from './faq/faq.component';
+import { TermsServiceComponent } from './terms-service/terms-service.component';
+import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bolenum-exchange.component';
+import { TeamComponent } from './team/team.component';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { HistoryComponent } from './history/history.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -54,7 +71,16 @@ export function highchartsFactory() {
     NoNumberDirective,
     NoSpecialCharacterDirective,
     NoNumberSpecialCharacterDirective,
-    DepositComponent
+    DepositComponent,
+    FaqComponent,
+    TermsServiceComponent,
+
+    AboutBolenumExchangeComponent,
+    TeamComponent,
+    HowToUseComponent,
+    PrivacyPolicyComponent,
+    HistoryComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -62,16 +88,24 @@ export function highchartsFactory() {
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
+    RouterModule.forRoot(APP_ROUTES, {useHash: true}),
+     ToastrModule.forRoot(),
+    
+=======
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,
-    QRCodeModule
-
+    QRCodeModule,
+    MyDatePickerModule,
+    Ng2DeviceDetectorModule.forRoot()
   ],
-  providers: [{
-    provide: HighchartsStatic,
-    useFactory: highchartsFactory,
-  }, HttpClient],
+  providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
+    HttpClient,
+    PrivateRouteAuthGuard,
+    PublicRouteAuthGuard
+>>>>>>> 0d55cebf0f36490da2277b0087bb965ad76bbc59
+  ],
 
   bootstrap: [AppComponent]
 })

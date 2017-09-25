@@ -87,11 +87,13 @@
   }
 .custom-dropdown{
     position: absolute;
-    top: 74px;
+    top: 86px;
     background: #db2828;
-    padding: 10px 15px;
+    padding: 10px 28px;
     /*width: 100%;*/
     z-index: 999;
+    left:50px;
+   
   }
   .custom-dropdown li{
     list-style: none;
@@ -154,7 +156,9 @@ span.exchange-color {
     display: block;
     padding: -6px 35px;
 }
-
+li.dropdown {
+    margin-top: -11px;
+}
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     color:#DB2828;;
@@ -200,6 +204,14 @@ span.exchange-color {
   box-shadow: 2px 1px 7px #eee;
 }
 
+.drop-active {
+    color: #db2828 !important;
+}
+
+li.dropdown {
+    margin-top: -11px;
+    text-transform: uppercase;
+}
 @media screen and (min-width: 320px) and (max-width: 767px){
   .header-menu .navbar-default .navbar-collapse{
     border: none;
@@ -230,6 +242,7 @@ a.navbar-brand.insight {
     margin: -67px -10px 20px -55px;
     float: left;
 }
+
 
 .topnav li {
     float: left;

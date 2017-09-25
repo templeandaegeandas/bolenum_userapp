@@ -294,14 +294,13 @@
                      <div class="kyc-input">
                         <div class="id-input-details clearfix">
                            <div class="form-group">
-                              <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr">
+                              <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr"> <!-- (change)="readUrl($event)"> -->
                            </div>
                            <button (click)="uploadKyc()">
                               <span id="fileselector">
                               <label class="btn btn-default" for="upload-file-selector">
 
                               <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
-
                               </label>
                               </span>
                               </button>

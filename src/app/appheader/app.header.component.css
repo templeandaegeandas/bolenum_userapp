@@ -147,7 +147,6 @@ span.exchange-color {
     margin: 6px auto;
     text-align: center;
     display: block;
-    border-radius: 4px;
    
 }
 .dropdown-menu {
@@ -223,3 +222,4 @@ a.navbar-brand.insight {
     overflow-x: hidden;
   }
 }
+

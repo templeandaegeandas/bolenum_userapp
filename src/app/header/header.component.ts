@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
     })
   }
   showDropdown() {
-    console.log("hhhdhsdhs");
     this.subMenu = !this.subMenu;
   }
 

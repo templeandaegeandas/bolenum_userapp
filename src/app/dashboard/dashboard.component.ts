@@ -79,13 +79,13 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.isLoggedIn();
+    // this.isLoggedIn();
   }
 
-  isLoggedIn() {
-    if(localStorage.getItem("token")==null) {
-      this.router.navigate(['login']);
-    }
-  }
+  // isLoggedIn() {
+  //   if(localStorage.getItem("token")==null) {
+  //     this.router.navigate(['login']);
+  //   }
+  // }
 
 }

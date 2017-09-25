@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
 import { LoginService } from './login.service';
 import { Login } from './entity/login';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
   selector: 'app-login',
@@ -11,37 +12,56 @@ import { RouterModule, Routes, Router } from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  login = new Login("","");
+  login = new Login("", "");
   loading = false;
-  constructor(private loginService: LoginService, private toastrService: ToastrService, private router: Router) {}
-
+  returnUrl: string;
+  ip: String;
+  deviceInfo: any;
+  constructor(private route: ActivatedRoute,
+    private loginService: LoginService,
+    private toastrService: ToastrService,
+    private router: Router,
+    private deviceService: Ng2DeviceService) { }
+  token: String;
   ngOnInit() {
-    this.isLoggedIn();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.token = this.route.snapshot.queryParams['token']) {
+      this.verifyUserEmail(this.token);
+    }
+    this.loginService.getUserIpAddress().subscribe(success => {
+      this.ip = success.ip;
+    });
   }
 
   loginUser(form) {
     if (form.invalid) {
-        return;
+      return;
     }
     this.loading = true;
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    this.login.setIpAddress(this.ip);
+    this.login.setBrowserName(this.deviceInfo.browser);
+    this.login.setClientOsName(this.deviceInfo.os);
+    this.login.setRole('ROLE_USER');
     this.loginService.logIn(this.login).subscribe(success => {
-      localStorage.setItem("token",success.data.token);
+      localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);
       localStorage.setItem("lName", success.data.lName);
-      this.router.navigate(['dashboard']);
+      this.router.navigate([this.returnUrl]);
       this.loading = false;
-    },error=> {
+    }, error => {
       this.loading = false;
-       this.toastrService.error(error.json().message, 'Error!');
+      this.toastrService.error(error.json().message, 'Error!');
     })
   }
 
-  isLoggedIn() {
-    if(localStorage.getItem("token")!=null) {
-      this.router.navigate(['dashboard']);
-    } else {
+  verifyUserEmail(token: String) {
+    this.loginService.verifyMail(token).subscribe(success => {
       this.router.navigate(['login']);
-    }
+      this.toastrService.success(success.data.message, 'Success!');
+    }, error => {
+      this.toastrService.error(error.json().message, 'Error!')
+    })
   }
 
 }
