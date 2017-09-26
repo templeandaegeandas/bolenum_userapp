@@ -1,11 +1,11 @@
 <div class="container-fluid">
-<!--
+  <!--
    <div class="row">
       <div class="top-header">
          <img src="assets/images/header (1).png"class="profile-img">
          <div>
          </div> -->
-         <!-- <div class="header-text">
+  <!-- <div class="header-text">
             <img src="assets/images/default_pic.png">
               <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
               <button (click)="uploadProfilePic()">
@@ -17,7 +17,7 @@
                  </button>
          </div> -->
 
-         <!-- <div class="profile-text">
+  <!-- <div class="profile-text">
             <p class="top-text">John arr</p>
          </div>
          <div class="head-icon">
@@ -64,7 +64,7 @@
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
          <span>KYC Details</span></label>
-     
+
       <!--profile-->
       <section id="content1" class="tab-content">
         <div class="container-fluid">
@@ -78,43 +78,45 @@
                   </div>
                   <div class="email-text">
                     <p class="icon-name">First Name<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name = "firstName" [(ngModel)] = "userProfile.firstName" id="usr" nonumberspecialcharacter>
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" id="usr"
+                        nonumberspecialcharacter>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.firstName}}</p>
                   </div>
                 </div>
-                <div class="profile-button">
-                  <button  class="btn btn-successsave" *ngIf="!isDetailsEdit" (click) = editDetails()>Edit Details</button>
-                  <button  class="btn btn-successsave" *ngIf="isDetailsEdit" (click) = saveDetails()>Save Details</button>
-                </div>
-                <div class="clearfix"></div>
-                <div class="email-part">
+                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/profile.png" class="img-profile">
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Last Name<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name = "lastName" [(ngModel)] = "userProfile.lastName" id="usr" nonumberspecialcharacter>
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" id="usr"
+                        nonumberspecialcharacter>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.lastName}}</p>
                   </div>
                 </div>
-                <div class="email-part">
+                <!--<div class="profile-button">
+                  <button class="btn btn-successsave" *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
+                  <button class="btn btn-successsave" *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
+                </div>-->
+                <div class="clearfix"></div>
+               <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/DOB.png" class="img-profile">
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Date of birth<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name = "dob" [(ngModel)] = "userProfile.dob" id="usr">
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.dob | date}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
+                <!--<div class="clearfix"></div>-->
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Address<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name = "address" [(ngModel)] = "userProfile.address" id="usr">
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="address" [(ngModel)]="userProfile.address" id="usr">
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.address}}</p>
                   </div>
                 </div>
@@ -124,36 +126,42 @@
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Country<br>
-                      <select *ngIf="isDetailsEdit" class="from-newtext" name = "country" [(ngModel)] = "userProfile.country" id="usr">
+                      <select *ngIf="isDetailsEdit" class="from-newtext" name="country" [(ngModel)]="userProfile.country" id="usr">
                         <option value="" selected>Choose Country</option>
                       </select>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.country}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
                   </div>
                   <div class="email-text">
                     <p class="icon-name">State<br>
-                      <select *ngIf="isDetailsEdit" class="from-newtext" name = "state" [(ngModel)] = "userProfile.state" id="usr">
+                      <select *ngIf="isDetailsEdit" class="from-newtext" name="state" [(ngModel)]="userProfile.state" id="usr">
                         <option value="" selected>Choose State</option>
                       </select>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
+                <div class="clearfix"></div>
+                
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
                   </div>
                   <div class="email-text">
                     <p class="icon-name">City<br>
-                      <select *ngIf="isDetailsEdit" class="from-newtext" name = "city" [(ngModel)] = "userProfile.city" id="usr">
+                      <select *ngIf="isDetailsEdit" class="from-newtext" name="city" [(ngModel)]="userProfile.city" id="usr">
                         <option value="" selected>Choose City</option>
                       </select>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.city}}</p>
                   </div>
+                  
+                </div>
+                 <div class="profile-button">
+                  <button class="btn btn-successsave" *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
+                  <button class="btn btn-successsave" *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
                 </div>
               </div>
             </div>
@@ -164,11 +172,11 @@
                 <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br>
                 </p>
                 <div class="attension-block">
-                <div *ngIf="userKyc==null">
-                  <label for="tab3" class="btn btn-dark-blue">ATTENTION REQURIED</label>
-                  <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo ID</p>
+                  <div *ngIf="userKyc==null">
+                    <label for="tab3" class="btn btn-dark-blue">ATTENTION REQURIED</label>
+                    <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo ID</p>
+                  </div>
                 </div>
-</div>
               </div>
             </div>
           </div>
@@ -190,8 +198,8 @@
                         </div>
                       </div>
                       <div>
-                        <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click) = editMobile()>Edit Mobile Number</button>
-                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click) = saveMobile()>Save Mobile Number</button>
+                        <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
+                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
                       </div>
                       <div class="clearfix"></div>
                       <div class="email-part">
@@ -200,7 +208,8 @@
                         </div>
                         <div class="email-text">
                           <p class="icon-name">Phone No<br>
-                            <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name = "mobileNumber" [(ngModel)] = "userProfile.mobileNumber" id="usr" onlynumber>
+                            <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name="mobileNumber" [(ngModel)]="userProfile.mobileNumber"
+                              id="usr" onlynumber>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{userProfile.mobileNumber}}</p>
                         </div>
                       </div>
@@ -225,7 +234,8 @@
                       <button type="button" class="btn btn-success">UPLOAD</button>
                     </div>
                     <div class="profile-new-var">
-                      <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone to fake your identity.</p>
+                      <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
+                        to fake your identity.</p>
                     </div>
                   </div>
                 </div>

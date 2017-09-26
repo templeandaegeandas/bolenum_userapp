@@ -393,25 +393,10 @@ img.profile-img {
     width: 48%;
     float: left;
 }
-.attension-block.label {
-    
-    font-weight: 700;
-    font-size: 18px;
-    display: block;
-    float: left;
-    width: 32%;
-    padding: 1.5em;
-    color: #757575;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    background:red;
-    min-height: 130px;
 
-}
 input#usr {
     display: block;
-    padding: 6px;
+    padding: 4px;
     width: 217px;
     border-radius: -13px;
     border-radius: 8px;
@@ -432,6 +417,7 @@ span#fileselector label.btn.btn-default {
 button.btn.btn-successsave {
     background: #DB2828;
     color: white;
+    margin-right: 109px;
 }
 
 hr {
