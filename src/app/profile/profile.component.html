@@ -36,6 +36,7 @@
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
          <span>KYC Details</span></label>
+     
       <!--profile-->
       <section id="content1" class="tab-content">
         <div class="container-fluid">
@@ -53,9 +54,9 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.firstName}}</p>
                   </div>
                 </div>
-                <div>
-                  <button *ngIf="!isDetailsEdit" (click) = editDetails()>Edit Details</button>
-                  <button *ngIf="isDetailsEdit" (click) = saveDetails()>Save Details</button>
+                <div class="profile-button">
+                  <button  class="btn btn-successsave" *ngIf="!isDetailsEdit" (click) = editDetails()>Edit Details</button>
+                  <button  class="btn btn-successsave" *ngIf="isDetailsEdit" (click) = saveDetails()>Save Details</button>
                 </div>
                 <div class="clearfix"></div>
                 <div class="email-part">
@@ -134,12 +135,12 @@
                 <p class="text1">Daily withdrawal limit is calculated in USD equivalent per day.</p>
                 <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br>
                 </p>
-
+                <div class="attension-block">
                 <div *ngIf="userKyc==null">
                   <label for="tab3" class="btn btn-dark-blue">ATTENTION REQURIED</label>
                   <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo ID</p>
                 </div>
-
+</div>
               </div>
             </div>
           </div>
@@ -161,8 +162,8 @@
                         </div>
                       </div>
                       <div>
-                        <button *ngIf="!isMobileEdit" (click) = editMobile()>Edit Mobile Number</button>
-                        <button *ngIf="isMobileEdit" (click) = saveMobile()>Save Mobile Number</button>
+                        <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click) = editMobile()>Edit Mobile Number</button>
+                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click) = saveMobile()>Save Mobile Number</button>
                       </div>
                       <div class="clearfix"></div>
                       <div class="email-part">
