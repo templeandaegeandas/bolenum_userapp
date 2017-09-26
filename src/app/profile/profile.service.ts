@@ -20,4 +20,9 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  saveUserDetails(userProfile) {
+    return this.http.put("/api/v1/user/update", userProfile)
+      .map(res => res.json());
+  }
+
 }
