@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
 import { UserProfile } from './entity/user.profile.entity';
 import { ProfileService } from './profile.service';
-
+import {IMyDpOptions} from 'mydatepicker';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -130,6 +130,15 @@ export class ProfileComponent implements OnInit {
       this.loading = false;
     }
   }
+ public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+        width: '170px',
+        
+    };
+
+    // Initialized to specific date (09.10.2018).
+    public model: any = { date: { year: 2018, month: 10, day: 9 } };
 
 
 }
