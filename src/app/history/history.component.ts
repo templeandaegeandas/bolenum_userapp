@@ -11,6 +11,8 @@ export class HistoryComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
+        width: '170px',
+        
     };
 
     // Initialized to specific date (09.10.2018).

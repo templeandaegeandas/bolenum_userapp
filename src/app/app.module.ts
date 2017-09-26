@@ -25,6 +25,7 @@ import { HttpClient } from './app.client.interceptor';
 import { LoadingModule } from 'ngx-loading';
 import { NoNumberDirective } from './directives/no.number.directive';
 import { NoSpecialCharacterDirective } from './directives/no.special.character.directive';
+import { OnlyNumberDirective } from './directives/only.number.directive';
 import { NoNumberSpecialCharacterDirective } from './directives/no.number.special.character.directive';
 import { DepositComponent } from './deposit/deposit.component';
 import { QRCodeModule } from 'angular2-qrcode';
@@ -66,6 +67,7 @@ export function highchartsFactory() {
     NoNumberDirective,
     NoSpecialCharacterDirective,
     NoNumberSpecialCharacterDirective,
+    OnlyNumberDirective,
     DepositComponent,
     FaqComponent,
     TermsServiceComponent,
@@ -83,6 +85,9 @@ export function highchartsFactory() {
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(APP_ROUTES, {useHash: true}),
+     ToastrModule.forRoot(),
+
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,

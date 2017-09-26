@@ -24,5 +24,9 @@ export class ProfileService {
     return this.http.get("http://api.techm.co.in/api/v1/ifsc/SBIN0007119")
      .map(res => res.json());
   }
+  saveUserDetails(userProfile) {
+    return this.http.put("/api/v1/user/update", userProfile)
+      .map(res => res.json());
+  }
 
 }
