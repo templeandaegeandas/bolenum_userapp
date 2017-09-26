@@ -539,3 +539,13 @@ text-decoration: none;
   	opacity: 1;
   }
 }
+
+.padding-label{
+    padding: 0px;
+}
+
+.locate-details{
+        cursor: pointer;
+    color: #DB2828;
+    font-size: 17px;
+}

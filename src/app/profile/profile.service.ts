@@ -20,4 +20,9 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  locate(){
+    return this.http.get("http://api.techm.co.in/api/v1/ifsc/SBIN0007119")
+     .map(res => res.json());
+  }
+
 }

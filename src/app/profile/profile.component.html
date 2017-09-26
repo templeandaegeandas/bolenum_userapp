@@ -204,7 +204,7 @@
             </div>
          </section>
          <!--bank detail-->
-         <section id="content2" class="tab-content">
+         <!-- <section id="content2" class="tab-content">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-md-6 col-xs-12" >
@@ -272,7 +272,66 @@
                </div>
                  <button type="button" class="btn btn-successaddnew">Add new bank</button>
             </div>
+         </section> -->
+      <!-- integration section -->
+         <section id="content2" class="tab-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-12 col-xs-12" *ngIf=accounDetails >
+                        <form (click)="bankDetail(bankForm)" #bankForm="ngForm">
+                     <div class="bank-backgrnd">
+                        <div class="email-part">
+                           <div class="email-img">
+                              <p class="bank-text"> Accoun Holder Name    :</p>
+                           </div>
+                           <div class="email-text">
+                             <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.name" #name="ngModel" [ngModelOptions]="{standalone: true}">
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="email-part">
+                           <div class="email-img">
+                              <p class="bank-text"> Account No   :</p>
+                           </div>
+                           <div class="email-text">
+                           <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.acconutNumber" #accountNumbaer="ngModel" [ngModelOptions]="{standalone: true}">
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="email-part">
+                           <div class="email-img">
+                              <p class="bank-text">IFSC Code  :</p>
+                           </div>
+                           <div class="email-text">
+                             <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}" >
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <span (click)="locate()" class="locate-details">Locate Bank Details</span><br><br>
+                        <span>Bank Name:  {{bankDatas.BANK}}</span><br>
+                        <span>Bank Address:  {{bankDatas.ADDRESS}}</span><br>
+                        <span>City:  {{bankDatas.CITY}}</span><br>
+                        <span>Distric:  {{bankDatas.DISTRICT}}</span><br>
+                        <span>State:  {{bankDatas.STATE}}</span>
+                       
+                        </div>
+                   <div *ngIf=saveButton>
+                    <button type="button" class="btn btn-successaddnew" >Save</button>
+                  </div>
+                        </form>
+                  </div>
+                  <div *ngIf=addButton>
+                    <button type="button" class="btn btn-successaddnew" (click)="addNew()" >Add new bank</button>
+                  </div>
+                  
+               </div>
+
+               
+               
+            </div>
          </section>
+
+      <!-- integration section -->
          <!--kyc detail-->
          <section id="content3" class="tab-content">
             <div class="container-fluid">

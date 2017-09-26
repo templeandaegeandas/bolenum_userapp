@@ -9,6 +9,11 @@ import { ProfileService } from './profile.service';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public bankDatas:any;
+  public bankDetails:any ={};
+  public saveButton:boolean=false;
+  public addButton:boolean = true;
+  public accounDetails:boolean=false;
   @ViewChild('fileInput') fileInput;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
@@ -20,6 +25,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getLoggedInUserDetails();
+    // this.locate();
   }
 
   readUrl(event) {
@@ -68,5 +74,27 @@ export class ProfileComponent implements OnInit {
       console.log(error);
     })
   }
+addNew(){
+console.log(".........................")
+this.addButton = !this.addButton;
+  this.accounDetails = true;
+   this.saveButton = true;
+  
+ 
+}
 
+bankDetail(bankForm){
+
+
+  
+}
+locate(){
+ this.profileService.locate().subscribe(successData => {
+   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",successData);
+     
+     this.bankDatas = successData.data
+    }, errorData => {
+      console.log("not found")
+    })
+}
 }
