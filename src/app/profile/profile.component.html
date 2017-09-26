@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<<<<<<< HEAD
   <!--
    <div class="row">
       <div class="top-header">
@@ -27,14 +28,16 @@
             <img src="assets/images/mail (1).png">&nbsp;<span>john@email</span>
          </div> -->
 
+=======
+>>>>>>> 4b7b9c49ab89fcbd94a779e1aa23ba6d1059db39
   <div class="row">
     <div class="top-header">
       <img src="assets/images/header (1).png" class="profile-img">
       <div>
       </div>
       <div class="header-text">
-        <img src="assets/images/default_pic.png">
-        <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
+        <img [src]="profilePic">
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="usr">
         <button (click)="uploadProfilePic()">
            <span id="fileselector">
            <label class="btn btn-default" for="upload-file-selector">
