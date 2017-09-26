@@ -335,6 +335,17 @@ span.dolor {
     padding-top: -2px;
 
 }
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #DB2828;
+}
+
+* 
 p.text1 {
     margin-top: 76px;
     font-family: lato;
@@ -362,7 +373,7 @@ p.text3 {
   
 select#usr {
     border-radius: 5px;
-    padding: 8px;
+    padding: 4px 13px;
     outline: none;
 }
 .prof-verify {
@@ -396,7 +407,7 @@ img.profile-img {
 
 input#usr {
     display: block;
-    padding: 4px;
+    padding: 2px 8px;
     width: 217px;
     border-radius: -13px;
     border-radius: 8px;
@@ -418,6 +429,7 @@ button.btn.btn-successsave {
     background: #DB2828;
     color: white;
     margin-right: 109px;
+    margin-top: 30px;
 }
 
 hr {
@@ -467,10 +479,10 @@ button.btn.btn-defaults {
     background: #D42828;
     margin-bottom: 27px;
 }
-.custom-data {
+/*.custom-data {
     border-right: 1px solid #ccc;
 }
-
+*/
 
 .text-danger {
     color: #a94442;
@@ -484,7 +496,15 @@ img.img-header {
     left: 0;
     margin-left: 81px;
 }
-
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #D42828;
+}
 /*bank details section */
 .bank-backgrnds {
     background: white;
@@ -580,3 +600,4 @@ span.kyc-color {
 .kyc-data {
     text-align: center;
     font-size: 18px;}
+    
