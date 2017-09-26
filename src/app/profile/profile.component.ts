@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
       formData.append("file", fileBrowser.files[0]);
       this.profileService.upload(formData).subscribe(success => {
         if (success.data.userKyc != null) {
-          this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
+          this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
           this.documentStatus = success.data.userKyc.documentStatus;
         }
         this.ngOnInit();
@@ -91,14 +91,14 @@ export class ProfileComponent implements OnInit {
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
       if (success.data.userKyc != null) {
-        this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
+        this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
       if(success.data.profileImage!=null) {
-        this.profilePic = success.data.profileImage;
+        this.profilePic = "http://localhost:3050/static/profile-images/" + success.data.profileImage + "?decache=" + Math.random();
       }
     }, error => {
       console.log(error);
