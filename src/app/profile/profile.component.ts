@@ -3,6 +3,7 @@ import { ToastrService } from 'toastr-ng2';
 import { UserProfile } from './entity/user.profile.entity';
 import { ProfileService } from './profile.service';
 import {IMyDpOptions} from 'mydatepicker';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -104,9 +105,9 @@ export class ProfileComponent implements OnInit {
       console.log(error);
     })
   }
-
-
-  uploadProfilePic() {
+ 
+  
+ uploadProfilePic() {
     this.loading = true;
     let fileBrowser = this.profileImage.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
