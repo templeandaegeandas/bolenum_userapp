@@ -1,40 +1,12 @@
 <div class="container-fluid">
-<!--
-   <div class="row">
-      <div class="top-header">
-         <img src="assets/images/header (1).png"class="profile-img">
-         <div>
-         </div> -->
-         <!-- <div class="header-text">
-            <img src="assets/images/default_pic.png">
-              <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
-              <button (click)="uploadProfilePic()">
-                 <span id="fileselector">
-                 <label class="btn btn-default" for="upload-file-selector">
-                 <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
-                 </label>
-                 </span>
-                 </button>
-         </div> -->
-
-         <!-- <div class="profile-text">
-            <p class="top-text">John arr</p>
-         </div>
-         <div class="head-icon">
-            <img src="assets/images/location (1).png">&nbsp;<span>Chicago,USA</span>
-         </div>
-         <div class="profile-email">
-            <img src="assets/images/mail (1).png">&nbsp;<span>john@email</span>
-         </div> -->
-
   <div class="row">
     <div class="top-header">
       <img src="assets/images/header (1).png" class="profile-img">
       <div>
       </div>
       <div class="header-text">
-        <img src="assets/images/default_pic.png">
-        <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
+        <img [src]="profilePic">
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="usr">
         <button (click)="uploadProfilePic()">
            <span id="fileselector">
            <label class="btn btn-default" for="upload-file-selector">

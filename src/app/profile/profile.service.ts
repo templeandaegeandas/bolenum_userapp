@@ -25,4 +25,12 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+uploadProfileImage(formData)
+{
+  return this.http.putWithoutContentType("/api/v1/user/upload/image", formData)
+    .map(res => res.json());
+}
+
+
+
 }
