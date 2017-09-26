@@ -402,7 +402,7 @@ p.kyc-text {
 }
 .bank-backgrnds {
     background: #FFFFFF;
-    padding: 27px;
+    padding: 70px;
 }
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -548,4 +548,22 @@ text-decoration: none;
         cursor: pointer;
     color: #DB2828;
     font-size: 17px;
+}
+.margin-account-holder-name{
+    margin-left: 65px;
+}
+
+.margin-account-numbaer{
+    margin-left: 143px;
+}
+.margin-accountIfsc{
+    margin-left: 147px;
+}
+.locate{
+    color:#DB2828;
+}
+
+.customer-data{
+    float: none;
+    margin-left: 0px;
 }

@@ -20,13 +20,24 @@ export class ProfileService {
       .map(res => res.json());
   }
 
-  locate(){
-    return this.http.get("http://api.techm.co.in/api/v1/ifsc/SBIN0007119")
+  locate(data){
+    return this.http.get("http://api.techm.co.in/api/v1/ifsc/" +data)
      .map(res => res.json());
   }
   saveUserDetails(userProfile) {
     return this.http.put("/api/v1/user/update", userProfile)
       .map(res => res.json());
+  }
+
+  customerBankData(customerDetaisForm){
+    return this.http.post("/api/v1/user/bankdetails",customerDetaisForm)
+    .map(res => res.json());
+  }
+
+  getUserBankDetails(){
+     return this.http.get("/api/v1/user/bankdetails")
+    .map(res => res.json());
+
   }
 
 }

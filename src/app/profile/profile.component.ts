@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
-
+import { NgForm } from '@angular/forms';
 import { UserProfile } from './entity/user.profile.entity';
+import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
 
 @Component({
@@ -11,11 +12,18 @@ import { ProfileService } from './profile.service';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  public bankDatas:any;
-  public bankDetails:any ={};
-  public saveButton:boolean=false;
-  public addButton:boolean = true;
-  public accounDetails:boolean=false;
+  public shortIfo:boolean=false;
+
+  public getOurBankDetails:any;
+  // public isverifyed:boolean = false;
+  // public isBankFound:boolean = false;
+  
+  
+  public bankCustomerDetails: any;
+ 
+  public saveButton: boolean = false;
+  public addNewButton: boolean = true;
+  public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
@@ -24,9 +32,10 @@ export class ProfileComponent implements OnInit {
   };
   documentStatus: String = "NOT SUBMITTED";
   userProfile = new UserProfile();
+  bankDetails = new BankDetails();
   userKyc: any;
   isDetailsEdit: Boolean = false;
-  isMobileEdit: Boolean =false;
+  isMobileEdit: Boolean = false;
   emailId: String;
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
@@ -52,7 +61,7 @@ export class ProfileComponent implements OnInit {
       this.ngOnInit();
       this.isDetailsEdit = false;
     }, error => {
-      this.toastrService.error(error.message,"Error!")
+      this.toastrService.error(error.message, "Error!")
     })
 
   }
@@ -106,27 +115,69 @@ export class ProfileComponent implements OnInit {
       console.log(error);
     })
   }
-addNew(){
-console.log(".........................")
-this.addButton = !this.addButton;
-  this.accounDetails = true;
-   this.saveButton = true;
-  
- 
-}
 
-bankDetail(bankForm){
+  addNew() {
+    console.log(".........................")
+     this.accounDetails = true;
+    this.saveButton = true;
+
+    this.addNewButton = false;
+   
+
+  }
 
 
-  
-}
-locate(){
- this.profileService.locate().subscribe(successData => {
-   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",successData);
+  locate(data) {
+    console.log("ifsc code >>>",data);
+    this.profileService.locate(data).subscribe(success => {
+      this.bankCustomerDetails = success;
+      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.bankCustomerDetails);
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", success);
+      this.bankDetails.setBankName(success.data.BANK);
+      this.bankDetails.setAddress(success.data.ADDRESS);
+      this.bankDetails.setBranch(success.data.BRANCH);
+      this.bankDetails.setCity(success.data.CITY);
+      this.bankDetails.setDistrict(success.data.DISTRICT);
+      this.shortIfo = !this.shortIfo;
      
-     this.bankDatas = successData.data
+       
+     
+     
     }, errorData => {
-      console.log("not found")
+     
+    
     })
-}
+  }
+
+  customerDetails(customerDetaisForm){
+    this.profileService.customerBankData(this.bankDetails).subscribe(successData =>{
+
+    },errorData =>{
+
+    })
+    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ",this.bankDetails);
+  }
+
+  getUserBankDetails(){
+    
+       this.profileService.getUserBankDetails( ).subscribe(successData =>{
+         console.log("data>>>>>>>>>>>>>>>>>>>>>>>>",successData);
+         this.getOurBankDetails = successData.data;
+         console.log("customerDetails >>>>>>>>>>>",this.getOurBankDetails);
+         let customerDta = this.getOurBankDetails;
+
+         if(customerDta.length <= 2){
+           this.addNewButton = false;
+           console.log("array data",customerDta.length);
+         }
+          else{
+             this.addNewButton = true;
+          }
+
+
+    },errorData =>{
+
+    })    
+
+  }
 }
