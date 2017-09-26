@@ -1,31 +1,6 @@
 <div class="container-fluid">
-  <!--
-   <div class="row">
-      <div class="top-header">
-         <img src="assets/images/header (1).png"class="profile-img">
-         <div>
-         </div> -->
-  <!-- <div class="header-text">
-            <img src="assets/images/default_pic.png">
-              <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
-              <button (click)="uploadProfilePic()">
-                 <span id="fileselector">
-                 <label class="btn btn-default" for="upload-file-selector">
-                 <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
-                 </label>
-                 </span>
-                 </button>
-         </div> -->
 
-  <!-- <div class="profile-text">
-            <p class="top-text">John arr</p>
-         </div>
-         <div class="head-icon">
-            <img src="assets/images/location (1).png">&nbsp;<span>Chicago,USA</span>
-         </div>
-         <div class="profile-email">
-            <img src="assets/images/mail (1).png">&nbsp;<span>john@email</span>
-         </div> -->
+  
 
   <div class="row">
     <div class="top-header">
@@ -33,8 +8,8 @@
       <div>
       </div>
       <div class="header-text">
-        <img src="assets/images/default_pic.png">
-        <input class="from-newtext" type="file" #profilepic placeholder="Select image..." id="usr">
+        <img [src]="profilePic">
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="usr">
         <button (click)="uploadProfilePic()">
            <span id="fileselector">
            <label class="btn btn-default" for="upload-file-selector">
@@ -64,6 +39,7 @@
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
          <span>KYC Details</span></label>
+
       <!--profile-->
       <section id="content1" class="tab-content">
         <div class="container-fluid">
@@ -98,6 +74,11 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.lastName}}</p>
                   </div>
                 </div>
+                <!--<div class="profile-button">
+                  <button class="btn btn-successsave" *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
+                  <button class="btn btn-successsave" *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
+                </div>-->
+                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/DOB.png" class="img-profile">
@@ -105,10 +86,15 @@
                   <div class="email-text">
                     <p class="icon-name">Date of birth<br>
                       <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">
+
+                      <div class="date-picker">
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                      </div>
+                      <!--<input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">-->
+
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.dob | date}}</p>
                   </div>
-                </div>
-                <div class="clearfix"></div>
+            </div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -119,6 +105,7 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.address}}</p>
                   </div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -131,7 +118,6 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.country}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -144,6 +130,7 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -155,6 +142,11 @@
                       </select>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.city}}</p>
                   </div>
+
+                </div>
+                <div class="profile-button">
+                  <button class="btn btn-successsave" *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
+                  <button class="btn btn-successsave" *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
                 </div>
               </div>
             </div>
@@ -164,12 +156,13 @@
                 <p class="text1">Daily withdrawal limit is calculated in USD equivalent per day.</p>
                 <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br>
                 </p>
-
-                <div *ngIf="userKyc==null">
-                  <label for="tab3" class="btn btn-dark-blue">ATTENTION REQURIED</label>
-                  <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo ID</p>
+                <div class="attension-block">
+                  <div *ngIf="userKyc==null">
+                    <label for="tab3" class="btn btn-dark-blue">ATTENTION REQURIED</label>
+                    <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo ID</p>
+                  </div>
                 </div>
-
+               
               </div>
             </div>
           </div>
@@ -181,7 +174,7 @@
                 <div class="verify-col clearfix">
                   <div class="col-lg-6 col-xs-12">
                     <div class="custom-data">
-                      <div class="email-part">
+                      <!--<div class="email-part">
                         <div class="email-img">
                           <img src="assets/images/mail.png" class="img-profile">
                         </div>
@@ -189,28 +182,46 @@
                           <p class="icon-name">Email/Username<br>
                             <p class="text-icon">{{emailId}}</p>
                         </div>
+
                       </div>
                       <div>
                         <button *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
                         <button *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
                       </div>
+
+                      </div>-->
+                      <!--<div>
+                        <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
+                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
+                      </div>-->
+
                       <div class="clearfix"></div>
                       <div class="email-part">
                         <div class="email-img">
                           <img src="assets/images/mobile.png" class="img-profile">
                         </div>
                         <div class="email-text">
-                          <p class="icon-name">Phone No<br>
+
+                        
+
+                          <p class="icon-name">Phone No &nbsp;
+                          <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
+
                             <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name="mobileNumber" [(ngModel)]="userProfile.mobileNumber"
                               id="usr" onlynumber>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{userProfile.mobileNumber}}</p>
                         </div>
                       </div>
-                      <div class="clearfix"></div>
+                      <!--<div class="clearfix"></div>-->
+                      <div>
+                        <!--<button class="btn btn-successsave" *ngIf="!isMobileEdit" >Edit Mobile Number</button>-->
+                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
+                      </div>
                     </div>
+                     
                   </div>
                   <div class="col-lg-6 col-xs-12">
-                    <div class="scan-col">
+                    <!--<div class="scan-col">
                       <p class="col-id">Scan of Photo ID</p>
                       <div class="id-input-details clearfix">
                         <div class="form-group">
@@ -218,11 +229,12 @@
                         </div>
                         <button type="button" class="btn btn-success">UPLOAD</button>
                       </div>
-                    </div>
-                    <p class="col-id">Verification Photo</p>
-                    <div class="id-input-details clearfix">
-                      <div class="form-group">
+                    </div>-->
+                    <!--<p class="col-id">Verification Photo</p>
+                    <div class="id-input-details clearfix">-->
+                      <!--<div class="form-group">
                         <input type="texts" class="from-newtext" id="usr">
+
                       </div>
                       <button type="button" class="btn btn-success">UPLOAD</button>
                     </div>
@@ -230,6 +242,15 @@
                       <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
                         to fake your identity.</p>
                     </div>
+
+                      </div>-->
+                      <!--<button type="button" class="btn btn-success">UPLOAD</button>
+                    </div>-->
+                    <!--<div class="profile-new-var">
+                      <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
+                        to fake your identity.</p>
+                    </div>-->
+
                   </div>
                 </div>
               </div>

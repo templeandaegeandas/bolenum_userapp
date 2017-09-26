@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
 import { NgForm } from '@angular/forms';
+
 import { UserProfile } from './entity/user.profile.entity';
 import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
+import {IMyDpOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +27,7 @@ export class ProfileComponent implements OnInit {
   public addNewButton: boolean = true;
   public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
+  @ViewChild('profileImage') profileImage;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
   url: any = {
@@ -37,6 +40,7 @@ export class ProfileComponent implements OnInit {
   isDetailsEdit: Boolean = false;
   isMobileEdit: Boolean = false;
   emailId: String;
+  profilePic:String="assets/images/default_pic.png";
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -86,7 +90,7 @@ export class ProfileComponent implements OnInit {
       formData.append("file", fileBrowser.files[0]);
       this.profileService.upload(formData).subscribe(success => {
         if (success.data.userKyc != null) {
-          this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
+          this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
           this.documentStatus = success.data.userKyc.documentStatus;
         }
         this.ngOnInit();
@@ -105,16 +109,55 @@ export class ProfileComponent implements OnInit {
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
       if (success.data.userKyc != null) {
-        this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
+        this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
+      if(success.data.profileImage!=null) {
+        this.profilePic = "http://localhost:3050/static/profile-images/" + success.data.profileImage + "?decache=" + Math.random();
+      }
     }, error => {
       console.log(error);
     })
   }
+ 
+  
+ uploadProfilePic() {
+    this.loading = true;
+    let fileBrowser = this.profileImage.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]) {
+      const formData = new FormData();
+      formData.append("file", fileBrowser.files[0]);
+      this.profileService.uploadProfileImage(formData).subscribe(success => {
+        console.log(success);
+        /*if (success.data.userKyc != null) {
+          this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
+
+        }*/
+        this.ngOnInit();
+        this.loading = false;
+      }, error => {
+        console.log(error);
+        this.loading = false;
+      });
+    }
+    else {
+      this.toastrService.error("Please choose file for uploading!", 'Error!')
+      this.loading = false;
+    }
+  }
+ public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+        width: '170px',
+        
+    };
+
+    // Initialized to specific date (09.10.2018).
+    public model: any = { date: { year: 2018, month: 10, day: 9 } };
+
 
   addNew() {
     console.log(".........................")
