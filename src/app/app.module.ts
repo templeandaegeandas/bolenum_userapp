@@ -33,7 +33,7 @@ import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { MyDatePickerModule } from 'mydatepicker';
 import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
 import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { FaqComponent } from './faq/faq.component';
 import { TermsServiceComponent } from './terms-service/terms-service.component';
 import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bolenum-exchange.component';
@@ -88,7 +88,7 @@ export function highchartsFactory() {
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
      ToastrModule.forRoot(),
-
+    ModalModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,

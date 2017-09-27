@@ -18,7 +18,27 @@
            </label>
            </span>
            </button>
+      <div class="modal-button">
+      <button class="btn btn-primary new" (click)="lgModal.show()">Large modal</button>
+ 
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Large modal</h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
       <div class="profile-text">
         <p class="top-text">{{userProfile.firstName}} {{userProfile.middleName}} {{userProfile.lastName}}</p>
@@ -82,7 +102,7 @@
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Date of birth<br>
-                      <div class="date-picker">
+                      <div class="date-picker"  *ngIf="isDetailsEdit" >
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
                       </div>
 
@@ -394,17 +414,24 @@
                 </div>
                 <div class="kyc-input">
                   <div class="id-input-details clearfix">
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                       <!-- (change)="readUrl($event)"> -->
-                    </div>
-                    <button (click)="uploadKyc()">
+                    <!--</div>-->
+                    <div class="browse-button">
+                    <label class="btn-bs-file btn btn-lg btn-success">
+                Browse
+                <input type="file" />
+            </label>
+            </div>
+            <button type="button" class="btnbrowse">Upload Documents</button>
+                    <!--<button (click)="uploadKyc()">
                               <span id="fileselector">
                               <label class="btn btn-default" for="upload-file-selector">
                                      <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
                               </label>
                               </span>
-                                  </button>
+                                  </button>-->
                   </div>
                 </div>
               </div>
