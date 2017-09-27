@@ -35,7 +35,7 @@ export class ProfileService {
   }
 
   locate(data) {
-    return this.http.get("http://api.techm.co.in/api/v1/ifsc/" + data)
+    return this.http.get("https://api.techm.co.in/api/v1/ifsc/" + data)
       .map(res => res.json());
   }
   saveUserDetails(userProfile) {
