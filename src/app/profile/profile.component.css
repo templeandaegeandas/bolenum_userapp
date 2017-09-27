@@ -125,7 +125,7 @@ label {
 
 .tab_container [id^="tab"]:checked + label:active {
     transform: scale(1,1);
-     
+     color:red;
 }
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
@@ -149,7 +149,6 @@ label .fa {
 
 
 
-<<<<<<< HEAD
 .text-danger {
     color: #a94442;
     margin: 16px;
@@ -178,8 +177,6 @@ p.kyc-text {
     background: #FFFFFF;
     padding: 70px;
 }
-=======
->>>>>>> 560722b8a64db96f97f598d7b462a475a84f6cd1
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -454,6 +451,7 @@ img.profile-img {
     background: #fff;
     margin: 24px -15px 0;
     padding: 20px 2px 8px 29px;
+    border-radius: 4px;
 }
 .verify-col .email-part {
     float: left;
@@ -554,6 +552,11 @@ label.btn.btn-dark-blue {
     margin-bottom: 13px;
 }
 
+span.font-1 {
+    color: black;
+    font-size: 17px;
+    padding: -31px;
+}
 .text-danger {
     color: #a94442;
     margin: 16px;
@@ -616,6 +619,23 @@ button.btn.btn-successaddnew {
     color: #FFFFFF;
     text-transform: uppercase;
 }
+input#user {
+    display: block;
+    padding: 37px 2px;
+    width: 117px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
+     opacity: -4.5;
+     margin-top:20px;
+    filter: alpha(opacity=50)
+    
+}
+img.porf-pic {
+    position: absolute;
+}
 /*kyc section */
 p.kyc-text {
     font-size: 17px;
@@ -671,3 +691,110 @@ span.kyc-color {
     text-align: center;
     font-size: 18px;}
     
+
+
+
+
+
+
+
+
+
+/* The switch - the box around the slider */
+/*.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 10px;
+}*/
+
+label.switch {
+    min-width: 26%;
+    min-height: 16%;
+    position: relative;
+    /* color: red; */
+}
+
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:#DB2828;;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 36px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #DB2828;;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #DB2828;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+span.slider.round {
+    width: 75px;
+    height: 46px;
+}
+
+img.kyc-image:active {
+    color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

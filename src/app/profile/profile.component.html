@@ -1,12 +1,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="top-header">
-      <img src="assets/images/header (1).png" class="profile-img">
-      <div>
+      <div class="top-profile">
+
+        <img src="assets/images/header (1).png" class="profile-img">
+        <div>
+        </div>
       </div>
+
       <div class="header-text">
-        <img [src]="profilePic">
-        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="usr">
+        <img [src]="profilePic" class="porf-pic">
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="user">
         <button (click)="uploadProfilePic()">
            <span id="fileselector">
            <label class="btn btn-default" for="upload-file-selector">
@@ -15,6 +19,7 @@
            </span>
            </button>
       </div>
+
       <div class="profile-text">
         <p class="top-text">{{userProfile.firstName}} {{userProfile.middleName}} {{userProfile.lastName}}</p>
       </div>
@@ -31,13 +36,17 @@
          <img src="assets/images/profile.png"><br>
          <span>Profile</span></label>
       <input id="tab2" type="radio" name="tabs">
-      <label for="tab2" (click)="getUserBankDetails()"><img src="assets/images/bank_details_f.png"><br>
+      <label for="tab2" (click)="getUserBankDetails()">
+        <div class="tab-prof">
+        <img src="assets/images/bank_details_f.png"><br>
+        </div>
          <span>Bank Details</span></label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
          <span>KYC Details</span></label>
 
       <!--profile-->
+
       <section id="content1" class="tab-content">
         <div class="container-fluid">
           <div class="row">
@@ -48,6 +57,7 @@
                   <div class="email-img">
                     <img src="assets/images/profile.png" class="img-profile">
                   </div>
+
                   <div class="email-text">
                     <p class="icon-name">First Name<br>
                       <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" id="usr"
@@ -83,7 +93,7 @@
                       <!--<input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">-->
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.dob | date}}</p>
                   </div>
-            </div>
+                </div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -143,17 +153,46 @@
               <div class="profile-col">
                 <p class="text-title"> Profile verification</p>
                 <p class="text1">Daily withdrawal limit is calculated in USD equivalent per day.</p>
-                <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br>
-               Margin Trading  <span class="dolor"> Enabled.</span>
+                <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br> Margin Trading
+                  <span class="dolor"> Enabled.</span>
                 </p>
-                <div class="attension-block">
+                <!--<div class="attension-block">
                   <div *ngIf="userKyc==null">
                     <label for="tab3" class="btn btn-dark-blue">ATTENTION REQUIRED</label>
                     <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo IDhttp://poloniex.com/images/ID-upload-sample.png</p>
                   </div>
+                </div>-->
+                <hr>
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <span class="font-1">Mobile 2 Factor Authentication</span>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="toggle-switch">
+                      <label class="switch">
+              <input type="checkbox" >
+             <span class="slider round" ></span>
+             </label>
+                    </div>
+                  </div>
+
                 </div>
-               
-              </div>
+                 <div class="row">
+
+                  <div class="col-md-6">
+                    <span class="font-1">Google 2 Factor Authentication</span>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="toggle-switch">
+                      <label class="switch">
+              <input type="checkbox" >
+          <span class="slider round" ></span>
+             </label>
+                    </div>
+                  </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -184,7 +223,7 @@
                         </div>
                         <div class="email-text">
                           <p class="icon-name">Phone No &nbsp;
-                          <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
+                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                             <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name="mobileNumber" [(ngModel)]="userProfile.mobileNumber"
                               id="usr" onlynumber>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{userProfile.mobileNumber}}</p>
@@ -196,7 +235,7 @@
                         <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
                       </div>
                     </div>
-                     
+
                   </div>
                   <div class="col-lg-6 col-xs-12">
                     <!--<div class="scan-col">
@@ -210,10 +249,10 @@
                     </div>-->
                     <!--<p class="col-id">Verification Photo</p>
                     <div class="id-input-details clearfix">-->
-                      <!--<div class="form-group">
+                    <!--<div class="form-group">
                         <input type="texts" class="from-newtext" id="usr">
                       </div>-->
-                      <!--<button type="button" class="btn btn-success">UPLOAD</button>
+                    <!--<button type="button" class="btn btn-success">UPLOAD</button>
                     </div>-->
                     <!--<div class="profile-new-var">
                       <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
@@ -242,7 +281,7 @@
         </div> -->
       </section>
       <!--bank detail-->
-       <section id="content2" class="tab-content">
+      <section id="content2" class="tab-content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6 col-xs-12" *ngFor="let customerData of getOurBankDetails">
@@ -252,7 +291,7 @@
                     <p class="bank-text"> Account Holder Name :</p>
                   </div>
                   <div class="email-text customer-data">
-                   {{customerData.accountHolderName}}
+                    {{customerData.accountHolderName}}
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -273,21 +312,21 @@
                     <p class="bank-icon">{{customerData.ifscCode}}<br>
                   </div>
                 </div>
-                 <div class="col-md-12">
-                    <br>City:{{customerData.city}}
-                    <br>Bank Address:{{customerData.address}}&nbsp; &nbsp;District:{{customerData.district}}
-                     <br>Bank Branch:{{customerData.branch}}&nbsp;&nbsp;State:{{customerData.state}}
-                    <br> 
-                    
-                  </div> 
+                <div class="col-md-12">
+                  <br>City:{{customerData.city}}
+                  <br>Bank Address:{{customerData.address}}&nbsp; &nbsp;District:{{customerData.district}}
+                  <br>Bank Branch:{{customerData.branch}}&nbsp;&nbsp;State:{{customerData.state}}
+                  <br>
+
+                </div>
                 <div class="clearfix"></div>
               </div>
             </div>
-           
+
           </div>
-        
+
         </div>
-      </section> 
+      </section>
       <!-- bank-details -->
       <section id="content2" class="tab-content">
         <div class="container-fluid">
@@ -316,34 +355,34 @@
                   <div class="email-part">
                     <div class="email-img">
                       <p class="bank-text">IFSC Code :</p>
-                        <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                      <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
                     </div>
                     <div class="email-text margin-accountIfsc">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
-                   
+
                     </div>
-                   
-                     
+
+
                     <!-- <span *ngIf = isBankFound ><p class="text-danger">Ifsc Code Incorrect</p></span>
                     <span *ngIf = isverifyed><p class="text-success">verify</p></span> -->
-                    
+
                   </div>
-                  
+
                   <div class="col-md-12" *ngIf=shortIfo>
                     <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
                     <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
-                     <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
-                    <br> 
-                    
-                  </div> 
+                    <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
+                    <br>
+
+                  </div>
 
                 </div>
                 <div class="col-md-12">
-                  
-                <div *ngIf=saveButton>
-                  <button type="submit" class="btn btn-successaddnew">Save</button>
-                </div>
-               
+
+                  <div *ngIf=saveButton>
+                    <button type="submit" class="btn btn-successaddnew">Save</button>
+                  </div>
+
                 </div>
               </form>
             </div>
@@ -352,20 +391,14 @@
             </div>
 
           </div>
-       
+
 
 
         </div>
       </section>
       <!-- bank-details -->
-        <!-- bankdetailsdata -->
-        <!-- bankdetailsdata -->
-
-
-
-
-
-
+      <!-- bankdetailsdata -->
+      <!-- bankdetailsdata -->
 
 
 

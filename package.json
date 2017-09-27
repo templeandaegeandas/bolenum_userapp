@@ -30,6 +30,7 @@
     "jquery": "^3.2.1",
     "mydatepicker": "^2.0.31",
     "ng2-device-detector": "^1.0.0",
+    "ng2-switch": "^2.1.0",
     "ngx-bootstrap": "^1.9.3",
     "ngx-loading": "^1.0.7",
     "ngx-mydatepicker": "^2.1.3",
