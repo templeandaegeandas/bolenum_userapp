@@ -20,17 +20,28 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  locate(data){
+    return this.http.get("http://api.techm.co.in/api/v1/ifsc/" +data)
+     .map(res => res.json());
+  }
   saveUserDetails(userProfile) {
     return this.http.put("/api/v1/user/update", userProfile)
       .map(res => res.json());
   }
 
+  customerBankData(customerDetaisForm){
+    return this.http.post("/api/v1/user/bankdetails",customerDetaisForm)
+    .map(res => res.json());
+  }
+
+  getUserBankDetails(){
+     return this.http.get("/api/v1/user/bankdetails")
+    .map(res => res.json());
+
+  }
 uploadProfileImage(formData)
 {
   return this.http.putWithoutContentType("/api/v1/user/upload/image", formData)
     .map(res => res.json());
 }
-
-
-
 }

@@ -31,7 +31,7 @@
          <img src="assets/images/profile.png"><br>
          <span>Profile</span></label>
       <input id="tab2" type="radio" name="tabs">
-      <label for="tab2"><img src="assets/images/bank_details_f.png"><br>
+      <label for="tab2" (click)="getUserBankDetails()"><img src="assets/images/bank_details_f.png"><br>
          <span>Bank Details</span></label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
@@ -242,57 +242,26 @@
         </div> -->
       </section>
       <!--bank detail-->
-      <section id="content2" class="tab-content">
+       <section id="content2" class="tab-content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-6 col-xs-12" *ngFor="let customerData of getOurBankDetails">
               <div class="bank-backgrnd">
                 <div class="email-part">
                   <div class="email-img">
-                    <p class="bank-text"> Bank :</p>
+                    <p class="bank-text"> Account Holder Name :</p>
                   </div>
-                  <div class="email-text">
-                    <img src="assets/images/axis.png" class="img- bakprofile">
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text"> Account No :</p>
-                  </div>
-                  <div class="email-text">
-                    <p class="bank-icon">455445555655<br>
+                  <div class="email-text customer-data">
+                   {{customerData.accountHolderName}}
                   </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
-                    <p class="bank-text">IFSC Code :</p>
+                    <p class="bank-text"> Account Number :</p>
                   </div>
-                  <div class="email-text">
-                    <p class="bank-icon">UTIB0000723<br>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-              <div class="bank-backgrnds">
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text"> Bank :</p>
-                  </div>
-                  <div class="email-text">
-                    <img src="assets/images/axis_bank.png" class="img- bakprofile">
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text"> Account No :</p>
-                  </div>
-                  <div class="email-text">
-                    <p class="bank-icon">555400725080<br>
+                  <div class="email-text customer-data">
+                    <p class="bank-icon">{{customerData.accountNumber}}<br>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -300,17 +269,106 @@
                   <div class="email-img">
                     <p class="bank-text">IFSC Code :</p>
                   </div>
-                  <div class="email-text">
-                    <p class="bank-icon">ICICI40072<br>
+                  <div class="email-text customer-data">
+                    <p class="bank-icon">{{customerData.ifscCode}}<br>
                   </div>
                 </div>
+                 <div class="col-md-12">
+                    <br>City:{{customerData.city}}
+                    <br>Bank Address:{{customerData.address}}&nbsp; &nbsp;District:{{customerData.district}}
+                     <br>Bank Branch:{{customerData.branch}}&nbsp;&nbsp;State:{{customerData.state}}
+                    <br> 
+                    
+                  </div> 
                 <div class="clearfix"></div>
               </div>
             </div>
+           
           </div>
-          <button type="button" class="btn btn-successaddnew">Add new bank</button>
+        
+        </div>
+      </section> 
+      <!-- bank-details -->
+      <section id="content2" class="tab-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 col-xs-12" *ngIf=accounDetails>
+              <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
+                <div class="bank-backgrnds">
+                  <div class="email-part">
+                    <div class="email-img ">
+                      <p class="bank-text"> Accoun Holder Name :</p>
+                    </div>
+                    <div class="email-text margin-account-holder-name">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="email-part">
+                    <div class="email-img">
+                      <p class="bank-text"> Account No :</p>
+                    </div>
+                    <div class="email-text margin-account-numbaer">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="email-part">
+                    <div class="email-img">
+                      <p class="bank-text">IFSC Code :</p>
+                        <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                    </div>
+                    <div class="email-text margin-accountIfsc">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
+                   
+                    </div>
+                   
+                     
+                    <!-- <span *ngIf = isBankFound ><p class="text-danger">Ifsc Code Incorrect</p></span>
+                    <span *ngIf = isverifyed><p class="text-success">verify</p></span> -->
+                    
+                  </div>
+                  
+                  <div class="col-md-12" *ngIf=shortIfo>
+                    <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
+                    <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
+                     <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
+                    <br> 
+                    
+                  </div> 
+
+                </div>
+                <div class="col-md-12">
+                  
+                <div *ngIf=saveButton>
+                  <button type="submit" class="btn btn-successaddnew">Save</button>
+                </div>
+               
+                </div>
+              </form>
+            </div>
+            <div *ngIf=addNewButton>
+              <button type="button" class="btn btn-successaddnew" (click)="addNew()">Add new bank</button>
+            </div>
+
+          </div>
+       
+
+
         </div>
       </section>
+      <!-- bank-details -->
+        <!-- bankdetailsdata -->
+        <!-- bankdetailsdata -->
+
+
+
+
+
+
+
+
+
       <!--kyc detail-->
       <section id="content3" class="tab-content">
         <div class="container-fluid">

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
+import { NgForm } from '@angular/forms';
 import { UserProfile } from './entity/user.profile.entity';
+import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
 import {IMyDpOptions} from 'mydatepicker';
 
@@ -11,6 +13,18 @@ import {IMyDpOptions} from 'mydatepicker';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public shortIfo:boolean=false;
+
+  public getOurBankDetails:any;
+  // public isverifyed:boolean = false;
+  // public isBankFound:boolean = false;
+  
+  
+  public bankCustomerDetails: any;
+ 
+  public saveButton: boolean = false;
+  public addNewButton: boolean = true;
+  public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
   @ViewChild('profileImage') profileImage;
   loading = false;
@@ -20,15 +34,17 @@ export class ProfileComponent implements OnInit {
   };
   documentStatus: String = "NOT SUBMITTED";
   userProfile = new UserProfile();
+  bankDetails = new BankDetails();
   userKyc: any;
   isDetailsEdit: Boolean = false;
-  isMobileEdit: Boolean =false;
+  isMobileEdit: Boolean = false;
   emailId: String;
   profilePic:String="assets/images/default_pic.png";
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.getLoggedInUserDetails();
+    // this.locate();
   }
 
   editDetails() {
@@ -48,7 +64,7 @@ export class ProfileComponent implements OnInit {
       this.ngOnInit();
       this.isDetailsEdit = false;
     }, error => {
-      this.toastrService.error(error.message,"Error!")
+      this.toastrService.error(error.message, "Error!")
     })
 
   }
@@ -142,4 +158,68 @@ export class ProfileComponent implements OnInit {
     public model: any = { date: { year: 2018, month: 10, day: 9 } };
 
 
+  addNew() {
+    console.log(".........................")
+     this.accounDetails = true;
+    this.saveButton = true;
+
+    this.addNewButton = false;
+   
+
+  }
+
+
+  locate(data) {
+    console.log("ifsc code >>>",data);
+    this.profileService.locate(data).subscribe(success => {
+      this.bankCustomerDetails = success;
+      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.bankCustomerDetails);
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", success);
+      this.bankDetails.setBankName(success.data.BANK);
+      this.bankDetails.setAddress(success.data.ADDRESS);
+      this.bankDetails.setBranch(success.data.BRANCH);
+      this.bankDetails.setCity(success.data.CITY);
+      this.bankDetails.setDistrict(success.data.DISTRICT);
+      this.shortIfo = !this.shortIfo;
+     
+       
+     
+     
+    }, errorData => {
+     
+    
+    })
+  }
+
+  customerDetails(customerDetaisForm){
+    this.profileService.customerBankData(this.bankDetails).subscribe(successData =>{
+
+    },errorData =>{
+
+    })
+    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ",this.bankDetails);
+  }
+
+  getUserBankDetails(){
+    
+       this.profileService.getUserBankDetails( ).subscribe(successData =>{
+         console.log("data>>>>>>>>>>>>>>>>>>>>>>>>",successData);
+         this.getOurBankDetails = successData.data;
+         console.log("customerDetails >>>>>>>>>>>",this.getOurBankDetails);
+         let customerDta = this.getOurBankDetails;
+
+         if(customerDta.length <= 2){
+          //  this.addNewButton = false;
+           console.log("array data",customerDta.length);
+         }
+          else{
+             this.addNewButton = true;
+          }
+
+
+    },errorData =>{
+
+    })    
+
+  }
 }

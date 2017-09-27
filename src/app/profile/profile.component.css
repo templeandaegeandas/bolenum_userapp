@@ -149,6 +149,37 @@ label .fa {
 
 
 
+<<<<<<< HEAD
+.text-danger {
+    color: #a94442;
+    margin: 16px;
+}
+.sign-block {
+     margin: 17px;
+}
+img.img-header {
+    top: 0;
+    left: 0;
+    margin-left: 81px;
+}
+
+p.kyc-text {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #747474;
+    text-align: center;
+    padding: 11px;
+}
+.kyc-col {
+    background: #FFFFFF;
+    padding: 20px;
+}
+.bank-backgrnds {
+    background: #FFFFFF;
+    padding: 70px;
+}
+=======
+>>>>>>> 560722b8a64db96f97f598d7b462a475a84f6cd1
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -283,6 +314,34 @@ text-decoration: none;
   	transform: scale(1);
   	opacity: 1;
   }
+}
+
+.padding-label{
+    padding: 0px;
+}
+
+.locate-details{
+        cursor: pointer;
+    color: #DB2828;
+    font-size: 17px;
+}
+.margin-account-holder-name{
+    margin-left: 65px;
+}
+
+.margin-account-numbaer{
+    margin-left: 143px;
+}
+.margin-accountIfsc{
+    margin-left: 147px;
+}
+.locate{
+    color:#DB2828;
+}
+
+.customer-data{
+    float: none;
+    margin-left: 0px;
 }
 /*profile section */
  .col-backgrnd {
