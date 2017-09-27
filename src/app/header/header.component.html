@@ -39,7 +39,7 @@
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/login" >LOGIN</a></li>
                <li *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up" >SIGNUP</a></li>
                <li  class="dropdown">
-                  <a  data-toggle="dropdown"  class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}"  (click)="showDropdown()">{{fullName}} <img src="assets/images/pic.png"><img src="/assets/images/drop.png" class="drop-icon"></a>
+                  <a  data-toggle="dropdown"  class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}"  (click)="showDropdown()">{{fullName}}  <img src="assets/images/pic.png"><img src="/assets/images/drop.png" class="drop-icon"></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
                      <li><a (click)="showDropdown()" routerLink="/profile">Profile</a></li>
                      <li><a (click)="showDropdown()" routerLink="/deposit">Deposit</a></li>

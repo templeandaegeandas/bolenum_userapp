@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 .container-fluid {
     background: #f8f8f8;
-  
+
 }*/
 *,
 *:after,
@@ -23,7 +23,7 @@
 
 body {
 	font-family:Lato;
-	
+
 }
 
 h1 {
@@ -42,7 +42,7 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 172px;  
+    top: 172px;
 
     margin-left: 254px;
     color: white;
@@ -110,7 +110,7 @@ label {
   /*padding: 20px;*/
   /*background:white;*/
   color: #999;
-  
+
 }
 
 .tab_container .tab-content p,
@@ -125,14 +125,14 @@ label {
 
 .tab_container [id^="tab"]:checked + label:active {
     transform: scale(1,1);
-     
+
 }
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
   border-top-left-radius: 5px;
    border-top-right-radius:5px;
-    
+
     box-shadow: 0 0 9px #636363;
     transform: scale(1.1,1.1)
 }
@@ -146,10 +146,6 @@ label .fa {
   margin: 0 0.4em 0 0;
 }
 
-
-
-
-<<<<<<< HEAD
 .text-danger {
     color: #a94442;
     margin: 16px;
@@ -178,8 +174,6 @@ p.kyc-text {
     background: #FFFFFF;
     padding: 70px;
 }
-=======
->>>>>>> 560722b8a64db96f97f598d7b462a475a84f6cd1
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -292,7 +286,7 @@ text-decoration: none;
   label span {
     display: none;
   }
-  
+
 
   label .fa {
     font-size: 16px;
@@ -309,7 +303,7 @@ text-decoration: none;
   	/*transform: scale(0.9);*/
   	opacity: 0;
   }
-  
+
   100% {
   	transform: scale(1);
   	opacity: 1;
@@ -345,7 +339,7 @@ text-decoration: none;
 }
 /*profile section */
  .col-backgrnd {
-    background:#FFFFFF; 
+    background:#FFFFFF;
     float: left;
     width: 105%;
     height: 476px;
@@ -404,7 +398,7 @@ span.dolor {
     color: #DB2828;
 }
 
-* 
+*
 p.text1 {
     margin-top: 76px;
     font-family: lato;
@@ -420,16 +414,16 @@ p.text2 {
 p.text3 {
     margin-top:10px ;
     font-size: 18px;
-    color: black;
+    color: #686868;
 }
-.email-img 
+.email-img
 {
    float:left;
-    
+
     margin-right: -15px;
     margin-top: 6px;
 }
-  
+
 select#usr {
     border-radius: 5px;
     padding: 4px 13px;
@@ -542,6 +536,17 @@ button.btn.btn-defaults {
     border-right: 1px solid #ccc;
 }
 */
+label.btn.btn-dark-blue {
+
+    width: 464px;
+    color:#FB162B;
+    padding-top: 12px;
+    padding-bottom: 11px;
+    min-height: 3px;
+    margin-top: 2px;
+    border: 2px solid #CDCDCD;
+    margin-bottom: 13px;
+}
 
 .text-danger {
     color: #a94442;
@@ -651,7 +656,7 @@ a.btn.btn-dark-blue {
     color:#fB162B;
     border: 1px solid #CACACA;
     text-decoration: none;
-    
+
     }
 span.kyc-color {
     color: #fB162B;
