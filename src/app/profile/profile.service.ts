@@ -9,8 +9,22 @@ export class ProfileService {
 
   }
 
-  upload(formData) {
+  addMobileNumber(mobileNumber) {
+    return this.http.put("/api/v1/user/add/mobile/number?mobileNumber=" + mobileNumber, "")
+      .map(res => res.json());
+  }
 
+  verifyOtp(otp) {
+    return this.http.put("/api/v1/user/verify/otp?otp=" + otp, "")
+      .map(res => res.json());
+  }
+
+  resendOtp() {
+    return this.http.post("/api/v1/user/resend/otp", "")
+      .map(res => res.json());
+  }
+
+  upload(formData) {
     return this.http.postWithoutContentType("/api/v1/kyc/upload", formData)
       .map(res => res.json());
   }
@@ -25,11 +39,10 @@ export class ProfileService {
       .map(res => res.json());
   }
 
-uploadProfileImage(formData)
-{
-  return this.http.putWithoutContentType("/api/v1/user/upload/image", formData)
-    .map(res => res.json());
-}
+  uploadProfileImage(formData) {
+    return this.http.putWithoutContentType("/api/v1/user/upload/image", formData)
+      .map(res => res.json());
+  }
 
 
 

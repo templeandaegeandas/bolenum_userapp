@@ -36,7 +36,7 @@
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
          <span>KYC Details</span></label>
-     
+
       <!--profile-->
       <section id="content1" class="tab-content">
         <div class="container-fluid">
@@ -300,8 +300,9 @@
                 <div class="kyc-details">
                   <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                 </div>
-                <div class="img">
-                  <img class="img-center" [src]="document">
+                <div class="img" style="height: 250px;width: 350px;margin-left: 34%;">
+                  <img class="img-center" *ngIf="!pdf" [src]="document" style="width: 100%;height: 100%;">
+                  <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png" style="width: 100%;height: 100%;">
                 </div>
                 <div class="kyc-details">
                   <p class="kyc-text"> front of national id </p>
@@ -312,7 +313,7 @@
                 <div class="kyc-input">
                   <div class="id-input-details clearfix">
                     <div class="form-group">
-                      <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr">
+                      <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                       <!-- (change)="readUrl($event)"> -->
                     </div>
                     <button (click)="uploadKyc()">
