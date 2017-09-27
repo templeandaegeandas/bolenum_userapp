@@ -271,13 +271,11 @@ export class ProfileComponent implements OnInit {
          console.log("customerDetails >>>>>>>>>>>",this.getOurBankDetails);
          let customerDta = this.getOurBankDetails;
 
-         if(customerDta.length <= 2){
-          //  this.addNewButton = false;
+         if(customerDta.length >= 2){
+           this.addNewButton = false;
            console.log("array data",customerDta.length);
          }
-          else{
-             this.addNewButton = true;
-          }
+          
 
 
     },errorData =>{
