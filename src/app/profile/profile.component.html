@@ -1,7 +1,4 @@
 <div class="container-fluid">
-
-  
-
   <div class="row">
     <div class="top-header">
       <img src="assets/images/header (1).png" class="profile-img">
@@ -34,7 +31,7 @@
          <img src="assets/images/profile.png"><br>
          <span>Profile</span></label>
       <input id="tab2" type="radio" name="tabs">
-      <label for="tab2" (click)=getUserBankDetails()><img src="assets/images/bank_details_f.png"><br>
+      <label for="tab2" (click)="getUserBankDetails()"><img src="assets/images/bank_details_f.png"><br>
          <span>Bank Details</span></label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3"><img src="assets/images/KYC_uf.png"><br>
@@ -58,11 +55,6 @@
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.firstName}}</p>
                   </div>
                 </div>
-                <div>
-                  <button *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
-                  <button *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
-                </div>
-                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/profile.png" class="img-profile">
@@ -85,13 +77,10 @@
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Date of birth<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">
-
                       <div class="date-picker">
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
                       </div>
                       <!--<input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">-->
-
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.dob | date}}</p>
                   </div>
             </div>
@@ -182,31 +171,19 @@
                           <p class="icon-name">Email/Username<br>
                             <p class="text-icon">{{emailId}}</p>
                         </div>
-
-                      </div>
-                      <div>
-                        <button *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
-                        <button *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
-                      </div>
-
                       </div>-->
                       <!--<div>
                         <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
                         <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
                       </div>-->
-
                       <div class="clearfix"></div>
                       <div class="email-part">
                         <div class="email-img">
                           <img src="assets/images/mobile.png" class="img-profile">
                         </div>
                         <div class="email-text">
-
-                        
-
                           <p class="icon-name">Phone No &nbsp;
                           <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
-
                             <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name="mobileNumber" [(ngModel)]="userProfile.mobileNumber"
                               id="usr" onlynumber>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{userProfile.mobileNumber}}</p>
@@ -234,15 +211,6 @@
                     <div class="id-input-details clearfix">-->
                       <!--<div class="form-group">
                         <input type="texts" class="from-newtext" id="usr">
-
-                      </div>
-                      <button type="button" class="btn btn-success">UPLOAD</button>
-                    </div>
-                    <div class="profile-new-var">
-                      <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
-                        to fake your identity.</p>
-                    </div>
-
                       </div>-->
                       <!--<button type="button" class="btn btn-success">UPLOAD</button>
                     </div>-->
@@ -250,14 +218,27 @@
                       <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
                         to fake your identity.</p>
                     </div>-->
-
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
+        <!-- <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="prof-verify clearfix">
+                <p class="last-prof">Once you profile has been verified & you have enable 2FA account security,you may request a higher limit by contacting support
+                  <hr>
+                  <button type="submit" class="btn btn-defaults">Save Profile</button>
+                  <div class="checkbox custom-checkbox label-shadow-none">
+                    <input type="checkbox" name="termConditions" id="test1" />
+                    <label for="test1">I agree to the <a>Term of Use</a> </label>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </section>
       <!--bank detail-->
        <section id="content2" class="tab-content">

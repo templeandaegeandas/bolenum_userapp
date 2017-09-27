@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
 import { NgForm } from '@angular/forms';
-
 import { UserProfile } from './entity/user.profile.entity';
 import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
@@ -210,7 +209,7 @@ export class ProfileComponent implements OnInit {
          let customerDta = this.getOurBankDetails;
 
          if(customerDta.length <= 2){
-           this.addNewButton = false;
+          //  this.addNewButton = false;
            console.log("array data",customerDta.length);
          }
           else{
