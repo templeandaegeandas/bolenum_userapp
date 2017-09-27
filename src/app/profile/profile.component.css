@@ -660,3 +660,9 @@ span.kyc-color {
     text-align: center;
     font-size: 18px;}
     
+.bank-client-details{
+    float: left;
+    /* margin-left: 20px; */
+    padding: 2px;
+    margin-bottom: 24px;
+}

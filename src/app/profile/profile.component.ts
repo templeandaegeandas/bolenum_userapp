@@ -209,7 +209,7 @@ export class ProfileComponent implements OnInit {
          let customerDta = this.getOurBankDetails;
 
          if(customerDta.length <= 2){
-          //  this.addNewButton = false;
+           this.addNewButton = false;
            console.log("array data",customerDta.length);
          }
           else{
