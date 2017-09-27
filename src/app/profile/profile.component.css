@@ -71,7 +71,7 @@ p.top-text {
     /* padding-top: 20px; */
 }
 .tab_container {
-    width: 90%;
+    width: 87%;
     margin: 0 auto;
     padding-top: -11px;
     position: relative;
@@ -125,25 +125,20 @@ label {
 
 .tab_container [id^="tab"]:checked + label:active {
     transform: scale(1,1);
-     color:red;
-}
+}  
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
   border-top-left-radius: 5px;
-   border-top-right-radius:5px;
-
-    box-shadow: 0 0 9px #636363;
-    transform: scale(1.1,1.1)
+  border-top-right-radius:5px;
+  box-shadow: 0 0 9px #636363;
+  
+  transform: scale(1.1,1.1)
 }
 
-.tab_container [id^="tab"]:checked + label .fa {
+.tab_container [id^="tab"]:checked + label:active .img.img1 {
   color: #DB2828;
-}
-
-label .fa {
-  font-size: 1.3em;
-  margin: 0 0.4em 0 0;
+  
 }
 
 
@@ -247,11 +242,11 @@ p.kyc-text {
 }
 
 a:focus, a:hover {
-    color:#397FFF;
+    color:red;
     text-decoration: underline;
 }
 a{
-color:#397FFF;
+color:red;
 text-decoration: none;
 }
 
