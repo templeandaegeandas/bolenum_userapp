@@ -5,6 +5,8 @@ import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
 import {IMyDpOptions} from 'mydatepicker';
 
+import { environment } from '../../environments/environment';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -47,6 +49,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
+    console.log(environment)
     this.getLoggedInUserDetails();
     // this.locate();
   }
@@ -135,7 +138,7 @@ export class ProfileComponent implements OnInit {
         formData.append("file", fileBrowser.files[0]);
         this.profileService.upload(formData).subscribe(success => {
           if (success.data.userKyc != null) {
-            this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
+            this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
             this.documentStatus = success.data.userKyc.documentStatus;
           }
           this.ngOnInit();
@@ -163,7 +166,7 @@ export class ProfileComponent implements OnInit {
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
       if (success.data.userKyc != null) {
-        this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
+        this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
       localStorage.setItem("fName", success.data.firstName);
@@ -175,7 +178,7 @@ export class ProfileComponent implements OnInit {
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
       if (success.data.profileImage != null) {
-        this.profilePic = "http://localhost:3050/static/profile-images/" + success.data.profileImage + "?decache=" + Math.random();
+        this.profilePic = environment.profilePicUrl + success.data.profileImage + "?decache=" + Math.random();
       }
     }, error => {
       console.log(error);
@@ -253,6 +256,7 @@ export class ProfileComponent implements OnInit {
 
   customerDetails(customerDetaisForm){
     this.profileService.customerBankData(this.bankDetails).subscribe(successData =>{
+      console.log("bank details >>>>>>>>",this.bankDetails)
 
     },errorData =>{
 
