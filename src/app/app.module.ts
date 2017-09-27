@@ -41,6 +41,7 @@ import { TeamComponent } from './team/team.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { HistoryComponent } from './history/history.component';
+import { NewWalletComponent } from './new-wallet/new-wallet.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -71,13 +72,13 @@ export function highchartsFactory() {
     DepositComponent,
     FaqComponent,
     TermsServiceComponent,
-
     AboutBolenumExchangeComponent,
     TeamComponent,
     HowToUseComponent,
     PrivacyPolicyComponent,
     HistoryComponent,
-
+    NewWalletComponent,
+   
   ],
   imports: [
     BrowserModule,

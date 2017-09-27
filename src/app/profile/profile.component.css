@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 .container-fluid {
     background: #f8f8f8;
-  
+
 }*/
 *,
 *:after,
@@ -23,7 +23,7 @@
 
 body {
 	font-family:Lato;
-	
+
 }
 
 h1 {
@@ -42,7 +42,7 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 172px;  
+    top: 172px;
 
     margin-left: 254px;
     color: white;
@@ -110,7 +110,7 @@ label {
   /*padding: 20px;*/
   /*background:white;*/
   color: #999;
-  
+
 }
 
 .tab_container .tab-content p,
@@ -125,14 +125,14 @@ label {
 
 .tab_container [id^="tab"]:checked + label:active {
     transform: scale(1,1);
-     
+
 }
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
   border-top-left-radius: 5px;
    border-top-right-radius:5px;
-    
+
     box-shadow: 0 0 9px #636363;
     transform: scale(1.1,1.1)
 }
@@ -146,9 +146,34 @@ label .fa {
   margin: 0 0.4em 0 0;
 }
 
+.text-danger {
+    color: #a94442;
+    margin: 16px;
+}
+.sign-block {
+     margin: 17px;
+}
+img.img-header {
+    top: 0;
+    left: 0;
+    margin-left: 81px;
+}
 
-
-
+p.kyc-text {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #747474;
+    text-align: center;
+    padding: 11px;
+}
+.kyc-col {
+    background: #FFFFFF;
+    padding: 20px;
+}
+.bank-backgrnds {
+    background: #FFFFFF;
+    padding: 70px;
+}
 .custom-checkbox input[type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -261,7 +286,7 @@ text-decoration: none;
   label span {
     display: none;
   }
-  
+
 
   label .fa {
     font-size: 16px;
@@ -278,15 +303,43 @@ text-decoration: none;
   	/*transform: scale(0.9);*/
   	opacity: 0;
   }
-  
+
   100% {
   	transform: scale(1);
   	opacity: 1;
   }
 }
+
+.padding-label{
+    padding: 0px;
+}
+
+.locate-details{
+        cursor: pointer;
+    color: #DB2828;
+    font-size: 17px;
+}
+.margin-account-holder-name{
+    margin-left: 65px;
+}
+
+.margin-account-numbaer{
+    margin-left: 143px;
+}
+.margin-accountIfsc{
+    margin-left: 147px;
+}
+.locate{
+    color:#DB2828;
+}
+
+.customer-data{
+    float: none;
+    margin-left: 0px;
+}
 /*profile section */
  .col-backgrnd {
-    background:#FFFFFF; 
+    background:#FFFFFF;
     float: left;
     width: 105%;
     height: 476px;
@@ -335,6 +388,17 @@ span.dolor {
     padding-top: -2px;
 
 }
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #DB2828;
+}
+
+*
 p.text1 {
     margin-top: 76px;
     font-family: lato;
@@ -350,19 +414,19 @@ p.text2 {
 p.text3 {
     margin-top:10px ;
     font-size: 18px;
-    color: black;
+    color: #686868;
 }
-.email-img 
+.email-img
 {
    float:left;
-    
+
     margin-right: -15px;
     margin-top: 6px;
 }
-  
+
 select#usr {
     border-radius: 5px;
-    padding: 8px;
+    padding: 4px 13px;
     outline: none;
 }
 .prof-verify {
@@ -393,25 +457,10 @@ img.profile-img {
     width: 48%;
     float: left;
 }
-.attension-block.label {
-    
-    font-weight: 700;
-    font-size: 18px;
-    display: block;
-    float: left;
-    width: 32%;
-    padding: 1.5em;
-    color: #757575;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    background:red;
-    min-height: 130px;
 
-}
 input#usr {
     display: block;
-    padding: 6px;
+    padding: 2px 8px;
     width: 217px;
     border-radius: -13px;
     border-radius: 8px;
@@ -432,6 +481,8 @@ span#fileselector label.btn.btn-default {
 button.btn.btn-successsave {
     background: #DB2828;
     color: white;
+    margin-right: 109px;
+    margin-top: 30px;
 }
 
 hr {
@@ -481,10 +532,21 @@ button.btn.btn-defaults {
     background: #D42828;
     margin-bottom: 27px;
 }
-.custom-data {
+/*.custom-data {
     border-right: 1px solid #ccc;
 }
+*/
+label.btn.btn-dark-blue {
 
+    width: 464px;
+    color:#FB162B;
+    padding-top: 12px;
+    padding-bottom: 11px;
+    min-height: 3px;
+    margin-top: 2px;
+    border: 2px solid #CDCDCD;
+    margin-bottom: 13px;
+}
 
 .text-danger {
     color: #a94442;
@@ -498,7 +560,15 @@ img.img-header {
     left: 0;
     margin-left: 81px;
 }
-
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #D42828;
+}
 /*bank details section */
 .bank-backgrnds {
     background: white;
@@ -586,7 +656,7 @@ a.btn.btn-dark-blue {
     color:#fB162B;
     border: 1px solid #CACACA;
     text-decoration: none;
-    
+
     }
 span.kyc-color {
     color: #fB162B;
