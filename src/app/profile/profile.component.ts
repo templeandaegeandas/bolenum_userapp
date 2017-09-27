@@ -166,9 +166,9 @@ export class ProfileComponent implements OnInit {
         this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
-      localStorage.setItem("fName", success.data.fName);
-      if(success.data.lName!=null) {
-        localStorage.setItem("lName", success.data.lName);
+      localStorage.setItem("fName", success.data.firstName);
+      if(success.data.lastName!=null) {
+        localStorage.setItem("lName", success.data.lastName);
       }
       this.mobileNumber = success.data.mobileNumber;
       this.userProfile = success.data;
