@@ -58,4 +58,14 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  getAllCountries() {
+    return this.http.get("/api/v1/user/countries/list")
+      .map(res => res.json());
+  }
+
+  getStatesByCountryId(countryId) {
+    return this.http.get("/api/v1/user/states?countryId=" + countryId)
+      .map(res => res.json());
+  }
+
 }

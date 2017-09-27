@@ -3,7 +3,7 @@ import { ToastrService } from 'toastr-ng2';
 import { UserProfile } from './entity/user.profile.entity';
 import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
-import {IMyDpOptions} from 'mydatepicker';
+import { IMyDpOptions } from 'mydatepicker';
 
 import { environment } from '../../environments/environment';
 
@@ -14,9 +14,9 @@ import { environment } from '../../environments/environment';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  public shortIfo:boolean=false;
+  public shortIfo: boolean = false;
 
-  public getOurBankDetails:any;
+  public getOurBankDetails: any;
   // public isverifyed:boolean = false;
   // public isBankFound:boolean = false;
 
@@ -46,11 +46,19 @@ export class ProfileComponent implements OnInit {
   mobileNumber: any;
   otp: any;
   pdf: Boolean = false;
+  countries: any;
+  states: any;
+  state: String = "Choose State";
+  country: String = "Choose Country";
+  dob: any;
+  countryError = false;
+  stateError = false;
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     console.log(environment)
     this.getLoggedInUserDetails();
+    this.getAllCountries();
     // this.locate();
   }
 
@@ -65,7 +73,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveMobile(form) {
-    if(form.invalid) return;
+    if (form.invalid) return;
     this.profileService.addMobileNumber(this.mobileNumber).subscribe(success => {
       this.isMobileEdit = false;
       this.isOtpEdit = true;
@@ -76,7 +84,7 @@ export class ProfileComponent implements OnInit {
   }
 
   verifyOtp(form) {
-    if(form.invalid) return;
+    if (form.invalid) return;
     this.profileService.verifyOtp(this.otp).subscribe(success => {
       this.toastrService.success(success.message, "Success!");
       this.isOtpEdit = false;
@@ -95,14 +103,26 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  saveDetails() {
+  saveDetails(form) {
+    if (form.invalid) return;
+    if (this.country == "Choose Country") {
+      this.countryError = true;
+      return;
+    }
+    if (this.state == "Choose State") {
+      this.stateError = true;
+      return;
+    }
+    this.userProfile.dob = this.dob.epoc;
+    this.userProfile.country = this.country;
+    this.userProfile.state = this.state;
+
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
       this.ngOnInit();
       this.isDetailsEdit = false;
     }, error => {
       this.toastrService.error(error.message, "Error!")
     })
-
   }
 
   readUrl(event) {
@@ -170,13 +190,22 @@ export class ProfileComponent implements OnInit {
         this.documentStatus = success.data.userKyc.documentStatus;
       }
       localStorage.setItem("fName", success.data.firstName);
-      if(success.data.lastName!=null) {
+      if (success.data.lastName != null) {
         localStorage.setItem("lName", success.data.lastName);
       }
       this.mobileNumber = success.data.mobileNumber;
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
+      if (success.data.country != null) {
+        this.getAllCountries();
+        this.country = success.data.country;
+        this.state = success.data.state;
+        setTimeout(() => {
+          this.getStatesByCountryId(this.country);
+        }, 1000);
+      }
+
       if (success.data.profileImage != null) {
         this.profilePic = environment.profilePicUrl + success.data.profileImage + "?decache=" + Math.random();
       }
@@ -186,7 +215,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
- uploadProfilePic() {
+  uploadProfilePic() {
     this.loading = true;
     let fileBrowser = this.profileImage.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
@@ -194,10 +223,6 @@ export class ProfileComponent implements OnInit {
       formData.append("file", fileBrowser.files[0]);
       this.profileService.uploadProfileImage(formData).subscribe(success => {
         console.log(success);
-        /*if (success.data.userKyc != null) {
-          this.document = "http://localhost:3050/static/" + success.data.userKyc.document + "?decache=" + Math.random();
-
-        }*/
         this.ngOnInit();
         this.loading = false;
       }, error => {
@@ -210,20 +235,22 @@ export class ProfileComponent implements OnInit {
       this.loading = false;
     }
   }
- public myDatePickerOptions: IMyDpOptions = {
-        // other options...
-        dateFormat: 'dd.mm.yyyy',
-        width: '170px',
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'yyyy/mmm/dd',
+    width: '200px',
+    editableDateField: false,
+    // disableSince: {year: new Date().getFullYear(), month: new Date().getMonth()+2, day: new Date().getDay()}
 
-    };
+  };
 
-    // Initialized to specific date (09.10.2018).
-    public model: any = { date: { year: 2018, month: 10, day: 9 } };
+  // Initialized to specific date (09.10.2018).
+  // public model: any = new Date();
 
 
   addNew() {
     console.log(".........................")
-     this.accounDetails = true;
+    this.accounDetails = true;
     this.saveButton = true;
 
     this.addNewButton = false;
@@ -233,10 +260,10 @@ export class ProfileComponent implements OnInit {
 
 
   locate(data) {
-    console.log("ifsc code >>>",data);
+    console.log("ifsc code >>>", data);
     this.profileService.locate(data).subscribe(success => {
       this.bankCustomerDetails = success;
-      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.bankCustomerDetails);
+      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>", this.bankCustomerDetails);
       console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", success);
       this.bankDetails.setBankName(success.data.BANK);
       this.bankDetails.setAddress(success.data.ADDRESS);
@@ -254,34 +281,57 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  customerDetails(customerDetaisForm){
-    this.profileService.customerBankData(this.bankDetails).subscribe(successData =>{
-      console.log("bank details >>>>>>>>",this.bankDetails)
+  customerDetails(customerDetaisForm) {
+    this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
 
-    },errorData =>{
+    }, errorData => {
 
     })
-    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ",this.bankDetails);
+    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
   }
 
-  getUserBankDetails(){
+  getUserBankDetails() {
 
-       this.profileService.getUserBankDetails( ).subscribe(successData =>{
-         console.log("data>>>>>>>>>>>>>>>>>>>>>>>>",successData);
-         this.getOurBankDetails = successData.data;
-         console.log("customerDetails >>>>>>>>>>>",this.getOurBankDetails);
-         let customerDta = this.getOurBankDetails;
+    this.profileService.getUserBankDetails().subscribe(successData => {
+      console.log("data>>>>>>>>>>>>>>>>>>>>>>>>", successData);
+      this.getOurBankDetails = successData.data;
+      console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
+      let customerDta = this.getOurBankDetails;
 
-         if(customerDta.length >= 2){
-           this.addNewButton = false;
-           console.log("array data",customerDta.length);
-         }
-          
+      if (customerDta.length <= 2) {
+        //  this.addNewButton = false;
+        console.log("array data", customerDta.length);
+      }
+      else {
+        this.addNewButton = true;
+      }
 
 
-    },errorData =>{
+    }, errorData => {
 
     })
 
+  }
+
+  getAllCountries() {
+    this.profileService.getAllCountries().subscribe(success => {
+      this.countries = success.data;
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  getStatesByCountryId(countryName) {
+    this.countryError = false;
+    let c = this.countries.find(x => x.name == countryName);
+    this.profileService.getStatesByCountryId(c.countryId).subscribe(success => {
+      this.states = success.data;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  changeState(event) {
+    this.stateError = false;
   }
 }
