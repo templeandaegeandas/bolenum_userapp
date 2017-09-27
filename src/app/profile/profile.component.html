@@ -60,8 +60,7 @@
 
                   <div class="email-text">
                     <p class="icon-name">First Name<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" id="usr"
-                        nonumberspecialcharacter>
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" id="usr" nonumberspecialcharacter>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.firstName}}</p>
                   </div>
                 </div>
@@ -71,15 +70,11 @@
                   </div>
                   <div class="email-text">
                     <p class="icon-name">Last Name<br>
-                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" id="usr"
-                        nonumberspecialcharacter>
+                      <input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" id="usr" nonumberspecialcharacter>
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.lastName}}</p>
                   </div>
                 </div>
-                <!--<div class="profile-button">
-                  <button class="btn btn-successsave" *ngIf="!isDetailsEdit" (click)=editDetails()>Edit Details</button>
-                  <button class="btn btn-successsave" *ngIf="isDetailsEdit" (click)=saveDetails()>Save Details</button>
-                </div>-->
+
                 <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
@@ -90,7 +85,7 @@
                       <div class="date-picker">
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
                       </div>
-                      <!--<input *ngIf="isDetailsEdit" type="texts" class="from-newtext" name="dob" [(ngModel)]="userProfile.dob" id="usr">-->
+
                       <p *ngIf="!isDetailsEdit" class="text-icon">{{userProfile.dob | date}}</p>
                   </div>
                 </div>
@@ -193,9 +188,11 @@
                   </div>
                 </div>
                 </div>
+
+              </div>
             </div>
           </div>
-        </div>
+       
         <div class="container-fluid">
           <div class="new-data">
             <div class="row">
@@ -203,20 +200,9 @@
                 <div class="verify-col clearfix">
                   <div class="col-lg-6 col-xs-12">
                     <div class="custom-data">
-                      <!--<div class="email-part">
-                        <div class="email-img">
-                          <img src="assets/images/mail.png" class="img-profile">
-                        </div>
-                        <div class="email-text">
-                          <p class="icon-name">Email/Username<br>
-                            <p class="text-icon">{{emailId}}</p>
-                        </div>
-                      </div>-->
-                      <!--<div>
-                        <button class="btn btn-successsave" *ngIf="!isMobileEdit" (click)=editMobile()>Edit Mobile Number</button>
-                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
-                      </div>-->
+
                       <div class="clearfix"></div>
+
                       <div class="email-part">
                         <div class="email-img">
                           <img src="assets/images/mobile.png" class="img-profile">
@@ -224,16 +210,33 @@
                         <div class="email-text">
                           <p class="icon-name">Phone No &nbsp;
                             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
-                            <input *ngIf="isMobileEdit" type="texts" class="from-newtext" name="mobileNumber" [(ngModel)]="userProfile.mobileNumber"
-                              id="usr" onlynumber>
-                            <p *ngIf="!isMobileEdit" class="text-icon">{{userProfile.mobileNumber}}</p>
+                              <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
+                              <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
+                              <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber >
+
+                              <span *ngIf="number.invalid && mobileForm.submitted">
+                                <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
+                              </span>
+                            <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
+                            </form>
+                            <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
+                              <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
+
+                              <span *ngIf="otpField.invalid && otpForm.submitted">
+                                <span class="text-danger" *ngIf="otpField.errors.required">Please enter otp</span>
+                              </span>
+                            <button type="submit" class="btn btn-successsave">Verify Otp</button>
+                            <a (click)="reSendOtp()">Resend Otp</a>
+                          </form>
                         </div>
                       </div>
-                      <!--<div class="clearfix"></div>-->
+
                       <div>
                         <!--<button class="btn btn-successsave" *ngIf="!isMobileEdit" >Edit Mobile Number</button>-->
-                        <button class="btn btn-successsave" *ngIf="isMobileEdit" (click)=saveMobile()>Save Mobile Number</button>
+
+
                       </div>
+
                     </div>
 
                   </div>
@@ -264,21 +267,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="prof-verify clearfix">
-                <p class="last-prof">Once you profile has been verified & you have enable 2FA account security,you may request a higher limit by contacting support
-                  <hr>
-                  <button type="submit" class="btn btn-defaults">Save Profile</button>
-                  <div class="checkbox custom-checkbox label-shadow-none">
-                    <input type="checkbox" name="termConditions" id="test1" />
-                    <label for="test1">I agree to the <a>Term of Use</a> </label>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+
       </section>
       <!--bank detail-->
       <section id="content2" class="tab-content">
@@ -359,26 +348,16 @@
                     </div>
                     <div class="email-text margin-accountIfsc">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
-
                     </div>
-
-
-                    <!-- <span *ngIf = isBankFound ><p class="text-danger">Ifsc Code Incorrect</p></span>
-                    <span *ngIf = isverifyed><p class="text-success">verify</p></span> -->
-
                   </div>
-
                   <div class="col-md-12" *ngIf=shortIfo>
                     <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
                     <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
                     <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
                     <br>
-
                   </div>
-
                 </div>
                 <div class="col-md-12">
-
                   <div *ngIf=saveButton>
                     <button type="submit" class="btn btn-successaddnew">Save</button>
                   </div>
@@ -391,17 +370,9 @@
             </div>
 
           </div>
-
-
-
         </div>
       </section>
       <!-- bank-details -->
-      <!-- bankdetailsdata -->
-      <!-- bankdetailsdata -->
-
-
-
       <!--kyc detail-->
       <section id="content3" class="tab-content">
         <div class="container-fluid">
@@ -411,8 +382,9 @@
                 <div class="kyc-details">
                   <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                 </div>
-                <div class="img">
-                  <img class="img-center" [src]="document">
+                <div class="img" style="height: 250px;width: 350px;margin-left: 34%;">
+                  <img class="img-center" *ngIf="!pdf" [src]="document" style="width: 100%;height: 100%;">
+                  <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png" style="width: 100%;height: 100%;">
                 </div>
                 <div class="kyc-details">
                   <p class="kyc-text"> front of national id </p>
@@ -423,17 +395,16 @@
                 <div class="kyc-input">
                   <div class="id-input-details clearfix">
                     <div class="form-group">
-                      <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr">
+                      <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                       <!-- (change)="readUrl($event)"> -->
                     </div>
                     <button (click)="uploadKyc()">
                               <span id="fileselector">
                               <label class="btn btn-default" for="upload-file-selector">
-
-                              <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
+                                     <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
                               </label>
                               </span>
-                              </button>
+                                  </button>
                   </div>
                 </div>
               </div>
@@ -441,15 +412,6 @@
           </div>
         </div>
       </section>
-
-      <!-- <section id="content4" class="tab-content">
-        <h3>Headline 4</h3>
-        <p>tab 4 Content</p>
-      </section>
-      <section id="content5" class="tab-content">
-        <h3>Headline 5</h3>
-        <p>Tab 5 Content.</p>
-      </section> -->
     </div>
   </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
-import { NgForm } from '@angular/forms';
 import { UserProfile } from './entity/user.profile.entity';
 import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
@@ -18,10 +17,10 @@ export class ProfileComponent implements OnInit {
   public getOurBankDetails:any;
   // public isverifyed:boolean = false;
   // public isBankFound:boolean = false;
-  
-  
+
+
   public bankCustomerDetails: any;
- 
+
   public saveButton: boolean = false;
   public addNewButton: boolean = true;
   public accounDetails: boolean = false;
@@ -38,8 +37,13 @@ export class ProfileComponent implements OnInit {
   userKyc: any;
   isDetailsEdit: Boolean = false;
   isMobileEdit: Boolean = false;
+  isOtpEdit: Boolean = false;
+  resendOtp: Boolean = false;
   emailId: String;
-  profilePic:String="assets/images/default_pic.png";
+  profilePic: String = "assets/images/default_pic.png";
+  mobileNumber: any;
+  otp: any;
+  pdf: Boolean = false;
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -53,10 +57,39 @@ export class ProfileComponent implements OnInit {
 
   editMobile() {
     this.isMobileEdit = true;
+    this.isOtpEdit = false;
+    this.resendOtp = false;
   }
 
-  saveMobile() {
-    this.isMobileEdit = false;
+  saveMobile(form) {
+    if(form.invalid) return;
+    this.profileService.addMobileNumber(this.mobileNumber).subscribe(success => {
+      this.isMobileEdit = false;
+      this.isOtpEdit = true;
+      this.resendOtp = true;
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!");
+    })
+  }
+
+  verifyOtp(form) {
+    if(form.invalid) return;
+    this.profileService.verifyOtp(this.otp).subscribe(success => {
+      this.toastrService.success(success.message, "Success!");
+      this.isOtpEdit = false;
+      this.resendOtp = false;
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!");
+    })
+  }
+
+  reSendOtp() {
+    this.profileService.resendOtp().subscribe(success => {
+      this.toastrService.success(success.message, "Success!");
+    }, error => {
+      console.log(error)
+      this.toastrService.error(error.json().message, "Error!");
+    })
   }
 
   saveDetails() {
@@ -71,13 +104,23 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = (event) => {
-        this.url = event.target;
-        this.document = this.url.result;
+      let fileExtension = event.target.files[0].type;
+      if (fileExtension == "image/png" || fileExtension == "image/jpeg") {
+        this.pdf = false;
+        var reader = new FileReader();
+        reader.onload = (event) => {
+          this.url = event.target;
+          this.document = this.url.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
       }
-      reader.readAsDataURL(event.target.files[0]);
+      else if (fileExtension == "application/pdf") {
+        this.pdf = true;
+      }
+      else {
+        this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
+        return;
+      }
     }
   }
 
@@ -85,19 +128,31 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     let fileBrowser = this.fileInput.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
-      const formData = new FormData();
-      formData.append("file", fileBrowser.files[0]);
-      this.profileService.upload(formData).subscribe(success => {
-        if (success.data.userKyc != null) {
-          this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
-          this.documentStatus = success.data.userKyc.documentStatus;
-        }
-        this.ngOnInit();
+      let fileExtension = fileBrowser.files[0].type;
+      if (fileExtension == "image/png" || fileExtension == "image/jpeg" || fileExtension == "application/pdf") {
+        console.log("123456")
+        const formData = new FormData();
+        formData.append("file", fileBrowser.files[0]);
+        this.profileService.upload(formData).subscribe(success => {
+          if (success.data.userKyc != null) {
+            this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
+            this.documentStatus = success.data.userKyc.documentStatus;
+          }
+          this.ngOnInit();
+          fileBrowser.value = "";
+          this.loading = false;
+        }, error => {
+          this.toastrService.error(error.json().message, 'Error!')
+          fileBrowser.value = "";
+          this.loading = false;
+        });
+      }
+      else {
         this.loading = false;
-      }, error => {
-        console.log(error);
-        this.loading = false;
-      });
+        this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+        fileBrowser.value = "";
+        return;
+      }
     }
     else {
       this.toastrService.error("Please choose file for uploading!", 'Error!')
@@ -111,18 +166,23 @@ export class ProfileComponent implements OnInit {
         this.document = "http://localhost:3050/static/documents/" + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
       }
+      localStorage.setItem("fName", success.data.firstName);
+      if(success.data.lastName!=null) {
+        localStorage.setItem("lName", success.data.lastName);
+      }
+      this.mobileNumber = success.data.mobileNumber;
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
-      if(success.data.profileImage!=null) {
+      if (success.data.profileImage != null) {
         this.profilePic = "http://localhost:3050/static/profile-images/" + success.data.profileImage + "?decache=" + Math.random();
       }
     }, error => {
       console.log(error);
     })
   }
- 
-  
+
+
  uploadProfilePic() {
     this.loading = true;
     let fileBrowser = this.profileImage.nativeElement;
@@ -151,7 +211,7 @@ export class ProfileComponent implements OnInit {
         // other options...
         dateFormat: 'dd.mm.yyyy',
         width: '170px',
-        
+
     };
 
     // Initialized to specific date (09.10.2018).
@@ -164,7 +224,7 @@ export class ProfileComponent implements OnInit {
     this.saveButton = true;
 
     this.addNewButton = false;
-   
+
 
   }
 
@@ -181,13 +241,13 @@ export class ProfileComponent implements OnInit {
       this.bankDetails.setCity(success.data.CITY);
       this.bankDetails.setDistrict(success.data.DISTRICT);
       this.shortIfo = !this.shortIfo;
-     
-       
-     
-     
+
+
+
+
     }, errorData => {
-     
-    
+
+
     })
   }
 
@@ -201,25 +261,23 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserBankDetails(){
-    
+
        this.profileService.getUserBankDetails( ).subscribe(successData =>{
          console.log("data>>>>>>>>>>>>>>>>>>>>>>>>",successData);
          this.getOurBankDetails = successData.data;
          console.log("customerDetails >>>>>>>>>>>",this.getOurBankDetails);
          let customerDta = this.getOurBankDetails;
 
-         if(customerDta.length <= 2){
-          //  this.addNewButton = false;
+         if(customerDta.length >= 2){
+           this.addNewButton = false;
            console.log("array data",customerDta.length);
          }
-          else{
-             this.addNewButton = true;
-          }
+          
 
 
     },errorData =>{
 
-    })    
+    })
 
   }
 }

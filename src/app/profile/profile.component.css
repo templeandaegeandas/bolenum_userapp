@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 .container-fluid {
     background: #f8f8f8;
-  
+
 }*/
 *,
 *:after,
@@ -23,7 +23,7 @@
 
 body {
 	font-family:Lato;
-	
+
 }
 
 h1 {
@@ -42,7 +42,7 @@ a {
 }
 .head-icon {
     position: absolute;
-    top: 172px;  
+    top: 172px;
 
     margin-left: 254px;
     color: white;
@@ -110,7 +110,7 @@ label {
   /*padding: 20px;*/
   /*background:white;*/
   color: #999;
-  
+
 }
 
 .tab_container .tab-content p,
@@ -132,7 +132,7 @@ label {
   background: #fff;
   border-top-left-radius: 5px;
    border-top-right-radius:5px;
-    
+
     box-shadow: 0 0 9px #636363;
     transform: scale(1.1,1.1)
 }
@@ -289,7 +289,7 @@ text-decoration: none;
   label span {
     display: none;
   }
-  
+
 
   label .fa {
     font-size: 16px;
@@ -306,7 +306,7 @@ text-decoration: none;
   	/*transform: scale(0.9);*/
   	opacity: 0;
   }
-  
+
   100% {
   	transform: scale(1);
   	opacity: 1;
@@ -342,7 +342,7 @@ text-decoration: none;
 }
 /*profile section */
  .col-backgrnd {
-    background:#FFFFFF; 
+    background:#FFFFFF;
     float: left;
     width: 105%;
     height: 476px;
@@ -401,7 +401,7 @@ span.dolor {
     color: #DB2828;
 }
 
-* 
+*
 p.text1 {
     margin-top: 76px;
     font-family: lato;
@@ -419,14 +419,14 @@ p.text3 {
     font-size: 18px;
     color: #686868;
 }
-.email-img 
+.email-img
 {
    float:left;
-    
+
     margin-right: -15px;
     margin-top: 6px;
 }
-  
+
 select#usr {
     border-radius: 5px;
     padding: 4px 13px;
@@ -541,7 +541,7 @@ button.btn.btn-defaults {
 }
 */
 label.btn.btn-dark-blue {
-    
+
     width: 464px;
     color:#FB162B;
     padding-top: 12px;
@@ -682,7 +682,7 @@ a.btn.btn-dark-blue {
     color:#fB162B;
     border: 1px solid #CACACA;
     text-decoration: none;
-    
+
     }
 span.kyc-color {
     color: #fB162B;
@@ -798,3 +798,9 @@ img.kyc-image:active {
 
 
 
+.bank-client-details{
+    float: left;
+    /* margin-left: 20px; */
+    padding: 2px;
+    margin-bottom: 24px;
+}
