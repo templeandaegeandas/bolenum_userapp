@@ -347,8 +347,9 @@
                   <div class="email-img">
                     <p class="bank-text"> Account Holder Name :</p>
                   </div>
-                  <div class="email-text customer-data">
-                    {{customerData.accountHolderName}}
+                  <div class="email-text customer-data email-text-customer-data bank-icon">
+                       <p class="bank-icon "> {{customerData.accountHolderName}}<br>
+                  
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -357,7 +358,7 @@
                     <p class="bank-text"> Account Number :</p>
                   </div>
                   <div class="email-text customer-data">
-                    <p class="bank-icon">{{customerData.accountNumber}}<br>
+                    <p class="bank-icon ifsc-code-field margin-balance">{{customerData.accountNumber}}<br>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -366,13 +367,15 @@
                     <p class="bank-text">IFSC Code :</p>
                   </div>
                   <div class="email-text customer-data">
-                    <p class="bank-icon">{{customerData.ifscCode}}<br>
+                    <p class="bank-icon ifsc-code-field">{{customerData.ifscCode}}<br>
                   </div>
                 </div>
                 <div class="col-md-12">
+                  <br>Bank Address:{{customerData.address}}
+                  <br>Bank Branch:{{customerData.branch}}
+                  <br>State:{{customerData.state}}  
+                  <br>District:{{customerData.district}}
                   <br>City:{{customerData.city}}
-                  <br>Bank Address:{{customerData.address}}&nbsp; &nbsp;District:{{customerData.district}}
-                  <br>Bank Branch:{{customerData.branch}}&nbsp;&nbsp;State:{{customerData.state}}
                   <br>
                 </div>
                 <div class="clearfix"></div>
@@ -388,46 +391,54 @@
             <div class="col-md-12 col-xs-12" *ngIf=accounDetails>
               <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
                 <div class="col-md-11 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
-                  <div class="row">
-                    <div class="col-md-4">
+                  <div class="row margin-balance-details">
+                    <div class="col-md-4 balance-details">
                       <p class="bank-text"> Accoun Holder Name :</p>
                     </div>
                     <div class="col-md-8">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-4">
+                  <div class="row margin-balance-details">
+                    <div class="col-md-4 balance-details">
                       <p class="bank-text"> Account No :</p>
                     </div>
                     <div class="col-md-8">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-4">
+                  <div class="row margin-balance-details">
+                    <div class="col-md-4 balance-details">
                       <p class="bank-text">IFSC Code :</p>
-                      <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                        <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                    
                     </div>
                     <div class="col-md-8">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
+                    
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row margin-balance-details">
                     <div class="col-md-12" *ngIf=shortIfo>
                       <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
                       <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
                       <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
                       <br>
                     </div>
+                    <div class="row">
+                    <!-- <div class="col-md-12">
+                      <div *ngIf=saveButton>
+                        <button type="submit" class="btn btn-successaddnew">Save</button>
+                      </div>
+                    </div> -->
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
+                     <div class="col-md-12">
                       <div *ngIf=saveButton>
                         <button type="submit" class="btn btn-successaddnew">Save</button>
                       </div>
                     </div>
                   </div>
+                 
                 </div>
 
 
