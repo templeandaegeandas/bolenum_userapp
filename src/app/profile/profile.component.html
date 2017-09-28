@@ -125,11 +125,9 @@
                       <p class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
-
-
-                <div class="profile-button">
+               <div class="profile-button">
                   <button type="button" class="btn btn-successsave" (click)=editDetails()>Edit Details</button>
-                </div>
+                   </div>
               </div>
             </div>
             <form #editForm=ngForm (submit)="saveDetails(editForm)" *ngIf="isDetailsEdit">
@@ -173,7 +171,7 @@
                           <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="dob" #dateofbirth="ngModel" required></my-date-picker>
                         </div>
                         <span *ngIf="dateofbirth.invalid && editForm.submitted">
-                            <span class="text-danger" *ngIf="dateofbirth.errors.required">Please enter dob</span>
+                          <span class="text-danger" *ngIf="dateofbirth.errors.required">Please enter dob</span>
                         </span>
                     </div>
                   </div>
@@ -197,15 +195,13 @@
                     <div class="email-text">
                       <p class="icon-name">
                         Country<br>
-                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel"
-                          id="usr">
-                                     <option [disabled]="true" [selected]="true">Choose Country</option>
-                                   <option [ngValue]="country.name" *ngFor="let country of countries">{{country.name}}</option>
-                                   </select>
-                        <span class="text-danger" *ngIf="countryError">Please choose country</span>
-
+                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
+                             <option [disabled]="true" [selected]="true">Choose Country</option>
+                               <option [ngValue]="country.name" *ngFor="let country of countries">{{country.name}}</option>
+                               </select>
+                              <span class="text-danger" *ngIf="countryError">Please choose country</span>
+                         </div>
                     </div>
-                  </div>
                   <div class="clearfix"></div>
                   <div class="email-part">
                     <div class="email-img">
@@ -214,13 +210,12 @@
                     <div class="email-text">
                       <p class="icon-name">
                         State<br>
-                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
-                                   <option [disabled]="true" [selected]="true">Choose State</option>
-                                   <option [ngValue]="state.stateName" *ngFor="let state of states">{{state.stateName}}</option>
-                                   </select>
-                        <span class="text-danger" *ngIf="stateError">Please choose state</span>
-
-                    </div>
+                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel"  (ngModelChange)="changeState($event)" id="usr">
+                              <option [disabled]="true" [selected]="true">Choose State</option>
+                              <option [ngValue]="state.stateName" *ngFor="let state of states">{{state.stateName}}</option>
+                               </select>
+                          <span class="text-danger" *ngIf="stateError">Please choose state</span>
+                       </div>
                   </div>
                   <div class="profile-button">
                     <button type="submit" class="btn btn-successsave">Save Details</button>
@@ -241,7 +236,7 @@
                              <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo IDhttp://poloniex.com/images/ID-upload-sample.png</p>
                            </div>
                            </div>-->
-                <hr>
+                     <hr>
                 <div class="row">
                   <div class="col-md-6">
                     <span class="font-1">Mobile 2 Factor Authentication</span>
@@ -313,25 +308,25 @@
                   </div>
                   <div class="col-lg-6 col-xs-12">
                     <!--<div class="scan-col">
-                                 <p class="col-id">Scan of Photo ID</p>
-                                 <div class="id-input-details clearfix">
-                                   <div class="form-group">
-                                     <input type="texts" class="from-newtext" id="usr">
-                                   </div>
-                                   <button type="button" class="btn btn-success">UPLOAD</button>
-                                 </div>
-                                 </div>-->
+                             <p class="col-id">Scan of Photo ID</p>
+                               <div class="id-input-details clearfix">
+                                 <div class="form-group">
+                                   <input type="texts" class="from-newtext" id="usr">
+                                  </div>
+                                <button type="button" class="btn btn-success">UPLOAD</button>
+                             </div>
+                        </div>-->
                     <!--<p class="col-id">Verification Photo</p>
-                                 <div class="id-input-details clearfix">-->
+                          <div class="id-input-details clearfix">-->
                     <!--<div class="form-group">
-                                 <input type="texts" class="from-newtext" id="usr">
-                                 </div>-->
+                          <input type="texts" class="from-newtext" id="usr">
+                        </div>-->
                     <!--<button type="button" class="btn btn-success">UPLOAD</button>
-                                 </div>-->
+                           </div>-->
                     <!--<div class="profile-new-var">
-                                 <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
-                                   to fake your identity.</p>
-                                 </div>-->
+                              <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
+                            to fake your identity.</p>
+                       </div>-->
                   </div>
                 </div>
               </div>
@@ -523,12 +518,12 @@
                     </div>
                     <button type="button" class="btnbrowse">Upload Documents</button>
                     <!--<button (click)="uploadKyc()">
-                                 <span id="fileselector">
-                                 <label class="btn btn-default" for="upload-file-selector">
-                                        <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
-                                 </label>
-                                 </span>
-                                     </button>-->
+                          <span id="fileselector">
+                               <label class="btn btn-default" for="upload-file-selector">
+                               <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
+                               </label>
+                             </span>
+                       </button>-->
                   </div>
                 </div>
               </div>

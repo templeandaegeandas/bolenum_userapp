@@ -49,6 +49,8 @@ input, section {
   display: none;
 }
 
+
+
 label {
   font-weight: 700;
   font-size: 18px;
@@ -60,7 +62,9 @@ label {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  background: #f0f0f0;
+  background:#FFFFFF;
+  min-height: 130px;
+
 }
 
 #tab1:checked ~ #content1,
@@ -72,7 +76,7 @@ label {
   /*padding: 20px;*/
   /*background:white;*/
   color: #999;
-  border-bottom: 2px solid #f0f0f0;
+
 }
 
 .tab_container .tab-content p,
@@ -85,13 +89,22 @@ label {
   text-align: center;
 }
 
+.tab_container [id^="tab"]:checked + label:active {
+    transform: scale(1,1);
+}  
 .tab_container [id^="tab"]:checked + label {
   border-bottom: 3px solid #DB2828;;
   background: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius:5px;
+  box-shadow: 0 0 9px #636363;
+  
+  transform: scale(1.1,1.1)
 }
 
-.tab_container [id^="tab"]:checked + label .fa {
+.tab_container [id^="tab"]:checked + label:active .img.img1 {
   color: #DB2828;
+  
 }
 
 label .fa {
@@ -99,40 +112,84 @@ label .fa {
   margin: 0 0.4em 0 0;
 }
 
-button.btn.btn-defaults {
-    width: 186px;
-    margin-left: 481px;
-    color: white;
-    background: #D42828;
-    margin-bottom: 27px;
-}
-
-a.btn.btn-dark-blue {
-    width: 89%;
-    padding: 5px;
-    font-family: lato;
-    font-size: 24px;
-    font-weight: 600;
-    color: #fb162B;
-    border: 1px solid #CACACA;
-    text-decoration: none!important;
-}
 img.wallet-icon {
-   
     position: absolute;
-    top: 261px;
-    left: 534px;
+    top: 250px;
+     left: 575px;
+
+}
+img.profile-img {
+    height: 330px;
+    width: 100%;
+}
+/* start withdraw section*/
+.text-image-div {
+    background-color: #f3f3f3;
+    padding-bottom: 34px;
+    padding-top: 37px;
 }
 
-p.text1 {
-    font-size: 18px;
+.balance-text {
+    margin-top: 8px;
+    /* font-size: 24px; */
+    font-size: 21px;
+    color: #b2a89b;
+}
+
+.top-margin-field {
+    margin-top: 33px;
+}
+
+.label-text-color {
+    color: #b2a89b;
+}
+
+.red-text-color {
+    color: #DB2828;
+}
+
+.main-div-margin {
+    margin-bottom: 76px;
+    margin-top: 38px;
+}
+
+.button-padding {
+    padding-left: 43px;
+    padding-top: 5px;
+}
+
+.submit-button {
+    background-color: #DB2828;
+    opacity: none !important;
+    border: none;
     padding: 8px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 25%;
+}select.center-dropddown {
+    background: #DB2828;
+    width: 175px;
+    padding: 10px;
+    color: white;
+    border: none;
 }
-.img-walet {
-    text-align: -webkit-center;
-    background: #c7c4c4;
-    padding-top: 22px;
+.col-md-12.withdraw-dropdown {
+    text-align: center;
+    margin-top: 30px;
 }
+
+
+
+
+/* start deposit section*/
+ /*start history section*/
+
+
+
+
+
 
 
 
@@ -145,6 +202,8 @@ p.text1 {
     font-size: 14px;
   }
 }
+
+
 
 @media only screen and (max-width: 768px) {
   label span {
@@ -160,9 +219,23 @@ p.text1 {
   img.wallet-icon {
    
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 210px;
+    left: 211px;
 }
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 32%;
+  padding: 1.5em;
+  color: #757575;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #f0f0f0;
+}
+
 }
 
 /*Content Animation*/
