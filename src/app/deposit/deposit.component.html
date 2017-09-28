@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 main-div">
+
       <div class="pull-right">
         <ul>
           <li>
@@ -13,6 +14,13 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-md-12 text-center">
+        <select class="center-dropddown">
+            <option value="buyEth">Bitcoin </option>
+            <option value="BUYETH">Etherum</option>
+            <option value="BUYETH">Boleno</option>
+          </select>
+      </div>
+      <div class="col-md-12 text-center">
         <div class="qrCode">
           <qr-code [value]="'All QR Code data goes here!'" [size]="100"></qr-code>
         </div>
@@ -22,13 +30,14 @@
           <input type="text" class="form-control" [disabled]="true" id="usr" placeholder="5rere5qwr26fhfgfz5fggdhhgfhdggg6">
         </div>
       </div>
-      <div class="col-md-12 text-center">
+
+      <!--<div class="col-md-12 text-center">
         <span class="network">Network Fee:</span>
         <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5
       </div>
       <div class="col-md-12 text-center margin-button">
         <button class="genarate-button text-capitalize">Generate New Address</button>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

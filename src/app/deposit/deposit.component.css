@@ -45,3 +45,10 @@ input {
 .margin-button {
     margin-top: 10px;
 }
+select.center-dropddown {
+    background: #DB2828;
+    width: 225px;
+    padding: 10px;
+    color: white;
+    border: none;
+}
