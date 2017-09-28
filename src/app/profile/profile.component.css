@@ -354,12 +354,18 @@ p.last-prof {
     font-size: 20px;
     margin: 18px;
 }
-.email-text{
-    float: left;
+/*.email-text{
+    
     margin-left: 20px;
     padding: 2px;
     margin-bottom: 24px;
-  }
+  }*/
+  .email-text {
+    /* margin-left: 26px; */
+    padding: 3px 27px;
+    margin-bottom: 24px;
+}
+
   a.btn.btn-dark-blue {
     width: 80%;
     padding: 8px;
