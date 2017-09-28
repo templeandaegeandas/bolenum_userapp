@@ -141,12 +141,10 @@ label {
   
 }
 
-
-
-
 .text-danger {
     color: #a94442;
-    margin: 16px;
+    margin: 1px;
+    font-size: 15px;
 }
 .sign-block {
      margin: 17px;
