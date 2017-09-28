@@ -148,10 +148,11 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name">First Name<br>
-                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3" id="usr" required nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3"
+                          id="usr" required nonumberspecialcharacter>
                         <span *ngIf="firstName.invalid && editForm.submitted">
                             <span class="text-danger" *ngIf="firstName.errors.required">Please enter first name</span>
-                            <span class="text-danger" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
+                        <span class="text-danger" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
                         </span>
                     </div>
                   </div>
@@ -161,7 +162,8 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name">Last Name<br>
-                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3" id="usr" nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3"
+                          id="usr" nonumberspecialcharacter>
                         <span *ngIf="lastName.invalid && editForm.submitted">
                             <span class="text-danger" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
                         </span>
@@ -251,13 +253,16 @@
                   <div class="col-md-6">
                     <div class="toggle-switch">
                       <label class="switch">
+                                 <input type="checkbox" name="2fa" [(ngModel)] = "twoFa" (ngModelChange)="lgModal.show()">
+                                 <span class="slider round" ></span>
                       <input type="checkbox" >
                         <span class="slider round" ></span>
                         </label>
                     </div>
                   </div>
                 </div>
-                <div class="row">
+
+                <!-- <div class="row">
                   <div class="col-md-6">
                     <span class="font-1">Google 2 Factor Authentication</span>
                   </div>
@@ -269,7 +274,7 @@
                          </label>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -291,7 +296,8 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
                             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-                              <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
+                              <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required
+                                onlynumber>
                               <span *ngIf="number.invalid && mobileForm.submitted">
                                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                               </span>
@@ -390,8 +396,53 @@
           <div class="row">
             <div class="col-md-12 col-xs-12" *ngIf=accounDetails>
               <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
-                <div class="bank-backgrnds">
-                  <div class="email-part">
+                <div class="col-md-11 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text"> Accoun Holder Name :</p>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text"> Account No :</p>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text">IFSC Code :</p>
+                      <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12" *ngIf=shortIfo>
+                      <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
+                      <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
+                      <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
+                      <br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div *ngIf=saveButton>
+                        <button type="submit" class="btn btn-successaddnew">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <!-- <div class="email-part">
                     <div class="email-img ">
                       <p class="bank-text"> Accoun Holder Name :</p>
                     </div>
@@ -399,7 +450,15 @@
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="clearfix"></div>
+
+
+                  
+
+
+
+
+
+              
                   <div class="email-part">
                     <div class="email-img">
                       <p class="bank-text"> Account No :</p>
@@ -408,7 +467,7 @@
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="clearfix"></div>
+               
                   <div class="email-part">
                     <div class="email-img">
                       <p class="bank-text">IFSC Code :</p>
@@ -424,12 +483,11 @@
                     <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
                     <br>
                   </div>
-                </div>
                 <div class="col-md-12">
                   <div *ngIf=saveButton>
                     <button type="submit" class="btn btn-successaddnew">Save</button>
                   </div>
-                </div>
+                </div> -->
               </form>
             </div>
             <div *ngIf=addNewButton>
@@ -470,7 +528,7 @@
                                  <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
                     </div>
-                    <button type="button" class="btnbrowse">Upload Documents</button>
+                    <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
                     <!--<button (click)="uploadKyc()">
                           <span id="fileselector">
                                <label class="btn btn-default" for="upload-file-selector">
@@ -489,3 +547,19 @@
   </div>
 </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+
+<div bsModal #2FaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Large modal</h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
