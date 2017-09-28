@@ -53,6 +53,8 @@ export class ProfileComponent implements OnInit {
   dob: any;
   countryError = false;
   stateError = false;
+  countryCode: any;
+  twoFa: any;
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -60,6 +62,10 @@ export class ProfileComponent implements OnInit {
     this.getLoggedInUserDetails();
     this.getAllCountries();
     // this.locate();
+  }
+
+  chenge2Fa(event) {
+
   }
 
   editDetails() {
@@ -324,6 +330,7 @@ export class ProfileComponent implements OnInit {
   getStatesByCountryId(countryName) {
     this.countryError = false;
     let c = this.countries.find(x => x.name == countryName);
+    this.countryCode = c.phoneCode;
     this.profileService.getStatesByCountryId(c.countryId).subscribe(success => {
       this.states = success.data;
     }, error => {
