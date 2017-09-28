@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {QRCodeComponent} from 'angular2-qrcode';
 import { DepositService } from './deposit.service';
-//import { DepositeData } from './entity/deposit.entity';
+import { ToastrService } from 'toastr-ng2';
 @Component({
   selector: 'app-deposit',
   templateUrl: './deposit.component.html',
@@ -19,7 +19,7 @@ export class DepositComponent implements OnInit {
                         { coinValue:"BOLENO"}
                       ];
 
-  constructor( private depositService:DepositService) { }
+  constructor( private depositService:DepositService,private toastrService: ToastrService)  { }
 
   ngOnInit() {
     this.setItemValue = "BTC";
@@ -33,6 +33,8 @@ export class DepositComponent implements OnInit {
       this.address = data.data.address;
       
     },errorData => {
+
+      this.toastrService.error("Address for this coin is not available!", 'Error!')  
 
     })
     

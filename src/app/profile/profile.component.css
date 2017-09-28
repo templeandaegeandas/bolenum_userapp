@@ -576,7 +576,7 @@ img.img-header {
     padding: 26px;
 }
 p.bank-icon {
-    margin-left: 92px;
+    /* margin-left: 92px; */
     color: #D4D4D4;
     font-size: 16px;
 }
@@ -803,7 +803,17 @@ button.btnbrowse {
     color: #FFFFFF;
 }
 
+.bank-client-details{
+    float: left;
+    /* margin-left: 20px; */
+    padding: 2px;
+    margin-bottom: 24px;
+}
 
+
+.balance-details{
+text-align: right;
+}
 @media only screen and (max-width: 768px) {
   label span {
     display: none;
@@ -832,27 +842,25 @@ button.btnbrowse {
 }
 
 
+.margin-balance-details{
+        margin-bottom: 12px;
+}
 
+.ifsc-code-field{
+        margin-left: 90px;
+    color: #D4D4D4;
+    margin-top: 6px;
+    font-size: 16px;
+}
 
+.margin-balance{
 
+    margin-left: 130px;
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-.bank-client-details{
-    float: left;
-    /* margin-left: 20px; */
-    padding: 2px;
-    margin-bottom: 24px;
+.email-text-customer-data{
+        position: absolute;
+    top: 26px;
+    left: 207px;
 }

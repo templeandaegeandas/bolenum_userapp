@@ -289,6 +289,7 @@ export class ProfileComponent implements OnInit {
 
   customerDetails(customerDetaisForm) {
     this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
+      this.accounDetails = false;
 
     }, errorData => {
 
