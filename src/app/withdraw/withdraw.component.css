@@ -43,4 +43,17 @@
     border-radius: 5px;
     outline: none;
     width: 25%;
+}select.center-dropddown {
+    background: #DB2828;
+    width: 275px;
+    padding: 10px;
+    color: white;
+    border: none;
 }
+.col-md-12.withdraw-dropdown {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+
