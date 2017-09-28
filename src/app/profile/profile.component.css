@@ -136,8 +136,22 @@ label {
   transform: scale(1.1,1.1)
 }
 
-.tab_container [id^="tab"]:checked + label:active .img.img1 {
-  color: #DB2828;
+.tab_container [id^="tab"]:checked + label:active .img-tab {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/profile (1).png");
+  
+}
+.tab_container [id^="tab"]:checked + label:active .img-tab1 {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/bank_details_f.png");
+  
+}
+.tab_container [id^="tab"]:checked + label:active .img-tab2 {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/bank_details_f.png");
   
 }
 
@@ -278,33 +292,6 @@ text-decoration: none;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  label span {
-    display: none;
-  }
-
-
-  label .fa {
-    font-size: 16px;
-  }
-
-  .tab_container {
-    width: 98%;
-  }
-}
-
-/*Content Animation*/
-@keyframes fadeInScale {
-  0% {
-  	/*transform: scale(0.9);*/
-  	opacity: 0;
-  }
-
-  100% {
-  	transform: scale(1);
-  	opacity: 1;
-  }
-}
 
 .padding-label{
     padding: 0px;
@@ -354,15 +341,10 @@ p.last-prof {
     font-size: 20px;
     margin: 18px;
 }
-/*.email-text{
-    
-    margin-left: 20px;
-    padding: 2px;
-    margin-bottom: 24px;
-  }*/
+
   .email-text {
     /* margin-left: 26px; */
-    padding: 3px 27px;
+    padding: 5px 24px;
     margin-bottom: 24px;
 }
 
@@ -390,7 +372,7 @@ span.dolor {
     padding-top: -2px;
 
 }
-.fa {
+.img {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -400,7 +382,7 @@ span.dolor {
     color: #DB2828;
 }
 
-*
+
 p.text1 {
     margin-top: 76px;
     font-family: lato;
@@ -421,9 +403,8 @@ p.text3 {
 .email-img
 {
    float:left;
-
-    margin-right: -15px;
-    margin-top: 6px;
+   margin-right: 4px;
+    margin-top: 7px;
 }
 
 select#usr {
@@ -464,7 +445,7 @@ img.profile-img {
 input#usr {
     display: block;
     padding: 2px 8px;
-    width: 217px;
+    width: 206px;
     border-radius: -13px;
     border-radius: 8px;
     box-shadow: none;
@@ -472,6 +453,10 @@ input#usr {
     outline: none;
 
 }
+.mydp, .mydp .headertodaybtn {
+    border: 2px solid gray!important;
+}
+
 span#fileselector label.btn.btn-default {
     width: 154px;
     padding: 5px;
@@ -817,9 +802,37 @@ button.btnbrowse {
     margin-bottom: 24px;
 }
 
+
 .balance-details{
 text-align: right;
 }
+@media only screen and (max-width: 768px) {
+  label span {
+    display: none;
+  }
+ 
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	/*transform: scale(0.9);*/
+  	opacity: 0;
+  }
+
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
+}
+
 
 .margin-balance-details{
         margin-bottom: 12px;

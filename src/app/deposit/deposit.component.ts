@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {QRCodeComponent} from 'angular2-qrcode';
 import { DepositService } from './deposit.service';
-// import { DepositeData } from './entity/deposit.entity';
 @Component({
   selector: 'app-deposit',
   templateUrl: './deposit.component.html',

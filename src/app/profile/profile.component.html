@@ -3,20 +3,21 @@
     <div class="top-header">
       <div class="top-profile">
         <img src="assets/images/header (1).png" class="profile-img">
-        <div>
-        </div>
+      <div>
+      </div>
       </div>
       <div class="header-text">
         <img [src]="profilePic" class="porf-pic">
         <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="user">
-        <button (click)="uploadProfilePic()">
-            <span id="fileselector">
+        
+        <!--<button (click)="uploadProfilePic()">
+        <span id="fileselector">
             <label class="btn btn-default" for="upload-file-selector">
-            <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
+               <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
             </label>
             </span>
-            </button>
-        <div class="modal-button">
+            </button>-->
+        <!--<div class="modal-button">
           <button class="btn btn-primary new" (click)="lgModal.show()">Large modal</button>
           <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -33,7 +34,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="profile-text">
         <p class="top-text">{{userProfile.firstName}} {{userProfile.middleName}} {{userProfile.lastName}}</p>
@@ -48,18 +49,25 @@
     <div class="tab_container">
       <input id="tab1" type="radio" name="tabs" checked>
       <label for="tab1">
+        <div class="img-tab">
          <img src="assets/images/profile.png" class="img1"><br>
-         <span>Profile</span></label>
+         <span>Profile</span>
+         </div>
+         </label>
       <input id="tab2" type="radio" name="tabs">
       <label for="tab2" (click)="getUserBankDetails()">
-            <div class="tab-prof">
-               <img src="assets/images/bank_details_f.png" class="img1"><br>
-            </div>
-            <span>Bank Details</span>
+          <div class="img-tab1">
+               <img src="assets/images/bank_details_uf.png" class="img1"><br>
+          <span>Bank Details</span>
+          </div>
          </label>
       <input id="tab3" type="radio" name="tabs">
-      <label for="tab3"><img src="assets/images/KYC_uf.png" class="img1"><br>
-         <span>KYC Details</span></label>
+      <label for="tab3">
+         <div class="img-tab2">
+        <img src="assets/images/KYC_uf.png" class="img1"><br>
+         <span>KYC Details</span>
+         </div>
+         </label>
       <!--profile-->
       <section id="content1" class="tab-content">
         <div class="container-fluid">
@@ -114,7 +122,6 @@
                       <p class="text-icon">{{userProfile.country}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -125,6 +132,7 @@
                       <p class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
+                <div class="clearfix"></div>
                <div class="profile-button">
                   <button type="button" class="btn btn-successsave" (click)=editDetails()>Edit Details</button>
                    </div>
