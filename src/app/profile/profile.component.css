@@ -409,9 +409,17 @@ p.text3 {
 
 select#usr {
     border-radius: 5px;
-    padding: 4px 13px;
+    padding: 5px 12px;
     outline: none;
+    width: 194px;
 }
+.mydp, .mydp .headertodaybtn {
+    border: 2px solid #d5b6b6 !important;
+    border-radius: 7px !important;
+    padding: -23px;
+    /* width: 9px; */
+}
+
 .prof-verify {
     /* padding: 20px; */
     background: white;
@@ -469,8 +477,8 @@ span#fileselector label.btn.btn-default {
 button.btn.btn-successsave {
     background: #DB2828;
     color: white;
-    margin-right: 109px;
-    margin-top: 30px;
+    margin-right: 93px;
+    margin-top: 20px;
 }
 
 hr {

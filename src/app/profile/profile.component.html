@@ -43,7 +43,7 @@
         <img src="assets/images/location (1).png">&nbsp;<span>{{userProfile.address}}</span>
       </div>
       <div class="profile-email">
-        <img src="assets/images/mail (1).png">&nbsp;<span>{{emailId}}</span>
+        <!--<img src="assets/images/mail (1).png">&nbsp;<span>{{emailId}}</span>-->
       </div>
     </div>
     <div class="tab_container">
@@ -57,7 +57,7 @@
       <input id="tab2" type="radio" name="tabs">
       <label for="tab2" (click)="getUserBankDetails()">
           <div class="img-tab1">
-               <img src="assets/images/bank_details_uf.png" class="img1"><br>
+          <img src="assets/images/bank_details_uf.png" class="img1"><br>
           <span>Bank Details</span>
           </div>
          </label>
@@ -111,7 +111,7 @@
                       <p class="text-icon">{{userProfile.address}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
+                <!--<div class="clearfix"></div>-->
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -132,7 +132,7 @@
                       <p class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
-                <div class="clearfix"></div>
+                <!--<div class="clearfix"></div>-->
                <div class="profile-button">
                   <button type="button" class="btn btn-successsave" (click)=editDetails()>Edit Details</button>
                    </div>
@@ -210,7 +210,7 @@
                               <span class="text-danger" *ngIf="countryError">Please choose country</span>
                          </div>
                     </div>
-                  <div class="clearfix"></div>
+                  <!--<div class="clearfix"></div>-->
                   <div class="email-part">
                     <div class="email-img">
                       <img src="assets/images/location_black.png" class="img-profile">
