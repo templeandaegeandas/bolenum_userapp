@@ -49,7 +49,7 @@
           <span *ngIf="repassword.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="repassword.errors.required">Please enter confirm password</span>
           </span>
-          <span class="text-danger" *ngIf="user.repassword!=user.password && !repassword.invalid">Passwords did not matched</span>
+          <span class="text-danger" *ngIf="user.repassword!=user.password && !repassword.invalid">Password did not match</span>
           <div class="checkbox custom-checkbox">
             <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
              <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
