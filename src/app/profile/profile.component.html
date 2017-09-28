@@ -141,10 +141,11 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name">First Name<br>
-                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3" id="usr" required nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3"
+                          id="usr" required nonumberspecialcharacter>
                         <span *ngIf="firstName.invalid && editForm.submitted">
                             <span class="text-danger" *ngIf="firstName.errors.required">Please enter first name</span>
-                            <span class="text-danger" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
+                        <span class="text-danger" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
                         </span>
                     </div>
                   </div>
@@ -154,7 +155,8 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name">Last Name<br>
-                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3" id="usr" nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3"
+                          id="usr" nonumberspecialcharacter>
                         <span *ngIf="lastName.invalid && editForm.submitted">
                             <span class="text-danger" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
                         </span>
@@ -195,11 +197,12 @@
                     <div class="email-text">
                       <p class="icon-name">
                         Country<br>
-                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
+                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel"
+                          id="usr">
                                      <option [disabled]="true" [selected]="true">Choose Country</option>
                                    <option [ngValue]="country.name" *ngFor="let country of countries">{{country.name}}</option>
                                    </select>
-                                       <span class="text-danger" *ngIf="countryError">Please choose country</span>
+                        <span class="text-danger" *ngIf="countryError">Please choose country</span>
 
                     </div>
                   </div>
@@ -211,11 +214,11 @@
                     <div class="email-text">
                       <p class="icon-name">
                         State<br>
-                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel"  (ngModelChange)="changeState($event)" id="usr">
+                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
                                    <option [disabled]="true" [selected]="true">Choose State</option>
                                    <option [ngValue]="state.stateName" *ngFor="let state of states">{{state.stateName}}</option>
                                    </select>
-                                       <span class="text-danger" *ngIf="stateError">Please choose state</span>
+                        <span class="text-danger" *ngIf="stateError">Please choose state</span>
 
                     </div>
                   </div>
@@ -286,7 +289,8 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
                             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-                              <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
+                              <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required
+                                onlynumber>
                               <span *ngIf="number.invalid && mobileForm.submitted">
                                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                               </span>
@@ -385,8 +389,53 @@
           <div class="row">
             <div class="col-md-12 col-xs-12" *ngIf=accounDetails>
               <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
-                <div class="bank-backgrnds">
-                  <div class="email-part">
+                <div class="col-md-11 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text"> Accoun Holder Name :</p>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text"> Account No :</p>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="bank-text">IFSC Code :</p>
+                      <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
+                    </div>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12" *ngIf=shortIfo>
+                      <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
+                      <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
+                      <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
+                      <br>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div *ngIf=saveButton>
+                        <button type="submit" class="btn btn-successaddnew">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <!-- <div class="email-part">
                     <div class="email-img ">
                       <p class="bank-text"> Accoun Holder Name :</p>
                     </div>
@@ -394,7 +443,15 @@
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="clearfix"></div>
+
+
+                  
+
+
+
+
+
+              
                   <div class="email-part">
                     <div class="email-img">
                       <p class="bank-text"> Account No :</p>
@@ -403,7 +460,7 @@
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
-                  <div class="clearfix"></div>
+               
                   <div class="email-part">
                     <div class="email-img">
                       <p class="bank-text">IFSC Code :</p>
@@ -419,12 +476,11 @@
                     <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
                     <br>
                   </div>
-                </div>
                 <div class="col-md-12">
                   <div *ngIf=saveButton>
                     <button type="submit" class="btn btn-successaddnew">Save</button>
                   </div>
-                </div>
+                </div> -->
               </form>
             </div>
             <div *ngIf=addNewButton>
