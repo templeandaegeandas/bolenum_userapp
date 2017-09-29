@@ -831,7 +831,7 @@ button.btnbrowse {
 
 
 .balance-details{
-text-align: right;
+padding-left: 144px;
 }
 @media only screen and (max-width: 768px) {
   label span {
@@ -882,4 +882,23 @@ text-align: right;
         position: absolute;
     top: 26px;
     left: 207px;
+}
+
+.add-field-padding{
+    padding-right: 165px;
+}
+
+.user-bank-details{
+        background-color: #fff;
+    padding-top: 43px;
+    padding-bottom: 46px;
+}
+
+.form-left{
+        padding-left: 64px;
+}
+.bank-details-padding{
+        padding-top: 48px;
+    padding-bottom: 53px;
+    padding-left: 25px;
 }
