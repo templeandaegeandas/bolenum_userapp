@@ -1,4 +1,4 @@
-<div class="container-fluid">
+  <div class="container-fluid">
   <div class="row">
     <div class="top-header">
       <div class="top-profile">
@@ -7,8 +7,8 @@
       </div>
       </div>
       <div class="header-text">
-        <img [src]="profilePic" class="porf-pic">
-        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." id="user">
+        <img [src]="profilePic" class="porf-pic" height="140" width="140">
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..."  (change)="onChange($event)" id="user">
         
         <!--<button (click)="uploadProfilePic()">
         <span id="fileselector">
@@ -61,8 +61,14 @@
          </label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3">
+<<<<<<< HEAD
          <div class="img-tab2"><br><br>
          <span>KYC Details</span>
+=======
+         <div class="img-tab2">
+        <img src="assets/images/KYC_uf.png" class="img1"><br>
+         <span>KYC Details</span>     
+>>>>>>> b53183f2fedb11a10b814e8529ff9b79f51996b5
          </div>
          </label>
       <!--profile-->
