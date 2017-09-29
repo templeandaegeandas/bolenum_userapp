@@ -56,6 +56,8 @@ export class ProfileComponent implements OnInit {
   stateError = false;
   countryCode: any;
   twoFa: any;
+  lgModal: any;
+
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
