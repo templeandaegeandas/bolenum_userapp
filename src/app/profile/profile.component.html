@@ -9,32 +9,6 @@
       <div class="header-text">
         <img [src]="profilePic" class="porf-pic" height="140" width="140">
         <input class="from-newtext" type="file" #profileImage placeholder="Select image..." (change)="onChange($event)" id="user">
-
-        <!--<button (click)="uploadProfilePic()">
-        <span id="fileselector">
-            <label class="btn btn-default" for="upload-file-selector">
-               <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD IMAGE
-            </label>
-            </span>
-            </button>-->
-        <!--<div class="modal-button">
-          <button class="btn btn-primary new" (click)="lgModal.show()">Large modal</button>
-          <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title pull-left">Large modal</h4>
-                  <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                           </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
       </div>
       <div class="profile-text">
         <p class="top-text">{{userProfile.firstName}} {{userProfile.middleName}} {{userProfile.lastName}}</p>
@@ -43,7 +17,6 @@
         <img src="assets/images/location (1).png">&nbsp;<span>{{userProfile.address}}</span>
       </div>
       <div class="profile-email">
-        <!--<img src="assets/images/mail (1).png">&nbsp;<span>{{emailId}}</span>-->
       </div>
     </div>
     <div class="tab_container">
@@ -109,7 +82,7 @@
                       <p class="text-icon">{{userProfile.address}}</p>
                   </div>
                 </div>
-                <!--<div class="clearfix"></div>-->
+
                 <div class="email-part">
                   <div class="email-img">
                     <img src="assets/images/location_black.png" class="img-profile">
@@ -237,12 +210,6 @@
                 <p class="text2">Daily withdrawal limit <span class="dolor"> $25,000</span><span> USD equivalent</span><br> Margin Trading
                   <span class="dolor"> Enabled.</span>
                 </p>
-                <!--<div class="attension-block">
-                           <div *ngIf="userKyc==null">
-                             <label for="tab3" class="btn btn-dark-blue">ATTENTION REQUIRED</label>
-                             <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo IDhttp://poloniex.com/images/ID-upload-sample.png</p>
-                           </div>
-                           </div>-->
                 <hr>
                 <div class="row">
                   <div class="col-md-6">
@@ -259,20 +226,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- <div class="row">
-                  <div class="col-md-6">
-                    <span class="font-1">Google 2 Factor Authentication</span>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="toggle-switch">
-                      <label class="switch">
-                         <input type="checkbox" >
-                          <span class="slider round" ></span>
-                         </label>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
@@ -312,31 +265,10 @@
                         </div>
                       </div>
                       <div>
-                        <!--<button class="btn btn-successsave" *ngIf="!isMobileEdit" >Edit Mobile Number</button>-->
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xs-12">
-                    <!--<div class="scan-col">
-                             <p class="col-id">Scan of Photo ID</p>
-                               <div class="id-input-details clearfix">
-                                 <div class="form-group">
-                                   <input type="texts" class="from-newtext" id="usr">
-                                  </div>
-                                <button type="button" class="btn btn-success">UPLOAD</button>
-                             </div>
-                        </div>-->
-                    <!--<p class="col-id">Verification Photo</p>
-                          <div class="id-input-details clearfix">-->
-                    <!--<div class="form-group">
-                          <input type="texts" class="from-newtext" id="usr">
-                        </div>-->
-                    <!--<button type="button" class="btn btn-success">UPLOAD</button>
-                           </div>-->
-                    <!--<div class="profile-new-var">
-                              <p class="col-id">The Verification photo let us know that the image is current, and also makes it much harder for someone
-                            to fake your identity.</p>
-                       </div>-->
                   </div>
                 </div>
               </div>
@@ -354,7 +286,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="col-md-6">
-                      <p class="bank-text"> Bank Name :</p>
+                      <p class="bank-text"> Bank Name </p>
                     </div>
                     <div class="col-md-6">
                       <p class="bank-icon "> {{customerData.bankName}}</p>
@@ -364,7 +296,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="col-md-6">
-                      <p class="bank-text"> Account Holder Name :</p>
+                      <p class="bank-text"> Account Holder Name </p>
                     </div>
                     <div class="col-md-6">
                       <p class="bank-icon "> {{customerData.accountHolderName}}</p>
@@ -374,7 +306,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="col-md-6">
-                      <p class="bank-text"> Account Number :</p>
+                      <p class="bank-text"> Account Number </p>
                     </div>
                     <div class="col-md-6">
                       <p class="bank-icon "> {{customerData.accountNumber}}</p>
@@ -384,7 +316,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="col-md-6">
-                      <p class="bank-text"> BVN Code :</p>
+                      <p class="bank-text"> BVN Code </p>
                     </div>
                     <div class="col-md-6">
                       <p class="bank-icon "> {{customerData.ifscCode}}</p>
@@ -395,142 +327,55 @@
             </div>
           </div>
         </div>
-
       </section>
       <!-- bank-details -->
       <section id="content2" class="tab-content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 col-xs-12 user-bank-details" *ngIf=accounDetails>
-              <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
+              <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)" autocomplete="off">
                 <div class="col-md-10 col-md-offset-2 form-left">
                   <div class="row margin-balance-details">
 
                     <div class="col-md-5 balance-details">
-                      <p class="bank-text"> Accoun Holder Name :</p>
+                      <p class="bank-text"> Account Holder Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}" required>
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}"
+                        required>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
                     <div class="col-md-5 balance-details">
-                      <p class="bank-text"> Bank Name :</p>
+                      <p class="bank-text"> Bank Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #name="ngModel" [ngModelOptions]="{standalone: true}" required>
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #name="ngModel" [ngModelOptions]="{standalone: true}"
+                        required>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
                     <div class="col-md-5 balance-details">
-                      <p class="bank-text"> Account No :</p>
+                      <p class="bank-text"> Account No</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}" required>
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}"
+                        required>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
                     <div class="col-md-5 balance-details">
-                      <p class="bank-text">BVN Code :</p>
+                      <p class="bank-text">BVN Code</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}" required>
-
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}"
+                        required>
                     </div>
                   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <div class="row margin-balance-details">
-                    <!-- <div class="col-md-12" *ngIf=shortIfo>
-                      <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
-                      <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
-                      <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
-                      <br>
-                    </div> -->
-                    <div class="row">
-                      <!-- <div class="col-md-12">
-                      <div *ngIf=saveButton>
-                        <button type="submit" class="btn btn-successaddnew">Save</button>
-                      </div>
-                    </div> -->
-                    </div>
-                    <!-- <div class="col-md-12">
-                      <div *ngIf=saveButton>
-                        <button type="submit" class="btn btn-successaddnew">Save</button>
-                      </div>
-                    </div> -->
-                  </div>
-
                 </div>
-
-
-
-
-                <!-- <div class="email-part">
-                    <div class="email-img ">
-                      <p class="bank-text"> Accoun Holder Name :</p>
-                    </div>
-                    <div class="email-text margin-account-holder-name">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-
-
-                  
-
-
-
-
-
-              
-                  <div class="email-part">
-                    <div class="email-img">
-                      <p class="bank-text"> Account No :</p>
-                    </div>
-                    <div class="email-text margin-account-numbaer">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-               
-                  <div class="email-part">
-                    <div class="email-img">
-                      <p class="bank-text">IFSC Code :</p>
-                      <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
-                    </div>
-                    <div class="email-text margin-accountIfsc">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-                  <div class="col-md-12" *ngIf=shortIfo>
-                    <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
-                    <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
-                    <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
-                    <br>
-                  </div>
-                <div class="col-md-12">
-                  <div *ngIf=saveButton>
-                    <button type="submit" class="btn btn-successaddnew">Save</button>
-                  </div>
-                </div> -->
                 <div class="row">
                   <div class="col-md-12">
-
                     <button type="submit" class="btn btn-successaddnew" *ngIf=saveButton>Save</button>
-
                   </div>
                 </div>
               </form>
@@ -563,28 +408,20 @@
                 </div>
                 <div class="kyc-input">
                   <div class="id-input-details clearfix">
-                    <!--<div class="form-group">
-                                 <input class="from-newtext" type="file" #fileInput placeholder="Select file..." id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
-                                 <!-- (change)="readUrl($event)"> -->
-                    <!--</div>-->
                     <div class="browse-button">
                       <label class="btn-bs-file btn btn-lg btn-success">
                                  Browse
                                  <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
-                    </div>
+                          </div>
                     <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
-                    <!--<button (click)="uploadKyc()">
-                          <span id="fileselector">
-                               <label class="btn btn-default" for="upload-file-selector">
-                               <i class="fa_icon icon-upload-alt margin-correction"></i>UPLOAD DOCUMENT
-                               </label>
-                             </span>
-                       </button>-->
-                  </div>
+                   </div>
                 </div>
+                 <div class="col-md-12 text-center">
+                  <p>Only jpg,jpeg,png</p>
               </div>
-            </div>
+              </div>
+             </div>
           </div>
         </div>
       </section>
@@ -592,7 +429,6 @@
   </div>
 </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
-
 <div bsModal #2FaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">

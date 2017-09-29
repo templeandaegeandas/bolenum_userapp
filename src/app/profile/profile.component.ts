@@ -4,7 +4,6 @@ import { UserProfile } from './entity/user.profile.entity';
 import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
 import { IMyDpOptions } from 'mydatepicker';
-
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -14,16 +13,10 @@ import { environment } from '../../environments/environment';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  public isCustomerView:boolean = true;
+  public isCustomerView: boolean = true;
   public shortIfo: boolean = false;
-
   public getOurBankDetails: any;
-  // public isverifyed:boolean = false;
-  // public isBankFound:boolean = false;
-
-
   public bankCustomerDetails: any;
-
   public saveButton: boolean = false;
   public addNewButton: boolean = false;
   public accounDetails: boolean = false;
@@ -57,14 +50,11 @@ export class ProfileComponent implements OnInit {
   countryCode: any;
   twoFa: any;
   lgModal: any;
-
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
-
   ngOnInit() {
     console.log(environment)
     this.getLoggedInUserDetails();
     this.getAllCountries();
-    // this.locate();
   }
 
   chenge2Fa(event) {
@@ -245,30 +235,17 @@ export class ProfileComponent implements OnInit {
     }
   }
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
     dateFormat: 'yyyy/mmm/dd',
     width: '200px',
     editableDateField: false,
-    // disableSince: {year: new Date().getFullYear(), month: new Date().getMonth()+2, day: new Date().getDay()}
-
   };
-
-  // Initialized to specific date (09.10.2018).
-  // public model: any = new Date();
-
-
   addNew() {
-     this.isCustomerView = false;
+    this.isCustomerView = false;
     console.log(".........................")
     this.accounDetails = true;
     this.saveButton = true;
-
     this.addNewButton = false;
-
-
   }
-
-
   locate(data) {
     console.log("ifsc code >>>", data);
     this.profileService.locate(data).subscribe(success => {
@@ -281,47 +258,33 @@ export class ProfileComponent implements OnInit {
       this.bankDetails.setCity(success.data.CITY);
       this.bankDetails.setDistrict(success.data.DISTRICT);
       this.shortIfo = !this.shortIfo;
-
-
-
-
     }, errorData => {
-
-
     })
   }
 
   customerDetails(customerDetaisForm) {
-     this.isCustomerView = true;
-      this.accounDetails = false;
-
-      if (this.getOurBankDetails.length === 2) {
-        this.addNewButton = false;
-      
-        return;
-      }
-      else {
-        this.addNewButton = true;
-      }
-     
-   
+    this.isCustomerView = true;
+    this.accounDetails = false;
+    if (this.getOurBankDetails.length === 2) {
+      this.addNewButton = false;
+      return;
+    }
+    else {
+      this.addNewButton = true;
+    }
     this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
-     
       this.getUserBankDetails();
     }, errorData => {
-
     })
     console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
   }
 
   getUserBankDetails() {
-
     this.profileService.getUserBankDetails().subscribe(successData => {
       console.log("data>>>>>>>>>>>>>>>>>>>>>>>>", successData);
       this.getOurBankDetails = successData.data;
       console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
       let customerDta = this.getOurBankDetails;
-
       if (customerDta.length === 2) {
         this.addNewButton = false;
         console.log("array data", customerDta.length);
@@ -329,9 +292,9 @@ export class ProfileComponent implements OnInit {
       }
       else {
         this.addNewButton = true;
+        this.accounDetails = false;
+        this.isCustomerView = true;
       }
-
-
     }, errorData => {
 
     })
@@ -376,6 +339,5 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
       });
     }
-
   }
 }
