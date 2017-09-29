@@ -136,22 +136,41 @@ label {
   transform: scale(1.1,1.1)
 }
 
-.tab_container [id^="tab"]:checked + label:active .img-tab {
+.img-tab {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/profile.png")
+  
+}
+.img-tab1 {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/bank_details_uf.png")
+  
+}
+.img-tab2 {
+ background-repeat: no-repeat;
+   background-position: center; 
+  background-image: url("/assets/images/KYC_uf.png")
+  
+}
+
+.tab_container [id^="tab"]:checked + label .img-tab {
  background-repeat: no-repeat;
    background-position: center; 
   background-image: url("/assets/images/profile (1).png");
   
 }
-.tab_container [id^="tab"]:checked + label:active .img-tab1 {
+.tab_container [id^="tab"]:checked + label .img-tab1 {
  background-repeat: no-repeat;
    background-position: center; 
   background-image: url("/assets/images/bank_details_f.png");
   
 }
-.tab_container [id^="tab"]:checked + label:active .img-tab2 {
+.tab_container [id^="tab"]:checked + label .img-tab2 {
  background-repeat: no-repeat;
    background-position: center; 
-  background-image: url("/assets/images/bank_details_f.png");
+  background-image: url("/assets/images/KYC_f.png");
   
 }
 
