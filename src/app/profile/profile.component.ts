@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public isCustomerView:boolean = true;
   public shortIfo: boolean = false;
 
   public getOurBankDetails: any;
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
   public bankCustomerDetails: any;
 
   public saveButton: boolean = false;
-  public addNewButton: boolean = true;
+  public addNewButton: boolean = false;
   public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
   @ViewChild('profileImage') profileImage;
@@ -55,6 +56,8 @@ export class ProfileComponent implements OnInit {
   stateError = false;
   countryCode: any;
   twoFa: any;
+  lgModal: any;
+
   constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -255,6 +258,7 @@ export class ProfileComponent implements OnInit {
 
 
   addNew() {
+     this.isCustomerView = false;
     console.log(".........................")
     this.accounDetails = true;
     this.saveButton = true;
@@ -288,9 +292,22 @@ export class ProfileComponent implements OnInit {
   }
 
   customerDetails(customerDetaisForm) {
-    this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
+     this.isCustomerView = true;
       this.accounDetails = false;
 
+      if (this.getOurBankDetails.length === 2) {
+        this.addNewButton = false;
+      
+        return;
+      }
+      else {
+        this.addNewButton = true;
+      }
+     
+   
+    this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
+     
+      this.getUserBankDetails();
     }, errorData => {
 
     })
@@ -305,9 +322,10 @@ export class ProfileComponent implements OnInit {
       console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
       let customerDta = this.getOurBankDetails;
 
-      if (customerDta.length <= 2) {
-        //  this.addNewButton = false;
+      if (customerDta.length === 2) {
+        this.addNewButton = false;
         console.log("array data", customerDta.length);
+        return;
       }
       else {
         this.addNewButton = true;
@@ -344,10 +362,10 @@ export class ProfileComponent implements OnInit {
   }
 
   onChange(event) {
-   let files = event.srcElement.files;
-   if(files.length>0) {
-   let fileBrowser = this.profileImage.nativeElement;
-    const formData = new FormData();
+    let files = event.srcElement.files;
+    if (files.length > 0) {
+      let fileBrowser = this.profileImage.nativeElement;
+      const formData = new FormData();
       formData.append("file", fileBrowser.files[0]);
       this.profileService.uploadProfileImage(formData).subscribe(success => {
         console.log(success);
@@ -358,6 +376,6 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
       });
     }
-    
-   }
+
+  }
 }

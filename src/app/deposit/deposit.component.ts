@@ -9,8 +9,10 @@ import { ToastrService } from 'toastr-ng2';
    providers: [DepositService]
 })
 export class DepositComponent implements OnInit {
-   public shortIfo: boolean = false;
-   address="";
+  public errorCoin:boolean;
+  public qrCode:boolean=true;
+  public shortIfo: boolean = false;
+  address="";
   public coinDataValue:any;
   public setItemValue:any;
   public setItem:any=[
@@ -31,10 +33,12 @@ export class DepositComponent implements OnInit {
     this.depositService.getCoin(data).subscribe( successData => {
       let data = successData.data;
       this.address = data.data.address;
+       this.qrCode = true;
       
     },errorData => {
-
-      this.toastrService.error("Address for this coin is not available!", 'Error!')  
+      this.qrCode = false;
+      // this.toastrService.error("Address for this coin is not available!", 'Error!');
+      this.errorCoin =true;  
 
     })
     

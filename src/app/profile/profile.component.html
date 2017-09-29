@@ -1,15 +1,15 @@
-  <div class="container-fluid">
+<div class="container-fluid">
   <div class="row">
     <div class="top-header">
       <div class="top-profile">
         <img src="assets/images/header (1).png" class="profile-img">
-      <div>
-      </div>
+        <div>
+        </div>
       </div>
       <div class="header-text">
         <img [src]="profilePic" class="porf-pic" height="140" width="140">
-        <input class="from-newtext" type="file" #profileImage placeholder="Select image..."  (change)="onChange($event)" id="user">
-        
+        <input class="from-newtext" type="file" #profileImage placeholder="Select image..." (change)="onChange($event)" id="user">
+
         <!--<button (click)="uploadProfilePic()">
         <span id="fileselector">
             <label class="btn btn-default" for="upload-file-selector">
@@ -129,10 +129,10 @@
                       <p class="text-icon">{{userProfile.state}}</p>
                   </div>
                 </div>
-                <!--<div class="clearfix"></div>-->
-               <div class="profile-button">
+                <div class="clearfix"></div>
+                <div class="profile-button">
                   <button type="button" class="btn btn-successsave" (click)=editDetails()>Edit Details</button>
-                   </div>
+                </div>
               </div>
             </div>
             <form #editForm=ngForm (submit)="saveDetails(editForm)" *ngIf="isDetailsEdit">
@@ -200,14 +200,15 @@
                     <div class="email-text">
                       <p class="icon-name">
                         Country<br>
-                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
+                        <select class="from-newtext" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel"
+                          id="usr">
                              <option [disabled]="true" [selected]="true">Choose Country</option>
                                <option [ngValue]="country.name" *ngFor="let country of countries">{{country.name}}</option>
                                </select>
-                              <span class="text-danger" *ngIf="countryError">Please choose country</span>
-                         </div>
+                        <span class="text-danger" *ngIf="countryError">Please choose country</span>
                     </div>
-                  <!--<div class="clearfix"></div>-->
+                  </div>
+                  <div class="clearfix"></div>
                   <div class="email-part">
                     <div class="email-img">
                       <img src="assets/images/location_black.png" class="img-profile">
@@ -215,12 +216,12 @@
                     <div class="email-text">
                       <p class="icon-name">
                         State<br>
-                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel"  (ngModelChange)="changeState($event)" id="usr">
+                        <select class="from-newtext" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
                               <option [disabled]="true" [selected]="true">Choose State</option>
                               <option [ngValue]="state.stateName" *ngFor="let state of states">{{state.stateName}}</option>
                                </select>
-                          <span class="text-danger" *ngIf="stateError">Please choose state</span>
-                       </div>
+                        <span class="text-danger" *ngIf="stateError">Please choose state</span>
+                    </div>
                   </div>
                   <div class="profile-button">
                     <button type="submit" class="btn btn-successsave">Save Details</button>
@@ -241,7 +242,7 @@
                              <p class="text3">Please upload an image of yourself holding your photo ID and scan of photo IDhttp://poloniex.com/images/ID-upload-sample.png</p>
                            </div>
                            </div>-->
-                     <hr>
+                <hr>
                 <div class="row">
                   <div class="col-md-6">
                     <span class="font-1">Mobile 2 Factor Authentication</span>
@@ -344,106 +345,135 @@
       </section>
       <!--bank detail-->
       <section id="content2" class="tab-content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 col-xs-12" *ngFor="let customerData of getOurBankDetails">
-              <div class="bank-backgrnd">
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text"> Account Holder Name :</p>
-                  </div>
-                  <div class="email-text customer-data email-text-customer-data bank-icon">
-                       <p class="bank-icon "> {{customerData.accountHolderName}}<br>
-                  
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text"> Account Number :</p>
-                  </div>
-                  <div class="email-text customer-data">
-                    <p class="bank-icon ifsc-code-field margin-balance">{{customerData.accountNumber}}<br>
+        <div class="row" *ngIf="isCustomerView">
+          <div class="col-md-12">
+            <div class="col-md-6" *ngFor="let customerData of getOurBankDetails">
+              <div class="bank-backgrnd bank-details-padding">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <p class="bank-text"> Bank Name :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="bank-icon "> {{customerData.bankName}}</p>
+                    </div>
                   </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="email-part">
-                  <div class="email-img">
-                    <p class="bank-text">IFSC Code :</p>
-                  </div>
-                  <div class="email-text customer-data">
-                    <p class="bank-icon ifsc-code-field">{{customerData.ifscCode}}<br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <p class="bank-text"> Account Holder Name :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="bank-icon "> {{customerData.accountHolderName}}</p>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <br>Bank Address:{{customerData.address}}
-                  <br>Bank Branch:{{customerData.branch}}
-                  <br>State:{{customerData.state}}  
-                  <br>District:{{customerData.district}}
-                  <br>City:{{customerData.city}}
-                  <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <p class="bank-text"> Account Number :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="bank-icon "> {{customerData.accountNumber}}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <p class="bank-text"> BVN Code :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="bank-icon "> {{customerData.ifscCode}}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </section>
       <!-- bank-details -->
       <section id="content2" class="tab-content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12 col-xs-12" *ngIf=accounDetails>
+            <div class="col-md-12 col-xs-12 user-bank-details" *ngIf=accounDetails>
               <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)">
-                <div class="col-md-11 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+                <div class="col-md-10 col-md-offset-2 form-left">
                   <div class="row margin-balance-details">
-                    <div class="col-md-4 balance-details">
+
+                    <div class="col-md-5 balance-details">
                       <p class="bank-text"> Accoun Holder Name :</p>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}">
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}" required>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
-                    <div class="col-md-4 balance-details">
+                    <div class="col-md-5 balance-details">
+                      <p class="bank-text"> Bank Name :</p>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #name="ngModel" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                  </div>
+                  <div class="row margin-balance-details">
+                    <div class="col-md-5 balance-details">
                       <p class="bank-text"> Account No :</p>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}">
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}" required>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
-                    <div class="col-md-4 balance-details">
-                      <p class="bank-text">IFSC Code :</p>
-                        <span (click)="locate(bankDetails.ifscCode)" class="locate">Locate</span>
-                    
+                    <div class="col-md-5 balance-details">
+                      <p class="bank-text">BVN Code :</p>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}">
-                    
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}" required>
+
                     </div>
                   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   <div class="row margin-balance-details">
-                    <div class="col-md-12" *ngIf=shortIfo>
+                    <!-- <div class="col-md-12" *ngIf=shortIfo>
                       <br>Bank Name:{{bankCustomerDetails.data.BANK}} &nbsp; &nbsp;City:{{bankCustomerDetails.data.CITY}}
                       <br>Bank Address:{{bankCustomerDetails.data.ADDRESS}}&nbsp; &nbsp;District:{{bankCustomerDetails.data.DISTRICT}}
                       <br>Bank Branch:{{bankCustomerDetails.data.BRANCH}}&nbsp;&nbsp;State:{{bankCustomerDetails.data.STATE}}
                       <br>
-                    </div>
+                    </div> -->
                     <div class="row">
+                      <!-- <div class="col-md-12">
+                      <div *ngIf=saveButton>
+                        <button type="submit" class="btn btn-successaddnew">Save</button>
+                      </div>
+                    </div> -->
+                    </div>
                     <!-- <div class="col-md-12">
                       <div *ngIf=saveButton>
                         <button type="submit" class="btn btn-successaddnew">Save</button>
                       </div>
                     </div> -->
                   </div>
-                     <div class="col-md-12">
-                      <div *ngIf=saveButton>
-                        <button type="submit" class="btn btn-successaddnew">Save</button>
-                      </div>
-                    </div>
-                  </div>
-                 
+
                 </div>
 
 
@@ -495,6 +525,13 @@
                     <button type="submit" class="btn btn-successaddnew">Save</button>
                   </div>
                 </div> -->
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <button type="submit" class="btn btn-successaddnew" *ngIf=saveButton>Save</button>
+
+                  </div>
+                </div>
               </form>
             </div>
             <div *ngIf=addNewButton>
