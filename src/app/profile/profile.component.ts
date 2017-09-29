@@ -343,4 +343,22 @@ export class ProfileComponent implements OnInit {
   changeState(event) {
     this.stateError = false;
   }
+
+  onChange(event) {
+   let files = event.srcElement.files;
+   if(files.length>0) {
+   let fileBrowser = this.profileImage.nativeElement;
+    const formData = new FormData();
+      formData.append("file", fileBrowser.files[0]);
+      this.profileService.uploadProfileImage(formData).subscribe(success => {
+        console.log(success);
+        this.ngOnInit();
+        this.loading = false;
+      }, error => {
+        console.log(error);
+        this.loading = false;
+      });
+    }
+    
+   }
 }
