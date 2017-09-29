@@ -305,13 +305,14 @@ export class ProfileComponent implements OnInit {
       console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
       let customerDta = this.getOurBankDetails;
 
-      if (customerDta.length <= 2) {
-        //  this.addNewButton = false;
+      if (customerDta.length === 2) {
+         this.addNewButton = true;
         console.log("array data", customerDta.length);
+        return;
       }
-      else {
-        this.addNewButton = true;
-      }
+      // else {
+      //   this.addNewButton = true;
+      // }
 
 
     }, errorData => {
