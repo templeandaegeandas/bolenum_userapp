@@ -42,7 +42,24 @@ select.right-dropddown {
     border: 1px solid #DB2828;
     bottom: 7px;
 }
+button.btn.btn-primary.dropdown-toggle {
+    background:#DB2828;
+    padding: 0px;
+    border: none;
+    outline: none;
+}
 
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    /* margin: -14px; */
+    margin-right: 34px;
+    margin-bottom: -10px;
+    padding-bottom: -14px;
+    background: none;
+}
 @media screen and (min-width: 320px) and (max-width: 767px){
   .transaction-history {
     background-color: #DB2828;

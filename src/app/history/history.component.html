@@ -3,21 +3,25 @@
     <div class="col-md-10 col-md-offset-1 padding-to-all padding-buy-button">
       <div class="transaction-history">
         <span>Transaction History</span>
-        <div class="drop-down">
-          <select class="right-dropddown ">
-       <option value="buyEth">SELL ETH</option>
-       <option value="BUYETH">BUY ETH</option>
-       <option value="BUYETH">BUY ETH</option>
-       <option value="BUYETH">BUY ETH</option>
-      </select> 
-      <img src="assets/images/filter.png" class="text-right"> 
-      </div>
-
+         <div class="btn-group" dropdown>
+          <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+       <img src="assets/images/filter.png" class="text-right"> <span class=""></span>
+       </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="">Buy order</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="">Sell order</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="">Both order</a>
+            </li>
+          </ul>
+        </div>
         <div class="date-picker">
           <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
         </div>
       </div>
+      
       <!-- table 1 -->
+      <div class="table-responsive">
+
       <table class="table table-striped table-color">
         <thead>
           <tr>
@@ -97,5 +101,6 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>

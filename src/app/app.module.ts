@@ -41,6 +41,7 @@ import { TeamComponent } from './team/team.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { HistoryComponent } from './history/history.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -93,6 +94,7 @@ export function highchartsFactory() {
     LoadingModule,
     QRCodeModule,
     MyDatePickerModule,
+    BsDropdownModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot()
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
