@@ -31,7 +31,16 @@ export const APP_ROUTES: Routes = [
   { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'forgot', component: ForgotComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'profile', component: ProfileComponent },
-  { path: 'wallet', component: WalletComponent },
+  { path: 'wallet', component: WalletComponent,
+    
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'withdraw' },
+      { path: 'deposit', component: DepositComponent },
+      { path: 'withdraw', component: WithdrawComponent },
+      { path: 'history', component: HistoryComponent }
+    ]
+
+ },
   { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'deposit', component: DepositComponent },
   { path: 'withdraw', component: WithdrawComponent },

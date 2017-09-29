@@ -1,99 +1,35 @@
-<div class="container-fluid">
-   <div class="row">
-      <div class="top-profile">
-        <img src="assets/images/header (1).png" class="profile-img">
-        <div>
-        </div>
-      </div>
-      <img src="assets/images/wallet_icon.png" class="wallet-icon">
-      <div class="tab_container">
-         <input id="tab1" type="radio" name="tabs" checked>
-         <label for="tab1">
-         <img src="assets/images/bitcoin_withdraw.png"><br>
-         <span>Withdrawal</span></label>
-         <input id="tab2" type="radio" name="tabs">
-         <label for="tab2"> <img src="assets/images/bitcoin_withdraw_ufpng.png"><br>
-         <span>Deposit</span></label>
-         <input id="tab3" type="radio" name="tabs">
-         <label for="tab3"><img src="assets/images/history_uf.png"><br>
-         <span>History</span></label>
-        
-         <!--section start-->
-         <section id="content1" class="tab-content">
-            <!--start withdwraw-->
-            
- <div class="container">
-  <div class="row">
-    <div class="col-md-12 withdraw-dropdown">
-        <select class="center-dropddown">
-            <option value="buyEth">Bitcoin </option>
-            <option value="BUYETH">Etherum</option>
-            <option value="BUYETH">Boleno</option>
-            <option value="BUYETH">BUY ETH</option>
-          </select>
-      </div>
-    <div class="col-md-10 col-md-offset-1 main-div-margin">
-      <div class=" text-center text-image-div">
-        <div class=" ">
-          <span>
-         <img src="./assets/images/bitcoin.png" width="46" height="46">
-       </span>
-        </div>
-        <div class="">
-          <span class="balance-text">
-      Available Balance 0.2156   
-      </span>
-        </div>
-      </div>
-      <div class="col-md-8 col-md-offset-2 top-margin-field">
-        <div class="col-md-4 col-md-offset-1 label-text-color">
-          <!-- <span>BTC Wallet</span> -->
-          <label>BTC Wallet</label>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <input type="text" class="form-control" id="usr">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8 col-md-offset-2">
-
-        <div class="col-md-4 col-md-offset-1 label-text-color">
-          <!-- <span>Witdraw Ammount</span> -->
-          <label>Witdraw Ammount</label>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <input type="text" class="form-control" id="usr">
-          </div>
-          <p><span class="red-text-color">Minimum Withdrawal Ammount:</span> 0000.5</p>
-        </div>
-      </div>
-      <div class="col-md-7 col-md-offset-5 button-padding">
-        <button class="submit-button">Submit</button>
-      </div>
+<div class="container wallet-contain ">
+  <div class="row wallet-background-img">
+    <div class="col-md-12 ">
+      <img src="assets/images/wallet_icon.png" class="wallet-image">
     </div>
   </div>
 </div>
-
-
-          </section>
-         <section id="content2" class="tab-content">
-            <h3>Headline 2</h3>
-            <p>Tab 2 content.</p>
-         </section>
-         <section id="content3" class="tab-content">
-            <h3>Headline 3</h3>
-            <p>Tab 3 content</p>
-         </section>
-         <section id="content4" class="tab-content">
-            <h3>Headline 4</h3>
-            <p>tab 4 Content</p>
-         </section>
-         <section id="content5" class="tab-content">
-            <h3>Headline 5</h3>
-            <p>Tab 5 Content.</p>
-         </section>
+<div class="container background">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <div class="tab-wallet" routerLinkActive="active" [routerLink]="['withdraw']">
+          <div class="img1"><br><br>&nbsp;
+          <p class="wallet text-center">Withdrawl</p>
+          </div>
+        </div>
       </div>
-   </div>
+      <div class="col-md-4">
+        <div class="tab-wallet" routerLinkActive="active" [routerLink]="['deposit']">
+          <div class="img2"><br><br>&nbsp;
+            <p class="wallet text-center">Deposite</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="tab-wallet" routerLinkActive="active" [routerLink]="['history']">
+          <div class="img3"><br><br>&nbsp;
+            <p class="wallet text-center">History</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
