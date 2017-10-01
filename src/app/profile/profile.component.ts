@@ -5,6 +5,8 @@ import { BankDetails } from './entity/bankDetails.profile.entity';
 import { ProfileService } from './profile.service';
 import { IMyDpOptions } from 'mydatepicker';
 import { environment } from '../../environments/environment';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +24,9 @@ export class ProfileComponent implements OnInit {
   public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
   @ViewChild('profileImage') profileImage;
+  @ViewChild('addPopup') public addPopup: ModalDirective;
+  @ViewChild('profilePicCropper') public profilePicCropper: ModalDirective;
+  @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
   url: any = {
@@ -50,18 +55,95 @@ export class ProfileComponent implements OnInit {
   countryCode: any;
   twoFa: any;
   lgModal: any;
-  constructor(private profileService: ProfileService, private toastrService: ToastrService) { }
+  twoFactorAuthType: String = 'NONE';
+  qrCodeFileName: String;
+  secret: any;
+  isMobileVerified: any;
+  data: any;
+  cropperSettings: CropperSettings;
+  croppedWidth: number;
+  croppedHeight: number;
+  constructor(private profileService: ProfileService, private toastrService: ToastrService) {
+    this.cropperSettings = new CropperSettings();
+    this.cropperSettings.width = 200;
+    this.cropperSettings.height = 200;
+    this.cropperSettings.noFileInput = true;
+
+    this.cropperSettings.croppedWidth = 200;
+    this.cropperSettings.croppedHeight = 200;
+
+    this.cropperSettings.canvasWidth = 500;
+    this.cropperSettings.canvasHeight = 300;
+
+    this.cropperSettings.minWidth = 10;
+    this.cropperSettings.minHeight = 10;
+
+    this.cropperSettings.rounded = false;
+    this.cropperSettings.keepAspect = false;
+
+    this.cropperSettings.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
+    this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
+
+    this.data = {};
+  }
   ngOnInit() {
-    console.log(environment)
     this.getLoggedInUserDetails();
-    this.getAllCountries();
+  }
+
+  addPopupClose() {
+    this.ngOnInit();
+    this.isMobileEdit = false;
+    this.isOtpEdit = false;
+    this.twoFactorAuthType = 'NONE';
+    this.addPopup.hide();
   }
 
   chenge2Fa(event) {
+    if (event) {
+      this.addPopup.show();
+      if (this.qrCodeFileName == null) {
+        this.profileService.generate2faQrCode().subscribe(success => {
+          this.qrCodeFileName = environment.googleQrCodeUrl + success.data.fileName;
+        }, error => {
+          console.log(error)
+        })
+      }
+    }
+    else {
+      this.profileService.remove2Fa().subscribe(success => {
+        this.toastrService.success(success.message, "Success!");
+      })
+    }
+  }
 
+  openTwoFaVerification(data) {
+    this.twoFactorAuthType = data;
+    if (data == 'MOBILE' && !this.isMobileVerified) this.isMobileEdit = true;
+  }
+
+  set2faToMobile() {
+    this.profileService.set2faToMobile().subscribe(success => {
+      this.addPopup.hide();
+      this.twoFactorAuthType = 'NONE';
+      this.toastrService.success("Two way authentication has been set to Mobile", "Success!");
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!")
+    })
+  }
+
+  verifySecret(form) {
+    if (form.invalid) return;
+    this.profileService.verify2faGoogleAuthKey(this.secret).subscribe(success => {
+      this.addPopup.hide();
+      this.twoFactorAuthType = 'NONE';
+      this.toastrService.success("Two way authentication has been set to Google authenticator", "Success!");
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!")
+    })
   }
 
   editDetails() {
+    this.getAllCountries();
     this.isDetailsEdit = true;
   }
 
@@ -126,8 +208,10 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      let fileExtension = event.target.files[0].type;
-      if (fileExtension == "image/png" || fileExtension == "image/jpeg") {
+      let fileName = event.target.files[0].name;
+      let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension == "png" || extension == "jpeg" || extension == "jpg") {
         this.pdf = false;
         var reader = new FileReader();
         reader.onload = (event) => {
@@ -136,7 +220,7 @@ export class ProfileComponent implements OnInit {
         }
         reader.readAsDataURL(event.target.files[0]);
       }
-      else if (fileExtension == "application/pdf") {
+      else if (extension == "pdf") {
         this.pdf = true;
       }
       else {
@@ -150,9 +234,10 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     let fileBrowser = this.fileInput.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
-      let fileExtension = fileBrowser.files[0].type;
-      if (fileExtension == "image/png" || fileExtension == "image/jpeg" || fileExtension == "application/pdf") {
-        console.log("123456")
+      let fileName = fileBrowser.files[0].name;
+      let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "pdf") {
         const formData = new FormData();
         formData.append("file", fileBrowser.files[0]);
         this.profileService.upload(formData).subscribe(success => {
@@ -192,7 +277,16 @@ export class ProfileComponent implements OnInit {
       if (success.data.lastName != null) {
         localStorage.setItem("lName", success.data.lastName);
       }
+      if (success.data.google2FaAuthKey != null) {
+        this.qrCodeFileName = environment.googleQrCodeUrl + success.data.userId + ".png";
+      }
+      if (success.data.twoFactorAuthOption != null && success.data.twoFactorAuthOption != 'NONE') {
+        this.twoFa = true;
+      } else {
+        this.twoFa = false;
+      }
       this.mobileNumber = success.data.mobileNumber;
+      this.isMobileVerified = success.data.isMobileVerified;
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
@@ -202,10 +296,11 @@ export class ProfileComponent implements OnInit {
         this.state = success.data.state;
         setTimeout(() => {
           this.getStatesByCountryId(this.country);
-        }, 1000);
+        }, 500);
       }
 
       if (success.data.profileImage != null) {
+        localStorage.setItem("profilePic", success.data.profileImage + "?decache=" + Math.random());
         this.profilePic = environment.profilePicUrl + success.data.profileImage + "?decache=" + Math.random();
       }
     }, error => {
@@ -213,32 +308,53 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  onChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      var image: any = new Image();
+      var file: File = event.target.files[0];
+      let fileName = event.target.files[0].name;
+      let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension != "png" && extension != "jpeg" && extension != "jpg") {
+        this.toastrService.error("Please choose a valid image with extension jpg, jpeg, png!", "Error!");
+        return;
+      }
+      this.profilePicCropper.show();
+      var myReader: FileReader = new FileReader();
+      var that = this;
+      myReader.onloadend = function(loadEvent: any) {
+        image.src = loadEvent.target.result;
+        that.cropper.setImage(image);
+
+      };
+      myReader.readAsDataURL(file);
+    }
+  }
+
+  cropped(bounds: Bounds) {
+    this.croppedHeight = bounds.bottom - bounds.top;
+    this.croppedWidth = bounds.right - bounds.left;
+  }
 
   uploadProfilePic() {
     this.loading = true;
-    let fileBrowser = this.profileImage.nativeElement;
-    if (fileBrowser.files && fileBrowser.files[0]) {
-      const formData = new FormData();
-      formData.append("file", fileBrowser.files[0]);
-      this.profileService.uploadProfileImage(formData).subscribe(success => {
-        console.log(success);
-        this.ngOnInit();
-        this.loading = false;
-      }, error => {
-        console.log(error);
-        this.loading = false;
-      });
+    if (this.data.image == null) {
+      this.toastrService.error("Please choose a valid file!", "Error!")
+      return;
     }
-    else {
-      this.toastrService.error("Please choose file for uploading!", 'Error!')
+    const formData = new FormData();
+    formData.append("profilePic", this.data.image);
+    this.profileService.uploadProfileImage(formData).subscribe(success => {
+      console.log(success);
+      this.ngOnInit();
+      this.profilePicCropper.hide();
       this.loading = false;
-    }
+    }, error => {
+      console.log(error);
+      this.loading = false;
+    });
   }
-  public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy/mmm/dd',
-    width: '200px',
-    editableDateField: false,
-  };
+
   addNew() {
     this.isCustomerView = false;
     console.log(".........................")
@@ -324,20 +440,9 @@ export class ProfileComponent implements OnInit {
     this.stateError = false;
   }
 
-  onChange(event) {
-    let files = event.srcElement.files;
-    if (files.length > 0) {
-      let fileBrowser = this.profileImage.nativeElement;
-      const formData = new FormData();
-      formData.append("file", fileBrowser.files[0]);
-      this.profileService.uploadProfileImage(formData).subscribe(success => {
-        console.log(success);
-        this.ngOnInit();
-        this.loading = false;
-      }, error => {
-        console.log(error);
-        this.loading = false;
-      });
-    }
+  public myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'yyyy/mmm/dd',
+    width: '200px',
+    editableDateField: false,
   }
 }

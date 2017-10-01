@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   ip: String;
   deviceInfo: any;
+  is2FaOn: any = false;
+  otp: any;
   constructor(private route: ActivatedRoute,
     private loginService: LoginService,
     private toastrService: ToastrService,
@@ -44,6 +46,27 @@ export class LoginComponent implements OnInit {
     this.login.setClientOsName(this.deviceInfo.os);
     this.login.setRole('ROLE_USER');
     this.loginService.logIn(this.login).subscribe(success => {
+      if(success.status==202) {
+        this.is2FaOn = true;
+        this.loading = false;
+        return;
+      }
+      localStorage.setItem("token", success.data.token);
+      localStorage.setItem("fName", success.data.fName);
+      if(success.data.lName!=null) {
+        localStorage.setItem("lName", success.data.lName);
+      }
+      this.router.navigate([this.returnUrl]);
+      this.loading = false;
+    }, error => {
+      this.loading = false;
+      this.toastrService.error(error.json().message, 'Error!');
+    })
+  }
+
+  verify2Fa(form) {
+    if(form.invalid) return;
+    this.loginService.verify2FaOtp(this.otp, this.login).subscribe(success => {
       localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);
       if(success.data.lName!=null) {
