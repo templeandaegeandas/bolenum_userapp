@@ -55,5 +55,10 @@
     margin-top: 30px;
 }
 
+select option{
+    margin: 40px;
+    background: #fff;
+    color: #000;
+}
 
 

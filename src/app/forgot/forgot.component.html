@@ -1,34 +1,41 @@
 <div class="container">
-<div class="login-content">
-   <div class="row">
+  <div class="login-content">
+    <div class="row">
       <div class="col-md-6">
 
-         <img src="assets/images/login-img.png"class="img-login">
+        <img src="assets/images/login-img.png" class="img-login">
       </div>
       <div class="col-md-6">
-          <div class="forget-pass">
-         <div class="text-center">
+        <div class="forget-pass">
+          <div class="text-center">
             <img src="assets/images/bolenum.png" class="img-header">
-            <h4 class="text-center"> Forgot Your Password  </h4>
+            <h4 class="text-center"> Forgot Your Password </h4>
             <p class="text-center">Enter your email address below and well send you instruction on how to change your password.</p>
-         </div>
-         <form  #forgetpassForm="ngForm" (submit)=forgetPassword(forgetpassForm)>
-              <div class="input-groups">
-               <span class="clearfix input-icons">
+          </div>
+          <form #forgetpassForm="ngForm" (submit)=forgetPassword(forgetpassForm)>
+              <div class="col-md-12">
+            <div class="input-groups">
+              <span class="clearfix input-icons">
                   <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Enter your email" required>
                   <img src="assets/images/Email.png" class="img-responsive"/>
                </span>
-               </div>
-               <span *ngIf="emailId.invalid && forgetpassForm.submitted">
-               <span class="text-danger" *ngIf="emailId.errors.required">Please enter email</span>
-               <span class="text-danger" *ngIf="emailId.errors.pattern">Please enter valid email</span>
-               </span>
+          
+            <div *ngIf="emailId.invalid && forgetpassForm.submitted">
+              <div *ngIf="emailId.errors.required">
+                <p class="text-danger">Please enter email</p>
+              </div>
+              <div *ngIf="emailId.errors.pattern">
+                <p class="text-danger">Please enter valid email</p>
+              </div>
+            </div>
+              </div>
+              </div>
             <div class="col-md-12 text-left">
-                <button type="continue" class="btn btn-continue ">Send</button>
-                </div>
-         </form>
+              <button type="continue" class="btn btn-continue text-uppercase">Send</button>
+            </div>
+          </form>
+        </div>
       </div>
-      </div>
-   </div>
-</div>
+    </div>
+  </div>
 </div>

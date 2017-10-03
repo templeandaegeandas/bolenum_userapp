@@ -34,6 +34,7 @@ export class DepositComponent implements OnInit {
       let data = successData.data;
       this.address = data.data.address;
        this.qrCode = true;
+        this.errorCoin =false; 
       
     },errorData => {
       this.qrCode = false;
