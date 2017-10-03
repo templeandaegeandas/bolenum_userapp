@@ -279,7 +279,7 @@
       <section id="content2" class="tab-content">
         <div class="row" *ngIf="isCustomerView">
           <div class="col-md-12">
-            <div class="col-md-6" *ngFor="let customerData of getOurBankDetails">
+            <div class="col-md-6 bank-details-card-width" *ngFor="let customerData of getOurBankDetails">
               <div class="bank-backgrnd bank-details-padding">
 
                 <div class="row">
@@ -341,7 +341,16 @@
                     </div>
                     <div class="col-md-7">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}"
-                        required>
+                        required minlength="10" maxlength="15" nonumberspecialcharacter>
+                      <!-- errors msg-->
+                      <div *ngIf="name.invalid && (name.dirty || name.touched || customerDetaisForm.submitted || name.valid)" class="error-msg">
+
+                        <div *ngIf="name.errors.required">
+                          <span>Please enter your name.</span>
+                        </div>
+                       
+                      </div>
+                      <!-- errors msg -->
                     </div>
                   </div>
                   <div class="row margin-balance-details">
@@ -349,8 +358,15 @@
                       <p class="bank-text"> Bank Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #name="ngModel" [ngModelOptions]="{standalone: true}"
-                        required>
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #bankName="ngModel" [ngModelOptions]="{standalone: true}"
+                        required nonumberspecialcharacter>
+                          <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched || customerDetaisForm.submitted || bankName.valid)" class="error-msg">
+
+                        <div *ngIf="bankName.errors.required">
+                          <span>Please enter your bank name.</span>
+                        </div>
+                       
+                      </div>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
@@ -359,7 +375,14 @@
                     </div>
                     <div class="col-md-7">
                       <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}"
-                        required>
+                        required onlynumber>
+                               <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched ||accountNumber.valid || customerDetaisForm.submitted )" class="error-msg">
+
+                        <div *ngIf="accountNumber.errors.required">
+                          <span>Please enter your account number.</span>
+                        </div>
+                       
+                      </div>
                     </div>
                   </div>
                   <div class="row margin-balance-details">
@@ -367,8 +390,15 @@
                       <p class="bank-text">BVN Code</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #ifscCode="ngModel" [ngModelOptions]="{standalone: true}"
+                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #bvnCode="ngModel" [ngModelOptions]="{standalone: true}"
                         required>
+                         <div *ngIf="bvnCode.invalid && (bvnCode.dirty || bvnCode.valid || bvnCode.touched || customerDetaisForm.submitted )" class="error-msg">
+
+                        <div *ngIf="bvnCode.errors.required">
+                          <span>Please enter BVN Code.</span>
+                        </div>
+                       
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -412,15 +442,15 @@
                                  Browse
                                  <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
-                          </div>
+                    </div>
                     <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
-                   </div>
+                  </div>
                 </div>
-                 <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center">
                   <p>Only jpg,jpeg,png</p>
+                </div>
               </div>
-              </div>
-             </div>
+            </div>
           </div>
         </div>
       </section>

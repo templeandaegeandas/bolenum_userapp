@@ -892,6 +892,7 @@ padding-left: 144px;
         background-color: #fff;
     padding-top: 43px;
     padding-bottom: 46px;
+        width: 96%;
 }
 
 .form-left{
@@ -901,4 +902,12 @@ padding-left: 144px;
         padding-top: 48px;
     padding-bottom: 53px;
     padding-left: 25px;
+}
+
+.bank-details-card-width{
+        width: 48%;
+}
+
+.error-msg{
+        color: #DB2828;
 }

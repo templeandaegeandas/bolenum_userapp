@@ -39,8 +39,8 @@
             <input id="Create Password" type="password" class="form-control" name="Create Password" [(ngModel)]="user.password" #password="ngModel" placeholder="Create Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$" required>
           </div>
           <span *ngIf="password.invalid && signUpForm.submitted">
-              <span class="text-danger" *ngIf="password.errors.required">Please enter password</span>
-              <span class="text-danger" *ngIf="password.errors.pattern">Password not strong enough(length between 8 to 64, 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, no white space) </span>
+              <p class="text-danger" *ngIf="password.errors.required">Please enter password</p>
+              <p class="text-danger" *ngIf="password.errors.pattern">Password not strong enough(length between 8 to 64, 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, no white space) </p>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
