@@ -30,4 +30,9 @@ export class LoginService {
       .map(res => res.json())
   }
 
+  resend2FaOtp(login) {
+    return this.http.put("/api/v1/user/twofactor/auth/send/otp", login)
+      .map(res => res.json());
+  }
+
 }

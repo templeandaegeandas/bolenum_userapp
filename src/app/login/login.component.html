@@ -45,7 +45,8 @@
           <span class="text-danger" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
           <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span>
           </span>
-          <button type="submit" class="btn btn-success">Verify</button>
+          <button type="submit" class="btn btn-success">Verify Otp</button>
+          <a (click)="resend2FaOtp()">Resend Otp</a>
         </form>
       </div>
         <!-- <div class="login-or">

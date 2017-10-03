@@ -170,6 +170,7 @@ export class ProfileComponent implements OnInit {
       this.toastrService.success(success.message, "Success!");
       this.isOtpEdit = false;
       this.resendOtp = false;
+      this.isMobileVerified = true;
     }, error => {
       this.toastrService.error(error.json().message, "Error!");
     })

@@ -80,6 +80,12 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  resend2FaOtp() {
+    this.loginService.resend2FaOtp(this.login).subscribe(success => {
+      this.toastrService.success(success.message, 'Success!');
+    })
+  }
+
   verifyUserEmail(token: String) {
     this.loginService.verifyMail(token).subscribe(success => {
       this.router.navigate(['login']);
