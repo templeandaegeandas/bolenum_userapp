@@ -45,14 +45,14 @@
     width: 25%;
 }select.center-dropddown {
     background: #DB2828;
-    width: 275px;
+    width: 225px;
     padding: 10px;
     color: white;
     border: none;
 }
 .col-md-12.withdraw-dropdown {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 94px;
 }
 
 select option{
@@ -64,5 +64,6 @@ select option{
 .col-width{
     width: 45%;
 }
+
 
 
