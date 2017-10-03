@@ -9,10 +9,10 @@
     margin-left: 80px;
     margin-bottom: 87px;
 }
-   img.img-login {
+   /*img.img-login {
    width: 411px;
     height: 650px;
-}
+}*/
 .input-group {
     position: relative;
     display: table;
@@ -194,4 +194,24 @@ img.img-header {
     top: 0;
     left: 0;
     margin-left: -31px;
+}
+
+
+/* start media query */
+@media screen and (max-width: 768px) {
+    .login-content {
+    margin-top: 80px;
+    box-shadow: 0 0 27px #eee;
+    width: 100%;
+    margin-left: 0px;
+   
+}
+}
+@media screen and (min-width: 600px){
+    .login-content {
+    margin-top: 80px;
+    box-shadow: 0 0 27px #eee;
+    width: 100%;
+    margin-left: 0px;
+    } 
 }
