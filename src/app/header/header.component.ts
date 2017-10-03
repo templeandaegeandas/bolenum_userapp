@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { HeaderService } from './header.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'header',
@@ -14,10 +15,14 @@ export class HeaderComponent implements OnInit {
   public subMenu = false;
   token: String;
   fullName: String;
+  profilePic: String = "assets/images/pic.png";
   constructor(private headerService: HeaderService, private router: Router) {
   }
 
   ngOnInit() {
+    if (localStorage.getItem("profilePic") != null) {
+        this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random();
+    }
     this.token = localStorage.getItem("token");
     this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
   }

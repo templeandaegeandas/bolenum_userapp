@@ -54,7 +54,7 @@ export class ProfileService {
 
   }
   uploadProfileImage(formData) {
-    return this.http.putWithoutContentType("/api/v1/user/upload/image", formData)
+    return this.http.postWithoutContentType("/api/v1/user/upload/image", formData)
       .map(res => res.json());
   }
 
@@ -68,4 +68,23 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  generate2faQrCode() {
+    return this.http.post("/api/v1/user/twofactor/auth/google/authenticator","")
+      .map(res => res.json());
+  }
+
+  verify2faGoogleAuthKey(secret) {
+    return this.http.put("/api/v1/user/twofactor/auth/google/authenticator/verify?secret=" + secret,"")
+      .map(res => res.json());
+  }
+
+  set2faToMobile() {
+    return this.http.put("/api/v1/user/twofactor/auth/mobile","")
+      .map(res => res.json());
+  }
+
+  remove2Fa() {
+    return this.http.delete("/api/v1/user/twofactor/auth/remove")
+      .map(res => res.json());
+  }
 }

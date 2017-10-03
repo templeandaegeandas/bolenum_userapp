@@ -9,6 +9,7 @@
             <div class="text-center">
                <img src="assets/images/bolenum.png" class="image-responsive">
             </div>
+            <div *ngIf = "!is2FaOn">
             <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
                <span class="input-group-addon"><img src="assets/images/profile.png"></span>
@@ -33,6 +34,20 @@
           </div>
           <button type="submit" class="btn btn-success">login</button>
         </form>
+      </div>
+      <div  *ngIf = "is2FaOn">
+        <form #otpForm="ngForm" (submit)=verify2Fa(otpForm)>
+          <div class="input-group">
+             <span class="input-group-addon"><img src="assets/images/profile.png"></span>
+             <input id="email" type="text" class="form-control" name="otp" [(ngModel)]="otp" minlength="6" maxlength="6" #twoFaOtp="ngModel" placeholder="OTP" required onlynumber>
+          </div>
+          <span *ngIf="twoFaOtp.invalid && otpForm.submitted">
+          <span class="text-danger" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
+          <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span>
+          </span>
+          <button type="submit" class="btn btn-success">Verify</button>
+        </form>
+      </div>
         <!-- <div class="login-or">
           <hr class="hr-or">
           <span class="span-or">or</span>
