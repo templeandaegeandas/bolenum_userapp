@@ -29,8 +29,8 @@
 }
 
 .button-padding {
-    padding-left: 43px;
-    padding-top: 5px;
+   padding-left: 21px;
+    /* padding-top: 5px; */
 }
 
 .submit-button {
@@ -59,6 +59,10 @@ select option{
     margin: 40px;
     background: #fff;
     color: #000;
+}
+
+.col-width{
+    width: 45%;
 }
 
 

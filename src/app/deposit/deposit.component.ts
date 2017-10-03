@@ -9,6 +9,7 @@ import { ToastrService } from 'toastr-ng2';
    providers: [DepositService]
 })
 export class DepositComponent implements OnInit {
+  public balance:any;
   public errorCoin:boolean;
   public qrCode:boolean=true;
   public shortIfo: boolean = false;
@@ -33,6 +34,7 @@ export class DepositComponent implements OnInit {
     this.depositService.getCoin(data).subscribe( successData => {
       let data = successData.data;
       this.address = data.data.address;
+      this.balance = data.data.balance;
        this.qrCode = true;
         this.errorCoin =false; 
       
