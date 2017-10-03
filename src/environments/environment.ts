@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   documentUrl: 'http://localhost:3050/static/documents/',
-  profilePicUrl: 'http://localhost:3050/static/profile-images/'
+  profilePicUrl: 'http://localhost:3050/static/profile-images/',
+  googleQrCodeUrl: 'http://localhost:3050/static/google/qrcode/'
 };

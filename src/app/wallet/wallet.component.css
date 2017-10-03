@@ -19,27 +19,34 @@ img.wallet-image {
     left: 518px;
 }
 .container.background {
- 
-  background: #F8F8F8;
+ background: #F8F8F8;
+ margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+
 }
 
 .tab-wallet {
     background: #FFFFFF;
     border-radius: 6px;
-    padding: 24px;
+    -webkit-box-shadow: 0 8px 6px -6px #eee;
     border-top-left-radius: 5px;
     border-top-right-radius:5px;
-    box-shadow: 0 0 9px #636363;
-    transform: scale(1.1,1.1)
+    margin: -21px;
+    position: relative;
     }
 .tab-wallet.active{
     border-bottom: 4px solid#DB2828;
-    border-top-left-radius: 5px;
-    border-top-right-radius:5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius:4px;
     box-shadow: 0 0 9px #636363;
-    transform: scale(1.2,1.2);
-    z-index: 1111;
+    transform: scale(1.1,1.1);
+    z-index: 100;
     position: relative;
+    outline: 0;
+}
+.tab-wallet.focus{
+    outline: none!important;
 }
 .tab-wallet .img1{
    background-repeat: no-repeat;
@@ -75,8 +82,8 @@ img.wallet-image {
   }
  
  p.wallet.text-center {
-    color: black;
-    font-size: 17px;
+    color: #747474;
+    font-size: 18px;
     font-weight: 500;
 }
  

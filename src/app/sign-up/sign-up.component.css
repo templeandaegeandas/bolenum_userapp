@@ -9,9 +9,13 @@
     margin-left: 80px;
     margin-bottom:89px;
 }
-img.img-login {
+/*img.img-login {
     width: 411px;
     height: 650px;
+}*/
+
+.text-align-justify{
+  text-align: justify;
 }
 
 .input-group {
@@ -22,13 +26,9 @@ img.img-login {
    font-family: Lato;
 
 }
-img.img-header{
 
-	top: 0;
-	left: 0;
-}
 .text-center {
-    text-align: center;
+    text-align: -webkit-center;
     padding: 26px;
     margin-top: 28px;
 }
@@ -75,6 +75,7 @@ img.img-header{
     font-family: Lato;
     margin-left: 15px;
     margin-top: 11px;
+    outline: none;
 }
    .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
     color: #fff;
@@ -190,7 +191,21 @@ img.img-header {
     left: 0;
     margin-left: 81px;
 }
-a:focus, a:hover {
-    color: rgba(12, 101, 172, 0.9);
-    text-decoration: underline;
+
+
+/* start media query */
+@media only screen and (max-width: 768px) {
+    .login-content {
+    margin-top: 80px;
+    box-shadow: 0 0 27px #eee;
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+.input-group[_ngcontent-c4] {
+   width: 100%;
+}
+.btn-success {
+   width:53%;
+}
 }

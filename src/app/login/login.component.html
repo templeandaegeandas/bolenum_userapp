@@ -1,14 +1,15 @@
 <div class="container">
    <div class="login-content">
-      <div class="row">
-         <div class="col-md-6 col-xs-12">
-            <img src="assets/images/login-img.png" class="img-login">
+      <div class="row">                             
+         <div class="col-md-6 col-xs-12 col-sm-12">
+            <img src="assets/images/login-img.png" class="img-responsive">
          </div>
-         <div class="col-md-6 col-xs-12">
+         <div class="col-md-6 col-xs-12 col-sm-12">
            <div class ="login-text">
             <div class="text-center">
-               <img src="assets/images/bolenum.png" class="img-header">
+               <img src="assets/images/bolenum.png" class="image-responsive">
             </div>
+            <div *ngIf = "!is2FaOn">
             <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
                <span class="input-group-addon"><img src="assets/images/profile.png"></span>
@@ -33,6 +34,21 @@
           </div>
           <button type="submit" class="btn btn-success">login</button>
         </form>
+      </div>
+      <div  *ngIf = "is2FaOn">
+        <form #otpForm="ngForm" (submit)=verify2Fa(otpForm)>
+          <div class="input-group">
+             <span class="input-group-addon"><img src="assets/images/profile.png"></span>
+             <input id="email" type="text" class="form-control" name="otp" [(ngModel)]="otp" minlength="6" maxlength="6" #twoFaOtp="ngModel" placeholder="OTP" required onlynumber>
+          </div>
+          <span *ngIf="twoFaOtp.invalid && otpForm.submitted">
+          <span class="text-danger" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
+          <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span>
+          </span>
+          <button type="submit" class="btn btn-success">Verify Otp</button>
+          <a (click)="resend2FaOtp()">Resend Otp</a>
+        </form>
+      </div>
         <!-- <div class="login-or">
           <hr class="hr-or">
           <span class="span-or">or</span>

@@ -42,6 +42,7 @@ import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { HistoryComponent } from './history/history.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ImageCropperModule } from 'ng2-img-cropper';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -77,8 +78,7 @@ export function highchartsFactory() {
     HowToUseComponent,
     PrivacyPolicyComponent,
     HistoryComponent,
-    
-   
+
   ],
   imports: [
     BrowserModule,
@@ -87,7 +87,7 @@ export function highchartsFactory() {
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
-     ToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot( {preventDuplicates: true}),
@@ -95,7 +95,8 @@ export function highchartsFactory() {
     QRCodeModule,
     MyDatePickerModule,
     BsDropdownModule.forRoot(),
-    Ng2DeviceDetectorModule.forRoot()
+    Ng2DeviceDetectorModule.forRoot(),
+    ImageCropperModule,
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
     HttpClient,
