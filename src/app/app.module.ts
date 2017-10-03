@@ -42,7 +42,7 @@ import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { HistoryComponent } from './history/history.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ImageCropperComponent } from 'ng2-img-cropper';
+// import { imageCropperModule } from 'ng2-img-cropper';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -78,7 +78,7 @@ export function highchartsFactory() {
     HowToUseComponent,
     PrivacyPolicyComponent,
     HistoryComponent,
-    ImageCropperComponent,
+    // ImageCropperComponent,
 
   ],
   imports: [

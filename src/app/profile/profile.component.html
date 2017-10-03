@@ -14,7 +14,7 @@
         <p class="top-text">{{userProfile.firstName}} {{userProfile.lastName}}</p>
       </div>
       <div class="head-icon">
-        <img src="assets/images/location (1).png">&nbsp;<span>{{userProfile.emailId}}</span>
+        <img src="assets/images/location (1).png">&nbsp;<span>{{emailId}}</span>
       </div>
     </div>
     <div class="tab_container">
@@ -538,7 +538,7 @@
         </div> -->
       </div>
       <div class="modal-body">
-        <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+        <!-- <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper> -->
         <br>
         <!-- <span class="result rounded" *ngIf="data.image" >
     <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
