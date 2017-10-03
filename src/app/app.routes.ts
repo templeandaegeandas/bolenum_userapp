@@ -21,7 +21,12 @@ import 'rxjs/add/operator/switchMap';
 import { PrivateRouteAuthGuard } from './auth-guard/private.route.auth.guard.service';
 import { PublicRouteAuthGuard } from './auth-guard/public.route.auth.guard.service';
 import { HistoryComponent } from './history/history.component';
-
+import { FaqComponent } from './faq/faq.component';
+import { TermsServiceComponent } from './terms-service/terms-service.component';
+import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bolenum-exchange.component';
+import { TeamComponent } from './team/team.component';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -44,5 +49,10 @@ export const APP_ROUTES: Routes = [
   { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'deposit', component: DepositComponent },
   { path: 'withdraw', component: WithdrawComponent },
-   { path: 'history', component: HistoryComponent },
-];
+  { path: 'history', component: HistoryComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'team', component: TeamComponent  },
+  { path: 'how-to-use', component: HowToUseComponent  },
+  { path: 'terms-service', component: TermsServiceComponent  },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent   },
+  { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },];

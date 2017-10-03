@@ -6,3 +6,7 @@
     /* font-size: 0; */
     float: right;
 }
+
+.date-picker .selectiongroup {
+    background: none;
+}

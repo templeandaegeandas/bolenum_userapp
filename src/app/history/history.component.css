@@ -1,6 +1,6 @@
 
 .container.container-padding {
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 .table-color {
@@ -17,6 +17,13 @@ select.right-dropddown {
     white-space: nowrap;
     font-size: 0;
 }
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+
  .date-picker {
     float: right;
     background: none!important;
@@ -71,7 +78,34 @@ h3.panel-title {
     font-size: 18px;
     font-weight: 600;
 }
+.dropdown-menu>li>a {
+    display: block;
+    padding: 5px 50px;
+    clear: both;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    color: #B2B2B2;
+}
 
+.open>.dropdown-menu {
+    display: block;
+    border: none;
+    border-radius: 0;
+}
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+.btn-danger {
+    color: #fff;
+    
+    border-color: #DB2828;
+    outline: none;
+}
 
 @media screen and (min-width: 320px) and (max-width: 767px){
   .transaction-history {
