@@ -42,8 +42,7 @@
                   <a  data-toggle="dropdown"  class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}"  (click)="showDropdown()">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
                   <ul class="custom-dropdown" *ngIf="subMenu">
                      <li><a (click)="showDropdown()" routerLink="/profile">Profile</a></li>
-                     <li><a (click)="showDropdown()" routerLink="/deposit">Deposit</a></li>
-                     <li><a (click)="showDropdown()" routerLink="/withdraw">Withdraw</a></li>
+                     <li><a (click)="showDropdown()" routerLink="/deposit">wallet</a></li>
                      <li><a (click)="showDropdown()" href="#" (click)="signOut()">Logout</a></li>
                      <!--<li class="divider"></li>
                         <li><a href="#">Trash</a></li>-->

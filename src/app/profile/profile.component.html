@@ -493,7 +493,7 @@
               </div>
             </div>
           </div>
-          <button type="button" (click)="addPopupClose()">Cancel</button>
+          <button type="button" class="modal-buttn" (click)="addPopupClose()">Cancel</button>
         </div>
 
         <div *ngIf="twoFactorAuthType=='GOOGLE_AUTHENTICATOR'">
@@ -508,10 +508,10 @@
             <input type="texts" class="from-newtext" name="secret" [(ngModel)]="secret" #gsecret="ngModel" minlength="6" maxlength="6" id="usr" required onlynumber>
             <span *ngIf="gsecret.invalid && googleAuthForm.submitted">
                 <span class="text-danger" *ngIf="gsecret.errors.required">Please enter secret code</span>
-            <span class="text-danger" *ngIf="gsecret.errors.minlength">Invalid secret code</span>
+            <span class="text-danger" *ngIf="gsecret.errors.minlength">Invalid secret code</span><br>
             </span>
-            <button type="submit">Enable</button>
-            <button type="button" (click)="openTwoFaVerification('NONE')">Back</button>
+            <button  class="modal-buttn"  type="submit">Enable</button>
+            <button class="modal-buttn" type="button" (click)="openTwoFaVerification('NONE')">Back</button>
           </form>
         </div>
 

@@ -570,7 +570,7 @@ span.font-1 {
 }
 .text-danger {
     color: #a94442;
-    margin: 16px;
+    margin: 8px;
 }
 .sign-block {
      margin: 17px;
@@ -924,13 +924,28 @@ padding-left: 144px;
     height: 200px;
 }
 
+button.modal-buttn {
+    background: #DB2828;
+    border: none;
+    color:#FFFFFF;
+    border-radius: 4px;
+    padding: 6px 13px;
+    margin-top:6px;
+    outline: none;
+}
 .f2fimage {
     position: absolute;
-    top: 8px;
+    top: -10px;
+    text-align: -webkit-center;
 }
+p.createdepositmodal-heading.hedartext {
+    
+    margin-left: 66px;
+    margin-top: 6px;}
 
 .authimage {
     top: 25%!important;
+    text-align: center;
 }
 .authimage_style {
     margin-bottom: 35px!important;
