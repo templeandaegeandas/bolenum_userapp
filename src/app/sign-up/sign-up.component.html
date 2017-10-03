@@ -1,13 +1,13 @@
 <div class="container">
   <div class="login-content">
     <div class="row">
-      <div class="col-md-6 col-xs-6">
-        <img src="assets/images/login-img.png" class="img-login">
+      <div class="col-md-6 col-xs-12 col-sm-12">
+        <img src="assets/images/login-img.png" class="img-responsive">
       </div>
-      <div class="col-md-4 col-xs-6">
-<div class="sign-block">
+      <div class="col-md-6 col-xs-12 col-sm-12">
+       <div class="sign-block">
         <div class="text-center">
-          <img src="assets/images/bolenum.png" class="img-header">
+          <img src="assets/images/bolenum.png" class="img-responsive">
         </div>
         <h4 class="create-text">Create new</h4>
         <form #signUpForm=ngForm (submit)="signUpUser(signUpForm)">
@@ -64,5 +64,6 @@
       </div>
     </div>
     </div>
+  </div>
   </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

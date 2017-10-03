@@ -3,19 +3,6 @@
     padding-top: 40px;
     padding-bottom: 20px;
 }
-.transaction-history {
-    background-color: #DB2828;
-    text-align: left;
-    color: white;
-    padding-top: 14px;
-    padding-bottom: 16px;
-    font-size: 14px;
-    padding-left: 12px;
-    border-top-left-radius:8px;
-    border-top-right-radius:8px;
-   
-}
-
 .table-color {
     background-color: #f1f0f0;
 }
@@ -23,7 +10,6 @@ select.right-dropddown {
     float: right;
     background: none;
     border: none;
-    /* right: 19px; */
     margin-right: 81px;
 }
 .mydp .selbtngroup {
@@ -34,7 +20,6 @@ select.right-dropddown {
  .date-picker {
     float: right;
     background: none!important;
-    margin-right: 2px;
     vertical-align: middle;
     margin-bottom: -10px;
 }
@@ -48,18 +33,46 @@ button.btn.btn-primary.dropdown-toggle {
     border: none;
     outline: none;
 }
-
-.btn-group, .btn-group-vertical {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    float: right;
-    /* margin: -14px; */
-    margin-right: 34px;
-    margin-bottom: -10px;
-    padding-bottom: -14px;
-    background: none;
+	
+.clickable{
+   cursor: pointer;   
 }
+.panel-heading div {
+    margin-top: -18px;
+	font-size: 15px;
+}
+.panel-heading div span{
+	margin-left:5px;
+}
+.panel-body{
+   display: none;
+		}
+.panel-heading div {
+    margin-top: -13px;
+    font-size: 15px;
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #DB2828;
+    border-color: #DB2828;
+    border: none; 
+    
+}
+.panel-heading {
+    padding: 23px 21px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.panel-primary {
+    border: none;
+}
+h3.panel-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
 @media screen and (min-width: 320px) and (max-width: 767px){
   .transaction-history {
     background-color: #DB2828;
