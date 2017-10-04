@@ -1,3 +1,6 @@
+/*ul.dropdown-menu{
+    display: block;
+}*/
 
 .container.container-padding {
     padding-top: 60px;
@@ -117,6 +120,9 @@ label {
 }
 input[type="checkbox"] {
   visibility: hidden;
+}
+input[type="checkbox"]:checked {
+     visibility: hidden;
 }
 input[type="checkbox"] + label:before {
   border: 1px solid  #DB2828;

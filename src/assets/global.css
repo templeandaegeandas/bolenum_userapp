@@ -1,12 +1,22 @@
 
-.mydp .selbtngroup {
+
+.mydp .selectiongroup {
     position: relative;
-    /* white-space: nowrap; */
-    width: 107%;
-    /* font-size: 0; */
-    float: right;
+    display: table;
+    border: none;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 43px;
+    outline: none;
 }
 
-.date-picker .selectiongroup {
-    background: none;
+.mydp, .mydp .headertodaybtn, .mydp .selection, .mydp .selectiongroup, .mydp .selector {
+    
+     outline: none;
+     border: none;
+}
+.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled .mydp, .mydp .headertodaybtn {
+    border: transparent;
+    display: none;
+    border: none;
 }

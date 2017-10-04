@@ -9,3 +9,8 @@ chart
     src: url(".assets/font/Lato-Regular.ttf");
 }*/
 
+.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled
+{
+    display: none;
+    border: none;
+}
