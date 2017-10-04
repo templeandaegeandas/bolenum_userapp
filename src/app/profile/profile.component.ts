@@ -380,16 +380,10 @@ export class ProfileComponent implements OnInit {
   }
 
   customerDetails(customerDetaisForm) {
-    if(customerDetaisForm.invalid) {
-      console.log("form value if part",customerDetaisForm.invalid);
-      
-      return;
-    }
-
-    else{
-       console.log("form value else part",customerDetaisForm.valid);
-
-       this.isCustomerView = true;
+    console.log("form valid",customerDetaisForm.valid);
+    console.log("form invalid",customerDetaisForm.invalid);
+    
+    this.isCustomerView = true;
     this.accounDetails = false;
     if (this.getOurBankDetails.length === 2) {
       this.addNewButton = false;
@@ -403,9 +397,6 @@ export class ProfileComponent implements OnInit {
     }, errorData => {
     })
     console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
-    }
-   
-   
   }
 
   getUserBankDetails() {
