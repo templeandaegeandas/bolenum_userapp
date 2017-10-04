@@ -97,6 +97,7 @@ export function highchartsFactory() {
     BsDropdownModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     ImageCropperModule,
+    
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
     HttpClient,
