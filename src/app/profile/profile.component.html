@@ -477,7 +477,7 @@
                 <form name="form" class="authimage">
                   <div class="flex-column pointer">
                     <a (click)="openTwoFaVerification('GOOGLE_AUTHENTICATOR')">
-                      <div><img width="55" src="assets/images/padlock.png"></div>
+                      <div><img width="55" src="assets/images/padlock.png"></div><br>
                       USE GOOGLE AUTHENTICATION</a>
                   </div>
                 </form>
@@ -486,7 +486,7 @@
                 <form name="form" class="authimage">
                   <div class="flex-column pointer">
                     <a (click)="openTwoFaVerification('MOBILE')">
-                      <div><img width="55" src="assets/images/mobile-phone-outline.png"></div>
+                      <div><img width="55" src="assets/images/mobile-phone-outline.png"></div><br>
                       USE MOBILE</a>
                   </div>
                 </form>
@@ -531,6 +531,7 @@
               <span *ngIf="number.invalid && mobileForm.submitted">
                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
               </span>
+              <br>
               <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
             </form>
             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
