@@ -239,6 +239,9 @@
                             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                             <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
                             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
+
+                              <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr" required onlynumber disabled>
+
                               <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
                               <span *ngIf="number.invalid && mobileForm.submitted">
                                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
@@ -340,7 +343,7 @@
                         <div *ngIf="name.errors.required">
                           <span>Please enter your name.</span>
                         </div>
-                       
+
                       </div>
                       <!-- errors msg -->
                     </div>
@@ -357,7 +360,7 @@
                         <div *ngIf="bankName.errors.required">
                           <span>Please enter your bank name.</span>
                         </div>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -373,7 +376,7 @@
                         <div *ngIf="accountNumber.errors.required">
                           <span>Please enter your account number.</span>
                         </div>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -389,7 +392,7 @@
                         <div *ngIf="bvnCode.errors.required">
                           <span>Please enter BVN Code.</span>
                         </div>
-                       
+
                       </div>
                     </div>
                   </div>
@@ -527,6 +530,8 @@
           </div>
           <div *ngIf="!isMobileVerified">
             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
+
+              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr" required onlynumber disabled>
               <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
               <span *ngIf="number.invalid && mobileForm.submitted">
                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>

@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
   cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
+  
   constructor(private profileService: ProfileService, private toastrService: ToastrService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 200;
@@ -170,7 +171,6 @@ export class ProfileComponent implements OnInit {
       this.toastrService.success(success.message, "Success!");
       this.isOtpEdit = false;
       this.resendOtp = false;
-      this.isMobileVerified = true;
     }, error => {
       this.toastrService.error(error.json().message, "Error!");
     })
@@ -436,6 +436,8 @@ export class ProfileComponent implements OnInit {
       console.log(error);
     })
   }
+
+
 
   changeState(event) {
     this.stateError = false;
