@@ -16,5 +16,4 @@ export class ResetPasswordService {
     return this.http.put('/api/v1/forgetpassword/verify?token='+token,resetPassword)
       .map(res => res.json());
   }
-
 }

@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
   cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
+  
   constructor(private profileService: ProfileService, private toastrService: ToastrService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 200;
@@ -170,7 +171,6 @@ export class ProfileComponent implements OnInit {
       this.toastrService.success(success.message, "Success!");
       this.isOtpEdit = false;
       this.resendOtp = false;
-      this.isMobileVerified = true;
     }, error => {
       this.toastrService.error(error.json().message, "Error!");
     })
@@ -380,16 +380,10 @@ export class ProfileComponent implements OnInit {
   }
 
   customerDetails(customerDetaisForm) {
-    if(customerDetaisForm.invalid) {
-      console.log("form value if part",customerDetaisForm.invalid);
-      
-      return;
-    }
-
-    else{
-       console.log("form value else part",customerDetaisForm.valid);
-
-       this.isCustomerView = true;
+    console.log("form valid",customerDetaisForm.valid);
+    console.log("form invalid",customerDetaisForm.invalid);
+    
+    this.isCustomerView = true;
     this.accounDetails = false;
     if (this.getOurBankDetails.length === 2) {
       this.addNewButton = false;
@@ -403,9 +397,6 @@ export class ProfileComponent implements OnInit {
     }, errorData => {
     })
     console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
-    }
-   
-   
   }
 
   getUserBankDetails() {
@@ -448,6 +439,8 @@ export class ProfileComponent implements OnInit {
       console.log(error);
     })
   }
+
+
 
   changeState(event) {
     this.stateError = false;
