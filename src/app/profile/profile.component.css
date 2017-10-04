@@ -742,6 +742,13 @@ label.switch {
   -webkit-transition: .4s;
   transition: .4s;
 }
+.carousel-inner {
+    position: relative;
+    width: 40%;
+    overflow: hidden;
+    text-align: -webkit-center;
+    margin-left: 160px;
+}
 
 .slider:before {
   position: absolute;
