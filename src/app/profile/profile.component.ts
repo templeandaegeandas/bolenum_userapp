@@ -380,6 +380,9 @@ export class ProfileComponent implements OnInit {
   }
 
   customerDetails(customerDetaisForm) {
+    console.log("form valid",customerDetaisForm.valid);
+    console.log("form invalid",customerDetaisForm.invalid);
+    
     this.isCustomerView = true;
     this.accounDetails = false;
     if (this.getOurBankDetails.length === 2) {
