@@ -324,7 +324,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 col-xs-12 user-bank-details" *ngIf=accounDetails>
-              <form #customerDetaisForm="ngForm" (submit)=" customerDetails(customerDetaisForm)" autocomplete="off">
+              <form #customerDetaisForm="ngForm" (ngSubmit)=" customerDetails(customerDetaisForm)" autocomplete="off">
                 <div class="col-md-10 col-md-offset-2 form-left">
                   <div class="row margin-balance-details">
 
@@ -332,10 +332,10 @@
                       <p class="bank-text"> Account Holder Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" [ngModelOptions]="{standalone: true}"
+                      <input type="text" class="form-control" id="usr" name="name" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" 
                         required minlength="10" maxlength="15" nonumberspecialcharacter>
                       <!-- errors msg-->
-                      <div *ngIf="name.invalid && (name.dirty || name.touched || customerDetaisForm.submitted || name.valid)" class="error-msg">
+                      <div *ngIf="name.invalid && (name.dirty || name.touched || customerDetaisForm.submitted )" class="error-msg">
 
                         <div *ngIf="name.errors.required">
                           <span>Please enter your name.</span>
@@ -350,9 +350,9 @@
                       <p class="bank-text"> Bank Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.bankName" #bankName="ngModel" [ngModelOptions]="{standalone: true}"
+                      <input type="text" class="form-control" id="usr" name="bankName" [(ngModel)]="bankDetails.bankName" #bankName="ngModel"
                         required nonumberspecialcharacter>
-                          <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched || customerDetaisForm.submitted || bankName.valid)" class="error-msg">
+                          <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched || customerDetaisForm.submitted )" class="error-msg">
 
                         <div *ngIf="bankName.errors.required">
                           <span>Please enter your bank name.</span>
@@ -366,9 +366,9 @@
                       <p class="bank-text"> Account No</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" [ngModelOptions]="{standalone: true}"
+                      <input type="text" class="form-control" id="usr" name="accountNumber" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel"
                         required onlynumber>
-                               <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched ||accountNumber.valid || customerDetaisForm.submitted )" class="error-msg">
+                               <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched  || customerDetaisForm.submitted )" class="error-msg">
 
                         <div *ngIf="accountNumber.errors.required">
                           <span>Please enter your account number.</span>
@@ -382,9 +382,9 @@
                       <p class="bank-text">BVN Code</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" [(ngModel)]="bankDetails.ifscCode" #bvnCode="ngModel" [ngModelOptions]="{standalone: true}"
+                      <input type="text" class="form-control" id="usr" name="bvnCode" [(ngModel)]="bankDetails.ifscCode" #bvnCode="ngModel"
                         required>
-                         <div *ngIf="bvnCode.invalid && (bvnCode.dirty || bvnCode.valid || bvnCode.touched || customerDetaisForm.submitted )" class="error-msg">
+                         <div *ngIf="bvnCode.invalid && (bvnCode.dirty  || bvnCode.touched || customerDetaisForm.submitted )" class="error-msg">
 
                         <div *ngIf="bvnCode.errors.required">
                           <span>Please enter BVN Code.</span>
