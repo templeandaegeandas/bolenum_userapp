@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tradeNow.component.css']
 })
 export class TradeNowComponent implements OnInit {
+    // table
+    public btc:boolean = true;
+    public eth:boolean = false;
+    public bln:boolean = false;
+    public ngn:boolean = false;
+
+    // table
     public beforeLogin:boolean=true;
     public afterLogin:boolean=false;
   options :any;
@@ -94,6 +101,33 @@ export class TradeNowComponent implements OnInit {
 
   }
 
+  isBtc(){
+      this.btc = true;
+       this.eth = false;
+        this.bln = false;
+         this.ngn = false;
+  }
+
+  isEth(){
+      this.eth = true;
+       this.btc = false;
+       this.bln = false;
+       this.ngn = false;
+  }
+
+  isBln(){
+      this.bln = true;
+       this.btc = false;
+       this.eth = false;
+       this.ngn = false;
+  }
+
+  isNgn(){
+      this.ngn = true;
+       this.btc = false;
+       this.eth = false;
+       this.bln = false;
+  }
 
 
 

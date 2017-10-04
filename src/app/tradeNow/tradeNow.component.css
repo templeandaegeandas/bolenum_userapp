@@ -252,10 +252,10 @@ tr th {
     font-size: 22px;
 }
 
-.padding-to-all {
+/* .padding-to-all {
     padding-left: 103px;
     padding-right: 70px;
-}
+} */
 
 .line-height-box {
     line-height: 27px;
@@ -330,4 +330,90 @@ select option {
 .signin-for-tradenow{
         color: #DB2828;
         cursor: pointer;
+}
+.market-border{
+    border: 1px solid lightgray;
+}
+.market-tab-border{
+    border-right: 1px solid lightgray;
+}
+.market-tab{
+    cursor: pointer;
+}
+.trade-border{
+    border: 1px solid lightgray;
+}
+.trade-border-heading{
+    border-bottom: 1px solid lightgray;
+}
+.trade-margin{
+        margin-top: 15px;
+    margin-left: 16px;
+}
+
+.trade-heading-center{
+        text-align: center;
+}
+
+.heading-font{
+    font-size: 19px;
+}
+
+.trade-drop-down{
+    text-align: center;
+}
+.trade-dropdown{
+    width: 100%;
+    background: #DB2828;
+    color: white;
+    padding: 6px;
+    outline: none;
+    border: non
+}
+
+.trade-drop-down-margin{
+        margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.trade-field{
+    margin-bottom: 8px;
+}
+
+.trade-button-buy{
+        background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 75px;
+}
+
+.trade-button-sell{
+        background-color: #DB2828;
+    opacity: none !important;
+    border: none;
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none;
+    width: 75px;
+}
+
+.trade-width{
+    width: 41%;
+}
+
+.buy-button-left{
+    text-align: left;
+}
+
+
+
+.sell-button-right{
+    text-align: right;
 }
