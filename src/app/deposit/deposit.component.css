@@ -57,3 +57,7 @@ select.center-dropddown {
     margin-top: 3px;
 
 }
+
+input[type="text"]{
+        width: 37%;
+}

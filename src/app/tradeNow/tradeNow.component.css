@@ -162,7 +162,7 @@ tr th {
 .border-bot:after {
     display: table;
     position: absolute;
-    width: 70px;
+    width: 40px;
     height: 6px;
     background: #db2828;
     content: "";
@@ -363,12 +363,12 @@ select option {
     text-align: center;
 }
 .trade-dropdown{
-    width: 100%;
-    background: #DB2828;
-    color: white;
+        width: 100%;
+    background: white;
+    /* color: white; */
     padding: 6px;
     outline: none;
-    border: non
+    border: non;
 }
 
 .trade-drop-down-margin{
@@ -416,4 +416,29 @@ select option {
 
 .sell-button-right{
     text-align: right;
+}
+
+.trade-in-part{
+        background-color: #DB2828;
+    color: white;
+    padding: 2px;
+}
+thead.heading {
+    background-color: #DB2828;
+    color: white;
+}
+.pagination-section{
+        background-color: #f1f0f0;
+}
+
+.tab-margin{
+        margin-top: 14px;
+}
+
+.market-margin{
+        margin-top: 36px;
+}
+
+.table-bg-color{
+        background-color: #f1f0f0;
 }

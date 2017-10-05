@@ -65,3 +65,7 @@ p.text-black {
     margin-left: 31px;
     box-shadow: 1px 5px 3px #eee;
 }
+
+.chart-margin{
+    margin-top: 40px;
+}

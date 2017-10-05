@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tradeNow.component.css']
 })
 export class TradeNowComponent implements OnInit {
+    public isMarket:boolean = true;
+    public tradeValue:any[]=[
+        {"valueType":"MarketOrder"},
+        {"valueType":"LimitOrder"}
+    ]
+
+    public setTradingValue:any;
     // table
     public btc:boolean = true;
     public eth:boolean = false;
@@ -86,6 +93,8 @@ export class TradeNowComponent implements OnInit {
 
   ngOnInit() {
       this.isLogIn();
+      this.setTradingValue = "MarketOrder";
+      this.setTradeValue("MarketOrder");
   }
 
   isLogIn(){
@@ -129,6 +138,16 @@ export class TradeNowComponent implements OnInit {
        this.bln = false;
   }
 
+setTradeValue(setData){
+    console.log("setvalue is ",setData);
+   if(setData === "MarketOrder"){
+       this.isMarket = true;
+   }
+    else{
+        this.isMarket = false;
 
+    }
+    
+}
 
 }

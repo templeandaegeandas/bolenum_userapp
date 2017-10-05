@@ -420,7 +420,7 @@
                 <div class="kyc-details">
                   <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                 </div>
-                <div class="img" style="height: 250px;width: 350px;margin-left: 34%;">
+                <div class="img" style="margin-left: 38%;">
                   <img class="img-center" *ngIf="!pdf" [src]="document" style="width: 100%;height: 100%;">
                   <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png" style="width: 100%;height: 100%;">
                 </div>
@@ -441,7 +441,7 @@
                     <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
                   </div>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center kyc-image-formate">
                   <p class="kyc-imgeformat">Only jpg, jpeg, png or pdf</p>
                 </div>
               </div>

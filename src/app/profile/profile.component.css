@@ -658,9 +658,10 @@ p.kyc-text {
 .kyc-col {
     background: #FFFFFF;
     padding: 20px;
+    padding-bottom: 51px;
 }
 .kyc-input {
-    margin-left: 317px;
+    margin-left: 360px;
     padding: 6px;
 }
 img.img-.bakprofile {
@@ -960,4 +961,8 @@ p.createdepositmodal-heading.hedartext {
 
 .pointer {
     cursor: pointer;
+}
+.kyc-image-formate{
+    margin-top: 11px;
+
 }

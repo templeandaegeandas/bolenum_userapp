@@ -143,3 +143,8 @@ p.text-center {
     margin-left: 28px;
         margin-top: -21px;
 }
+
+.invalid-user-error{
+        padding-left: 14px;
+    padding-top: 3px;
+}
