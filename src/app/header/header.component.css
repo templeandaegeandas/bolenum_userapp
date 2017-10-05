@@ -20,9 +20,9 @@
      font-weight: 700;
      margin-left: 20 !important;
      float: none;
-    vertical-align: middle;
-    line-height: 50px;
-    color: #fff;
+     vertical-align: middle;
+     line-height: 50px;
+     color: #fff;
 }
 
 .top_bar {
@@ -60,7 +60,7 @@
   float:right;
   }
 .rightc li { 
-  margin:0px 10px; 
+  margin:0px -7px; 
   font-size:13px; 
   float:left; 
   line-height:40px; 
@@ -76,7 +76,7 @@
    margin-left:22px;
    }
    
-   .nav li > a{
+.nav li > a{
     position: relative;
     display: block;
     padding: -6px 35px;
@@ -104,16 +104,14 @@
     text-decoration: none;
     border-bottom: 1px solid;
     width: 100%;
-}
+ }
   
-
 .header_image {
-   margin-top:-70px;
+    margin-top:-70px;
     float:left;
-    }
+ }
 .nav.navbar-nav.navbar-right span {
   font-family: Lato; 
-  
   font-weight:300; 
   }
 .navbar-right li a {
@@ -164,13 +162,13 @@ li.dropdown {
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color:#DB2828;;
+    color:#DB2828;
     background: none !important;
    }
    
 .nav li.active a:after{
     content: ""; 
-    background: #DB2828;;
+    background: #DB2828;
     padding: 2px;
     width: 40px;
     height: 5px;
@@ -208,7 +206,7 @@ li.dropdown {
 }
 
 .drop-active {
-    color: #db2828 !important;
+    color: #DB2828 !important;
 }
 
 li.dropdown {
@@ -242,13 +240,16 @@ img.img-profile-icon {
   .navbar-brand img {
     margin-top: -5px;
     margin-left: -53px;
-}
+  }
+   span.red {
+    display: none;
+  }
 span.exchange-color {
     display: none;
     margin-left: 37px;
 }
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: #ef1515;
+    background-color: #DB2828;;
 }
 a.navbar-brand.insight {
     margin-top: -52px;

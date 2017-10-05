@@ -27,7 +27,7 @@
             </button>
                 <span><a  class="navbar-brand insight" >
             <img class="img-responsive logo-img" src="assets/images/bolenum.png" >
-            <span class="exchange-color"> Bolenum </span> Exchange
+            <span class="exchange-color"> Bolenum </span> <span class="red">Exchange</span>
                 </a>
                 </span>
             </div>
@@ -42,9 +42,9 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" [ngClass]="{'drop-active': subMenu}" (click)="showDropdown()">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
                         <ul class="custom-dropdown" *ngIf="subMenu">
-                            <li><a (click)="showDropdown()" routerLink="/wallet"><img src="assets/images/wallet.png" class="img-responsive">wallet</a></li>
+                            <li><a (click)="showDropdown()" routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">wallet</a></li>
                             <li><a (click)="showDropdown()" routerLink="/profile"> <img src="assets/images/profile (1).png" class="img-profile-icon">Profile</a></li>
-                            <li><a (click)="showDropdown()" href="#" (click)="signOut()"><img src="assets/images/logout.png" class="img-profile-icon">Logout</a></li>
+                             <li class="divider"></li><li><a (click)="showDropdown()" href="#" (click)="signOut()"><img src="assets/images/logout.png" class="img-profile-icon">Logout</a></li>
                             <!--<li class="divider"></li>
                         <li><a href="#">Trash</a></li>-->
                         </ul>
@@ -63,6 +63,7 @@
                <li><a href="#">Login</a></li>
                </ul>-->
             </div>
+            
         </nav>
     </div>
 </div>

@@ -480,6 +480,17 @@ input#usr {
     outline: none;
 
 }
+input#usred {
+    display: inline-block;
+    padding: 2px 8px;
+    width: 96px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
+
+}
 .mydp, .mydp .headertodaybtn {
     border: 2px solid gray!important;
 }
