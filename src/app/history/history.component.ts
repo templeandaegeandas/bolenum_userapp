@@ -9,11 +9,10 @@ import {IMyDpOptions} from 'mydatepicker';
 export class HistoryComponent implements OnInit {
   
   public myDatePickerOptions: IMyDpOptions = {
-        // other options...
-        dateFormat: 'dd.mm.yyyy',
-        width: '170px',
-        
-    };
+    dateFormat: 'yyyy/mmm/dd',
+    width: '170px',
+    editableDateField: false,
+  }
 
     // Initialized to specific date (09.10.2018).
     public model: any = { date: { year: 2018, month: 10, day: 9 } };

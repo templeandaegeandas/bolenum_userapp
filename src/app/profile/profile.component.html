@@ -20,19 +20,19 @@
     <div class="tab_container">
       <input id="tab1" type="radio" name="tabs" checked>
       <label for="tab1">
-        <div class="img-tab"><br><br><br>
+        <div class="img-tab"><br><br><br><br>
           <span>Profile</span>
          </div>
          </label>
       <input id="tab2" type="radio" name="tabs">
       <label for="tab2" (click)="getUserBankDetails()">
-          <div class="img-tab1"><br><br><br>
+          <div class="img-tab1"><br><br><br><br>
           <span>Bank Details</span>
           </div>
          </label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3">
-         <div class="img-tab2"><br><br><br>
+         <div class="img-tab2"><br><br><br><br>
        <span>KYC Details</span>
          </div>
          </label>
@@ -531,8 +531,8 @@
           <div *ngIf="!isMobileVerified">
             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
 
-              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr" required onlynumber disabled>
-              <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
+              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usred" required onlynumber disabled>
+              <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usred" required onlynumber>
               <span *ngIf="number.invalid && mobileForm.submitted">
                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
               </span>

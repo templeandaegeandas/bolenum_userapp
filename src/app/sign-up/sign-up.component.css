@@ -194,7 +194,8 @@ img.img-header {
 
 
 /* start media query */
-@media only screen and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px)
+ {
     .login-content {
     margin-top: 80px;
     box-shadow: 0 0 27px #eee;
