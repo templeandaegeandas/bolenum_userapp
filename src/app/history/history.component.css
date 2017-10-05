@@ -52,6 +52,9 @@ button.btn.btn-primary.dropdown-toggle {
 .clickable{
    cursor: pointer;   
 }
+img.text-right {
+    margin-right: 18px;
+}
 .panel-heading div {
     margin-top: -18px;
 	font-size: 15px;
@@ -119,7 +122,6 @@ h3.panel-title {
     outline: none;
 }
   
-
 label {
   cursor: pointer;
 }
@@ -130,12 +132,12 @@ input[type="checkbox"]:checked {
      visibility: hidden;
 }
 input[type="checkbox"] + label:before {
-  border: 1px solid  #DB2828;
+  border: 1px solid #CDCDCD;
   content: "\00a0";
   display: inline-block;
   font: 16px/1em sans-serif;
   height: 19px;
-  background-color:  #DB2828;
+  background-color:  white;
   margin: 0 .25em 0 0;
   padding: 0;
   vertical-align: top;
