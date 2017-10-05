@@ -91,7 +91,7 @@ label {
   display: block;
   float: left;
   width: 32%;
-  padding: 1.5em;
+  
   color: #757575;
   cursor: pointer;
   text-decoration: none;
@@ -139,7 +139,7 @@ label {
 .img-tab {
  background-repeat: no-repeat;
    background-position: center;
-  background-image: url("/assets/images/profile.png")
+  background-image: url("/assets/images/profile_uf.png")
 
 }
 .img-tab1 {
