@@ -15,6 +15,8 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public userFirstName:string;
+  public userLastName:string;
   public isCustomerView: boolean = true;
   public shortIfo: boolean = false;
   public getOurBankDetails: any;
@@ -89,6 +91,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.getLoggedInUserDetails();
+    
   }
 
   addPopupClose() {
@@ -200,6 +203,9 @@ export class ProfileComponent implements OnInit {
     this.userProfile.state = this.state;
 
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
+      console.log("saved data >>>>>>>>>>>>>>>",success.data);
+      this.userFirstName = success.data.firstName;
+      this.userLastName = success.data.lastName;
       this.ngOnInit();
       this.isDetailsEdit = false;
     }, error => {
@@ -288,6 +294,8 @@ export class ProfileComponent implements OnInit {
       }
       this.mobileNumber = success.data.mobileNumber;
       this.isMobileVerified = success.data.isMobileVerified;
+      this.userFirstName = success.data.firstName;
+      this.userLastName = success.data.lastName;
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;

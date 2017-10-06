@@ -59,5 +59,14 @@ select.center-dropddown {
 }
 
 input[type="text"]{
-        width: 37%;
+        width: 41%;
+}
+
+.deposit-bg-color{
+    background-color: white;
+}
+
+.deposit-container-padding{
+    margin-top: 67px;
+    margin-bottom: 51px;
 }
