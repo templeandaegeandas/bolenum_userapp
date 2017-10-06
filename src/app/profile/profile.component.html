@@ -1,10 +1,27 @@
 <div class="container-fluid">
-   <div class="row">
-      <div class="top-header">
-         <div class="top-profile">
-            <img src="assets/images/header (1).png" class="profile-img">
-            <div>
-            </div>
+  <div class="row">
+    <div class="top-header">
+      <div class="top-profile">
+        <img src="assets/images/header (1).png" class="profile-img">
+        <div>
+        </div>
+      </div>
+      <div class="header-text">
+        <img [src]="profilePic" class="porf-pic" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
+        <input class="from-newtext" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
+      </div>
+      <div class="profile-text">
+        <p class="top-text">{{userFirstName}} {{userLastName}}</p>
+      </div>
+      <div class="head-icon">
+        <img src="assets/images/location (1).png">&nbsp;<span>{{emailId}}</span>
+      </div>
+    </div>
+    <div class="tab_container">
+      <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1">
+        <div class="img-tab"><br><br><br><br>
+          <span>Profile</span>
          </div>
          <div class="header-text">
             <img [src]="profilePic" class="porf-pic" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
