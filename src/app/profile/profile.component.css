@@ -483,7 +483,18 @@ input#usr {
 input#usred {
     display: inline-block;
     padding: 2px 8px;
-    width: 96px;
+    width: 115px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
+
+}
+input#usr1ed {
+    display: inline-block;
+    padding: 2px 8px;
+    width: 50px;
     border-radius: -13px;
     border-radius: 8px;
     box-shadow: none;
@@ -509,6 +520,7 @@ button.btn.btn-successsave {
     color: white;
     margin-right: 93px;
     margin-top: 20px;
+    outline: none;
 }
 
 hr {
@@ -657,6 +669,12 @@ input#user {
 }
 img.porf-pic {
     position: absolute;
+}
+select#usred {
+    padding: 3px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    outline: none;
 }
 /*kyc section */
 p.kyc-text {

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
-
-
 .login-content {
     margin-top: 80px;
     box-shadow:  0 0 27px #eee;
@@ -13,11 +11,9 @@
     width: 411px;
     height: 650px;
 }*/
-
 .text-align-justify{
   text-align: justify;
 }
-
 .input-group {
     position: relative;
     display: table;
@@ -26,7 +22,6 @@
    font-family: Lato;
 
 }
-
 .text-center {
     text-align: -webkit-center;
     padding: 26px;
@@ -220,14 +215,19 @@ img.img-header {
     }
 @media  screen and (min-width : 768px) and (max-width : 1024px)  {
 .login-content {
-    margin-top: 80px;
+   
     box-shadow: 0 0 27px #eee;
-   width: 942px;
-    margin-left: 80px;
-    margin-bottom:89px;
+     width: 100%;
+   
 }
 .input-group {
-   width: 100%;
+   width: 76%;
+   
+   }
+
+.text-center{
+  text-align: -webkit-center;
+  padding: 5px;
 }
 .btn-success {
    width:53%;
