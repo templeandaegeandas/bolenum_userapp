@@ -275,6 +275,7 @@ p.kyc-text {
 a:focus, a:hover {
     color:red;
     text-decoration: underline;
+    cursor: pointer;
 }
 a{
 color:red;
@@ -612,6 +613,18 @@ img.img-header {
     -moz-osx-font-smoothing: grayscale;
     color: #D42828;
 }
+select#usred {
+    padding: 3px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+    outline: none;
+    width: 168px;
+}
+.otp {
+    margin-left: 8px;
+    margin-top: 6px;
+    margin-bottom: -11px;
+}
 /*bank details section */
 .bank-backgrnds {
     background: white;
@@ -670,12 +683,7 @@ input#user {
 img.porf-pic {
     position: absolute;
 }
-select#usred {
-    padding: 3px;
-    border-radius: 4px;
-    margin-bottom: 14px;
-    outline: none;
-}
+
 /*kyc section */
 p.kyc-text {
     font-size: 17px;
