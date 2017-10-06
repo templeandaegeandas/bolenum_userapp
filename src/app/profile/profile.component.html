@@ -1,34 +1,17 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="top-header">
-      <div class="top-profile">
-        <img src="assets/images/header (1).png" class="profile-img">
-        <div>
-        </div>
-      </div>
-      <div class="header-text">
-        <img [src]="profilePic" class="porf-pic" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
-        <input class="from-newtext" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
-      </div>
-      <div class="profile-text">
-        <p class="top-text">{{userFirstName}} {{userLastName}}</p>
-      </div>
-      <div class="head-icon">
-        <img src="assets/images/location (1).png">&nbsp;<span>{{emailId}}</span>
-      </div>
-    </div>
-    <div class="tab_container">
-      <input id="tab1" type="radio" name="tabs" checked>
-      <label for="tab1">
-        <div class="img-tab"><br><br><br><br>
-          <span>Profile</span>
+   <div class="row">
+      <div class="top-header">
+         <div class="top-profile">
+            <img src="assets/images/header (1).png" class="profile-img">
+            <div>
+            </div>
          </div>
          <div class="header-text">
             <img [src]="profilePic" class="porf-pic" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
             <input class="from-newtext" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
          </div>
          <div class="profile-text">
-            <p class="top-text">{{userProfile.firstName}} {{userProfile.lastName}}</p>
+            <p class="top-text">{{ userFirstName }} {{ userLastName }}</p>
          </div>
          <div class="head-icon">
             <img src="assets/images/location (1).png">&nbsp;<span>{{emailId}}</span>
@@ -255,7 +238,9 @@
                                           <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                                        <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
                                        <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
+                                         <div class="phone_number-margin">
                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr" required onlynumber disabled>
+                                         </div>
                                        <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usr" required onlynumber>
                                        <span *ngIf="number.invalid && mobileForm.submitted">
                                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
