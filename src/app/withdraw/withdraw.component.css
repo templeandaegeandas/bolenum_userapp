@@ -67,6 +67,9 @@ select option{
 .available-text{
     margin-top: 20px;
 }
-
+.color-box {
+    background-color: #FFFFFF;
+    padding-bottom: 216px;
+}
 
 
