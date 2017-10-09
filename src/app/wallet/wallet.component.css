@@ -97,8 +97,8 @@ img.wallet-image {
     
 img.wallet-image {
     position: absolute;
-	  max-width: 45%;
-	  top:10%;
+	max-width: 45%;
+	top:10%;
      left:10%;
     
 }

@@ -30,7 +30,7 @@
 }
 p.text-black {
     text-transform: uppercase;
-    font-size: 23px;
+    font-size: 19px;
     color: lightgray;
 }
 .inner h1 {
@@ -78,6 +78,16 @@ p.text-black {
   }  
    h1 {
     font-size: 23px;
+}
+.inner h1 {
+    text-align: center;
+    color: gray;
+    padding-left: 41px;
+}
+hr {
+    margin-top: 35px;
+    border: 0;
+    border-top: 1px solid #eee;
 }
 
 }

@@ -461,6 +461,10 @@ h2 {
 .create-advertisement-button{
     margin-left: 27%;
 }
+.sell-button-right {
+    text-align: right;
+    margin-top: -26px;
+}
 }
  @media screen and (min-width: 768px) and (max-width: 1023px){
 h2 {

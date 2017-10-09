@@ -126,6 +126,13 @@ export class ProfileComponent implements OnInit {
     if (data == 'MOBILE' && !this.isMobileVerified) this.isMobileEdit = true;
   }
 
+  backAuth(){
+
+    this.isMobileEdit = false;
+    this.twoFactorAuthType = 'NONE';
+
+  }
+
   set2faToMobile() {
     this.profileService.set2faToMobile().subscribe(success => {
       this.addPopup.hide();
