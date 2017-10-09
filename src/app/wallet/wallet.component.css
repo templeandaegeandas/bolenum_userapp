@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-position: top;
     height: 282px;
+     
     
 }
 .container.wallet-contain {
@@ -87,12 +88,10 @@ img.wallet-image {
     font-weight: 500;
 }
  
-  /* start media query*/
 
-
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-   .container.wallet-contain {
+/*start media for mobile device*/
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .container.wallet-contain {
     width: 100%;
    }
     
@@ -100,7 +99,13 @@ img.wallet-image {
     position: absolute;
 	  max-width: 45%;
 	  top:10%;
-    left:10%;
-   
+     left:10%;
+    
 }
 }
+
+ @media screen and (min-width: 768px) and (max-width: 1023px){
+  img.img-login {
+   width: 100%;
+    }
+ }

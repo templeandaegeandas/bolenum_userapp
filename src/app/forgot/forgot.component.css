@@ -5,7 +5,7 @@
 .login-content {
     margin-top: 80px;
     box-shadow:0 0 27px #eee;
-    width: 942px;
+    width:84%;
     margin-left: 80px;
     margin-bottom: 87px;
 }
@@ -91,14 +91,7 @@ img.img-header{
     z-index: 99999;
     right: -375px;
   }
-  .btn-success {
-    color: #ffffff;
-    width: 140px;
-    background-color:  #DB2828;
-    border-color:  #DB2828;
-    font-family: Lato;
-    margin-left: 11px;
-}
+  
    .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
     color: #fff;
     background-color: #DB2828;
@@ -121,6 +114,7 @@ button.btn.btn-continue {
     border-color: #DB2828;
     font-family: Lato;
     margin-left: 25px;
+    outline: none;
 }
 h4.text-center {
     margin: 20px;
@@ -141,10 +135,64 @@ p.text-center {
 .text-danger {
     color: #a94442;
     margin-left: 28px;
-        margin-top: -21px;
+    margin-top: -21px;
 }
 
 .invalid-user-error{
-        padding-left: 14px;
+    padding-left: 14px;
     padding-top: 3px;
 }
+/*start media for mobile device*/
+@media screen and (min-width: 320px) and (max-width: 767px){
+  
+   img.img-login {
+   width: 100%;
+    height: auto;;
+}
+.login-content {
+    margin-top: 80px;
+    box-shadow: 0 0 27px #eee;
+    width:100%;
+    margin-left:0px;
+    margin-bottom: 87px;
+}
+.login-text {
+    margin-right: 0px;
+}
+button.btn.btn-continue {
+   width: 135px;
+   margin-bottom: 5px;
+}
+.input-icons img {
+   right: -206px;
+  }
+  .input-groups input {
+     width:81%;}
+ }
+
+ @media screen and (min-width: 768px) and (max-width: 1023px){
+  img.img-login {
+   width: 100%;
+    }
+.login-content {
+    margin-top: 80px;
+    box-shadow: 0 0 27px #eee;
+    width:99%;
+    margin-left:0px;
+    margin-bottom: 87px;
+}
+  .login-text {
+    margin-right: 0px;
+  }
+ .input-group {
+   width:80%
+  }
+  .input-icons img {
+   right: -227px;
+  }
+  .input-groups input {
+     width:81%;}
+}
+
+
+

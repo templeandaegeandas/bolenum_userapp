@@ -70,3 +70,17 @@ p.text-black {
 .chart-margin{
     margin-top: 40px;
 }
+/*start media for mobile device*/
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+  p.text-black{
+  font-size: 19px;
+  }  
+   h1 {
+    font-size: 23px;
+}
+
+}
+ @media screen and (min-width: 768px) and (max-width: 1023px){
+
+ }

@@ -523,6 +523,15 @@ button.btn.btn-successsave {
     margin-top: 20px;
     outline: none;
 }
+button.btn.btn-back {
+    background: #DB2828;
+    color: white;
+    margin-top: 19px;
+    margin-left: -89px;
+    outline: none;
+
+}
+
 
 hr {
     margin-top: 20px;
@@ -742,13 +751,6 @@ span.kyc-color {
 
 
 
-
-
-
-
-
-
-
 /* The switch - the box around the slider */
 /*.switch {
   position: relative;
@@ -787,7 +789,18 @@ label.switch {
     text-align: -webkit-center;
     margin-left: 160px;
 }
-
+.carousel-control.left {
+    background-image: linear-gradient(to right,rgba(231, 230, 230, 0.5) 0,rgba(0,0,0,.0001) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+    background-repeat: repeat-x;
+}
+.carousel-control.right {
+    right: 0;
+    left: auto;
+    background-image: linear-gradient(to right,rgba(231, 230, 230, 0.5) 0,rgba(0,0,0,.0001) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+    background-repeat: repeat-x;
+}
 .slider:before {
   position: absolute;
   content: "";
@@ -878,7 +891,7 @@ button.btnbrowse {
 .balance-details{
 padding-left: 144px;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px){
   label span {
     display: none;
   }
@@ -890,6 +903,13 @@ padding-left: 144px;
   .tab_container {
     width: 98%;
   }
+  .carousel-inner {
+    
+    width: 40%;
+    overflow: hidden;
+    text-align: -webkit-center;
+    margin-left: 103px;
+}
 }
 
 /*Content Animation*/
