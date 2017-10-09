@@ -11,7 +11,7 @@
 }
 img.img-login {
     width: 411px;
-    height: 650px;
+    height: 747px;
 }
 
 .input-group {
@@ -209,12 +209,18 @@ a:focus, a:hover {
     
     margin-right: 0px;
 }
+img.img-header{
+    margin-left: 16px;}
+
 .input-group {
    width:100%
   }
  .btn-success {
    width:79%;
    }
+   .sign-block {
+     width: 85%;
+}
  }
 /*start media for mobile device*/
 
