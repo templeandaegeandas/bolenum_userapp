@@ -523,7 +523,7 @@
                   <br>
                </div>
             </div>
-            <p class="icon-name">Phone No </p>
+            <p class="icon-name">{{varificationName}}</p>
             <div *ngIf="isMobileVerified">
                <p *ngIf="!isMobileEdit" class="text-icon">{{mobileNumber}}</p>
             </div>
@@ -548,12 +548,11 @@
                <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
                <span *ngIf="otpField.invalid && otpForm.submitted">
                <span class="text-danger" *ngIf="otpField.errors.required">Please enter otp</span>
-               </span>
-               <div class="otp">
+               </span><br>
+                <button type="submit" class="btn btn-successsave-verify">Verify Otp</button>
+                <div class="otp">
                <a (click)="reSendOtp()">Resend Otp</a>
                </div>
-               <button type="submit" class="btn btn-successsave">Verify Otp</button>
-                
       </form>
             </div>
             <button *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>

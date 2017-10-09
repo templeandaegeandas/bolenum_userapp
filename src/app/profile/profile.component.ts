@@ -15,6 +15,7 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public varificationName:string="Phone no" ;
   public userFirstName:string;
   public userLastName:string;
   public isCustomerView: boolean = true;
@@ -158,6 +159,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveMobile(form) {
+    this.varificationName = "Enter OTP"
     if (form.invalid) return;
     this.profileService.addMobileNumber(this.mobileNumber).subscribe(success => {
       this.isMobileEdit = false;
