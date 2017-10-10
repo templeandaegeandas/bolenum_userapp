@@ -43,8 +43,7 @@ a {
 .head-icon {
     position: absolute;
     top: 172px;
-
-    margin-left: 254px;
+    margin-left: 294px;
     color: white;
     font-size: 20px;
 }
@@ -57,7 +56,7 @@ a {
 p.top-text {
     color: white;
     font-size: 23px;
-    margin-left: 262px;
+    margin-left: 294px;
     position: absolute;
     top: 138px;
 }
@@ -319,7 +318,7 @@ a{
 }
 
 .locate-details{
-        cursor: pointer;
+    cursor: pointer;
     color: #DB2828;
     font-size: 17px;
 }
@@ -540,6 +539,15 @@ button.btn.btn-back {
     color: white;
     margin-top: 19px;
     margin-left: -89px;
+    outline: none;
+
+}
+button.btn.btn-successsavedetail {
+    
+    background: #DB2828;
+    color: white;
+    margin-right: 93px;
+    margin-top: 3px;
     outline: none;
 
 }

@@ -35,7 +35,7 @@ export const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'forgot', component: ForgotComponent, canActivate: [ PublicRouteAuthGuard ] },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent , canActivate: [ PrivateRouteAuthGuard ] },
   { path: 'wallet', component: WalletComponent,
     
     children: [

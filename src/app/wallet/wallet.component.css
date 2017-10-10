@@ -3,8 +3,8 @@
     background-repeat: no-repeat;
     background-position: top;
     height: 282px;
-     
-    
+    width: 100%;
+    margin: 0;
 }
 .container.wallet-contain {
     padding-left: 0px;
@@ -12,7 +12,7 @@
     margin-left: 0px;
     width: 100%;
     margin-right: 0px;
-    width: 98.75%;
+   margin: 0; 
 }
 img.wallet-image {
     position: absolute;

@@ -100,6 +100,7 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = false;
     this.isOtpEdit = false;
     this.twoFactorAuthType = 'NONE';
+    this.varificationName="Phone no";
     this.addPopup.hide();
   }
 
