@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   deviceInfo: any;
   is2FaOn: any = false;
   otp: any;
+  twoFaOption: any;
   constructor(private route: ActivatedRoute,
     private loginService: LoginService,
     private toastrService: ToastrService,
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
     this.login.setRole('ROLE_USER');
     this.loginService.logIn(this.login).subscribe(success => {
       if(success.status==202) {
+        this.twoFaOption = success.data
         this.is2FaOn = true;
         this.loading = false;
         return;
@@ -66,6 +68,7 @@ export class LoginComponent implements OnInit {
 
   verify2Fa(form) {
     if(form.invalid) return;
+    this.loading = true;
     this.loginService.verify2FaOtp(this.otp, this.login).subscribe(success => {
       localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);
