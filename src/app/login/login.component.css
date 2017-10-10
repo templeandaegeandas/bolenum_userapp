@@ -96,7 +96,21 @@
     z-index: 99999;
     right: -382px;
   }
-  
+  button.btn.btn-successver {
+     color: #ffffff;
+    width: 142px;
+    padding: 8px;
+    margin: 12px;
+    margin-left: -2px;
+    text-transform: uppercase;
+    background-color: #DB2828;
+    border-color: #DB2828;
+    font-family: Lato;
+    margin-left: 19px;
+    box-shadow: 2px;
+    outline: none;
+
+}
 .btn-success {
     color: #ffffff;
     width: 142px;
@@ -190,6 +204,12 @@ img.img-header {
     top: 0;
     left: 0;
     margin-left: -7px;
+}
+a.resend-otp {
+    padding-left: 22px;
+    color: #DB2828;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 

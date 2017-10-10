@@ -43,10 +43,10 @@
               </div>
               <span *ngIf="twoFaOtp.invalid && otpForm.submitted">
            <span class="text-danger" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
-              <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span>
+              <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span><br>
               </span>
-              <button type="submit" class="btn btn-success">Verify Otp</button>
-              <a *ngIf="twoFaOption!='GOOGLE_AUTHENTICATOR'" (click)="resend2FaOtp()">Resend Otp</a>
+              <button type="submit" class="btn btn-successver">Verify Otp</button><br>
+              <a *ngIf="twoFaOption!='GOOGLE_AUTHENTICATOR'" (click)="resend2FaOtp()" class="resend-otp">Resend Otp</a>
             </form>
           </div>
           <!-- <div class="login-or">

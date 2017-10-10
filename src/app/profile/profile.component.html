@@ -48,7 +48,7 @@
                            </div>
                            <div class="email-text">
                               <p class="icon-name">First Name<br>
-                              <p class="text-icon">{{userProfile.firstName}}</p>
+                              <p class="tmaxlength="10"ext-icon">{{userProfile.firstName}}</p>
                            </div>
                         </div>
                         <div class="email-part">
@@ -241,7 +241,7 @@
                                          <div class="phone_number-margin">
                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode" required onlynumber disabled>
                                          </div>
-                                       <input type="text" class="from-newtext" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" required onlynumber>
+                                       <input type="text" class="from-newtext" name="mobileNumber"  maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" required onlynumber>
                                        <span *ngIf="number.invalid && mobileForm.submitted">
                                        <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                                        </span>
