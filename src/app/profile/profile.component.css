@@ -504,6 +504,17 @@ input#usr1ed {
     outline: none;
 
 }
+input#usrphone {
+    display: inline-block;
+    padding: 2px 8px;
+    width: 153px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
+
+}
 .mydp, .mydp .headertodaybtn {
     border: 2px solid gray!important;
 }
@@ -689,6 +700,16 @@ input#user {
      margin-top:20px;
     filter: alpha(opacity=50)
 
+}
+input#usrcode {
+    display: block;
+    padding: 2px 8px;
+    width: 57px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;
 }
 img.porf-pic {
     position: absolute;

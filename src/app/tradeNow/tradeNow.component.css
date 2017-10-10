@@ -473,6 +473,10 @@ h2 {
 .create-advertisement-button{
     margin-left: 40%;
 }
+.sell-button-right {
+    text-align: right;
+    margin-top: -26px;
+}
  .trade-width{
     width: 100%;
 }

@@ -213,6 +213,10 @@ li.dropdown {
 .drop-active {
     color: #DB2828 !important;
 }
+.navbar-default .navbar-toggle {
+    border-color: #ddd;
+    background:#DB2828 !important;
+}
 
 li.dropdown {
     margin-top: -11px;
@@ -279,7 +283,7 @@ a.navbar-brand.insight span.exchange-color{
 }
 
 .navbar-nav {
-    margin: -0.5px 15px;
+    margin: 0px;
 }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){

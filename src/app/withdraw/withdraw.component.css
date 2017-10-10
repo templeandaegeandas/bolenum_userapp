@@ -29,7 +29,7 @@
 
 .button-padding {
    padding-left: 21px;
-       margin-top: 11px;
+   margin-top: 11px;
 }
 
 .submit-button {
@@ -73,3 +73,36 @@ select option{
 }
 
 
+
+
+
+  /*start media query*/
+  @media screen and (min-width: 320px) and (max-width: 767px){
+  .col-width{
+    width: 100%;
+  }
+  .top-margin-field {
+    margin-top: 0px;
+}
+.text-image-div {
+    background-color: #f3f3f3;
+    padding-bottom: 34px;
+    padding-top: 37px;
+}
+.main-div-margin {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.wallet-background-img {
+    height: 282px;
+    width: 103%;
+}
+
+ }
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .wallet-background-img {
+    height: 282px;
+    width: 103%;
+}
+   
+}

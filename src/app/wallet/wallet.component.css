@@ -12,7 +12,7 @@
     margin-left: 0px;
     width: 100%;
     margin-right: 0px;
-    width: 1271px;
+    width: 98.75%;
 }
 img.wallet-image {
     position: absolute;
@@ -92,15 +92,14 @@ img.wallet-image {
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){
   .container.wallet-contain {
-    width: 100%;
+    width: 95%;
    }
     
 img.wallet-image {
     position: absolute;
-	max-width: 45%;
-	top:10%;
-     left:10%;
-    
+    max-width: 37%;
+    top: 66px;
+    left: 30%;
 }
 }
 
@@ -108,4 +107,7 @@ img.wallet-image {
   img.img-login {
    width: 100%;
     }
+     .container.wallet-contain {
+    width: 98%;
+   }
  }
