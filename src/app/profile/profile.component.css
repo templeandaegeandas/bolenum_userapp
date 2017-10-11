@@ -782,12 +782,12 @@ span.kyc-color {
 
 
 /* The switch - the box around the slider */
-/*.switch {
+.switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 10px;
-}*/
+}
 
 label.switch {
     min-width: 26%;
@@ -821,10 +821,16 @@ label.switch {
 }
 .carousel-control.left {
    background: none;
-}
-.carousel-control.right {
     right: 0;
-    left: auto;
+     top: 100px;
+    bottom: 100px;
+    width: 5%;
+}
+    
+.carousel-control.right {
+    top: 100px;
+    bottom: 100px;
+    width: 5%;
     background: none;
 }
 .slider:before {

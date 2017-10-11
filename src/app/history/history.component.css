@@ -88,7 +88,11 @@ img.text-right {
 h3.panel-title {
     font-size: 18px;
     font-weight: 600;
-}
+    float: none!important;
+    width: 100%;
+    display: block;
+    }
+
 .dropdown-menu>li>a {
     display: block;
     padding: 5px 20px;
@@ -162,6 +166,12 @@ input[type="checkbox"]:checked + label:after {
     width: 420px;
    
 }
+h3.panel-title {
+   
+    float: none!important;
+    width: 100%;
+    margin-bottom:30px;
+    }
 .date-picker {
     float: right;
     background: none!important;
@@ -170,3 +180,14 @@ input[type="checkbox"]:checked + label:after {
    
 }
 }
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  h3.panel-title {
+    font-size: 18px;
+    font-weight: 600;
+    float: none!important;
+    width: 100%;
+    display: block;
+   
+    }
+  
+ }

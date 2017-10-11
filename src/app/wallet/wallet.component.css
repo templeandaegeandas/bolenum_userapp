@@ -92,7 +92,7 @@ img.wallet-image {
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){
   .container.wallet-contain {
-    width: 95%;
+    width: 100%;
    }
     
 img.wallet-image {
@@ -108,6 +108,6 @@ img.wallet-image {
    width: 100%;
     }
      .container.wallet-contain {
-    width: 98%;
+    width: 100%;
    }
  }

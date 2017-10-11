@@ -42,12 +42,18 @@
     border-radius: 5px;
     outline: none;
     width: 25%;
-}select.center-dropddown {
+}
+select.center-dropddown {
     background: #DB2828;
     width: 225px;
     padding: 10px;
     color: white;
     border: none;
+    outline: none;
+}
+select.center-dropddown option {
+    width: 225px;
+    outline: none;
 }
 .col-md-12.withdraw-dropdown {
     text-align: center;
@@ -97,7 +103,14 @@ select option{
     height: 282px;
     width: 103%;
 }
+.submit-button {
+   margin-left: 12px;
+   width: 30%;
 
+ }
+ .col-md-12.withdraw-dropdown{
+     margin-bottom: 20px;
+ }
  }
 @media screen and (min-width: 768px) and (max-width: 1023px){
   .wallet-background-img {
