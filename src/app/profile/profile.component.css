@@ -757,9 +757,16 @@ img.img-.bakprofile {
     padding: 9px;
 }
 img.img-center {
-    margin: 0a;
+    height: 360px;
+    max-width: 720px;
     margin: 0 auto;
     display: block;
+}
+.img-block {
+    margin: 0;
+    text-align: center;
+    display: block;
+    /* width: 34%; */
 }
 a.btn.btn-dark-blue {
     width: 87%;

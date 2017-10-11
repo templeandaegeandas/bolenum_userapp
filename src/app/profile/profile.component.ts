@@ -380,6 +380,7 @@ export class ProfileComponent implements OnInit {
     this.accounDetails = true;
     this.saveButton = true;
     this.addNewButton = false;
+    
   }
   locate(data) {
     console.log("ifsc code >>>", data);

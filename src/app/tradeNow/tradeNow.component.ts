@@ -140,7 +140,7 @@ export class TradeNowComponent implements OnInit {
 
 setTradeValue(setData){
     console.log("setvalue is ",setData);
-   if(setData === "MarketOrder"){
+   if(setData === "LimitOrder"){
        this.isMarket = true;
    }
     else{

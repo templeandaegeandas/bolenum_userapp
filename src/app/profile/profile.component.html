@@ -248,14 +248,14 @@
                                                                                           <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
                                                                                                 required onlynumber>
                                                                                           <span *ngIf="number.invalid && mobileForm.submitted">
-                                       <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
+                                                                                           <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                                                                                           </span>
                                                                                           <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
                                                                                     </form>
                                                                                     <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
                                                                                           <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
                                                                                           <span *ngIf="otpField.invalid && otpForm.submitted">
-                                       <span class="text-danger" *ngIf="otpField.errors.required">Please enter otp</span>
+                                                                                        <span class="text-danger" *ngIf="otpField.errors.required">Please enter otp</span>
                                                                                           </span>
                                                                                           <button type="submit" class="btn btn-successsave">Verify Otp</button>
                                                                                           <a (click)="reSendOtp()">Resend Otp</a>
@@ -413,9 +413,9 @@
                                                 <div class="kyc-details">
                                                       <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                                                 </div>
-                                                <div class="img" style="margin-left: 38%;">
-                                                      <img class="img-center" *ngIf="!pdf" [src]="document" style="width: 100%;height: 100%;">
-                                                      <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png" style="width: 100%;height: 100%;">
+                                                <div class="img-block">
+                                                      <img class="img-center" *ngIf="!pdf" [src]="document" >
+                                                      <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
                                                 </div>
                                                 <div class="kyc-details">
                                                       <p class="kyc-text"> Image of national id </p>
@@ -544,7 +544,7 @@
                                           <span class="text-danger" *ngIf="countryError">Please choose country</span><br>
                                           <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
                                           <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
-                                          <span *ngIf="number.invalid && mobileForm.submitted">
+                                          <span *ngIf="number.invalid && mobileForm.submitted"><br>
                <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                                           </span>
                                           <br>
