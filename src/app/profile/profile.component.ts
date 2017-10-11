@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
   cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
-  
+
   constructor(private profileService: ProfileService, private toastrService: ToastrService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 200;
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.getLoggedInUserDetails();
-    
+
   }
 
   addPopupClose() {
@@ -169,7 +169,7 @@ export class ProfileComponent implements OnInit {
   saveMobile(form) {
     this.varificationName = "Enter OTP"
     if (form.invalid) return;
-    this.profileService.addMobileNumber(this.mobileNumber).subscribe(success => {
+    this.profileService.addMobileNumber(this.countryCode+this.mobileNumber).subscribe(success => {
       this.isMobileEdit = false;
       this.isOtpEdit = true;
       this.resendOtp = true;
@@ -400,7 +400,7 @@ export class ProfileComponent implements OnInit {
   customerDetails(customerDetaisForm) {
     console.log("form valid",customerDetaisForm.valid);
     console.log("form invalid",customerDetaisForm.invalid);
-    
+
     this.isCustomerView = true;
     this.accounDetails = false;
     if (this.getOurBankDetails.length === 2) {
