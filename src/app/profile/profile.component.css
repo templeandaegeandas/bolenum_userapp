@@ -632,7 +632,7 @@ span.font-1 {
 }
 .text-danger {
     color: #a94442;
-    margin: 8px;
+    margin: -2px;
 }
 .sign-block {
      margin: 17px;
@@ -744,6 +744,7 @@ p.kyc-text {
     background: #FFFFFF;
     padding: 20px;
     padding-bottom: 51px;
+    margin-left: 20px;
 }
 .kyc-input {
     margin-left: 315px;
