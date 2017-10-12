@@ -158,7 +158,12 @@ export class ProfileComponent implements OnInit {
   editDetails() {
     this.getAllCountries();
     this.isDetailsEdit = true;
+    let d = new Date(this.userProfile.dob*1000);
+    this.dob = { date: { year: d.getFullYear(), month: d.getMonth(), day: d.getDate() } };
+    console.log(this.dob);
+    
   }
+  
 
   editMobile() {
     this.isMobileEdit = true;
@@ -208,6 +213,8 @@ export class ProfileComponent implements OnInit {
       this.stateError = true;
       return;
     }
+    console.log(this.userProfile);
+    
     this.userProfile.dob = this.dob.epoc;
     this.userProfile.country = this.country;
     this.userProfile.state = this.state;
@@ -286,6 +293,8 @@ export class ProfileComponent implements OnInit {
 
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
+      console.log(success);
+      
       if (success.data.userKyc != null) {
         this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
         this.documentStatus = success.data.userKyc.documentStatus;
@@ -412,6 +421,7 @@ export class ProfileComponent implements OnInit {
       this.addNewButton = true;
     }
     this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
+      customerDetaisForm.resetForm();
       this.getUserBankDetails();
     }, errorData => {
     })
@@ -466,7 +476,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy/mmm/dd',
+    dateFormat: 'yyyy/mm/dd',
     width: '200px',
     editableDateField: false,
   }

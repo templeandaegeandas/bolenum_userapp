@@ -6,15 +6,20 @@ import {NgModel} from '@angular/forms';
 selector: '[ngModel][nonumberspecialcharacter]',
 providers: [NgModel],
 host: {
-    '(ngModelChange)' : 'onInputChange($event)'
+    '(input)' : 'onInputChange($event)'
       }
 })
 export class NoNumberSpecialCharacterDirective{
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
   constructor(private model:NgModel){}
 
   onInputChange(event){
-    var newValue = event.replace(/[^\w\s]/gi, '');
+    console.log(event);
+    
+    var newValue = event.target.value.replace(/[^\w\s]/gi, '');
     newValue = newValue.replace(/[0-9]/, '');
+    this.ngModelChange.emit(newValue);
     this.model.valueAccessor.writeValue(newValue);
   }
+
 }
