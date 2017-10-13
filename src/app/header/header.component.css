@@ -237,6 +237,8 @@ img.img-profile-icon {
   span.exchange-color {
     display: none;
   }
+  
+
  .dropdown-menu {
   padding-top: 7px;
   padding-bottom: 7px;
@@ -286,17 +288,29 @@ a.navbar-brand.insight span.exchange-color{
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){
   .header-menu{
-    overflow-x: hidden;
+    
   }
   .navbar-nav {
     float: none;;
     margin: 0;
-    margin-top: -2px;
+    margin-top: 2px;
 }
+.navbar-default .navbar-brand {
+    font-size: 19px;
+    }
 .nav>li>a {
     position: relative;
     display: block;
     padding: 13px 6px;
     font-size: 11px;
 }
+span.exchange-color {
+    font-size: 19px;
+    
+    }
+ .navbar-brand img {
+    margin-top: -5px;
+    margin-left: -20px;
+}
+
 }
