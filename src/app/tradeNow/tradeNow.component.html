@@ -36,7 +36,7 @@
                      <div class="col-md-4">
                         <label for="email">Price </label>
                      </div>
-                     
+
                      <div class="col-md-8">
                         <input type="email" class="form-control" id="email">
                      </div>
@@ -45,11 +45,11 @@
                      <div class="col-md-4">
                         <label for="email">Amount </label>
                      </div>
-                     
+
                      <div class="col-md-8">
                         <input type="amount" class="form-control" id="amount" name="amount" [disabled]=true >
                      </div>
-                     
+
                   </div>
                   <div *ngIf="isMarket">
                      <!--<div class="col-md-12 trade-field">
@@ -319,52 +319,15 @@
                         <th>Price</th>
                         <th>ETH</th>
                         <th>BTC</th>
-                        <th>Sum(BTC)</th>
+                        <th>Total BTC</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
-                     <tr>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                        <td>0.3152478555</td>
-                     </tr>
+                    <tr *ngFor="let buyOrder of buyOrderList">
+                    <td>{{buyOrder.price}}</td>
+                    <td>{{buyOrder.volume * buyOrder.price}}</td>
+                    <td>{{buyOrder.volume}}</td>
+                    <td>{{buyOrder.totalVolume}}</td>
                   </tbody>
                </table>
             </div>
@@ -381,55 +344,19 @@
                   <table class="table table-striped table-color">
                      <thead>
                         <tr>
-                           <th>Price</th>
-                           <th>ETH</th>
+                           <th>Total BTC</th>
                            <th>BTC</th>
-                           <th>Sum(BTC)</th>
+                           <th>ETH</th>
+                           <th>Price</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
-                        <tr>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                           <td>0.3152478555</td>
-                        </tr>
+                        <tr *ngFor="let sellOrder of sellOrderList">
+                        <td>{{sellOrder.totalVolume}}</td>
+                        <td>{{sellOrder.volume}}</td>
+                        <td>{{sellOrder.volume * sellOrder.price}}</td>
+                        <td>{{sellOrder.price}}</td>
+                      </tr>
                      </tbody>
                   </table>
                </div>
@@ -437,7 +364,7 @@
                <!-- <div class="col-md-12 pagination-section">
                   <ul class="pagination">
                      <li><a href="#">View More ...</a></li>
-                   
+
                    </ul>
                   </div> -->
             </div>
