@@ -1084,3 +1084,8 @@ p.createdepositmodal-heading.hedartext {
 .phone_number-margin{
         margin-bottom: 8px;
 }
+
+.otp-error{
+        margin-top: 2px;
+    margin-left: 3px;
+}

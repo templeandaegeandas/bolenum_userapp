@@ -6,16 +6,18 @@ import { NgModel } from '@angular/forms';
   selector: '[ngModel][onlynumber]',
   providers: [NgModel],
   host: {
-    '(ngModelChange)': 'onInputChange($event)'
+    '(input)' : 'onInputChange($event)'
   }
 })
 export class OnlyNumberDirective {
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
   constructor(private model: NgModel) { }
 
   onInputChange(event) {
-    var cleanInputValue = event.replace(/[^\w\s]/gi, '');
+    var cleanInputValue = event.target.value.replace(/[^\w\s]/gi, '');
     cleanInputValue = cleanInputValue.replace(/[A-Za-z]/, '');
     cleanInputValue = cleanInputValue.replace(/ /g, '');
+    this.ngModelChange.emit(cleanInputValue);
     this.model.valueAccessor.writeValue(cleanInputValue);
   }
 }

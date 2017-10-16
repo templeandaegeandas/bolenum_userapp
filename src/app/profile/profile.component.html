@@ -67,7 +67,7 @@
                            </div>
                            <div class="email-text">
                               <p class="icon-name">Date of birth<br>
-                              <p class="text-icon">{{userProfile.dob * 1000 | date}}</p>
+                              <p class="text-icon">{{userProfile.dob | date}}</p>
                            </div>
                         </div>
                         <div class="email-part">
@@ -249,7 +249,7 @@
                                        <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
                                        required onlynumber>
                                        <span *ngIf="number.invalid && mobileForm.submitted">
-                                       <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
+                                       <p class="text-danger otp-error" *ngIf="number.errors.required">Please enter mobile number</p>
                                        </span>
                                        <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
                                        </form>

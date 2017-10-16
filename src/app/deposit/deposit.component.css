@@ -71,7 +71,8 @@ input[type="text"]{
     margin-bottom: 51px;
 }
 
-.hideoption{
-    display:none; visibility:hidden; height:0; font-size:0;
-
+.option-box{
+        background-color: white;
+    color: black;
 }
+
