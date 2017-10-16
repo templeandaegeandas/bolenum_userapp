@@ -47,6 +47,10 @@ export class LoginComponent implements OnInit {
     this.login.setClientOsName(this.deviceInfo.os);
     this.login.setRole('ROLE_USER');
     this.loginService.logIn(this.login).subscribe(success => {
+
+      console.log("login data");
+      
+
       if(success.status==202) {
         this.twoFaOption = success.data
         this.is2FaOn = true;

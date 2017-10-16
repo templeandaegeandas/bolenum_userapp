@@ -331,7 +331,7 @@
             <div class="container-fluid">
                <div class="row">
                   <div class="col-md-12 col-xs-12 user-bank-details" *ngIf=accounDetails>
-                     <form #customerDetaisForm="ngForm" (ngSubmit)=" customerDetails(customerDetaisForm)" autocomplete="off">
+                     <form #customerDetaisForm="ngForm" (ngSubmit)=" customerDetails(customerDetaisForm)" autocomplete="false">
                      <div class="col-md-10 col-md-offset-2 form-left">
                         <div class="row margin-balance-details">
                            <div class="col-md-5 balance-details">
@@ -393,13 +393,13 @@
                      </div>
                      <div class="row">
                         <div class="col-md-12">
-                           <button type="submit" class="btn btn-successaddnew" *ngIf=saveButton>Save</button>
+                           <button type="submit" class="btn btn-successaddnew" *ngIf=saveButton >Save</button>
                         </div>
                      </div>
                      </form>
                   </div>
                   <div *ngIf=addNewButton>
-                     <button type="button" class="btn btn-successaddnew" (click)="addNew()">Add new bank</button>
+                     <button type="button" class="btn btn-successaddnew" (click)="addNew(); customerDetaisForm.reset()">Add new bank</button>
                   </div>
                </div>
             </div>

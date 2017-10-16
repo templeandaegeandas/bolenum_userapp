@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   public subMenu = false;
   token: String;
   fullName: String;
+  lastName:String;
   profilePic: String = "assets/images/pic.png";
   constructor(private headerService: HeaderService, private router: Router) {
   }
@@ -24,7 +25,16 @@ export class HeaderComponent implements OnInit {
         this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random();
     }
     this.token = localStorage.getItem("token");
-    this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
+    this.lastName = localStorage.getItem("lName");
+    if(this.lastName){
+
+        this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
+
+    }
+    else{
+  this.fullName = localStorage.getItem("fName");
+    }
+  
   }
 
   signOut() {

@@ -18,4 +18,10 @@ getCoin(code){
     .map(res => res.json());
 }
 
+getCurrencyData(){
+  return this.http.get('api/v1/admin/currency/list')
+  .map(res => res.json())
+}
+
+
 }
