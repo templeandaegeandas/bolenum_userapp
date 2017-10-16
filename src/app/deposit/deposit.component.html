@@ -16,7 +16,7 @@
       <div class="col-md-12 text-center">
         <select class="center-dropddown"  [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
            
-            <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation">{{setCoin.currencyName}}({{setCoin.currencyAbbreviation}})</option>
+            <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
            
           </select>
           <p *ngIf="errorCoin" class="coinNotFound">Address of this coin is not available</p>
