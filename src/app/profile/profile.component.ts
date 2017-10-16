@@ -15,7 +15,7 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  public varificationName:string="Phone no" ;
+  public varificationName:string="Enter Mobile Number" ;
   public userFirstName:string;
   public userLastName:string;
   public isCustomerView: boolean = true;
@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = false;
     this.isOtpEdit = false;
     this.twoFactorAuthType = 'NONE';
-    this.varificationName="Phone no";
+    this.varificationName="";
     this.addPopup.hide();
   }
 
@@ -131,6 +131,7 @@ export class ProfileComponent implements OnInit {
 
     this.isMobileEdit = false;
     this.twoFactorAuthType = 'NONE';
+      this.varificationName="Enter Mobile Number";
 
   }
 
@@ -156,11 +157,12 @@ export class ProfileComponent implements OnInit {
   }
 
   editDetails() {
+    
     this.getAllCountries();
     this.isDetailsEdit = true;
-    let d = new Date(this.userProfile.dob*1000);
-    this.dob = { date: { year: d.getFullYear(), month: d.getMonth(), day: d.getDate() } };
-    console.log(this.dob);
+    let d = new Date(this.userProfile.dob);
+    this.dob = { date: { year: d.getFullYear(), month: d.getMonth()+1, day: d.getDate() } };
+    console.log("date of birth >>>>>>>>>>>>>>>",this.userProfile.dob);
     
   }
   
@@ -213,11 +215,22 @@ export class ProfileComponent implements OnInit {
       this.stateError = true;
       return;
     }
-    console.log(this.userProfile);
     
-    this.userProfile.dob = this.dob.epoc;
+    
+
+    this.userProfile.dob = new Date(this.dob.jsdate).getTime();
     this.userProfile.country = this.country;
     this.userProfile.state = this.state;
+    console.log("fgh",this.userProfile.lastName,"ijk");
+    
+    if(this.userProfile.lastName==""){
+
+      this.userProfile.lastName = this.userLastName = null;
+
+    }
+
+    console.log("dfghjk",this.userProfile.lastName );
+    
 
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
       console.log("saved data >>>>>>>>>>>>>>>",success.data);
@@ -318,13 +331,16 @@ export class ProfileComponent implements OnInit {
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
+      if(success.data.dob!=null){
+        this.userProfile.dob=success.data.dob;
+      }
       if (success.data.country != null) {
         this.getAllCountries();
         this.country = success.data.country;
         this.state = success.data.state;
         setTimeout(() => {
           this.getStatesByCountryId(this.country);
-        }, 500);
+        }, 1500);
       }
 
       if (success.data.profileImage != null) {
