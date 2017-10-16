@@ -7,14 +7,14 @@ import { HttpClient } from '../app.client.interceptor';
 export class DepositService {
   constructor(private http: HttpClient) { }
 
-  
+
 //   getStatesByCountryId(countryId) {
 //     return this.http.get("/api/v1/user/states?countryId=" + countryId)
 //       .map(res => res.json());
 //   }
 
-getCoin(code){
-    return this.http.get("/api/v1/user/deposit?code=" + code)
+getCoin(currencyType, code){
+    return this.http.get("/api/v1/user/deposit?currencyType="+currencyType+"&code=" + code)
     .map(res => res.json());
 }
 

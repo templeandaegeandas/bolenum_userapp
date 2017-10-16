@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TradeNowService } from './tradeNow.service';
+import { Order } from './entity/order.entity';
 
 @Component({
   selector: 'app-tradeNow',
@@ -9,8 +10,12 @@ import { TradeNowService } from './tradeNow.service';
 })
 export class TradeNowComponent implements OnInit {
 
-buyOrderList: any;
-sellOrderList: any;
+  buyOrderList: any;
+  sellOrderList: any;
+  marketPrice: any;
+  market1Btc: any;
+  market1BtcEth: any;
+  order = new Order();
 
   getBuyOrderBookData(pairId) {
     this.tradeNowService.orderBook(pairId, "BUY").subscribe(success => {
@@ -26,9 +31,36 @@ sellOrderList: any;
     })
   }
 
+  getMarketPrice() {
+    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
+      this.marketPrice = success.data.priceBTC;
+    })
+  }
 
+  oneBtc() {
+    this.order.price = this.order.volume/this.marketPrice;
+    if(this.market1BtcEth=='Infinity') {
+      this.market1BtcEth = 0;
+    }
+  }
 
-
+  createOrder(orderType) {
+    if(this.isMarket) {
+      this.order.orderStandard = 'LIMIT';
+    }
+    else {
+      this.order.orderStandard = 'MARKET';
+    }
+    this.order.orderType = orderType;
+    this.order.pairId = 1;
+    this.order.totalVolume = this.order.volume;
+    console.log(this.order)
+    this.tradeNowService.createOrder(this.order).subscribe(success => {
+      console.log(success);
+    })
+    this.order.price ='';
+    this.order.volume ='';
+  }
 
 
 
@@ -56,6 +88,7 @@ sellOrderList: any;
   public afterLogin: boolean = false;
   options: any;
   constructor(private tradeNowService: TradeNowService) {
+    this.getMarketPrice();
     this.getBuyOrderBookData(1);
     this.getSellOrderBookData(1);
     this.options = {
@@ -173,7 +206,6 @@ sellOrderList: any;
   }
 
   setTradeValue(setData) {
-    console.log("setvalue is ", setData);
     if (setData === "LimitOrder") {
       this.isMarket = true;
     }
@@ -181,6 +213,8 @@ sellOrderList: any;
       this.isMarket = false;
 
     }
+    this.order.price ='';
+    this.order.volume ='';
 
   }
 
