@@ -7,8 +7,8 @@
             </div>
          </div>
          <div class="header-text">
-            <img [src]="profilePic" class="porf-pic" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
-            <input class="from-newtext" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
+            <img [src]="profilePic" class="porf-pic upload-profile" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
+            <input class="from-newtext upload-profile" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
          </div>
          <div class="profile-text">
             <p class="top-text">{{ userFirstName }} {{ userLastName }}</p>
@@ -339,7 +339,7 @@
                            </div>
                            <div class="col-md-7">
                               <input type="text" class="form-control" id="usr" name="name" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel"
-                              required minlength="10" maxlength="15" nonumberspecialcharacter>
+                              required autocomplete="off" >
                               <!-- errors msg-->
                               <div *ngIf="name.invalid && (name.dirty || name.touched || customerDetaisForm.submitted )" class="error-msg">
                                  <div *ngIf="name.errors.required">
@@ -355,7 +355,7 @@
                            </div>
                            <div class="col-md-7">
                               <input type="text" class="form-control" id="usr" name="bankName" [(ngModel)]="bankDetails.bankName" #bankName="ngModel" required
-                              nonumberspecialcharacter>
+                              >
                               <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched || customerDetaisForm.submitted )" class="error-msg">
                                  <div *ngIf="bankName.errors.required">
                                     <span>Please enter your bank name.</span>
@@ -369,7 +369,7 @@
                            </div>
                            <div class="col-md-7">
                               <input type="text" class="form-control" id="usr" name="accountNumber" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel"
-                              required onlynumber>
+                              required >
                               <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched  || customerDetaisForm.submitted )" class="error-msg">
                                  <div *ngIf="accountNumber.errors.required">
                                     <span>Please enter your account number.</span>
@@ -393,13 +393,13 @@
                      </div>
                      <div class="row">
                         <div class="col-md-12">
-                           <button type="submit" class="btn btn-successaddnew" *ngIf=saveButton >Save</button>
+                           <button type="submit" class="btn btn-successaddnew"  *ngIf=saveButton >Save</button>
                         </div>
                      </div>
                      </form>
                   </div>
                   <div *ngIf=addNewButton>
-                     <button type="button" class="btn btn-successaddnew" (click)="addNew(); customerDetaisForm.reset()">Add new bank</button>
+                     <button type="reset" class="btn btn-successaddnew" (click)="addNew();">Add new bank</button>
                   </div>
                </div>
             </div>
