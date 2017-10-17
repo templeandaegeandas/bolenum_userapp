@@ -18,14 +18,14 @@ export class TradeNowComponent implements OnInit {
   order = new Order();
 
   getBuyOrderBookData(pairId) {
-    this.tradeNowService.orderBook(pairId, "BUY").subscribe(success => {
+    this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       console.log(this.buyOrderList)
     })
   }
 
   getSellOrderBookData(pairId) {
-    this.tradeNowService.orderBook(pairId, "SELL").subscribe(success => {
+    this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       console.log(this.sellOrderList)
     })
@@ -38,14 +38,14 @@ export class TradeNowComponent implements OnInit {
   }
 
   oneBtc() {
-    this.order.price = this.order.volume/this.marketPrice;
-    if(this.market1BtcEth=='Infinity') {
+    this.order.price = this.order.volume / this.marketPrice;
+    if (this.market1BtcEth == 'Infinity') {
       this.market1BtcEth = 0;
     }
   }
 
   createOrder(orderType) {
-    if(this.isMarket) {
+    if (this.isMarket) {
       this.order.orderStandard = 'LIMIT';
     }
     else {
@@ -57,9 +57,13 @@ export class TradeNowComponent implements OnInit {
     console.log(this.order)
     this.tradeNowService.createOrder(this.order).subscribe(success => {
       console.log(success);
+    }, error => {
+      console.log(error)
     })
-    this.order.price ='';
-    this.order.volume ='';
+    this.order.price = '';
+    this.order.volume = '';
+    this.getBuyOrderBookData(1);
+    this.getSellOrderBookData(1);
   }
 
 
@@ -213,8 +217,8 @@ export class TradeNowComponent implements OnInit {
       this.isMarket = false;
 
     }
-    this.order.price ='';
-    this.order.volume ='';
+    this.order.price = '';
+    this.order.volume = '';
 
   }
 

@@ -6,8 +6,13 @@ import 'rxjs/add/operator/map';
 export class TradeNowService {
   constructor(private http: HttpClient) { }
 
-  orderBook(pairId, orderType) {
-    return this.http.get('/api/v1/user/get/orders?pairId='+pairId+'&orderType='+orderType)
+  buyOrderBook(pairId) {
+    return this.http.get('/api/v1/user/get/buy/orders?pairId='+pairId)
+      .map(res => res.json());
+  }
+
+  sellOrderBook(pairId) {
+    return this.http.get('/api/v1/user/get/sell/orders?pairId='+pairId)
       .map(res => res.json());
   }
 
