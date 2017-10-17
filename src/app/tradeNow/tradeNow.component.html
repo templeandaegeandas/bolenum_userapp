@@ -32,34 +32,28 @@
                      <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                      </select>
                   </div>
+                  <div *ngIf="isMarket">
                   <div class="col-md-12 trade-field">
-                     <div class="col-md-4">
-                        <label for="email">Price </label>
-                     </div>
-
-                     <div class="col-md-8">
-                        <input type="email" class="form-control" id="email">
-                     </div>
-                  </div>
-                   <div class="col-md-12 trade-field">
                      <div class="col-md-4">
                         <label for="email">Amount </label>
                      </div>
 
                      <div class="col-md-8">
-                        <input type="amount" class="form-control" id="amount" name="amount" [disabled]=true >
+                        <input type="email" class="form-control" [(ngModel)]="order.volume" id="email">
+                     </div>
+                  </div>
+                   <div class="col-md-12 trade-field">
+                     <div class="col-md-4">
+                        <label for="email">Price </label>
+                     </div>
+
+                     <div class="col-md-8">
+                        <input type="amount" class="form-control" [(ngModel)]="order.price" id="amount" name="amount" >
                      </div>
 
                   </div>
-                  <div *ngIf="isMarket">
-                     <!--<div class="col-md-12 trade-field">
-                        <div class="col-md-4">
-                           <label for="email">Amount </label>
-                        </div>
-                        <div class="col-md-8">
-                           <input type="email" class="form-control" id="email">
-                        </div>
-                     </div>-->
+                  <!-- <div>
+
                      <div class="col-md-12 trade-field">
                         <div class="col-md-4">
                            <label for="email">Total </label>
@@ -68,50 +62,51 @@
                            <input type="email" class="form-control" id="email">
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                   <div class="col-md-12 trade-field">
                      <div class="col-md-6  buy-button-left">
-                        <button class="trade-button-buy ">BUY</button>
+                        <button class="trade-button-buy " (click)="createOrder('BUY')">BUY</button>
                      </div>
                      <div class="col-md-6  sell-button-right">
-                        <button class="trade-button-sell ">SELL</button>
+                        <button class="trade-button-sell " (click)="createOrder('SELL')">SELL</button>
                      </div>
                   </div>
+                </div>
+                <div *ngIf="!isMarket">
+                <div class="col-md-12 trade-field">
+                   <div class="col-md-4">
+                      <label for="amount">Amount </label>
+                   </div>
+
+                   <div class="col-md-8">
+                      <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
+                   </div>
+                </div>
+                 <div class="col-md-12 trade-field">
+                   <div class="col-md-4">
+                      <label for="price">Price </label>
+                   </div>
+
+                   <div class="col-md-8">
+                      <input type="text" class="form-control" id="amount" name="amount" [(ngModel)]="order.price" [disabled]=true >
+                   </div>
+
+                </div>
+                <div class="col-md-12 trade-field">
+                   <div class="col-md-6  buy-button-left">
+                      <button class="trade-button-buy " (click)="createOrder('BUY')">BUY</button>
+                   </div>
+                   <div class="col-md-6  sell-button-right">
+                      <button class="trade-button-sell " (click)="createOrder('SELL')">SELL</button>
+                   </div>
+                </div>
+              </div>
                </div>
             </div>
-            <!-- <div class="col-md-2">
-               <div class="exchange-pair-text-start">BTC/BLN</div>
-               </div>
-               <div class="col-md-2">
-               <div class="exchange-pair-text-start">ETH/BLN</div>
-               </div> -->
-            <!-- <div class="col-md-2">
-               <div class="exchange-pair-text-start">BLN/NGN</div>
-               </div> -->
-            <!-- <div class="col-md-2">
-               <div class="exchange-pair-text-start">BLN/PHN</div>
-               </div>
-               <div class="col-md-2 ">
-               <div class="exchange-pair-text-start">BLN/PRN</div>
-               </div> -->
          </div>
       </div>
       <div class="col-md-6 text-center">
          <div class="row">
-            <!-- <div class="col-md-12 market-border">
-               <div class="col-md-3 market-tab-border">
-                 <div class="">BTC</div>
-               </div>
-                <div class="col-md-3 market-tab-border">
-                 <div class="">ETH</div>
-               </div>
-                <div class="col-md-3 market-tab-border">
-                 <div class="">BLN</div>
-               </div>
-                <div class="col-md-3 ">
-                 <div class="">NGN</div>
-               </div>
-               </div> -->
             <div class="col-md-9 col-md-offset-3">
                <h2>MARKET</h2>
                <table class="table table-bordered market-margin table-responsive">

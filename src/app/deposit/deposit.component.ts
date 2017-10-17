@@ -30,40 +30,41 @@ export class DepositComponent implements OnInit {
   ngOnInit() {
 
     // this.setItemValue = "BTC";
-  
+
     this.getCurrencyName();
   }
 
   getCoin(data){
     console.log("select value >>>>>>>>>>>>>>>>>>",data);
-    this.depositService.getCoin(data).subscribe( successData => {
+    let c = this.currencyData.find(x => x.currencyAbbreviation == data);
+    this.depositService.getCoin(c.currencyType, data).subscribe( successData => {
       let data = successData.data;
       this.address = data.data.address;
       this.balance = data.data.balance;
       this.coinAbbreviation = data.data.coinAbbreviation;
       console.log("abberiviation >>>>>>>>>>>>>>>>>>", this.coinAbbreviation);
-      
+
        this.qrCode = true;
-        this.errorCoin =false; 
-      
+        this.errorCoin =false;
+
     },errorData => {
       this.qrCode = false;
       // this.toastrService.error("Address for this coin is not available!", 'Error!');
-      this.errorCoin =true;  
+      this.errorCoin =true;
 
     })
-    
+
   }
 
   getCurrencyName(){
     this.depositService.getCurrencyData().subscribe(successData => {
-
+console.log(successData)
       console.log("currency list >>>>>>",successData.data);
       this.currencyData = successData.data;
       console.log("data>>>>>>>>>>>>>>>>>>>>", this.currencyData,this.currencyData[0].currencyName);
       this.setItemValue = this.currencyData[0].currencyAbbreviation;
       this.getCoin(this.setItemValue);
-      
+
 
     },errorData => {
 
@@ -71,6 +72,3 @@ export class DepositComponent implements OnInit {
   }
 
 }
-
-
-

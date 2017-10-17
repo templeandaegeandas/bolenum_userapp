@@ -11,4 +11,14 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
+  getMarketPrice(symbol) {
+    return this.http.get('/api/v1/user/market/price?symbol='+symbol)
+      .map(res => res.json());
+  }
+
+  createOrder(order) {
+    return this.http.post('/api/v1/user/create/order', order)
+      .map(res => res.json());
+  }
+
 }
