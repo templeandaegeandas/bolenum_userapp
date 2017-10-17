@@ -1089,3 +1089,7 @@ p.createdepositmodal-heading.hedartext {
         margin-top: 2px;
     margin-left: 3px;
 }
+
+.upload-profile{
+    cursor: pointer;
+}

@@ -426,6 +426,7 @@ export class ProfileComponent implements OnInit {
   customerDetails(customerDetaisForm) {
     console.log("form valid",customerDetaisForm.valid);
     console.log("form invalid",customerDetaisForm.invalid);
+    if (customerDetaisForm.invalid) return;
 
     this.isCustomerView = true;
     this.accounDetails = false;
@@ -439,6 +440,11 @@ export class ProfileComponent implements OnInit {
     this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
       customerDetaisForm.resetForm();
       this.getUserBankDetails();
+      this.bankDetails.accountHolderName='';
+       this.bankDetails.bankName='';
+        this.bankDetails.accountNumber='';
+         this.bankDetails.ifscCode='';
+
     }, errorData => {
     })
     console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
