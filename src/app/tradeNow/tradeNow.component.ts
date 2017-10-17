@@ -76,8 +76,8 @@ export class TradeNowComponent implements OnInit {
 
   public isMarket: boolean = true;
   public tradeValue: any[] = [
-    { "valueType": "MarketOrder" },
-    { "valueType": "LimitOrder" }
+    { "valueType": "Market Order" },
+    { "valueType": "Limit Order" }
   ]
 
   public setTradingValue: any;
@@ -164,8 +164,9 @@ export class TradeNowComponent implements OnInit {
 
   ngOnInit() {
     this.isLogIn();
-    this.setTradingValue = "MarketOrder";
-    this.setTradeValue("MarketOrder");
+    this.setTradingValue = "Market Order";
+    this.setTradeValue("Market Order");
+    
   }
 
   isLogIn() {
@@ -210,7 +211,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   setTradeValue(setData) {
-    if (setData === "LimitOrder") {
+    if (setData === "Limit Order") {
       this.isMarket = true;
     }
     else {

@@ -20,12 +20,15 @@
          <h2>EXCHANGE PAIR</h2>
          <div class="row">
             <div class="col-md-5 tab-margin">
-               <div class="exchange-pair-text">BTC / ETH</div>
+               <div class="exchange-pair-text">ETH/BTC</div>
             </div>
             <div class="col-md-8  trade-border trade-margin table-bg-color">
                <div class="row">
                   <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part">
-                     <span>TRADE IN BTC / ETH </span>
+                     <span>TRADE IN ETH/BTC </span>
+                  </div>
+                     <div class="col-md-12 total-currency-message">
+                     <p>You have 1.025 BTC. </p>
                   </div>
                   <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                      <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
@@ -34,24 +37,33 @@
                   </div>
                   <div *ngIf="isMarket">
                   <div class="col-md-12 trade-field">
-                     <div class="col-md-4">
-                        <label for="email">Amount </label>
+                     <div class="col-md-5">
+                        <label for="email">Amount (in BTC)</label>
                      </div>
 
-                     <div class="col-md-8">
+                     <div class="col-md-7">
                         <input type="email" class="form-control" [(ngModel)]="order.volume" id="email">
                      </div>
                   </div>
                    <div class="col-md-12 trade-field">
-                     <div class="col-md-4">
-                        <label for="email">Price </label>
+                     <div class="col-md-5">
+                        <label for="email">Price (in ETH)</label>
                      </div>
 
-                     <div class="col-md-8">
-                        <input type="amount" class="form-control" [(ngModel)]="order.price" id="amount" name="amount" >
+                     <div class="col-md-7">
+                        <input type="amount" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount" name="amount" >
+                        
                      </div>
 
                   </div>
+                    <div class="col-md-12 total-coin">
+                  <p>Equivalent ETH price for this order</p>
+                </div>
+                    <div class="col-md-12 trade-field">
+                      <hr>
+                 
+                   <p>Fee : 0%</p>
+                </div>
                   <!-- <div>
 
                      <div class="col-md-12 trade-field">
@@ -74,24 +86,32 @@
                 </div>
                 <div *ngIf="!isMarket">
                 <div class="col-md-12 trade-field">
-                   <div class="col-md-4">
-                      <label for="amount">Amount </label>
+                   <div class="col-md-5">
+                      <label for="amount">Amount (in BTC)</label>
                    </div>
 
-                   <div class="col-md-8">
+                   <div class="col-md-7">
                       <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
                    </div>
                 </div>
                  <div class="col-md-12 trade-field">
-                   <div class="col-md-4">
-                      <label for="price">Price </label>
+                   <div class="col-md-5">
+                      <label for="price">Price (in ETH)</label>
                    </div>
 
-                   <div class="col-md-8">
-                      <input type="text" class="form-control" id="amount" name="amount" [(ngModel)]="order.price" [disabled]=true >
-                   </div>
-
+                   <div class="col-md-7">
+                      <input type="text" class="form-control" id="amount" title="Equivalent ETH price for this order " name="amount" [(ngModel)]="order.price" [disabled]=true >
+                    
+                    </div>
+                     </div>
+                   <div class="col-md-12 total-coin">
+                  <p>Equivalent ETH price for this order</p>
                 </div>
+                   <div class="col-md-12 trade-field">
+                   <hr>
+                   <p>Fee : 0%</p>
+                </div>
+                
                 <div class="col-md-12 trade-field">
                    <div class="col-md-6  buy-button-left">
                       <button class="trade-button-buy " (click)="createOrder('BUY')">BUY</button>
