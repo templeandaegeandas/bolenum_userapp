@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.loginService.logIn(this.login).subscribe(success => {
 
       console.log("login data");
-      
+
 
       if(success.status==202) {
         this.twoFaOption = success.data
@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
       if(success.data.lName!=null) {
         localStorage.setItem("lName", success.data.lName);
       }
+      console.log()
+      localStorage.setItem("profilePic", success.data.profilePic);
       this.router.navigate([this.returnUrl]);
       this.loading = false;
     }, error => {

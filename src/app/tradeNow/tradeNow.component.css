@@ -481,3 +481,12 @@ h2 {
     width: 100%;
 }
  }
+.total-currency-message{
+        margin-top: 10px;
+}
+
+.total-coin{
+        text-align: right;
+    margin-top: 0px;
+
+}
