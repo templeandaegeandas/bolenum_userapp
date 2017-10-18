@@ -111,11 +111,12 @@
                <h2>MARKET</h2>
                <table class="table table-bordered market-margin table-responsive">
                   <thead class="heading">
+
                      <tr>
-                        <th class="market-tab" (click)=isBtc()>BTC</th>
-                        <th class="market-tab" (click)=isEth()>ETH</th>
-                        <th class="market-tab" (click)=isBln()>BLN</th>
-                        <th class="market-tab" (click)=isNgn()>NGN</th>
+                        <th class="market-tab" (click)=isBtc()  *ngFor="let coinList of currecyList" >{{coinList.currencyAbbreviation}}</th>
+                        <!-- <th class="market-tab" (click)=isEth()>ETH</th>
+                        <th class="market-tab" (click)=isBln()>BLN</th> -->
+                        <!-- <th class="market-tab" (click)=isNgn()>NGN</th> -->
                      </tr>
                   </thead>
                   <thead class="table-bg-color">
@@ -125,163 +126,7 @@
                         <th>Name</th>
                         <th>Change</th>
                      </tr>
-                  </thead>
-                  <!-- for BTC -->
-                  <tbody *ngIf=btc class="table-bg-color">
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                     <tr>
-                        <td>BTC</td>
-                        <td>0.21355</td>
-                        <td>BTC</td>
-                        <td>BTC</td>
-                     </tr>
-                  </tbody>
-                  <!-- for ETH -->
-                  <tbody *ngIf=eth class="table-bg-color">
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                     <tr>
-                        <td>ETH</td>
-                        <td>0.21355</td>
-                        <td>ETH</td>
-                        <td>ETH</td>
-                     </tr>
-                  </tbody>
-                  <!-- for BLN -->
-                  <tbody *ngIf=bln class="table-bg-color">
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                     <tr>
-                        <td>BLN</td>
-                        <td>0.21355</td>
-                        <td>BLN</td>
-                        <td>BLN</td>
-                     </tr>
-                  </tbody>
-                  <!-- for NGN -->
-                  <tbody *ngIf=ngn class="table-bg-color">
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                     <tr>
-                        <td>NGN</td>
-                        <td>0.21355</td>
-                        <td>NGN</td>
-                        <td>NGN</td>
-                     </tr>
-                  </tbody>
+                  </thead>                  
                </table>
             </div>
          </div>

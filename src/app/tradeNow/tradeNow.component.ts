@@ -10,12 +10,14 @@ import { Order } from './entity/order.entity';
 })
 export class TradeNowComponent implements OnInit {
 
+  currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
   marketPrice: any;
   market1Btc: any;
   market1BtcEth: any;
   order = new Order();
+
 
   getBuyOrderBookData(pairId) {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
@@ -35,6 +37,18 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
       this.marketPrice = success.data.priceBTC;
     })
+  }
+
+  getCurrencyList()
+  {
+      this.tradeNowService.getListOfCurrency().subscribe( success => {
+        console.log("currency list >>>",success.data);
+        this.currecyList = success.data;
+        console.log("data by >>>>",  this.currecyList[0].currencyAbbreviation);
+
+      },error =>{
+
+      })
   }
 
   oneBtc() {
@@ -65,14 +79,6 @@ export class TradeNowComponent implements OnInit {
     this.getBuyOrderBookData(1);
     this.getSellOrderBookData(1);
   }
-
-
-
-
-
-
-
-
 
   public isMarket: boolean = true;
   public tradeValue: any[] = [
@@ -166,6 +172,7 @@ export class TradeNowComponent implements OnInit {
     this.isLogIn();
     this.setTradingValue = "MarketOrder";
     this.setTradeValue("MarketOrder");
+    this.getCurrencyList();
   }
 
   isLogIn() {
