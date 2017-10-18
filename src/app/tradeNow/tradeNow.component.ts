@@ -16,64 +16,6 @@ export class TradeNowComponent implements OnInit {
   market1Btc: any;
   market1BtcEth: any;
   order = new Order();
-
-  getBuyOrderBookData(pairId) {
-    this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
-      this.buyOrderList = success.data.content;
-      console.log(this.buyOrderList)
-    })
-  }
-
-  getSellOrderBookData(pairId) {
-    this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
-      this.sellOrderList = success.data.content;
-      console.log(this.sellOrderList)
-    })
-  }
-
-  getMarketPrice() {
-    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
-      this.marketPrice = success.data.priceBTC;
-    })
-  }
-
-  oneBtc() {
-    this.order.price = this.order.volume / this.marketPrice;
-    if (this.market1BtcEth == 'Infinity') {
-      this.market1BtcEth = 0;
-    }
-  }
-
-  createOrder(orderType) {
-    if (this.isMarket) {
-      this.order.orderStandard = 'LIMIT';
-    }
-    else {
-      this.order.orderStandard = 'MARKET';
-    }
-    this.order.orderType = orderType;
-    this.order.pairId = 1;
-    this.order.totalVolume = this.order.volume;
-    console.log(this.order)
-    this.tradeNowService.createOrder(this.order).subscribe(success => {
-      console.log(success);
-    }, error => {
-      console.log(error)
-    })
-    this.order.price = '';
-    this.order.volume = '';
-    this.getBuyOrderBookData(1);
-    this.getSellOrderBookData(1);
-  }
-
-
-
-
-
-
-
-
-
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -91,10 +33,17 @@ export class TradeNowComponent implements OnInit {
   public beforeLogin: boolean = true;
   public afterLogin: boolean = false;
   options: any;
+
+
+
+
+
+
+
+
+
+
   constructor(private tradeNowService: TradeNowService) {
-    this.getMarketPrice();
-    this.getBuyOrderBookData(1);
-    this.getSellOrderBookData(1);
     this.options = {
       chart: {
         type: 'areaspline'
@@ -162,12 +111,88 @@ export class TradeNowComponent implements OnInit {
 
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
   ngOnInit() {
     this.isLogIn();
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
-    
+    this.getMarketPrice();
+    this.getBuyOrderBookData(1);
+    this.getSellOrderBookData(1);
+
   }
+
+
+
+
+
+
+
+
+  getBuyOrderBookData(pairId) {
+    this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
+      this.buyOrderList = success.data.content;
+      console.log(this.buyOrderList)
+    })
+  }
+
+  getSellOrderBookData(pairId) {
+    this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
+      this.sellOrderList = success.data.content;
+      console.log(this.sellOrderList)
+    })
+  }
+
+  getMarketPrice() {
+    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
+      this.marketPrice = success.data.priceBTC;
+    })
+  }
+
+  oneBtc() {
+    this.order.price = this.order.volume / this.marketPrice;
+    if (this.market1BtcEth == 'Infinity') {
+      this.market1BtcEth = 0;
+    }
+  }
+
+  createOrder(orderType) {
+    if (this.isMarket) {
+      this.order.orderStandard = 'LIMIT';
+    }
+    else {
+      this.order.orderStandard = 'MARKET';
+    }
+    this.order.orderType = orderType;
+    this.order.pairId = 1;
+    this.order.totalVolume = this.order.volume;
+    console.log(this.order)
+    this.tradeNowService.createOrder(this.order).subscribe(success => {
+      console.log(success);
+    }, error => {
+      console.log(error)
+    })
+    this.order.price = '';
+    this.order.volume = '';
+    this.ngOnInit();
+  }
+
+
+
+
+
+
 
   isLogIn() {
 
