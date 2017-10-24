@@ -90,7 +90,6 @@ label {
   display: block;
   float: left;
   width: 32%;
-  
   color: #757575;
   cursor: pointer;
   text-decoration: none;
@@ -132,8 +131,7 @@ label {
   border-top-left-radius: 5px;
   border-top-right-radius:5px;
   box-shadow: 0 0 9px #636363;
-
-  transform: scale(1.1,1.1)
+transform: scale(1.1,1.1)
 }
 
 .img-tab {
@@ -344,8 +342,8 @@ a{
 /*profile section */
  .col-backgrnd {
     background:#FFFFFF;
-    float: left;
-    width: 105%;
+    /*float: left;
+    width: 105%;*/
     height: 476px;
     margin: 0px -5px 0 -13px;
     border-radius: 4px;
@@ -1093,3 +1091,54 @@ p.createdepositmodal-heading.hedartext {
 .upload-profile{
     cursor: pointer;
 }
+
+/*start media query for profile*/
+  @media screen and (min-width: 320px) and (max-width: 767px){
+  img.profile-img{
+      width: 100%;
+}
+
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 20%;
+  }
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
+  display: block;
+  width: 80%;
+  margin-left: -110px;
+  
+}
+  }
+
+
+/*start media query for kyc section*/
+  @media screen and (min-width: 320px) and (max-width: 767px){
+  .kyc-input {
+   margin-left: 0px;
+   padding: 6px;
+}
+.kyc-col {
+    padding: 20px;
+    padding-bottom: 51px;
+    margin-left:-71px;
+}
+   button.btn.btn-successaddnew {
+    margin-left: 0px;
+   
+}
+label.btn-bs-file.btn.btn-lg.btn-success {
+    
+    min-height: 20px;
+    margin: 3px;
+}
+  
+
+  }
