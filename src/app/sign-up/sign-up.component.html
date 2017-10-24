@@ -21,18 +21,21 @@
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" minlength="3" placeholder="First Name" required nonumberspecialcharacter>
+            <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" minlength="3" placeholder="First Name" pattern="^[a-zA-Z0-9]*$"  required >
           </div>
           <span *ngIf="firstName.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="firstName.errors.required">Please enter first name</span>
               <span class="text-danger" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
+              <p class="text-danger" *ngIf="firstName.errors.pattern">Space and special characters are not allowed</p>
           </span>
+
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" minlength="3" placeholder="Last Name" nonumberspecialcharacter>
+            <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" minlength="3" placeholder="Last Name" pattern="^[a-zA-Z0-9]*$">
           </div>
           <span *ngIf="lastName.invalid && signUpForm.submitted">
               <span class="text-danger" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
+               <p class="text-danger" *ngIf="lastName.errors.pattern">Space and special characters are not allowed</p>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
