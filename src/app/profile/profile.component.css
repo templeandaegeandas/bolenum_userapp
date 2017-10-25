@@ -128,6 +128,7 @@ label {
   width: 120%;
   margin-left: -117px;
   color: #999;
+  
 
 }
 
@@ -151,44 +152,44 @@ label {
   border-top-left-radius: 5px;
   border-top-right-radius:5px;
   box-shadow: 0 0 9px #636363;
-transform: scale(1.1,1.1)
+  transform: scale(1.1,1.1)
 }
 
 .img-tab {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/profile_uf.png")
+ background-position: center;
+ background-image: url("/assets/images/profile_uf.png")
 
 }
 .img-tab1 {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/bank_details_uf.png")
+ background-position: center;
+ background-image: url("/assets/images/bank_details_uf.png")
 
 }
 .img-tab2 {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/KYC_uf.png")
+ background-position: center;
+ background-image: url("/assets/images/KYC_uf.png")
 
 }
 
 .tab_container [id^="tab"]:checked + label .img-tab {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/profile (1).png");
+ background-position: center;
+ background-image: url("/assets/images/profile (1).png");
 
 }
 .tab_container [id^="tab"]:checked + label .img-tab1 {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/bank_details_f.png");
+ background-position: center;
+ background-image: url("/assets/images/bank_details_f.png");
 
 }
 .tab_container [id^="tab"]:checked + label .img-tab2 {
  background-repeat: no-repeat;
-   background-position: center;
-  background-image: url("/assets/images/KYC_f.png");
+ background-position: center;
+ background-image: url("/assets/images/KYC_f.png");
 
 }
 
@@ -788,43 +789,43 @@ img.img-center {
     display: block;
 }
 .img-block {
-    margin: 0;
-    text-align: center;
-    display: block;
-    /* width: 34%; */
+ margin: 0;
+ text-align: center;
+ display: block;
+ /* width: 34%; */
 }
 a.btn.btn-dark-blue {
-    width: 87%;
-    padding: 5px;
-    font-family: lato;
-    font-size: 18px;
-    font-weight: 600;
-    color:#fB162B;
-    border: 1px solid #CACACA;
-    text-decoration: none;
+ width: 87%;
+ padding: 5px;
+ font-family: lato;
+ font-size: 18px;
+ font-weight: 600;
+ color:#fB162B;
+ border: 1px solid #CACACA;
+ text-decoration: none;
 
     }
 span.kyc-color {
     color: #fB162B;
 }
 .kyc-data {
-    text-align: center;
-    font-size: 18px;}
+ text-align: center;
+ font-size: 18px;}
 
 
 
 /* The switch - the box around the slider */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 10px;
+ position: relative;
+ display: inline-block;
+ width: 60px;
+ height: 10px;
 }
 
 label.switch {
-    min-width: 26%;
-    min-height: 16%;
-    position: relative;
+ min-width: 26%;
+ min-height: 16%;
+ position: relative;
     /* color: red; */
 }
 
@@ -845,25 +846,25 @@ label.switch {
   transition: .4s;
 }
 .carousel-inner {
-    position: relative;
-    width: 40%;
-    overflow: hidden;
-    text-align: -webkit-center;
-    margin-left: 160px;
+  position: relative;
+  width: 40%;
+  overflow: hidden;
+  text-align: -webkit-center;
+  margin-left: 160px;
 }
 .carousel-control.left {
-   background: none;
-    right: 0;
-     top: 100px;
-    bottom: 100px;
-    width: 5%;
+  background: none;
+  right: 0;
+  top: 100px;
+  bottom: 100px;
+  width: 5%;
 }
     
 .carousel-control.right {
-    top: 100px;
-    bottom: 100px;
-    width: 5%;
-    background: none;
+  top: 100px;
+  bottom: 100px;
+  width: 5%;
+  background: none;
 }
 .slider:before {
   position: absolute;
@@ -1098,7 +1099,6 @@ p.createdepositmodal-heading.hedartext {
     width: 98%;
   }
   .carousel-inner {
-    
     width: 40%;
     overflow: hidden;
     text-align: -webkit-center;
@@ -1170,14 +1170,12 @@ img.porf-pic {
     position: absolute;
     margin-left: 0px;
 }
-input#usr{
-    display: block;
-    padding: 2px 0px;
-    width: 161px;
-  }
+
  .col-backgrnd {
     width: 139%;
     margin-left: -69px;
+    height: 100%;
+    margin-bottom: 10px;
     }
 
 .profile-col {
@@ -1194,15 +1192,20 @@ button.btn.btn-successsave{
     
 }
 input#usr {
-    padding: 2px 0px;
-    width: 128px;
+   width: 75%;
 }
+
 select#usr {
-    border-radius: 12px;
-    padding: 5px 12px;
-    outline: none;
-    width: 133px;
+    width: 75%;
   }
+  .email-part{
+    width: 100%;
+    float: none;
+}
+button.btn.btn-successsavedetail{
+    margin-right: 91px;
+    
+}
   }
 @media screen and (min-width: 768px) and (max-width: 1023px){
 .profile-col {
@@ -1212,18 +1215,23 @@ select#usr {
 }
 
 /*start media query for bank section*/
-  @media screen and (min-width: 320px) and (max-width: 767px){
+ @media screen and (min-width: 320px) and (max-width: 767px){
   .balance-details {
-    padding-left: 35px;
+    padding-left: 16px;
 }
 button.btn.btn-successaddnew {
-    margin-left: 63px;
-   
+    margin-left: 75px;
+    padding: 3px;
+    width: 46%;
 }
 .form-lef {
     padding-left: 28px;
 }
 
+.user-bank-details{
+    width: 119%;
+    margin-left: -44px;
+}
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){}
 
@@ -1252,7 +1260,7 @@ button.btnbrowse{
 }
 
 label.btn-bs-file.btn.btn-lg.btn-success {
-    
+    padding: 4px;
     min-height: 20px;
     margin: 3px;
 }
