@@ -237,25 +237,24 @@ img.img-profile-icon {
   span.exchange-color {
     display: none;
   }
-  
-
+  .nav li.active a:after {
+    margin-left: 8px;
+    width: 34px;
+    height: 5px;
+    
+}
+  .nav li.new.active a:after {
+   margin-left: 34px;
+    width: 38px;
+    height: 5px;
+    }
  .dropdown-menu {
   padding-top: 7px;
   padding-bottom: 7px;
   min-width: 0px;
   z-index: 1;
  }
- .nav li.active a:after{
-    content: ""; 
-    background: #DB2828;
-    padding: 2px;
-    width: 0px;
-    height: 5px;
-    margin: 0px auto;
-    text-align: center;
-    display: block;
-    border-radius: 4px;
-}
+ 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background-color: #DB2828;;
 }
