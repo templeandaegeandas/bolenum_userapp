@@ -41,24 +41,44 @@ a {
     position: relative;
 }
 .head-icon {
-    position: absolute;
+    /*position: absolute;
     top: 172px;
-    margin-left: 294px;
+    margin-left: 294px;*/
     color: white;
     font-size: 20px;
 }
-.header-text {
+/*.header-text {
    position: absolute;
     bottom: 28%;
     left: 8%;
+}*/
+.top-profile{
+    background-image: url("/assets/images/header (1).png");
+    background-size: cover;
+    padding: 100px 0;
+}
+.slider-info{
+    /*position: absolute;
+    top: 50%;
+    transform: translateY(-50%);*/
+    display: table;
+}
+.slider-info .header-text{
+    display: table-cell;
+    padding: 0 15px;
+}
+.slider-info .slider-title{
+    padding: 0 95px;
+    vertical-align: middle;
+    display: table-cell;
 }
 
 p.top-text {
     color: white;
     font-size: 23px;
-    margin-left: 294px;
+    /*margin-left: 294px;
     position: absolute;
-    top: 138px;
+    top: 138px;*/
 }
 
 .profile-email {
@@ -367,6 +387,7 @@ p.last-prof {
     margin-bottom: 24px;
 }
 
+
   a.btn.btn-dark-blue {
     width: 80%;
     padding: 8px;
@@ -384,6 +405,7 @@ span.dolor {
     padding: 18px 2px 27px 33px;
     border-radius: 5px;
     height: 476px;
+    width: 560px;
 }
 .profile-button {
     float: right;
@@ -449,12 +471,13 @@ img.profile-img {
     margin-top: 45px;
 }
 
-.verify-col{
+.verify-col {
     background: #fff;
     margin: 28px -1px 0;
     padding: 35px 2px 10px 8px;
     border-radius: 4px;
-    margin-left: -11px;
+    margin-left: -13px;
+    width: 104%;
 }
 .verify-col .email-part {
     float: left;
@@ -684,6 +707,7 @@ p.bank-text {
     float: left;
     margin-left: 162px;
 }
+
 button.btn.btn-successaddnew {
     margin-left: 485px;
     padding: 10px;
@@ -692,15 +716,7 @@ button.btn.btn-successaddnew {
     background: #DB2828;
     color: #FFFFFF;
     text-transform: uppercase;
-}
-button.btn.btn-successaddnew {
-    margin-left: 485px;
-    padding: 10px;
-    width: 167px;
-    margin-top: 28px;
-    background: #DB2828;
-    color: #FFFFFF;
-    text-transform: uppercase;
+    outline: none;
 }
 input#user {
     display: block;
@@ -728,6 +744,7 @@ input#usrcode {
 }
 img.porf-pic {
     position: absolute;
+    margin-left: 46px;
 }
 
 /*kyc section */
@@ -946,26 +963,7 @@ button.btnbrowse {
 .balance-details{
 padding-left: 144px;
 }
-@media screen and (min-width: 320px) and (max-width: 767px){
-  label span {
-    display: none;
-  }
 
-  label .fa {
-    font-size: 16px;
-  }
-
-  .tab_container {
-    width: 98%;
-  }
-  .carousel-inner {
-    
-    width: 40%;
-    overflow: hidden;
-    text-align: -webkit-center;
-    margin-left: 103px;
-}
-}
 
 /*Content Animation*/
 @keyframes fadeInScale {
@@ -982,11 +980,11 @@ padding-left: 144px;
 
 
 .margin-balance-details{
-        margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .ifsc-code-field{
-        margin-left: 90px;
+    margin-left: 90px;
     color: #D4D4D4;
     margin-top: 6px;
     font-size: 16px;
@@ -1009,17 +1007,17 @@ padding-left: 144px;
 }
 
 .user-bank-details{
-        background-color: #fff;
+    background-color: #fff;
     padding-top: 43px;
     padding-bottom: 46px;
-        width: 96%;
+    width: 96%;
 }
 
 .form-left{
-        padding-left: 64px;
+    padding-left: 64px;
 }
 .bank-details-padding{
-        padding-top: 48px;
+    padding-top: 48px;
     padding-bottom: 53px;
     padding-left: 25px;
 }
@@ -1091,11 +1089,31 @@ p.createdepositmodal-heading.hedartext {
 .upload-profile{
     cursor: pointer;
 }
+/*start media query for slider*/
+@media screen and (min-width: 320px) and (max-width: 767px){
+  label span {
+    display: none;
+  }
 
+  label .fa {
+    font-size: 16px;
+  }
+
+  .tab_container {
+    width: 98%;
+  }
+  .carousel-inner {
+    
+    width: 40%;
+    overflow: hidden;
+    text-align: -webkit-center;
+    margin-left: 103px;
+}
+}
 /*start media query for profile*/
   @media screen and (min-width: 320px) and (max-width: 767px){
   img.profile-img{
-      width: 100%;
+    width: 100%;
 }
 
 label {
@@ -1103,7 +1121,7 @@ label {
   font-size: 18px;
   display: block;
   float: left;
-  width: 20%;
+  width: 33%;
   }
 
 #tab1:checked ~ #content1,
@@ -1113,11 +1131,85 @@ label {
 #tab5:checked ~ #content5 {
   display: block;
   width: 80%;
-  margin-left: -110px;
+  margin-left: 50px;
   
+}
+p.top-text {
+   font-size: 16px;
+}
+.head-icon {
+    font-size: 14px;
+}
+.header-text img{
+    width: 75px;
+    height: auto;
+    top:87px;
+}
+.header-text input{
+    width: 75px !important;
+    height: auto;
+    margin: 0;
+    padding: 25px 0 !important;
+}
+.top-profile{
+    padding: 50px 0;
+}
+.slider-title{
+    padding: 0 !important;
+}
+.mob-tab-content{
+    margin: 0 auto;
+    /*display: block*/
+}
+.tab_container{
+    margin-left: 3px !important; 
+    width: 100%;
+}
+.tab_container .tab-icon{
+    margin: 0 auto;
+}
+.tab_container .tab-icon label{
+    width: 33.333%;
+}
+img.porf-pic {
+    position: absolute;
+    margin-left: 0px;
+}
+input#usr{
+    display: block;
+    padding: 2px 0px;
+    width: 161px;
+  }
+ .col-backgrnd {
+    height: 441px;
+    border-radius: 4px;
+    padding: 40px 3px 47px 43px;
+    width: 373px;
+    margin-left: -49px;
+    margin-bottom: 15px
+    }
+
+.profile-col {
+    
+    padding: 18px 2px 27px 33px;
+    border-radius: 5px;
+    height: 386px;
+    width: 374px;
+    margin-left: -49px;
 }
   }
 
+
+/*start media query for bank section*/
+  @media screen and (min-width: 320px) and (max-width: 767px){
+  .balance-details {
+    padding-left: 35px;
+}
+button.btn.btn-successaddnew {
+    margin-left: 63px;
+   
+}
+}
 
 /*start media query for kyc section*/
   @media screen and (min-width: 320px) and (max-width: 767px){
@@ -1128,17 +1220,21 @@ label {
 .kyc-col {
     padding: 20px;
     padding-bottom: 51px;
-    margin-left:-71px;
+    margin-left:-21px;
 }
-   button.btn.btn-successaddnew {
-    margin-left: 0px;
-   
+
+  img.img-center {
+    /* height: 360px; */
+  
+    margin: 0 auto;
+    display: block;
+    height: auto;
+    width: 100%;
 }
+
 label.btn-bs-file.btn.btn-lg.btn-success {
     
     min-height: 20px;
     margin: 3px;
 }
-  
-
   }

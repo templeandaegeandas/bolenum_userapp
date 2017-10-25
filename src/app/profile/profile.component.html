@@ -2,19 +2,23 @@
    <div class="row">
       <div class="top-header">
          <div class="top-profile">
-            <img src="assets/images/header (1).png" class="profile-img">
-            <div>
-            </div>
-         </div>
-         <div class="header-text">
+            <!--<img src="assets/images/header (1).png" class="profile-img">-->
+            
+         
+         <div class="slider-info">
+         <div class="header-text" style="position: static;">
             <img [src]="profilePic" class="porf-pic upload-profile" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
             <input class="from-newtext upload-profile" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
          </div>
-         <div class="profile-text">
+         <div class="slider-title">
+         <div class="profile-text" style="position: static;">
             <p class="top-text">{{ userFirstName }} {{ userLastName }}</p>
          </div>
-         <div class="head-icon">
+         <div class="head-icon" style="position: static;">
             <img src="assets/images/mail (1).png">&nbsp;<span>{{emailId}}</span>
+         </div>
+         </div>
+         </div>
          </div>
       </div>
       <div class="tab_container">
@@ -37,7 +41,7 @@
             </div>
          </label>
          <!--profile-->
-         <section id="content1" class="tab-content">
+         <section id="content1" class="tab-content mob-tab-content">
             <div class="container-fluid">
                <div class="row">
                   <div *ngIf="!isDetailsEdit" class="col-md-6 col-sm-6">
@@ -282,7 +286,7 @@
                   <div class="col-md-6 bank-details-card-width" *ngFor="let customerData of getOurBankDetails">
                      <div class="bank-backgrnd bank-details-padding">
                         <div class="row">
-                           <div class="col-md-12">
+                           <div class="col-md-12 col-sm-12">
                               <div class="col-md-6">
                                  <p class="bank-text"> Bank Name </p>
                               </div>
@@ -330,7 +334,7 @@
          <section id="content2" class="tab-content">
             <div class="container-fluid">
                <div class="row">
-                  <div class="col-md-12 col-xs-12 user-bank-details" *ngIf=accounDetails>
+                  <div class="col-md-12 col-xs-6 user-bank-details" *ngIf=accounDetails>
                      <form #customerDetaisForm="ngForm" (ngSubmit)=" customerDetails(customerDetaisForm)" autocomplete="false">
                      <div class="col-md-10 col-md-offset-2 form-left">
                         <div class="row margin-balance-details">
