@@ -383,7 +383,7 @@ select option {
 }
 
 .trade-button-sell{
-        background-color: #DB2828;
+    background-color: #DB2828;
     opacity: none !important;
     border: none;
     padding: 5px;
@@ -402,14 +402,12 @@ select option {
     text-align: left;
 }
 
-
-
 .sell-button-right{
     text-align: right;
 }
 
 .trade-in-part{
-        background-color: #DB2828;
+    background-color: #DB2828;
     color: white;
     padding: 2px;
 }
@@ -418,11 +416,11 @@ thead.heading {
     color: white;
 }
 .pagination-section{
-        background-color: #f1f0f0;
+    background-color: #f1f0f0;
 }
 
 .tab-margin{
-        margin-top: 14px;
+    margin-top: 14px;
 }
 
 .market-margin{
@@ -433,6 +431,17 @@ thead.heading {
         background-color: #f1f0f0;
 }
 
+.underline{       
+     display: table; 
+     width: 40px;    
+     height: 6px;    
+     background: #db2828;   
+     content: "";    
+     margin: 0 auto;    
+     left: 0;    
+     right: 0;    
+     border-radius: 10px;
+       }
   
 /*start media for mobile device*/
 
@@ -444,6 +453,12 @@ thead.heading {
     margin-top: 15px;
     margin-left: 16px;
     margin-right: 16px;
+}
+.total-coin{
+    text-align: right;
+    margin-top: 0px;
+    margin-right: 16px;
+
 }
 h2 {
     text-align: center;

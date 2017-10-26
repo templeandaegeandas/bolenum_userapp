@@ -20,7 +20,7 @@
           <span class="text-danger" *ngIf="email.errors.pattern">Please enter valid email</span>
           </span>
           <div class="input-group">
-            <span class="input-group-addon"><img src="assets/images/Email.png"></span>
+            <span class="input-group-addon"><img src="assets/images/profile.png"></span>
             <input id="FirstName" type="text" class="form-control" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" minlength="3" placeholder="First Name" pattern="^[a-zA-Z0-9]*$"  required >
           </div>
           <span *ngIf="firstName.invalid && signUpForm.submitted">
@@ -30,7 +30,7 @@
           </span>
 
           <div class="input-group">
-            <span class="input-group-addon"><img src="assets/images/Email.png"></span>
+            <span class="input-group-addon"><img src="assets/images/profile.png"></span>
             <input id="LastName" type="text" class="form-control" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" minlength="3" placeholder="Last Name" pattern="^[a-zA-Z0-9]*$">
           </div>
           <span *ngIf="lastName.invalid && signUpForm.submitted">

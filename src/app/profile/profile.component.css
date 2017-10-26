@@ -1096,7 +1096,9 @@ p.createdepositmodal-heading.hedartext {
   label .fa {
     font-size: 16px;
   }
-
+  span.slider.round {
+    margin-top: 25px;
+  }
   .tab_container {
     width: 98%;
   }
@@ -1193,12 +1195,13 @@ button.btn.btn-successsave{
     margin-top: -2px;
     
 }
+
 input#usr {
-   width: 75%;
+    width: 95%;
 }
 
 select#usr {
-    width: 75%;
+    width: 95%;
   }
   .email-part{
     width: 100%;
