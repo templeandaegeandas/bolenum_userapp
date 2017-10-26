@@ -19,6 +19,8 @@ export class TradeNowComponent implements OnInit {
   pairList: any;
   order = new Order();
   pairName: any;
+  firstCurrency: any;
+  secondCurrency: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -131,25 +133,18 @@ export class TradeNowComponent implements OnInit {
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
     this.getMarketPrice();
-    // this.getBuyOrderBookData(1);
-    // setTimeout(() => {
-    //   this.getSellOrderBookData(1);
-    // }, 500);
     this.getCurrencyList();
-    // this.getPair(1);
   }
 
   getBuyOrderBookData(pairId) {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
-      console.log(this.buyOrderList)
     })
   }
 
   getSellOrderBookData(pairId) {
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
-      console.log(this.sellOrderList)
     })
   }
 
@@ -166,8 +161,6 @@ export class TradeNowComponent implements OnInit {
         this.currecyList = success.data;
         let currencyId = this.currecyList[0].currencyId;
         this.getPair(currencyId);
-        console.log("data by >>>>",  this.currecyList[0].currencyAbbreviation);
-
       },error =>{
 
       })
@@ -191,9 +184,7 @@ export class TradeNowComponent implements OnInit {
     this.order.orderType = orderType;
     this.order.pairId = 1;
     this.order.totalVolume = this.order.volume;
-    console.log(this.order)
     this.tradeNowService.createOrder(this.order).subscribe(success => {
-      console.log(success);
     }, error => {
       console.log(error)
     })
@@ -206,17 +197,16 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
       let pairId = this.pairList[0].pairId;
-      this.pairName = this.pairList[0].pairName;
-      this.getBuyOrderBookData(pairId);
-      setTimeout(() => {
-        this.getSellOrderBookData(pairId);
-      }, 500);
-      console.log(success);
+      let pairName = this.pairList[0].pairName;
+      this.changePair(pairId, pairName);
     })
   }
 
   changePair(pairId, pairName) {
     this.pairName = pairName;
+    let pairArray = pairName.split("/")
+    this.firstCurrency = pairArray[0];
+    this.secondCurrency = pairArray[1];
     this.getBuyOrderBookData(pairId);
     setTimeout(() => {
       this.getSellOrderBookData(pairId);
