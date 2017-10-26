@@ -15,6 +15,7 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public documentType:string;
   public varificationName:string="Enter Mobile Number" ;
   public userFirstName:string;
   public userLastName:string;
@@ -26,12 +27,14 @@ export class ProfileComponent implements OnInit {
   public addNewButton: boolean = false;
   public accounDetails: boolean = false;
   @ViewChild('fileInput') fileInput;
+  @ViewChild('fileInputAddress') fileInputAddress;
   @ViewChild('profileImage') profileImage;
   @ViewChild('addPopup') public addPopup: ModalDirective;
   @ViewChild('profilePicCropper') public profilePicCropper: ModalDirective;
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
   loading = false;
   document: String = "assets/images/id.png?decache=" + Math.random();
+  addressProof: String = "assets/images/id.png?decache=" + Math.random();
   url: any = {
     result: String
   };
@@ -267,7 +270,9 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  uploadKyc() {
+  uploadKyc(data) {
+    console.log("document type >>>>>>>>>>>>>>>>",data);
+    
     this.loading = true;
     let fileBrowser = this.fileInput.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
@@ -277,7 +282,9 @@ export class ProfileComponent implements OnInit {
       if (extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "pdf") {
         const formData = new FormData();
         formData.append("file", fileBrowser.files[0]);
-        this.profileService.upload(formData).subscribe(success => {
+        this.documentType=data;
+
+        this.profileService.upload(formData,this.documentType).subscribe(success => {
           if (success.data.userKyc != null) {
             this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
             this.documentStatus = success.data.userKyc.documentStatus;
@@ -303,6 +310,73 @@ export class ProfileComponent implements OnInit {
       this.loading = false;
     }
   }
+
+
+  // for uploading address proof
+
+    readUrlAddress(event) {
+    if (event.target.files && event.target.files[0]) {
+      let fileName = event.target.files[0].name;
+      let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension == "png" || extension == "jpeg" || extension == "jpg") {
+        this.pdf = false;
+        var reader = new FileReader();
+        reader.onload = (event) => {
+          this.url = event.target;
+          this.addressProof = this.url.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
+      else if (extension == "pdf") {
+        this.pdf = true;
+      }
+      else {
+        this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
+        return;
+      }
+    }
+  }
+
+  uploadKycAddress(data) {
+    this.loading = true;
+    let fileBrowser = this.fileInputAddress.nativeElement;
+    if (fileBrowser.files && fileBrowser.files[0]) {
+      let fileName = fileBrowser.files[0].name;
+      let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "pdf") {
+        const formData = new FormData();
+        formData.append("file", fileBrowser.files[0]);
+         this.documentType=data;
+        this.profileService.upload(formData,this.documentType).subscribe(success => {
+          if (success.data.userKyc != null) {
+            this.addressProof = environment.documentUrl + success.data.userKyc.addressProof + "?decache=" + Math.random();
+            this.documentStatus = success.data.userKyc.documentStatus;
+          }
+          this.ngOnInit();
+          fileBrowser.value = "";
+          this.loading = false;
+        }, error => {
+          this.toastrService.error(error.json().message, 'Error!')
+          fileBrowser.value = "";
+          this.loading = false;
+        });
+      }
+      else {
+        this.loading = false;
+        this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+        fileBrowser.value = "";
+        return;
+      }
+    }
+    else {
+      this.toastrService.error("Please choose file for uploading!", 'Error!')
+      this.loading = false;
+    }
+  }
+
+  // for uploading address proof
 
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {

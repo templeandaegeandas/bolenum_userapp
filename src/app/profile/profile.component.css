@@ -40,6 +40,11 @@ a {
 .top-header {
     position: relative;
 }
+
+.bank-projectAccount{
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+}
 .head-icon {
     /*position: absolute;
     top: 172px;
@@ -1258,3 +1263,4 @@ label.btn-bs-file.btn.btn-lg.btn-success {
 }
   }
   @media screen and (min-width: 768px) and (max-width: 1023px){}
+

@@ -311,7 +311,7 @@
                                  <p class="bank-text"> Account Number </p>
                               </div>
                               <div class="col-md-6">
-                                 <p class="bank-icon "> {{customerData.accountNumber}}</p>
+                                 <p class="bank-icon bank-projectAccount "> {{customerData.accountNumber}}</p>
                               </div>
                            </div>
                         </div>
@@ -413,7 +413,8 @@
          <section id="content3" class="tab-content">
             <div class="container-fluid">
                <div class="row">
-                  <div class=" col-lg-12 col-md-12 col-sm-6">
+                     <!-- for identity verification status start -->
+                  <div class=" col-lg-6 col-md-6 col-sm-6">
                      <div class="kyc-col">
                         <div class="kyc-details">
                            <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
@@ -428,7 +429,7 @@
                         <div class="kyc-data">
                            <p clas="kyc-datatext"> Please provide a picture of the image of your National ID</p>
                         </div>
-                        <div class="kyc-input">
+                        <div class="">
                            <div class="id-input-details clearfix">
                               <div class="browse-button">
                                  <label class="btn-bs-file btn btn-lg btn-success">
@@ -436,7 +437,7 @@
                                  <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
                               </div>
-                              <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
+                              <button type="button" class="btnbrowse" (click)="uploadKyc('NATIONAL_ID')">Upload Documents</button>
                            </div>
                         </div>
                         <div class="col-md-12 text-center kyc-image-formate">
@@ -444,6 +445,40 @@
                         </div>
                      </div>
                   </div>
+                    <!-- for identity verification status end -->
+                  <!-- for address proof verification start -->
+                     <div class=" col-lg-6 col-md-6 col-sm-6">
+                     <div class="kyc-col">
+                        <div class="kyc-details">
+                           <p class="kyc-text"> Address Proof Verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
+                        </div>
+                        <div class="img-block">
+                           <img class="img-center" *ngIf="!pdf" [src]="addressProof" >
+                           <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
+                        </div>
+                        <div class="kyc-details">
+                           <p class="kyc-text"> Image of address proof </p>
+                        </div>
+                        <div class="kyc-data">
+                           <p clas="kyc-datatext"> Please provide a picture of the image of your Address Proof</p>
+                        </div>
+                        <div class="">
+                           <div class="id-input-details clearfix">
+                              <div class="browse-button">
+                                 <label class="btn-bs-file btn btn-lg btn-success">
+                                 Browse
+                                 <input class="from-newtext" type="file" #fileInputAddress id="usr" (change)="readUrlAddress($event)" accept="image/x-png,image/jpeg,application/pdf">
+                                 </label>
+                              </div>
+                              <button type="button" class="btnbrowse" (click)="uploadKycAddress('RESIDENCE_PROOF')">Upload Documents</button>
+                           </div>
+                        </div>
+                        <div class="col-md-12 text-center kyc-image-formate">
+                           <p class="kyc-imgeformat">Only jpg, jpeg, png or pdf</p>
+                        </div>
+                     </div>
+                  </div>
+                    <!-- for address proof verification end -->
                </div>
             </div>
          </section>
