@@ -7,17 +7,17 @@ export class TradeNowService {
   constructor(private http: HttpClient) { }
 
   buyOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/buy/orders?pairId='+pairId)
+    return this.http.get('/api/v1/user/get/buy/orders?pairId=' + pairId)
       .map(res => res.json());
   }
 
   sellOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/sell/orders?pairId='+pairId)
+    return this.http.get('/api/v1/user/get/sell/orders?pairId=' + pairId)
       .map(res => res.json());
   }
 
   getMarketPrice(symbol) {
-    return this.http.get('/api/v1/user/market/price?symbol='+symbol)
+    return this.http.get('/api/v1/user/market/price?symbol=' + symbol)
       .map(res => res.json());
   }
 
@@ -26,12 +26,13 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
- getListOfCurrency()
- {
-      return this.http.get('/api/v1/admin/currency/list')
+  getListOfCurrency() {
+    return this.http.get('/api/v1/admin/currency/list')
       .map(res => res.json());
- }
+  }
 
-
-
+  getPairedCurrencies(currencyId) {
+    return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
+      .map(res => res.json());
+  }
 }
