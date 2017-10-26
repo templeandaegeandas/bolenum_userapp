@@ -690,10 +690,12 @@ select#usred {
     background: white;
     padding: 26px;
 }
+
 p.bank-icon {
-    /* margin-left: 92px; */
     color: #D4D4D4;
     font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 p.bank-text {
     font-size: 18px;
@@ -1231,6 +1233,15 @@ button.btn.btn-successaddnew {
 .user-bank-details{
     width: 119%;
     margin-left: -44px;
+}
+.bank-details-padding{
+    padding-left: 18px;
+    margin-left: -41px;
+    margin-bottom: 20px;
+}
+
+.bank-details-card-width{
+        width: 100%;
 }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px){}

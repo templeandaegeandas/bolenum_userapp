@@ -197,7 +197,9 @@ tr th {
 .text-align-buy {
     text-align: left;
 }
-
+.col-md-offset-3 {
+    margin-left: 7%;
+}
 
 /* new css for drop-dwon */
 
@@ -270,15 +272,12 @@ hr {
     height: 1px;
     background: lightgray;
 }
-
 select option {
     margin: 40px;
     background: #fff;
     color: #000;
     /* text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
 }
-
-
 /* top image part */
 
 .image-width {
@@ -293,13 +292,12 @@ select option {
     margin-right: 0px;
 }
 .top-bg-image{
-     background-image: url("/assets/images/bannerBeforLogin.png");
-   
-     background-repeat: no-repeat;
-     height: 371px;
+    background-image: url("/assets/images/bannerBeforLogin.png");
+    background-repeat: no-repeat;
+    height: 371px;
 }
 .craete-advertisement-button{
-        /* text-align: center; */
+    /* text-align: center; */
     background-color: #DB2828;
     /* border-radius: 19px; */
     padding: 9px;
@@ -309,7 +307,6 @@ select option {
     outline: none;
     border: none;
 }
-
 .want-text{
     color: white;
     font-size: 27px;
@@ -317,19 +314,16 @@ select option {
 .padding-text-image{
     padding-top: 205px;
 }
-
 .trade-now{
-        margin-top: 15px;
+     margin-top: 15px;
 }
-
 .signin-or-create-account{
-        text-align: center;
+    text-align: center;
     margin-top: 33px;
 }
-
 .signin-for-tradenow{
-        color: #DB2828;
-        cursor: pointer;
+    color: #DB2828;
+    cursor: pointer;
 }
 .market-border{
     border: 1px solid lightgray;
@@ -347,41 +341,37 @@ select option {
     border-bottom: 1px solid lightgray;
 }
 .trade-margin{
-        margin-top: 15px;
+    margin-top: 15px;
     margin-left: 16px;
 }
 
 .trade-heading-center{
-        text-align: center;
+   text-align: center;
 }
 
 .heading-font{
     font-size: 19px;
 }
-
 .trade-drop-down{
     text-align: center;
 }
 .trade-dropdown{
-        width: 100%;
+    width: 100%;
     background: white;
     /* color: white; */
     padding: 6px;
     outline: none;
     border: non;
 }
-
 .trade-drop-down-margin{
-        margin-top: 12px;
+    margin-top: 12px;
     margin-bottom: 12px;
 }
-
 .trade-field{
     margin-bottom: 8px;
 }
-
 .trade-button-buy{
-        background-color: #DB2828;
+    background-color: #DB2828;
     opacity: none !important;
     border: none;
     padding: 5px;
@@ -482,11 +472,11 @@ h2 {
 }
  }
 .total-currency-message{
-        margin-top: 10px;
+    margin-top: 10px;
 }
 
 .total-coin{
-        text-align: right;
+    text-align: right;
     margin-top: 0px;
 
 }
