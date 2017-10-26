@@ -16,7 +16,9 @@ export class TradeNowComponent implements OnInit {
   marketPrice: any;
   market1Btc: any;
   market1BtcEth: any;
+  pairList: any;
   order = new Order();
+  pairName: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -129,17 +131,13 @@ export class TradeNowComponent implements OnInit {
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
     this.getMarketPrice();
-    this.getBuyOrderBookData(1);
-    this.getSellOrderBookData(1);
+    // this.getBuyOrderBookData(1);
+    // setTimeout(() => {
+    //   this.getSellOrderBookData(1);
+    // }, 500);
     this.getCurrencyList();
+    // this.getPair(1);
   }
-
-
-
-
-
-
-
 
   getBuyOrderBookData(pairId) {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
@@ -164,8 +162,10 @@ export class TradeNowComponent implements OnInit {
   getCurrencyList()
   {
       this.tradeNowService.getListOfCurrency().subscribe( success => {
-        console.log("currency list >>>",success.data);
+        console.log("currency list >>>",success);
         this.currecyList = success.data;
+        let currencyId = this.currecyList[0].currencyId;
+        this.getPair(currencyId);
         console.log("data by >>>>",  this.currecyList[0].currencyAbbreviation);
 
       },error =>{
@@ -202,11 +202,26 @@ export class TradeNowComponent implements OnInit {
     this.ngOnInit();
   }
 
+  getPair(currencyId) {
+    this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
+      this.pairList = success.data;
+      let pairId = this.pairList[0].pairId;
+      this.pairName = this.pairList[0].pairName;
+      this.getBuyOrderBookData(pairId);
+      setTimeout(() => {
+        this.getSellOrderBookData(pairId);
+      }, 500);
+      console.log(success);
+    })
+  }
 
-
-
-
-
+  changePair(pairId, pairName) {
+    this.pairName = pairName;
+    this.getBuyOrderBookData(pairId);
+    setTimeout(() => {
+      this.getSellOrderBookData(pairId);
+    }, 500);
+  }
 
   isLogIn() {
 
@@ -219,34 +234,6 @@ export class TradeNowComponent implements OnInit {
 
     }
 
-  }
-
-  isBtc() {
-    this.btc = true;
-    this.eth = false;
-    this.bln = false;
-    this.ngn = false;
-  }
-
-  isEth() {
-    this.eth = true;
-    this.btc = false;
-    this.bln = false;
-    this.ngn = false;
-  }
-
-  isBln() {
-    this.bln = true;
-    this.btc = false;
-    this.eth = false;
-    this.ngn = false;
-  }
-
-  isNgn() {
-    this.ngn = true;
-    this.btc = false;
-    this.eth = false;
-    this.bln = false;
   }
 
   setTradeValue(setData) {
