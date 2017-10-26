@@ -20,12 +20,12 @@
          <h2>EXCHANGE PAIR</h2>
          <div class="row">
             <div class="col-md-5 tab-margin">
-               <div class="exchange-pair-text">BTC / ETH</div>
+               <div class="exchange-pair-text">{{pairName}}</div>
             </div>
             <div class="col-md-8  trade-border trade-margin table-bg-color">
                <div class="row">
                   <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part">
-                     <span>TRADE IN BTC/ETH </span>
+                     <span>TRADE IN {{pairName}} </span>
                   </div>
                      <div class="col-md-12 total-currency-message">
                      <p>You have 1.025 BTC. </p>
@@ -38,7 +38,7 @@
                   <div *ngIf="isMarket">
                   <div class="col-md-12 trade-field">
                      <div class="col-md-5">
-                        <label for="email">Amount (in BTC)</label>
+                        <label for="email">Amount (in {{firstCurrency}})</label>
                      </div>
 
                      <div class="col-md-7">
@@ -47,7 +47,7 @@
                   </div>
                    <div class="col-md-12 trade-field">
                      <div class="col-md-5">
-                        <label for="email">Price (in ETH)</label>
+                        <label for="email">Price (in {{secondCurrency}})</label>
                      </div>
 
                      <div class="col-md-7">
@@ -57,7 +57,7 @@
 
                   </div>
                     <div class="col-md-12 total-coin">
-                  <p>Equivalent ETH price for this order</p>
+                  <p>Equivalent {{secondCurrency}} price for this order</p>
                 </div>
                     <div class="col-md-12 trade-field">
                       <hr>
@@ -87,7 +87,7 @@
                 <div *ngIf="!isMarket">
                 <div class="col-md-12 trade-field">
                    <div class="col-md-5">
-                      <label for="amount">Amount (in BTC)</label>
+                      <label for="amount">Amount (in {{firstCurrency}})</label>
                    </div>
 
                    <div class="col-md-7">
@@ -96,7 +96,7 @@
                 </div>
                  <div class="col-md-12 trade-field">
                    <div class="col-md-5">
-                      <label for="price">Price (in ETH)</label>
+                      <label for="price">Price (in {{secondCurrency}})</label>
                    </div>
 
                    <div class="col-md-7">
@@ -105,7 +105,7 @@
                     </div>
                      </div>
                    <div class="col-md-12 total-coin">
-                  <p>Equivalent ETH price for this order</p>
+                  <p>Equivalent {{secondCurrency}} price for this order</p>
                 </div>
                    <div class="col-md-12 trade-field">
                    <hr>
@@ -129,27 +129,36 @@
          <div class="row">
             <div class="col-md-9 col-md-offset-3">
                <h2>MARKET</h2>
-               <table class="table table-bordered market-margin table-responsive">
+               <div class="table-responsive">
+               <table class="table  table-bordered market-margin" >
                   <thead class="heading">
 
                      <tr>
-                        <th class="market-tab" (click)=isBtc()  *ngFor="let coinList of currecyList" >{{coinList.currencyAbbreviation}}</th>
+                        <th class="market-tab" (click)=getPair(coinList.currencyId)  *ngFor="let coinList of currecyList" >{{coinList.currencyAbbreviation}}</th>
                         <!-- <th class="market-tab" (click)=isEth()>ETH</th>
                         <th class="market-tab" (click)=isBln()>BLN</th> -->
                         <!-- <th class="market-tab" (click)=isNgn()>NGN</th> -->
+                      </tr>
+                   </thead>
+                   <thead class="table-bg-color">
+                      <tr>
+                         <th>Coin</th>
+                         <th>Price</th>
+                         <th>Name</th>
+                         <!-- <th>Change</th> -->
+                      </tr>
+                   </thead>
+                   <tbody>
+                     <tr *ngFor="let pair of pairList">
+                       <th (click)=changePair(pair.pairId,pair.pairName) >{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                       <th>0</th>
+                       <th>{{pair.pairedCurrency[0].currencyName}}</th>
                      </tr>
-                  </thead>
-                  <thead class="table-bg-color">
-                     <tr>
-                        <th>Coin</th>
-                        <th>Price</th>
-                        <th>Name</th>
-                        <th>Change</th>
-                     </tr>
-                  </thead>                  
-               </table>
+                   </tbody>
+                </table>
             </div>
          </div>
+      </div>
       </div>
    </div>
    <!-- for drop-down -->
@@ -177,9 +186,9 @@
                   <thead>
                      <tr>
                         <th>Price</th>
-                        <th>ETH</th>
-                        <th>BTC</th>
-                        <th>Total BTC</th>
+                        <th>{{secondCurrency}}</th>
+                        <th>{{firstCurrency}}</th>
+                        <th>Total {{firstCurrency}}</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -204,9 +213,9 @@
                   <table class="table table-striped table-color">
                      <thead>
                         <tr>
-                           <th>Total BTC</th>
-                           <th>BTC</th>
-                           <th>ETH</th>
+                           <th>Total {{firstCurrency}}</th>
+                           <th>{{firstCurrency}}</th>
+                           <th>{{secondCurrency}}</th>
                            <th>Price</th>
                         </tr>
                      </thead>
@@ -249,6 +258,7 @@
    <div class="row">
       <div class="col-md-12 text-align-center btc-exchange">
          <span class="border-bot order-text">BTC EXCHANGE</span>
+         <div class="underline"></div>
          <chart [options]="options"></chart>
       </div>
    </div>
