@@ -28,7 +28,7 @@
                      <span>TRADE IN {{pairName}} </span>
                   </div>
                      <div class="col-md-12 total-currency-message">
-                     <p>You have 1.025 BTC. </p>
+                     <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
                   </div>
                   <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                      <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
@@ -150,7 +150,7 @@
                    </thead>
                    <tbody>
                      <tr *ngFor="let pair of pairList">
-                       <th (click)=changePair(pair.pairId,pair.pairName) >{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                       <th (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType) >{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                        <th>0</th>
                        <th>{{pair.pairedCurrency[0].currencyName}}</th>
                      </tr>
