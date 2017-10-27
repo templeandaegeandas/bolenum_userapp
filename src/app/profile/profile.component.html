@@ -587,7 +587,7 @@ aria-hidden="true">
                <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
                </span>
                <br>
-               <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
+               <button type="submit" class="btn btn-successsavemobile">Save Mobile Number</button>
                <button type="submit" class="btn btn-back" (click)="backAuth()">Back</button>
                </form>
                <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
