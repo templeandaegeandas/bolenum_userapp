@@ -4,6 +4,10 @@ chart
     display: block;
 }
 
+.ng2-imgcrop canvas {
+    width: 100% !important;
+}
+
 /*@font-face {
     font-family: "Lato-Regular";
     src: url(".assets/font/Lato-Regular.ttf");

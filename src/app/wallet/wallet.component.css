@@ -106,11 +106,16 @@ p.wallet.text-center {
 }
 }
 
- @media screen and (min-width: 768px) and (max-width: 1023px){
-  img.img-login {
+@media screen and (min-width: 768px) and (max-width: 1023px){
+img.img-login {
    width: 100%;
-    }
-     .container.wallet-contain {
-    width: 100%;
-   }
+ }
+.container.wallet-contain {
+  width: 100%;
+}
+img.wallet-image {
+    position: absolute;
+    top: 31px;
+    left: 280px;
+}
  }

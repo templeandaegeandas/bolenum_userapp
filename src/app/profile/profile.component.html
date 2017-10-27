@@ -409,7 +409,7 @@
             <div class=" col-lg-6 col-md-6 col-sm-6">
               <div class="kyc-col">
                 <div class="kyc-details">
-                  <p class="kyc-text"> identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
+                  <p class="kyc-text">national identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
                 </div>
                 <div class="img-block">
                   <img class="img-center" *ngIf="!pdf" [src]="document">
@@ -537,8 +537,10 @@
               <div class="authimage_style"><img width="150" [src]="qrCodeFileName"></div>
             </div>
             <div>
-              <p>Scan this QR code with your Google Authenticator app on your mobile phone (download for iOS or Android). Once scanned you will be presented with a random 6 digit number. Enter that number below to finish the setup process.
-              </p>
+               <p class="popup-text">Scan this QR code with your Google Authenticator app on your mobile phone (download
+                  for iOS or Android). Once scanned you will be presented with a random 6 digit
+                  number. Enter that number below to finish the setup process.
+               </p>
             </div>
             <input type="texts" class="from-newtext" name="secret" [(ngModel)]="secret" #gsecret="ngModel" minlength="6" maxlength="6" id="usr" required onlynumber>
             <span *ngIf="gsecret.invalid && googleAuthForm.submitted">
@@ -571,25 +573,25 @@
               <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
               <span *ngIf="number.invalid && mobileForm.submitted"><br>
                <span class="text-danger" *ngIf="number.errors.required">Please enter mobile number</span>
-              </span>
-              <br>
-              <button type="submit" class="btn btn-successsave">Save Mobile Number</button>
-              <button type="submit" class="btn btn-back" (click)="backAuth()">Back</button>
-            </form>
-            <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
-              <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
-              <span *ngIf="otpField.invalid && otpForm.submitted">
+               </span>
+               <br>
+               <button type="submit" class="btn btn-successsavemobile">Save Mobile Number</button>
+               <button type="submit" class="btn btn-back" (click)="backAuth()">Back</button>
+               </form>
+               <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
+               <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
+               <span *ngIf="otpField.invalid && otpForm.submitted">
                <span class="text-danger" *ngIf="otpField.errors.required">Please enter otp</span>
-              </span><br>
-              <button type="submit" class="btn btn-successsave-verify">Verify Otp</button>
-              <div class="otp">
-                <a (click)="reSendOtp()">Resend Otp</a>
-              </div>
-            </form>
-          </div>
-          <button *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>
-          <button *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">back</button>
-        </div>
+               </span><br>
+               <button type="submit" class="btn btn-successsave-verify">Verify Otp</button>
+               <div class="otp">
+                  <a (click)="reSendOtp()">Resend Otp</a>
+               </div>
+               </form>
+            </div>
+            <button  class="enablebtn" *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>
+            <button  class="enablebtn" *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">back</button>
+         </div>
       </div>
     </div>
   </div>
@@ -604,10 +606,10 @@
          </button>
       </div>
       <div class="modal-body">
-        <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
-        <br>
-        <button (click)="uploadProfilePic()">Upload</button>
-        <button (click)="profilePicCropper.hide()">Cancel</button>
+         <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+         <br>
+         <button  class="uploadbtn"(click)="uploadProfilePic()">Upload</button>
+         <button class="uploadbtn" (click)="profilePicCropper.hide()">Cancel</button>
       </div>
     </div>
   </div>

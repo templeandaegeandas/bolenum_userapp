@@ -162,14 +162,13 @@ img.img-resonsive {
 .copyright p {
     font-size: 14px;
     margin-left: -12px;
+    padding-top: 27px;
+    margin-bottom: -21px;
 }
 .footer-col{
     margin-top: 25px;
 }
-.bottom_ul li { 
-     line-height:40px; 
-      }
-     }
+}
 @media screen and (min-width: 768px) and (max-width: 1023px){
 
 }

@@ -562,12 +562,11 @@ button.btn.btn-back {
     background: #DB2828;
     color: white;
     margin-top: 19px;
-    margin-left: -89px;
+    margin-left: 14px;
     outline: none;
 
 }
 button.btn.btn-successsavedetail {
-    
     background: #DB2828;
     color: white;
     margin-right: 115px;
@@ -650,6 +649,9 @@ label.btn.btn-dark-blue {
     margin-top: 2px;
     border: 2px solid #CDCDCD;
     margin-bottom: 13px;
+}
+.authimage_style {
+    margin-bottom: 12px!important;
 }
 
 span.font-1 {
@@ -835,8 +837,26 @@ label.switch {
  position: relative;
     /* color: red; */
 }
-
-
+.uploadbtn
+{
+     background-color:#DB2828;
+     color:white;
+     outline:none;
+     border:none;
+     width: 70px;
+     padding: 3px 0px 3px;
+     border-radius: 3px;
+}
+.enablebtn
+{
+    background-color:#DB2828;
+    color:white;
+    outline:none;
+    border:none;
+    width: 70px;
+    padding: 4px 0px 4px;
+    border-radius: 3px;
+}
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
@@ -1057,6 +1077,14 @@ button.modal-buttn {
     margin-top:6px;
     outline: none;
 }
+button.btn.btn-successsavemobile {
+    background: #DB2828;
+    margin-top: 18px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    padding-top: 10px;
+}
 .f2fimage {
     position: absolute;
     top: -10px;
@@ -1098,6 +1126,7 @@ p.createdepositmodal-heading.hedartext {
 /*start media query for slider*/
 @media screen and (min-width: 320px) and (max-width: 767px){
   
+  
   label .fa {
     font-size: 16px;
   }
@@ -1119,7 +1148,10 @@ p.createdepositmodal-heading.hedartext {
   img.profile-img{
     width: 100%;
 }
-
+p.popup-text {
+    font-size: 12px;
+    text-align: justify;
+}
 label {
   font-weight: 700;
   font-size: 18px;
@@ -1197,23 +1229,23 @@ img.porf-pic {
     width: 139%;
 }
 button.btn.btn-successsave{
-    margin-top: -2px;
+    margin-top: 8px;
     
 }
 
 input#usr {
-    width: 95%;
+    width: 75%;
 }
 
 select#usr {
-    width: 95%;
+    width: 75%;
   }
   .email-part{
     width: 100%;
     float: none;
 }
 button.btn.btn-successsavedetail{
-    margin-right: 91px;
+    margin-right: 134px;
     
 }
   }
