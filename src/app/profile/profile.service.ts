@@ -25,7 +25,7 @@ export class ProfileService {
   }
 
   upload(formData) {
-    return this.http.postWithoutContentType("/api/v1/kyc/upload", formData)
+    return this.http.postWithoutContentType("/api/v1/kyc/upload" , formData)
       .map(res => res.json());
   }
 
