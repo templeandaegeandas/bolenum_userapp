@@ -277,7 +277,8 @@ export class ProfileComponent implements OnInit {
       let fileName = fileBrowserNationalId.files[0].name;
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-      if (extension != "png" || extension != "jpeg" || extension != "jpg" || extension != "pdf") {
+      if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+        console.log("national")
         this.loading = false;
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
         fileBrowserNationalId.value = "";
@@ -285,7 +286,7 @@ export class ProfileComponent implements OnInit {
       }
     }
     else {
-      this.toastrService.error("Please choose file for uploading!", 'Error!')
+      this.toastrService.error("Please choose national id for uploading!", 'Error!')
       this.loading = false;
       return;
     }
@@ -294,7 +295,8 @@ export class ProfileComponent implements OnInit {
         let fileName = fileBrowserAddressProof.files[0].name;
         let dot = fileName.lastIndexOf(".")
         let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-        if (extension != "png" || extension != "jpeg" || extension != "jpg" || extension != "pdf") {
+        if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+          console.log("address")
           this.loading = false;
           this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
           fileBrowserAddressProof.value = "";
@@ -326,7 +328,7 @@ export class ProfileComponent implements OnInit {
         });
     }
     else {
-      this.toastrService.error("Please choose file for uploading!", 'Error!')
+      this.toastrService.error("Please choose address proof for uploading!", 'Error!')
       this.loading = false;
     }
 }
