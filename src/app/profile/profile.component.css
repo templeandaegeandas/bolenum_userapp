@@ -830,8 +830,26 @@ label.switch {
  position: relative;
     /* color: red; */
 }
-
-
+.uploadbtn
+{
+     background-color:#DB2828;
+     color:white;
+     outline:none;
+     border:none;
+     width: 70px;
+     padding: 3px 0px 3px;
+     border-radius: 3px;
+}
+.enablebtn
+{
+    background-color:#DB2828;
+    color:white;
+    outline:none;
+    border:none;
+    width: 70px;
+    padding: 4px 0px 4px;
+    border-radius: 3px;
+}
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
@@ -1093,6 +1111,7 @@ p.createdepositmodal-heading.hedartext {
 /*start media query for slider*/
 @media screen and (min-width: 320px) and (max-width: 767px){
   
+  
   label .fa {
     font-size: 16px;
   }
@@ -1192,7 +1211,7 @@ img.porf-pic {
     width: 139%;
 }
 button.btn.btn-successsave{
-    margin-top: -2px;
+    margin-top: 13px;
     
 }
 

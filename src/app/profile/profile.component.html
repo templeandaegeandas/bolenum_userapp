@@ -566,8 +566,8 @@ aria-hidden="true">
                </div>
                </form>
             </div>
-            <button *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>
-            <button *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">back</button>
+            <button  class="enablebtn" *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>
+            <button  class="enablebtn" *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">back</button>
          </div>
       </div>
    </div>
@@ -586,8 +586,8 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-body">
          <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
          <br>
-         <button (click)="uploadProfilePic()">Upload</button>
-         <button (click)="profilePicCropper.hide()">Cancel</button>
+         <button  class="uploadbtn"(click)="uploadProfilePic()">Upload</button>
+         <button class="uploadbtn" (click)="profilePicCropper.hide()">Cancel</button>
       </div>
    </div>
 </div>
