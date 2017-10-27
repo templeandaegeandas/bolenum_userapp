@@ -470,7 +470,7 @@
                                  <input class="from-newtext" type="file" #fileInputAddress id="usr" (change)="readUrlAddress($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
                               </div>
-                              <button type="button" class="btnbrowse" (click)="uploadKycAddress('RESIDENCE_PROOF')">Upload Documents</button>
+                              <!--<button type="button" class="btnbrowse" >Upload Documents</button>-->
                            </div>
                         </div>
                         <div class="col-md-12 text-center kyc-image-formate">
@@ -547,7 +547,7 @@ aria-hidden="true">
                <div class="authimage_style"><img width="150" [src]="qrCodeFileName"></div>
             </div>
             <div>
-               <p>Scan this QR code with your Google Authenticator app on your mobile phone (download
+               <p class="popup-text">Scan this QR code with your Google Authenticator app on your mobile phone (download
                   for iOS or Android). Once scanned you will be presented with a random 6 digit
                   number. Enter that number below to finish the setup process.
                </p>

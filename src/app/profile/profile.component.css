@@ -650,6 +650,9 @@ label.btn.btn-dark-blue {
     border: 2px solid #CDCDCD;
     margin-bottom: 13px;
 }
+.authimage_style {
+    margin-bottom: 12px!important;
+}
 
 span.font-1 {
     color: black;
@@ -1145,7 +1148,10 @@ p.createdepositmodal-heading.hedartext {
   img.profile-img{
     width: 100%;
 }
-
+p.popup-text {
+    font-size: 12px;
+    text-align: justify;
+}
 label {
   font-weight: 700;
   font-size: 18px;
@@ -1223,7 +1229,7 @@ img.porf-pic {
     width: 139%;
 }
 button.btn.btn-successsave{
-    margin-top: 2px;
+    margin-top: 8px;
     
 }
 
