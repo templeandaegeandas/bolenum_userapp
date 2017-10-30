@@ -81,15 +81,15 @@ img.img-header{
   }
   .input-icon img{
     right: 10px;
-    position: absolute;
+    position: relative;;
     top: 8px;
     z-index: 99999;
   }
   .input-icons img{
-    position: relative;
-    top: -29px;
+    position: absolute;
+    top: 7px;
     z-index: 99999;
-    right: -375px;
+    right: 52px;
   }
   
    .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
@@ -114,6 +114,7 @@ button.btn.btn-continue {
     border-color: #DB2828;
     font-family: Lato;
     margin-left: 25px;
+    margin-top: 10px;
     outline: none;
 }
 h4.text-center {
@@ -135,7 +136,7 @@ p.text-center {
 .text-danger {
     color: #a94442;
     margin-left: 28px;
-    margin-top: -21px;
+    margin-top: 4px;
 }
 
 .invalid-user-error{
@@ -163,8 +164,11 @@ button.btn.btn-continue {
    width: 135px;
    margin-bottom: 33px;
 }
-.input-icons img {
-   right: -222px;
+ .input-icons img{
+    position: absolute;
+    top: 7px;
+    z-index: 99999;
+    right: 62px;
   }
   .input-groups input {
      width:81%;}
@@ -187,8 +191,12 @@ button.btn.btn-continue {
  .input-group {
    width:80%
   }
-  .input-icons img {
-   right: -227px;
+  
+   .input-icons img{
+    position: absolute;
+    top: 7px;
+    z-index: 99999;
+    right: 52px;
   }
   .input-groups input {
      width:81%;}

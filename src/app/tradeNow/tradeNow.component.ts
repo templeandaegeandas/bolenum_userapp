@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TradeNowService } from './tradeNow.service';
 import { Order } from './entity/order.entity';
+import { DepositService } from '../deposit/deposit.service';
 
 @Component({
   selector: 'app-tradeNow',
   templateUrl: './tradeNow.component.html',
   styleUrls: ['./tradeNow.component.css'],
-  providers: [TradeNowService]
+  providers: [TradeNowService, DepositService]
 })
 export class TradeNowComponent implements OnInit {
 
@@ -21,6 +22,8 @@ export class TradeNowComponent implements OnInit {
   pairName: any;
   firstCurrency: any;
   secondCurrency: any;
+  firstCurrencyBal: any;
+  secondCurrencyBal: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -48,7 +51,7 @@ export class TradeNowComponent implements OnInit {
 
 
 
-  constructor(private tradeNowService: TradeNowService) {
+  constructor(private tradeNowService: TradeNowService, private depositService: DepositService) {
     this.options = {
       chart: {
         type: 'areaspline'
@@ -157,7 +160,6 @@ export class TradeNowComponent implements OnInit {
   getCurrencyList()
   {
       this.tradeNowService.getListOfCurrency().subscribe( success => {
-        console.log("currency list >>>",success);
         this.currecyList = success.data;
         let currencyId = this.currecyList[0].currencyId;
         this.getPair(currencyId);
@@ -196,21 +198,39 @@ export class TradeNowComponent implements OnInit {
   getPair(currencyId) {
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
+      let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
+      let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
-      this.changePair(pairId, pairName);
+      this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
     })
   }
 
-  changePair(pairId, pairName) {
+  changePair(pairId, pairName, firstCurrencyType, secondCurrencyType) {
+    console.log(firstCurrencyType);
+    console.log(secondCurrencyType);
     this.pairName = pairName;
     let pairArray = pairName.split("/")
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
+    this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
+      this.firstCurrencyBal = success.data.data.balance;
+    }, error => {
+      this.firstCurrencyBal = "0.0 " + this.firstCurrency;
+    })
+    this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
+      this.secondCurrencyBal = success.data.data.balance;
+    }, error => {
+      this.secondCurrencyBal = "0.0 " + this.secondCurrency;
+    })
     this.getBuyOrderBookData(pairId);
     setTimeout(() => {
       this.getSellOrderBookData(pairId);
     }, 500);
+  }
+
+  getBalance(currencyType, currencyName) {
+
   }
 
   isLogIn() {

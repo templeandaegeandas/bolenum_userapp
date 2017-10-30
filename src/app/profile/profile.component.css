@@ -1151,6 +1151,12 @@ p.createdepositmodal-heading.hedartext {
 p.popup-text {
     font-size: 12px;
     text-align: justify;
+    margin-top: -28px;
+}
+
+.profile-button {
+    
+    margin-right:-7px;
 }
 label {
   font-weight: 700;
