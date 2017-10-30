@@ -429,7 +429,7 @@
                                  <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
                                  </label>
                     </div>
-                    <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
+                    <!-- <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button> -->
                   </div>
                 </div>
                 <div class="col-md-12 text-center kyc-image-formate">
@@ -467,6 +467,12 @@
                 <div class="col-md-12 text-center kyc-image-formate">
                   <p class="kyc-imgeformat">Only jpg, jpeg, png or pdf</p>
                 </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                 <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button>
               </div>
             </div>
             <!-- for address proof verification end -->

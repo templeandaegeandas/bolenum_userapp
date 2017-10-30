@@ -306,10 +306,13 @@ export class ProfileComponent implements OnInit {
         formData.append("file", fileBrowserNationalId.files[0]);
         formData.append("documentType", "NATIONAL_ID")
         this.profileService.upload(formData).subscribe(success => {
+          console.log("for first document >>>>>>>>>>",success.data);
+          
           const formData = new FormData();
           formData.append("file", fileBrowserAddressProof.files[0]);
           formData.append("documentType", "RESIDENCE_PROOF")
           this.profileService.upload(formData).subscribe(success => {
+            console.log("for second document >>>>>>>>>>",success.data);
             this.ngOnInit();
             fileBrowserNationalId.value = "";
             fileBrowserAddressProof.value = "";
