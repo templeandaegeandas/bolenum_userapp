@@ -69,6 +69,11 @@ export class ProfileComponent implements OnInit {
   cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
+  kycDocument:any=[];
+  nationalIdKyc:any;
+  addressIdKyc:any;
+  nId:any;
+  rId:any
 
   constructor(private profileService: ProfileService, private toastrService: ToastrService) {
     this.cropperSettings = new CropperSettings();
@@ -96,6 +101,33 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getLoggedInUserDetails();
 
+  }
+
+    getKycDetailsUser(){
+    this.profileService.getKycDetailUsers().subscribe( success =>{
+
+      console.log("kyc details >>>",success.data);
+      this.kycDocument =success.data;
+      console.log("upcoming >>>>", this.kycDocument);
+      this.nationalIdKyc=this.kycDocument[0].document;
+      console.log("nation >>>>>", this.nationalIdKyc);
+      this.addressIdKyc = this.kycDocument[1].document;
+
+//       for(let i=0; i<=this.kycDocument.length; i++){
+//   if(this.kycDocument[i].documentType == 'NATIONAL_ID'){
+//     this.nId = this.kycDocument[i].documentType;
+//     console.log("type >>>>> nid", this.nId);
+    
+//   }
+//   else{
+//     this.rId = this.kycDocument[i].documentType;
+//       console.log("type >>>>> rid", this.rId);
+    
+//   }
+// }
+},error => {
+
+    });
   }
 
   addPopupClose() {
@@ -273,14 +305,67 @@ export class ProfileComponent implements OnInit {
   uploadKyc() {
     this.loading = true;
     let fileBrowserNationalId = this.fileInput.nativeElement;
+    let fileBrowserAddressProof = this.fileInputAddress.nativeElement;
+    if(this.kycDocument.length>0) {
+      if((fileBrowserNationalId.files && fileBrowserNationalId.files[0]) && (fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
+        let nationalId = fileBrowserNationalId.files[0].name;
+        let residenceProof = fileBrowserAddressProof.files[0].name;
+      if (!this.validateExtension(nationalId)) {
+        this.loading = false;
+        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
+        fileBrowserNationalId.value = "";
+        return;
+      }
+      if (!this.validateExtension(residenceProof)) {
+        this.loading = false;
+        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
+        fileBrowserNationalId.value = "";
+        return;
+      }
+      this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
+      this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
+      fileBrowserNationalId.value = "";
+            fileBrowserAddressProof.value = "";
+      }
+     else if((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
+        let fileName = fileBrowserNationalId.files[0].name;
+      if (!this.validateExtension(fileName)) {
+        this.loading = false;
+        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
+        fileBrowserNationalId.value = "";
+        return;
+      }
+      this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
+      fileBrowserNationalId.value = "";
+            fileBrowserAddressProof.value = "";
+      }
+      else if ((fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
+        let fileName = fileBrowserAddressProof.files[0].name;
+        if (!this.validateExtension(fileName)) {
+        this.loading = false;
+        this.toastrService.error("Please choose a valid file (image/pdf) address", 'Error!');
+        fileBrowserAddressProof.value = "";
+        return;
+      }
+      this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
+      fileBrowserNationalId.value = "";
+            fileBrowserAddressProof.value = "";
+      }
+      else {
+        this.toastrService.error("Please choose a national id or address proof", 'Error!');
+        this.loading = false;
+        return;
+      }
+      
+    }
+    else {
+      
     if (fileBrowserNationalId.files && fileBrowserNationalId.files[0]) {
       let fileName = fileBrowserNationalId.files[0].name;
-      let dot = fileName.lastIndexOf(".")
-      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-      if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+      if (!this.validateExtension(fileName)) {
         console.log("national")
         this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+        this.toastrService.error("Please choose a valid file (image/pdf) national both", 'Error!');
         fileBrowserNationalId.value = "";
         return;
       }
@@ -290,50 +375,53 @@ export class ProfileComponent implements OnInit {
       this.loading = false;
       return;
     }
-      let fileBrowserAddressProof = this.fileInputAddress.nativeElement;
+      
       if (fileBrowserAddressProof.files && fileBrowserAddressProof.files[0]) {
         let fileName = fileBrowserAddressProof.files[0].name;
-        let dot = fileName.lastIndexOf(".")
-        let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-        if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+        if (!this.validateExtension(fileName)) {
           console.log("address")
           this.loading = false;
-          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          this.toastrService.error("Please choose a valid file (image/pdf) national both", 'Error!');
           fileBrowserAddressProof.value = "";
           return;
         }
-        const formData = new FormData();
-        formData.append("file", fileBrowserNationalId.files[0]);
-        formData.append("documentType", "NATIONAL_ID")
+        
+      }
+      else {
+      this.toastrService.error("Please choose address proof for uploading!", 'Error!');
+      this.loading = false;
+      return;
+    }
+    this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
+          this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
+      fileBrowserNationalId.value = "";
+            fileBrowserAddressProof.value = "";
+    }
+}
+
+validateExtension(fileName) {
+  let dot = fileName.lastIndexOf(".")
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+        return false;
+      }
+      else {
+        return true;
+      }
+}
+
+uploadFile(file, documentType) {
+  const formData = new FormData();
+        formData.append("file", file);
+        formData.append("documentType", documentType);
         this.profileService.upload(formData).subscribe(success => {
-          console.log("for first document >>>>>>>>>>",success.data);
-          
-          const formData = new FormData();
-          formData.append("file", fileBrowserAddressProof.files[0]);
-          formData.append("documentType", "RESIDENCE_PROOF")
-          this.profileService.upload(formData).subscribe(success => {
             console.log("for second document >>>>>>>>>>",success.data);
             this.ngOnInit();
-            fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
             this.loading = false;
           }, error => {
             this.toastrService.error(error.json().message, 'Error!')
-            fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
             this.loading = false;
           })
-        }, error => {
-          this.toastrService.error(error.json().message, 'Error!')
-          fileBrowserNationalId.value = "";
-          fileBrowserAddressProof.value = "";
-          this.loading = false;
-        });
-    }
-    else {
-      this.toastrService.error("Please choose address proof for uploading!", 'Error!')
-      this.loading = false;
-    }
 }
 
 

@@ -87,4 +87,9 @@ export class ProfileService {
     return this.http.delete("/api/v1/user/twofactor/auth/remove")
       .map(res => res.json());
   }
+
+  getKycDetailUsers(){
+    return this.http.get("/api/v1/user/kyc/list")
+    .map(res => res.json());
+  }
 }
