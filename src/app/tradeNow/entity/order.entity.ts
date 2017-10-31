@@ -4,5 +4,5 @@ export class Order {
   price: any;
   orderStandard: any;
   orderType: any;
-  pairId: any;
+  pair: any;
 }

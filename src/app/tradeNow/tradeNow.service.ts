@@ -21,8 +21,8 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
-  createOrder(order) {
-    return this.http.post('/api/v1/user/create/order', order)
+  createOrder(order, pairId) {
+    return this.http.post('/api/v1/user/create/order?pairId='+pairId, order)
       .map(res => res.json());
   }
 
