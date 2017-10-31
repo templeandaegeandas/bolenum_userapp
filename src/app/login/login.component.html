@@ -12,7 +12,7 @@
           <div *ngIf = "!is2FaOn">
           <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
-              <span class="input-group-addon"><img src="assets/images/profile.png"></span>
+              <span class="input-group-addon"><img src="assets/images/Email.png"></span>
               <input id="email" type="email" class="form-control" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
             </div>
             <span *ngIf="email.invalid && loginForm.submitted">

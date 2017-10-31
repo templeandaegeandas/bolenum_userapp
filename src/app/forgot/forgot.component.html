@@ -14,7 +14,20 @@
           </div>
           <form #forgetpassForm="ngForm" (submit)=forgetPassword(forgetpassForm)>
               <div class="col-md-12">
-            <div class="input-groups">
+
+                 <div class="input-group">
+              <span class="input-group-addon"><img src="assets/images/Email.png"></span>
+               <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Enter your email" required>
+              <div *ngIf="emailId.invalid && forgetpassForm.submitted">
+              <div *ngIf="emailId.errors.required">
+                <p class="text-danger">Please enter email</p>
+              </div>
+              <div *ngIf="emailId.errors.pattern">
+                <p class="text-danger">Please enter valid email</p>
+              </div>
+            </div>
+              </div>
+            <!-- <div class="input-groups">
               <span class="clearfix input-icons">
                   <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Enter your email" required>
                   <img src="assets/images/Email.png" class="img-responsive"/>
@@ -28,7 +41,7 @@
                 <p class="text-danger">Please enter valid email</p>
               </div>
             </div>
-              </div>
+              </div> -->
               </div>
              <div *ngIf=errorMsg class="invalid-user-error">
               <p class="text-danger">Email does not exist</p>
