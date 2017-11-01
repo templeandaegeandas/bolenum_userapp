@@ -195,7 +195,7 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = '';
       this.ngOnInit();
       this.loading = false;
-      this.toastrService.success(success.data.message, 'Success!');
+      this.toastrService.success(success.message, 'Success!');
     }, error => {
       console.log(error);
       this.order.price = '';
