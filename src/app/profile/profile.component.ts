@@ -194,8 +194,9 @@ export class ProfileComponent implements OnInit {
     this.getAllCountries();
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
-    this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
-
+    if(this.userProfile.dob!=null) {
+      this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
+    }
   }
 
 
@@ -208,6 +209,10 @@ export class ProfileComponent implements OnInit {
   saveMobile(form) {
     this.varificationName = "Enter OTP"
     if (form.invalid) return;
+    if (this.countryCode==null) {
+      this.toastrService.error("Please choose country and fill profile first!", "Error!");
+      return;
+    }
     this.profileService.addMobileNumber(this.mobileNumber, this.countryCode).subscribe(success => {
       this.isMobileEdit = false;
       this.isOtpEdit = true;

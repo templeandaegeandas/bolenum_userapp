@@ -220,7 +220,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let buyOrder of buyOrderList" (click)="fillData(buyOrder)">
+                    <tr *ngFor="let buyOrder of buyOrderList">
                     <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
                     <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
                     <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>

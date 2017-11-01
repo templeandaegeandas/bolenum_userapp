@@ -245,6 +245,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   fillData(volume,price) {
+    this.setTradingValue = "Limit Order";
     this.setTradeValue("Limit Order");
     this.order.volume = volume;
     this.order.price = price
