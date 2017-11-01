@@ -409,10 +409,10 @@
             <div class=" col-lg-6 col-md-6 col-sm-6">
               <div class="kyc-col">
                 <div class="kyc-details">
-                  <p class="kyc-text">national identity verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
+                  <p class="kyc-text">national identity verification status:<span class="kyc-color"> {{nationalIdStatus}} </span></p>
                 </div>
                 <div class="img-block">
-                  <img class="img-center" *ngIf="!pdf" [src]="document">
+                  <img class="img-center" *ngIf="!pdf" [src]="nationalIdKyc">
                   <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
                 </div>
                 <div class="kyc-details">
@@ -442,10 +442,10 @@
             <div class=" col-lg-6 col-md-6 col-sm-6">
               <div class="kyc-col">
                 <div class="kyc-details">
-                  <p class="kyc-text"> Address Proof Verification status:<span class="kyc-color"> {{documentStatus}} </span></p>
+                  <p class="kyc-text"> Address Proof Verification status:<span class="kyc-color"> {{addressIdStatus}} </span></p>
                 </div>
                 <div class="img-block">
-                  <img class="img-center" *ngIf="!pdf" [src]="addressProof">
+                  <img class="img-center" *ngIf="!pdf" [src]="addressIdKyc">
                   <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
                 </div>
                 <div class="kyc-details">

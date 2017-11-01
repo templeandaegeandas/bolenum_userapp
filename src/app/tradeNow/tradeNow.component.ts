@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TradeNowService } from './tradeNow.service';
 import { Order } from './entity/order.entity';
 import { DepositService } from '../deposit/deposit.service';
+import { ToastrService } from 'toastr-ng2';
 
 @Component({
   selector: 'app-tradeNow',
@@ -26,6 +27,7 @@ export class TradeNowComponent implements OnInit {
   firstCurrencyBal: any;
   secondCurrencyBal: any;
   pairId: any;
+  loading = false;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -53,7 +55,7 @@ export class TradeNowComponent implements OnInit {
 
 
 
-  constructor(private tradeNowService: TradeNowService, private depositService: DepositService) {
+  constructor(private tradeNowService: TradeNowService, private depositService: DepositService, private toastrService: ToastrService) {
     this.options = {
       chart: {
         type: 'areaspline'
@@ -179,6 +181,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   createOrder(orderType) {
+    this.loading = true;
     if (this.isMarket) {
       this.order.orderStandard = 'LIMIT';
     }
@@ -188,15 +191,24 @@ export class TradeNowComponent implements OnInit {
     this.order.orderType = orderType;
     this.order.totalVolume = this.order.volume;
     this.tradeNowService.createOrder(this.order, this.pairId).subscribe(success => {
+      this.order.price = '';
+      this.order.volume = '';
+      this.ngOnInit();
+      this.loading = false;
+      this.toastrService.success(success.data.message, 'Success!');
     }, error => {
-      console.log(error)
+      console.log(error);
+      this.order.price = '';
+      this.order.volume = '';
+      this.ngOnInit();
+      this.loading = false;
+      this.toastrService.error(error.json().message, 'Error!');
     })
-    this.order.price = '';
-    this.order.volume = '';
-    this.ngOnInit();
+
   }
 
   getPair(currencyId) {
+    this.loading = true;
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
@@ -204,10 +216,12 @@ export class TradeNowComponent implements OnInit {
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
       this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
+      this.loading = false;
     })
   }
 
   changePair(pairId, pairName, firstCurrencyType, secondCurrencyType) {
+    this.loading = true;
     this.pairId = pairId;
     this.pairName = pairName;
     let pairArray = pairName.split("/")
@@ -227,10 +241,14 @@ export class TradeNowComponent implements OnInit {
     setTimeout(() => {
       this.getSellOrderBookData(pairId);
     }, 500);
+    this.loading = false;
   }
 
-  getBalance(currencyType, currencyName) {
-
+  fillData(volume,price) {
+    this.setTradeValue("Limit Order");
+    this.order.volume = volume;
+    this.order.price = price
+    this.order.orderStandard = "LIMIT"
   }
 
   isLogIn() {

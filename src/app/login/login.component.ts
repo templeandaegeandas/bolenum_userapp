@@ -62,8 +62,9 @@ export class LoginComponent implements OnInit {
       if(success.data.lName!=null) {
         localStorage.setItem("lName", success.data.lName);
       }
-      console.log()
-      localStorage.setItem("profilePic", success.data.profilePic);
+      if(success.data.profilePic!=null) {
+        localStorage.setItem("profilePic", success.data.profilePic);
+      }
       this.router.navigate([this.returnUrl]);
       window.scrollTo(0, 0);
       this.loading = false;

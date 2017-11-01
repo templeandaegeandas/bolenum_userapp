@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
     else{
   this.fullName = localStorage.getItem("fName");
     }
-  
+
   }
 
   signOut() {

@@ -9,8 +9,8 @@ export class ProfileService {
 
   }
 
-  addMobileNumber(mobileNumber) {
-    return this.http.put("/api/v1/user/add/mobile/number?mobileNumber=" + mobileNumber, "")
+  addMobileNumber(mobileNumber, countryCode) {
+    return this.http.put("/api/v1/user/add/mobile/number?mobileNumber=" + mobileNumber + "&countryCode="+countryCode, "")
       .map(res => res.json());
   }
 

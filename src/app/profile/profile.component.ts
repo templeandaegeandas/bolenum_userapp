@@ -15,11 +15,11 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
-  public nationalIds:string;
-  public documentType:string;
-  public varificationName:string="Enter Mobile Number" ;
-  public userFirstName:string;
-  public userLastName:string;
+  public nationalIds: string;
+  public documentType: string;
+  public varificationName: string = "Enter Mobile Number";
+  public userFirstName: string;
+  public userLastName: string;
   public isCustomerView: boolean = true;
   public shortIfo: boolean = false;
   public getOurBankDetails: any;
@@ -34,12 +34,11 @@ export class ProfileComponent implements OnInit {
   @ViewChild('profilePicCropper') public profilePicCropper: ModalDirective;
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
   loading = false;
-  document: String = "assets/images/id.png?decache=" + Math.random();
-  addressProof: String = "assets/images/id.png?decache=" + Math.random();
+  document: String = "assets/images/id.png";
+  addressProof: String = "assets/images/id.png";
   url: any = {
     result: String
   };
-  documentStatus: String = "NOT SUBMITTED";
   userProfile = new UserProfile();
   bankDetails = new BankDetails();
   userKyc: any;
@@ -70,11 +69,13 @@ export class ProfileComponent implements OnInit {
   cropperSettings: CropperSettings;
   croppedWidth: number;
   croppedHeight: number;
-  kycDocument:any=[];
-  nationalIdKyc:any;
-  addressIdKyc:any;
-  nId:any;
-  rId:any
+  kycDocument: any = [];
+  nationalIdStatus: String = "NOT SUBMITTED";
+  addressIdStatus: String = "NOT SUBMITTED";
+  nationalIdKyc: any = "assets/images/id.png";
+  addressIdKyc: any = "assets/images/id.png";
+  nId: any;
+  rId: any
 
   constructor(private profileService: ProfileService, private toastrService: ToastrService) {
     this.cropperSettings = new CropperSettings();
@@ -104,29 +105,25 @@ export class ProfileComponent implements OnInit {
 
   }
 
-    getKycDetailsUser(){
-    this.profileService.getKycDetailUsers().subscribe( success =>{
+  getKycDetailsUser() {
+    this.profileService.getKycDetailUsers().subscribe(success => {
+      this.kycDocument = success.data;
+      if (this.kycDocument.length > 0) {
+        if (this.kycDocument[0].documentType == "RESIDENCE_PROOF") {
+          this.addressIdKyc = environment.documentUrl + this.kycDocument[0].document;
+          this.nationalIdKyc = environment.documentUrl + this.kycDocument[1].document;
+          this.addressIdStatus = this.kycDocument[0].documentStatus;
+          this.nationalIdStatus = this.kycDocument[1].documentStatus;
+        }
+        else {
+          this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document;
+          this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document;
+          this.addressIdStatus = this.kycDocument[1].documentStatus;
+          this.nationalIdStatus = this.kycDocument[0].documentStatus;
+        }
+      }
 
-      console.log("kyc details >>>",success.data);
-      this.kycDocument =success.data;
-      console.log("upcoming >>>>", this.kycDocument);
-      this.nationalIdKyc=this.kycDocument[0].document;
-      console.log("nation >>>>>", this.nationalIdKyc);
-      this.addressIdKyc = this.kycDocument[1].document;
-
-//       for(let i=0; i<=this.kycDocument.length; i++){
-//   if(this.kycDocument[i].documentType == 'NATIONAL_ID'){
-//     this.nId = this.kycDocument[i].documentType;
-//     console.log("type >>>>> nid", this.nId);
-    
-//   }
-//   else{
-//     this.rId = this.kycDocument[i].documentType;
-//       console.log("type >>>>> rid", this.rId);
-    
-//   }
-// }
-},error => {
+    }, error => {
 
     });
   }
@@ -136,7 +133,7 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = false;
     this.isOtpEdit = false;
     this.twoFactorAuthType = 'NONE';
-    this.varificationName="";
+    this.varificationName = "";
     this.addPopup.hide();
   }
 
@@ -163,11 +160,11 @@ export class ProfileComponent implements OnInit {
     if (data == 'MOBILE' && !this.isMobileVerified) this.isMobileEdit = true;
   }
 
-  backAuth(){
+  backAuth() {
 
     this.isMobileEdit = false;
     this.twoFactorAuthType = 'NONE';
-      this.varificationName="Enter Mobile Number";
+    this.varificationName = "Enter Mobile Number";
 
   }
 
@@ -197,8 +194,7 @@ export class ProfileComponent implements OnInit {
     this.getAllCountries();
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
-    this.dob = { date: { year: d.getFullYear(), month: d.getMonth()+1, day: d.getDate() } };
-    console.log("date of birth >>>>>>>>>>>>>>>",this.userProfile.dob);
+    this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
 
   }
 
@@ -212,7 +208,7 @@ export class ProfileComponent implements OnInit {
   saveMobile(form) {
     this.varificationName = "Enter OTP"
     if (form.invalid) return;
-    this.profileService.addMobileNumber(this.countryCode+this.mobileNumber).subscribe(success => {
+    this.profileService.addMobileNumber(this.mobileNumber, this.countryCode).subscribe(success => {
       this.isMobileEdit = false;
       this.isOtpEdit = true;
       this.resendOtp = true;
@@ -257,19 +253,16 @@ export class ProfileComponent implements OnInit {
     this.userProfile.dob = new Date(this.dob.jsdate).getTime();
     this.userProfile.country = this.country;
     this.userProfile.state = this.state;
-    console.log("fgh",this.userProfile.lastName,"ijk");
 
-    if(this.userProfile.lastName==""){
+    if (this.userProfile.lastName == "") {
 
       this.userProfile.lastName = this.userLastName = null;
 
     }
 
-    console.log("dfghjk",this.userProfile.lastName );
 
 
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
-      console.log("saved data >>>>>>>>>>>>>>>",success.data);
       this.userFirstName = success.data.firstName;
       this.userLastName = success.data.lastName;
       this.ngOnInit();
@@ -289,7 +282,7 @@ export class ProfileComponent implements OnInit {
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
-          this.document = this.url.result;
+          this.nationalIdKyc = this.url.result;
         }
         reader.readAsDataURL(event.target.files[0]);
       }
@@ -307,132 +300,130 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     let fileBrowserNationalId = this.fileInput.nativeElement;
     let fileBrowserAddressProof = this.fileInputAddress.nativeElement;
-    if(this.kycDocument.length>0) {
-      if((fileBrowserNationalId.files && fileBrowserNationalId.files[0]) && (fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
+    if (this.kycDocument.length > 0) {
+      if ((fileBrowserNationalId.files && fileBrowserNationalId.files[0]) && (fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
         let nationalId = fileBrowserNationalId.files[0].name;
         let residenceProof = fileBrowserAddressProof.files[0].name;
-      if (!this.validateExtension(nationalId)) {
-        this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
+        if (!this.validateExtension(nationalId)) {
+          this.loading = false;
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          fileBrowserNationalId.value = "";
+          return;
+        }
+        if (!this.validateExtension(residenceProof)) {
+          this.loading = false;
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          fileBrowserNationalId.value = "";
+          return;
+        }
+        this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
+        this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
         fileBrowserNationalId.value = "";
-        return;
+        fileBrowserAddressProof.value = "";
+        this.getKycDetailsUser();
       }
-      if (!this.validateExtension(residenceProof)) {
-        this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
-        fileBrowserNationalId.value = "";
-        return;
-      }
-      this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
-      this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
-      fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
-      }
-     else if((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
+      else if ((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
         let fileName = fileBrowserNationalId.files[0].name;
-      if (!this.validateExtension(fileName)) {
-        this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf) national", 'Error!');
+        if (!this.validateExtension(fileName)) {
+          this.loading = false;
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          fileBrowserNationalId.value = "";
+          return;
+        }
+        this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
         fileBrowserNationalId.value = "";
-        return;
-      }
-      this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
-      fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
+        fileBrowserAddressProof.value = "";
+        this.getKycDetailsUser();
       }
       else if ((fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
         let fileName = fileBrowserAddressProof.files[0].name;
         if (!this.validateExtension(fileName)) {
-        this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf) address", 'Error!');
+          this.loading = false;
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          fileBrowserAddressProof.value = "";
+          return;
+        }
+        this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
+        fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        return;
-      }
-      this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
-      fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
+        this.getKycDetailsUser();
       }
       else {
         this.toastrService.error("Please choose a national id or address proof", 'Error!');
         this.loading = false;
         return;
       }
-      
+
     }
     else {
-      
-    if (fileBrowserNationalId.files && fileBrowserNationalId.files[0]) {
-      let fileName = fileBrowserNationalId.files[0].name;
-      if (!this.validateExtension(fileName)) {
-        console.log("national")
+
+      if (fileBrowserNationalId.files && fileBrowserNationalId.files[0]) {
+        let fileName = fileBrowserNationalId.files[0].name;
+        if (!this.validateExtension(fileName)) {
+          this.loading = false;
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
+          fileBrowserNationalId.value = "";
+          return;
+        }
+      }
+      else {
+        this.toastrService.error("Please choose national id for uploading!", 'Error!')
         this.loading = false;
-        this.toastrService.error("Please choose a valid file (image/pdf) national both", 'Error!');
-        fileBrowserNationalId.value = "";
         return;
       }
-    }
-    else {
-      this.toastrService.error("Please choose national id for uploading!", 'Error!')
-      this.loading = false;
-      return;
-    }
-      
+
       if (fileBrowserAddressProof.files && fileBrowserAddressProof.files[0]) {
         let fileName = fileBrowserAddressProof.files[0].name;
         if (!this.validateExtension(fileName)) {
-          console.log("address")
           this.loading = false;
-          this.toastrService.error("Please choose a valid file (image/pdf) national both", 'Error!');
+          this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
           fileBrowserAddressProof.value = "";
           return;
         }
-        
+
       }
       else {
-      this.toastrService.error("Please choose address proof for uploading!", 'Error!');
-      this.loading = false;
-      return;
-    }
-    this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
-          this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
+        this.toastrService.error("Please choose address proof for uploading!", 'Error!');
+        this.loading = false;
+        return;
+      }
+      this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
+      this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
       fileBrowserNationalId.value = "";
-            fileBrowserAddressProof.value = "";
+      fileBrowserAddressProof.value = "";
+      this.getKycDetailsUser();
     }
-}
+  }
 
-validateExtension(fileName) {
-  let dot = fileName.lastIndexOf(".")
-      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-      if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
-        return false;
-      }
-      else {
-        return true;
-      }
-}
+  validateExtension(fileName) {
+    let dot = fileName.lastIndexOf(".")
+    let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+    if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 
-uploadFile(file, documentType) {
-  const formData = new FormData();
-        formData.append("file", file);
-        formData.append("documentType", documentType);
-        this.profileService.upload(formData).subscribe(success => {
-            console.log("for second document >>>>>>>>>>",success.data);
-            this.nationalIds = success.data.documentType;
-            console.log("type >>>>>>",this.nationalIds);
-            
-
-            this.ngOnInit();
-            this.loading = false;
-          }, error => {
-            this.toastrService.error(error.json().message, 'Error!')
-            this.loading = false;
-          })
-}
+  uploadFile(file, documentType) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("documentType", documentType);
+    this.profileService.upload(formData).subscribe(success => {
+      this.nationalIds = success.data.documentType;
+      this.loading = false;
+      this.toastrService.success(success.data.message, 'Success!')
+    }, error => {
+      this.toastrService.error(error.json().message, 'Error!')
+      this.loading = false;
+    })
+  }
 
 
   // for uploading address proof
 
-    readUrlAddress(event) {
+  readUrlAddress(event) {
     if (event.target.files && event.target.files[0]) {
       let fileName = event.target.files[0].name;
       let dot = fileName.lastIndexOf(".")
@@ -442,7 +433,7 @@ uploadFile(file, documentType) {
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
-          this.addressProof = this.url.result;
+          this.addressIdKyc = this.url.result;
         }
         reader.readAsDataURL(event.target.files[0]);
       }
@@ -456,54 +447,8 @@ uploadFile(file, documentType) {
     }
   }
 
-  // uploadKycAddress(data) {
-  //   this.loading = true;
-  //   let fileBrowser = this.fileInputAddress.nativeElement;
-  //   if (fileBrowser.files && fileBrowser.files[0]) {
-  //     let fileName = fileBrowser.files[0].name;
-  //     let dot = fileName.lastIndexOf(".")
-  //     let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
-  //     if (extension == "png" || extension == "jpeg" || extension == "jpg" || extension == "pdf") {
-  //       const formData = new FormData();
-  //       formData.append("file", fileBrowser.files[0]);
-  //        this.documentType=data;
-  //       this.profileService.upload(formData,this.documentType).subscribe(success => {
-  //         if (success.data.userKyc != null) {
-  //           this.addressProof = environment.documentUrl + success.data.userKyc.addressProof + "?decache=" + Math.random();
-  //           this.documentStatus = success.data.userKyc.documentStatus;
-  //         }
-  //         this.ngOnInit();
-  //         fileBrowser.value = "";
-  //         this.loading = false;
-  //       }, error => {
-  //         this.toastrService.error(error.json().message, 'Error!')
-  //         fileBrowser.value = "";
-  //         this.loading = false;
-  //       });
-  //     }
-  //     else {
-  //       this.loading = false;
-  //       this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
-  //       fileBrowser.value = "";
-  //       return;
-  //     }
-  //   }
-  //   else {
-  //     this.toastrService.error("Please choose file for uploading!", 'Error!')
-  //     this.loading = false;
-  //   }
-  // }
-
-  // for uploading address proof
-
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
-      console.log(success);
-
-      if (success.data.userKyc != null) {
-        this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
-        this.documentStatus = success.data.userKyc.documentStatus;
-      }
       localStorage.setItem("fName", success.data.firstName);
       if (success.data.lastName != null) {
         localStorage.setItem("lName", success.data.lastName);
@@ -523,8 +468,8 @@ uploadFile(file, documentType) {
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
       this.userKyc = success.data.userKyc;
-      if(success.data.dob!=null){
-        this.userProfile.dob=success.data.dob;
+      if (success.data.dob != null) {
+        this.userProfile.dob = success.data.dob;
       }
       if (success.data.country != null) {
         this.getAllCountries();
@@ -581,7 +526,6 @@ uploadFile(file, documentType) {
     const formData = new FormData();
     formData.append("profilePic", this.data.image);
     this.profileService.uploadProfileImage(formData).subscribe(success => {
-      console.log(success);
       this.ngOnInit();
       this.profilePicCropper.hide();
       this.loading = false;
@@ -593,18 +537,14 @@ uploadFile(file, documentType) {
 
   addNew() {
     this.isCustomerView = false;
-    console.log(".........................")
     this.accounDetails = true;
     this.saveButton = true;
     this.addNewButton = false;
 
   }
   locate(data) {
-    console.log("ifsc code >>>", data);
     this.profileService.locate(data).subscribe(success => {
       this.bankCustomerDetails = success;
-      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>", this.bankCustomerDetails);
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", success);
       this.bankDetails.setBankName(success.data.BANK);
       this.bankDetails.setAddress(success.data.ADDRESS);
       this.bankDetails.setBranch(success.data.BRANCH);
@@ -616,8 +556,6 @@ uploadFile(file, documentType) {
   }
 
   customerDetails(customerDetaisForm) {
-    console.log("form valid",customerDetaisForm.valid);
-    console.log("form invalid",customerDetaisForm.invalid);
     if (customerDetaisForm.invalid) return;
 
     this.isCustomerView = true;
@@ -632,25 +570,21 @@ uploadFile(file, documentType) {
     this.profileService.customerBankData(this.bankDetails).subscribe(successData => {
       customerDetaisForm.resetForm();
       this.getUserBankDetails();
-      this.bankDetails.accountHolderName='';
-       this.bankDetails.bankName='';
-        this.bankDetails.accountNumber='';
-         this.bankDetails.ifscCode='';
+      this.bankDetails.accountHolderName = '';
+      this.bankDetails.bankName = '';
+      this.bankDetails.accountNumber = '';
+      this.bankDetails.ifscCode = '';
 
     }, errorData => {
     })
-    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
   }
 
   getUserBankDetails() {
     this.profileService.getUserBankDetails().subscribe(successData => {
-      console.log("data>>>>>>>>>>>>>>>>>>>>>>>>", successData);
       this.getOurBankDetails = successData.data;
-      console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
       let customerDta = this.getOurBankDetails;
       if (customerDta.length === 2) {
         this.addNewButton = false;
-        console.log("array data", customerDta.length);
         return;
       }
       else {
