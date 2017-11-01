@@ -118,3 +118,7 @@ select option{
 }
    
 }
+
+.text-label-top-padding{
+        padding-top: 9px;
+}

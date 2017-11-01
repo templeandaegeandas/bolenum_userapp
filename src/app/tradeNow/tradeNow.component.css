@@ -495,3 +495,79 @@ h2 {
     margin-top: 0px;
 
 }
+
+.trade-history-heading{
+    text-align: center;
+    font-size: 22px;
+    margin-top: 38px;
+    margin-bottom: 19px;
+}
+
+.title-Trade{
+    display: table;
+    width: 40px;
+    height: 6px;
+    background: #db2828;
+    content: "";
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+}
+
+.trade-History-table{
+    border: 2px solid lightgray;
+}
+
+.table-Head {
+        background-color: #db2828;
+    color: white;
+}
+
+ .border-left th{
+        border-left: 1px solid lightgray;
+}
+
+.table-Content td{
+    text-align: center;
+}
+
+.switchTrade{
+ font-size: 18px;
+    margin-top: 38px;
+    margin-bottom: 14px;
+    /* border: 2px solid lightgray; */
+    border-radius: 2px;
+    width: 58%;
+}
+
+.switch-market{
+        float: left;
+    background-color: #db2828;
+}
+
+.switch-mytrade{
+      background-color: gray;
+}
+
+.market-text{
+        margin-left: 10px;
+    margin-right: 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.my-trade{
+    margin-left: 27px;
+    cursor: pointer;
+     color: white;
+}
+
+.myOrder-Table-margin{
+        margin-bottom: 30px;
+}
+
+
+.tradeHistory-Table-margin{
+        margin-bottom: 52px;
+}

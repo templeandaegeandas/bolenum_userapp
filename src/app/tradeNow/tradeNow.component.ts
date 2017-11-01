@@ -11,7 +11,8 @@ import { ToastrService } from 'toastr-ng2';
   providers: [TradeNowService, DepositService]
 })
 export class TradeNowComponent implements OnInit {
-
+  public marketTrade:boolean = true;
+  public myTrade:boolean = false;
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
@@ -194,7 +195,7 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = '';
       this.ngOnInit();
       this.loading = false;
-      this.toastrService.success(success.data.message, 'Success!');
+      this.toastrService.success(success.message, 'Success!');
     }, error => {
       console.log(error);
       this.order.price = '';
@@ -275,5 +276,21 @@ export class TradeNowComponent implements OnInit {
     this.order.volume = '';
 
   }
+
+  // method to show table of market trade and my trade
+
+  marketTradeList(){
+    this.marketTrade = true;
+    this.myTrade = false;
+
+  }
+
+  myTradeList(){
+
+    this.marketTrade = false;
+    this.myTrade = true;
+
+  }
+  // method to show table of market trade and my trade
 
 }
