@@ -27,7 +27,7 @@ export class TradeNowService {
   }
 
   getListOfCurrency() {
-    return this.http.get('/api/v1/admin/currency/list')
+    return this.http.get('/api/v1/admin/currency/list/market')
       .map(res => res.json());
   }
 

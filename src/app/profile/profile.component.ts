@@ -107,12 +107,8 @@ export class ProfileComponent implements OnInit {
 
   getKycDetailsUser() {
     this.profileService.getKycDetailUsers().subscribe(success => {
-
-      console.log("kyc details >>>", success.data);
       this.kycDocument = success.data;
-      console.log("upcoming >>>>", this.kycDocument);
       if (this.kycDocument.length > 0) {
-        console.log("nation >>>>>", this.nationalIdKyc);
         if (this.kycDocument[0].documentType == "RESIDENCE_PROOF") {
           this.addressIdKyc = environment.documentUrl + this.kycDocument[0].document;
           this.nationalIdKyc = environment.documentUrl + this.kycDocument[1].document;
@@ -199,7 +195,6 @@ export class ProfileComponent implements OnInit {
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
     this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
-    console.log("date of birth >>>>>>>>>>>>>>>", this.userProfile.dob);
 
   }
 
@@ -258,7 +253,6 @@ export class ProfileComponent implements OnInit {
     this.userProfile.dob = new Date(this.dob.jsdate).getTime();
     this.userProfile.country = this.country;
     this.userProfile.state = this.state;
-    console.log("fgh", this.userProfile.lastName, "ijk");
 
     if (this.userProfile.lastName == "") {
 
@@ -266,11 +260,9 @@ export class ProfileComponent implements OnInit {
 
     }
 
-    console.log("dfghjk", this.userProfile.lastName);
 
 
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
-      console.log("saved data >>>>>>>>>>>>>>>", success.data);
       this.userFirstName = success.data.firstName;
       this.userLastName = success.data.lastName;
       this.ngOnInit();
@@ -329,7 +321,6 @@ export class ProfileComponent implements OnInit {
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
         this.getKycDetailsUser();
-        this.toastrService.success("Documents uploaded successfully!", 'Success!')
       }
       else if ((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
         let fileName = fileBrowserNationalId.files[0].name;
@@ -343,7 +334,6 @@ export class ProfileComponent implements OnInit {
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
         this.getKycDetailsUser();
-        this.toastrService.success("Document uploaded successfully!", 'Success!')
       }
       else if ((fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
         let fileName = fileBrowserAddressProof.files[0].name;
@@ -357,7 +347,6 @@ export class ProfileComponent implements OnInit {
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
         this.getKycDetailsUser();
-        this.toastrService.success("Document uploaded successfully!", 'Success!')
       }
       else {
         this.toastrService.error("Please choose a national id or address proof", 'Error!');
@@ -371,7 +360,6 @@ export class ProfileComponent implements OnInit {
       if (fileBrowserNationalId.files && fileBrowserNationalId.files[0]) {
         let fileName = fileBrowserNationalId.files[0].name;
         if (!this.validateExtension(fileName)) {
-          console.log("national")
           this.loading = false;
           this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
           fileBrowserNationalId.value = "";
@@ -404,7 +392,6 @@ export class ProfileComponent implements OnInit {
       fileBrowserNationalId.value = "";
       fileBrowserAddressProof.value = "";
       this.getKycDetailsUser();
-      this.toastrService.success("Documents uploaded successfully!", 'Success!')
     }
   }
 
@@ -426,6 +413,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.upload(formData).subscribe(success => {
       this.nationalIds = success.data.documentType;
       this.loading = false;
+      this.toastrService.success(success.data.message, 'Success!')
     }, error => {
       this.toastrService.error(error.json().message, 'Error!')
       this.loading = false;
@@ -461,12 +449,6 @@ export class ProfileComponent implements OnInit {
 
   getLoggedInUserDetails() {
     this.profileService.getUserDetails().subscribe(success => {
-      console.log(success);
-
-      // if (success.data.userKyc != null) {
-      //   this.document = environment.documentUrl + success.data.userKyc.document + "?decache=" + Math.random();
-      //   this.documentStatus = success.data.userKyc.documentStatus;
-      // }
       localStorage.setItem("fName", success.data.firstName);
       if (success.data.lastName != null) {
         localStorage.setItem("lName", success.data.lastName);
@@ -544,7 +526,6 @@ export class ProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append("profilePic", this.data.image);
     this.profileService.uploadProfileImage(formData).subscribe(success => {
-      console.log(success);
       this.ngOnInit();
       this.profilePicCropper.hide();
       this.loading = false;
@@ -556,18 +537,14 @@ export class ProfileComponent implements OnInit {
 
   addNew() {
     this.isCustomerView = false;
-    console.log(".........................")
     this.accounDetails = true;
     this.saveButton = true;
     this.addNewButton = false;
 
   }
   locate(data) {
-    console.log("ifsc code >>>", data);
     this.profileService.locate(data).subscribe(success => {
       this.bankCustomerDetails = success;
-      console.log("data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>", this.bankCustomerDetails);
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", success);
       this.bankDetails.setBankName(success.data.BANK);
       this.bankDetails.setAddress(success.data.ADDRESS);
       this.bankDetails.setBranch(success.data.BRANCH);
@@ -579,8 +556,6 @@ export class ProfileComponent implements OnInit {
   }
 
   customerDetails(customerDetaisForm) {
-    console.log("form valid", customerDetaisForm.valid);
-    console.log("form invalid", customerDetaisForm.invalid);
     if (customerDetaisForm.invalid) return;
 
     this.isCustomerView = true;
@@ -602,18 +577,14 @@ export class ProfileComponent implements OnInit {
 
     }, errorData => {
     })
-    console.log("customer details >>>>>>>>>>>>>>>>>>>>>>>>  ", this.bankDetails);
   }
 
   getUserBankDetails() {
     this.profileService.getUserBankDetails().subscribe(successData => {
-      console.log("data>>>>>>>>>>>>>>>>>>>>>>>>", successData);
       this.getOurBankDetails = successData.data;
-      console.log("customerDetails >>>>>>>>>>>", this.getOurBankDetails);
       let customerDta = this.getOurBankDetails;
       if (customerDta.length === 2) {
         this.addNewButton = false;
-        console.log("array data", customerDta.length);
         return;
       }
       else {
