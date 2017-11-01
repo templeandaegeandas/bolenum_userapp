@@ -42,7 +42,7 @@
                      </div>
 
                      <div class="col-md-7">
-                        <input type="email" class="form-control" [(ngModel)]="order.volume" id="email">
+                        <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
                      </div>
                   </div>
                    <div class="col-md-12 trade-field">
@@ -51,11 +51,24 @@
                      </div>
 
                      <div class="col-md-7">
-                        <input type="amount" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount" name="amount" >
+                        <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount" name="amount" >
 
                      </div>
 
+
                   </div>
+                  <div class="col-md-12 trade-field">
+                    <div class="col-md-5">
+                       <label for="email">Total Price (in {{secondCurrency}})</label>
+                    </div>
+
+                    <div class="col-md-7">
+                       <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.volume*order.price" id="amount" name="amount" [disabled]=true>
+
+                    </div>
+
+
+                 </div>
                     <div class="col-md-12 total-coin">
                   <p>Equivalent {{secondCurrency}} price for this order</p>
                 </div>
