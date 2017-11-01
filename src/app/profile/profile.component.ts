@@ -15,6 +15,7 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public nationalIds:string;
   public documentType:string;
   public varificationName:string="Enter Mobile Number" ;
   public userFirstName:string;
@@ -416,6 +417,10 @@ uploadFile(file, documentType) {
         formData.append("documentType", documentType);
         this.profileService.upload(formData).subscribe(success => {
             console.log("for second document >>>>>>>>>>",success.data);
+            this.nationalIds = success.data.documentType;
+            console.log("type >>>>>>",this.nationalIds);
+            
+
             this.ngOnInit();
             this.loading = false;
           }, error => {
