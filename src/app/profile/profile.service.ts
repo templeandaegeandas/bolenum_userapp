@@ -92,4 +92,6 @@ export class ProfileService {
     return this.http.get("/api/v1/user/kyc/list")
     .map(res => res.json());
   }
+
+
 }
