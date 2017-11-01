@@ -24,6 +24,7 @@ export class TradeNowComponent implements OnInit {
   secondCurrency: any;
   firstCurrencyBal: any;
   secondCurrencyBal: any;
+  pairId: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -184,9 +185,8 @@ export class TradeNowComponent implements OnInit {
       this.order.orderStandard = 'MARKET';
     }
     this.order.orderType = orderType;
-    this.order.pairId = 1;
     this.order.totalVolume = this.order.volume;
-    this.tradeNowService.createOrder(this.order).subscribe(success => {
+    this.tradeNowService.createOrder(this.order, this.pairId).subscribe(success => {
     }, error => {
       console.log(error)
     })
@@ -207,8 +207,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(pairId, pairName, firstCurrencyType, secondCurrencyType) {
-    console.log(firstCurrencyType);
-    console.log(secondCurrencyType);
+    this.pairId = pairId;
     this.pairName = pairName;
     let pairArray = pairName.split("/")
     this.firstCurrency = pairArray[0];

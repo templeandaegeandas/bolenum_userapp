@@ -6,7 +6,7 @@
          <div class="panel-heading">
             <h3 class="panel-title">Transaction History</h3>
             <div class="pull-right">
-                
+
                <div class="btn-group" dropdown>
                   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                   <img src="assets/images/filter.png" class="text-right"> <span class=""></span>
@@ -55,107 +55,24 @@
                      <th>Date</th>
                      <th>Time</th>
                      <th>Type</th>
-                     <th>Price</th>
+                     <th>Price (1 Unit)</th>
                      <th>Amount</th>
-                     <th>Status</th>
+                     <th>Total Price</th>
+                     <th>Order Standard</th>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#2AD747>BUY</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#2AD747>BUY</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#2AD747>BUY</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#2AD747>BUY</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#2AD747>BUY</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
-                  </tr>
-                  <tr>
-                     <td>02/05/2017</td>
-                     <td>23.56</td>
-                     <td style=color:#DB2828>SELL</td>
-                     <td>0.000054</td>
-                     <td>1644.4453</td>
-                     <td>Achieve</td>
+                  <tr *ngFor="let tx of txList">
+                     <td>{{tx.createdOn | date}}</td>
+                     <td>{{tx.createdOn | date:'shortTime'}}</td>
+                     <td style=color:#2AD747>
+                       <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
+                       <span *ngIf="tx.buyer.userId!=userId" style=color:#DB2828>Sell</span>
+                     </td>
+                     <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                     <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+                     <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                     <td>{{tx.orderStandard}}</td>
                   </tr>
                </tbody>
             </table>
