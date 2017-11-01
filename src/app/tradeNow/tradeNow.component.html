@@ -192,11 +192,11 @@
                      </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let buyOrder of buyOrderList">
-                    <td>{{buyOrder.price}}</td>
-                    <td>{{buyOrder.volume * buyOrder.price}}</td>
-                    <td>{{buyOrder.volume}}</td>
-                    <td>{{buyOrder.totalVolume}}</td>
+                    <tr *ngFor="let buyOrder of buyOrderList" (click)="fillData(buyOrder)">
+                    <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
+                    <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
+                    <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
+                    <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
                   </tbody>
                </table>
             </div>
@@ -220,11 +220,11 @@
                         </tr>
                      </thead>
                      <tbody>
-                        <tr *ngFor="let sellOrder of sellOrderList">
-                        <td>{{sellOrder.totalVolume}}</td>
-                        <td>{{sellOrder.volume}}</td>
-                        <td>{{sellOrder.volume * sellOrder.price}}</td>
-                        <td>{{sellOrder.price}}</td>
+                        <tr *ngFor="let sellOrder of sellOrderList" >
+                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume}}</td>
+                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
+                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
+                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
                       </tr>
                      </tbody>
                   </table>
@@ -264,3 +264,4 @@
    </div>
    <!-- BTC Exchange -->
 </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

@@ -67,7 +67,7 @@
                      <td>{{tx.createdOn | date:'shortTime'}}</td>
                      <td style=color:#2AD747>
                        <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
-                       <span *ngIf="tx.buyer.userId!=userId" style=color:#DB2828>Sell</span>
+                       <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
                      </td>
                      <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
                      <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
