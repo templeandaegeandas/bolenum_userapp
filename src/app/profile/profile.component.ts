@@ -116,8 +116,8 @@ export class ProfileComponent implements OnInit {
           this.nationalIdStatus = this.kycDocument[1].documentStatus;
         }
         else {
-          this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document;
-          this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document;
+          this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document + "?decache=" + Math.random();
+          this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document + "?decache=" + Math.random();
           this.addressIdStatus = this.kycDocument[1].documentStatus;
           this.nationalIdStatus = this.kycDocument[0].documentStatus;
         }
@@ -325,7 +325,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else if ((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
         let fileName = fileBrowserNationalId.files[0].name;
@@ -338,7 +338,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else if ((fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
         let fileName = fileBrowserAddressProof.files[0].name;
@@ -351,7 +351,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else {
         this.toastrService.error("Please choose a national id or address proof", 'Error!');
@@ -396,7 +396,7 @@ export class ProfileComponent implements OnInit {
       this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
       fileBrowserNationalId.value = "";
       fileBrowserAddressProof.value = "";
-      this.getKycDetailsUser();
+      // this.getKycDetailsUser();
     }
   }
 
@@ -416,9 +416,9 @@ export class ProfileComponent implements OnInit {
     formData.append("file", file);
     formData.append("documentType", documentType);
     this.profileService.upload(formData).subscribe(success => {
-      this.nationalIds = success.data.documentType;
+      this.getKycDetailsUser();
       this.loading = false;
-      this.toastrService.success(success.data.message, 'Success!')
+      this.toastrService.success(success.message, 'Success!')
     }, error => {
       this.toastrService.error(error.json().message, 'Error!')
       this.loading = false;
