@@ -63,4 +63,9 @@ export class TradeNowService {
       + sortBy + '&sortOrder=' + sortOrder)
       .map(res => res.json());
   }
+
+  getUserDetails() {
+    return this.http.get("/api/v1/user/get/loggedin")
+      .map(res => res.json());
+  }
 }
