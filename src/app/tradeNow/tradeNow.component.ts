@@ -28,6 +28,9 @@ export class TradeNowComponent implements OnInit {
   secondCurrencyBal: any;
   pairId: any;
   loading = false;
+  myTradedList: any;
+  allTradedList: any;
+  myOrdersInBook: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -141,6 +144,9 @@ export class TradeNowComponent implements OnInit {
     this.setTradeValue("Market Order");
     this.getMarketPrice();
     this.getCurrencyList();
+    this.getMyTradedOrders();
+    this.getAllTradedOrders();
+    this.getMyOrdersFromBook();
   }
 
   getBuyOrderBookData(pairId) {
@@ -250,6 +256,31 @@ export class TradeNowComponent implements OnInit {
     this.order.volume = volume;
     this.order.price = price
     this.order.orderStandard = "LIMIT"
+  }
+
+  getMyTradedOrders() {
+    this.tradeNowService.getTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+      this.myTradedList = success.data.content;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  getAllTradedOrders() {
+    this.tradeNowService.getAllTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+      this.allTradedList = success.data.content;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  getMyOrdersFromBook() {
+    this.tradeNowService.getMyOrdersFromBook(1,10,"createdOn","desc").subscribe(success => {
+      this.myOrdersInBook = success.data;
+      console.log(this.myOrdersInBook)
+    }, error => {
+      console.log(error);
+    })
   }
 
   isLogIn() {

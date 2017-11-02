@@ -10,7 +10,7 @@ export class HistoryService {
 
   getTradedOrders(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
     this.pageNumber = currentPage - 1;
-    return this.http.get('/api/v1/user/get/trade/list?pageNumber='
+    return this.http.get('/api/v1/user/get/loggedin/trade/list?pageNumber='
       + this.pageNumber + '&pageSize='
       + pageSize + '&sortBy='
       + sortBy + '&sortOrder=' + sortOrder)
