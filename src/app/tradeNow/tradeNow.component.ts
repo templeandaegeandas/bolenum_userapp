@@ -28,6 +28,10 @@ export class TradeNowComponent implements OnInit {
   secondCurrencyBal: any;
   pairId: any;
   loading = false;
+  myTradedList: any;
+  allTradedList: any;
+  myOrdersInBook: any;
+  userId: number;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -141,6 +145,13 @@ export class TradeNowComponent implements OnInit {
     this.setTradeValue("Market Order");
     this.getMarketPrice();
     this.getCurrencyList();
+    this.getAllTradedOrders();
+    this.getMyOrdersFromBook();
+    this.tradeNowService.getUserDetails().subscribe(success => {
+      this.userId = success.data.userId;
+    }, error => {
+      console.log(error)
+    })
   }
 
   getBuyOrderBookData(pairId) {
@@ -174,7 +185,7 @@ export class TradeNowComponent implements OnInit {
 
 
   oneBtc() {
-    this.order.price = this.order.volume / this.marketPrice;
+    this.order.price = this.marketPrice;
     if (this.market1BtcEth == 'Infinity') {
       this.market1BtcEth = 0;
     }
@@ -252,6 +263,34 @@ export class TradeNowComponent implements OnInit {
     this.order.orderStandard = "LIMIT"
   }
 
+  getMyTradedOrders() {
+    this.loading =true;
+    this.tradeNowService.getTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+      this.myTradedList = success.data.content;
+      this.loading =false;
+    }, error => {
+      console.log(error);
+      this.loading =false;
+    })
+  }
+
+  getAllTradedOrders() {
+    this.tradeNowService.getAllTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+      this.allTradedList = success.data.content;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  getMyOrdersFromBook() {
+    this.tradeNowService.getMyOrdersFromBook(1,10,"createdOn","desc").subscribe(success => {
+      this.myOrdersInBook = success.data;
+      console.log(this.myOrdersInBook)
+    }, error => {
+      console.log(error);
+    })
+  }
+
   isLogIn() {
 
     if (localStorage.getItem("token") == null) {
@@ -287,7 +326,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   myTradeList(){
-
+    this.getMyTradedOrders();
     this.marketTrade = false;
     this.myTrade = true;
 
