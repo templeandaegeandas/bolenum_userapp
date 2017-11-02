@@ -412,8 +412,8 @@
                   <p class="kyc-text">national identity verification status:<span class="kyc-color"> {{nationalIdStatus}} </span></p>
                 </div>
                 <div class="img-block">
-                  <img class="img-center" *ngIf="!pdf" [src]="nationalIdKyc">
-                  <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
+                  <img class="img-center" *ngIf="!nationalIdPdf" [src]="nationalIdKyc">
+                  <img class="img-center" *ngIf="nationalIdPdf" src="assets/images/pdf-icon.png">
                 </div>
                 <div class="kyc-details">
                   <p class="kyc-text"> Image of national id </p>
@@ -445,8 +445,8 @@
                   <p class="kyc-text"> Address Proof Verification status:<span class="kyc-color"> {{addressIdStatus}} </span></p>
                 </div>
                 <div class="img-block">
-                  <img class="img-center" *ngIf="!pdf" [src]="addressIdKyc">
-                  <img class="img-center" *ngIf="pdf" src="assets/images/pdf-icon.png">
+                  <img class="img-center" *ngIf="!addressPdf" [src]="addressIdKyc">
+                  <img class="img-center" *ngIf="addressPdf" src="assets/images/pdf-icon.png">
                 </div>
                 <div class="kyc-details">
                   <p class="kyc-text"> Image of address proof </p>

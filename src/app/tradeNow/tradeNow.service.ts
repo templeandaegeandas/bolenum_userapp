@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TradeNowService {
+  pageNumber: number;
   constructor(private http: HttpClient) { }
 
   buyOrderBook(pairId) {
@@ -33,6 +34,38 @@ export class TradeNowService {
 
   getPairedCurrencies(currencyId) {
     return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
+      .map(res => res.json());
+  }
+
+  getTradedOrders(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
+    this.pageNumber = currentPage - 1;
+    return this.http.get('/api/v1/user/get/loggedin/trade/list?pageNumber='
+      + this.pageNumber + '&pageSize='
+      + pageSize + '&sortBy='
+      + sortBy + '&sortOrder=' + sortOrder)
+      .map(res => res.json());
+  }
+
+  getAllTradedOrders(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
+    this.pageNumber = currentPage - 1;
+    return this.http.get('/api/v1/user/get/trade/list?pageNumber='
+      + this.pageNumber + '&pageSize='
+      + pageSize + '&sortBy='
+      + sortBy + '&sortOrder=' + sortOrder)
+      .map(res => res.json());
+  }
+
+  getMyOrdersFromBook(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
+    this.pageNumber = currentPage - 1;
+    return this.http.get('/api/v1/user/get/my/orders?pageNumber='
+      + this.pageNumber + '&pageSize='
+      + pageSize + '&sortBy='
+      + sortBy + '&sortOrder=' + sortOrder)
+      .map(res => res.json());
+  }
+
+  getUserDetails() {
+    return this.http.get("/api/v1/user/get/loggedin")
       .map(res => res.json());
   }
 }

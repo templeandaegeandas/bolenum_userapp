@@ -50,7 +50,8 @@ export class ProfileComponent implements OnInit {
   profilePic: String = "assets/images/default_pic.png";
   mobileNumber: any;
   otp: any;
-  pdf: Boolean = false;
+  nationalIdPdf: Boolean = false;
+  addressPdf: Boolean = false;
   countries: any;
   states: any;
   state: String = "Choose State";
@@ -116,8 +117,8 @@ export class ProfileComponent implements OnInit {
           this.nationalIdStatus = this.kycDocument[1].documentStatus;
         }
         else {
-          this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document;
-          this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document;
+          this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document + "?decache=" + Math.random();
+          this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document + "?decache=" + Math.random();
           this.addressIdStatus = this.kycDocument[1].documentStatus;
           this.nationalIdStatus = this.kycDocument[0].documentStatus;
         }
@@ -194,8 +195,9 @@ export class ProfileComponent implements OnInit {
     this.getAllCountries();
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
-    this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
-
+    if(this.userProfile.dob!=null) {
+      this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
+    }
   }
 
 
@@ -208,6 +210,10 @@ export class ProfileComponent implements OnInit {
   saveMobile(form) {
     this.varificationName = "Enter OTP"
     if (form.invalid) return;
+    if (this.countryCode==null) {
+      this.toastrService.error("Please choose country and fill profile first!", "Error!");
+      return;
+    }
     this.profileService.addMobileNumber(this.mobileNumber, this.countryCode).subscribe(success => {
       this.isMobileEdit = false;
       this.isOtpEdit = true;
@@ -278,7 +284,7 @@ export class ProfileComponent implements OnInit {
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
-        this.pdf = false;
+        this.nationalIdPdf = false;
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
@@ -287,7 +293,7 @@ export class ProfileComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
       else if (extension == "pdf") {
-        this.pdf = true;
+        this.nationalIdPdf = true;
       }
       else {
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
@@ -320,7 +326,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else if ((fileBrowserNationalId.files && fileBrowserNationalId.files[0])) {
         let fileName = fileBrowserNationalId.files[0].name;
@@ -333,7 +339,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserNationalId.files[0], "NATIONAL_ID");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else if ((fileBrowserAddressProof.files && fileBrowserAddressProof.files[0])) {
         let fileName = fileBrowserAddressProof.files[0].name;
@@ -346,7 +352,7 @@ export class ProfileComponent implements OnInit {
         this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
         fileBrowserNationalId.value = "";
         fileBrowserAddressProof.value = "";
-        this.getKycDetailsUser();
+        // this.getKycDetailsUser();
       }
       else {
         this.toastrService.error("Please choose a national id or address proof", 'Error!');
@@ -391,7 +397,7 @@ export class ProfileComponent implements OnInit {
       this.uploadFile(fileBrowserAddressProof.files[0], "RESIDENCE_PROOF");
       fileBrowserNationalId.value = "";
       fileBrowserAddressProof.value = "";
-      this.getKycDetailsUser();
+      // this.getKycDetailsUser();
     }
   }
 
@@ -411,9 +417,9 @@ export class ProfileComponent implements OnInit {
     formData.append("file", file);
     formData.append("documentType", documentType);
     this.profileService.upload(formData).subscribe(success => {
-      this.nationalIds = success.data.documentType;
+      this.getKycDetailsUser();
       this.loading = false;
-      this.toastrService.success(success.data.message, 'Success!')
+      this.toastrService.success(success.message, 'Success!')
     }, error => {
       this.toastrService.error(error.json().message, 'Error!')
       this.loading = false;
@@ -429,7 +435,7 @@ export class ProfileComponent implements OnInit {
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
-        this.pdf = false;
+        this.addressPdf = false;
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
@@ -438,7 +444,7 @@ export class ProfileComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
       else if (extension == "pdf") {
-        this.pdf = true;
+        this.addressPdf = true;
       }
       else {
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
