@@ -185,7 +185,7 @@ export class TradeNowComponent implements OnInit {
 
 
   oneBtc() {
-    this.order.price = this.order.volume / this.marketPrice;
+    this.order.price = this.marketPrice;
     if (this.market1BtcEth == 'Infinity') {
       this.market1BtcEth = 0;
     }
