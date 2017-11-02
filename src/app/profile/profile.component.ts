@@ -50,7 +50,8 @@ export class ProfileComponent implements OnInit {
   profilePic: String = "assets/images/default_pic.png";
   mobileNumber: any;
   otp: any;
-  pdf: Boolean = false;
+  nationalIdPdf: Boolean = false;
+  addressPdf: Boolean = false;
   countries: any;
   states: any;
   state: String = "Choose State";
@@ -283,7 +284,7 @@ export class ProfileComponent implements OnInit {
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
-        this.pdf = false;
+        this.nationalIdPdf = false;
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
@@ -292,7 +293,7 @@ export class ProfileComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
       else if (extension == "pdf") {
-        this.pdf = true;
+        this.nationalIdPdf = true;
       }
       else {
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
@@ -434,7 +435,7 @@ export class ProfileComponent implements OnInit {
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
-        this.pdf = false;
+        this.addressPdf = false;
         var reader = new FileReader();
         reader.onload = (event) => {
           this.url = event.target;
@@ -443,7 +444,7 @@ export class ProfileComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
       }
       else if (extension == "pdf") {
-        this.pdf = true;
+        this.addressPdf = true;
       }
       else {
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!')
