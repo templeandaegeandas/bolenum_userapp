@@ -119,8 +119,8 @@ section {
 }
 
 label {
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 16px;
     display: block;
     float: left;
     width: 32%;
@@ -170,7 +170,8 @@ label {
 
 .upload-kyc {
     text-align: center;
-    margin-top: 2%;
+        margin-top: 3%;
+    margin-left: 19px;
 }
 
 .img-tab {
@@ -874,8 +875,8 @@ img.img-.bakprofile {
     color: #fff;
     background-color: #DB2828;
     border-color: #DB2828;
-    width: 111px;
-    margin-left: 68px;
+    /* width: 111px; */
+    margin-left: 34%;
     padding: 9px;
 }
 
@@ -910,7 +911,7 @@ span.kyc-color {
 
 .kyc-data {
     text-align: center;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 
@@ -1071,7 +1072,7 @@ button.btn.btn-primary.new {
 }
 
 label.btn-bs-file.btn.btn-lg.btn-success {
-    width: 106px;
+    /* width: 106px; */
     margin-right: 7px;
     /* padding: 2px 2px 2px 2px; */
     min-height: 20px;
@@ -1083,9 +1084,9 @@ button.btnbrowse {
     outline: none;
     border: none;
     font-size: 16px;
-    width: 192px;
-    font-size: 16px;
-    font-weight: 700;
+    /* width: 200px; */
+    font-size: 15px;
+    font-weight: 600;
     background: #DB2828;
     color: #FFFFFF;
 }
