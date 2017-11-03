@@ -15,7 +15,7 @@
                      <li role="menuitem">
                         <a class="dropdown-item">
                      <li>
-                     <input type="checkbox" id="c1" name="buy">
+                     <input type="checkbox" id="c1" name="buy" [(ngModel)] = "buyOrder" (change)="filterList()">
                      <label for="c1"> &nbsp; BUY ORDERS</label>
                      </li>
                      </a>
@@ -24,12 +24,12 @@
                      <li role="menuitem">
                         <a class="dropdown-item">
                      <li>
-                     <input type="checkbox" id="c2" name="sell">
+                     <input type="checkbox" id="c2" name="sell" [(ngModel)] = "sellOrder" (change)="filterList()">
                      <label for="c2"> &nbsp; SELL ORDERS </label>
                      </li>
                      </a>
                      </li>
-                     <li class="divider dropdown-divider"></li>
+                     <!-- <li class="divider dropdown-divider"></li>
                      <li role="menuitem">
                         <a class="dropdown-item">
                      <li>
@@ -37,11 +37,11 @@
                      <label for="c3"> &nbsp; BOTH ORDERS</label>
                      </li>
                      </a>
-                     </li>
+                     </li> -->
                   </ul>
                </div>
                <div class="date-picker">
-                   <my-date-picker class="datepciker-history" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                   <my-date-picker class="datepciker-history" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" (dateChanged)="onDateChanged($event)" required></my-date-picker>
                </div>
                <div class="clearfix"></div>
             </div>

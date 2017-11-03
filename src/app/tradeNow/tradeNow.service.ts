@@ -23,7 +23,7 @@ export class TradeNowService {
   }
 
   createOrder(order, pairId) {
-    return this.http.post('/api/v1/user/create/order?pairId='+pairId, order)
+    return this.http.post('/api/v1/user/create/order?pairId=' + pairId, order)
       .map(res => res.json());
   }
 
@@ -42,7 +42,8 @@ export class TradeNowService {
     return this.http.get('/api/v1/user/get/loggedin/trade/list?pageNumber='
       + this.pageNumber + '&pageSize='
       + pageSize + '&sortBy='
-      + sortBy + '&sortOrder=' + sortOrder)
+      + sortBy + '&sortOrder='
+       + sortOrder + '&orderType=both&date=')
       .map(res => res.json());
   }
 
