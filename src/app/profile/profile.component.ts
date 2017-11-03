@@ -15,6 +15,8 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  public isOff:boolean = false;
+  public isOn:boolean = true;
   public nationalIds: string;
   public documentType: string;
   public varificationName: string = "Enter Mobile Number";
@@ -139,6 +141,8 @@ export class ProfileComponent implements OnInit {
   }
 
   chenge2Fa(event) {
+    this.isOn = false;
+    this.isOff = true;
     if (event) {
       this.addPopup.show();
       if (this.qrCodeFileName == null) {

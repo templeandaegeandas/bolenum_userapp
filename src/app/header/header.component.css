@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
+/* font family and font-size for all header */
+
+.header-font-family{
+       font-family: Lato-Regular-font !important;
+         font-size: 27px !important;
+}
+
+.menufont{
+
+     font-family: Lato-Regular-font !important;
+      font-size: 18px !important;
+}
+
+
+
+.drop-down-font-size{
+      font-size: 13px !important;
+       font-family: Lato-Regular-font !important;
+}
+/* font family and font-size for all header */
 
 
 
@@ -12,8 +32,8 @@
 }
 
 .insight {
-    font-size: 30px;
-     font-weight: 700;
+    /* font-size: 30px; */
+     /* font-weight: 700; */
      margin-left: 20 !important;
      float: none;
      vertical-align: middle;
@@ -31,21 +51,21 @@
   float:left; 
   padding:0px;
   margin-left:0px;
-  font-family: lato;
+  /* font-family: lato; */
   }
 .topnav li {
     float: left;
     padding: 7px;
     color: #FFFFFF;
-    font-size: 20px;
+    /* font-size: 20px; */
     text-transform: uppercase;
-    font-weight: 600;
-    font-family: lato;
+    /* font-weight: 600; */
+    /* font-family: lato; */
 
 }
 .topnav  li a {
    padding:0 10px;
-   font-size:13px;
+   /* font-size:13px; */
    line-height:40px;
    color:#FFF;
    }
@@ -57,7 +77,7 @@
   }
 .rightc li { 
   margin:0px -7px; 
-  font-size:13px; 
+  /* font-size:13px;  */
   float:left; 
   line-height:40px; 
   color:#FFF;
@@ -90,12 +110,12 @@
  
  
 .nav.navbar-nav.navbar-right span {
-  font-family: Lato; 
-  font-weight:300; 
+  /* font-family: Lato;  */
+  /* font-weight:300;  */
   }
 .navbar-right li a {
-  font-family: Lato; 
-  font-size:16px; 
+  /* font-family: Lato;  */
+  /* font-size:16px;  */
   }
 .navbar-default .navbar-brand {
    color: #DB2828;;
@@ -105,19 +125,19 @@
     background: none;
     border: none;
     border-radius: 0;
-    font-size: 18px;
+    /* font-size: 18px; */
     line-height: 34px;
     height: 100px;
     padding: 26px 67px;
-    font-family: Lato;
+    /* font-family: Lato; */
 
 }
 
 span.exchange-color {
     color:#DB2828;
-    font-size: 28px;
-    font-weight: 600;
-    font-family: Lato;
+    /* font-size: 28px;
+    font-weight: 600; */
+    /* font-family: Lato; */
     margin-left:  20px
     }
 
@@ -128,8 +148,8 @@ span.exchange-color {
 
 .navbar-default .navbar-brand {
     color: #1d1c1c;
-    font-size: 28px;
-    font-weight: 600;
+    /* font-size: 28px;
+    font-weight: 600; */
 }
 .nav>li>a {
     position: relative;
@@ -296,16 +316,16 @@ a.navbar-brand.insight span.exchange-color{
     margin-top: 2px;
 }
 .navbar-default .navbar-brand {
-    font-size: 19px;
+    /* font-size: 19px; */
     }
 .nav>li>a {
     position: relative;
     display: block;
     padding: 13px 6px;
-    font-size: 11px;
+    /* font-size: 11px; */
 }
 span.exchange-color {
-    font-size: 19px;
+    /* font-size: 19px; */
     
     }
  .navbar-brand img {
