@@ -16,14 +16,52 @@
     content: " ";
     display: table;
 }
+/* font-family and font size for all profile */
+.profile-font{
+       font-family: Lato-Regular-font !important;
+}
+
+ .heading-font-size{
+
+font-size: 18px !important;
+
+}
+
+.sub-heading-font-size{
+
+    font-size: 17px !important;
+
+}
+
+.content-font-size{
+
+    font-size: 16px !important;
+
+
+
+} 
+
+.butoon-font{
+
+    font-family: Lato-Regular-font !important;
+      font-size: 12px !important;
+
+
+}
+
+.profile-fontSize{
+
+     font-size: 21px !important;
+
+}
+
+/* font-family and font size for all profile */
 
 .clearfix:after {
     clear: both;
 }
 
-body {
-    font-family: Lato;
-}
+
 
 h1 {
     color: #ccc;
@@ -108,7 +146,7 @@ p.top-text {
     position: relative;
     margin-bottom: 48px;
     bottom: 34px;
-    margin-left: 187px;
+    margin-left: 204px;
 }
 
 input,
@@ -423,7 +461,7 @@ a {
     background: #FFFFFF;
     /*float: left;
     width: 105%;*/
-    height: 476px;
+    height: 440px;
     margin: 0px -5px 0 -13px;
     border-radius: 4px;
     padding: 34px 3px 47px 43px;
@@ -451,7 +489,7 @@ p.last-prof {
 a.btn.btn-dark-blue {
     width: 80%;
     padding: 8px;
-    font-family: lato;
+    /* font-family: lato; */
     font-size: 25px;
     font-weight: 600;
     color: #fb162B;
@@ -466,7 +504,7 @@ span.dolor {
     background: #FFFFFF;
     padding: 18px 2px 27px 33px;
     border-radius: 5px;
-    height: 476px;
+    height: 440px;
     width: 560px;
 }
 
@@ -487,8 +525,8 @@ span.dolor {
 }
 
 p.text1 {
-    margin-top: 76px;
-    font-family: lato;
+    margin-top: 55px;
+    /* font-family: lato; */
     font-size: 18px;
     color: black;
 }
@@ -897,7 +935,7 @@ img.img-center {
 a.btn.btn-dark-blue {
     width: 87%;
     padding: 5px;
-    font-family: lato;
+    /* font-family: lato; */
     font-size: 18px;
     font-weight: 600;
     color: #fB162B;
@@ -968,10 +1006,18 @@ label.switch {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #DB2828;
+     background-color: #DB2828; 
     ;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+.sliderOff{
+    background-color: #32CD32; 
+}
+
+.sliderOn{
+    background-color: #DB2828; 
 }
 
 .carousel-inner {
@@ -1044,8 +1090,8 @@ input:checked+.slider:before {
 }
 
 span.slider.round {
-    width: 75px;
-    height: 46px;
+    width: 67px;
+    height: 42px;
 }
 
 button.btn.btn-primary.new {
@@ -1436,4 +1482,7 @@ p.createdepositmodal-heading.hedartext {
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {}
+.mobile-verification{
+        padding-top: 43px;
+    padding-left: 31px;
+}

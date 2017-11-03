@@ -61,3 +61,7 @@ mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp 
     src:url("/assets/font/Lato-Regular.ttf");
 }
 
+body{
+     font-family: Lato-Regular-font;
+}
+
