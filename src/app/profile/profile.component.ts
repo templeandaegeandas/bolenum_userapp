@@ -7,6 +7,9 @@ import { IMyDpOptions } from 'mydatepicker';
 import { environment } from '../../environments/environment';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
+import { Subscription } from 'rxjs/Subscription';
+import { AppEventEmiterService } from '../app.event.emmiter.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +18,7 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
   providers: [ProfileService]
 })
 export class ProfileComponent implements OnInit {
+  sub: Subscription;
   public isOff:boolean = false;
   public isOn:boolean = true;
   public nationalIds: string;
@@ -79,8 +83,7 @@ export class ProfileComponent implements OnInit {
   addressIdKyc: any = "assets/images/id.png";
   nId: any;
   rId: any
-
-  constructor(private profileService: ProfileService, private toastrService: ToastrService) {
+  constructor(private profileService: ProfileService, private toastrService: ToastrService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 200;
     this.cropperSettings.height = 200;
@@ -113,12 +116,32 @@ export class ProfileComponent implements OnInit {
       this.kycDocument = success.data;
       if (this.kycDocument.length > 0) {
         if (this.kycDocument[0].documentType == "RESIDENCE_PROOF") {
+          let dot1 = success.data[0].document.lastIndexOf(".")
+          let extension1 = (dot1 == -1) ? "" : success.data[0].document.substring(dot1 + 1);
+          let dot2 = success.data[1].document.lastIndexOf(".")
+          let extension2 = (dot2 == -1) ? "" : success.data[1].document.substring(dot2 + 1);
+          if (extension1 == "pdf") {
+            this.addressPdf = true;
+          }
+          if (extension2 == "pdf") {
+            this.nationalIdPdf = true;
+          }
           this.addressIdKyc = environment.documentUrl + this.kycDocument[0].document;
           this.nationalIdKyc = environment.documentUrl + this.kycDocument[1].document;
           this.addressIdStatus = this.kycDocument[0].documentStatus;
           this.nationalIdStatus = this.kycDocument[1].documentStatus;
         }
         else {
+          let dot1 = success.data[0].document.lastIndexOf(".")
+          let extension1 = (dot1 == -1) ? "" : success.data[0].document.substring(dot1 + 1);
+          let dot2 = success.data[1].document.lastIndexOf(".")
+          let extension2 = (dot2 == -1) ? "" : success.data[1].document.substring(dot2 + 1);
+          if (extension1 == "pdf") {
+            this.nationalIdPdf = true;
+          }
+          if (extension2 == "pdf") {
+            this.addressPdf = true;
+          }
           this.addressIdKyc = environment.documentUrl + this.kycDocument[1].document + "?decache=" + Math.random();
           this.nationalIdKyc = environment.documentUrl + this.kycDocument[0].document + "?decache=" + Math.random();
           this.addressIdStatus = this.kycDocument[1].documentStatus;
@@ -477,7 +500,6 @@ export class ProfileComponent implements OnInit {
       this.userLastName = success.data.lastName;
       this.userProfile = success.data;
       this.emailId = success.data.emailId;
-      this.userKyc = success.data.userKyc;
       if (success.data.dob != null) {
         this.userProfile.dob = success.data.dob;
       }
@@ -538,6 +560,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.uploadProfileImage(formData).subscribe(success => {
       this.ngOnInit();
       this.profilePicCropper.hide();
+      this.appEventEmiterService.changeMessage("upload");
       this.loading = false;
     }, error => {
       console.log(error);

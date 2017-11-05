@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { HeaderService } from './header.service';
 import { environment } from '../../environments/environment';
+import { AppEventEmiterService } from '../app.event.emmiter.service'
 
 @Component({
   selector: 'header',
@@ -15,24 +16,31 @@ export class HeaderComponent implements OnInit {
   public subMenu = false;
   token: String;
   fullName: String;
-  lastName:String;
+  lastName: String;
   profilePic: String = "assets/images/pic.png";
-  constructor(private headerService: HeaderService, private router: Router) {
+  constructor(private headerService: HeaderService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
   }
 
   ngOnInit() {
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "upload") {
+        setTimeout(()=> {
+          this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random()
+        }, 500);
+      }
+    });
     if (localStorage.getItem("profilePic") != null) {
-        this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random();
+      this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random();
     }
     this.token = localStorage.getItem("token");
     this.lastName = localStorage.getItem("lName");
-    if(this.lastName){
+    if (this.lastName) {
 
-        this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
+      this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
 
     }
-    else{
-  this.fullName = localStorage.getItem("fName");
+    else {
+      this.fullName = localStorage.getItem("fName");
     }
 
   }

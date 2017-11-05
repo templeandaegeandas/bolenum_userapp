@@ -43,6 +43,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { HistoryComponent } from './history/history.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ImageCropperModule } from 'ng2-img-cropper';
+import { AppEventEmiterService } from './app.event.emmiter.service';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -97,12 +98,13 @@ export function highchartsFactory() {
     BsDropdownModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     ImageCropperModule,
-    
+
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
     HttpClient,
     PrivateRouteAuthGuard,
-    PublicRouteAuthGuard
+    PublicRouteAuthGuard,
+    AppEventEmiterService
   ],
 
   bootstrap: [AppComponent]
