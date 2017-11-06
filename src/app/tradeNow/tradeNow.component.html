@@ -126,32 +126,38 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 text-center">
+    <div class="col-md-6 text-center marketing-margin ">
       <div class="row">
-        <div class="col-md-9 col-md-offset-3">
-          <h2 class="tradeHeading-fontSze-fontFamily">MARKET</h2>
+        <div class="col-md-9 col-md-offset-3 marketing-border">
+          <h2 class="tradeHeading-fontSze-fontFamily marketing-heading">MARKET</h2>
           <div class="table-responsive">
-            <table class="table  table-bordered market-margin tradeSubheading-fontSze-fontFamily">
-              <thead class="heading">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId)><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered market-margin table-content-font">
+              <!-- <thead class="heading">
 
                 <tr>
                   <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
-                  <!-- <th class="market-tab" (click)=isEth()>ETH</th>
-                        <th class="market-tab" (click)=isBln()>BLN</th> -->
-                  <!-- <th class="market-tab" (click)=isNgn()>NGN</th> -->
+
                 </tr>
-              </thead>
+              </thead> -->
               <thead class="table-bg-color">
                 <tr>
                   <th>Coin</th>
                   <th>Price</th>
                   <th>Name</th>
-                  <!-- <th>Change</th> -->
+
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let pair of pairList">
-                  <th (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="hand-icon" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                   <th>0</th>
                   <th>{{pair.pairedCurrency[0].currencyName}}</th>
                 </tr>
@@ -207,7 +213,7 @@
                   <th>Total {{firstCurrency}}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="table-content-font">
                 <tr *ngFor="let buyOrder of buyOrderList">
                   <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
                   <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
@@ -235,7 +241,7 @@
                   <th>Price</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="table-content-font">
                 <tr *ngFor="let sellOrder of sellOrderList">
                   <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume}}</td>
                   <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
@@ -298,7 +304,7 @@
             <th>Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-content-font">
           <tr *ngFor="let orders of myOrdersInBook">
             <td>{{orders.orderType}}</td>
             <td>{{orders.price}}</td>
@@ -342,40 +348,9 @@
         </div>
       </div>
 
-
-      <!-- popup model -->
-      <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header trade-pop-upheader">
-              <button type="button" class="close" (click)="hideModel()">&times;</button>
-              <h4 class="modal-title">Do you want continue with your {{order.orderType}} order with below transaction details.</h4>
-            </div>
-            <div class="modal-body">
-              <!-- <p>Some text in the modal.</p> -->
-              <div class="row">
-                <div class="col-sm-12">
-                  <p>Amount</p>{{order.volume}} {{firstCurrency}}
-                </div>
-                <div class="col-sm-12">
-                  <p>Price</p>{{order.price}} {{secondCurrency}}
-                </div>
-                <div class="col-sm-12">
-                  <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}}
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" (click)="createOrder()">Yes</button>
-              <button type="button" class="btn btn-default" (click)="hideModel()">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- popup model -->
-
-      <div class="table-scroll">
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily table-fixed" *ngIf='marketTrade'>
+      <div class="">
+        <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily"
+          *ngIf='marketTrade'>
           <thead class="table-Head ">
             <tr>
               <th>Date</th>
@@ -386,7 +361,7 @@
               <th>Order Standard</th>
             </tr>
           </thead>
-          <tbody class="">
+          <tbody class="table-content-font ">
             <tr *ngFor="let tx of allTradedList">
               <td>{{tx.createdOn | date}}</td>
               <td>{{tx.createdOn | date:'shortTime'}}</td>
@@ -394,6 +369,9 @@
               <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
+            </tr>
+            <tr>
+              <div>More...</div>
             </tr>
           </tbody>
         </table>
@@ -410,7 +388,7 @@
             <th>Order Standard</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-content-font">
           <tr *ngFor="let tx of myTradedList">
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
@@ -428,5 +406,35 @@
     </div>
   </div>
   <!-- trade history page -->
+  <!-- popup model -->
+  <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header trade-pop-upheader">
+          <button type="button" class="close" (click)="hideModel()">&times;</button>
+          <h4 class="modal-title">Do you want continue with your {{order.orderType}} order with below transaction details.</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p>Some text in the modal.</p> -->
+          <div class="row">
+            <div class="col-sm-12">
+              <p>Amount</p>{{order.volume}} {{firstCurrency}}
+            </div>
+            <div class="col-sm-12">
+              <p>Price</p>{{order.price}} {{secondCurrency}}
+            </div>
+            <div class="col-sm-12">
+              <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="createOrder()">Yes</button>
+          <button type="button" class="btn btn-default" (click)="hideModel()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- popup model -->
 </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
