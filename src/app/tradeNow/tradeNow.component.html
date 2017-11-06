@@ -51,8 +51,7 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
-                    name="amount">
+                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount" name="amount">
 
 
                 </div>
@@ -63,38 +62,27 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.volume*order.price"
-                    id="amount" name="amount" [disabled]=true>
+                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price" id="amount" name="amount" [disabled]=true>
 
                 </div>
 
 
               </div>
               <div class="col-md-12 total-coin">
-                <p>Equivalent {{secondCurrency}} price for this order</p>
+                <p>Equivalent total {{secondCurrency}} price for this order</p>
               </div>
               <div class="col-md-12 trade-field">
                 <hr>
 
                 <p>Fee : 0%</p>
               </div>
-              <!-- <div>
 
-                     <div class="col-md-12 trade-field">
-                        <div class="col-md-4">
-                           <label for="email">Total </label>
-                        </div>
-                        <div class="col-md-8">
-                           <input type="email" class="form-control" id="email">
-                        </div>
-                     </div>
-                  </div> -->
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="createOrder('BUY')">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="createOrder('SELL')">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
                 </div>
               </div>
             </div>
@@ -114,8 +102,7 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" id="amount" title="Equivalent ETH price for this order " name="amount" [(ngModel)]="order.price"
-                    [disabled]=true>
+                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount" [(ngModel)]="order.price" [disabled]=true>
 
                 </div>
               </div>
@@ -126,13 +113,12 @@
                 <hr>
                 <p>Fee : 0%</p>
               </div>
-
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="createOrder('BUY')" data-toggle="modal" data-target="#buyModal">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="createOrder('SELL')" data-toggle="modal" data-target="#sellModal">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
                 </div>
               </div>
             </div>
@@ -180,7 +166,7 @@
   <!-- before login div -->
   <div class="row">
     <div class="col-md-12 signin-or-create-account" *ngIf=beforeLogin>
-      <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span>      to start Trading
+      <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span> to start Trading
     </div>
   </div>
   <!-- before login div -->
@@ -355,77 +341,41 @@
           </div>
         </div>
       </div>
+
+
       <!-- popup model -->
-      <!-- Modal for buy-->
-      <div class="modal fade" id="buyModal" role="dialog">
+      <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-
-          <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header trade-pop-upheader">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">You Continue with Your Buy Transaction Details.</h4>
-            </div>
-            <div class="modal-body">
-              <!-- <p>Your Transaction Details.</p> -->
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <p>Amount</p>1.2555
-                </div>
-                <div class="col-sm-12">
-                  <p>Price</p>8.25666
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Modal for sell-->
-      <div class="modal fade" id="sellModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header trade-pop-upheader">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Do You Continue with Your Sell Transaction Details.</h4>
+              <button type="button" class="close" (click)="hideModel()">&times;</button>
+              <h4 class="modal-title">Do you want continue with your {{order.orderType}} order with below transaction details.</h4>
             </div>
             <div class="modal-body">
               <!-- <p>Some text in the modal.</p> -->
               <div class="row">
                 <div class="col-sm-12">
-                  <p>Amount</p>1.2555
+                  <p>Amount</p>{{order.volume}} {{firstCurrency}}
                 </div>
                 <div class="col-sm-12">
-                  <p>Price</p>8.25666
+                  <p>Price</p>{{order.price}} {{secondCurrency}}
+                </div>
+                <div class="col-sm-12">
+                  <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}}
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" (click)="createOrder()">Yes</button>
+              <button type="button" class="btn btn-default" (click)="hideModel()">Close</button>
             </div>
           </div>
-
         </div>
       </div>
-
       <!-- popup model -->
 
-
-
-
-
       <div class="table-scroll">
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily table-fixed"
-          *ngIf='marketTrade'>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily table-fixed" *ngIf='marketTrade'>
           <thead class="table-Head ">
             <tr>
               <th>Date</th>

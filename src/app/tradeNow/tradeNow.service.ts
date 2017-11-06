@@ -32,6 +32,11 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
+  getPairedCurrenciesByPairId(pairId) {
+    return this.http.get('/api/v1/admin/currency/pair?pairId=' + pairId)
+      .map(res => res.json());
+  }
+
   getPairedCurrencies(currencyId) {
     return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
       .map(res => res.json());

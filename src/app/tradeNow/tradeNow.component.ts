@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TradeNowService } from './tradeNow.service';
 import { Order } from './entity/order.entity';
 import { DepositService } from '../deposit/deposit.service';
 import { ToastrService } from 'toastr-ng2';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-tradeNow',
@@ -11,6 +12,7 @@ import { ToastrService } from 'toastr-ng2';
   providers: [TradeNowService, DepositService]
 })
 export class TradeNowComponent implements OnInit {
+  @ViewChild('buySellModel') public buySellModel: ModalDirective;
   public marketTrade:boolean = true;
   public myTrade:boolean = false;
   currecyList: any;
@@ -191,7 +193,16 @@ export class TradeNowComponent implements OnInit {
     }
   }
 
-  createOrder(orderType) {
+  showModel(orderType) {
+    this.buySellModel.show();
+    this.order.orderType = orderType;
+  }
+
+  hideModel() {
+    this.buySellModel.hide();
+  }
+
+  createOrder() {
     this.loading = true;
     if (this.isMarket) {
       this.order.orderStandard = 'LIMIT';
@@ -199,9 +210,9 @@ export class TradeNowComponent implements OnInit {
     else {
       this.order.orderStandard = 'MARKET';
     }
-    this.order.orderType = orderType;
     this.order.totalVolume = this.order.volume;
     this.tradeNowService.createOrder(this.order, this.pairId).subscribe(success => {
+      this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
       this.ngOnInit();
@@ -209,6 +220,7 @@ export class TradeNowComponent implements OnInit {
       this.toastrService.success(success.message, 'Success!');
     }, error => {
       console.log(error);
+      this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
       this.ngOnInit();
