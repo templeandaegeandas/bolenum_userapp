@@ -42,6 +42,11 @@ font-size: 14px !important;
     font-family: Lato-Regular-font !important;
 }
 
+.table-content-font{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+}
+
 
 /* font family and font size */
 
@@ -599,10 +604,87 @@ h2 {
 }
 
 
-.table-scroll{
-    height: 200px; overflow: auto;
-}
+
 
 .trade-pop-upheader{
     background-color: #db2828;
+}
+
+.trade-table table
+{
+	
+	border-collapse: collapse;
+}
+
+.trade-table  thead
+{
+	display: block;
+	
+	overflow: auto;
+	
+}
+
+.trade-table tbody
+{
+	display: block;
+
+	height: 200px;
+	
+	overflow: auto;
+}
+
+.trade-table th, .trade-table td
+{
+	padding: .5em 1em;
+	text-align: left;
+	vertical-align: top;
+	
+}
+
+.model-text-color{
+    color: white;
+}
+
+.model-button-color{
+    background-color: #db2828;
+}
+
+.active-Tab{
+    background-color: #db2828;
+}
+
+.nav-tabs>li {
+    float: left;
+    display: -webkit-inline-box;
+    margin-bottom: -1px;
+}
+
+.table-tr-data{
+        display: table;
+    width: 100%;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: hidden;
+}
+
+.marketing-margin{
+        margin-top: 108px;
+
+}
+
+.marketing-border{
+    border: 2px solid lightgray;
+}
+
+.marketing-heading{
+        padding-top: 13px;
+    padding-bottom: 14px;
+    color: white;
+    padding-left: 10p;
+    background-color: #DB2828;
+}
+.hand-icon{
+    cursor: pointer;
 }
