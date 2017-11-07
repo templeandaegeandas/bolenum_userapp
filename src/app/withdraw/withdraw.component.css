@@ -142,8 +142,21 @@ select option{
 .table-content-font{
         font-size: 13px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .margin-Table{
     margin-top: 50px;
+}
+.table-content-font{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+
+.table-Heading{
+        font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }

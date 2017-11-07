@@ -25,31 +25,42 @@
 .tradeHeading-fontSze-fontFamily {
     font-size: 22px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .tradeSubheading-fontSze-fontFamily {
     font-size: 18px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .tradeSubheading-fontSze-fontFamily thead tr th{
     font-size: 14px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .tradeSwith{
 font-size: 14px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .table-content-font{
         font-size: 13px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .table-heading-content{
-        font-size: 16px !important;
+        font-size: 14px !important;
     font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+.table-Heading{
+        font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 
@@ -74,8 +85,8 @@ font-size: 14px !important;
     background-color: #DB2828;
     text-align: left;
     color: white;
-    padding-top: 14px;
-    padding-bottom: 16px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     font-size: 14px;
     padding-left: 12px;
 }
@@ -88,8 +99,8 @@ tr th {
     background-color: #DB2828;
     text-align: left;
     color: white;
-    padding-top: 14px;
-    padding-bottom: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     /* font-size: 14px; */
     padding-left: 12px;
 }
@@ -552,20 +563,23 @@ h2 {
 }
 
 .trade-History-table{
-    border: 2px solid lightgray;
+    border: 1px solid lightgray;
 }
 
 .table-Head {
         background-color: #db2828;
     color: white;
+    font-weight: 100!important;
 }
 
  .border-left th{
         border-left: 1px solid lightgray;
+        font-weight: 100!important;
 }
 
 .table-Content td{
     text-align: center;
+    font-weight: 100!important;
 }
 
 .switchTrade{
@@ -744,4 +758,22 @@ h2 {
    
     opacity: 1;
     color: white;
+}
+
+.nav li a {
+    position: relative;
+    display: block;
+    padding: 3px 9px;
+    color:#000;
+}
+
+label {
+
+    font-weight: 100;
+
+}
+
+table thead tr th {
+    padding: 0px;
+   
 }
