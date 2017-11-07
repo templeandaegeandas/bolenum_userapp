@@ -3,5 +3,5 @@ export const environment = {
   documentUrl: 'https://staging.bolenumexchange.com/static/documents/',
   profilePicUrl: 'https://staging.bolenumexchange.com/static/profile-images/',
   googleQrCodeUrl: 'https://staging.bolenumexchange.com/static/google/qrcode/',
-  socketUrl: 'http://staging.bolenumexchange.com/websocket/bolenum/exchange'
+  socketUrl: 'https://staging.bolenumexchange.com/websocket/bolenum/exchange'
 };
