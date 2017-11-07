@@ -421,24 +421,24 @@ select option {
     background-color: #DB2828;
     opacity: none !important;
     border: none;
-    padding: 5px;
+    padding: 3px;
     color: white;
     /* font-size: 14px; */
     border-radius: 5px;
     outline: none;
-    width: 75px;
+    width: 50px;
 }
 
 .trade-button-sell{
     background-color: #DB2828;
     opacity: none !important;
     border: none;
-    padding: 5px;
+    padding: 3px;
     color: white;
     /* font-size: 14px; */
     border-radius: 5px;
     outline: none;
-    width: 75px;
+    width: 50px;
 }
 
 .trade-width{
@@ -776,4 +776,8 @@ label {
 table thead tr th {
     padding: 0px;
    
+}
+
+.trade-History-Button{
+    text-align: right;
 }
