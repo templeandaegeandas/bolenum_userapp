@@ -51,18 +51,19 @@ export class LoginComponent implements OnInit {
       console.log("login data");
 
 
-      if(success.status==202) {
+      if (success.status == 202) {
         this.twoFaOption = success.data
         this.is2FaOn = true;
         this.loading = false;
         return;
       }
+      localStorage.setItem("userId", success.data.userId);
       localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);
-      if(success.data.lName!=null) {
+      if (success.data.lName != null) {
         localStorage.setItem("lName", success.data.lName);
       }
-      if(success.data.profilePic!=null) {
+      if (success.data.profilePic != null) {
         localStorage.setItem("profilePic", success.data.profilePic);
       }
       this.router.navigate([this.returnUrl]);
@@ -75,12 +76,13 @@ export class LoginComponent implements OnInit {
   }
 
   verify2Fa(form) {
-    if(form.invalid) return;
+    if (form.invalid) return;
     this.loading = true;
     this.loginService.verify2FaOtp(this.otp, this.login).subscribe(success => {
+      localStorage.setItem("userId", success.data.userId);
       localStorage.setItem("token", success.data.token);
       localStorage.setItem("fName", success.data.fName);
-      if(success.data.lName!=null) {
+      if (success.data.lName != null) {
         localStorage.setItem("lName", success.data.lName);
       }
       this.router.navigate([this.returnUrl]);

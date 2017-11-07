@@ -44,6 +44,7 @@ import { HistoryComponent } from './history/history.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { AppEventEmiterService } from './app.event.emmiter.service';
+import { StompService } from 'ng2-stomp-service';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -104,7 +105,8 @@ export function highchartsFactory() {
     HttpClient,
     PrivateRouteAuthGuard,
     PublicRouteAuthGuard,
-    AppEventEmiterService
+    AppEventEmiterService,
+    StompService
   ],
 
   bootstrap: [AppComponent]

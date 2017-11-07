@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -79,13 +80,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.isLoggedIn();
-  }
 
-  // isLoggedIn() {
-  //   if(localStorage.getItem("token")==null) {
-  //     this.router.navigate(['login']);
-  //   }
-  // }
+  }
 
 }
