@@ -10,12 +10,14 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
 import { Subscription } from 'rxjs/Subscription';
 import { AppEventEmiterService } from '../app.event.emmiter.service'
 import { Router } from '@angular/router';
+import { WebsocketService } from '../web-socket/web.socket.service';
+
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [ProfileService]
+  providers: [ProfileService, WebsocketService]
 })
 export class ProfileComponent implements OnInit {
   sub: Subscription;
@@ -83,7 +85,11 @@ export class ProfileComponent implements OnInit {
   addressIdKyc: any = "assets/images/id.png";
   nId: any;
   rId: any
-  constructor(private profileService: ProfileService, private toastrService: ToastrService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
+  constructor(private profileService: ProfileService,
+    private toastrService: ToastrService,
+    private router: Router,
+    private appEventEmiterService: AppEventEmiterService,
+    private websocketService: WebsocketService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 200;
     this.cropperSettings.height = 200;
@@ -105,6 +111,12 @@ export class ProfileComponent implements OnInit {
     this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
 
     this.data = {};
+
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "DOCUMENT_VERIFICATION") {
+        this.getKycDetailsUser();
+      }
+    });
   }
   ngOnInit() {
     this.getLoggedInUserDetails();
@@ -445,6 +457,7 @@ export class ProfileComponent implements OnInit {
     formData.append("documentType", documentType);
     this.profileService.upload(formData).subscribe(success => {
       this.getKycDetailsUser();
+      this.websocketService.sendMessage(1, "DOCUMENT_VERIFICATION");
       this.loading = false;
       this.toastrService.success(success.message, 'Success!')
     }, error => {

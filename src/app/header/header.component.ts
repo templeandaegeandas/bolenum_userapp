@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 import { HeaderService } from './header.service';
 import { environment } from '../../environments/environment';
 import { AppEventEmiterService } from '../app.event.emmiter.service'
+import { WebsocketService } from '../web-socket/web.socket.service';
+
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [HeaderService]
+  providers: [HeaderService, WebsocketService]
 })
 export class HeaderComponent implements OnInit {
   public isOpen: boolean = false;
@@ -18,10 +20,11 @@ export class HeaderComponent implements OnInit {
   fullName: String;
   lastName: String;
   profilePic: String = "assets/images/pic.png";
-  constructor(private headerService: HeaderService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
+  constructor(private headerService: HeaderService, private websocketService: WebsocketService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
   }
 
   ngOnInit() {
+    this.websocketService.connectForLoggedInUser(localStorage.getItem("userId"))
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "upload") {
         setTimeout(()=> {
@@ -49,6 +52,7 @@ export class HeaderComponent implements OnInit {
     this.headerService.logOut().subscribe(success => {
       localStorage.clear();
       this.router.navigate(['login']);
+      this.websocketService.disconnect();
     }, error => {
       localStorage.clear();
       this.router.navigate(['login']);

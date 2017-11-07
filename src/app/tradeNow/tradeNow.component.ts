@@ -4,17 +4,19 @@ import { Order } from './entity/order.entity';
 import { DepositService } from '../deposit/deposit.service';
 import { ToastrService } from 'toastr-ng2';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { WebsocketService } from '../web-socket/web.socket.service';
+import { AppEventEmiterService } from '../app.event.emmiter.service';
 
 @Component({
   selector: 'app-tradeNow',
   templateUrl: './tradeNow.component.html',
   styleUrls: ['./tradeNow.component.css'],
-  providers: [TradeNowService, DepositService]
+  providers: [TradeNowService, DepositService, WebsocketService]
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
-  public marketTrade:boolean = true;
-  public myTrade:boolean = false;
+  public marketTrade: boolean = true;
+  public myTrade: boolean = false;
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
@@ -61,7 +63,25 @@ export class TradeNowComponent implements OnInit {
 
 
 
-  constructor(private tradeNowService: TradeNowService, private depositService: DepositService, private toastrService: ToastrService) {
+  constructor(
+    private tradeNowService: TradeNowService,
+    private depositService: DepositService,
+    private toastrService: ToastrService,
+    private websocketService: WebsocketService,
+    private appEventEmiterService: AppEventEmiterService) {
+      this.isLogIn();
+      if (this.beforeLogin) {
+        websocketService.connectForNonLoggedInUser();
+      }
+      this.appEventEmiterService.currentMessage.subscribe(message => {
+        if (message == "ORDER_BOOK_NOTIFICATION") {
+          this.getBuyOrderBookData(this.pairId);
+          this.getSellOrderBookData(this.pairId);
+          this.getMyTradedOrders();
+          this.getAllTradedOrders();
+          this.getMyOrdersFromBook();
+        }
+      });
     this.options = {
       chart: {
         type: 'areaspline'
@@ -174,15 +194,14 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getCurrencyList()
-  {
-      this.tradeNowService.getListOfCurrency().subscribe( success => {
-        this.currecyList = success.data;
-        let currencyId = this.currecyList[0].currencyId;
-        this.getPair(currencyId);
-      },error =>{
+  getCurrencyList() {
+    this.tradeNowService.getListOfCurrency().subscribe(success => {
+      this.currecyList = success.data;
+      let currencyId = this.currecyList[0].currencyId;
+      this.getPair(currencyId);
+    }, error => {
 
-      })
+    })
   }
 
 
@@ -267,7 +286,7 @@ export class TradeNowComponent implements OnInit {
     this.loading = false;
   }
 
-  fillData(volume,price) {
+  fillData(volume, price) {
     this.setTradingValue = "Limit Order";
     this.setTradeValue("Limit Order");
     this.order.volume = volume;
@@ -276,18 +295,18 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyTradedOrders() {
-    this.loading =true;
-    this.tradeNowService.getTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+    this.loading = true;
+    this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.myTradedList = success.data.content;
-      this.loading =false;
+      this.loading = false;
     }, error => {
       console.log(error);
-      this.loading =false;
+      this.loading = false;
     })
   }
 
   getAllTradedOrders() {
-    this.tradeNowService.getAllTradedOrders(1,10,"createdOn","desc").subscribe(success => {
+    this.tradeNowService.getAllTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.allTradedList = success.data.content;
     }, error => {
       console.log(error);
@@ -295,9 +314,8 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyOrdersFromBook() {
-    this.tradeNowService.getMyOrdersFromBook(1,10,"createdOn","desc").subscribe(success => {
+    this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
       this.myOrdersInBook = success.data;
-      console.log(this.myOrdersInBook)
     }, error => {
       console.log(error);
     })
@@ -331,13 +349,13 @@ export class TradeNowComponent implements OnInit {
 
   // method to show table of market trade and my trade
 
-  marketTradeList(){
+  marketTradeList() {
     this.marketTrade = true;
     this.myTrade = false;
 
   }
 
-  myTradeList(){
+  myTradeList() {
     this.getMyTradedOrders();
     this.marketTrade = false;
     this.myTrade = true;
