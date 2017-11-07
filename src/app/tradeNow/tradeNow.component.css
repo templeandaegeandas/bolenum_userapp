@@ -709,3 +709,39 @@ h2 {
         color: white;
     background-color: #DB2828;
 }
+
+.modal-title{
+    color: white;
+}
+
+.confirm-transaction{
+        text-align: center;
+}
+
+.confirm-Button{
+      color: white;
+    background-color: #DB2828;
+}
+
+.confirm-order{
+
+     font-size: 16px !important;
+    font-family: Lato-Regular-font !important;
+
+}
+.confirm-Order-Label{
+      font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+}
+.button-Confirm{
+
+     font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+
+}
+
+.close {
+   
+    opacity: 1;
+    color: white;
+}

@@ -51,7 +51,8 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount" name="amount">
+                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
+                    name="amount">
 
 
                 </div>
@@ -62,7 +63,8 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price" id="amount" name="amount" [disabled]=true>
+                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
+                    id="amount" name="amount" [disabled]=true>
 
                 </div>
 
@@ -102,7 +104,8 @@
                 </div>
 
                 <div class="col-md-7">
-                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount" [(ngModel)]="order.price" [disabled]=true>
+                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
+                    [(ngModel)]="order.price" [disabled]=true>
 
                 </div>
               </div>
@@ -172,7 +175,7 @@
   <!-- before login div -->
   <div class="row">
     <div class="col-md-12 signin-or-create-account" *ngIf=beforeLogin>
-      <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span> to start Trading
+      <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span>      to start Trading
     </div>
   </div>
   <!-- before login div -->
@@ -295,26 +298,26 @@
         </div>
       </div>
       <div class="trade-History">
-      <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
-        <thead class="table-Head ">
-          <tr>
-            <th>Type</th>
-            <th>Price</th>
-            <th>Amount( ETH)</th>
-            <th>Total( BTC )</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody class="table-content-font">
-          <tr *ngFor="let orders of myOrdersInBook">
-            <td>{{orders.orderType}}</td>
-            <td>{{orders.price}}</td>
-            <td>{{orders.volume}}</td>
-            <td>{{orders.price * orders.volume}}</td>
-            <td>{{orders.createdOn | date}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
+          <thead class="table-Head ">
+            <tr>
+              <th>Type</th>
+              <th>Price</th>
+              <th>Amount( ETH)</th>
+              <th>Total( BTC )</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody class="table-content-font">
+            <tr *ngFor="let orders of myOrdersInBook">
+              <td>{{orders.orderType}}</td>
+              <td>{{orders.price}}</td>
+              <td>{{orders.volume}}</td>
+              <td>{{orders.price * orders.volume}}</td>
+              <td>{{orders.createdOn | date}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -375,69 +378,94 @@
             <tr class="more-details">
               <div>
                 <a href=""> More... </a>
-                 <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
+                <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
               </div>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="trade-History">
-      <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
-        <thead class="table-Head ">
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Type</th>
-            <th>Price (1 Unit)</th>
-            <th>Amount</th>
-            <th>Total Price</th>
-            <th>Order Standard</th>
-          </tr>
-        </thead>
-        <tbody class="table-content-font">
-          <tr *ngFor="let tx of myTradedList">
-            <td>{{tx.createdOn | date}}</td>
-            <td>{{tx.createdOn | date:'shortTime'}}</td>
-            <td style=color:#2AD747>
-              <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
-              <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
-            </td>
-            <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-            <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-            <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-            <td>{{tx.orderStandard}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
+          <thead class="table-Head ">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Price (1 Unit)</th>
+              <th>Amount</th>
+              <th>Total Price</th>
+              <th>Order Standard</th>
+            </tr>
+          </thead>
+          <tbody class="table-content-font">
+            <tr *ngFor="let tx of myTradedList">
+              <td>{{tx.createdOn | date}}</td>
+              <td>{{tx.createdOn | date:'shortTime'}}</td>
+              <td style=color:#2AD747>
+                <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
+                <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
+              </td>
+              <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.orderStandard}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
   <!-- trade history page -->
   <!-- popup model -->
-  <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header trade-pop-upheader">
           <button type="button" class="close" (click)="hideModel()">&times;</button>
-          <h4 class="modal-title">Do you want continue with your {{order.orderType}} order with below transaction details.</h4>
+          <h4 class="modal-title confirm-order">Continue With Your {{order.orderType}} Order.</h4>
         </div>
         <div class="modal-body">
           <!-- <p>Some text in the modal.</p> -->
           <div class="row">
             <div class="col-sm-12">
-              <p>Amount</p>{{order.volume}} {{firstCurrency}}
+              <div class="row confirm-Order-Label">
+                <div class="col-sm-3 col-sm-offset-1">
+                  <label>Amount</label>
+                </div>
+                <div class="col-sm-8">
+                  {{order.volume}} {{firstCurrency}}
+                </div>
+              </div>
             </div>
             <div class="col-sm-12">
-              <p>Price</p>{{order.price}} {{secondCurrency}}
+              <div class="row confirm-Order-Label">
+                <div class="col-sm-3 col-sm-offset-1">
+                  <label>Price</label>
+                </div>
+                <div class="col-sm-8">
+                  {{order.price}} {{secondCurrency}}
+                </div>
+              </div>
+
+              <!-- <p>Price</p>{{order.price}} {{secondCurrency}} -->
             </div>
             <div class="col-sm-12">
-              <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}}
+               <div class="row confirm-Order-Label">
+                <div class="col-sm-3 col-sm-offset-1">
+                  <label>Total Price</label>
+                </div>
+                <div class="col-sm-8">
+                 {{order.volume * order.price}} {{secondCurrency}}
+                </div>
+              </div>
+              <!-- <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}} -->
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" (click)="createOrder()">Yes</button>
-          <button type="button" class="btn btn-default" (click)="hideModel()">Close</button>
+          <button type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+          <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
         </div>
       </div>
     </div>

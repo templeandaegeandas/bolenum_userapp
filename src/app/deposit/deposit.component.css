@@ -10,21 +10,17 @@ ul li {
 .qrCode {
     margin-top: 30px;
 }
-
 .input-box {
     text-align: -webkit-center;
     padding-top: 22px;
 }
-
 input {
     padding: 27px;
     width: 33%;
 }
-
 .network {
     color: #db2828;
 }
-
 .genarate-button {
     background-color: #DB2828;
     opacity: none !important;
@@ -36,10 +32,9 @@ input {
     outline: none;
     width: 21%;
 }
-
 .main-div {
-    margin-top: 51px;
-    margin-bottom: 66px;
+    margin-top: 14px;
+    /* margin-bottom: 66px; */
 }
 
 .margin-button {
@@ -57,22 +52,44 @@ select.center-dropddown {
     margin-top: 3px;
 
 }
-
 input[type="text"]{
         width: 41%;
 }
-
 .deposit-bg-color{
     background-color: white;
+        padding-bottom: 57px;
 }
-
 .deposit-container-padding{
     margin-top: 67px;
     margin-bottom: 51px;
 }
-
 .option-box{
         background-color: white;
     color: black;
 }
+/* table */
+.trade-History-table{
+    border: 1px solid lightgray;
+}
+.border-left th{
+        border-left: 1px solid lightgray;
+        text-align: center;
+        
+}
+.table-Content td{
+    text-align: center;
+}
+.table-Head {
+        background-color: #db2828;
+    color: white;
+}
+.table-content-font{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+}
+.margin-Table{
+    margin-top: 25px;
+}
+
+/* table */
 
