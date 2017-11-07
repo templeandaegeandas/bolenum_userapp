@@ -2,10 +2,8 @@
   <div class="row">
     <div class="col-md-12 withdraw-dropdown">
       <select class="center-dropddown" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
-
-            <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
-
-           </select>
+ <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
+</select>
     </div>
     <div class="col-md-10 col-md-offset-1 main-div-margin">
       <div class=" text-center text-image-div">
@@ -18,7 +16,7 @@
           <span class="balance-text">
           <!-- Available Balance 0.2156 -->
             Available Balance : <span>{{balance}}{{coinAbbreviation}}</span>
-      </span>
+          </span>
         </div>
       </div>
       <div class="color-box">
@@ -31,7 +29,7 @@
             </div>
             <div class="col-md-6 col-width">
               <div class="form-group">
-                <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required >
+                <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required>
               </div>
               <span *ngIf="address.invalid && withrawForm.submitted">
                   <span class="text-danger" *ngIf="address.errors.required">Please enter address</span>
@@ -44,13 +42,12 @@
             </div>
             <div class="col-md-6 col-width">
               <div class="form-group">
-                <input type="number" min="0" class="form-control" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount" required  >
+                <input type="number" min="0" class="form-control" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount"
+                  required>
               </div>
-
               <span *ngIf="amount.invalid && withrawForm.submitted">
                   <span class="text-danger" *ngIf="amount.errors.required">Please enter amount</span>
               </span>
-
               <p><span class="red-text-color">Minimum Withdrawal Amount:</span> 0000.5</p>
             </div>
           </div>
@@ -58,6 +55,60 @@
             <button class="submit-button text-uppercase" type="submit">Submit</button>
           </div>
         </form>
+        <!-- for table -->
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 margin-Table">
+            <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
+              <thead class="table-Head ">
+                <tr>
+                  <th>Type</th>
+                  <th>Price</th>
+                  <th>Amount( ETH)</th>
+                  <th>Total( BTC )</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody class="table-content-font">
+                <tr>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                </tr>
+                <tr>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                </tr>
+                <tr>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                </tr>
+                <tr>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                </tr>
+                <tr>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                  <td>bitcoin</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- for table -->
       </div>
     </div>
   </div>
