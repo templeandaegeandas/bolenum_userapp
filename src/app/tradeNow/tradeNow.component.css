@@ -47,6 +47,11 @@ font-size: 14px !important;
     font-family: Lato-Regular-font !important;
 }
 
+.table-heading-content{
+        font-size: 16px !important;
+    font-family: Lato-Regular-font !important;
+}
+
 
 /* font family and font size */
 
@@ -603,6 +608,10 @@ h2 {
         margin-bottom: 52px;
 }
 
+.trade-Form{
+        width: 76%;
+}
+
 
 
 
@@ -610,36 +619,6 @@ h2 {
     background-color: #db2828;
 }
 
-.trade-table table
-{
-	
-	border-collapse: collapse;
-}
-
-.trade-table  thead
-{
-	display: block;
-	
-	overflow: auto;
-	
-}
-
-.trade-table tbody
-{
-	display: block;
-
-	height: 200px;
-	
-	overflow: auto;
-}
-
-.trade-table th, .trade-table td
-{
-	padding: .5em 1em;
-	text-align: left;
-	vertical-align: top;
-	
-}
 
 .model-text-color{
     color: white;
@@ -667,24 +646,66 @@ h2 {
 .table-responsive {
     min-height: .01%;
     overflow-x: hidden;
+    
 }
 
 .marketing-margin{
-        margin-top: 108px;
+        margin-top: 114px;
 
 }
 
 .marketing-border{
-    border: 2px solid lightgray;
+    border: 1px solid lightgray;
+}
+
+.marketing-border-padding{
+    padding-right: 0px; 
+    padding-left: 0px; 
+}
+
+.table-responsive-padding{
+          padding-bottom: 145px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    background-color: #f1f0f0;
 }
 
 .marketing-heading{
-        padding-top: 13px;
-    padding-bottom: 14px;
+        padding-top: 2px;
+    padding-bottom: 2px;
     color: white;
     padding-left: 10p;
     background-color: #DB2828;
 }
 .hand-icon{
     cursor: pointer;
+}
+
+.trade-History table {
+   /*   width: 716px; 140px * 5 column + 16px scrollbar width */
+    border-spacing: 0;
+}
+
+.trade-History tbody, .trade-History thead tr { display: block; }
+
+.trade-History tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.trade-History tbody td, .trade-History thead th {
+    width: 190px;
+}
+
+.more-details{
+        float: right;
+        cursor: pointer;
+
+}
+
+.market-head-color{
+        color: white;
+    background-color: #DB2828;
 }

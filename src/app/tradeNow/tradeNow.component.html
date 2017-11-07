@@ -22,10 +22,10 @@
         <div class="col-md-5 tab-margin">
           <div class="exchange-pair-text">{{pairName}}</div>
         </div>
-        <div class="col-md-8  trade-border trade-margin table-bg-color">
+        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
           <div class="row">
             <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-              <span class="tradeSubheading-fontSze-fontFamily">TRADE IN {{pairName}} </span>
+              <span class="table-heading-content">TRADE IN {{pairName}} </span>
             </div>
             <div class="col-md-12 total-currency-message">
               <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
@@ -128,9 +128,9 @@
     </div>
     <div class="col-md-6 text-center marketing-margin ">
       <div class="row">
-        <div class="col-md-9 col-md-offset-3 marketing-border">
-          <h2 class="tradeHeading-fontSze-fontFamily marketing-heading">MARKET</h2>
-          <div class="table-responsive">
+        <div class="col-md-9 col-md-offset-2 marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
             <div class="row">
               <div class="col-sm-12">
                 <ul class="nav nav-tabs">
@@ -147,7 +147,7 @@
 
                 </tr>
               </thead> -->
-              <thead class="table-bg-color">
+              <thead class="market-head-color">
                 <tr>
                   <th>Coin</th>
                   <th>Price</th>
@@ -200,7 +200,7 @@
       <div class="row">
         <div class="col-md-6 padding-to-all padding-buy-button trade-width">
           <div class="buy-orders">
-            <span class="tradeSubheading-fontSze-fontFamily">BUY ORDERS</span>
+            <span class="table-heading-content">BUY ORDERS</span>
           </div>
           <!-- table 1 -->
           <div class="table-responsive">
@@ -228,7 +228,7 @@
         <!-- table1 -->
         <div class="col-md-4 col-md-offset-2 padding-to-all padding-buy-button trade-width">
           <div class="sell-orders">
-            <span class="tradeSubheading-fontSze-fontFamily">SELL ORDERS</span>
+            <span class="table-heading-content">SELL ORDERS</span>
           </div>
           <!-- table 2-->
           <div class="table-responsive">
@@ -294,6 +294,7 @@
           <div class="title-Trade"></div>
         </div>
       </div>
+      <div class="trade-History">
       <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
         <thead class="table-Head ">
           <tr>
@@ -314,6 +315,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 
@@ -348,7 +350,7 @@
         </div>
       </div>
 
-      <div class="">
+      <div class="trade-History">
         <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily"
           *ngIf='marketTrade'>
           <thead class="table-Head ">
@@ -370,12 +372,16 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
             </tr>
-            <tr>
-              <div>More...</div>
+            <tr class="more-details">
+              <div>
+                <a href=""> More... </a>
+                 <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
+              </div>
             </tr>
           </tbody>
         </table>
       </div>
+      <div class="trade-History">
       <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
         <thead class="table-Head ">
           <tr>
@@ -403,6 +409,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
   <!-- trade history page -->
