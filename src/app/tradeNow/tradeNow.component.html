@@ -137,7 +137,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                  <li class="hand-icon"  *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId)><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId)><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
 
                 </ul>
               </div>
@@ -337,20 +337,26 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-3 col-sm-offset-9">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="switchTrade">
+        <!-- <div class="col-sm-3 col-sm-offset-9">
+          <div class="row"> -->
+        <div class="col-sm-12 trade-History-Button">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" (click)="marketTradeList()">MARKET TRADES</button>
+            <button type="button" class="btn btn-secondary" (click)="myTradeList()">MY TRADES</button>
+          </div>
+          <!-- <div class="switchTrade">
                 <div class="switch-market" (click)="marketTradeList()">
-                  <span class="market-text tradeSwith">MARKET TRADES</span>
+                   <span class="market-text tradeSwith">MARKET TRADES</span> 
+                  <button type="submit" name="marketOrder">MARKET TRADES</button>
                 </div>
                 <div class="switch-mytrade" (click)="myTradeList()">
-                  <span class="my-trade tradeSwith">MY TRADES</span>
+                   <button type="submit" name="marketOrder">MY TRADES</button>
+                   <span class="my-trade tradeSwith">MY TRADES</span> 
                 </div>
-              </div>
-            </div>
-          </div>
+              </div> -->
         </div>
+        <!-- </div> -->
+        <!-- </div> -->
       </div>
 
       <div class="trade-History">
@@ -451,12 +457,12 @@
               <!-- <p>Price</p>{{order.price}} {{secondCurrency}} -->
             </div>
             <div class="col-sm-12">
-               <div class="row confirm-Order-Label">
+              <div class="row confirm-Order-Label">
                 <div class="col-sm-3 col-sm-offset-1">
                   <label>Total Price</label>
                 </div>
                 <div class="col-sm-8">
-                 {{order.volume * order.price}} {{secondCurrency}}
+                  {{order.volume * order.price}} {{secondCurrency}}
                 </div>
               </div>
               <!-- <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}} -->
