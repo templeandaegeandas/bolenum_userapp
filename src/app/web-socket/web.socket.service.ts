@@ -31,10 +31,10 @@ export class WebsocketService {
   }
 
   sendMessage(receiver, messageType) {
-    this.stomp.send('/websocket/app/sender/user',JSON.stringify({
+    this.stomp.send('/websocket/app/sender/user',{
       receiver: receiver,
       messageType: messageType
-    }));
+    });
   }
 
   connectForNonLoggedInUser() {
