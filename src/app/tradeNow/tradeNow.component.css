@@ -713,6 +713,47 @@ h2 {
     width: 190px;
 }
 
+/* for own Tables */
+.own-Table table {
+   /*   width: 716px; 140px * 5 column + 16px scrollbar width */
+    border-spacing: 0;
+}
+
+.own-Table tbody, .own-Table thead tr { display: block; }
+
+.own-Table tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.own-Table tbody td, .own-Table thead th {
+    width: 228px;
+}
+
+
+/* for own tables */
+
+/* for sell and buy table */
+.sell-Buy-table table {
+   /*   width: 716px; 140px * 5 column + 16px scrollbar width */
+    border-spacing: 0;
+}
+
+.sell-Buy-table tbody, .sell-Buy-table thead tr { display: block; }
+
+.sell-Buy-table tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sell-Buy-table tbody td, .sell-Buy-table thead th {
+    width: 112px;
+}
+/* for sell and buy table */
+
+
 .more-details{
         float: right;
         cursor: pointer;
@@ -781,3 +822,18 @@ table thead tr th {
 .trade-History-Button{
     text-align: right;
 }
+.button-property{
+    color: white;
+     border: none;
+     outline: none;
+
+}
+.button-color{
+     background-color: #DB2828;
+}
+
+.button-color-before-active{
+        background-color: gray;
+}
+    
+

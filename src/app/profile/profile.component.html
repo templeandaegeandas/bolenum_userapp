@@ -349,7 +349,7 @@
                       <p class="bank-text profile-font sub-heading-font-size"> Account Number </p>
                     </div>
                     <div class="col-md-6">
-                      <p class="bank-icon bank-projectAccount profile-font content-font-size "> {{customerData.accountNumber}}</p>
+                      <p class="bank-icon bank-projectAccount profile-font content-font-size " title="{{customerData.accountNumber}}"> {{customerData.accountNumber}}</p>
                     </div>
                   </div>
                 </div>
@@ -643,7 +643,7 @@
             </form>
           </div>
           <button class="enablebtn profile-font butoon-font " *ngIf="isMobileVerified" type="button" (click)="set2faToMobile()">Enable</button>
-          <button class="enablebtn profile-font butoon-font " *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">back</button>
+          <button class="enablebtn profile-font butoon-font " *ngIf="isMobileVerified" type="button" (click)="openTwoFaVerification('NONE')">Back</button>
         </div>
       </div>
     </div>
