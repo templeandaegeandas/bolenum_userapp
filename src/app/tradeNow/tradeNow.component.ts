@@ -17,6 +17,10 @@ export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
   public marketTrade: boolean = true;
   public myTrade: boolean = false;
+  public marketTradeColor:boolean = true;
+  public myTradeColor:boolean = false;
+  public beforeActiveMarket:boolean = false;
+  public beforeActiveMyTrade:boolean = true; 
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
@@ -352,6 +356,10 @@ export class TradeNowComponent implements OnInit {
   marketTradeList() {
     this.marketTrade = true;
     this.myTrade = false;
+    this.marketTradeColor = true;
+    this.myTradeColor = false;
+    this.beforeActiveMarket = false;
+    this.beforeActiveMyTrade = true;
 
   }
 
@@ -359,6 +367,10 @@ export class TradeNowComponent implements OnInit {
     this.getMyTradedOrders();
     this.marketTrade = false;
     this.myTrade = true;
+     this.marketTradeColor = false;
+    this.myTradeColor = true;
+     this.beforeActiveMarket = true;
+    this.beforeActiveMyTrade = false;
 
   }
   // method to show table of market trade and my trade
