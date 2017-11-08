@@ -35,6 +35,7 @@ export class WithdrawComponent implements OnInit {
       this.ngOnInit();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
+      form.reset();
     }, error => {
       console.log(error);
       this.loading = false;
