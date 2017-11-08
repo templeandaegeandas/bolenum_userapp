@@ -75,7 +75,7 @@ select option{
 }
 .color-box {
     background-color: #FFFFFF;
-    padding-bottom: 240px;
+    padding-bottom: 60px;
 }
 
 
@@ -121,4 +121,42 @@ select option{
 
 .text-label-top-padding{
         padding-top: 9px;
+}
+
+.trade-History-table{
+    border: 1px solid lightgray;
+}
+
+ .border-left th{
+        border-left: 1px solid lightgray;
+        text-align: center;
+        
+}
+.table-Content td{
+    text-align: center;
+}
+.table-Head {
+        background-color: #db2828;
+    color: white;
+}
+.table-content-font{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+.margin-Table{
+    margin-top: 50px;
+}
+.table-content-font{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+
+.table-Heading{
+        font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
