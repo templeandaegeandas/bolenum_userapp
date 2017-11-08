@@ -17,6 +17,8 @@ export class WithdrawComponent implements OnInit {
   public balance : any;
   public coinAbbreviation : any;
   loading = false;
+
+  txList: any;
   withdrawForm = new WithdrawAmount();
 
 
@@ -24,6 +26,7 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrencyList();
+    this.getListOfUserWithdrawlTransaction();
   }
 
   withdrawAmount(form) {
@@ -35,6 +38,7 @@ export class WithdrawComponent implements OnInit {
       this.ngOnInit();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
+      form.reset();
     }, error => {
       console.log(error);
       this.loading = false;
@@ -68,5 +72,14 @@ getCoin(data) {
 
   })
 }
+
+getListOfUserWithdrawlTransaction() {
+    this.withdrawService.getListOfWithdrawlTransaction(1,10,"createdOn","desc").subscribe(success => {
+    this.txList = success.data.content;
+  })
+}
+
+
+
 
 }

@@ -51,52 +51,25 @@
    <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
         <thead class="table-Head ">
           <tr>
-            <th>Type</th>
-            <th>Price</th>
-            <th>Amount( ETH)</th>
-            <th>Total( BTC )</th>
+            <th>Tranaction Hash</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Reciever Adddress</th>
             <th>Date</th>
           </tr>
         </thead>
         <tbody class="table-content-font">
-          <tr>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-          </tr>
-            <tr>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-          </tr>
-            <tr>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-          </tr>
-            <tr>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-          </tr>
-            <tr>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
-            <td>bitcoin</td>
+          <tr *ngFor="let tx of txList">
+            <td>{{tx.txHash}}</td>
+            <td>{{tx.currencyName}}<td>
+            <td>{{tx.txAmount}}<td>
+            <td>{{tx.toAddress}}<td>
+            <td>{{tx.createdOn | date}}<td>
+            <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
         </tbody>
       </table>
-    
+
   </div>
 </div>
     <!-- for table -->

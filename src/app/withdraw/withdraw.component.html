@@ -48,7 +48,9 @@
               <span *ngIf="amount.invalid && withrawForm.submitted">
                   <span class="text-danger" *ngIf="amount.errors.required">Please enter amount</span>
               </span>
-              <p><span class="red-text-color">Minimum Withdrawal Amount:</span> 0000.5</p>
+
+              <p><span class="red-text-color">Minimum Withdrawal Amount:</span> 0.0005</p>
+
             </div>
           </div>
           <div class="col-md-7 col-md-offset-4 button-padding">
@@ -61,48 +63,22 @@
             <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
               <thead class="table-Head ">
                 <tr>
-                  <th>Type</th>
-                  <th>Price</th>
-                  <th>Amount( ETH)</th>
-                  <th>Total( BTC )</th>
+                  <th>Tranaction Hash</th>
+                  <th>Currency</th>
+                  <th>Amount</th>
+                  <th>Reciever Adddress</th>
                   <th>Date</th>
+                  <th>Time</th>
                 </tr>
               </thead>
               <tbody class="table-content-font">
-                <tr>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                </tr>
-                <tr>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                </tr>
-                <tr>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                </tr>
-                <tr>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                </tr>
-                <tr>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
-                  <td>bitcoin</td>
+                <tr *ngFor="let tx of txList">
+                  <td>{{tx.txHash}}</td>
+                  <td>{{tx.currencyName}}<td>
+                  <td>{{tx.txAmount}}<td>
+                  <td>{{tx.toAddress}}<td>
+                  <td>{{tx.createdOn | date}}<td>
+                  <td>{{tx.createdOn | date:'shortTime'}}</td>
                 </tr>
               </tbody>
             </table>
