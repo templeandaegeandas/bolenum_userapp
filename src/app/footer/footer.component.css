@@ -61,6 +61,10 @@ footer {
     font-family: Lato-Regular-font !important;
 }
 
+.copyright-position{
+text-align: center;
+}
+
 
 
 
@@ -98,7 +102,7 @@ footer {
 }
 
 .copyright p {
-    text-align: left;
+    /* text-align: left; */
     color: #707071;
     padding: 20px 0;
     margin-bottom: 0;

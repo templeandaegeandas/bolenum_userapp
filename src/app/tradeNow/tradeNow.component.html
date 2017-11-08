@@ -343,10 +343,12 @@
         <!-- <div class="col-sm-3 col-sm-offset-9">
           <div class="row"> -->
         <div class="col-sm-12 trade-History-Button">
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</span> 
+           | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</span> </p>
+          <!-- <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
             <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button>
-          </div>
+          </div> -->
           <!-- <div class="switchTrade">
                 <div class="switch-market" (click)="marketTradeList()">
                    <span class="market-text tradeSwith">MARKET TRADES</span>
