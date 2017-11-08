@@ -48,7 +48,7 @@ select.center-dropddown {
     border: none;
 }
 .coinNotFound{
-    color:#DB2828; 
+    color:#DB2828;
     margin-top: 3px;
 
 }
@@ -74,7 +74,7 @@ input[type="text"]{
 .border-left th{
         border-left: 1px solid lightgray;
         text-align: center;
-        
+
 }
 .table-Content td{
     text-align: center;
@@ -92,5 +92,5 @@ input[type="text"]{
     margin-top: 25px;
 }
 
-/* table */
 
+/* table */

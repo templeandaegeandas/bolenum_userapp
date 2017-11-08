@@ -5,7 +5,7 @@
 }
 
 .balance-text {
- 
+
     font-size: 21px;
     color: #b2a89b;
 }
@@ -116,7 +116,7 @@ select option{
     height: 282px;
     width: 103%;
 }
-   
+
 }
 
 .text-label-top-padding{
@@ -130,7 +130,7 @@ select option{
  .border-left th{
         border-left: 1px solid lightgray;
         text-align: center;
-        
+
 }
 .table-Content td{
     text-align: center;
@@ -159,4 +159,10 @@ select option{
         font-size: 14px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
+}
+.ellipsis {
+    max-width: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
