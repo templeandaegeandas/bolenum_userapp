@@ -5,6 +5,7 @@ import { HttpClient } from '../app.client.interceptor';
 
 @Injectable()
 export class WithdrawService {
+    pageNumber: number;
   constructor(private http: HttpClient) {
 }
      withdrawFromWallet(currencyType,code,withdrawBalanceForm) {
@@ -22,5 +23,16 @@ export class WithdrawService {
          return this.http.get("/api/v1/user/deposit?currencyType="+currencyType+"&code=" + code)
          .map(res => res.json());
      }
+
+     getListOfWithdrawlTransaction(currentPage: number, pageSize: number, sortBy: String, sortOrder: String){
+     this.pageNumber = currentPage - 1;
+     return this.http.get('/api/v1/user/withdraw/list?pageNumber='
+       + this.pageNumber + '&pageSize='
+       + pageSize + '&sortBy='
+       + sortBy + '&sortOrder='
+       + sortOrder)
+       .map(res => res.json());
+     }
+
 
 }
