@@ -16,7 +16,10 @@ export class DepositComponent implements OnInit {
   public errorCoin:boolean;
   public qrCode:boolean=true;
   public shortIfo: boolean = false;
+  public pageNumber: number;
+  public date: any = "";
   address="";
+  public txList:any;
   public coinDataValue:any;
   // public setItemValue:any;
   // public setItem:any=[
@@ -30,7 +33,7 @@ export class DepositComponent implements OnInit {
   ngOnInit() {
 
     // this.setItemValue = "BTC";
-
+    this.getListOfUserDepositTransaction();
     this.getCurrencyName();
   }
 
@@ -68,6 +71,12 @@ console.log(successData)
 
     },errorData => {
 
+    })
+  }
+
+  getListOfUserDepositTransaction() {
+      this.depositService.getListOfDepositTransaction(1,10,"createdOn","desc").subscribe(success => {
+      this.txList = success.data.content;
     })
   }
 

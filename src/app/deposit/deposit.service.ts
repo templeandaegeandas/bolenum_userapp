@@ -5,6 +5,7 @@ import { HttpClient } from '../app.client.interceptor';
 
 @Injectable()
 export class DepositService {
+    pageNumber: number;
   constructor(private http: HttpClient) { }
 
 
@@ -23,6 +24,14 @@ getCurrencyData(){
   .map(res => res.json())
 }
 
-
+getListOfDepositTransaction(currentPage: number, pageSize: number, sortBy: String, sortOrder: String){
+this.pageNumber = currentPage - 1;
+return this.http.get('/api/v1/user/deposit/list?pageNumber='
+  + this.pageNumber + '&pageSize='
+  + pageSize + '&sortBy='
+  + sortBy + '&sortOrder='
+  + sortOrder)
+  .map(res => res.json());
+}
 
 }
