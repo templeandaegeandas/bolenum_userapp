@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
+import { BeforLoginTradeNowComponent } from './beforeLoginTradeNow/beforelogin.tradeNow.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotComponent } from './forgot/forgot.component';
@@ -31,13 +32,14 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [ PrivateRouteAuthGuard ] },
-  { path: 'tradeNow', component: TradeNowComponent },
+  { path: 'tradeNow', component: TradeNowComponent, canActivate: [ PrivateRouteAuthGuard ] },
+  { path: 'tradenow', component: BeforLoginTradeNowComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'login', component: LoginComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'forgot', component: ForgotComponent, canActivate: [ PublicRouteAuthGuard ] },
   { path: 'profile', component: ProfileComponent , canActivate: [ PrivateRouteAuthGuard ] },
   { path: 'wallet', component: WalletComponent,
-    
+
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'withdraw' },
       { path: 'deposit', component: DepositComponent },

@@ -13,26 +13,26 @@
           <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-              <input id="email" type="email" class="form-control" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
+              <input id="email" type="email" class="form-control content-font-size" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
             </div>
             <span *ngIf="email.invalid && loginForm.submitted">
-            <span class="text-danger" *ngIf="email.errors.required">Please enter email</span>
-            <span class="text-danger" *ngIf="email.errors.pattern">Please enter valid email</span>
+            <span class="text-danger errorContent-font-size" *ngIf="email.errors.required">Please enter email</span>
+            <span class="text-danger errorContent-font-size" *ngIf="email.errors.pattern">Please enter valid email</span>
             </span>
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
               <span class="clearfix input-icon">
-               <input id="password" type="password" class="form-control" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
+               <input id="password" type="password" class="form-control content-font-size" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
                <img src="assets/images/view_uf.png" class="img-responsive"/>
                </span>
             </div>
             <span *ngIf="password.invalid && loginForm.submitted">
-            <span class="text-danger" *ngIf="password.errors.required">Please enter password</span>
+            <span class="text-danger errorContent-font-size" *ngIf="password.errors.required">Please enter password</span>
             </span>
             <div class="col-md-6 forgot-pass-content">
-              <a routerLink="/forgot" class="forgot-pass">Forgot Password?</a>
+              <a routerLink="/forgot" class="forgot-pass errorContent-font-size">Forgot Password?</a>
             </div>
-            <button type="submit" class="btn btn-success">login</button>
+            <button type="submit" class="btn btn-success errorContent-font-size">login</button>
           </form>
         </div>
           <div *ngIf="is2FaOn">
@@ -42,11 +42,11 @@
                 <input id="email" type="text" class="form-control" name="otp" [(ngModel)]="otp" minlength="6" maxlength="6" #twoFaOtp="ngModel" placeholder="OTP" required onlynumber>
               </div>
               <span *ngIf="twoFaOtp.invalid && otpForm.submitted">
-           <span class="text-danger" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
-              <span class="text-danger" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span><br>
+           <span class="text-danger errorContent-font-size" *ngIf="twoFaOtp.errors.required">Please enter otp</span>
+              <span class="text-danger errorContent-font-size" *ngIf="twoFaOtp.errors.minlength">Please enter valid otp</span><br>
               </span>
-              <button type="submit" class="btn btn-successver">Verify Otp</button><br>
-              <a *ngIf="twoFaOption!='GOOGLE_AUTHENTICATOR'" (click)="resend2FaOtp()" class="resend-otp">Resend Otp</a>
+              <button type="submit" class="btn btn-successver errorContent-font-size">Verify Otp</button><br>
+              <a *ngIf="twoFaOption!='GOOGLE_AUTHENTICATOR'" (click)="resend2FaOtp()" class="resend-otp errorContent-font-size ">Resend Otp</a>
             </form>
           </div>
           <!-- <div class="login-or">

@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
+/* font-family and font-size */
+.content-font-size{
+   font-family: Lato-Regular-font !important;
+    font-size: 14px !important;
+} 
 
+.errorContent-font-size{
+   font-family: Lato-Regular-font !important;
+    font-size: 13px !important;
+}
+
+
+/* font-family and fontsize */
 
 .login-content {
     margin-top: 80px;

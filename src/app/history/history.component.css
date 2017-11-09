@@ -1,7 +1,16 @@
 /*ul.dropdown-menu{
     display: block;
 }*/
+.transaction-History{
+        background-color: white;
+    padding-top: 51px;
+    /* padding-bottom: 315px; */
+}
 
+.transaction-History-Property{
+    border: 1px solid lightgray;
+    height: 299px;
+}
 .container.container-padding {
     padding-top: 60px;
     padding-bottom: 20px;
@@ -53,7 +62,8 @@ button.btn.btn-primary.dropdown-toggle {
    cursor: pointer;   
 }
 img.text-right {
-    margin-right: 18px;
+    margin-right: 14px;
+    height: 22px;
 }
 .panel-heading div {
     margin-top: -18px;
@@ -193,3 +203,18 @@ h3.panel-title {
     }
   
  }
+
+ /* font family and font size */
+ .table-Heading {
+    font-size: 16px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+ .table-content {
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+/* font family and font size */

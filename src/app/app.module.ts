@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { TradeNowComponent } from './tradeNow/tradeNow.component';
+import { BeforLoginTradeNowComponent } from './beforeLoginTradeNow/beforelogin.tradeNow.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { APP_ROUTES } from './app.routes';
@@ -61,6 +62,7 @@ export function highchartsFactory() {
     FooterComponent,
     DashboardComponent,
     TradeNowComponent,
+    BeforLoginTradeNowComponent,
     LoginComponent,
     SignUpComponent,
     ForgotComponent,
