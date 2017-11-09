@@ -14,66 +14,65 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-md-12 text-center">
-        <select class="center-dropddown drop-down-font"  [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
+        <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
 
             <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
 
           </select>
-          <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p>
+        <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p>
       </div>
-        <div *ngIf=qrCode>
-      <div class="col-md-12 text-center">
-        <div class="qrCode deposite-Content">
-          <qr-code [value]="address" [size]="100"></qr-code>
+      <div *ngIf=qrCode>
+        <div class="col-md-12 text-center">
+          <div class="qrCode deposite-Content">
+            <qr-code [value]="address" [size]="100"></qr-code>
+          </div>
         </div>
-      </div>
-      <div class="col-md-12 input-box">
-        <div class="form-group">
-          <input type="text" class="form-control deposite-Content" [disabled]="true" id="usr" [(ngModel)]="address">
+        <div class="col-md-12 input-box">
+          <div class="form-group">
+            <input type="text" class="form-control deposite-Content" [disabled]="true" id="usr" [(ngModel)]="address">
+          </div>
         </div>
-      </div>
 
 
-      <div class="col-md-12 text-center deposite-Content">
-        <!-- <span class="network">Network Fee:</span>
+        <div class="col-md-12 text-center deposite-Content">
+          <!-- <span class="network">Network Fee:</span>
         <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5 -->
-        Available Balance : <span>{{balance}}{{coinAbbreviation}}</span>
+          Available Balance : <span>{{balance}}{{coinAbbreviation}}</span>
+        </div>
       </div>
-       </div>
       <!-- <div class="col-md-12 text-center margin-button">
         <button class="genarate-button text-capitalize">Generate New Address</button>
       </div> -->
-        <!-- for table -->
-    <div class="row">
-  <div class="col-md-10 col-md-offset-1 margin-Table">
+      <!-- for table -->
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 margin-Table">
 
-   <table class="table table-striped trade-History-table border-left ">
-        <thead class="table-Head table-Heading ">
-          <tr>
-            <th>Transaction Hash</th>
-            <th>Currency</th>
-            <th>Amount</th>
-            <th>Sender Address</th>
-            <th>Date</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody class="table-content-font">
-          <tr *ngFor="let tx of txList">
-            <td>{{tx.txHash }}</td>
+          <table class="table table-striped trade-History-table border-left ">
+            <thead class="table-Head table-Heading ">
+              <tr>
+                <th>Transaction Hash</th>
+                <th>Currency</th>
+                <th>Amount</th>
+                <th>Sender Address</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody class="table-content-font">
+              <tr *ngFor="let tx of txList">
+                <td>{{tx.txHash }}</td>
+                <td>{{tx.currencyName}}</td>
+                <td>{{tx.txAmount}}</td>
+                <td>{{tx.toAddress}}</td>
+                <td>{{tx.createdOn | date}}</td>
+                <td>{{tx.createdOn | date:'shortTime'}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-            <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount}}</td>
-            <td>{{tx.toAddress}}</td>
-            <td>{{tx.createdOn | date}}</td>
-            <td>{{tx.createdOn | date:'shortTime'}}</td>
-          </tr>
-        </tbody>
-      </table>
-
-  </div>
-</div>
-    <!-- for table -->
+        </div>
+      </div>
+      <!-- for table -->
     </div>
 
 
