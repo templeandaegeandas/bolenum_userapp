@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
+.footer-font-size{
+    font-family: Lato-Regular-font !important;
+    font-size: 16px !important;
+}
 
+.footer-content-font-size{
+    font-family: Lato-Regular-font !important;
+    font-size: 15px !important;
+}
+.footerError-content-font-size{
+    font-family: Lato-Regular-font !important;
+    font-size: 13px !important;
+}
+
+.footerButton-font-size{
+    font-family: Lato-Regular-font !important;
+    font-size: 13px !important;
+}
 
 .login-content {
     margin-top: 80px;

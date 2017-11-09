@@ -1,13 +1,22 @@
 .text-image-div {
-    background-color: #f3f3f3;
-    padding-bottom: 34px;
-    padding-top: 37px;
+    /* background-color: #f3f3f3; */
+    /* padding-bottom: 34px;
+    padding-top: 37px; */
 }
+
+/* font-size-family */
+
+.table-content{
+        font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+}
+
+/* font-family-size */
 
 .balance-text {
 
-    font-size: 21px;
-    color: #b2a89b;
+    /* font-size: 21px;
+    color: #b2a89b; */
 }
 
 .top-margin-field {
@@ -15,7 +24,7 @@
 }
 
 .label-text-color {
-    color: #b2a89b;
+    /* color: #b2a89b; */
 }
 
 .red-text-color {
@@ -23,8 +32,8 @@
 }
 
 .main-div-margin {
-    margin-bottom: 76px;
-    margin-top: 38px;
+       margin-top: 70px;
+    margin-bottom: 51px;
 }
 
 .button-padding {
@@ -57,7 +66,8 @@ select.center-dropddown option {
 }
 .col-md-12.withdraw-dropdown {
     text-align: center;
-    margin-top: 94px;
+      margin-top: 75px;
+    margin-bottom: 24px;
 }
 
 select option{
@@ -75,7 +85,7 @@ select option{
 }
 .color-box {
     background-color: #FFFFFF;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
 }
 
 
@@ -92,8 +102,8 @@ select option{
   }
   .text-image-div {
     background-color: #f3f3f3;
-    padding-bottom: 34px;
-    padding-top: 37px;
+    /* padding-bottom: 34px;
+    padding-top: 37px; */
   }
   .main-div-margin {
     margin-bottom: 0px;
@@ -154,6 +164,37 @@ select option{
     font-weight: 100!important;
 }
 
+.withdraw-heading{
+     font-size: 15px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+  
+}
+
+.input-field-withdraw{
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+
+}
+
+.drop-down-font{
+
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+
+}
+
+.error-message-font{
+     font-size: 13px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+.button-font {
+    font-family: Lato-Regular-font !important;
+    font-size: 12px !important;
+}
 
 .table-Heading{
         font-size: 14px !important;
@@ -181,7 +222,8 @@ select option{
 }
 
 .tranction-Table tbody td, .tranction-Table thead th {
-    width: 170px;
+    width: 216px;
+    padding: 3px;
 }
 /* for sell and buy table */
 

@@ -240,14 +240,32 @@
                             <p *ngIf="!isMobileEdit" class="text-icon profile-font content-font-size">{{mobileNumber}}</p>
                             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
                               <div class="phone_number-margin">
-                                <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode"
+
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode"
+                                          required onlynumber disabled>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
+                                          required onlynumber>
+                                        <span *ngIf="number.invalid && mobileForm.submitted">
+                                       <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
+                                       </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode"
                                   required onlynumber disabled>
-                              </div>
-                              <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
+                                   <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
                                 required onlynumber>
                               <span *ngIf="number.invalid && mobileForm.submitted">
                                        <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
-                                       </span>
+                                       </span> -->
+                              </div>
                               <button type="submit" class="btn btn-successsave profile-font butoon-font ">Save Mobile Number</button>
                             </form>
                             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">

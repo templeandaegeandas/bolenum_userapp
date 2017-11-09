@@ -57,7 +57,8 @@ input[type="text"]{
 }
 .deposit-bg-color{
     background-color: white;
-        padding-bottom: 57px;
+       padding-bottom: 57px;
+    padding-top: 26px;
 }
 .deposit-container-padding{
     margin-top: 67px;
@@ -93,4 +94,21 @@ input[type="text"]{
 }
 
 
-/* table */
+/*  font-family and font size*/
+.table-Heading {
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
+}
+
+.drop-down-font {
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+}
+
+.deposite-Content {
+    font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+}
