@@ -19,6 +19,13 @@ export class WithdrawComponent implements OnInit {
   loading = false;
 
   txList: any;
+
+
+  public beforeLogin: boolean = true;
+  public afterLogin: boolean = false;
+  options: any;
+
+  
   withdrawForm = new WithdrawAmount();
 
 
@@ -36,9 +43,9 @@ export class WithdrawComponent implements OnInit {
     this.withdrawService.withdrawFromWallet(c.currencyType,c.currencyAbbreviation,this.withdrawForm).subscribe(success => {
       console.log(success);
       this.ngOnInit();
+      form.form.reset();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
-      form.reset();
     }, error => {
       console.log(error);
       this.loading = false;

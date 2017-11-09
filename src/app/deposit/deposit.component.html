@@ -51,11 +51,12 @@
    <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
         <thead class="table-Head ">
           <tr>
-            <th>Tranaction Hash</th>
+            <th>Transaction Hash</th>
             <th>Currency</th>
             <th>Amount</th>
-            <th>Reciever Adddress</th>
+            <th>Sender Address</th>
             <th>Date</th>
+            <th>Time</th>
           </tr>
         </thead>
         <tbody class="table-content-font">
@@ -63,7 +64,7 @@
             <td>{{tx.txHash }}</td>
             <td>{{tx.currencyName}}<td>
             <td>{{tx.txAmount}}<td>
-            <td>{{tx.toAddress}}<td>
+            <td>{{tx.fromAddress}}<td>
             <td>{{tx.createdOn | date}}<td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
