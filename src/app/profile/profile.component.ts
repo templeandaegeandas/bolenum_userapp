@@ -319,9 +319,13 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
+      if (event.target.files[0].size > 1024*1024*10) {
+        this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
+        return;
+      }
       let fileName = event.target.files[0].name;
       let dot = fileName.lastIndexOf(".")
-      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
         this.nationalIdPdf = false;
         var reader = new FileReader();
@@ -441,7 +445,7 @@ export class ProfileComponent implements OnInit {
   }
 
   validateExtension(fileName) {
-    let dot = fileName.lastIndexOf(".")
+    let dot = fileName.lastIndexOf(".").toLowerCase();
     let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
     if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
       return false;
@@ -471,9 +475,13 @@ export class ProfileComponent implements OnInit {
 
   readUrlAddress(event) {
     if (event.target.files && event.target.files[0]) {
+      if (event.target.files[0].size > 1024*1024*10) {
+        this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
+        return;
+      }
       let fileName = event.target.files[0].name;
       let dot = fileName.lastIndexOf(".")
-      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension == "png" || extension == "jpeg" || extension == "jpg") {
         this.addressPdf = false;
         var reader = new FileReader();
@@ -536,11 +544,15 @@ export class ProfileComponent implements OnInit {
 
   onChange(event) {
     if (event.target.files && event.target.files[0]) {
+      if (event.target.files[0].size > 1024*1024*10) {
+        this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
+        return;
+      }
       var image: any = new Image();
       var file: File = event.target.files[0];
       let fileName = event.target.files[0].name;
       let dot = fileName.lastIndexOf(".")
-      let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+      let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension != "png" && extension != "jpeg" && extension != "jpg") {
         this.toastrService.error("Please choose a valid image with extension jpg, jpeg, png!", "Error!");
         return;

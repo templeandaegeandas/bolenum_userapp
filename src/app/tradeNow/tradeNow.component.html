@@ -207,7 +207,7 @@
           </div>
           <!-- table 1 -->
           <div class=" table-responsive sell-Buy-table ">
-          
+
             <table class=" table table-striped table-color tradeSubheading-fontSze-fontFamily ">
               <thead>
                 <tr>
@@ -226,7 +226,7 @@
                 </tr>
               </tbody>
             </table>
-           
+
           </div>
         </div>
         <!-- test -->
@@ -343,7 +343,7 @@
         <!-- <div class="col-sm-3 col-sm-offset-9">
           <div class="row"> -->
         <div class="col-sm-12 trade-History-Button">
-          <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</span> 
+          <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</span>
            | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</span> </p>
           <!-- <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
@@ -434,44 +434,12 @@
       <div class="modal-content">
         <div class="modal-header trade-pop-upheader">
           <button type="button" class="close" (click)="hideModel()">&times;</button>
-          <h4 class="modal-title confirm-order">Continue With Your {{order.orderType}} Order.</h4>
+          <h4 class="modal-title confirm-order">Order Confirmation</h4>
         </div>
         <div class="modal-body">
           <!-- <p>Some text in the modal.</p> -->
           <div class="row">
-            <div class="col-sm-12">
-              <div class="row confirm-Order-Label">
-                <div class="col-sm-3 col-sm-offset-1">
-                  <label>Amount</label>
-                </div>
-                <div class="col-sm-8">
-                  {{order.volume}} {{firstCurrency}}
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="row confirm-Order-Label">
-                <div class="col-sm-3 col-sm-offset-1">
-                  <label>Price</label>
-                </div>
-                <div class="col-sm-8">
-                  {{order.price}} {{secondCurrency}}
-                </div>
-              </div>
-
-              <!-- <p>Price</p>{{order.price}} {{secondCurrency}} -->
-            </div>
-            <div class="col-sm-12">
-              <div class="row confirm-Order-Label">
-                <div class="col-sm-3 col-sm-offset-1">
-                  <label>Total Price</label>
-                </div>
-                <div class="col-sm-8">
-                  {{order.volume * order.price}} {{secondCurrency}}
-                </div>
-              </div>
-              <!-- <p>Total Price</p>{{order.volume * order.price}} {{secondCurrency}} -->
-            </div>
+            You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.
           </div>
         </div>
         <div class="modal-footer">
