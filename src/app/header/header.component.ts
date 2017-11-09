@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       if (message == "upload") {
         setTimeout(()=> {
           this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random()
-        }, 500);
+        }, 1000);
       }
     });
     if (localStorage.getItem("profilePic") != null) {
