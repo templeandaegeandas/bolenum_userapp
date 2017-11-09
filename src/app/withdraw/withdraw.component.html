@@ -59,7 +59,8 @@
         </form>
         <!-- for table -->
         <div class="row">
-          <div class="col-md-10 col-md-offset-1 margin-Table">
+          <div class="col-md-12 margin-Table">
+            <div class="tranction-Table">
             <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
               <thead class="table-Head ">
                 <tr>
@@ -73,15 +74,16 @@
               </thead>
               <tbody class="table-content-font">
                 <tr *ngFor="let tx of txList">
-                  <td>{{tx.txHash}}</td>
+                  <td class="ellipsis" title="{{tx.txHash}}">{{tx.txHash}}</td>
                   <td>{{tx.currencyName}}<td>
                   <td>{{tx.txAmount}}<td>
-                  <td>{{tx.toAddress}}<td>
+                  <td class="ellipsis" title="{{tx.toAddress}}">{{tx.toAddress}}<td>
                   <td>{{tx.createdOn | date}}<td>
                   <td>{{tx.createdOn | date:'shortTime'}}</td>
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
         <!-- for table -->

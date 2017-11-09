@@ -12,7 +12,7 @@
     margin-left: 0px;
     width: 100%;
     margin-right: 0px;
-   margin: 0; 
+   margin: 0;
 }
 img.wallet-image {
     position: absolute;
@@ -51,50 +51,50 @@ img.wallet-image {
 }
 .tab-wallet .img1{
    background-repeat: no-repeat;
-   background-position: center; 
+   background-position: center;
    background-image: url("/assets/images/bitcoin_withdraw_uf.png")
 
   }
   .tab-wallet .img2{
   background-repeat: no-repeat;
-   background-position: center; 
+   background-position: center;
   background-image: url("/assets/images/bitcoin_withdraw_ufpng.png")
   }
 .tab-wallet .img3{
   background-repeat: no-repeat;
-   background-position: center; 
+   background-position: center;
   background-image: url("/assets/images/history_uf.png")
   }
 .tab-wallet.active .img1{
   background-repeat: no-repeat;
-   background-position: center; 
+   background-position: center;
   background-image: url("/assets/images/bitcoin_withdraw.png")
 
   }
   .tab-wallet.active .img2{
   background-repeat: no-repeat;
-   background-position: center; 
+   background-position: center;
   background-image: url("/assets/images/bitcoin_withdraw_fpng.png")
   }
   .tab-wallet.active .img3{
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
   background-image: url("/assets/images/history_f.png")
   }
- 
+
  p.wallet.text-center {
     color: #747474;
     font-size: 18px;
     font-weight: 500;
 }
- 
+
 
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){
   .container.wallet-contain {
     width: 100%;
    }
-    
+
 img.wallet-image {
     position: absolute;
     max-width: 37%;
@@ -124,3 +124,5 @@ img.wallet-image {
      margin-right: 0px;
     margin-left: 0px;
  }
+
+ 
