@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
+/* font-family and font-size */
+.signUpHeading-font-size{
+   font-family: Lato-Regular-font !important;
+    font-size: 15px !important;
+} 
 
+.content-font-size{
+   font-family: Lato-Regular-font !important;
+    font-size: 14px !important;
+} 
+
+.errorContent-font-size{
+   font-family: Lato-Regular-font !important;
+    font-size: 13px !important;
+}
+
+
+/* font-family and fontsize */
 
 .login-content {
     margin-top: 80px;
@@ -19,7 +36,7 @@ img.img-login {
     display: table;
     border-collapse: separate;
     margin: 11px;
-   font-family: Lato;
+   /* font-family: Lato; */
 
 }
 img.img-header {
@@ -36,7 +53,7 @@ img.img-header {
     text-align: left;
     color: #ca1c09;
     text-transform: uppercase;
-    font-size: 15px;
+    /* font-size: 15px; */
 
 }
 
@@ -47,7 +64,7 @@ img.img-header {
 
   .input-group input {
     height: 41px;
-    font-size: 15px;
+    /* font-size: 15px; */
 }
   .input-icon{
     position: relative;
@@ -72,7 +89,7 @@ img.img-header {
     width: 320px;
     background-color:  #DB2828;
     border-color:  #DB2828;
-    font-family: Lato;
+    /* font-family: Lato; */
     margin-left: 15px;
     margin-top: 11px;
     outline:none;
@@ -93,7 +110,7 @@ span.condition {
 h4.create-text {
     margin: 12px;
     text-transform: uppercase;
-    font-size: 18px;
+    /* font-size: 18px; */
     color:#DB2828;
 }
 .input-group {
@@ -103,7 +120,7 @@ h4.create-text {
     padding: 4px;
     border-collapse: separate;
     margin: 11px;
-    font-family: Lato;
+    /* font-family: Lato; */
 }
 
 .checkbox {
