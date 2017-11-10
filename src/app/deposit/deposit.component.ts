@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {QRCodeComponent} from 'angular2-qrcode';
 import { DepositService } from './deposit.service';
 import { ToastrService } from 'toastr-ng2';
+import { AppEventEmiterService } from '../app.event.emmiter.service';
 @Component({
   selector: 'app-deposit',
   templateUrl: './deposit.component.html',
   styleUrls: ['./deposit.component.css'],
-   providers: [DepositService]
+   providers: [DepositService,AppEventEmiterService]
+
 })
 export class DepositComponent implements OnInit {
   public coinAbbreviation:any;
@@ -21,6 +23,7 @@ export class DepositComponent implements OnInit {
   address="";
   public txList:any;
   public coinDataValue:any;
+
   // public setItemValue:any;
   // public setItem:any=[
   //                       { coinValue:"BTC"},
@@ -28,7 +31,14 @@ export class DepositComponent implements OnInit {
   //                       { coinValue:"BOLENO"}
   //                     ];
 
-  constructor( private depositService:DepositService,private toastrService: ToastrService)  { }
+  constructor( private depositService:DepositService,private appEventEmiterService:AppEventEmiterService,private toastrService: ToastrService) {
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "DEPOSIT_NOTIFICATION") {
+           this.getListOfUserDepositTransaction();
+      }
+    });
+  }
+
 
   ngOnInit() {
 
@@ -67,7 +77,6 @@ console.log(successData)
       console.log("data>>>>>>>>>>>>>>>>>>>>", this.currencyData,this.currencyData[0].currencyName);
       this.setItemValue = this.currencyData[0].currencyAbbreviation;
       this.getCoin(this.setItemValue);
-
 
     },errorData => {
 
