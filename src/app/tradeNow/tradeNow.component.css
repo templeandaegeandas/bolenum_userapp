@@ -849,3 +849,15 @@ table thead tr th {
         padding-left: 17px;
     padding-top: 11px;
 }
+
+.hasTableData{
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 8px;
+     font-size: 14px !important;
+    font-family: Lato-Regular-font !important;
+}
+
+.message-padding{
+    padding-left: 10px;
+}

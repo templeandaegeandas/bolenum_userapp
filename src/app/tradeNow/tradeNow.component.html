@@ -319,6 +319,7 @@
               <td>{{orders.price * orders.volume}}</td>
               <td>{{orders.createdOn | date}}</td>
             </tr>
+            <div *ngIf = "!orders" class="hasTableData"><p>You have no open orders . . . !</p></div>
           </tbody>
         </table>
       </div>
@@ -386,12 +387,16 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
             </tr>
-            <tr class="more-details">
+            <!-- <tr class="more-details">
               <div>
                 <a href=""> More... </a>
-                <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
+               
               </div>
-            </tr>
+            </tr> -->
+              <div *ngIf = "!tx" >
+                <p class="hasTableData" > No trades . . . !</p>
+                <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+              </div>
           </tbody>
         </table>
       </div>
@@ -421,6 +426,10 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
             </tr>
+             <div *ngIf = "!tx" >
+                <p class="hasTableData" > No trades . . . !</p>
+                <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+              </div>
           </tbody>
         </table>
       </div>

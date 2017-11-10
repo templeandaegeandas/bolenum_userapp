@@ -21,6 +21,7 @@ export class TradeNowComponent implements OnInit {
   public myTradeColor:boolean = false;
   public beforeActiveMarket:boolean = false;
   public beforeActiveMyTrade:boolean = true;
+  orders: any;
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
