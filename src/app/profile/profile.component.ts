@@ -445,8 +445,8 @@ export class ProfileComponent implements OnInit {
   }
 
   validateExtension(fileName) {
-    let dot = fileName.lastIndexOf(".").toLowerCase();
-    let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+    let dot = fileName.lastIndexOf(".");
+    let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
     if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
       return false;
     }
