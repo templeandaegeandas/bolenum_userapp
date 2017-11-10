@@ -438,8 +438,10 @@
         </div>
         <div class="modal-body">
           <!-- <p>Some text in the modal.</p> -->
-          <div class="row">
-            You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.
+          <div class="row ">
+            <div class="col-sm-12">
+            <span>You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.</span>
+          </div>
           </div>
         </div>
         <div class="modal-footer">
