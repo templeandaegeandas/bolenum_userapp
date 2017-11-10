@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
 
     options :any;
     public tradingCountData:any;
+    public totalNumberOfTrading : any;
+    public totalNumberOfBuy:any;
+    public totalNumberOfSell:any;
   constructor( private router: Router,private dashBoardService:DashBoardService) {
     this.options = {
            chart: {
@@ -89,8 +92,10 @@ export class DashboardComponent implements OnInit {
   getTradingCountofUser(){
 
     this.dashBoardService.getUserTradingCount().subscribe(successData => {
-    this.tradingCountData = successData.data;
-     console.log("successData.data >>>>>>>>"+successData.data);
+    this.totalNumberOfTrading = successData.data.totalNumberOfTrading;
+    this.totalNumberOfBuy=successData.data.totalNumberOfBuy;
+    this.totalNumberOfSell=successData.data.totalNumberOfSell;
+
     },errorData => {
 
     })
