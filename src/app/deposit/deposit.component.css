@@ -57,8 +57,8 @@ input[type="text"]{
 }
 .deposit-bg-color{
     background-color: white;
-       padding-bottom: 57px;
-    padding-top: 26px;
+       padding-bottom: 0px;
+    padding-top: 65px;
 }
 .deposit-container-padding{
     margin-top: 67px;
@@ -111,4 +111,39 @@ input[type="text"]{
     font-size: 14px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
+}
+
+/* for depositetable */
+.deposite-Table table {
+
+    border-spacing: 0;
+}
+
+.deposite-Table tbody, .deposite-Table thead tr { display: block; }
+
+.deposite-Table tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.deposite-Table tbody td, .deposite-Table thead th {
+    width: 216px;
+    padding: 3px;
+}
+/* for depositiable table */
+
+.ellipsis {
+    max-width: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.td-widthForSenderAddress{
+        padding-left: 25px !important;
+}
+
+.td-widthForTransactionAddress{
+       padding-left: 11px !important;
 }

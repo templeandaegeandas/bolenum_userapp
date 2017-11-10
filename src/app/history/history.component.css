@@ -3,7 +3,7 @@
 }*/
 .transaction-History{
         background-color: white;
-    padding-top: 51px;
+    padding-top: 21px;
     /* padding-bottom: 315px; */
 }
 
@@ -218,3 +218,28 @@ h3.panel-title {
 }
 
 /* font family and font size */
+
+/* for depositetable */
+.history-Table table {
+
+    border-spacing: 0;
+}
+
+.history-Table tbody, .history-Table thead tr { display: block; }
+
+.history-Table tbody {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.history-Table tbody td, .history-Table thead th {
+    width: 216px;
+    padding: 3px;
+    
+}
+
+ .history-Table thead th{
+        font-weight: bold !important;
+}
+/* for depositiable table */

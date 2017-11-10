@@ -217,12 +217,12 @@
                   <th>Total {{firstCurrency}}</th>
                 </tr>
               </thead>
-              <tbody class="table-content-font">
+              <tbody class="table-content-font trade-table-cursor">
                 <tr *ngFor="let buyOrder of buyOrderList">
-                  <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
-                  <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
-                  <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
-                  <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
                 </tr>
               </tbody>
             </table>
@@ -249,10 +249,10 @@
               </thead>
               <tbody class="table-content-font">
                 <tr *ngFor="let sellOrder of sellOrderList">
-                  <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume}}</td>
-                  <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
-                  <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
-                  <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
                 </tr>
               </tbody>
             </table>
@@ -293,7 +293,7 @@
   <!-- BTC Exchange -->
   <!-- my orders page -->
   <div class="row">
-    <div class="col-sm-12 myOrder-Table-margin">
+    <div class="col-sm-10 col-sm-offset-1 myOrder-Table-margin">
       <div class="row">
         <div class="col-sm-12 trade-history-heading">
           <span class="tradeSubheading-fontSze-fontFamily">MY OPEN ORDERS</span>
@@ -329,7 +329,7 @@
 
   <!-- trade history page -->
   <div class="row">
-    <div class="col-sm-12  tradeHistory-Table-margin">
+    <div class="col-sm-10 col-sm-offset-1  tradeHistory-Table-margin">
       <div class="row">
         <div class="col-sm-12">
           <div class="trade-history-heading">
@@ -438,8 +438,10 @@
         </div>
         <div class="modal-body">
           <!-- <p>Some text in the modal.</p> -->
-          <div class="row">
-            You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.
+          <div class="row ">
+            <div class="col-sm-12">
+            <span>You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.</span>
+          </div>
           </div>
         </div>
         <div class="modal-footer">

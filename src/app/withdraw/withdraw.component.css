@@ -227,4 +227,12 @@ select option{
 }
 /* for sell and buy table */
 
+.td-widthForReceiverAddress{
+        padding-left: 25px !important;
+}
+
+.td-widthForTransactionAddress{
+       padding-left: 11px !important;
+}
+
 .ellipsis {    max-width: 40px;    text-overflow: ellipsis;    overflow: hidden;    white-space: nowrap;}
