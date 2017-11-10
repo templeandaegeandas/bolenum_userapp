@@ -25,7 +25,7 @@ export class WithdrawComponent implements OnInit {
   public afterLogin: boolean = false;
   options: any;
 
-  
+
   withdrawForm = new WithdrawAmount();
 
 
