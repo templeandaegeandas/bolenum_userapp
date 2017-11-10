@@ -251,6 +251,9 @@
                                       <div class="col-sm-9">
                                         <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
                                           required onlynumber>
+                                          <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
+                                         <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
+                                         </span>
                                         <span *ngIf="number.invalid && mobileForm.submitted">
                                        <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
                                        </span>
