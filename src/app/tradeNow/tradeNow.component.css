@@ -842,4 +842,6 @@ table thead tr th {
         cursor: pointer;
 }
     
-
+.trade-table-cursor {
+    cursor: pointer;
+}
