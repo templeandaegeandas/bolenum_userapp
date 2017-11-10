@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   public isOn:boolean = true;
   public nationalIds: string;
   public documentType: string;
-  public varificationName: string = "Enter Mobile Number";
+  public varificationName: string = "Mobile Number";
   public userFirstName: string;
   public userLastName: string;
   public isCustomerView: boolean = true;
@@ -171,7 +171,7 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = false;
     this.isOtpEdit = false;
     this.twoFactorAuthType = 'NONE';
-    this.varificationName = "";
+    this.varificationName = "Mobile Number";
     this.addPopup.hide();
   }
 
@@ -180,6 +180,7 @@ export class ProfileComponent implements OnInit {
     this.isOff = true;
     if (event) {
       this.addPopup.show();
+      this.varificationName = "Mobile Number";
       if (this.qrCodeFileName == null) {
         this.profileService.generate2faQrCode().subscribe(success => {
           this.qrCodeFileName = environment.googleQrCodeUrl + success.data.fileName;
@@ -204,7 +205,7 @@ export class ProfileComponent implements OnInit {
 
     this.isMobileEdit = false;
     this.twoFactorAuthType = 'NONE';
-    this.varificationName = "Enter Mobile Number";
+    this.varificationName = "Mobile Number";
 
   }
 
@@ -249,6 +250,7 @@ export class ProfileComponent implements OnInit {
   saveMobile(form) {
     this.varificationName = "Enter OTP"
     if (form.invalid) return;
+    if (this.mobileNumber=='') return;
     if (this.countryCode==null) {
       this.toastrService.error("Please choose country and fill profile first!", "Error!");
       return;
@@ -445,8 +447,8 @@ export class ProfileComponent implements OnInit {
   }
 
   validateExtension(fileName) {
-    let dot = fileName.lastIndexOf(".").toLowerCase();
-    let extension = (dot == -1) ? "" : fileName.substring(dot + 1);
+    let dot = fileName.lastIndexOf(".");
+    let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
     if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
       return false;
     }
