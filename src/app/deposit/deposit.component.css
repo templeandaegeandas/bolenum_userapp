@@ -139,3 +139,11 @@ input[type="text"]{
     overflow: hidden;
     white-space: nowrap;
 }
+
+.td-widthForSenderAddress{
+        padding-left: 25px !important;
+}
+
+.td-widthForTransactionAddress{
+       padding-left: 11px !important;
+}

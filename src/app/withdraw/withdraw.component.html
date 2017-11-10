@@ -79,10 +79,10 @@
               </thead>
               <tbody >
                 <tr *ngFor="let tx of txList" class="table-content-font">
-                  <td class="ellipsis" title="{{tx.txHash}}">{{tx.txHash}}</td>
+                  <td class="ellipsis td-widthForTransactionAddress" title="{{tx.txHash}}">{{tx.txHash}}</td>
                   <td>{{tx.currencyName}}</td>
                   <td>{{tx.txAmount}}</td>
-                  <td class="ellipsis" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
+                  <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
                   <td>{{tx.createdOn | date}}</td>
                   <td>{{tx.createdOn | date:'shortTime'}}</td>
                 </tr>

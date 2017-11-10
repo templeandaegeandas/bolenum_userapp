@@ -50,7 +50,7 @@
             <table class="table table-striped trade-History-table border-left ">
               <thead class="table-Head table-Heading ">
                 <tr>
-                  <th>Transaction Hash</th>
+                  <th class="">Transaction Hash</th>
                   <th>Currency</th>
                   <th>Amount</th>
                   <th>Sender Address</th>
@@ -60,10 +60,10 @@
               </thead>
               <tbody class="table-content-font">
                 <tr *ngFor="let tx of txList">
-                  <td class="ellipsis">{{tx.txHash }}</td>
+                  <td class="ellipsis td-widthForTransactionAddress">{{tx.txHash }}</td>
                   <td>{{tx.currencyName}}</td>
                   <td>{{tx.txAmount}}</td>
-                  <td class="ellipsis">{{tx.toAddress}}</td>
+                  <td class="ellipsis td-widthForSenderAddress">{{tx.toAddress}}</td>
                   <td>{{tx.createdOn | date}}</td>
                   <td>{{tx.createdOn | date:'shortTime'}}</td>
                 </tr>
