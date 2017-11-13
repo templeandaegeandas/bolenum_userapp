@@ -23,7 +23,7 @@ export class DepositComponent implements OnInit {
   address="";
   public txList:any;
   public coinDataValue:any;
-
+  isCopied: boolean = false;
   // public setItemValue:any;
   // public setItem:any=[
   //                       { coinValue:"BTC"},
@@ -82,5 +82,4 @@ export class DepositComponent implements OnInit {
       this.txList = success.data.content;
     })
   }
-
 }
