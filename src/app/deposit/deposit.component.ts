@@ -45,10 +45,11 @@ export class DepositComponent implements OnInit {
     this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe( success => {
-      if(success.data!=null) {
-        this.address = success.data.address;
-        this.balance = success.data.balance+" "+data;
-        this.coinAbbreviation = success.data.coinAbbreviation;
+      let successData = success.data;
+      if(successData.data!=null) {
+        this.address = successData.data.address;
+        this.balance = successData.data.balance+" "+data;
+        this.coinAbbreviation = successData.data.coinAbbreviation;
       }
        this.qrCode = true;
         this.errorCoin =false;
