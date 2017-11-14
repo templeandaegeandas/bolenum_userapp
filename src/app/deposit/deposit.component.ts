@@ -7,7 +7,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
   selector: 'app-deposit',
   templateUrl: './deposit.component.html',
   styleUrls: ['./deposit.component.css'],
-   providers: [DepositService,AppEventEmiterService]
+   providers: [DepositService]
 
 })
 export class DepositComponent implements OnInit {
@@ -23,7 +23,7 @@ export class DepositComponent implements OnInit {
   address="";
   public txList:any;
   public coinDataValue:any;
-
+  isCopied: boolean = false;
   // public setItemValue:any;
   // public setItem:any=[
   //                       { coinValue:"BTC"},
@@ -41,22 +41,19 @@ export class DepositComponent implements OnInit {
 
 
   ngOnInit() {
-
     // this.setItemValue = "BTC";
     this.getListOfUserDepositTransaction();
     this.getCurrencyName();
   }
 
   getCoin(data){
-    console.log("select value >>>>>>>>>>>>>>>>>>",data);
+
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe( successData => {
       let data = successData.data;
       this.address = data.data.address;
       this.balance = data.data.balance;
       this.coinAbbreviation = data.data.coinAbbreviation;
-      console.log("abberiviation >>>>>>>>>>>>>>>>>>", this.coinAbbreviation);
-
        this.qrCode = true;
         this.errorCoin =false;
 
@@ -71,10 +68,7 @@ export class DepositComponent implements OnInit {
 
   getCurrencyName(){
     this.depositService.getCurrencyData().subscribe(successData => {
-console.log(successData)
-      console.log("currency list >>>>>>",successData.data);
       this.currencyData = successData.data;
-      console.log("data>>>>>>>>>>>>>>>>>>>>", this.currencyData,this.currencyData[0].currencyName);
       this.setItemValue = this.currencyData[0].currencyAbbreviation;
       this.getCoin(this.setItemValue);
 
@@ -88,5 +82,4 @@ console.log(successData)
       this.txList = success.data.content;
     })
   }
-
 }

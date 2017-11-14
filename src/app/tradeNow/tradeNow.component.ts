@@ -23,7 +23,8 @@ export class TradeNowComponent implements OnInit {
   public marketTradeColor:boolean = true;
   public myTradeColor:boolean = false;
   public beforeActiveMarket:boolean = false;
-  public beforeActiveMyTrade:boolean = true; 
+  public beforeActiveMyTrade:boolean = true;
+  orders: any;
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
@@ -60,14 +61,6 @@ export class TradeNowComponent implements OnInit {
   public beforeLogin: boolean = true;
   public afterLogin: boolean = false;
   options: any;
-
-
-
-
-
-
-
-
 
 
   constructor(
@@ -155,16 +148,6 @@ export class TradeNowComponent implements OnInit {
     };
 
   }
-
-
-
-
-
-
-
-
-
-
 
 
 

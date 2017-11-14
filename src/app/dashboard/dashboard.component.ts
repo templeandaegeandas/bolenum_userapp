@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { DashBoardService } from './dashboard.service';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [DashBoardService]
 })
 export class DashboardComponent implements OnInit {
 
     options :any;
-  constructor( private router: Router) {
+    public tradingCountData:any;
+    public totalNumberOfTrading : any;
+    public totalNumberOfBuy:any;
+    public totalNumberOfSell:any;
+  constructor( private router: Router,private dashBoardService:DashBoardService) {
     this.options = {
            chart: {
         type: 'areaspline'
@@ -80,7 +86,20 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
-
+     this.getTradingCountofUser();
   }
+
+  getTradingCountofUser(){
+
+    this.dashBoardService.getUserTradingCount().subscribe(successData => {
+    this.totalNumberOfTrading = successData.data.totalNumberOfTrading;
+    this.totalNumberOfBuy=successData.data.totalNumberOfBuy;
+    this.totalNumberOfSell=successData.data.totalNumberOfSell;
+
+    },errorData => {
+
+    })
+  }
+
 
 }
