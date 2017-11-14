@@ -152,7 +152,7 @@ export class TradeNowComponent implements OnInit {
     this.isLogIn();
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
-    this.getMarketPrice();
+    //this.getMarketPrice();
     this.getCurrencyList();
     this.getAllTradedOrders();
     this.getMyOrdersFromBook();
@@ -175,11 +175,11 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getMarketPrice() {
+  /*getMarketPrice() {
     this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
       this.marketPrice = success.data.priceBTC;
     })
-  }
+  }*/
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
@@ -241,6 +241,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
+      this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
       let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
