@@ -46,9 +46,9 @@ export class DepositComponent implements OnInit {
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe( success => {
       if(success.data!=null) {
-        this.address = data.data.address;
-        this.balance = data.data.balance+" "+data;
-        this.coinAbbreviation = data.data.coinAbbreviation;
+        this.address = success.data.address;
+        this.balance = success.data.balance+" "+data;
+        this.coinAbbreviation = success.data.coinAbbreviation;
       }
        this.qrCode = true;
         this.errorCoin =false;
