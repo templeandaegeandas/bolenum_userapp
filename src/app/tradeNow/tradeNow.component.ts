@@ -262,12 +262,12 @@ export class TradeNowComponent implements OnInit {
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
     this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance;
+      this.firstCurrencyBal = success.data.data.balance+" "+this.firstCurrency;
     }, error => {
       this.firstCurrencyBal = "0.0 " + this.firstCurrency;
     })
     this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
-      this.secondCurrencyBal = success.data.data.balance;
+      this.secondCurrencyBal = success.data.data.balance+" "+this.secondCurrency;
     }, error => {
       this.secondCurrencyBal = "0.0 " + this.secondCurrency;
     })

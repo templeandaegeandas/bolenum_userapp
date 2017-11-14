@@ -67,11 +67,13 @@ export class WithdrawComponent implements OnInit {
   getCoin(data) {
     this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
-    this.withdrawService.getCoin(c.currencyType, data).subscribe(successData => {
-      let data = successData.data;
-      this.address = data.data.address;
-      this.balance = data.data.balance;
-      this.coinAbbreviation = data.data.coinAbbreviation;
+    this.withdrawService.getCoin(c.currencyType, data).subscribe(success => {
+      let successData = success.data;
+      if(successData.data!=null) {
+        this.address = successData.data.address;
+        this.balance = successData.data.balance+" "+data;
+        this.coinAbbreviation = successData.data.coinAbbreviation;
+      }
       this.loading = false;
     }, errorData => {
       this.getCoin(data);
