@@ -24,6 +24,8 @@ export class DepositComponent implements OnInit {
   public txList:any;
   public coinDataValue:any;
   loading = false;
+  isCopied: boolean = false;
+
 
   constructor( private depositService:DepositService,private appEventEmiterService:AppEventEmiterService,private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
@@ -74,5 +76,4 @@ export class DepositComponent implements OnInit {
       this.txList = success.data.content;
     })
   }
-
 }

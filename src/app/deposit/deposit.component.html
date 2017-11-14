@@ -29,14 +29,15 @@
         </div>
         <div class="col-md-12 input-box">
           <div class="form-group">
-            <input type="text" class="form-control deposite-Content" [disabled]="true" id="usr" [(ngModel)]="address">
+
+            <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  > <button class="btn btn-default" [class.btn-success]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>
           </div>
         </div>
 
       <div class="col-md-12 text-center deposite-Content">
         <!-- <span class="network">Network Fee:</span>
         <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5 -->
-          Available Balance : <span>{{balance}}{{coinAbbreviation}}</span>
+          Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
         </div>
       </div>
       <!-- <div class="col-md-12 text-center margin-button">

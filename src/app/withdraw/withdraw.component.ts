@@ -75,6 +75,7 @@ export class WithdrawComponent implements OnInit {
       this.loading = false;
     }, errorData => {
       this.getCoin(data);
+      this.loading = false;
     })
   }
 
