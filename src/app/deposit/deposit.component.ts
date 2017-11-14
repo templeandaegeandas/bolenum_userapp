@@ -23,13 +23,9 @@ export class DepositComponent implements OnInit {
   address="";
   public txList:any;
   public coinDataValue:any;
+  loading = false;
   isCopied: boolean = false;
-  // public setItemValue:any;
-  // public setItem:any=[
-  //                       { coinValue:"BTC"},
-  //                       { coinValue:"ETH"},
-  //                       { coinValue:"BOLENO"}
-  //                     ];
+
 
   constructor( private depositService:DepositService,private appEventEmiterService:AppEventEmiterService,private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
@@ -41,13 +37,12 @@ export class DepositComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.setItemValue = "BTC";
     this.getListOfUserDepositTransaction();
     this.getCurrencyName();
   }
 
   getCoin(data){
-
+    this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe( successData => {
       let data = successData.data;
@@ -56,12 +51,11 @@ export class DepositComponent implements OnInit {
       this.coinAbbreviation = data.data.coinAbbreviation;
        this.qrCode = true;
         this.errorCoin =false;
-
+        this.loading = false;
     },errorData => {
       this.qrCode = false;
-      // this.toastrService.error("Address for this coin is not available!", 'Error!');
       this.errorCoin =true;
-
+      this.loading = false;
     })
 
   }

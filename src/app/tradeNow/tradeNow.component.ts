@@ -185,6 +185,9 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      if(currencyId=='Undefined' || currencyId==null) {
+        this.getCurrencyList();
+      }
       this.getPair(currencyId);
     }, error => {
 
@@ -246,6 +249,8 @@ export class TradeNowComponent implements OnInit {
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
       this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
+      this.loading = false;
+    }, error => {
       this.loading = false;
     })
   }
