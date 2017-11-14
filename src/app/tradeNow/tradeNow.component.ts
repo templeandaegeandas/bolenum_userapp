@@ -15,6 +15,9 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public myTradedListLength:any;
+  public allTradedListLength:any;
+  public myOrdersInBookLength:any;
   public marketTrade: boolean = true;
   public myTrade: boolean = false;
   public marketTradeColor:boolean = true;
@@ -302,6 +305,7 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.myTradedList = success.data.content;
+      this.myTradedListLength = success.data.length;
       this.loading = false;
     }, error => {
       console.log(error);
@@ -312,6 +316,7 @@ export class TradeNowComponent implements OnInit {
   getAllTradedOrders() {
     this.tradeNowService.getAllTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.allTradedList = success.data.content;
+      this.allTradedListLength = success.data.length;
     }, error => {
       console.log(error);
     })
@@ -320,6 +325,7 @@ export class TradeNowComponent implements OnInit {
   getMyOrdersFromBook() {
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
       this.myOrdersInBook = success.data;
+      this.myOrdersInBookLength = success.data.length;
     }, error => {
       console.log(error);
     })

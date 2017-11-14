@@ -319,7 +319,7 @@
               <td>{{orders.price * orders.volume}}</td>
               <td>{{orders.createdOn | date}}</td>
             </tr>
-            <div *ngIf = "!orders" class="hasTableData"><p>You have no open orders . . . !</p></div>
+            <div *ngIf ="myOrdersInBookLength==0" class="hasTableData"><p>You have no open orders . . . !</p></div>
           </tbody>
         </table>
       </div>
@@ -387,13 +387,13 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
             </tr>
-            <!-- <tr class="more-details">
+             <!-- <tr class="more-details" *ngIf ="allTradedListAddress !=0">
               <div>
                 <a href=""> More... </a>
                
               </div>
-            </tr> -->
-              <div *ngIf = "!tx" >
+            </tr>  -->
+              <div *ngIf = "allTradedListLength==0" >
                 <p class="hasTableData" > No trades . . . !</p>
                 <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
               </div>
@@ -426,7 +426,7 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.orderStandard}}</td>
             </tr>
-             <div *ngIf = "!tx" >
+             <div *ngIf = "myTradedListLength==0" >
                 <p class="hasTableData" > No trades . . . !</p>
                 <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
               </div>
