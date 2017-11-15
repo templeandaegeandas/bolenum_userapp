@@ -398,17 +398,17 @@
             <tr>
               <th>Type</th>
               <th>Price</th>
-              <th>Amount( ETH)</th>
-              <th>Total( BTC )</th>
+              <th>Amount</th>
+              <th>Total</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody class="table-content-font">
             <tr *ngFor="let orders of myOrdersInBook">
               <td>{{orders.orderType}}</td>
-              <td>{{orders.price}}</td>
-              <td>{{orders.volume}}</td>
-              <td>{{orders.price * orders.volume}}</td>
+              <td>{{orders.price}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{orders.volume}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</td>
+              <td>{{orders.price * orders.volume}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.createdOn | date}}</td>
             </tr>
             <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
@@ -483,7 +483,7 @@
             <!-- <tr class="more-details">
               <div>
                 <a href=""> More... </a>
-               
+
               </div>
             </tr>   -->
             <div *ngIf="allTradedListLength !=0 ">

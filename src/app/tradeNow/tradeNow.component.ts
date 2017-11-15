@@ -157,7 +157,7 @@ export class TradeNowComponent implements OnInit {
     this.isLogIn();
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
-    this.getMarketPrice();
+    //this.getMarketPrice();
     this.getCurrencyList();
     this.getAllTradedOrders();
     this.getMyOrdersFromBook();
@@ -180,16 +180,19 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getMarketPrice() {
+  /*getMarketPrice() {
     this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
       this.marketPrice = success.data.priceBTC;
     })
-  }
+  }*/
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      if(currencyId=='Undefined' || currencyId==null) {
+        this.getCurrencyList();
+      }
       this.getPair(currencyId);
     }, error => {
 
@@ -246,10 +249,13 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
+      this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
       let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
       this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
+      this.loading = false;
+    }, error => {
       this.loading = false;
     })
   }
@@ -262,12 +268,12 @@ export class TradeNowComponent implements OnInit {
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
     this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance;
+      this.firstCurrencyBal = success.data.data.balance+" "+this.firstCurrency;
     }, error => {
       this.firstCurrencyBal = "0.0 " + this.firstCurrency;
     })
     this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
-      this.secondCurrencyBal = success.data.data.balance;
+      this.secondCurrencyBal = success.data.data.balance+" "+this.secondCurrency;
     }, error => {
       this.secondCurrencyBal = "0.0 " + this.secondCurrency;
     })
