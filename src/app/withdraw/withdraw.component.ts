@@ -11,6 +11,8 @@ import { ToastrService } from 'toastr-ng2';
 })
 
 export class WithdrawComponent implements OnInit {
+public hasBlur:boolean=false;
+  public isLoading:boolean=false;
   public currencyData: any;
   public setItemValue: any;
   public address: any;
@@ -82,7 +84,11 @@ export class WithdrawComponent implements OnInit {
   }
 
   getListOfUserWithdrawlTransaction() {
+    this.isLoading = true;
+     this.hasBlur = true;
     this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc").subscribe(success => {
+       this.isLoading = false;
+       this.hasBlur = false;
       this.txList = success.data.content;
     })
   }

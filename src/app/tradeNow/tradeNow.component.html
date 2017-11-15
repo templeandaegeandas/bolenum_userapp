@@ -20,7 +20,7 @@
     <div class="col-md-6 exchange-border-right ">
       <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
       <!-- for bln btc -->
-      <div class="row" *ngIf="true">
+      <div class="row" *ngIf="pairName=='BLN/NGN'">
         <div class="col-md-5 tab-margin">
           <div class="exchange-pair-text">{{pairName}}</div>
         </div>
@@ -104,7 +104,7 @@
       <!-- for bln btc -->
 
        <!-- for bln btc -->
-      <div class="row" *ngIf="pairName == false">
+      <div class="row" *ngIf="pairName == 'ETH/BTC' || 'BLN/BTC' || 'BLN/ETH'">
        
         <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
           <div class="row">
