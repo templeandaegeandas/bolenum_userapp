@@ -12,11 +12,11 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 
 export class WithdrawComponent implements OnInit {
-  public currencyData:any;
-  public setItemValue:any;
-  public address : any;
-  public balance : any;
-  public coinAbbreviation : any;
+  public currencyData: any;
+  public setItemValue: any;
+  public address: any;
+  public balance: any;
+  public coinAbbreviation: any;
   loading = false;
   txList: any;
   public beforeLogin: boolean = true;
@@ -44,7 +44,7 @@ export class WithdrawComponent implements OnInit {
     if (form.invalid) return;
     this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
-    this.withdrawService.withdrawFromWallet(c.currencyType,c.currencyAbbreviation,this.withdrawForm).subscribe(success => {
+    this.withdrawService.withdrawFromWallet(c.currencyType, c.currencyAbbreviation, this.withdrawForm).subscribe(success => {
       console.log(success);
       this.ngOnInit();
       form.form.reset();
@@ -57,38 +57,39 @@ export class WithdrawComponent implements OnInit {
     })
   }
 
-getCurrencyList() {
-
-      this.withdrawService.getCurrencyList().subscribe(success =>{
+  getCurrencyList() {
+    this.withdrawService.getCurrencyList().subscribe(success => {
       this.currencyData = success.data;
-      this.setItemValue =this.currencyData[0].currencyAbbreviation;
+      this.setItemValue = this.currencyData[0].currencyAbbreviation;
       this.getCoin(this.setItemValue);
-    },error =>{
+    }, error => {
 
     });
 
-}
+  }
 
-getCoin(data) {
+  getCoin(data) {
+    this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
-    this.withdrawService.getCoin(c.currencyType, data).subscribe( successData => {
-    let data = successData.data;
-    this.address = data.data.address;
-    this.balance = data.data.balance;
-    this.coinAbbreviation = data.data.coinAbbreviation;
+    this.withdrawService.getCoin(c.currencyType, data).subscribe(success => {
+      let successData = success.data;
+      if(successData.data!=null) {
+        this.address = successData.data.address;
+        this.balance = successData.data.balance+" "+data;
+        this.coinAbbreviation = successData.data.coinAbbreviation;
+      }
+      this.loading = false;
+    }, errorData => {
+      this.getCoin(data);
+      this.loading = false;
+    })
+  }
 
-  },errorData => {
-
-    // this.toastrService.error("Address for this coin is not available!", 'Error!');
-
-  })
-}
-
-getListOfUserWithdrawlTransaction() {
-    this.withdrawService.getListOfWithdrawlTransaction(1,10,"createdOn","desc").subscribe(success => {
-    this.txList = success.data.content;
-  })
-}
+  getListOfUserWithdrawlTransaction() {
+    this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc").subscribe(success => {
+      this.txList = success.data.content;
+    })
+  }
 
 
 

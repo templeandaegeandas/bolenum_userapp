@@ -15,6 +15,12 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public pairData:any;
+  public hasBuy:boolean = false;
+  public hasSell:boolean = false;
+  public myTradedListLength:any;
+  public allTradedListLength:any;
+  public myOrdersInBookLength:any;
   public marketTrade: boolean = true;
   public myTrade: boolean = false;
   public marketTradeColor:boolean = true;
@@ -152,7 +158,7 @@ export class TradeNowComponent implements OnInit {
     this.isLogIn();
     this.setTradingValue = "Market Order";
     this.setTradeValue("Market Order");
-    this.getMarketPrice();
+    //this.getMarketPrice();
     this.getCurrencyList();
     this.getAllTradedOrders();
     this.getMyOrdersFromBook();
@@ -175,16 +181,19 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getMarketPrice() {
+  /*getMarketPrice() {
     this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
       this.marketPrice = success.data.priceBTC;
     })
-  }
+  }*/
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      if(currencyId=='Undefined' || currencyId==null) {
+        this.getCurrencyList();
+      }
       this.getPair(currencyId);
     }, error => {
 
@@ -240,11 +249,24 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
+      // console.log("pair list>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",  this.pairList);
+      // for(let i=0; i<=this.pairList.length; i++){
+      //   if(this.pairList[i].pairName == "ETH/BTC" ){
+      //     this.pairData = this.pairList[i].pairName;
+      //     console.log("pairname >>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.pairData);
+          
+      //   }
+      // }
+      
+      
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
+      this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
       let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
       this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
+      this.loading = false;
+    }, error => {
       this.loading = false;
     })
   }
@@ -257,12 +279,12 @@ export class TradeNowComponent implements OnInit {
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
     this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance;
+      this.firstCurrencyBal = success.data.data.balance+" "+this.firstCurrency;
     }, error => {
       this.firstCurrencyBal = "0.0 " + this.firstCurrency;
     })
     this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
-      this.secondCurrencyBal = success.data.data.balance;
+      this.secondCurrencyBal = success.data.data.balance+" "+this.secondCurrency;
     }, error => {
       this.secondCurrencyBal = "0.0 " + this.secondCurrency;
     })
@@ -285,6 +307,7 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.myTradedList = success.data.content;
+      this.myTradedListLength = success.data.length;
       this.loading = false;
     }, error => {
       console.log(error);
@@ -295,6 +318,7 @@ export class TradeNowComponent implements OnInit {
   getAllTradedOrders() {
     this.tradeNowService.getAllTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.allTradedList = success.data.content;
+      this.allTradedListLength = success.data.length;
     }, error => {
       console.log(error);
     })
@@ -303,6 +327,7 @@ export class TradeNowComponent implements OnInit {
   getMyOrdersFromBook() {
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
       this.myOrdersInBook = success.data;
+      this.myOrdersInBookLength = success.data.length;
     }, error => {
       console.log(error);
     })
@@ -357,5 +382,16 @@ export class TradeNowComponent implements OnInit {
 
   }
   // method to show table of market trade and my trade
+
+showBuyOrder(){
+this.hasSell=false;
+this.hasBuy=true;
+}
+
+showSellOrder(){
+  this.hasBuy=false;
+  this.hasSell=true;
+
+}
 
 }

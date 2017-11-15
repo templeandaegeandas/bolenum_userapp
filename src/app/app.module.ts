@@ -46,6 +46,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { AppEventEmiterService } from './app.event.emmiter.service';
 import { StompService } from 'ng2-stomp-service';
+import { ClipboardModule } from 'ngx-clipboard';
+import { TradingComponent } from './trading/trading.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -82,6 +84,7 @@ export function highchartsFactory() {
     HowToUseComponent,
     PrivacyPolicyComponent,
     HistoryComponent,
+    TradingComponent,
 
   ],
   imports: [
@@ -101,6 +104,7 @@ export function highchartsFactory() {
     BsDropdownModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     ImageCropperModule,
+    ClipboardModule
 
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },

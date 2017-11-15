@@ -29,14 +29,15 @@
         </div>
         <div class="col-md-12 input-box">
           <div class="form-group">
-            <input type="text" class="form-control deposite-Content" [disabled]="true" id="usr" [(ngModel)]="address">
+
+            <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  > <button class="btn btn-default" [class.btn-success]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>
           </div>
         </div>
 
       <div class="col-md-12 text-center deposite-Content">
         <!-- <span class="network">Network Fee:</span>
         <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5 -->
-          Available Balance : <span>{{balance}}{{coinAbbreviation}}</span>
+          Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
         </div>
       </div>
       <!-- <div class="col-md-12 text-center margin-button">
@@ -45,7 +46,7 @@
         <!-- for table -->
     <div class="row">
   <div class="col-md-10 col-md-offset-1 margin-Table">
-
+<div class="deposite-Table">
    <table class="table table-striped trade-History-table border-left ">
         <thead class="table-Head table-Heading ">
           <tr>
@@ -59,16 +60,17 @@
         </thead>
         <tbody class="table-content-font">
           <tr *ngFor="let tx of txList">
-            <td>{{tx.txHash }}</td>
+            <td class="ellipsis">{{tx.txHash }}</td>
 
             <td>{{tx.currencyName}}</td>
             <td>{{tx.txAmount}}</td>
-            <td>{{tx.fromAddress}}</td>
+            <td class="ellipsis">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
         </tbody>
       </table>
+</div>
 
   </div>
 </div>
@@ -76,3 +78,4 @@
     </div>
  </div>
 </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

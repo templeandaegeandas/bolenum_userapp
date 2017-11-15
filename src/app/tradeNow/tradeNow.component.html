@@ -16,7 +16,380 @@
 <!-- for images -->
 <div class="container container-padding ">
   <div class="row tradeNow-background-img">
+    <!-- new page -->
     <div class="col-md-6 exchange-border-right ">
+      <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
+      <!-- for bln btc -->
+      <div class="row" *ngIf="true">
+        <div class="col-md-5 tab-margin">
+          <div class="exchange-pair-text">{{pairName}}</div>
+        </div>
+        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
+          <div class="row">
+            <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
+              <span class="table-heading-content">TRADE IN {{pairName}} </span>
+            </div>
+
+            <div class="col-md-12 trade-field trade-button-margin">
+              <div class="col-md-6  buy-button-left">
+                <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
+              </div>
+              <div class="col-md-6  sell-button-right">
+                <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
+              </div>
+            </div>
+            <!-- for buy section -->
+            <section *ngIf="hasBuy">
+              <div class="col-md-12 trade-field">
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="col-sm-10 padding-level">
+                      <div class="col-md-6">
+                        <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
+                      </div>
+
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" id="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="col-sm-10 padding-level">
+                      <div class="col-md-6">
+                        <label for="email tradeSubheading-fontSze-fontFamily">Your BLN Address:</label>
+                      </div>
+
+                      <div class="col-md-6">
+                        <input type="text" class="form-control" id="amount">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 padding-level margin-buy-Button">
+                    <button class="buy-button-color"  routerLink="/trading">BUY</button>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+            <!-- for buy section -->
+            <!-- for sell section -->
+            <section *ngIf="hasSell">
+              <div class="col-md-12 trade-field">
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="col-sm-10 padding-level">
+                      <div class="col-md-5">
+                        <label for="email tradeSubheading-fontSze-fontFamily">Amount of BTC:</label>
+                      </div>
+
+                      <div class="col-md-7">
+                        <input type="text" class="form-control" id="amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 padding-level margin-buttons">
+                    <button class="sell-button-color">SELL</button>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+            <!-- for sell section -->
+          </div>
+        </div>
+      </div>
+      <!-- for bln btc -->
+
+       <!-- for bln btc -->
+      <div class="row" *ngIf="pairName == false">
+       
+        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
+          <div class="row">
+            <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
+              <span class="table-heading-content">TRADE IN {{pairName}} </span>
+            </div>
+       <div class="col-md-12 total-currency-message">
+              <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
+            </div>
+            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+              <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
+                     <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
+                     </select>
+            </div>
+            <div *ngIf="isMarket">
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
+                    name="amount">
+
+
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email">Total Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
+                    id="amount" name="amount" [disabled]=true>
+
+                </div>
+
+
+              </div>
+              <div class="col-md-12 total-coin">
+                <p>Equivalent total {{secondCurrency}} price for this order</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <hr>
+
+                <p>Fee : 0%</p>
+              </div>
+
+              <div class="col-md-12 trade-field">
+                <div class="col-md-6  buy-button-left">
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                </div>
+                <div class="col-md-6  sell-button-right">
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!isMarket">
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="amount">Amount (in {{firstCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="price">Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
+                    [(ngModel)]="order.price" [disabled]=true>
+
+                </div>
+              </div>
+              <div class="col-md-12 total-coin">
+                <p>Equivalent {{secondCurrency}} price for this order</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <hr>
+                <p>Fee : 0%</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-6  buy-button-left">
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                </div>
+                <div class="col-md-6  sell-button-right">
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                </div>
+              </div>
+            </div>
+            <!-- for sell section -->
+          </div>
+        </div>
+      </div>
+      <!-- for bln btc -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- for ngn -->
+                <div class="row" *ngIf="">
+            <!-- <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
+              <span class="table-heading-content">TRADE IN {{pairName}} </span>
+            </div> -->
+            <div class="col-md-12 total-currency-message">
+              <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
+            </div>
+            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+              <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
+                     <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
+                     </select>
+            </div>
+            <div *ngIf="isMarket">
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
+                    name="amount">
+
+
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="email">Total Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
+                    id="amount" name="amount" [disabled]=true>
+
+                </div>
+
+
+              </div>
+              <div class="col-md-12 total-coin">
+                <p>Equivalent total {{secondCurrency}} price for this order</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <hr>
+
+                <p>Fee : 0%</p>
+              </div>
+
+              <div class="col-md-12 trade-field">
+                <div class="col-md-6  buy-button-left">
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                </div>
+                <div class="col-md-6  sell-button-right">
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!isMarket">
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="amount">Amount (in {{firstCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
+                </div>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-5">
+                  <label for="price">Price (in {{secondCurrency}})</label>
+                </div>
+
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
+                    [(ngModel)]="order.price" [disabled]=true>
+
+                </div>
+              </div>
+              <div class="col-md-12 total-coin">
+                <p>Equivalent {{secondCurrency}} price for this order</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <hr>
+                <p>Fee : 0%</p>
+              </div>
+              <div class="col-md-12 trade-field">
+                <div class="col-md-6  buy-button-left">
+                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                </div>
+                <div class="col-md-6  sell-button-right">
+                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <!-- for ngn -->
+    </div>
+    <!-- new page -->
+    <!-- old page -->
+     <!-- <div class="col-md-6 exchange-border-right ">
       <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
       <div class="row">
         <div class="col-md-5 tab-margin">
@@ -128,7 +501,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>  -->
+    <!-- old page -->
     <div class="col-md-6 text-center marketing-margin ">
       <div class="row">
         <div class="col-md-9 col-md-offset-2 marketing-border marketing-border-padding">
@@ -215,6 +589,7 @@
                   <th>{{secondCurrency}}</th>
                   <th>{{firstCurrency}}</th>
                   <th>Total {{firstCurrency}}</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font trade-table-cursor">
@@ -223,6 +598,7 @@
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
+                  <td><button class="trade-button-buy buy-button-color " (click)="showModel('BUY')">BUY</button></td>
                 </tr>
               </tbody>
             </table>
@@ -245,6 +621,7 @@
                   <th>{{firstCurrency}}</th>
                   <th>{{secondCurrency}}</th>
                   <th>Price</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font">
@@ -253,6 +630,7 @@
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
+                  <td> <button class="trade-button-buy " (click)="showModel('SELL')">SELL</button></td>
                 </tr>
               </tbody>
             </table>
@@ -306,20 +684,22 @@
             <tr>
               <th>Type</th>
               <th>Price</th>
-              <th>Amount( ETH)</th>
-              <th>Total( BTC )</th>
+              <th>Amount</th>
+              <th>Total</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody class="table-content-font">
             <tr *ngFor="let orders of myOrdersInBook">
               <td>{{orders.orderType}}</td>
-              <td>{{orders.price}}</td>
-              <td>{{orders.volume}}</td>
-              <td>{{orders.price * orders.volume}}</td>
+              <td>{{orders.price}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{orders.volume}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</td>
+              <td>{{orders.price * orders.volume}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.createdOn | date}}</td>
             </tr>
-            <div *ngIf = "!orders" class="hasTableData"><p>You have no open orders . . . !</p></div>
+            <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
+              <p>You have no open orders . . . !</p>
+            </div>
           </tbody>
         </table>
       </div>
@@ -344,8 +724,7 @@
         <!-- <div class="col-sm-3 col-sm-offset-9">
           <div class="row"> -->
         <div class="col-sm-12 trade-History-Button">
-          <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</span>
-           | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</span> </p>
+          <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span>            | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}">MY TRADES</span>            </p>
           <!-- <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
             <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button>
@@ -375,7 +754,7 @@
               <th>Price (1 Unit)</th>
               <th>Amount</th>
               <th>Total Price</th>
-              <th>Order Standard</th>
+              <!-- <th>Order Standard</th> -->
             </tr>
           </thead>
           <tbody class="table-content-font ">
@@ -385,18 +764,21 @@
               <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.orderStandard}}</td>
+              <!-- <td>{{tx.orderStandard}}</td> -->
             </tr>
             <!-- <tr class="more-details">
               <div>
                 <a href=""> More... </a>
-               
+
               </div>
-            </tr> -->
-              <div *ngIf = "!tx" >
-                <p class="hasTableData" > No trades . . . !</p>
-                <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
-              </div>
+            </tr>   -->
+            <div *ngIf="allTradedListLength !=0 ">
+              <p>More...</p>
+            </div>
+            <div *ngIf="allTradedListLength==0">
+              <p class="hasTableData"> No trades . . . !</p>
+              <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+            </div>
           </tbody>
         </table>
       </div>
@@ -410,7 +792,7 @@
               <th>Price (1 Unit)</th>
               <th>Amount</th>
               <th>Total Price</th>
-              <th>Order Standard</th>
+              <!-- <th>Order Standard</th> -->
             </tr>
           </thead>
           <tbody class="table-content-font">
@@ -424,12 +806,12 @@
               <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.orderStandard}}</td>
+              <!-- <td>{{tx.orderStandard}}</td> -->
             </tr>
-             <div *ngIf = "!tx" >
-                <p class="hasTableData" > No trades . . . !</p>
-                <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
-              </div>
+            <div *ngIf="myTradedListLength==0">
+              <p class="hasTableData"> No trades . . . !</p>
+              <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+            </div>
           </tbody>
         </table>
       </div>
@@ -449,8 +831,8 @@
           <!-- <p>Some text in the modal.</p> -->
           <div class="row ">
             <div class="col-sm-12">
-            <span>You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.</span>
-          </div>
+              <span>You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.</span>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
