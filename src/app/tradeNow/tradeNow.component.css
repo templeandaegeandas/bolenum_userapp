@@ -415,7 +415,7 @@ select option {
     margin-bottom: 12px;
 }
 .trade-field{
-    margin-bottom: 8px;
+    margin-bottom: 30px;
 }
 .trade-button-buy{
     background-color: #DB2828;
@@ -861,3 +861,21 @@ table thead tr th {
 .message-padding{
     padding-left: 10px;
 }
+
+.trade-button-margin{
+        margin-top: 30px;
+}
+
+.padding-level{
+
+    margin-bottom: 6px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.buy-button-color{
+    background-color: #3cb371;
+}
+

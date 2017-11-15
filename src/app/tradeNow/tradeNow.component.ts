@@ -15,6 +15,8 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public hasBuy:boolean = false;
+  public hasSell:boolean = false;
   public myTradedListLength:any;
   public allTradedListLength:any;
   public myOrdersInBookLength:any;
@@ -363,5 +365,16 @@ export class TradeNowComponent implements OnInit {
 
   }
   // method to show table of market trade and my trade
+
+showBuyOrder(){
+this.hasSell=false;
+this.hasBuy=true;
+}
+
+showSellOrder(){
+  this.hasBuy=false;
+  this.hasSell=true;
+
+}
 
 }

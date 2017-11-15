@@ -1,0 +1,79 @@
+.paymentDetails{
+    background-color: #DB2828;
+    color: white;
+}
+
+.panel-Body{
+        border: 1px solid lightgray;
+}
+
+.trading-margin{
+    margin-top: 34px;
+    
+}
+
+.table-margin{
+    margin-top: 16px;
+}
+
+.trade-button-margin{
+        margin-bottom: 82px;
+}
+
+.trade-button{
+        background-color: #DB2828;
+    color: white;
+    outline: none;
+    width: 130px;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
+.timer-margin{
+          margin-bottom: 30px;
+    margin-top: 39px;
+    text-align: center;
+    /* padding-left: 419px; */
+    
+    /* padding-right: 419px; */
+}
+
+.timer-property{
+      
+    background-color: #f3f3f3;
+    padding-bottom: 52px;
+    padding-top: 52px;
+    /* color: #DB2828;
+    font-size: 47px; */
+    
+
+}
+
+.button-center{
+    text-align: center;
+}
+
+.button-color{
+    background-color: #3cb371;
+}
+
+.margin-table{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.button-property{
+    text-align: right;
+}
+
+.button-property-left{
+    text-align: left;
+}
+
+.timer-font-pro{
+        color: #DB2828;
+    font-size: 47px;
+}
+
+
