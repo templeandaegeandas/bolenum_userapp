@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WithdrawService } from './withdraw.service';
 import { WithdrawAmount } from './entity/withdraw.entity';
 import { ToastrService } from 'toastr-ng2';
+import { AppEventEmiterService } from '../app.event.emmiter.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -19,10 +20,7 @@ public hasBlur:boolean=false;
   public balance: any;
   public coinAbbreviation: any;
   loading = false;
-
   txList: any;
-
-
   public beforeLogin: boolean = true;
   public afterLogin: boolean = false;
   options: any;
@@ -31,7 +29,13 @@ public hasBlur:boolean=false;
   withdrawForm = new WithdrawAmount();
 
 
-  constructor(private withdrawService: WithdrawService, private toastrService: ToastrService) { }
+  constructor(private withdrawService: WithdrawService,private appEventEmiterService:AppEventEmiterService, private toastrService: ToastrService) {
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "WITHDRAW_NOTIFICATION") {
+           this.getListOfUserWithdrawlTransaction();
+      }
+    });
+  }
 
   ngOnInit() {
     this.getCurrencyList();
