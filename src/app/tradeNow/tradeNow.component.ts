@@ -15,6 +15,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public pairData:any;
   public hasBuy:boolean = false;
   public hasSell:boolean = false;
   public myTradedListLength:any;
@@ -248,6 +249,16 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
+      // console.log("pair list>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",  this.pairList);
+      // for(let i=0; i<=this.pairList.length; i++){
+      //   if(this.pairList[i].pairName == "ETH/BTC" ){
+      //     this.pairData = this.pairList[i].pairName;
+      //     console.log("pairname >>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.pairData);
+          
+      //   }
+      // }
+      
+      
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
       this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
       let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;

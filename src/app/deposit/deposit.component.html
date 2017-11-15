@@ -46,7 +46,7 @@
         <!-- for table -->
     <div class="row">
   <div class="col-md-10 col-md-offset-1 margin-Table">
-
+<div class="deposite-Table">
    <table class="table table-striped trade-History-table border-left ">
         <thead class="table-Head table-Heading ">
           <tr>
@@ -60,16 +60,17 @@
         </thead>
         <tbody class="table-content-font">
           <tr *ngFor="let tx of txList">
-            <td>{{tx.txHash }}</td>
+            <td class="ellipsis">{{tx.txHash }}</td>
 
             <td>{{tx.currencyName}}</td>
             <td>{{tx.txAmount}}</td>
-            <td>{{tx.fromAddress}}</td>
+            <td class="ellipsis">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
         </tbody>
       </table>
+</div>
 
   </div>
 </div>

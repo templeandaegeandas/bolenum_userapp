@@ -876,6 +876,51 @@ table thead tr th {
 }
 
 .buy-button-color{
-    background-color: #3cb371;
+        background-color: #3cb371;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    width: 100px;
+}
+.sell-button-color{
+        background-color: #DB2828;;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    width: 100px;
+}
+.buyAnchor{
+        border: none;
+    padding: 3px;
+  
+    border-radius: 5px;
+    outline: none;
+    width: 50px;
+    color: #3cb371;
+    cursor: pointer;
+}
+
+.sellAnchor{
+       border: none;
+    padding: 3px;
+  
+    border-radius: 5px;
+    outline: none;
+    width: 50px;
+      color: #DB2828;
+      cursor: pointer;
+
+}
+
+.margin-buttons{
+    margin-left: 186px;
+}
+
+.margin-buy-Button{
+        margin-left: 200px;
 }
 

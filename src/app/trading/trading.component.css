@@ -32,7 +32,7 @@
 
 .timer-margin{
           margin-bottom: 30px;
-    margin-top: 39px;
+    /* margin-top: 39px; */
     text-align: center;
     /* padding-left: 419px; */
     
@@ -74,6 +74,48 @@
 .timer-font-pro{
         color: #DB2828;
     font-size: 47px;
+}
+
+.cancelTrade{
+       
+          background-color: #DB2828;
+    color: white;
+    outline: none;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 139px;
+}
+
+.disputeTrade{
+      background-color: #3772ad;
+    color: white;
+    outline: none;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 139px;
+}
+
+.heading-Text{
+    color:#3cb371;
+}
+.button-Right{
+    text-align: right;
+}
+
+.marginConfirm{
+        margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.button-margin-top{
+        margin-top: 10px;
+}
+
+.modal-header{
+    background-color: #DB2828;
+    color: white;
 }
 
 
