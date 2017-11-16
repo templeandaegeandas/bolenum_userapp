@@ -30,7 +30,7 @@
         <div class="col-md-12 input-box">
           <div class="form-group">
 
-            <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  > 
+            <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  >
             <!-- <button class="btn btn-default" [class.btn-success]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button> -->
             <span><img src="./assets/images/copy.png" width="46" height="46" title="copy to clip board" [class.btn-success]= "isCopied"  [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></span>
           </div>
@@ -66,14 +66,14 @@
             <td class="ellipsis">{{tx.txHash }}</td>
 
             <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount}}</td>
+            <td>{{tx.txAmount | number:'1.1-8'}}</td>
             <td class="ellipsis">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
         </tbody>
       </table>
-      
+
 </div>
 
   </div>
