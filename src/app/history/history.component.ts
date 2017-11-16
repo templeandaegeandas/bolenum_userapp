@@ -10,6 +10,8 @@ import { HistoryService } from './history.service';
   providers: [HistoryService]
 })
 export class HistoryComponent implements OnInit {
+    public hasBlur:boolean=false;
+  public isLoading:boolean=false;
 
   userId: any;
   txList: any;
@@ -64,7 +66,11 @@ export class HistoryComponent implements OnInit {
     }
 
   getTradeHistory() {
+    this.isLoading = true;
+     this.hasBlur = true;
     this.historyService.getTradedOrders(1,10,"createdOn","desc", this.orderType, this.date).subscribe(success => {
+     this.isLoading = false;
+     this.hasBlur = false;
       this.txList = success.data.content;
     })
   }
