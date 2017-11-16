@@ -49,6 +49,7 @@ export class TradeNowComponent implements OnInit {
   allTradedList: any;
   myOrdersInBook: any;
   userId: number;
+  selecedOrderId: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -210,8 +211,9 @@ export class TradeNowComponent implements OnInit {
     }
   }
 
-  showModel(orderType, volume, price) {
+  showModel(orderType, volume, price, orderId) {
     this.buySellModel.show();
+    this.selecedOrderId = orderId;
     this.order.volume = volume;
     this.order.price = price;
     this.order.totalVolume = volume;
@@ -226,7 +228,7 @@ export class TradeNowComponent implements OnInit {
   createFiatOrder() {
     this.loading = true;
     this.order.totalVolume = this.order.volume;
-    this.tradeNowService.createFiatOrder(this.order, this.pairId).subscribe(success => {
+    this.tradeNowService.createFiatOrder(this.order, this.pairId, this.selecedOrderId).subscribe(success => {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
