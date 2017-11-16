@@ -20,377 +20,6 @@
     <div class="col-md-6 exchange-border-right ">
       <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
       <!-- for bln btc -->
-      <div class="row" *ngIf="pairName=='BLN/NGN'">
-        <div class="col-md-5 tab-margin">
-          <div class="exchange-pair-text">{{pairName}}</div>
-        </div>
-        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
-          <div class="row">
-            <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-              <span class="table-heading-content">TRADE IN {{pairName}} </span>
-            </div>
-
-            <div class="col-md-12 trade-field trade-button-margin">
-              <div class="col-md-6  buy-button-left">
-                <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
-              </div>
-              <div class="col-md-6  sell-button-right">
-                <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
-              </div>
-            </div>
-            <!-- for buy section -->
-            <section *ngIf="hasBuy">
-              <div class="col-md-12 trade-field">
-                <hr>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="col-sm-10 padding-level">
-                      <div class="col-md-6">
-                        <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
-                      </div>
-
-                      <div class="col-md-6">
-                        <input type="text" class="form-control" id="amount">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="col-sm-10 padding-level">
-                      <div class="col-md-6">
-                        <label for="email tradeSubheading-fontSze-fontFamily">Your BLN Address:</label>
-                      </div>
-
-                      <div class="col-md-6">
-                        <input type="text" class="form-control" id="amount">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-12 padding-level margin-buy-Button">
-                    <button class="buy-button-color"  routerLink="/trading">BUY</button>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-            <!-- for buy section -->
-            <!-- for sell section -->
-            <section *ngIf="hasSell">
-              <div class="col-md-12 trade-field">
-                <hr>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="col-sm-10 padding-level">
-                      <div class="col-md-5">
-                        <label for="email tradeSubheading-fontSze-fontFamily">Amount of BTC:</label>
-                      </div>
-
-                      <div class="col-md-7">
-                        <input type="text" class="form-control" id="amount">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 padding-level margin-buttons">
-                    <button class="sell-button-color">SELL</button>
-                  </div>
-
-                </div>
-              </div>
-            </section>
-            <!-- for sell section -->
-          </div>
-        </div>
-      </div>
-      <!-- for bln btc -->
-
-       <!-- for bln btc -->
-      <div class="row" *ngIf="pairName == 'ETH/BTC' || 'BLN/BTC' || 'BLN/ETH'">
-       
-        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
-          <div class="row">
-            <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-              <span class="table-heading-content">TRADE IN {{pairName}} </span>
-            </div>
-       <div class="col-md-12 total-currency-message">
-              <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
-            </div>
-            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-              <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
-                     <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
-                     </select>
-            </div>
-            <div *ngIf="isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
-                    name="amount">
-
-
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email">Total Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
-                    id="amount" name="amount" [disabled]=true>
-
-                </div>
-
-
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent total {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-
-                <p>Fee : 0%</p>
-              </div>
-
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="!isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="amount">Amount (in {{firstCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="price">Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
-                    [(ngModel)]="order.price" [disabled]=true>
-
-                </div>
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-                <p>Fee : 0%</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
-                </div>
-              </div>
-            </div>
-            <!-- for sell section -->
-          </div>
-        </div>
-      </div>
-      <!-- for bln btc -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- for ngn -->
-                <div class="row" *ngIf="">
-            <!-- <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-              <span class="table-heading-content">TRADE IN {{pairName}} </span>
-            </div> -->
-            <div class="col-md-12 total-currency-message">
-              <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
-            </div>
-            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-              <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
-                     <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
-                     </select>
-            </div>
-            <div *ngIf="isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
-                    name="amount">
-
-
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email">Total Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
-                    id="amount" name="amount" [disabled]=true>
-
-                </div>
-
-
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent total {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-
-                <p>Fee : 0%</p>
-              </div>
-
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="!isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="amount">Amount (in {{firstCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="price">Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
-                    [(ngModel)]="order.price" [disabled]=true>
-
-                </div>
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-                <p>Fee : 0%</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
-                </div>
-              </div>
-            </div>
-          </div>
-      <!-- for ngn -->
-    </div>
-    <!-- new page -->
-    <!-- old page -->
-     <!-- <div class="col-md-6 exchange-border-right ">
-      <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
       <div class="row">
         <div class="col-md-5 tab-margin">
           <div class="exchange-pair-text">{{pairName}}</div>
@@ -400,109 +29,169 @@
             <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
               <span class="table-heading-content">TRADE IN {{pairName}} </span>
             </div>
-            <div class="col-md-12 total-currency-message">
-              <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
+            ...
+            <div *ngIf="pairName == 'BLN/NGN' || 'BTC/NGN'">
+              <div class="col-md-12 trade-field trade-button-margin">
+                <div class="col-md-6  buy-button-left">
+                  <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
+                </div>
+                <div class="col-md-6  sell-button-right">
+                  <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
+                </div>
+              </div>
+              <!-- for buy section -->
+              <section *ngIf="hasBuy">
+                <div class="col-md-12 trade-field">
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="col-sm-10 padding-level">
+                        <div class="col-md-6">
+                          <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
+                        </div>
+
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="col-sm-10 padding-level">
+                        <div class="col-md-6">
+                          <label for="email tradeSubheading-fontSze-fontFamily">Your BLN Address:</label>
+                        </div>
+
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="amount">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12 padding-level margin-buy-Button">
+                      <button class="buy-button-color" routerLink="/trading">BUY</button>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+              <!-- for buy section -->
+              <!-- for sell section -->
+              <section *ngIf="hasSell">
+                <div class="col-md-12 trade-field">
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="col-sm-10 padding-level">
+                        <div class="col-md-5">
+                          <label for="email tradeSubheading-fontSze-fontFamily">Amount of BTC:</label>
+                        </div>
+
+                        <div class="col-md-7">
+                          <input type="text" class="form-control" id="amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 padding-level margin-buttons">
+                      <button class="sell-button-color">SELL</button>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
             </div>
-            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-              <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
+
+            <div *ngIf="pairName == 'ETH/BTC' || 'BLN/BTC' || 'BLN/ETH' ">
+              <div class="col-md-12 total-currency-message">
+                <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
+              </div>
+              <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+                <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
                      <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                      </select>
-            </div>
-            <div *ngIf="isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
+              </div>
+              <div *ngIf="isMarket">
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-5">
+                    <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
+                  </div>
                 </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-5">
+                    <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
+                      name="amount">
+                  </div>
+                </div>
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-5">
+                    <label for="email">Total Price (in {{secondCurrency}})</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
+                      id="amount" name="amount" [disabled]=true>
+                  </div>
+                </div>
+                <div class="col-md-12 total-coin">
+                  <p>Equivalent total {{secondCurrency}} price for this order</p>
+                </div>
+                <div class="col-md-12 trade-field">
+                  <hr>
+                  <p>Fee : 0%</p>
+                </div>
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-6  buy-button-left">
+                    <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY')">BUY</button>
+                  </div>
+                  <div class="col-md-6  sell-button-right">
+                    <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
+              <div *ngIf="!isMarket">
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-5">
+                    <label for="amount">Amount (in {{firstCurrency}})</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
+                  </div>
                 </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
-                    name="amount">
-
-
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-5">
+                    <label for="price">Price (in {{secondCurrency}})</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
+                      [(ngModel)]="order.price" [disabled]=true>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="email">Total Price (in {{secondCurrency}})</label>
+                <div class="col-md-12 total-coin">
+                  <p>Equivalent {{secondCurrency}} price for this order</p>
                 </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
-                    id="amount" name="amount" [disabled]=true>
-
+                <div class="col-md-12 trade-field">
+                  <hr>
+                  <p>Fee : 0%</p>
                 </div>
-
-
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent total {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-
-                <p>Fee : 0%</p>
-              </div>
-
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="!isMarket">
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="amount">Amount (in {{firstCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
-                </div>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-5">
-                  <label for="price">Price (in {{secondCurrency}})</label>
-                </div>
-
-                <div class="col-md-7">
-                  <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
-                    [(ngModel)]="order.price" [disabled]=true>
-
-                </div>
-              </div>
-              <div class="col-md-12 total-coin">
-                <p>Equivalent {{secondCurrency}} price for this order</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <hr>
-                <p>Fee : 0%</p>
-              </div>
-              <div class="col-md-12 trade-field">
-                <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
-                </div>
-                <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                <div class="col-md-12 trade-field">
+                  <div class="col-md-6  buy-button-left">
+                    <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY')">BUY</button>
+                  </div>
+                  <div class="col-md-6  sell-button-right">
+                    <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- for sell section -->
           </div>
         </div>
       </div>
-    </div>  -->
-    <!-- old page -->
+    </div>
     <div class="col-md-6 text-center marketing-margin ">
       <div class="row">
         <div class="col-md-9 col-md-offset-2 marketing-border marketing-border-padding">
@@ -512,24 +201,15 @@
               <div class="col-sm-12">
                 <ul class="nav nav-tabs">
                   <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
-
                 </ul>
               </div>
             </div>
             <table class="table  table-bordered market-margin ">
-              <!-- <thead class="heading">
-
-                <tr>
-                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
-
-                </tr>
-              </thead> -->
               <thead class="market-head-color table-Heading">
                 <tr>
                   <th>Coin</th>
                   <th>Price</th>
                   <th>Name</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -552,22 +232,7 @@
       <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span>      to start Trading
     </div>
   </div>
-  <!-- before login div -->
-  <!-- order field -->
-  <!-- <div class="row">
-    <div class="col-md-12 order pad-top pad-order ">
-      <div class="">
-        <span class="border-bot order-text">ORDERS</span>
-      </div>
-   </div> -->
-  <!-- for drop-down -->
-  <!-- before login div -->
-  <!-- <div class="row">
-      <div class="col-md-12 signin-or-create-account" *ngIf=beforeLogin>
-         <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span>      to start Trading
-      </div>
-   </div> -->
-  <!-- before login div -->
+
   <!-- order field -->
   <div class="row">
     <div class="col-md-12 order pad-top pad-order ">
@@ -581,7 +246,6 @@
           </div>
           <!-- table 1 -->
           <div class=" table-responsive sell-Buy-table ">
-
             <table class=" table table-striped table-color tradeSubheading-fontSze-fontFamily ">
               <thead>
                 <tr>
@@ -602,7 +266,6 @@
                 </tr>
               </tbody>
             </table>
-
           </div>
         </div>
         <!-- test -->
@@ -636,39 +299,12 @@
             </table>
           </div>
           <!-- table 2-->
-          <!-- <div class="col-md-12 pagination-section">
-                  <ul class="pagination">
-                     <li><a href="#">View More ...</a></li>
-
-                   </ul>
-                  </div> -->
         </div>
       </div>
     </div>
   </div>
   <!-- order field -->
-  <!-- <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6 text-align-right">
-          <h2>Want Better Price ?</h2>
-        </div>
-        <div class="col-md-6">
-          <button type="submit" name="createAdvertisement" class="create-advertisement-button">Create Advertisement</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- order field -->
-  <!-- BTC Exchange -->
-  <!-- <div class="row">
-    <div class="col-md-12 text-align-center btc-exchange">
-      <span class="border-bot order-text tradeSubheading-fontSze-fontFamily">BTC EXCHANGE</span>
-      <div class="underline"></div>
-      <chart [options]="options"></chart>
-    </div>
-  </div> -->
-  <!-- BTC Exchange -->
+
   <!-- my orders page -->
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 myOrder-Table-margin">
@@ -679,7 +315,8 @@
         </div>
       </div>
       <div class="own-Table">
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
+        <div class="loader spiner-position" *ngIf="isLoading" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" [ngClass]="{'opecity-table':hasBlur}" >
           <thead class="table-Head ">
             <tr>
               <th>Type</th>
@@ -725,28 +362,16 @@
           <div class="row"> -->
         <div class="col-sm-12 trade-History-Button">
           <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span>            | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}">MY TRADES</span>            </p>
-          <!-- <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
-            <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button>
-          </div> -->
-          <!-- <div class="switchTrade">
-                <div class="switch-market" (click)="marketTradeList()">
-                   <span class="market-text tradeSwith">MARKET TRADES</span>
-                  <button type="submit" name="marketOrder">MARKET TRADES</button>
-                </div>
-                <div class="switch-mytrade" (click)="myTradeList()">
-                   <button type="submit" name="marketOrder">MY TRADES</button>
-                   <span class="my-trade tradeSwith">MY TRADES</span>
-                </div>
-              </div> -->
+
         </div>
         <!-- </div> -->
         <!-- </div> -->
       </div>
 
       <div class="trade-History">
+          <div class="loader spiner-position" *ngIf="isLoading" ></div>
         <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily"
-          *ngIf='marketTrade'>
+          *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
           <thead class="table-Head ">
             <tr>
               <th>Date</th>
@@ -766,12 +391,7 @@
               <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <!-- <td>{{tx.orderStandard}}</td> -->
             </tr>
-            <!-- <tr class="more-details">
-              <div>
-                <a href=""> More... </a>
 
-              </div>
-            </tr>   -->
             <div *ngIf="allTradedListLength !=0 ">
               <p>More...</p>
             </div>
@@ -783,7 +403,8 @@
         </table>
       </div>
       <div class="trade-History">
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
+        <div class="loader spiner-position" *ngIf="isLoading" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlur}" >
           <thead class="table-Head ">
             <tr>
               <th>Date</th>
@@ -844,4 +465,4 @@
   </div>
   <!-- popup model -->
 </div>
-<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+<!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->

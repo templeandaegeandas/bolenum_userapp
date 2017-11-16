@@ -15,6 +15,8 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+   public hasBlur:boolean=false;
+  public isLoading:boolean=false;
   public pairData:any;
   public hasBuy:boolean = false;
   public hasSell:boolean = false;
@@ -304,19 +306,30 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyTradedOrders() {
-    this.loading = true;
+    // this.loading = true;
+    this.isLoading = true;
+     this.hasBlur = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
+     this.isLoading = false;
+     this.hasBlur = false;
       this.myTradedList = success.data.content;
       this.myTradedListLength = success.data.length;
-      this.loading = false;
+       console.log("length of mytradeList>>>>>>>>>>>",this.myTradedList);
+      console.log("length of mytradeList>>>>>>>>>>>",this.myTradedListLength);
+      
+      // this.loading = false;
     }, error => {
       console.log(error);
-      this.loading = false;
+      // this.loading = false;
     })
   }
 
   getAllTradedOrders() {
+     this.isLoading = true;
+     this.hasBlur = true;
     this.tradeNowService.getAllTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
+      this.isLoading = false;
+     this.hasBlur = false;
       this.allTradedList = success.data.content;
       this.allTradedListLength = success.data.length;
     }, error => {
@@ -325,7 +338,11 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyOrdersFromBook() {
+     this.isLoading = true;
+     this.hasBlur = true;
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
+      this.isLoading = false;
+     this.hasBlur = false;
       this.myOrdersInBook = success.data;
       this.myOrdersInBookLength = success.data.length;
     }, error => {
