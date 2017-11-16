@@ -144,10 +144,10 @@
                 </div>
                 <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
-                    <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY', order.volume, order.price)">BUY</button>
+                    <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
                   </div>
                   <div class="col-md-6  sell-button-right">
-                    <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
+                    <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
                   </div>
                 </div>
               </div>
@@ -178,10 +178,10 @@
                 </div>
                 <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
-                    <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY', order.volume, order.price)">BUY</button>
+                    <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
                   </div>
                   <div class="col-md-6  sell-button-right">
-                    <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
+                    <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
                   </div>
                 </div>
               </div>
@@ -261,7 +261,7 @@
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
-                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"><button class="trade-button-buy buy-button-color " (click)="showModel('SELL', buyOrder.volume, buyOrder.price)">SELL</button></td>
+                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"><button class="trade-button-buy buy-button-color " (click)="showModel('SELL', buyOrder.volume, buyOrder.price, buyOrder.id)">SELL</button></td>
                 </tr>
               </tbody>
             </table>
@@ -292,7 +292,7 @@
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
-                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"> <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price)">BUY</button></td>
+                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"> <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price, sellOrder.id)">BUY</button></td>
                 </tr>
               </tbody>
             </table>
