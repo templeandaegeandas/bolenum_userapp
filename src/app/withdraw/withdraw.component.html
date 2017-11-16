@@ -66,7 +66,8 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1 margin-Table">
             <div class="tranction-Table">
-            <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
+              <div class="loader spiner-position" *ngIf="isLoading" ></div>
+            <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
               <thead class="table-Head ">
                 <tr class="table-Heading">
                   <th>Transaction Hash</th>

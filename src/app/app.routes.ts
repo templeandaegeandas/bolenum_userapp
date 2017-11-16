@@ -28,6 +28,8 @@ import { AboutBolenumExchangeComponent } from './about-bolenum-exchange/about-bo
 import { TeamComponent } from './team/team.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TradingComponent } from './trading/trading.component';
+
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -57,4 +59,5 @@ export const APP_ROUTES: Routes = [
   { path: 'how-to-use', component: HowToUseComponent  },
   { path: 'terms-service', component: TermsServiceComponent  },
   { path: 'privacy-policy', component: PrivacyPolicyComponent   },
-  { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },];
+  { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },
+  { path: 'trading', component: TradingComponent },];

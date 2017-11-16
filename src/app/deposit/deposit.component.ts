@@ -11,6 +11,8 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 
 })
 export class DepositComponent implements OnInit {
+  public hasBlur:boolean=false;
+  public isLoading:boolean=false;
   public coinAbbreviation:any;
   public setItemValue:any;
   public currencyData:any;
@@ -39,6 +41,8 @@ export class DepositComponent implements OnInit {
   ngOnInit() {
     this.getListOfUserDepositTransaction();
     this.getCurrencyName();
+
+   
   }
 
   getCoin(data){
@@ -74,7 +78,11 @@ export class DepositComponent implements OnInit {
   }
 
   getListOfUserDepositTransaction() {
+     this.isLoading = true;
+     this.hasBlur = true;
       this.depositService.getListOfDepositTransaction(1,10,"createdOn","desc").subscribe(success => {
+         this.isLoading = false;
+       this.hasBlur = false;
       this.txList = success.data.content;
     })
   }
