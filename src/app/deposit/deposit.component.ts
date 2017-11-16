@@ -46,6 +46,7 @@ export class DepositComponent implements OnInit {
   }
 
   getCoin(data){
+    this.isCopied = false;
     this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe( success => {
