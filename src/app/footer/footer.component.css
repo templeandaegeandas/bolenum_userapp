@@ -11,12 +11,12 @@ li {
 
 footer {
     background-color: #141415;
-    min-height: 350px;
-    min-height: 350px;
+   
+    min-height: 265px;
 }
 
 .footer-col {
-    margin-top: 50px;
+    margin-top: 21px;
 }
 
 .logofooter {
@@ -30,7 +30,7 @@ footer {
     color: #707071;
     /* font-size: 16px; */
     /* font-family: Lato; */
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .footer-col p i {
@@ -113,7 +113,7 @@ text-align: center;
 .copyright p {
     /* text-align: left; */
     color: #707071;
-    padding: 20px 0;
+    padding: 13px 0;
     margin-bottom: 0;
     /* font-size: 17px; */
     margin-left: -15px;
