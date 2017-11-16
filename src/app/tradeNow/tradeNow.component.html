@@ -20,7 +20,7 @@
     <div class="col-md-6 exchange-border-right ">
       <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
       <!-- for bln btc -->
-      <div class="row" *ngIf="pairName=='BLN/NGN'">
+      <div class="row" *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">
         <div class="col-md-5 tab-margin">
           <div class="exchange-pair-text">{{pairName}}</div>
         </div>
@@ -104,8 +104,8 @@
       <!-- for bln btc -->
 
        <!-- for bln btc -->
-      <div class="row" *ngIf="pairName == 'ETH/BTC' || 'BLN/BTC' || 'BLN/ETH'">
-       
+      <div class="row" *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
+
         <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
           <div class="row">
             <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
@@ -165,10 +165,10 @@
 
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY', order.volume, order.price)">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
                 </div>
               </div>
             </div>
@@ -202,10 +202,10 @@
               </div>
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY', order.volume, order.price)">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
                 </div>
               </div>
             </div>
@@ -214,72 +214,6 @@
         </div>
       </div>
       <!-- for bln btc -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- for ngn -->
                 <div class="row" *ngIf="">
@@ -340,10 +274,10 @@
 
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY', order.volume, order.price)">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
                 </div>
               </div>
             </div>
@@ -377,10 +311,10 @@
               </div>
               <div class="col-md-12 trade-field">
                 <div class="col-md-6  buy-button-left">
-                  <button class="trade-button-buy " (click)="showModel('BUY')">BUY</button>
+                  <button class="trade-button-buy " (click)="showModel('BUY', order.volume, order.price)">BUY</button>
                 </div>
                 <div class="col-md-6  sell-button-right">
-                  <button class="trade-button-sell " (click)="showModel('SELL')">SELL</button>
+                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price)">SELL</button>
                 </div>
               </div>
             </div>
@@ -553,22 +487,7 @@
     </div>
   </div>
   <!-- before login div -->
-  <!-- order field -->
-  <!-- <div class="row">
-    <div class="col-md-12 order pad-top pad-order ">
-      <div class="">
-        <span class="border-bot order-text">ORDERS</span>
-      </div>
-   </div> -->
-  <!-- for drop-down -->
-  <!-- before login div -->
-  <!-- <div class="row">
-      <div class="col-md-12 signin-or-create-account" *ngIf=beforeLogin>
-         <span class="signin-for-tradenow" routerLink="/login">Sign In</span> or <span class="signin-for-tradenow" routerLink="/sign-up">Create New Account</span>      to start Trading
-      </div>
-   </div> -->
-  <!-- before login div -->
-  <!-- order field -->
+
   <div class="row">
     <div class="col-md-12 order pad-top pad-order ">
       <div class="">
@@ -589,7 +508,7 @@
                   <th>{{secondCurrency}}</th>
                   <th>{{firstCurrency}}</th>
                   <th>Total {{firstCurrency}}</th>
-                  <th>Action</th>
+                  <th *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font trade-table-cursor">
@@ -598,7 +517,7 @@
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
-                  <td><button class="trade-button-buy buy-button-color " (click)="showModel('BUY')">BUY</button></td>
+                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"><button class="trade-button-buy buy-button-color " (click)="showModel('SELL', buyOrder.volume, buyOrder.price)">SELL</button></td>
                 </tr>
               </tbody>
             </table>
@@ -621,7 +540,7 @@
                   <th>{{firstCurrency}}</th>
                   <th>{{secondCurrency}}</th>
                   <th>Price</th>
-                  <th>Action</th>
+                  <th *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font">
@@ -630,46 +549,18 @@
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
-                  <td> <button class="trade-button-buy " (click)="showModel('SELL')">SELL</button></td>
+                  <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"> <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price)">BUY</button></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <!-- table 2-->
-          <!-- <div class="col-md-12 pagination-section">
-                  <ul class="pagination">
-                     <li><a href="#">View More ...</a></li>
 
-                   </ul>
-                  </div> -->
         </div>
       </div>
     </div>
   </div>
   <!-- order field -->
-  <!-- <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6 text-align-right">
-          <h2>Want Better Price ?</h2>
-        </div>
-        <div class="col-md-6">
-          <button type="submit" name="createAdvertisement" class="create-advertisement-button">Create Advertisement</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- order field -->
-  <!-- BTC Exchange -->
-  <!-- <div class="row">
-    <div class="col-md-12 text-align-center btc-exchange">
-      <span class="border-bot order-text tradeSubheading-fontSze-fontFamily">BTC EXCHANGE</span>
-      <div class="underline"></div>
-      <chart [options]="options"></chart>
-    </div>
-  </div> -->
-  <!-- BTC Exchange -->
-  <!-- my orders page -->
+
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 myOrder-Table-margin">
       <div class="row">
@@ -836,7 +727,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+          <button *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+          <button *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
           <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
         </div>
       </div>
