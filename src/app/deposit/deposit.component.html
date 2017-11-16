@@ -63,7 +63,7 @@
             <td>{{tx.txHash }}</td>
 
             <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount}}</td>
+            <td>{{tx.txAmount | number:'1.1-8'}}</td>
             <td>{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
