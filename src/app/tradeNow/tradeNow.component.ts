@@ -210,13 +210,38 @@ export class TradeNowComponent implements OnInit {
     }
   }
 
-  showModel(orderType) {
+  showModel(orderType, volume, price) {
     this.buySellModel.show();
+    this.order.volume = volume;
+    this.order.price = price;
+    this.order.totalVolume = volume;
+    this.order.orderStandard = "MARKET";
     this.order.orderType = orderType;
   }
 
   hideModel() {
     this.buySellModel.hide();
+  }
+
+  createFiatOrder() {
+    this.loading = true;
+    this.order.totalVolume = this.order.volume;
+    this.tradeNowService.createFiatOrder(this.order, this.pairId).subscribe(success => {
+      this.buySellModel.hide();
+      this.order.price = '';
+      this.order.volume = '';
+      this.ngOnInit();
+      this.loading = false;
+      this.toastrService.success(success.message, 'Success!');
+    }, error => {
+      console.log(error);
+      this.buySellModel.hide();
+      this.order.price = '';
+      this.order.volume = '';
+      this.ngOnInit();
+      this.loading = false;
+      this.toastrService.error(error.json().message, 'Error!');
+    })
   }
 
   createOrder() {
@@ -251,16 +276,6 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
-      // console.log("pair list>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",  this.pairList);
-      // for(let i=0; i<=this.pairList.length; i++){
-      //   if(this.pairList[i].pairName == "ETH/BTC" ){
-      //     this.pairData = this.pairList[i].pairName;
-      //     console.log("pairname >>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.pairData);
-          
-      //   }
-      // }
-      
-      
       let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
       this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
       let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
@@ -294,6 +309,8 @@ export class TradeNowComponent implements OnInit {
     setTimeout(() => {
       this.getSellOrderBookData(pairId);
     }, 500);
+    this.order.price = '';
+    this.order.volume = '';
     this.loading = false;
   }
 
@@ -316,7 +333,7 @@ export class TradeNowComponent implements OnInit {
       this.myTradedListLength = success.data.length;
        console.log("length of mytradeList>>>>>>>>>>>",this.myTradedList);
       console.log("length of mytradeList>>>>>>>>>>>",this.myTradedListLength);
-      
+
       // this.loading = false;
     }, error => {
       console.log(error);
