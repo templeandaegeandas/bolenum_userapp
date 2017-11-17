@@ -314,8 +314,8 @@
         </div>
       </div>
       <div class="own-Table">
-        <div class="loader spiner-position" *ngIf="isLoading" ></div>
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" [ngClass]="{'opecity-table':hasBlur}" >
+        <div class="loader spiner-position" *ngIf="isOpenOrders" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" [ngClass]="{'opecity-table':hasBlurOpenOrders}" >
           <thead class="table-Head ">
             <tr>
               <th>Type</th>
@@ -402,8 +402,8 @@
         </table>
       </div>
       <div class="trade-History">
-        <div class="loader spiner-position" *ngIf="isLoading" ></div>
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlur}" >
+        <div class="loader spiner-position" *ngIf="isLoadingForMyTrade" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlurForMyTrading}" >
           <thead class="table-Head ">
             <tr>
               <th>Date</th>
