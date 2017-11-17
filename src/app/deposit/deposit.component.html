@@ -1,6 +1,6 @@
-<div class="container deposit-container-padding">
+<div class="container deposit-container-padding" >
   <div class="row ">
-    <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color">
+    <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color"  >
 
       <!-- <div class="pull-right">
         <ul>
@@ -30,12 +30,14 @@
         <div class="col-md-12 input-box">
           
           <div class="form-group">
-
+  <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>  
             <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  >
-             <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button> 
-            <!-- <span><img src="./assets/images/copy.png" width="46" height="46" title="copy to clip board" [class.btn-success]= "isCopied"  [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></span> -->
+             <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
+             <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span> 
           </div>
+        
         </div>
+        
 
       <div class="col-md-12 text-center deposite-Content">
         <!-- <span class="network">Network Fee:</span>
@@ -83,4 +85,5 @@
     </div>
  </div>
 </div>
-<!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
+ <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> 
+<!-- <div class="myloader"></div> -->

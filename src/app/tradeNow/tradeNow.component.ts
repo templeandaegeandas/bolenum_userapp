@@ -15,6 +15,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public hasAmount:boolean=false;
   public isLoadingForMyTrade:boolean = false;
   public hasBlurForMyTrading:boolean = false;
   public isOpenOrders:boolean=false;
@@ -216,6 +217,30 @@ export class TradeNowComponent implements OnInit {
   }
 
   showModel(orderType, volume, price, orderId) {
+    if(this.setTradingValue == 'Limit Order'){
+      if(this.order.volume =='' || this.order.price == ''){
+      this.hasAmount= true;
+       setTimeout(() => {
+      this.hasAmount= false;
+    }, 1000);
+      return;
+    }
+
+    }
+  else if(this.setTradingValue == 'Market Order'){
+
+    if(this.order.volume =='' || this.order.price == ''){
+      this.hasAmount= true;
+       setTimeout(() => {
+      this.hasAmount= false;
+    }, 1000);
+      return;
+    }
+
+
+
+  }
+   
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;

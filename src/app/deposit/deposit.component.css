@@ -188,12 +188,41 @@ input[type="text"]{
 
 .copy-Text{
         position: relative;
-    top: -44px;
-    left: 235px;
+        top: -52px;
+    left: 238px;
 }
 
 .copyColor{
-    background-color: #db2828;
-    color: white;
+    
+    color: #db2828;
 }
+
+/* .myloader {
+    border: 16px solid white;
+    border-radius: 50%;
+    border-top: 16px solid #DB2828;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+      position: relative;
+    bottom: 543px;
+    left: 579px
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.backgroundScrool{
+    background-color: lightgray;
+     cursor: not-allowed;
+     opacity: 0.2;
+} */
 
