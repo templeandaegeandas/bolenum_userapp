@@ -222,7 +222,7 @@ export class TradeNowComponent implements OnInit {
       this.hasAmount= true;
        setTimeout(() => {
       this.hasAmount= false;
-    }, 1000);
+    }, 3000);
       return;
     }
 
@@ -233,7 +233,7 @@ export class TradeNowComponent implements OnInit {
       this.hasAmount= true;
        setTimeout(() => {
       this.hasAmount= false;
-    }, 1000);
+    }, 3000);
       return;
     }
 
