@@ -27,6 +27,11 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
+  createFiatOrder(order, pairId, orderId) {
+    return this.http.post('/api/v1/user/create/order/fiat?pairId=' + pairId+"&orderId="+orderId, order)
+      .map(res => res.json());
+  }
+
   getListOfCurrency() {
     return this.http.get('/api/v1/admin/currency/list/market')
       .map(res => res.json());

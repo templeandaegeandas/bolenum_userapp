@@ -12,6 +12,7 @@ import { DashBoardService } from './dashboard.service';
 export class DashboardComponent implements OnInit {
 
     options :any;
+
     public tradingCountData:any;
     public totalNumberOfTrading : any;
     public totalNumberOfBuy:any;

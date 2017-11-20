@@ -1,6 +1,6 @@
-<div class="container deposit-container-padding">
+<div class="container deposit-container-padding" >
   <div class="row ">
-    <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color">
+    <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color"  >
 
       <!-- <div class="pull-right">
         <ul>
@@ -28,10 +28,16 @@
           </div>
         </div>
         <div class="col-md-12 input-box">
+
           <div class="form-group">
-            <input type="text" class="form-control deposite-Content" [disabled]="true" id="usr" [(ngModel)]="address">
+  <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
+            <input type="text" class="form-control deposite-Content" readonly id="usr" [(ngModel)]="address" #inputTarget  >
+             <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
+             <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
           </div>
+
         </div>
+
 
       <div class="col-md-12 text-center deposite-Content">
         <!-- <span class="network">Network Fee:</span>
@@ -42,11 +48,16 @@
       <!-- <div class="col-md-12 text-center margin-button">
         <button class="genarate-button text-capitalize">Generate New Address</button>
       </div> -->
-        <!-- for table -->
+        <!-- for table -->getListOfUserWithdrawlTransaction() {
+    this.withdrawService.getListOfWithdrawlTransaction(1,10,"createdOn","desc").subscribe(success => {
+    this.txList = success.data.content;
+  })
+}
     <div class="row">
   <div class="col-md-10 col-md-offset-1 margin-Table">
-
-   <table class="table table-striped trade-History-table border-left ">
+<div class="deposite-Table">
+  <div class="loader spiner-position" *ngIf="isLoading" ></div>
+   <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
         <thead class="table-Head table-Heading ">
           <tr>
             <th>Transaction Hash</th>
@@ -59,16 +70,18 @@
         </thead>
         <tbody class="table-content-font">
           <tr *ngFor="let tx of txList">
-            <td>{{tx.txHash }}</td>
+            <td class="ellipsis" title="{{tx.txHash}}" >{{tx.txHash }}</td>
 
             <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount}}</td>
-            <td>{{tx.fromAddress}}</td>
+            <td>{{tx.txAmount | number:'1.1-8'}}</td>
+            <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
         </tbody>
       </table>
+
+</div>
 
   </div>
 </div>
@@ -76,3 +89,5 @@
     </div>
  </div>
 </div>
+ <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+<!-- <div class="myloader"></div> -->

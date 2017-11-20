@@ -236,3 +236,36 @@ select option{
 }
 
 .ellipsis {    max-width: 40px;    text-overflow: ellipsis;    overflow: hidden;    white-space: nowrap;}
+
+/* for loader */
+.loader {
+     border: 5px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #db2828;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spiner-position{
+        position: absolute;
+        top: 136px;
+    left: 377px;
+}
+
+/* for loader */
+
+.opecity-table{
+      opacity: 0.5;
+}

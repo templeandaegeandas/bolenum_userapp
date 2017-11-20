@@ -415,7 +415,7 @@ select option {
     margin-bottom: 12px;
 }
 .trade-field{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .trade-button-buy{
     background-color: #DB2828;
@@ -704,7 +704,7 @@ h2 {
 .trade-History tbody, .trade-History thead tr { display: block; }
 
 .trade-History tbody {
-    height: 250px;
+    height: 372px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -722,7 +722,7 @@ h2 {
 .own-Table tbody, .own-Table thead tr { display: block; }
 
 .own-Table tbody {
-    height: 250px;
+    height: 372px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -924,3 +924,46 @@ table thead tr th {
         margin-left: 200px;
 }
 
+.buy-button-colors{
+        background-color: #3cb371;
+}
+
+/* for loader */
+.loader {
+     border: 5px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #db2828;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spiner-position{
+        position: absolute;
+   top: 249px;
+    left: 455px;
+}
+
+/* for loader */
+
+.opecity-table{
+      opacity: 0.5;
+}
+
+.tradeErrorTextColor{
+    color: #db2828;
+}
+.marketBodyColor{
+    background-color: white;
+}
