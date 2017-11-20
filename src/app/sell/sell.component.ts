@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-trading',
-  templateUrl: './trading.component.html',
-  styleUrls: ['./trading.component.css']
+  selector: 'app-sell',
+  templateUrl: './sell.component.html',
+  styleUrls: ['./sell.component.css']
 })
-export class TradingComponent implements OnInit {
-
-  public hasTrading:boolean=true;
-  public hasTimer:boolean=false;
-  public hasPaymentConfirm:boolean=false;
+export class SellComponent implements OnInit {
+  public isSellStart:boolean = true;
+  public hasTimer:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
-  
   }
-hasTradeNow(){
-  this.hasTrading=false;
-  this.hasTimer=true;
-// for timer
+startTradingTimer(){
+  this.isSellStart = false;
+  this.hasTimer = true;
+  // for timer
   // Set the date we're counting down to
 var countDownDate = new Date("Jan 5, 2018 15:37:25").getTime();
 
@@ -49,15 +46,4 @@ var x = setInterval(function() {
 }, 1000);
 // for timer
 }
-
-paymentConfirmation(){
-  this.hasPaymentConfirm=true;
-  this.hasTrading = false;
-  this.hasTimer = false;
-}
-
-
-
-  
-
 }

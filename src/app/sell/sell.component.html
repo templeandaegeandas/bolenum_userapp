@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <section *ngIf="isSellStart">
+      <div class="col-sm-10 col-sm-offset-1 table-margin">
+        <!-- for payment details section -->
+
+        <div class="panel">
+          <div class="panel-heading paymentDetails">Payment details</div>
+          <div class="panel-body panel-Body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Payment method</th>
+                  <td>Bank transfer</td>
+                </tr>
+                <tr>
+                  <th>Amount to be paid</th>
+                  <td>518,548.06 INR</td>
+                </tr>
+                <tr>
+                  <th>Bank name</th>
+                  <td>Punjab national bank</td>
+                </tr>
+                <tr>
+                  <th>Bvn code</th>
+                  <td>PNBE514278284525</td>
+                </tr>
+                <tr>
+                  <th>Bank account number</th>
+                  <td>44842645054 karol bagh</td>
+                </tr>
+                <tr>
+                  <th>Payment reference id</th>
+                  <td>#54845154448454</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- trade now button -->
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+          <button class="tradeNowSellButton " type="submit" name="tradeNow" (click)="startTradingTimer()">Trade Now</button>
+        </div>
+      </div>
+    </section>
+    <!-- for second page -->
+    <section *ngIf="hasTimer">
+      <div class="col-sm-10 col-sm-offset-1 depositeAddressMargin">
+        <!-- deposite address section -->
+        <div class="panel">
+          <div class="panel-heading paymentDetails">Deposite Address</div>
+          <div class="panel-body panel-Body">
+            <div class="row">
+              <div class="col-sm-12 addressMargin">
+                <div class="col-sm-8 addressTextBox">
+                  <div class="form-group">
+                    <input class="form-control input-lg " id="inputlg" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <img src="./assets/images/copy.png" width="46" height="46">
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <!-- for address section -->
+                <div class="col-sm-10 col-sm-offset-1 text-center">
+                  <div>
+                    <qr-code [value]="'All QR Code data goes here!'" [size]="150"></qr-code>
+                  </div>
+                </div>
+                <!-- for address section -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- deposite address section -->
+      </div>
+      <!-- for timer section -->
+      <div class="col-sm-10 col-sm-offset-1 text-center">
+        <div class="timer-property">
+          <p><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
+
+          <p class="timer-font-pro" id="demo"></p>
+
+          <p>When payment time went out the trade will be cancelled and we will send back the fund to seller.</p>
+        </div>
+      </div>
+      <!-- for timer section -->
+      <div class="col-sm-10 col-sm-offset-1 button-Margin text-center">
+        <button class="cancelTradeButton" type="submit" name="cancelTrade">Cancel Trade</button>
+      </div>
+      <!-- payment details -->
+       <div class="col-sm-10 col-sm-offset-1 ">
+          <div class="panel">
+          <div class="panel-heading paymentDetails">Payment details</div>
+          <div class="panel-body panel-Body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Payment method</th>
+                  <td>Bank transfer</td>
+                </tr>
+                <tr>
+                  <th>Amount to be paid</th>
+                  <td>518,548.06 INR</td>
+                </tr>
+                <tr>
+                  <th>Bank name</th>
+                  <td>Punjab national bank</td>
+                </tr>
+                <tr>
+                  <th>Bvn code</th>
+                  <td>PNBE514278284525</td>
+                </tr>
+                <tr>
+                  <th>Bank account number</th>
+                  <td>44842645054 karol bagh</td>
+                </tr>
+                <tr>
+                  <th>Payment reference id</th>
+                  <td>#54845154448454</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- payment details -->
+    </section>
+    <!-- for second page -->
+  </div>
+</div>

@@ -48,6 +48,7 @@ import { AppEventEmiterService } from './app.event.emmiter.service';
 import { StompService } from 'ng2-stomp-service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TradingComponent } from './trading/trading.component';
+import { SellComponent } from './sell/sell.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -85,6 +86,7 @@ export function highchartsFactory() {
     PrivacyPolicyComponent,
     HistoryComponent,
     TradingComponent,
+    SellComponent,
 
   ],
   imports: [

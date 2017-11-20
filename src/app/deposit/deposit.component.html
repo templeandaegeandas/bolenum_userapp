@@ -40,8 +40,10 @@
         
 
       <div class="col-md-12 text-center deposite-Content">
-        <!-- <span class="network">Network Fee:</span>
-        <span><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span> 0000.5 -->
+         <!-- <span class="network">Network Fee:</span> -->
+        <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span>
+          <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
+            <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span>
           Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
         </div>
       </div>

@@ -91,7 +91,7 @@
                       </div>
                     </div>
                     <div class="col-sm-12 padding-level margin-buttons">
-                      <button class="sell-button-color">SELL</button>
+                      <button class="sell-button-color" routerLink="/sell">SELL</button>
                     </div>
 
                   </div>
@@ -397,7 +397,7 @@
             </div>
             <div *ngIf="allTradedListLength==0">
               <p class="hasTableData"> No trades . . . !</p>
-              <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+              <p class="message-padding">You have not made any trades yet, Once you make some trades,they will appear here.</p>
             </div>
           </tbody>
         </table>
@@ -431,7 +431,7 @@
             </tr>
             <div *ngIf="myTradedListLength==0">
               <p class="hasTableData"> No trades . . . !</p>
-              <p class="message-padding">You have not made any trades yet,Once you make some trades,they will appear here.</p>
+              <p class="message-padding">You have not made any trades yet, Once you make some trades,they will appear here.</p>
             </div>
           </tbody>
         </table>

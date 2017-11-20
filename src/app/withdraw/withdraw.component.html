@@ -12,11 +12,31 @@
 </select>
     </div>
       <div class=" text-center text-image-div">
-        <!-- <div class=" ">
+        <!-- for btc image -->
+         <div class=" " *ngIf="setItemValue=='BTC'">
           <span>
          <img src="./assets/images/bitcoin.png" width="46" height="46">
        </span>
-        </div> -->
+        </div> 
+      <!-- for boleno image -->
+        <div class=" " *ngIf="setItemValue=='BLN'">
+          <span>
+         <img src="./assets/images/bolenum.png" width="46" height="46">
+       </span>
+        </div> 
+      <!-- for etherium -->
+      <div class=" " *ngIf="setItemValue=='ETH'">
+          <span>
+         <img src="./assets/images/eth.png" width="46" height="46">
+       </span>
+        </div> 
+      <!-- for nigerian naira -->
+      <div class=" " *ngIf="setItemValue=='NGN'">
+          <span>
+         <img src="./assets/images/ngn.png" width="46" height="46">
+       </span>
+        </div> 
+
         <div class="available-text">
           <span class="balance-text withdraw-heading">
           <!-- Available Balance 0.2156 -->

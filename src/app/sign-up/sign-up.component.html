@@ -26,7 +26,7 @@
           <span *ngIf="firstName.invalid && signUpForm.submitted">
               <span class="text-danger errorContent-font-size" *ngIf="firstName.errors.required">Please enter first name</span>
               <span class="text-danger errorContent-font-size" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
-              <p class="text-danger errorContent-font-size" *ngIf="firstName.errors.pattern">Space and special characters are not allowed</p>
+              <p class="text-danger errorContent-font-size" *ngIf="firstName.errors.pattern">Space or special characters are not allowed</p>
           </span>
 
           <div class="input-group">
@@ -35,7 +35,7 @@
           </div>
           <span *ngIf="lastName.invalid && signUpForm.submitted">
               <span class="text-danger errorContent-font-size" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
-               <p class="text-danger errorContent-font-size" *ngIf="lastName.errors.pattern">Space and special characters are not allowed</p>
+               <p class="text-danger errorContent-font-size" *ngIf="lastName.errors.pattern">Space or special characters are not allowed</p>
           </span>
           <div class="input-group">
             <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
