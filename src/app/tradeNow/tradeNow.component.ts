@@ -240,7 +240,7 @@ export class TradeNowComponent implements OnInit {
 
 
   }
-   
+
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;
@@ -261,7 +261,8 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.ngOnInit();
+      this.getAllTradedOrders();
+      this.getMyOrdersFromBook();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
@@ -269,7 +270,6 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.ngOnInit();
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
@@ -288,7 +288,8 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.ngOnInit();
+      this.getAllTradedOrders();
+      this.getMyOrdersFromBook();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
@@ -296,7 +297,6 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.ngOnInit();
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
@@ -446,6 +446,7 @@ export class TradeNowComponent implements OnInit {
     this.beforeActiveMyTrade = false;
 
   }
+
   // method to show table of market trade and my trade
 
 showBuyOrder(){

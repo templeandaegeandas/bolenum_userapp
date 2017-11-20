@@ -12,8 +12,8 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 
 export class WithdrawComponent implements OnInit {
-public hasBlur:boolean=false;
-  public isLoading:boolean=false;
+  public hasBlur: boolean = false;
+  public isLoading: boolean = false;
   public currencyData: any;
   public setItemValue: any;
   public address: any;
@@ -29,11 +29,12 @@ public hasBlur:boolean=false;
   withdrawForm = new WithdrawAmount();
 
 
-  constructor(private withdrawService: WithdrawService,private appEventEmiterService:AppEventEmiterService, private toastrService: ToastrService) {
+  constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
-           this.getListOfUserWithdrawlTransaction();
+        this.getListOfUserWithdrawlTransaction();
       }
+      message = "default message";
     });
   }
 
@@ -47,13 +48,11 @@ public hasBlur:boolean=false;
     this.loading = true;
     let c = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
     this.withdrawService.withdrawFromWallet(c.currencyType, c.currencyAbbreviation, this.withdrawForm).subscribe(success => {
-      console.log(success);
-      this.ngOnInit();
-      form.form.reset();
+      this.getCoin(c.currencyAbbreviation);
+      form.resetForm();;
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
-      console.log(error);
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
@@ -62,8 +61,10 @@ public hasBlur:boolean=false;
   getCurrencyList() {
     this.withdrawService.getCurrencyList().subscribe(success => {
       this.currencyData = success.data;
-      this.setItemValue = this.currencyData[0].currencyAbbreviation;
-      this.getCoin(this.setItemValue);
+      if (this.currencyData.length > 0) {
+        this.setItemValue = this.currencyData[0].currencyAbbreviation;
+        this.getCoin(this.setItemValue);
+      }
     }, error => {
 
     });
@@ -75,9 +76,9 @@ public hasBlur:boolean=false;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.withdrawService.getCoin(c.currencyType, data).subscribe(success => {
       let successData = success.data;
-      if(successData.data!=null) {
+      if (successData.data != null) {
         this.address = successData.data.address;
-        this.balance = successData.data.balance+" "+data;
+        this.balance = successData.data.balance + " " + data;
         this.coinAbbreviation = successData.data.coinAbbreviation;
       }
       this.loading = false;
@@ -89,15 +90,11 @@ public hasBlur:boolean=false;
 
   getListOfUserWithdrawlTransaction() {
     this.isLoading = true;
-     this.hasBlur = true;
+    this.hasBlur = true;
     this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc").subscribe(success => {
-       this.isLoading = false;
-       this.hasBlur = false;
+      this.isLoading = false;
+      this.hasBlur = false;
       this.txList = success.data.content;
     })
   }
-
-
-
-
 }
