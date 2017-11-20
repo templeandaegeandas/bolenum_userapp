@@ -222,7 +222,7 @@ export class TradeNowComponent implements OnInit {
       this.hasAmount= true;
        setTimeout(() => {
       this.hasAmount= false;
-    }, 1000);
+    }, 3000);
       return;
     }
 
@@ -233,14 +233,14 @@ export class TradeNowComponent implements OnInit {
       this.hasAmount= true;
        setTimeout(() => {
       this.hasAmount= false;
-    }, 1000);
+    }, 3000);
       return;
     }
 
 
 
   }
-   
+
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;
@@ -446,6 +446,7 @@ export class TradeNowComponent implements OnInit {
     this.beforeActiveMyTrade = false;
 
   }
+
   // method to show table of market trade and my trade
 
 showBuyOrder(){
