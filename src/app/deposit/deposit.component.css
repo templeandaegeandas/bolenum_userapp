@@ -119,7 +119,11 @@ input[type="text"]{
     border-spacing: 0;
 }
 
-.deposite-Table tbody, .deposite-Table thead tr { display: block; }
+.deposite-Table tbody, .deposite-Table thead tr { 
+    
+    display: block;
+    text-align: center;
+ }
 
 .deposite-Table tbody {
     height: 250px;
@@ -128,13 +132,13 @@ input[type="text"]{
 }
 
 .deposite-Table tbody td, .deposite-Table thead th {
-    width: 216px;
+    width: 175px;
     padding: 3px;
 }
 /* for depositiable table */
 
 .ellipsis {
-    max-width: 40px;
+    max-width: 94px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -181,3 +185,44 @@ input[type="text"]{
 .opecity-table{
       opacity: 0.5;
 }
+
+.copy-Text{
+        position: relative;
+        top: -52px;
+    left: 238px;
+}
+
+.copyColor{
+    
+    color: #db2828;
+}
+
+/* .myloader {
+    border: 16px solid white;
+    border-radius: 50%;
+    border-top: 16px solid #DB2828;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+      position: relative;
+    bottom: 543px;
+    left: 579px
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.backgroundScrool{
+    background-color: lightgray;
+     cursor: not-allowed;
+     opacity: 0.2;
+} */
+

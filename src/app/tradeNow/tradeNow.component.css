@@ -415,7 +415,7 @@ select option {
     margin-bottom: 12px;
 }
 .trade-field{
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .trade-button-buy{
     background-color: #DB2828;
@@ -704,7 +704,7 @@ h2 {
 .trade-History tbody, .trade-History thead tr { display: block; }
 
 .trade-History tbody {
-    height: 250px;
+    height: 372px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -722,7 +722,7 @@ h2 {
 .own-Table tbody, .own-Table thead tr { display: block; }
 
 .own-Table tbody {
-    height: 250px;
+    height: 372px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -961,3 +961,9 @@ table thead tr th {
       opacity: 0.5;
 }
 
+.tradeErrorTextColor{
+    color: #db2828;
+}
+.marketBodyColor{
+    background-color: white;
+}

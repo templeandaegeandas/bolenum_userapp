@@ -104,6 +104,7 @@
                 <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
               </div>
               <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+                <p class="tradeErrorTextColor" *ngIf="hasAmount">Please Enter Amount To Start Trading</p>
                 <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
                      <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                      </select>
@@ -114,7 +115,7 @@
                     <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" [(ngModel)]="order.volume" id="email">
+                    <input type="text" class="form-control" [(ngModel)]="order.volume" id="email" >
                   </div>
                 </div>
                 <div class="col-md-12 trade-field">
@@ -212,7 +213,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let pair of pairList">
+                <tr *ngFor="let pair of pairList" class="marketBodyColor">
                   <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                   <th class="table-content-font">0</th>
                   <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
@@ -314,8 +315,8 @@
         </div>
       </div>
       <div class="own-Table">
-        <div class="loader spiner-position" *ngIf="isLoading" ></div>
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" [ngClass]="{'opecity-table':hasBlur}" >
+        <div class="loader spiner-position" *ngIf="isOpenOrders" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" [ngClass]="{'opecity-table':hasBlurOpenOrders}" >
           <thead class="table-Head ">
             <tr>
               <th>Type</th>
@@ -402,8 +403,8 @@
         </table>
       </div>
       <div class="trade-History">
-        <div class="loader spiner-position" *ngIf="isLoading" ></div>
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlur}" >
+        <div class="loader spiner-position" *ngIf="isLoadingForMyTrade" ></div>
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlurForMyTrading}" >
           <thead class="table-Head ">
             <tr>
               <th>Date</th>

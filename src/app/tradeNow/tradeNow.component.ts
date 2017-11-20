@@ -15,6 +15,11 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public hasAmount:boolean=false;
+  public isLoadingForMyTrade:boolean = false;
+  public hasBlurForMyTrading:boolean = false;
+  public isOpenOrders:boolean=false;
+  public hasBlurOpenOrders:boolean=false;
    public hasBlur:boolean=false;
   public isLoading:boolean=false;
   public pairData:any;
@@ -212,6 +217,30 @@ export class TradeNowComponent implements OnInit {
   }
 
   showModel(orderType, volume, price, orderId) {
+    if(this.setTradingValue == 'Limit Order'){
+      if(this.order.volume =='' || this.order.price == ''){
+      this.hasAmount= true;
+       setTimeout(() => {
+      this.hasAmount= false;
+    }, 3000);
+      return;
+    }
+
+    }
+  else if(this.setTradingValue == 'Market Order'){
+
+    if(this.order.volume =='' || this.order.price == ''){
+      this.hasAmount= true;
+       setTimeout(() => {
+      this.hasAmount= false;
+    }, 3000);
+      return;
+    }
+
+
+
+  }
+
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;
@@ -326,11 +355,11 @@ export class TradeNowComponent implements OnInit {
 
   getMyTradedOrders() {
     // this.loading = true;
-    this.isLoading = true;
-     this.hasBlur = true;
+    this.isLoadingForMyTrade = true;
+     this.hasBlurForMyTrading = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
-     this.isLoading = false;
-     this.hasBlur = false;
+     this.isLoadingForMyTrade = false;
+     this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
       this.myTradedListLength = success.data.length;
        console.log("length of mytradeList>>>>>>>>>>>",this.myTradedList);
@@ -357,11 +386,11 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyOrdersFromBook() {
-     this.isLoading = true;
-     this.hasBlur = true;
+     this.isOpenOrders = true;
+     this.hasBlurOpenOrders = true;
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
-      this.isLoading = false;
-     this.hasBlur = false;
+        this.isOpenOrders = false;
+     this.hasBlurOpenOrders = false;
       this.myOrdersInBook = success.data;
       this.myOrdersInBookLength = success.data.length;
     }, error => {
@@ -417,6 +446,7 @@ export class TradeNowComponent implements OnInit {
     this.beforeActiveMyTrade = false;
 
   }
+
   // method to show table of market trade and my trade
 
 showBuyOrder(){
