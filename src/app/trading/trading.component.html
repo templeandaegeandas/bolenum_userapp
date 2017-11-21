@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <section *ngIf="hasTrading">
+    <!-- <section *ngIf="hasTrading">
       <div class="col-sm-10 col-sm-offset-1 trading-margin">
         <p> I want to buy 1.235 BTC Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
           been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -9,9 +9,9 @@
           containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
           versions of Lorem Ipsum.
         </p>
-      </div>
-      <!-- payment details -->
-      <div class="col-sm-10 col-sm-offset-1 table-margin">
+      </div> -->
+    <!-- payment details -->
+    <!-- <div class="col-sm-10 col-sm-offset-1 table-margin">
         <div class="panel">
           <div class="panel-heading paymentDetails">Payment details</div>
           <div class="panel-body panel-Body">
@@ -45,9 +45,9 @@
             </table>
           </div>
         </div>
-      </div>
-      <!-- payment details -->
-      <div class="col-sm-10 col-sm-offset-1 trade-button-margin">
+      </div> -->
+    <!-- payment details -->
+    <!-- <div class="col-sm-10 col-sm-offset-1 trade-button-margin">
         <div class="row">
           <div class="col-sm-6 button-property">
             <button type="submit" class="btn trade-button button-color" name="trdeNow" (click)=" hasTradeNow();">Trade Now</button>
@@ -55,26 +55,25 @@
           <div class="col-sm-6 button-property-left">
             <button type="submit" class=" btn trade-button " name="back" routerLink="/tradeNow">Back</button>
           </div>
-        </div>
-        <!-- <button type="submit" class="trade-button" name="trdeNow">Trade Now</button>  -->
-      </div>
-    </section>
+        </div> -->
+    <!-- <button type="submit" class="trade-button" name="trdeNow">Trade Now</button>  -->
+    <!-- </div>
+    </section> -->
     <!-- timer section -->
     <section *ngIf="hasTimer">
       <div class="col-sm-10 col-sm-offset-1 trading-margin">
-       <p> You are buying 2.13 BTC from xyz. BTC of the seller is already locked and secured for this trade. 
-          Please send payment to the seller then confirm below.
-          After the trade is completed, your bitcoin will be sent to ddfdsfd545mjbhvFf45454gfg(wallet address) </p>
+        <p> You are buying {{orderVolume}} BLN from {{sellerName}}. BLN of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your Boleno will be sent to {{walletAddress}}
+          </p>
       </div>
       <div class="col-sm-10 col-sm-offset-1 timer-margin">
-        <div class="timer-property" >
+        <div class="timer-property">
           <p><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
-          <p class="timer-font-pro" id="demo" ></p>
+          <p class="timer-font-pro" id="demo"></p>
 
-         <p>When payment time went out the trade will be cancelled and we will send back the fund to seller.</p>
+          <p>When payment time went out, the trade will be cancelled and we will send back the fund to seller.</p>
         </div>
-        
+
       </div>
       <div class="col-sm-12 ">
         <div class="col-sm-12">
@@ -82,12 +81,68 @@
             <button type="submit" class="btn trade-button button-color" name="trdeNow" (click)="paymentConfirmation();">Paid</button>
           </div>
           <div class="col-sm-6 button-center">
-            <button type="submit" class="btn trade-button" routerLink="/tradeNow" name="trdeNow">Cancel</button>
+            <button type="submit" class="btn trade-button" (click)="cancelPay()" name="trdeNow">Cancel</button>
           </div>
         </div>
       </div>
       <!-- payment details -->
       <div class="col-sm-10 col-sm-offset-1 margin-table">
+        <div class="panel">
+          <div class="panel-heading paymentDetails">Payment details</div>
+          <div class="panel-body panel-Body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Payment method</th>
+                  <td>Bank transfer</td>
+                </tr>
+                <tr>
+                  <th>Amount to be paid</th>
+                  <td>{{success.totalPrice}}</td>
+                </tr>
+                <tr>
+                  <th>Bank name</th>
+                  <td>{{success.accountDetails.bankName}}</td>
+                </tr>
+                <tr>
+                  <th>BVN code</th>
+                  <td>{{success.accountDetails.ifscCode}}</td>
+                </tr>
+                <tr>
+                  <th>Bank account number</th>
+                  <td>{{success.accountDetails.accountNumber}}</td>
+                </tr>
+                <tr>
+                  <th>Payment reference id</th>
+                  <td>#{{success.orderId}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- payment details -->
+    </section>
+    <!-- timer section -->
+
+    <!-- confirmaton page -->
+    <section *ngIf="hasPaymentConfirm">
+      <div class="col-sm-10 col-sm-offset-1 marginConfirm">
+        <h4 class="heading-Text">WAIT FOR PAYMENT CONFIRMATION</h4>
+        <p>You are buying 0.01121151 BTC from buyerName. Bitcoin of the seller is already locked and secured for this trade. Please wait for seller to confirm that he/she has received your payment. After the trade is completed, your Bitcoin will be sent
+          to wallet address(54fdfdf659dfsw5d6fdfg).
+        </p>
+        <div class="col-sm-12 button-margin-top">
+          <div class="col-sm-6 button-Right">
+            <button type="submit" name="cancelTrade" class="btn cancelTrade" data-toggle="modal" data-target="#myModal">Cancel Trade</button>
+          </div>
+          <div class="col-sm-6">
+            <button type="submit" name="cancelTrade" class="btn disputeTrade" data-toggle="modal" data-target="#myModal">Dispute</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-10 col-sm-offset-1 marginConfirm">
         <div class="panel">
           <div class="panel-heading paymentDetails">Payment details</div>
           <div class="panel-body panel-Body">
@@ -122,86 +177,29 @@
           </div>
         </div>
       </div>
-      <!-- payment details -->
-    </section>
-    <!-- timer section -->
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-    <!-- confirmaton page -->
-    <section *ngIf="hasPaymentConfirm">
-      <div class="col-sm-10 col-sm-offset-1 marginConfirm">
-        <h4 class="heading-Text">WAIT FOR PAYMENT CONFIRMATION</h4>
-        <p>You are buying 0.01121151 BTC from buyerName. Bitcoin of the seller is already locked and secured for this trade.
-          Please wait for seller to confirm that he/she has received your payment.
-          After the trade is completed, your Bitcoin will be sent to wallet address(54fdfdf659dfsw5d6fdfg).
-        </p>
-              <div class="col-sm-12 button-margin-top">
-                <div class="col-sm-6 button-Right">
-                  <button type="submit" name="cancelTrade" class="btn cancelTrade" data-toggle="modal" data-target="#myModal">Cancel Trade</button>
-                </div>
-                <div class="col-sm-6">
-                  <button type="submit" name="cancelTrade" class="btn disputeTrade" data-toggle="modal" data-target="#myModal">Dispute</button>
-                </div>
-              </div>
-      </div>
+          <!-- Modal content cancel trade and dispute-->
+          <div class="modal-content">
+            <div class="modal-header modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              <p></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
 
-      <div class="col-sm-10 col-sm-offset-1 marginConfirm">
-              <div class="panel">
-          <div class="panel-heading paymentDetails">Payment details</div>
-          <div class="panel-body panel-Body">
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th>Payment method</th>
-                  <td>Bank transfer</td>
-                </tr>
-                <tr>
-                  <th>Amount to be paid</th>
-                  <td>518,548.06 INR</td>
-                </tr>
-                <tr>
-                  <th>Bank name</th>
-                  <td>Punjab national bank</td>
-                </tr>
-                <tr>
-                  <th>Ifsc code</th>
-                  <td>PNBE514278284525</td>
-                </tr>
-                <tr>
-                  <th>Bank account number</th>
-                  <td>44842645054 karol bagh</td>
-                </tr>
-                <tr>
-                  <th>Payment reference id</th>
-                  <td>#54845154448454</td>
-                </tr>
-              </tbody>
-            </table>
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
           </div>
+
         </div>
       </div>
-     <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content cancel trade and dispute-->
-      <div class="modal-content">
-        <div class="modal-header modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Confirmation</h4>
-        </div>
-        <div class="modal-body">
-          <p></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
-          
-           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-    <!-- Modal content cancel trade and dispute end-->
+      <!-- Modal content cancel trade and dispute end-->
     </section>
     <!-- confirmaton page -->
   </div>
