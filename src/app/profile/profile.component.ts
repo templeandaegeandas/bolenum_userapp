@@ -224,6 +224,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.verify2faGoogleAuthKey(this.secret).subscribe(success => {
       this.addPopup.hide();
       this.twoFactorAuthType = 'NONE';
+      form.resetForm();
       this.toastrService.success("Two way authentication has been set to Google authenticator", "Success!");
     }, error => {
       this.toastrService.error(error.json().message, "Error!")
