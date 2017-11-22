@@ -40,7 +40,9 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrencyList();
-    this.getListOfUserWithdrawlTransaction();
+    setTimeout(() => {
+      this.getListOfUserWithdrawlTransaction();
+    }, 200);
   }
 
   withdrawAmount(form) {
