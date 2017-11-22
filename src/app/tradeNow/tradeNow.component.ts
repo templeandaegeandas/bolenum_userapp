@@ -286,7 +286,6 @@ export class TradeNowComponent implements OnInit {
         this.router.navigate(['sell']);
       }
     }, error => {
-      console.log(error);
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
