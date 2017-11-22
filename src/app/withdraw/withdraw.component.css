@@ -61,7 +61,7 @@ select.center-dropddown {
     outline: none;
 }
 select.center-dropddown option {
-    width: 225px;
+    /* width: 225px; */
     outline: none;
 }
 .col-md-12.withdraw-dropdown {
@@ -269,3 +269,19 @@ select option{
 .opecity-table{
       opacity: 0.5;
 }
+
+select.center-dropddown option{
+    /* width: 0px; */
+    outline: none;
+}
+select option{
+    margin: 0px;
+    background: #fff;
+    color: #000;
+}
+
+.option-box {
+    background-color: white;
+    color: black;
+}
+

@@ -13,11 +13,12 @@ ul li {
 .input-box {
     text-align: -webkit-center;
     padding-top: 22px;
+    text-align: -moz-center;
 }
-input {
+/* input {
     padding: 27px;
     width: 33%;
-}
+} */
 .network {
     color: #db2828;
 }
@@ -188,8 +189,8 @@ input[type="text"]{
 
 .copy-Text{
         position: relative;
-        top: -52px;
-    left: 238px;
+    top: -47px;
+    left: 223px;
 }
 
 .copyColor{

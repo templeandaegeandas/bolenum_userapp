@@ -967,3 +967,9 @@ table thead tr th {
 .marketBodyColor{
     background-color: white;
 }
+
+select option {
+    margin: 5px;
+   
+}
+
