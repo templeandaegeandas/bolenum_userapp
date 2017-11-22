@@ -56,6 +56,7 @@ export class TradeNowComponent implements OnInit {
   myOrdersInBook: any;
   userId: number;
   selecedOrderId: any;
+  showModal: boolean = false;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
