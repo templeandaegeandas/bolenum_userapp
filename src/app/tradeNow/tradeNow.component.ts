@@ -57,6 +57,10 @@ export class TradeNowComponent implements OnInit {
   userId: number;
   selecedOrderId: any;
   showModal: boolean = false;
+  amount: any;
+  price: any;
+  sellOrderLength: any;
+  buyOrderLength: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -402,7 +406,7 @@ export class TradeNowComponent implements OnInit {
       this.allTradedListLength =  this.allTradedList.length;
       console.log("data length >>>>>", this.allTradedListLength);
       console.log("data length >>>>>", this.allTradedList);
-      
+
     }, error => {
       console.log(error);
     })
@@ -475,12 +479,51 @@ export class TradeNowComponent implements OnInit {
   showBuyOrder() {
     this.hasSell = false;
     this.hasBuy = true;
+    this.amount= '';
+    this.price = '';
   }
 
   showSellOrder() {
     this.hasBuy = false;
     this.hasSell = true;
+    this.amount= '';
+    this.price = '';
+  }
 
+  changedList(orderType) {
+    if(this.amount=='') {
+      this.getSellOrderBookData(this.pairId);
+    }
+    else {
+      this.price = 10;
+      this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
+        if(orderType=='SELL') {
+          this.buyOrderList = success.data.content;
+          this.buyOrderLength = this.buyOrderList.length;
+        }
+        else {
+          this.sellOrderList = success.data.content;
+          this.sellOrderLength = this.sellOrderList.length;
+        }
+      })
+    }
+  }
+
+  createAdvertisement(orderType) {
+    this.order.orderType = orderType;
+    this.order.orderStandard = 'LIMIT';
+    this.order.volume = this.amount;
+    this.order.price = this.price;
+    this.order.totalVolume = this.amount;
+    this.tradeNowService.createAdvertisment(this.order, this.pairId).subscribe(success => {
+      console.log(success);
+      this.getBuyOrderBookData(this.pairId);
+      this.getSellOrderBookData(this.pairId);
+      this.getMyOrdersFromBook();
+      this.toastrService.success("Your order created successfully!", "Success!")
+    })
+    this.amount = '';
+    this.price = '';
   }
 
   // to get more orders on tradeHistory table on click of more
@@ -500,7 +543,7 @@ export class TradeNowComponent implements OnInit {
       this.allTradedListLength =  this.allTradedList.length;
       console.log("data length >>>>>", this.allTradedListLength);
       console.log("data length >>>>>", this.allTradedList);
-      
+
     }, error => {
       console.log(error);
     })

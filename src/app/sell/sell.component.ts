@@ -23,6 +23,7 @@ export class SellComponent implements OnInit {
   createdDate: any;
   totalPrice: any;
   orderStatus: any;
+  timer: any;
 
   constructor(
     private sellService: SellService,
@@ -34,17 +35,15 @@ export class SellComponent implements OnInit {
     });
   }
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
-    console.log('Back button pressed');
-    this.cancelPay();
-  }
-
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
     this.sellService.orderDetails(this.orderId).subscribe(success => {
+      if(success.data==null) {
+        this.router.navigate(['tradeNow']);
+        return;
+      }
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
@@ -56,8 +55,7 @@ export class SellComponent implements OnInit {
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
-      console.log("Our data: ", );
-    })
+    }, error => this.router.navigate(['tradeNow']))
   }
   startTradingTimer() {
     // for timer
@@ -70,9 +68,7 @@ export class SellComponent implements OnInit {
     var x = setInterval(function() {
 
       // Get todays date and time
-      var now = date.getTime();
-      console.log(date)
-      console.log(now)
+      var now = new Date().getTime();
 
       // Find the distance between now an the count down date
       var distance = countDownDate - now;
@@ -84,12 +80,12 @@ export class SellComponent implements OnInit {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Output the result in an element with id="demo"
-      document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+      this.timer = minutes + " : " + seconds;
 
       // If the count down is over, write some text
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        this.timer = "EXPIRED";
         this.cancelPay();
       }
     }, 1000);
@@ -97,11 +93,11 @@ export class SellComponent implements OnInit {
   }
   else if (this.orderStatus == 'COMPLETED') {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "Order Completed";
+    this.timer = "Order Completed";
   }
   else {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "Order Canclled";
+    this.timer = "Order Canclled";
   }
 
   }

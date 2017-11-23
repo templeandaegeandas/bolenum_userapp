@@ -27,6 +27,11 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
+  createAdvertisment(order, pairId) {
+    return this.http.post('/api/v1/user/create/order/fiat?pairId=' + pairId, order)
+      .map(res => res.json());
+  }
+
   createFiatOrder(order, pairId, orderId) {
     return this.http.put('/api/v1/user/create/order/fiat?pairId=' + pairId+"&orderId="+orderId, order)
       .map(res => res.json());
@@ -77,6 +82,11 @@ export class TradeNowService {
 
   getUserDetails() {
     return this.http.get("/api/v1/user/get/loggedin")
+      .map(res => res.json());
+  }
+
+  getListFiatOrders(volume, price, orderType, pairId) {
+    return this.http.get("/api/v1/user/orders?volume="+volume+"&price="+price+"&orderType="+orderType+"&pairId="+pairId)
       .map(res => res.json());
   }
 }

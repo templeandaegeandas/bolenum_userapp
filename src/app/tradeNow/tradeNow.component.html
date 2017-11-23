@@ -53,24 +53,24 @@
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount">
+                          <input type="text" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('BUY')">
                         </div>
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <div class="col-sm-10 padding-level">
                         <div class="col-md-6">
-                          <label for="email tradeSubheading-fontSze-fontFamily">Your BLN Address:</label>
+                          <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount">
+                          <input type="text" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('BUY')">
                         </div>
                       </div>
                     </div>
 
-                    <div class="col-sm-12 padding-level margin-buy-Button">
-                      <button class="buy-button-color" routerLink="/trading">BUY</button>
+                    <div *ngIf="sellOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                      <button class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
                     </div>
 
                   </div>
@@ -85,16 +85,27 @@
                     <div class="col-sm-12">
                       <div class="col-sm-10 padding-level">
                         <div class="col-md-5">
-                          <label for="email tradeSubheading-fontSze-fontFamily">Amount of BTC:</label>
+                          <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                         </div>
 
                         <div class="col-md-7">
-                          <input type="text" class="form-control" id="amount">
+                          <input type="text" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('SELL')">
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12 padding-level margin-buttons">
-                      <button class="sell-button-color" routerLink="/sell">SELL</button>
+                    <div class="col-sm-12">
+                      <div class="col-sm-10 padding-level">
+                        <div class="col-md-6">
+                          <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
+                        </div>
+
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('SELL')">
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="buyOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                      <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                     </div>
 
                   </div>
@@ -393,7 +404,7 @@
               <td>{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <!-- <td>{{tx.orderStandard}}</td> -->
-            
+
             </tr>
             <tr>
                 <td colspan="5" (click)="getMoreOrders()" style="text-align: -webkit-right;">more</td>
