@@ -72,3 +72,24 @@
         margin-top: 19px;
     margin-bottom: 19px;
 }
+
+.paid_button{
+        background-color: #3cb371;
+    color: white;
+    width: 100px;
+    padding: 8px;
+}
+
+.cancel_button{
+        color: white;
+    width: 100px;
+    padding: 8px;
+    background-color: #DB2828;
+}
+.margin-timer{
+    margin-bottom: 40px;
+}
+
+.margin-top-head{
+        margin-top: 34px;
+}

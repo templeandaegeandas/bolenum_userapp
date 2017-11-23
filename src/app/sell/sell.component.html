@@ -1,40 +1,14 @@
 <div class="container">
   <div class="row">
     <section>
-      <div class="col-sm-10 col-sm-offset-1 depositeAddressMargin">
-        <!-- deposite address section -->
-        <div class="panel">
-          <div class="panel-heading paymentDetails">Deposite Address</div>
-          <div class="panel-body panel-Body">
-            <div class="row">
-              <div class="col-sm-12 addressMargin">
-                <div class="col-sm-8 addressTextBox">
-                  <div class="form-group">
-                    <input class="form-control input-lg " id="inputlg" type="text">
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <img src="./assets/images/copy.png" width="46" height="46">
-                </div>
-                <div class="col-sm-10 col-sm-offset-1">
-                  <p>Please deposit 0.05100505 BTC into Bitcoin address below so we can hold. Your trade with ruchi2509 will begin as soon as there is 1 confirmation on the Bitcon deposit.</p>
-                </div>
-                <!-- for address section -->
-                <div class="col-sm-10 col-sm-offset-1 text-center">
-                  <div>
-                    <qr-code [value]="'All QR Code data goes here!'" [size]="150"></qr-code>
-                  </div>
-                </div>
-                <!-- for address section -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- deposite address section -->
+      <div class="col-sm-10 col-sm-offset-1 margin-top-head">
+        <p>You are buying from . of the seller is already locked and secured for this 
+          trade. Please send payment to the seller then confirm below. After the trade
+           is completed, your will be sent to</p>
       </div>
+
       <!-- for timer section -->
-      <div class="col-sm-10 col-sm-offset-1 text-center">
+      <div class="col-sm-10 col-sm-offset-1 text-center margin-timer">
         <div class="timer-property">
           <p *ngIf="orderStatus=='LOCKED'"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
@@ -44,6 +18,24 @@
         </div>
       </div>
       <!-- for timer section -->
+      <!-- button section -->
+      <div class="-sm-10 col-sm-offset-1 ">
+
+        <div class="row">
+          <div class="col-sm-6 text-center">
+
+            <button  class="btn text-uppercase paid_button" type="submit" name="paid">Paid</button>
+
+
+          </div>
+            <div class="col-sm-6 text-center">
+           <button  class="btn text-uppercase cancel_button" type="submit" name="paid">Cancel</button>  
+          </div>
+        </div>
+
+      </div>
+      <!-- button section -->
+      
       <div class="col-sm-10 col-sm-offset-1 button-Margin text-center">
         <button *ngIf="orderStatus=='LOCKED'" class="cancelTradeButton" type="submit" name="cancelTrade" (click)="cancelPay()">Cancel Trade</button>
       </div>
