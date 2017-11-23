@@ -3,11 +3,11 @@ import { HttpClient } from '../app.client.interceptor';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class TradingService {
+export class SellService {
   constructor(private http: HttpClient) { }
 
   orderDetails(orderId) {
-    return this.http.get('/api/v1/user/order/fiat?orderType=BUY&orderId=' + orderId)
+    return this.http.get('/api/v1/user/order/fiat?orderType=SELL&orderId=' + orderId)
       .map(res => res.json());
   }
 

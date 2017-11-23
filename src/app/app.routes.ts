@@ -61,5 +61,5 @@ export const APP_ROUTES: Routes = [
   { path: 'terms-service', component: TermsServiceComponent  },
   { path: 'privacy-policy', component: PrivacyPolicyComponent   },
   { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },
-  { path: 'trading', component: TradingComponent },
-  { path: 'sell', component: SellComponent },];
+  { path: 'trading/:orderId', component: TradingComponent },
+  { path: 'sell/:orderId', component: SellComponent },];
