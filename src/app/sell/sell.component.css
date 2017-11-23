@@ -29,7 +29,8 @@
 }
 
 .addressTextBox{
-    text-align: -webkit-right;;
+    text-align: -webkit-right;
+    text-align: -moz-right;
 
 }
 
