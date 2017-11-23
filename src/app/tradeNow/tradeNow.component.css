@@ -716,7 +716,7 @@ h2 {
 .trade-History tbody, .trade-History thead tr { display: block; }
 
 .trade-History tbody {
-    height: 372px;
+    height: 352px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -761,7 +761,7 @@ h2 {
 }
 
 .sell-Buy-table tbody td, .sell-Buy-table thead th {
-    width: 112px;
+    width: 124px;
 }
 /* for sell and buy table */
 

@@ -383,7 +383,7 @@ export class TradeNowComponent implements OnInit {
       this.isLoadingForMyTrade = false;
       this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
-      this.myTradedListLength = success.data.length;
+      this.myTradedListLength =  this.myTradedList.length;
       console.log("length of mytradeList>>>>>>>>>>>", this.myTradedList);
       console.log("length of mytradeList>>>>>>>>>>>", this.myTradedListLength);
     }, error => {
@@ -398,7 +398,10 @@ export class TradeNowComponent implements OnInit {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
-      this.allTradedListLength = success.data.length;
+      this.allTradedListLength =  this.allTradedList.length;
+      console.log("data length >>>>>", this.allTradedListLength);
+      console.log("data length >>>>>", this.allTradedList);
+      
     }, error => {
       console.log(error);
     })
@@ -478,5 +481,29 @@ export class TradeNowComponent implements OnInit {
     this.hasSell = true;
 
   }
+
+  // to get more orders on tradeHistory table on click of more
+
+  getMoreOrders(){
+    let currentPage = 1;
+    let pageSize = 10;
+    this.isLoading = true;
+    this.hasBlur = true;
+    currentPage = currentPage+1;
+    pageSize = pageSize+10;
+
+    this.tradeNowService.getAllTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+      this.isLoading = false;
+      this.hasBlur = false;
+      this.allTradedList = success.data.content;
+      this.allTradedListLength =  this.allTradedList.length;
+      console.log("data length >>>>>", this.allTradedListLength);
+      console.log("data length >>>>>", this.allTradedList);
+      
+    }, error => {
+      console.log(error);
+    })
+  }
+
 
 }
