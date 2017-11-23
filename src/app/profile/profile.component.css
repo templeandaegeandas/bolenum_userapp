@@ -1486,3 +1486,12 @@ p.createdepositmodal-heading.hedartext {
         padding-top: 43px;
     padding-left: 31px;
 }
+
+.kyc_margin{
+        text-align: center;
+    margin-bottom: 6px;
+}
+
+.p_margin{
+   margin: 0 0 0px;
+}
