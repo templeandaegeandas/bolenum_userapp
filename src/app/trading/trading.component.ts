@@ -21,22 +21,23 @@ export class TradingComponent implements OnInit {
       ifscCode: string;
       accountNumber: string;
     };
-    orderId: string;
-    walletAddress: string;
-    sellerName: string;
-    orderVolume: string;
+      orderId: string;
+      walletAddress: string;
+      sellerName: string;
+      orderVolume: any;
+      currencyAbr: string;
   };
 
   constructor(
     private tradingService: TradingService,
     private router: Router,
-    private appEventEmiterService: AppEventEmiterService) { }
-
-  ngOnInit() {
+    private appEventEmiterService: AppEventEmiterService) {
     this.appEventEmiterService.currentMessage.subscribe(success => {
       console.log(success)
-      if (success != 'default message' && success!=null) {
+      if (success != 'default message' && success != null) {
         this.success = JSON.parse(success);
+        console.log(this.success)
+        // console.log(this.success.success.orderVolume)
       }
       else {
         this.router.navigate(['dashboard']);
@@ -44,13 +45,16 @@ export class TradingComponent implements OnInit {
     })
     this.hasTradeNow();
   }
+
+  ngOnInit() {
+  }
   hasTradeNow() {
     this.hasTrading = false;
     this.hasTimer = true;
     // for timer
     // Set the date we're counting down to
     var date = new Date();
-    var countDownDate = new Date(date.setMinutes(date.getMinutes()+40)).getTime();
+    var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     var x = setInterval(function() {
 
@@ -85,6 +89,7 @@ export class TradingComponent implements OnInit {
   }
 
   confirmPay() {
+    console.log(this.success.orderId)
     this.tradingService.confirmPay(this.success.orderId).subscribe(success => {
       console.log(success);
     })

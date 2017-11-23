@@ -49,7 +49,7 @@
          <div class="panel-body">
          </div>
          <div class="table-responsive history-Table">
-          <div class="loader spiner-position" *ngIf="isLoading" ></div> 
+          <div class="loader spiner-position" *ngIf="isLoading" ></div>
           <table class="table table-striped table-color transaction-History-Property" [ngClass]="{'opecity-table':hasBlur}">
                <thead >
                   <tr >
@@ -70,9 +70,9 @@
                        <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
                        <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
                      </td>
-                     <td class="table-content">{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                     <td class="table-content">{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-                     <td class="table-content">{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                     <td class="table-content">{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                     <td class="table-content">{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+                     <td class="table-content">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
                      <!-- <td class="table-content">{{tx.orderStandard}}</td> -->
                   </tr>
                </tbody>

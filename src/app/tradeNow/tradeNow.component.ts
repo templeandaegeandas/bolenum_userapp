@@ -56,6 +56,7 @@ export class TradeNowComponent implements OnInit {
   myOrdersInBook: any;
   userId: number;
   selecedOrderId: any;
+  showModal: boolean = false;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -91,8 +92,12 @@ export class TradeNowComponent implements OnInit {
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
         this.getMyTradedOrders();
-        this.getAllTradedOrders();
-        this.getMyOrdersFromBook();
+        setTimeout(() => {
+          this.getAllTradedOrders();
+        }, 100);
+        setTimeout(() => {
+          this.getMyOrdersFromBook();
+        }, 100);
       }
     });
     this.options = {
@@ -170,8 +175,12 @@ export class TradeNowComponent implements OnInit {
     this.setTradeValue("Market Order");
     //this.getMarketPrice();
     this.getCurrencyList();
-    this.getAllTradedOrders();
-    this.getMyOrdersFromBook();
+    setTimeout(() => {
+      this.getAllTradedOrders();
+    }, 100);
+    setTimeout(() => {
+      this.getMyOrdersFromBook();
+    }, 100);
     this.tradeNowService.getUserDetails().subscribe(success => {
       this.userId = success.data.userId;
     }, error => {
@@ -260,20 +269,23 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.getAllTradedOrders();
-      this.getMyOrdersFromBook();
+      setTimeout(() => {
+        this.getAllTradedOrders();
+      }, 100);
+      setTimeout(() => {
+        this.getMyOrdersFromBook();
+      }, 100);
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
       if (this.order.orderType == 'BUY') {
-        this.appEventEmiterService.changeMessage(JSON.stringify({ "orderId": success.data.orderId, "accountDetails": success.data.accountDetails }));
+        this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
         this.router.navigate(['trading']);
       }
       else {
-        this.appEventEmiterService.changeMessage(JSON.stringify({ "orderId": success.data.orderId, "accountDetails": success.data.accountDetails }));
+        this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
         this.router.navigate(['sell']);
       }
     }, error => {
-      console.log(error);
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
@@ -295,8 +307,12 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.getAllTradedOrders();
-      this.getMyOrdersFromBook();
+      setTimeout(() => {
+        this.getAllTradedOrders();
+      }, 100);
+      setTimeout(() => {
+        this.getMyOrdersFromBook();
+      }, 100);
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
@@ -361,7 +377,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyTradedOrders() {
-    // this.loading = true;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
@@ -371,11 +386,8 @@ export class TradeNowComponent implements OnInit {
       this.myTradedListLength = success.data.length;
       console.log("length of mytradeList>>>>>>>>>>>", this.myTradedList);
       console.log("length of mytradeList>>>>>>>>>>>", this.myTradedListLength);
-
-      // this.loading = false;
     }, error => {
       console.log(error);
-      // this.loading = false;
     })
   }
 

@@ -62,7 +62,7 @@
     <!-- timer section -->
     <section *ngIf="hasTimer">
       <div class="col-sm-10 col-sm-offset-1 trading-margin">
-        <p> You are buying {{orderVolume}} BLN from {{sellerName}}. BLN of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your Boleno will be sent to {{walletAddress}}
+        <p> You are buying {{success.orderVolume}} {{success.currencyAbr}} from {{success.sellerName}}. {{success.currencyAbr}} of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your {{success.currencyAbr}} will be sent to {{success.walletAddress}}
           </p>
       </div>
       <div class="col-sm-10 col-sm-offset-1 timer-margin">

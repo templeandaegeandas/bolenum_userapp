@@ -28,7 +28,7 @@ export class TradeNowService {
   }
 
   createFiatOrder(order, pairId, orderId) {
-    return this.http.post('/api/v1/user/create/order/fiat?pairId=' + pairId+"&orderId="+orderId, order)
+    return this.http.put('/api/v1/user/create/order/fiat?pairId=' + pairId+"&orderId="+orderId, order)
       .map(res => res.json());
   }
 
