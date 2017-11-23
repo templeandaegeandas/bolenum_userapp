@@ -1,73 +1,13 @@
 <div class="container">
   <div class="row">
-    <!-- <section *ngIf="hasTrading">
-      <div class="col-sm-10 col-sm-offset-1 trading-margin">
-        <p> I want to buy 1.235 BTC Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum.
-        </p>
-      </div> -->
-    <!-- payment details -->
-    <!-- <div class="col-sm-10 col-sm-offset-1 table-margin">
-        <div class="panel">
-          <div class="panel-heading paymentDetails">Payment details</div>
-          <div class="panel-body panel-Body">
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th>Payment method</th>
-                  <td>Bank transfer</td>
-                </tr>
-                <tr>
-                  <th>Amount to be paid</th>
-                  <td>518,548.06 INR</td>
-                </tr>
-                <tr>
-                  <th>Bank name</th>
-                  <td>Punjab national bank</td>
-                </tr>
-                <tr>
-                  <th>Bvn code</th>
-                  <td>PNBE514278284525</td>
-                </tr>
-                <tr>
-                  <th>Bank account number</th>
-                  <td>44842645054 karol bagh</td>
-                </tr>
-                <tr>
-                  <th>Payment reference id</th>
-                  <td>#54845154448454</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> -->
-    <!-- payment details -->
-    <!-- <div class="col-sm-10 col-sm-offset-1 trade-button-margin">
-        <div class="row">
-          <div class="col-sm-6 button-property">
-            <button type="submit" class="btn trade-button button-color" name="trdeNow" (click)=" hasTradeNow();">Trade Now</button>
-          </div>
-          <div class="col-sm-6 button-property-left">
-            <button type="submit" class=" btn trade-button " name="back" routerLink="/tradeNow">Back</button>
-          </div>
-        </div> -->
-    <!-- <button type="submit" class="trade-button" name="trdeNow">Trade Now</button>  -->
-    <!-- </div>
-    </section> -->
-    <!-- timer section -->
     <section *ngIf="hasTimer">
       <div class="col-sm-10 col-sm-offset-1 trading-margin">
-        <p> You are buying {{success.orderVolume}} {{success.currencyAbr}} from {{success.sellerName}}. {{success.currencyAbr}} of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your {{success.currencyAbr}} will be sent to {{success.walletAddress}}
+        <p> You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. {{currencyAbr}} of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your {{currencyAbr}} will be sent to {{walletAddress}}
           </p>
       </div>
       <div class="col-sm-10 col-sm-offset-1 timer-margin">
         <div class="timer-property">
-          <p><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
+          <p *ngIf="orderStatus=='LOCKED'"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
           <p class="timer-font-pro" id="demo"></p>
 
@@ -78,10 +18,10 @@
       <div class="col-sm-12 ">
         <div class="col-sm-12">
           <div class="col-sm-6 button-center">
-            <button type="submit" class="btn trade-button button-color" name="trdeNow" (click)="paymentConfirmation();">Paid</button>
+            <button *ngIf="orderStatus=='LOCKED'" type="submit" class="btn trade-button button-color" name="trdeNow" (click)="paymentConfirmation();">Paid</button>
           </div>
           <div class="col-sm-6 button-center">
-            <button type="submit" class="btn trade-button" (click)="cancelPay()" name="trdeNow">Cancel</button>
+            <button *ngIf="orderStatus=='LOCKED'" type="submit" class="btn trade-button" (click)="cancelPay()" name="trdeNow">Cancel</button>
           </div>
         </div>
       </div>
@@ -98,23 +38,23 @@
                 </tr>
                 <tr>
                   <th>Amount to be paid</th>
-                  <td>{{success.totalPrice}}</td>
+                  <td>{{totalPrice}}</td>
                 </tr>
                 <tr>
                   <th>Bank name</th>
-                  <td>{{success.accountDetails.bankName}}</td>
+                  <td>{{bankName}}</td>
                 </tr>
                 <tr>
                   <th>BVN code</th>
-                  <td>{{success.accountDetails.ifscCode}}</td>
+                  <td>{{ifscCode}}</td>
                 </tr>
                 <tr>
                   <th>Bank account number</th>
-                  <td>{{success.accountDetails.accountNumber}}</td>
+                  <td>{{accountNumber}}</td>
                 </tr>
                 <tr>
                   <th>Payment reference id</th>
-                  <td>#{{success.orderId}}</td>
+                  <td>#{{orderId}}</td>
                 </tr>
               </tbody>
             </table>

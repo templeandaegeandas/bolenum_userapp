@@ -277,13 +277,14 @@ export class TradeNowComponent implements OnInit {
       }, 100);
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
+      console.log(success.data)
       if (this.order.orderType == 'BUY') {
-        this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
-        this.router.navigate(['trading']);
+        // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
+        this.router.navigate(['trading/'+success.data.orderId]);
       }
       else {
-        this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
-        this.router.navigate(['sell']);
+        // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
+        this.router.navigate(['sell/'+success.data.orderId]);
       }
     }, error => {
       this.buySellModel.hide();

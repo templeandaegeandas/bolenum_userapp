@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { TradingService } from './trading.service';
-import { AppEventEmiterService } from '../app.event.emmiter.service';
+declare var $: any;
 
 @Component({
   selector: 'app-trading',
@@ -14,71 +14,97 @@ export class TradingComponent implements OnInit {
   hasTrading: boolean = false;
   hasTimer: boolean = true;
   hasPaymentConfirm: boolean = false;
-  success: {
-    accountDetails: {
-      bankName: string;
-      branch: string;
-      ifscCode: string;
-      accountNumber: string;
-    };
-      orderId: string;
-      walletAddress: string;
-      sellerName: string;
-      orderVolume: any;
-      currencyAbr: string;
-  };
+  orderId: any;
+  bankName: string;
+  branch: string;
+  ifscCode: string;
+  accountNumber: string;
+  walletAddress: string;
+  sellerName: string;
+  orderVolume: any;
+  currencyAbr: string;
+  createdDate: any;
+  totalPrice: any;
+  orderStatus: any;
 
   constructor(
     private tradingService: TradingService,
     private router: Router,
-    private appEventEmiterService: AppEventEmiterService) {
-    this.appEventEmiterService.currentMessage.subscribe(success => {
-      console.log(success)
-      if (success != 'default message' && success != null) {
-        this.success = JSON.parse(success);
-        console.log(this.success)
-        // console.log(this.success.success.orderVolume)
-      }
-      else {
-        this.router.navigate(['dashboard']);
-      }
-    })
-    this.hasTradeNow();
+    private activatedRoute: ActivatedRoute) {
+
+    // $(window).on('beforeunload', function() {
+    //   this.cancelPay();
+    // });
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed');
+    this.cancelPay();
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.orderId = +params['orderId'];
+    });
+    this.tradingService.orderDetails(this.orderId).subscribe(success => {
+      this.bankName = success.data.accountDetails.bankName;
+      this.accountNumber = success.data.accountDetails.accountNumber;
+      this.branch = success.data.accountDetails.branch;
+      this.ifscCode = success.data.accountDetails.ifscCode;
+      this.walletAddress = success.data.walletAddress;
+      this.totalPrice = success.data.totalPrice;
+      this.sellerName = success.data.sellerName;
+      this.currencyAbr = success.data.currencyAbr;
+      this.orderVolume = success.data.orderVolume;
+      this.createdDate = success.data.createdDate;
+      this.orderStatus = success.data.orderStatus;
+      this.hasTradeNow();
+    })
   }
   hasTradeNow() {
     this.hasTrading = false;
     this.hasTimer = true;
     // for timer
     // Set the date we're counting down to
-    var date = new Date();
+    var date = new Date(this.createdDate);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
-    var x = setInterval(function() {
+    if (this.orderStatus == 'LOCKED') {
+      var x = setInterval(function() {
 
-      // Get todays date and time
-      var now = new Date().getTime();
-      // Find the distance between now an the count down date
-      var distance = countDownDate - now;
-      // Time calculations for days, hours, minutes and seconds
-      // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 30 * 30)) / (1000 * 30));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Get todays date and time
+        var now = new Date().getTime();
 
-      // Output the result in an element with id="demo"
-      document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
 
-      // If the count down is over, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        this.cancelPay();
-        document.getElementById("demo").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-    // for timer
+        // Time calculations for days, hours, minutes and seconds
+        // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 30 * 30)) / (1000 * 30));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+          this.cancelPay();
+        }
+      }, 1000);
+      // for timer
+    }
+    else if (this.orderStatus == 'COMPLETED') {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "Order Completed";
+    }
+    else {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "Order Canclled";
+    }
   }
 
   paymentConfirmation() {
@@ -89,14 +115,13 @@ export class TradingComponent implements OnInit {
   }
 
   confirmPay() {
-    console.log(this.success.orderId)
-    this.tradingService.confirmPay(this.success.orderId).subscribe(success => {
+    this.tradingService.confirmPay(this.orderId).subscribe(success => {
       console.log(success);
     })
   }
 
   cancelPay() {
-    this.tradingService.cancelPay(this.success.orderId).subscribe(success => {
+    this.tradingService.cancelPay(this.orderId).subscribe(success => {
       console.log(success);
     })
   }
