@@ -37,17 +37,21 @@ export class TradingComponent implements OnInit {
     // });
   }
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
-    console.log('Back button pressed');
-    this.cancelPay();
-  }
+  // @HostListener('window:popstate', ['$event'])
+  // onPopState(event) {
+  //   console.log('Back button pressed');
+  //   this.cancelPay();
+  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
+      if(success.data==null) {
+        this.router.navigate(['tradeNow']);
+        return;
+      }
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
@@ -60,7 +64,7 @@ export class TradingComponent implements OnInit {
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
       this.hasTradeNow();
-    })
+    }, error => this.router.navigate(['tradeNow']))
   }
   hasTradeNow() {
     this.hasTrading = false;
