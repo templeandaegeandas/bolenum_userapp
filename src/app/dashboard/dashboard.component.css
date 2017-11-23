@@ -2,14 +2,21 @@
 
 /* fontsize and font-family */
 .dashboard-Heading{
-     font-size: 19px !important;
+     font-size: 46px !important;
     font-family: Lato-Regular-font !important;
-    font-weight: 100;
+    /* font-weight: 100; */
   
 }
 
+h1{
+    margin-left: 22px;
+        margin-top: 0px;
+    /* margin-bottom: 4px; */
+}
+
+
 .dashboard-Content{
-     font-size: 15px !important;
+     font-size: 17px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
   
@@ -35,6 +42,10 @@
     border-radius: 8px;
     
 }
+
+.inner{
+    text-align: center;
+}
 .small-box.bg-yellow{
      background: #fff;
     padding: 20px;
@@ -45,7 +56,7 @@
 p.text-black {
     text-transform: uppercase;
     font-size: 19px;
-    color: lightgray;
+    color: gray;
 }
 .inner h1 {
     text-align: center;

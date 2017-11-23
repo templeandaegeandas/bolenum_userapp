@@ -8,6 +8,8 @@
 
 .exchange-border-right {
     border-left: 4px solid #DB2828;
+    margin-left: 24px;
+        padding-left: 13px;
 }
 
 .exchange-pair-text {
@@ -18,6 +20,7 @@
     color: #fff;
     font-size: 14px;
     cursor: pointer;
+    width: 172px;
 }
 
 /* font family and font size */
@@ -83,10 +86,10 @@ font-size: 14px !important;
 
 .buy-orders {
     background-color: #DB2828;
-    text-align: left;
+    text-align: center;
     color: white;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     font-size: 14px;
     padding-left: 12px;
 }
@@ -97,10 +100,10 @@ tr th {
 
 .sell-orders {
     background-color: #DB2828;
-    text-align: left;
+    text-align: center;
     color: white;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     /* font-size: 14px; */
     padding-left: 12px;
 }
@@ -171,11 +174,11 @@ tr th {
 }
 
 .pad-top {
-    padding-top: 40px;
+    padding-top: 34px;
 }
 
 .pad-order {
-    padding-bottom: 25px;
+    /* padding-bottom: 25px; */
 }
 
 .fee-color {
@@ -199,7 +202,7 @@ tr th {
     /* padding-top: 41px; */
     /* padding-left: 87px;
     padding-right: 63px; */
-    margin-top: 40px;
+    margin-top: 21px;
 }
 
 .btc-exchange {
@@ -389,7 +392,7 @@ select option {
 }
 .trade-margin{
     margin-top: 15px;
-    margin-left: 16px;
+    margin-left: 40px;
 }
 
 .trade-heading-center{
@@ -442,7 +445,8 @@ select option {
 }
 
 .trade-width{
-    width: 41%;
+    width: 45%;
+    
 }
 
 .buy-button-left{
@@ -456,7 +460,9 @@ select option {
 .trade-in-part{
     background-color: #DB2828;
     color: white;
-    padding: 2px;
+    padding: 6px;
+        border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 thead.heading {
     background-color: #DB2828;
@@ -546,8 +552,8 @@ h2 {
 .trade-history-heading{
     text-align: center;
     /* font-size: 22px; */
-    margin-top: 38px;
-    margin-bottom: 19px;
+       margin-top: 7px;
+    margin-bottom: 29px
 }
 
 .title-Trade{
@@ -614,7 +620,7 @@ h2 {
 }
 
 .myOrder-Table-margin{
-        margin-bottom: 30px;
+        /* margin-bottom: 30px; */
 }
 
 
@@ -623,7 +629,9 @@ h2 {
 }
 
 .trade-Form{
-        width: 76%;
+        width: 85%;
+            border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 
@@ -675,6 +683,8 @@ h2 {
 .marketing-border-padding{
     padding-right: 0px; 
     padding-left: 0px; 
+        border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .table-responsive-padding{
@@ -686,11 +696,13 @@ h2 {
 }
 
 .marketing-heading{
-        padding-top: 2px;
-    padding-bottom: 2px;
+        padding-top: 6px;
+    padding-bottom: 6px;
     color: white;
     padding-left: 10p;
     background-color: #DB2828;
+        border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 .hand-icon{
     cursor: pointer;
@@ -710,7 +722,7 @@ h2 {
 }
 
 .trade-History tbody td, .trade-History thead th {
-    width: 190px;
+    width: 218px;
 }
 
 /* for own Tables */
@@ -815,7 +827,7 @@ label {
 }
 
 table thead tr th {
-    padding: 0px;
+    padding: 6px !important;
    
 }
 
@@ -972,4 +984,49 @@ select option {
     margin: 5px;
    
 }
+
+@media (min-width: 992px){
+.col-md-offset-2 {
+    margin-left: 7.666667%;
+}
+
+.col-md-9 {
+    width: 85%;
+}
+
+
+}
+
+.buy-table{
+    margin-left: 28px;
+}
+
+.sell-table{
+    margin-left: 58px;
+}
+
+.border-radious-top{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.padding-Table{
+        padding-left: 42px;
+    padding-right: 42px;
+}
+
+.trade-historytable {
+    text-align: center;
+    margin-top: 7px;
+    /* margin-bottom: 29px; */
+}
+
+.title {
+        margin: 0 0 0px;
+}
+
+
+
+
+
 

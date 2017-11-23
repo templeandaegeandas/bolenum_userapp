@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { TradeNowService } from './tradeNow.service';
 import { Order } from './entity/order.entity';
 import { DepositService } from '../deposit/deposit.service';
@@ -15,25 +16,25 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
-  public hasAmount:boolean=false;
-  public isLoadingForMyTrade:boolean = false;
-  public hasBlurForMyTrading:boolean = false;
-  public isOpenOrders:boolean=false;
-  public hasBlurOpenOrders:boolean=false;
-   public hasBlur:boolean=false;
-  public isLoading:boolean=false;
-  public pairData:any;
-  public hasBuy:boolean = false;
-  public hasSell:boolean = false;
-  public myTradedListLength:any;
-  public allTradedListLength:any;
-  public myOrdersInBookLength:any;
+  public hasAmount: boolean = false;
+  public isLoadingForMyTrade: boolean = false;
+  public hasBlurForMyTrading: boolean = false;
+  public isOpenOrders: boolean = false;
+  public hasBlurOpenOrders: boolean = false;
+  public hasBlur: boolean = false;
+  public isLoading: boolean = false;
+  public pairData: any;
+  public hasBuy: boolean = false;
+  public hasSell: boolean = false;
+  public myTradedListLength: any;
+  public allTradedListLength: any;
+  public myOrdersInBookLength: any;
   public marketTrade: boolean = true;
   public myTrade: boolean = false;
-  public marketTradeColor:boolean = true;
-  public myTradeColor:boolean = false;
-  public beforeActiveMarket:boolean = false;
-  public beforeActiveMyTrade:boolean = true;
+  public marketTradeColor: boolean = true;
+  public myTradeColor: boolean = false;
+  public beforeActiveMarket: boolean = false;
+  public beforeActiveMyTrade: boolean = true;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -78,21 +79,22 @@ export class TradeNowComponent implements OnInit {
     private tradeNowService: TradeNowService,
     private depositService: DepositService,
     private toastrService: ToastrService,
+    private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
-      this.isLogIn();
-      if (this.beforeLogin) {
-        websocketService.connectForNonLoggedInUser();
+    this.isLogIn();
+    if (this.beforeLogin) {
+      websocketService.connectForNonLoggedInUser();
+    }
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "ORDER_BOOK_NOTIFICATION") {
+        this.getBuyOrderBookData(this.pairId);
+        this.getSellOrderBookData(this.pairId);
+        this.getMyTradedOrders();
+        this.getAllTradedOrders();
+        this.getMyOrdersFromBook();
       }
-      this.appEventEmiterService.currentMessage.subscribe(message => {
-        if (message == "ORDER_BOOK_NOTIFICATION") {
-          this.getBuyOrderBookData(this.pairId);
-          this.getSellOrderBookData(this.pairId);
-          this.getMyTradedOrders();
-          this.getAllTradedOrders();
-          this.getMyOrdersFromBook();
-        }
-      });
+    });
     this.options = {
       chart: {
         type: 'areaspline'
@@ -199,7 +201,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
-      if(currencyId=='Undefined' || currencyId==null) {
+      if (currencyId == 'Undefined' || currencyId == null) {
         this.getCurrencyList();
       }
       this.getPair(currencyId);
@@ -217,29 +219,26 @@ export class TradeNowComponent implements OnInit {
   }
 
   showModel(orderType, volume, price, orderId) {
-    if(this.setTradingValue == 'Limit Order'){
-      if(this.order.volume =='' || this.order.price == ''){
-      this.hasAmount= true;
-       setTimeout(() => {
-      this.hasAmount= false;
-    }, 3000);
-      return;
-    }
+    if (this.setTradingValue == 'Limit Order') {
+      if (volume == '' || price == '') {
+        this.hasAmount = true;
+        setTimeout(() => {
+          this.hasAmount = false;
+        }, 3000);
+        return;
+      }
 
     }
-  else if(this.setTradingValue == 'Market Order'){
+    else if (this.setTradingValue == 'Market Order') {
 
-    if(this.order.volume =='' || this.order.price == ''){
-      this.hasAmount= true;
-       setTimeout(() => {
-      this.hasAmount= false;
-    }, 3000);
-      return;
+      if (volume == '' || price == '') {
+        this.hasAmount = true;
+        setTimeout(() => {
+          this.hasAmount = false;
+        }, 3000);
+        return;
+      }
     }
-
-
-
-  }
 
     this.buySellModel.show();
     this.selecedOrderId = orderId;
@@ -265,6 +264,14 @@ export class TradeNowComponent implements OnInit {
       this.getMyOrdersFromBook();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
+      if (this.order.orderType == 'BUY') {
+        this.appEventEmiterService.changeMessage(JSON.stringify({ "orderId": success.data.orderId, "accountDetails": success.data.accountDetails }));
+        this.router.navigate(['trading']);
+      }
+      else {
+        this.appEventEmiterService.changeMessage(JSON.stringify({ "orderId": success.data.orderId, "accountDetails": success.data.accountDetails }));
+        this.router.navigate(['sell']);
+      }
     }, error => {
       console.log(error);
       this.buySellModel.hide();
@@ -327,12 +334,12 @@ export class TradeNowComponent implements OnInit {
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
     this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance+" "+this.firstCurrency;
+      this.firstCurrencyBal = success.data.data.balance + " " + this.firstCurrency;
     }, error => {
       this.firstCurrencyBal = "0.0 " + this.firstCurrency;
     })
     this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
-      this.secondCurrencyBal = success.data.data.balance+" "+this.secondCurrency;
+      this.secondCurrencyBal = success.data.data.balance + " " + this.secondCurrency;
     }, error => {
       this.secondCurrencyBal = "0.0 " + this.secondCurrency;
     })
@@ -356,14 +363,14 @@ export class TradeNowComponent implements OnInit {
   getMyTradedOrders() {
     // this.loading = true;
     this.isLoadingForMyTrade = true;
-     this.hasBlurForMyTrading = true;
+    this.hasBlurForMyTrading = true;
     this.tradeNowService.getTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
-     this.isLoadingForMyTrade = false;
-     this.hasBlurForMyTrading = false;
+      this.isLoadingForMyTrade = false;
+      this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
       this.myTradedListLength = success.data.length;
-       console.log("length of mytradeList>>>>>>>>>>>",this.myTradedList);
-      console.log("length of mytradeList>>>>>>>>>>>",this.myTradedListLength);
+      console.log("length of mytradeList>>>>>>>>>>>", this.myTradedList);
+      console.log("length of mytradeList>>>>>>>>>>>", this.myTradedListLength);
 
       // this.loading = false;
     }, error => {
@@ -373,11 +380,11 @@ export class TradeNowComponent implements OnInit {
   }
 
   getAllTradedOrders() {
-     this.isLoading = true;
-     this.hasBlur = true;
+    this.isLoading = true;
+    this.hasBlur = true;
     this.tradeNowService.getAllTradedOrders(1, 10, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
-     this.hasBlur = false;
+      this.hasBlur = false;
       this.allTradedList = success.data.content;
       this.allTradedListLength = success.data.length;
     }, error => {
@@ -386,11 +393,11 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMyOrdersFromBook() {
-     this.isOpenOrders = true;
-     this.hasBlurOpenOrders = true;
+    this.isOpenOrders = true;
+    this.hasBlurOpenOrders = true;
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
-        this.isOpenOrders = false;
-     this.hasBlurOpenOrders = false;
+      this.isOpenOrders = false;
+      this.hasBlurOpenOrders = false;
       this.myOrdersInBook = success.data;
       this.myOrdersInBookLength = success.data.length;
     }, error => {
@@ -440,24 +447,24 @@ export class TradeNowComponent implements OnInit {
     this.getMyTradedOrders();
     this.marketTrade = false;
     this.myTrade = true;
-     this.marketTradeColor = false;
+    this.marketTradeColor = false;
     this.myTradeColor = true;
-     this.beforeActiveMarket = true;
+    this.beforeActiveMarket = true;
     this.beforeActiveMyTrade = false;
 
   }
 
   // method to show table of market trade and my trade
 
-showBuyOrder(){
-this.hasSell=false;
-this.hasBuy=true;
-}
+  showBuyOrder() {
+    this.hasSell = false;
+    this.hasBuy = true;
+  }
 
-showSellOrder(){
-  this.hasBuy=false;
-  this.hasSell=true;
+  showSellOrder() {
+    this.hasBuy = false;
+    this.hasSell = true;
 
-}
+  }
 
 }
