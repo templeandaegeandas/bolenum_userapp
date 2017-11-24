@@ -38,7 +38,7 @@
           <div *ngIf="is2FaOn">
             <form #otpForm="ngForm" (submit)=verify2Fa(otpForm)>
               <div class="input-group">
-                <span class="input-group-addon"><img src="assets/images/profile.png"></span>
+                <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
                 <input id="email" type="text" class="form-control" name="otp" [(ngModel)]="otp" minlength="6" maxlength="6" #twoFaOtp="ngModel" placeholder="OTP" required onlynumber>
               </div>
               <span *ngIf="twoFaOtp.invalid && otpForm.submitted">

@@ -322,8 +322,8 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size > 1024*1024*10) {
-        this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
+      if (event.target.files[0].size >= 1024*1024*5) {
+        this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
         return;
       }
       let fileName = event.target.files[0].name;
@@ -478,8 +478,8 @@ export class ProfileComponent implements OnInit {
 
   readUrlAddress(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size > 1024*1024*10) {
-        this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
+      if (event.target.files[0].size > 1024*1024*5) {
+        this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
         return;
       }
       let fileName = event.target.files[0].name;

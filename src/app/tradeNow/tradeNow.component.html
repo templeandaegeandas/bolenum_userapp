@@ -406,13 +406,13 @@
               <!-- <td>{{tx.orderStandard}}</td> -->
 
             </tr>
-            <tr>
-                <td colspan="5" (click)="getMoreOrders()" style="text-align: -webkit-right;">more</td>
+            <tr *ngIf="allTradedListLength >=10" >
+                <td colspan="5" ><p (click)="getMoreOrders()" class="more_button">more</p></td>
             </tr>
 
-            <div *ngIf="allTradedListLength >=10 ">
+            <!-- <div *ngIf="allTradedListLength >=10 ">
               <p (click)="getMoreOrders()">More...</p>
-            </div>
+            </div> -->
             <div *ngIf="allTradedListLength==0">
               <p class="hasTableData"> No trades . . . !</p>
               <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>

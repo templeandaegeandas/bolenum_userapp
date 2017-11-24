@@ -1025,6 +1025,13 @@ select option {
         margin: 0 0 0px;
 }
 
+.more_button{
+    text-align: -webkit-right;
+    cursor: pointer;
+    color: #DB2828;
+
+}
+
 
 
 
