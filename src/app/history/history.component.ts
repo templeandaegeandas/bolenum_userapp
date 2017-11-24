@@ -11,6 +11,7 @@ declare var $:any;
   providers: [HistoryService]
 })
 export class HistoryComponent implements OnInit {
+  public txLength:any;
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
 
@@ -78,6 +79,23 @@ export class HistoryComponent implements OnInit {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
+      this.txLength = this.txList.length; 
     })
+  }
+
+  getMoreDta(){
+    let currentPage = 1;
+    let pageSize = 10;
+     this.isLoading = true;
+    this.hasBlur = true;
+
+    pageSize = pageSize+10;
+    this.historyService.getTradedOrders(1, pageSize, "createdOn", "desc", this.orderType, this.date).subscribe(success => {
+      this.isLoading = false;
+      this.hasBlur = false;
+      this.txList = success.data.content;
+      this.txLength = this.txList.length; 
+    })
+
   }
 }

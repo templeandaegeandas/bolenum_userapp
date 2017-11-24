@@ -75,6 +75,12 @@
                      <td class="table-content">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
                      <!-- <td class="table-content">{{tx.orderStandard}}</td> -->
                   </tr>
+                    <tr *ngIf="txLength >= 10">
+                      <td colspan="6"><p class="moreData" (click)="getMoreDta()">More</p></td>
+                    </tr>
+                    <tr *ngIf="txLength == 0">
+                      <td><p>Sorry you don't have any transaction yet!</p></td>
+                    </tr>
                </tbody>
             </table>
          </div>

@@ -84,7 +84,7 @@
         </form>
         <!-- for table -->
         <div class="row">
-          <div class="col-md-10 col-md-offset-1 margin-Table">
+          <div class="col-md-12 margin-Table">
             <div class="tranction-Table">
               <div class="loader spiner-position" *ngIf="isLoading" ></div>
             <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
@@ -106,6 +106,12 @@
                   <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
                   <td>{{tx.createdOn | date}}</td>
                   <td>{{tx.createdOn | date:'shortTime'}}</td>
+                </tr>
+                <tr >
+                  <td  *ngIf = "transactionLength >=10" colspan="6"><p (click)="getMoreTransactionList()" class="moreData moreText">More</p></td>
+                </tr>
+                <tr>
+                  <td *ngIf = "transactionLength == 0 " colspan="6"><p>Sorry You don't have any transaction yet!</p></td>
                 </tr>
               </tbody>
             </table>

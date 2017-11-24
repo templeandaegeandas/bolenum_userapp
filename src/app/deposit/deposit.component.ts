@@ -11,6 +11,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 
 })
 export class DepositComponent implements OnInit {
+  public txLength: any;
 
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
@@ -84,6 +85,9 @@ export class DepositComponent implements OnInit {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
+      this.txLength = this.txList.length;
+      console.log("length of deposite>>>>>>>>>>>>>>>>>>>>>>>", this.txLength);
+
     })
   }
 
@@ -91,5 +95,22 @@ export class DepositComponent implements OnInit {
     setTimeout(() => {
       this.isCopied = false;
     }, 1000);
+  }
+
+  getMoreDepositeList() {
+
+    let currentPage = 1;
+    let pageSize = 10;
+    this.isLoading = true;
+    this.hasBlur = true;
+    pageSize = pageSize + 10;
+    this.depositService.getListOfDepositTransaction(1, pageSize, "createdOn", "desc").subscribe(success => {
+      this.isLoading = false;
+      this.hasBlur = false;
+      this.txList = success.data.content;
+      this.txLength = this.txList.length;
+      console.log("length of deposite>>>>>>>>>>>>>>>>>>>>>>>", this.txLength);
+
+    })
   }
 }

@@ -348,6 +348,9 @@
               <td>{{orders.price * orders.volume | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.createdOn | date}}</td>
             </tr>
+            <tr *ngIf="myOrdersInBookLength >=10" >
+                <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()">more</p></td>
+            </tr>
             <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
               <p>You have no open orders . . . !</p>
             </div>
@@ -406,7 +409,7 @@
               <!-- <td>{{tx.orderStandard}}</td> -->
 
             </tr>
-            <tr *ngIf="allTradedListLength >=10" >
+            <tr *ngIf="allTradedListLength >=10 " >
                 <td colspan="5" ><p (click)="getMoreOrders()" class="more_button">more</p></td>
             </tr>
 
@@ -447,7 +450,10 @@
               <td>{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <!-- <td>{{tx.orderStandard}}</td> -->
             </tr>
-            <div *ngIf="myTradedListLength ==0">
+             <tr *ngIf=" myTradedListLength >=10 " >
+                <td colspan="6" ><p  class="more_button" (click)="getMoreMyTradeList()">more</p></td>
+            </tr>
+            <div *ngIf=" myTradedListLength ==0 ">
               <p class="hasTableData"> No trades . . . !</p>
               <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
             </div>
