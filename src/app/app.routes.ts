@@ -30,18 +30,20 @@ import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TradingComponent } from './trading/trading.component';
 import { SellComponent } from './sell/sell.component';
+import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
 
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [ PrivateRouteAuthGuard ] },
-  { path: 'tradeNow', component: TradeNowComponent, canActivate: [ PrivateRouteAuthGuard ] },
-  { path: 'tradenow', component: BeforLoginTradeNowComponent, canActivate: [ PublicRouteAuthGuard ] },
-  { path: 'login', component: LoginComponent, canActivate: [ PublicRouteAuthGuard ] },
-  { path: 'sign-up', component: SignUpComponent, canActivate: [ PublicRouteAuthGuard ] },
-  { path: 'forgot', component: ForgotComponent, canActivate: [ PublicRouteAuthGuard ] },
-  { path: 'profile', component: ProfileComponent , canActivate: [ PrivateRouteAuthGuard ] },
-  { path: 'wallet', component: WalletComponent,
+  { path: 'dashboard', component: DashboardComponent, canActivate: [PrivateRouteAuthGuard] },
+  { path: 'tradeNow', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
+  { path: 'tradenow', component: BeforLoginTradeNowComponent, canActivate: [PublicRouteAuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [PublicRouteAuthGuard] },
+  { path: 'sign-up', component: SignUpComponent, canActivate: [PublicRouteAuthGuard] },
+  { path: 'forgot', component: ForgotComponent, canActivate: [PublicRouteAuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [PrivateRouteAuthGuard] },
+  {
+    path: 'wallet', component: WalletComponent,
 
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'withdraw' },
@@ -50,16 +52,17 @@ export const APP_ROUTES: Routes = [
       { path: 'history', component: HistoryComponent }
     ]
 
- },
-  { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [ PublicRouteAuthGuard ] },
+  },
+  { path: 'resetpassword', component: ResetpasswordComponent, canActivate: [PublicRouteAuthGuard] },
   { path: 'deposit', component: DepositComponent },
   { path: 'withdraw', component: WithdrawComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'faq', component: FaqComponent },
-  { path: 'team', component: TeamComponent  },
-  { path: 'how-to-use', component: HowToUseComponent  },
-  { path: 'terms-service', component: TermsServiceComponent  },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent   },
+  { path: 'team', component: TeamComponent },
+  { path: 'how-to-use', component: HowToUseComponent },
+  { path: 'terms-service', component: TermsServiceComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },
   { path: 'trading/:orderId', component: TradingComponent },
-  { path: 'sell/:orderId', component: SellComponent },];
+  { path: 'sell/:orderId', component: SellComponent },
+  { path: 'createAdvertiesment', component: CreateAdvertiesmentComponent },];
