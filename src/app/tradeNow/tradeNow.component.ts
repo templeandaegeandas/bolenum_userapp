@@ -59,7 +59,7 @@ export class TradeNowComponent implements OnInit {
   showModal: boolean = false;
   amount: any;
   price: any;
-  minPrice: any;
+  minPrice: any = 10;
   sellOrderLength: any;
   buyOrderLength: any;
   public isMarket: boolean = true;
@@ -514,7 +514,8 @@ export class TradeNowComponent implements OnInit {
 
   createAdvertisement(orderType) {
     if (this.price < this.minPrice) {
-      this.toastrService.error("You can't place order less than 10 NGN", "Error!")
+      this.toastrService.error("You can't place order less than 10 NGN", "Error!");
+      return;
     }
     this.order.orderType = orderType;
     this.order.orderStandard = 'LIMIT';
