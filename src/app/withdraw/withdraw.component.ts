@@ -12,6 +12,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 
 export class WithdrawComponent implements OnInit {
+  public transactionLength:any;
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
   public currencyData: any;
@@ -97,6 +98,26 @@ export class WithdrawComponent implements OnInit {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
+      this.transactionLength = this.txList.length;
+      console.log("tx length>>>>>>>>>>>>>>>>>>>>",this.transactionLength); 
     })
+  }
+
+  //for get more transaction
+
+  getMoreTransactionList(){
+    let currentPage = 1;
+    let pageSize = 10;
+    this.isLoading = true;
+    this.hasBlur = true;
+    pageSize = pageSize+10;
+    this.withdrawService.getListOfWithdrawlTransaction(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+      this.isLoading = false;
+      this.hasBlur = false;
+      this.txList = success.data.content;
+      this.transactionLength = this.txList.length;
+      console.log("tx length>>>>>>>>>>>>>>>>>>>>",this.transactionLength); 
+    })
+
   }
 }

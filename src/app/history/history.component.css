@@ -276,3 +276,9 @@ h3.panel-title {
 .opecity-table{
       opacity: 0.5;
 }
+
+.moreData {
+    text-align: right;
+    color: #DB2828;
+    cursor: pointer;
+}

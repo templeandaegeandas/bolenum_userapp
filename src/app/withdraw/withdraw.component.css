@@ -223,7 +223,7 @@ select option{
 
 .tranction-Table tbody td, .tranction-Table thead th {
     width: 216px;
-    padding: 3px;
+    padding: 6px;
 }
 /* for sell and buy table */
 
@@ -261,7 +261,7 @@ select option{
 .spiner-position{
         position: absolute;
         top: 136px;
-    left: 377px;
+    left: 460px;
 }
 
 /* for loader */
@@ -284,4 +284,11 @@ select option{
     background-color: white;
     color: black;
 }
+.moreData{
+        color: #DB2828;
+    cursor: pointer;
+}
 
+.moreText{
+    text-align: right;
+}

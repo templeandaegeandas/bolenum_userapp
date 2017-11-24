@@ -284,11 +284,11 @@ export class TradeNowComponent implements OnInit {
       console.log(success.data)
       if (this.order.orderType == 'BUY') {
         // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
-        this.router.navigate(['trading/'+success.data.orderId]);
+        this.router.navigate(['trading/' + success.data.orderId]);
       }
       else {
         // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
-        this.router.navigate(['sell/'+success.data.orderId]);
+        this.router.navigate(['sell/' + success.data.orderId]);
       }
     }, error => {
       this.buySellModel.hide();
@@ -388,9 +388,8 @@ export class TradeNowComponent implements OnInit {
       this.isLoadingForMyTrade = false;
       this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
-      this.myTradedListLength =  this.myTradedList.length;
-      console.log("length of mytradeList>>>>>>>>>>>", this.myTradedList);
-      console.log("length of mytradeList>>>>>>>>>>>", this.myTradedListLength);
+      this.myTradedListLength = this.myTradedList.length;
+
     }, error => {
       console.log(error);
     })
@@ -403,9 +402,8 @@ export class TradeNowComponent implements OnInit {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
-      this.allTradedListLength =  this.allTradedList.length;
-      console.log("data length >>>>>", this.allTradedListLength);
-      console.log("data length >>>>>", this.allTradedList);
+      this.allTradedListLength = this.allTradedList.length;
+
 
     }, error => {
       console.log(error);
@@ -419,7 +417,9 @@ export class TradeNowComponent implements OnInit {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
       this.myOrdersInBook = success.data;
-      this.myOrdersInBookLength = success.data.length;
+      this.myOrdersInBookLength = this.myOrdersInBook.length;
+
+
     }, error => {
       console.log(error);
     })
@@ -479,25 +479,25 @@ export class TradeNowComponent implements OnInit {
   showBuyOrder() {
     this.hasSell = false;
     this.hasBuy = true;
-    this.amount= '';
+    this.amount = '';
     this.price = '';
   }
 
   showSellOrder() {
     this.hasBuy = false;
     this.hasSell = true;
-    this.amount= '';
+    this.amount = '';
     this.price = '';
   }
 
   changedList(orderType) {
-    if(this.amount=='') {
+    if (this.amount == '') {
       this.getSellOrderBookData(this.pairId);
     }
     else {
       this.price = 10;
       this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
-        if(orderType=='SELL') {
+        if (orderType == 'SELL') {
           this.buyOrderList = success.data.content;
           this.buyOrderLength = this.buyOrderList.length;
         }
@@ -528,26 +528,66 @@ export class TradeNowComponent implements OnInit {
 
   // to get more orders on tradeHistory table on click of more
 
-  getMoreOrders(){
+  getMoreOrders() {
     let currentPage = 1;
     let pageSize = 10;
     this.isLoading = true;
     this.hasBlur = true;
-    currentPage = currentPage+1;
-    pageSize = pageSize+10;
+    pageSize = pageSize + 10;
 
     this.tradeNowService.getAllTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
-      this.allTradedListLength =  this.allTradedList.length;
-      console.log("data length >>>>>", this.allTradedListLength);
-      console.log("data length >>>>>", this.allTradedList);
+      this.allTradedListLength = this.allTradedList.length;
+
 
     }, error => {
       console.log(error);
     })
   }
+
+  getMoreMyTradeList() {
+
+    let currentPage = 1;
+    let pageSize = 10;
+    this.isLoadingForMyTrade = true;
+    this.hasBlurForMyTrading = true;
+    pageSize = pageSize + 10;
+    this.tradeNowService.getTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+      this.isLoadingForMyTrade = false;
+      this.hasBlurForMyTrading = false;
+      this.myTradedList = success.data.content;
+      this.myTradedListLength = this.myTradedList.length;
+
+    }, error => {
+      console.log(error);
+    })
+
+
+  }
+
+  getMoreMyOrder() {
+
+    let currentPage = 1;
+    let pageSize = 10;
+
+    this.isOpenOrders = true;
+    this.hasBlurOpenOrders = true;
+    pageSize = pageSize + 10;
+    this.tradeNowService.getMyOrdersFromBook(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+      this.isOpenOrders = false;
+      this.hasBlurOpenOrders = false;
+      this.myOrdersInBook = success.data;
+      this.myOrdersInBookLength = this.myOrdersInBook.length;
+
+
+    }, error => {
+      console.log(error);
+    })
+  }
+
+
 
 
 }

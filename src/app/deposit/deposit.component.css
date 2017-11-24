@@ -10,18 +10,23 @@ ul li {
 .qrCode {
     margin-top: 30px;
 }
+
 .input-box {
     text-align: -webkit-center;
     padding-top: 22px;
     text-align: -moz-center;
 }
+
+
 /* input {
     padding: 27px;
     width: 33%;
 } */
+
 .network {
     color: #db2828;
 }
+
 .genarate-button {
     background-color: #DB2828;
     opacity: none !important;
@@ -33,6 +38,7 @@ ul li {
     outline: none;
     width: 21%;
 }
+
 .main-div {
     margin-top: 14px;
     /* margin-bottom: 66px; */
@@ -41,6 +47,7 @@ ul li {
 .margin-button {
     margin-top: 10px;
 }
+
 select.center-dropddown {
     background: #DB2828;
     width: 225px;
@@ -48,54 +55,66 @@ select.center-dropddown {
     color: white;
     border: none;
 }
-.coinNotFound{
-    color:#DB2828;
-    margin-top: 3px;
 
+.coinNotFound {
+    color: #DB2828;
+    margin-top: 3px;
 }
-input[type="text"]{
-        width: 41%;
+
+input[type="text"] {
+    width: 41%;
 }
-.deposit-bg-color{
+
+.deposit-bg-color {
     background-color: white;
-       padding-bottom: 0px;
+    padding-bottom: 0px;
     padding-top: 65px;
 }
-.deposit-container-padding{
+
+.deposit-container-padding {
     margin-top: 67px;
     margin-bottom: 51px;
 }
-.option-box{
-        background-color: white;
+
+.option-box {
+    background-color: white;
     color: black;
 }
+
+
 /* table */
-.trade-History-table{
+
+.trade-History-table {
     border: 1px solid lightgray;
 }
-.border-left th{
-        border-left: 1px solid lightgray;
-        text-align: center;
 
-}
-.table-Content td{
+.border-left th {
+    border-left: 1px solid lightgray;
     text-align: center;
 }
+
+.table-Content td {
+    text-align: center;
+}
+
 .table-Head {
-        background-color: #db2828;
+    background-color: #db2828;
     color: white;
 }
-.table-content-font{
-        font-size: 13px !important;
+
+.table-content-font {
+    font-size: 13px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
-.margin-Table{
+
+.margin-Table {
     margin-top: 25px;
 }
 
 
 /*  font-family and font size*/
+
 .table-Heading {
     font-size: 14px !important;
     font-family: Lato-Regular-font !important;
@@ -114,17 +133,18 @@ input[type="text"]{
     font-weight: 100;
 }
 
-/* for depositetable */
-.deposite-Table table {
 
+/* for depositetable */
+
+.deposite-Table table {
     border-spacing: 0;
 }
 
-.deposite-Table tbody, .deposite-Table thead tr { 
-    
+.deposite-Table tbody,
+.deposite-Table thead tr {
     display: block;
     text-align: center;
- }
+}
 
 .deposite-Table tbody {
     height: 250px;
@@ -132,10 +152,13 @@ input[type="text"]{
     overflow-x: hidden;
 }
 
-.deposite-Table tbody td, .deposite-Table thead th {
-    width: 175px;
-    padding: 3px;
+.deposite-Table tbody td,
+.deposite-Table thead th {
+    width: 185px;
+    padding: 6px;
 }
+
+
 /* for depositiable table */
 
 .ellipsis {
@@ -145,18 +168,19 @@ input[type="text"]{
     white-space: nowrap;
 }
 
-.td-widthForSenderAddress{
-        padding-left: 25px !important;
+.td-widthForSenderAddress {
+    padding-left: 25px !important;
 }
 
-.td-widthForTransactionAddress{
-       padding-left: 11px !important;
+.td-widthForTransactionAddress {
+    padding-left: 11px !important;
 }
 
 
 /* for loader */
+
 .loader {
-     border: 5px solid #f3f3f3;
+    border: 5px solid #f3f3f3;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
     border-top: 5px solid #db2828;
@@ -166,64 +190,50 @@ input[type="text"]{
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.spiner-position{
-        position: absolute;
-        top: 136px;
-    left: 377px;
+.spiner-position {
+    position: absolute;
+    top: 136px;
+    left: 460px;
 }
+
 
 /* for loader */
 
-.opecity-table{
-      opacity: 0.5;
+.opecity-table {
+    opacity: 0.5;
 }
 
-.copy-Text{
-        position: relative;
+.copy-Text {
+    position: relative;
     top: -47px;
     left: 223px;
 }
 
-.copyColor{
-    
+.copyColor {
     color: #db2828;
 }
 
-/* .myloader {
-    border: 16px solid white;
-    border-radius: 50%;
-    border-top: 16px solid #DB2828;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-      position: relative;
-    bottom: 543px;
-    left: 579px
+.moreData {
+    text-align: right;
+    color: #DB2828;
+    cursor: pointer;
 }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.backgroundScrool{
-    background-color: lightgray;
-     cursor: not-allowed;
-     opacity: 0.2;
-} */
 

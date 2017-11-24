@@ -52,7 +52,7 @@
       </div> -->
         <!-- for table -->
     <div class="row">
-  <div class="col-md-10 col-md-offset-1 margin-Table">
+  <div class="col-md-12 margin-Table">
 <div class="deposite-Table">
   <div class="loader spiner-position" *ngIf="isLoading" ></div>
    <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
@@ -75,6 +75,9 @@
             <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
+          </tr>
+          <tr *ngIf="txLength >=10">
+            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()">More</p></td>
           </tr>
         </tbody>
       </table>

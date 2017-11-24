@@ -964,7 +964,7 @@ table thead tr th {
 .spiner-position{
         position: absolute;
    top: 249px;
-    left: 455px;
+    left: 563px;
 }
 
 /* for loader */
@@ -1030,6 +1030,11 @@ select option {
     cursor: pointer;
     color: #DB2828;
 
+}
+
+.more_button:hover{
+    text-decoration: underline;
+     color: #DB2828;
 }
 
 
