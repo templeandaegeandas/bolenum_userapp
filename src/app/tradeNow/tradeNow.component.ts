@@ -59,6 +59,7 @@ export class TradeNowComponent implements OnInit {
   showModal: boolean = false;
   amount: any;
   price: any;
+  minPrice: any;
   sellOrderLength: any;
   buyOrderLength: any;
   public isMarket: boolean = true;
@@ -495,7 +496,9 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData(this.pairId);
     }
     else {
-      this.price = 10;
+      if(this.price == '') {
+        this.price = this.minPrice;
+      }
       this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
         if(orderType=='SELL') {
           this.buyOrderList = success.data.content;
@@ -510,6 +513,9 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
+    if (this.price < this.minPrice) {
+      this.toastrService.error("You can't place order less than 10 NGN", "Error!")
+    }
     this.order.orderType = orderType;
     this.order.orderStandard = 'LIMIT';
     this.order.volume = this.amount;
@@ -521,6 +527,8 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData(this.pairId);
       this.getMyOrdersFromBook();
       this.toastrService.success("Your order created successfully!", "Success!")
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!");
     })
     this.amount = '';
     this.price = '';
