@@ -2,7 +2,7 @@
   <div class="row">
     <section>
       <div class="col-sm-10 col-sm-offset-1 margin-top-head">
-        <p>Please Please click on paid when you got the amount.So we can do complete your trade with the buyer.</p>
+        <p>Please click on paid when you got the amount.So we can do complete your trade with the buyer.</p>
       </div>
 
       <!-- for timer section -->
@@ -10,7 +10,7 @@
         <div class="timer-property">
           <p *ngIf="orderStatus=='LOCKED'"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
-          <p class="timer-font-pro" id="demo">{{timer}}</p>
+          <p class="timer-font-pro" id="demo"></p>
 
           <p>When deposit time went out the trade will be cancelled. Any deposit comes after that will be credited to your account.</p>
         </div>
@@ -21,10 +21,10 @@
 
         <div class="row">
           <div class="col-sm-6 text-center">
-            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase paid_button" type="submit" name="paid">Paid</button>
+            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Paid</button>
           </div>
           <div class="col-sm-6 text-center">
-            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase cancel_button" type="submit" name="paid">Cancel</button>
+            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="cancelPay()">Cancel</button>
           </div>
         </div>
 
@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                   <th>Amount paid to you</th>
-                  <td>{{totalPrice}}</td>
+                  <td>{{totalPrice}} NGN</td>
                 </tr>
                 <tr>
                   <th>Bank name</th>

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { TradingService } from './trading.service';
+import { Observable } from 'rxjs/Rx';
 declare var $: any;
 
 @Component({
@@ -26,7 +27,8 @@ export class TradingComponent implements OnInit {
   createdDate: any;
   totalPrice: any;
   orderStatus: any;
-
+  path: any;
+  interval: any;
   constructor(
     private tradingService: TradingService,
     private router: Router,
@@ -47,8 +49,12 @@ export class TradingComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
+    this.getOrderDetails();
+  }
+
+  getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
-      if(success.data==null) {
+      if (success.data == null) {
         this.router.navigate(['tradeNow']);
         return;
       }
@@ -66,6 +72,7 @@ export class TradingComponent implements OnInit {
       this.hasTradeNow();
     }, error => this.router.navigate(['tradeNow']))
   }
+
   hasTradeNow() {
     this.hasTrading = false;
     this.hasTimer = true;
@@ -75,11 +82,13 @@ export class TradingComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED') {
-      var x = setInterval(function() {
-
+      this.interval = Observable.interval(1000).subscribe(() => {
+        var path;
+        this.activatedRoute.url.subscribe(url => {
+          path = url[0].path;
+        })
         // Get todays date and time
         var now = new Date().getTime();
-
         // Find the distance between now an the count down date
         var distance = countDownDate - now;
 
@@ -88,26 +97,28 @@ export class TradingComponent implements OnInit {
         // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 30 * 30)) / (1000 * 30));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
         // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = minutes + " : " + seconds;
-
+        if (path == 'trading') {
+          document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+        }
         // If the count down is over, write some text
         if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("demo").innerHTML = "EXPIRED";
+          clearInterval(this.interval);
+          if (path == 'trading') {
+            document.getElementById("demo").innerHTML = "EXPIRED";
+          }
           this.cancelPay();
         }
-      }, 1000);
+      });
       // for timer
     }
     else if (this.orderStatus == 'COMPLETED') {
-      clearInterval(x);
+      clearInterval(this.interval);
       document.getElementById("demo").innerHTML = "Order Completed";
     }
     else {
-      clearInterval(x);
-      document.getElementById("demo").innerHTML = "Order Canclled";
+      clearInterval(this.interval);
+      document.getElementById("demo").innerHTML = "Order Cancelled";
     }
   }
 

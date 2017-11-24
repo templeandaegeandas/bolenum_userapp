@@ -12,7 +12,7 @@ export class SellService {
   }
 
   confirmPay(orderId) {
-    return this.http.put('/api/v1/user/order/fiat/confirm?orderId=' + orderId, '')
+    return this.http.put('/api/v1/user/order/fiat/tx?orderId=' + orderId, '')
       .map(res => res.json());
   }
 
