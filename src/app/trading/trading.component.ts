@@ -28,7 +28,6 @@ export class TradingComponent implements OnInit {
   totalPrice: any;
   orderStatus: any;
   path: any;
-  interval: any;
   constructor(
     private tradingService: TradingService,
     private router: Router,
@@ -82,7 +81,7 @@ export class TradingComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED') {
-      this.interval = Observable.interval(1000).subscribe(() => {
+      var subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
           path = url[0].path;
@@ -103,7 +102,7 @@ export class TradingComponent implements OnInit {
         }
         // If the count down is over, write some text
         if (distance < 0) {
-          clearInterval(this.interval);
+          subscription.unsubscribe();
           if (path == 'trading') {
             document.getElementById("demo").innerHTML = "EXPIRED";
           }
@@ -113,11 +112,15 @@ export class TradingComponent implements OnInit {
       // for timer
     }
     else if (this.orderStatus == 'COMPLETED') {
-      clearInterval(this.interval);
+      if (subscription != null) {
+        subscription.unsubscribe();
+      }
       document.getElementById("demo").innerHTML = "Order Completed";
     }
     else {
-      clearInterval(this.interval);
+      if (subscription != null) {
+        subscription.unsubscribe();
+      }
       document.getElementById("demo").innerHTML = "Order Cancelled";
     }
   }
