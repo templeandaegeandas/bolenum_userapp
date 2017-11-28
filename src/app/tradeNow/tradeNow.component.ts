@@ -193,6 +193,7 @@ export class TradeNowComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+    this.tradingFees()
   }
 
   getBuyOrderBookData(pairId) {
@@ -428,7 +429,7 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  tradingFees(currencyId) {
+  tradingFees() {
     this.tradeNowService.tradingFee().subscribe(success => {
       if(success.data != null) {
         this.tradeFee = success.data.fee;
