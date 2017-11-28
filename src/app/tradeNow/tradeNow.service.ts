@@ -89,4 +89,9 @@ export class TradeNowService {
     return this.http.get("/api/v1/user/orders?volume="+volume+"&price="+price+"&orderType="+orderType+"&pairId="+pairId)
       .map(res => res.json());
   }
+
+  tradingFee() {
+    return this.http.get("/api/v1/admin/trade/fees")
+      .map(res => res.json());
+  }
 }

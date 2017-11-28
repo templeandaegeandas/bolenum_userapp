@@ -6,36 +6,36 @@
 </select>
     </div> -->
     <div class="col-md-10 col-md-offset-1 main-div-margin color-box">
-          <div class="col-md-12 withdraw-dropdown">
-      <select class="center-dropddown  drop-down-font " [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
+      <div class="col-md-12 withdraw-dropdown">
+        <select class="center-dropddown  drop-down-font " [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
  <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
 </select>
-    </div>
+      </div>
       <div class=" text-center text-image-div">
         <!-- for btc image -->
-         <div class=" " *ngIf="setItemValue=='BTC'">
+        <div class=" " *ngIf="setItemValue=='BTC'">
           <span>
          <img src="./assets/images/bitcoin.png" width="46" height="46">
        </span>
-        </div> 
-      <!-- for boleno image -->
+        </div>
+        <!-- for boleno image -->
         <div class=" " *ngIf="setItemValue=='BLN'">
           <span>
          <img src="./assets/images/bolenum.png" width="46" height="46">
        </span>
-        </div> 
-      <!-- for etherium -->
-      <div class=" " *ngIf="setItemValue=='ETH'">
+        </div>
+        <!-- for etherium -->
+        <div class=" " *ngIf="setItemValue=='ETH'">
           <span>
          <img src="./assets/images/eth.png" width="46" height="46">
        </span>
-        </div> 
-      <!-- for nigerian naira -->
-      <div class=" " *ngIf="setItemValue=='NGN'">
+        </div>
+        <!-- for nigerian naira -->
+        <div class=" " *ngIf="setItemValue=='NGN'">
           <span>
          <img src="./assets/images/ngn.png" width="46" height="46">
        </span>
-        </div> 
+        </div>
 
         <div class="available-text">
           <span class="balance-text withdraw-heading">
@@ -67,15 +67,14 @@
             </div>
             <div class="col-md-6 col-width">
               <div class="form-group">
-                <input type="number" min="0" class="form-control input-field-withdraw" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount"
-                  required>
+                <input type="number" min="0" class="form-control input-field-withdraw" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount" required>
               </div>
               <span *ngIf="amount.invalid && withrawForm.submitted">
                   <span class="red-text-color error-message-font" *ngIf="amount.errors.required">Please enter amount</span>
               </span>
 
-              <p><span class="red-text-color error-message-font">Minimum Withdrawal Amount:</span> 0.0005</p>
-
+              <p><span class="red-text-color error-message-font">Minimum Withdrawal Amount: </span>{{minWithdrawAmount | number:'1.1-8'}} {{setItemValue}}</p>
+              <p><span class="red-text-color error-message-font">Transaction Fee: </span>{{withdrawFee | number:'1.1-8'}} {{setItemValue}}</p>
             </div>
           </div>
           <div class="col-md-7 col-md-offset-4 button-padding">
@@ -86,35 +85,39 @@
         <div class="row">
           <div class="col-md-12 margin-Table">
             <div class="tranction-Table">
-              <div class="loader spiner-position" *ngIf="isLoading" ></div>
-            <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
-              <thead class="table-Head ">
-                <tr class="table-Heading">
-                  <th>Transaction Hash</th>
-                  <th>Currency</th>
-                  <th>Amount</th>
-                  <th>Receiver Address</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody >
-                <tr *ngFor="let tx of txList" class="table-content-font">
-                  <td class="ellipsis td-widthForTransactionAddress" title="{{tx.txHash}}">{{tx.txHash}}</td>
-                  <td>{{tx.currencyName}}</td>
-                  <td>{{tx.txAmount | number:'1.1-8'}}</td>
-                  <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
-                  <td>{{tx.createdOn | date}}</td>
-                  <td>{{tx.createdOn | date:'shortTime'}}</td>
-                </tr>
-                <tr >
-                  <td  *ngIf = "transactionLength >=10" colspan="6"><p (click)="getMoreTransactionList()" class="moreData moreText">More</p></td>
-                </tr>
-                <tr>
-                  <td *ngIf = "transactionLength == 0 " colspan="6"><p>Sorry You don't have any transaction yet!</p></td>
-                </tr>
-              </tbody>
-            </table>
+              <div class="loader spiner-position" *ngIf="isLoading"></div>
+              <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
+                <thead class="table-Head ">
+                  <tr class="table-Heading">
+                    <th>Transaction Hash</th>
+                    <th>Currency</th>
+                    <th>Amount</th>
+                    <th>Receiver Address</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tx of txList" class="table-content-font">
+                    <td class="ellipsis td-widthForTransactionAddress" title="{{tx.txHash}}">{{tx.txHash}}</td>
+                    <td>{{tx.currencyName}}</td>
+                    <td>{{tx.txAmount | number:'1.1-8'}}</td>
+                    <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
+                    <td>{{tx.createdOn | date}}</td>
+                    <td>{{tx.createdOn | date:'shortTime'}}</td>
+                  </tr>
+                  <tr>
+                    <td *ngIf="transactionLength >=10" colspan="6">
+                      <p (click)="getMoreTransactionList()" class="moreData moreText">More</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td *ngIf="transactionLength == 0 " colspan="6">
+                      <p>You don't have done any transaction yet!</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

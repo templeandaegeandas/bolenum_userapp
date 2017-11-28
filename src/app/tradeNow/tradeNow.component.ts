@@ -62,6 +62,8 @@ export class TradeNowComponent implements OnInit {
   minPrice: any = 10;
   sellOrderLength: any;
   buyOrderLength: any;
+  tradeFee: any = 0.0;
+  tradeFeeFiat: any = 0.0;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -423,6 +425,15 @@ export class TradeNowComponent implements OnInit {
 
     }, error => {
       console.log(error);
+    })
+  }
+
+  tradingFees(currencyId) {
+    this.tradeNowService.tradingFee().subscribe(success => {
+      if(success.data != null) {
+        this.tradeFee = success.data.fee;
+        this.tradeFeeFiat = success.data.fiat;
+      }
     })
   }
 
