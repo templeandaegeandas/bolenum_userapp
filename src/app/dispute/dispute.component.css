@@ -51,7 +51,7 @@ textarea {
     font: inherit;
     color: inherit;
     width: 100%;
-    border: 2px solid gray;
-    /* height: 200px; */
+    border: 2px solid #e7e2e2;
     padding: 42px;
+    border-radius: 5px;
 }
