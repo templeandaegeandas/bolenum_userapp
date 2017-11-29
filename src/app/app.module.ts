@@ -50,6 +50,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { TradingComponent } from './trading/trading.component';
 import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
+import { DisputeComponent } from './dispute/dispute.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -89,6 +90,7 @@ export function highchartsFactory() {
     TradingComponent,
     SellComponent,
     CreateAdvertiesmentComponent,
+    DisputeComponent,
 
   ],
   imports: [

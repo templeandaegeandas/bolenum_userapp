@@ -1,0 +1,57 @@
+.dispute-section {
+    margin-top: 34px;
+    margin-bottom: 34px;
+}
+
+.text-danger {
+    color: #DB2828;
+    font-size: 22px;
+    }
+.paymentDetails{
+    background-color: #DB2828;
+    color: white;
+}
+p {
+    margin: 7px 0 10px;
+}
+
+.panel-Body{
+        border: 1px solid lightgray;
+}
+
+.trading-margin{
+    margin-top: 34px;
+    
+}
+
+.table-margin{
+    margin-top: 16px;
+}
+
+.trade-button-margin{
+        margin-bottom: 82px;
+}
+
+.trade-button{
+    background-color: #DB2828;
+    color: white;
+    outline: none;
+    width: 130px;
+    border: none;
+    margin-bottom: 20px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
+.button-center {
+    text-align: center;
+}
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    border: 2px solid gray;
+    /* height: 200px; */
+    padding: 42px;
+}

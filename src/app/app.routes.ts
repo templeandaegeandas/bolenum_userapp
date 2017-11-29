@@ -31,6 +31,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { TradingComponent } from './trading/trading.component';
 import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
+import { DisputeComponent } from './dispute/dispute.component';
 
 
 export const APP_ROUTES: Routes = [
@@ -58,6 +59,7 @@ export const APP_ROUTES: Routes = [
   { path: 'withdraw', component: WithdrawComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'faq', component: FaqComponent },
+   { path: 'dispute', component: DisputeComponent },
   { path: 'team', component: TeamComponent },
   { path: 'how-to-use', component: HowToUseComponent },
   { path: 'terms-service', component: TermsServiceComponent },
