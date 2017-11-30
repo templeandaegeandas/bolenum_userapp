@@ -14,24 +14,26 @@
 p {
     margin: 7px 0 10px;
 }
-
 .panel-Body{
         border: 1px solid lightgray;
+        /*background: #f3f3ee;*/
 }
-
+.panel-body.panel-Body.new {
+  background: #f3f3ee;
+}
 .trading-margin{
     margin-top: 34px;
     
 }
-
+.col-button {
+    margin-top: 20px;
+}
 .table-margin{
     margin-top: 16px;
 }
-
 .trade-button-margin{
         margin-bottom: 82px;
 }
-
 .trade-button{
     background-color: #DB2828;
     color: white;
@@ -51,7 +53,57 @@ textarea {
     font: inherit;
     color: inherit;
     width: 100%;
-    border: 2px solid #e7e2e2;
+    border: 1px solid #e7e2e2;
     padding: 42px;
     border-radius: 5px;
+}
+.border-box{
+     border: 2px solid #e7e2e2;
+    margin-right: 35px;
+    margin-left: 35px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+
+}
+
+button.btn.btn-success.green {
+    width: 341px;
+    padding: 11px;
+    margin-left: -13px;
+    color: white;
+    background: #3cb371;
+    outline: none;
+    border: none;
+}
+
+#fileselector {
+    margin: 10px; 
+}
+#upload-file-selector {
+    display:none; 
+  
+}
+label.btn.btn-default {
+     width: 507px;
+    color: white;
+    outline: none;
+    border: none;
+    background: #DB2828;
+    padding: 10px;
+    font-size: 16px;  
+}
+.margin-correction {
+    margin-right: 10px;   
+}
+p.uopload-img {
+    margin-left: 11px;
+}
+@media screen and (min-width: 320px) and (max-width: 767px){
+    button.btn.btn-success.green {
+        width: 194px;
+    margin-left: 11px;
+    margin-bottom: 8px;
+    /* margin-right: 55px; */
+}
+    
 }
