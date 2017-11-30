@@ -98,6 +98,10 @@ label.btn.btn-default {
 p.uopload-img {
     margin-left: 11px;
 }
+.id {
+    margin-left: 108px;
+    width: 40%;
+}
 @media screen and (min-width: 320px) and (max-width: 767px){
     button.btn.btn-success.green {
         width: 194px;
