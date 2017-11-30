@@ -264,18 +264,16 @@
               <thead>
                 <tr>
                   <th>Price</th>
-                  <th>{{secondCurrency}}</th>
                   <th>{{firstCurrency}}</th>
-                  <th>Total {{firstCurrency}}</th>
+                  <th>Total {{secondCurrency}}</th>
                   <th *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font trade-table-cursor">
                 <tr *ngFor="let buyOrder of buyOrderList">
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price | number:'1.1-8'}}</td>
-                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price | number:'1.1-8'}}</td>
                   <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume | number:'1.1-8'}}</td>
-                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume | number:'1.1-8'}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price | number:'1.1-8'}}</td>
                   <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"><button class="trade-button-buy buy-button-color " (click)="showModel('SELL', buyOrder.volume, buyOrder.price, buyOrder.id)">SELL</button></td>
                 </tr>
               </tbody>
@@ -294,18 +292,16 @@
             <table class="table table-striped table-color tradeSubheading-fontSze-fontFamily">
               <thead>
                 <tr>
-                  <th>Total {{firstCurrency}}</th>
+                  <th>Total {{secondCurrency}}</th>
                   <th>{{firstCurrency}}</th>
-                  <th>{{secondCurrency}}</th>
                   <th>Price</th>
                   <th *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">Action</th>
                 </tr>
               </thead>
               <tbody class="table-content-font">
                 <tr *ngFor="let sellOrder of sellOrderList">
-                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume | number:'1.1-8'}}</td>
-                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume | number:'1.1-8'}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price | number:'1.1-8'}}</td>
+                  <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume | number:'1.1-8'}}</td>
                   <td class="trade-table-cursor" (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price | number:'1.1-8'}}</td>
                   <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'"> <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price, sellOrder.id)">BUY</button></td>
                 </tr>

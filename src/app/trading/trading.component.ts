@@ -94,7 +94,7 @@ export class TradingComponent implements OnInit {
         // Time calculations for days, hours, minutes and seconds
         // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 30 * 30)) / (1000 * 30));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         // Output the result in an element with id="demo"
         if (path == 'trading') {
@@ -134,12 +134,14 @@ export class TradingComponent implements OnInit {
 
   confirmPay() {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
+      this.getOrderDetails();
       console.log(success);
     })
   }
 
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
+      this.getOrderDetails();
       console.log(success);
     })
   }
