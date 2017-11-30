@@ -249,7 +249,6 @@ export class ProfileComponent implements OnInit {
   }
 
   saveMobile(form) {
-    this.varificationName = "Enter OTP"
     if (form.invalid) return;
     if (this.mobileNumber=='') return;
     if (this.countryCode==null) {
@@ -257,6 +256,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.profileService.addMobileNumber(this.mobileNumber, this.countryCode).subscribe(success => {
+      this.varificationName = "Enter OTP"
       this.isMobileEdit = false;
       this.isOtpEdit = true;
       this.resendOtp = true;
