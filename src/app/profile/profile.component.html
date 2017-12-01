@@ -259,7 +259,7 @@
                               <button type="submit" class="btn btn-successsave profile-font butoon-font ">Save Mobile Number</button>
                             </form>
                             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
-                              <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
+                              <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" maxlength="6" id="usr" required onlynumber>
                               <span *ngIf="otpField.invalid && otpForm.submitted">
                                        <span class="text-danger profile-font" *ngIf="otpField.errors.required">Please enter otp</span>
                               </span>
@@ -595,7 +595,7 @@
               <button type="submit" class="btn btn-back profile-font butoon-font " (click)="backAuth()">Back</button>
             </form>
             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
-              <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
+              <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" maxlength="6" id="usr" required onlynumber>
               <span *ngIf="otpField.invalid && otpForm.submitted">
                        <span class="text-danger profile-font" *ngIf="otpField.errors.required">Please enter otp</span>
               </span>
