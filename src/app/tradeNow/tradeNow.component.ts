@@ -422,7 +422,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getMyOrdersFromBook(1, 10, "createdOn", "desc").subscribe(success => {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
-      this.myOrdersInBook = success.data;
+      this.myOrdersInBook = success.data.content;
       this.myOrdersInBookLength = this.myOrdersInBook.length;
 
 
