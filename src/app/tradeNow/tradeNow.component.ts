@@ -64,6 +64,8 @@ export class TradeNowComponent implements OnInit {
   buyOrderLength: any;
   tradeFee: any = 0.0;
   tradeFeeFiat: any = 0.0;
+  firstCurrencyType: any;
+  secondCurrencyType: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Market Order" },
@@ -324,6 +326,7 @@ export class TradeNowComponent implements OnInit {
       setTimeout(() => {
         this.getMyOrdersFromBook();
       }, 100);
+      this.getUserBalance();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
@@ -341,35 +344,26 @@ export class TradeNowComponent implements OnInit {
     this.loading = true;
     this.tradeNowService.getPairedCurrencies(currencyId).subscribe(success => {
       this.pairList = success.data;
-      let firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
+      this.firstCurrencyType = this.pairList[0].toCurrency[0].currencyType;
       this.marketPrice = this.pairList[0].toCurrency[0].priceBTC;
-      let secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
+      this.secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
-      this.changePair(pairId, pairName, firstCurrencyType, secondCurrencyType);
+      this.changePair(pairId, pairName);
       this.loading = false;
     }, error => {
       this.loading = false;
     })
   }
 
-  changePair(pairId, pairName, firstCurrencyType, secondCurrencyType) {
+  changePair(pairId, pairName) {
     this.loading = true;
     this.pairId = pairId;
     this.pairName = pairName;
     let pairArray = pairName.split("/")
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
-    this.depositService.getCoin(firstCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance + " " + this.firstCurrency;
-    }, error => {
-      this.firstCurrencyBal = "0.0 " + this.firstCurrency;
-    })
-    this.depositService.getCoin(secondCurrencyType, this.secondCurrency).subscribe(success => {
-      this.secondCurrencyBal = success.data.data.balance + " " + this.secondCurrency;
-    }, error => {
-      this.secondCurrencyBal = "0.0 " + this.secondCurrency;
-    })
+    this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     setTimeout(() => {
       this.getSellOrderBookData(pairId);
@@ -377,6 +371,19 @@ export class TradeNowComponent implements OnInit {
     this.order.price = '';
     this.order.volume = '';
     this.loading = false;
+  }
+
+  getUserBalance() {
+    this.depositService.getCoin(this.firstCurrencyType, this.firstCurrency).subscribe(success => {
+      this.firstCurrencyBal = success.data.data.balance + " " + this.firstCurrency;
+    }, error => {
+      this.firstCurrencyBal = "0.0 " + this.firstCurrency;
+    })
+    this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
+      this.secondCurrencyBal = success.data.data.balance + " " + this.secondCurrency;
+    }, error => {
+      this.secondCurrencyBal = "0.0 " + this.secondCurrency;
+    })
   }
 
   fillData(volume, price) {
