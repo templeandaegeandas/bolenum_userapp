@@ -21,8 +21,8 @@ import { WebsocketService } from '../web-socket/web.socket.service';
 })
 export class ProfileComponent implements OnInit {
   sub: Subscription;
-  public isOff:boolean = false;
-  public isOn:boolean = true;
+  public isOff: boolean = false;
+  public isOn: boolean = true;
   public nationalIds: string;
   public documentType: string;
   public varificationName: string = "Mobile Number";
@@ -181,6 +181,10 @@ export class ProfileComponent implements OnInit {
     if (event) {
       this.addPopup.show();
       this.varificationName = "Mobile Number";
+      this.isDetailsEdit = false;
+      this.isMobileEdit = false;
+      this.isOtpEdit = false;
+      this.resendOtp = false;
       if (this.qrCodeFileName == null) {
         this.profileService.generate2faQrCode().subscribe(success => {
           this.qrCodeFileName = environment.googleQrCodeUrl + success.data.fileName;
@@ -198,7 +202,10 @@ export class ProfileComponent implements OnInit {
 
   openTwoFaVerification(data) {
     this.twoFactorAuthType = data;
-    if (data == 'MOBILE' && !this.isMobileVerified) this.isMobileEdit = true;
+    if (data == 'MOBILE' && !this.isMobileVerified) {
+      this.isMobileEdit = true;
+      this.getAllCountries();
+    }
   }
 
   backAuth() {
@@ -236,7 +243,7 @@ export class ProfileComponent implements OnInit {
     this.getAllCountries();
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
-    if(this.userProfile.dob!=null) {
+    if (this.userProfile.dob != null) {
       this.dob = { date: { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() } };
     }
   }
@@ -250,8 +257,8 @@ export class ProfileComponent implements OnInit {
 
   saveMobile(form) {
     if (form.invalid) return;
-    if (this.mobileNumber=='') return;
-    if (this.countryCode==null) {
+    if (this.mobileNumber == '') return;
+    if (this.countryCode == null) {
       this.toastrService.error("Please choose country and fill profile first!", "Error!");
       return;
     }
@@ -267,6 +274,7 @@ export class ProfileComponent implements OnInit {
 
   verifyOtp(form) {
     if (form.invalid) return;
+    if (this.otp == '') return;
     this.profileService.verifyOtp(this.otp).subscribe(success => {
       this.toastrService.success(success.message, "Success!");
       this.isOtpEdit = false;
@@ -322,7 +330,7 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size >= 1024*1024*5) {
+      if (event.target.files[0].size >= 1024 * 1024 * 5) {
         this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
         return;
       }
@@ -478,7 +486,7 @@ export class ProfileComponent implements OnInit {
 
   readUrlAddress(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size > 1024*1024*5) {
+      if (event.target.files[0].size > 1024 * 1024 * 5) {
         this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
         return;
       }
@@ -547,7 +555,7 @@ export class ProfileComponent implements OnInit {
 
   onChange(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size > 1024*1024*10) {
+      if (event.target.files[0].size > 1024 * 1024 * 10) {
         this.toastrService.error("Please choose file less than 10Mb!", 'Error!')
         return;
       }

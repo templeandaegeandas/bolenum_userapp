@@ -199,12 +199,14 @@ export class TradeNowComponent implements OnInit {
   getBuyOrderBookData(pairId) {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
+      this.buyOrderLength = this.buyOrderList.length;
     })
   }
 
   getSellOrderBookData(pairId) {
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
+      this.sellOrderLength = this.sellOrderList.length;
     })
   }
 

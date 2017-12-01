@@ -8,8 +8,7 @@
         <div class="slider-info">
           <div class="header-text" style="position: static;">
             <img [src]="profilePic" class="porf-pic upload-profile" height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
-            <input class="from-newtext upload-profile" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)"
-              id="user">
+            <input class="from-newtext upload-profile" type="file" #profileImage accept="image/x-png,image/jpeg" (change)="onChange($event)" id="user">
           </div>
           <div class="slider-title">
             <div class="profile-text" style="position: static;">
@@ -21,7 +20,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
     <div class="tab_container">
       <input id="tab1" type="radio" name="tabs" checked>
@@ -121,8 +120,7 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name profile-font sub-heading-font-size">First Name<br>
-                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3"
-                          id="usr" required nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3" id="usr" required nonumberspecialcharacter>
                         <span *ngIf="firstName.invalid && editForm.submitted">
                                  <span class="text-danger profile-font content-font-size" *ngIf="firstName.errors.required">Please enter first name</span>
                         <span class="text-danger profile-font content-font-size" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
@@ -135,8 +133,7 @@
                     </div>
                     <div class="email-text">
                       <p class="icon-name profile-font sub-heading-font-size">Last Name<br>
-                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3"
-                          id="usr" nonumberspecialcharacter>
+                        <input type="texts" class="from-newtext" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3" id="usr" nonumberspecialcharacter>
                         <span *ngIf="lastName.invalid && editForm.submitted">
                                  <span class="text-danger profile-font content-font-size" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
                         </span>
@@ -177,8 +174,7 @@
                     <div class="email-text">
                       <p class="icon-name profile-font sub-heading-font-size">
                         Country<br>
-                        <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)"
-                          #cty="ngModel" id="usr">
+                        <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
                                  <option [disabled]="true" [selected]="true" class="sub-heading-font-size">Choose Country</option>
                                  <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size">{{country.name}}</option>
                                  </select>
@@ -193,8 +189,7 @@
                     <div class="email-text">
                       <p class="icon-name profile-font sub-heading-font-size">
                         State<br>
-                        <select class="from-newtext profile-font" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)"
-                          id="usr">
+                        <select class="from-newtext profile-font" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
                                  <option [disabled]="true" [selected]="true" class="sub-heading-font-size">Choose State</option>
                                  <option [ngValue]="state.stateName" *ngFor="let state of states" class="content-font-size">{{state.stateName}}</option>
                                  </select>
@@ -246,13 +241,11 @@
                                   <div class="col-sm-12">
                                     <div class="row">
                                       <div class="col-sm-3">
-                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode"
-                                          required onlynumber disabled>
+                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode" required onlynumber disabled>
                                       </div>
                                       <div class="col-sm-9">
-                                        <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
-                                          required onlynumber>
-                                          <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
+                                        <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" required onlynumber>
+                                        <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
                                          <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
                                          </span>
                                         <span *ngIf="number.invalid && mobileForm.submitted">
@@ -262,13 +255,6 @@
                                     </div>
                                   </div>
                                 </div>
-                                <!-- <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode"
-                                  required onlynumber disabled>
-                                   <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone"
-                                required onlynumber>
-                              <span *ngIf="number.invalid && mobileForm.submitted">
-                                       <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
-                                       </span> -->
                               </div>
                               <button type="submit" class="btn btn-successsave profile-font butoon-font ">Save Mobile Number</button>
                             </form>
@@ -276,6 +262,9 @@
                               <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
                               <span *ngIf="otpField.invalid && otpForm.submitted">
                                        <span class="text-danger profile-font" *ngIf="otpField.errors.required">Please enter otp</span>
+                              </span>
+                              <span *ngIf="otp == '' && !otpField.invalid && otpForm.submitted">
+                                       <span class="text-danger profile-font">Please enter otp</span>
                               </span>
                               <button type="submit" class="btn btn-successsave profile-font">Verify Otp</button>
                               <a (click)="reSendOtp()" class="profile-font">Resend Otp</a>
@@ -291,53 +280,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="container-fluid">
-          <div class="new-data">
-            <div class="row">
-              <div class="col-md-12 col-sm-6">
-                <div class="verify-col clearfix">
-                  <div class="col-lg-6 col-sm-6 col-md-6">
-                    <div class="custom-data">
-                      <div class="clearfix"></div>
-                      <div class="email-part">
-                        <div class="email-img">
-                          <img src="assets/images/mobile.png" class="img-profile">
-                        </div>
-                        <div class="email-text">
-                          <p class="icon-name profile-font sub-heading-font-size">Phone No &nbsp;
-                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
-                            <p *ngIf="!isMobileEdit" class="text-icon profile-font content-font-size">{{mobileNumber}}</p>
-                            <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-                              <div class="phone_number-margin">
-                                <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode" required onlynumber disabled>
-                              </div>
-                              <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" required onlynumber>
-                              <span *ngIf="number.invalid && mobileForm.submitted">
-                                       <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
-                                       </span>
-                              <button type="submit" class="btn btn-successsave profile-font butoon-font ">Save Mobile Number</button>
-                            </form>
-                            <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
-                              <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
-                              <span *ngIf="otpField.invalid && otpForm.submitted">
-                                       <span class="text-danger profile-font" *ngIf="otpField.errors.required">Please enter otp</span>
-                              </span>
-                              <button type="submit" class="btn btn-successsave profile-font">Verify Otp</button>
-                              <a (click)="reSendOtp()" class="profile-font">Resend Otp</a>
-                            </form>
-                        </div>
-                      </div>
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-xs-12">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </section>
       <!--bank detail-->
       <section id="content2" class="tab-content">
@@ -402,8 +344,7 @@
                       <p class="bank-text profile-font sub-heading-font-size"> Account Holder Name</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" name="name" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel"
-                        required autocomplete="off">
+                      <input type="text" class="form-control" id="usr" name="name" [(ngModel)]="bankDetails.accountHolderName" #name="ngModel" required autocomplete="off">
                       <!-- errors msg-->
                       <div *ngIf="name.invalid && (name.dirty || name.touched || customerDetaisForm.submitted )" class="error-msg">
                         <div *ngIf="name.errors.required">
@@ -431,8 +372,7 @@
                       <p class="bank-text profile-font sub-heading-font-size "> Account No</p>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" name="accountNumber" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel"
-                        required>
+                      <input type="text" class="form-control" id="usr" name="accountNumber" [(ngModel)]="bankDetails.accountNumber" #accountNumber="ngModel" required>
                       <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched  || customerDetaisForm.submitted )" class="error-msg">
                         <div *ngIf="accountNumber.errors.required">
                           <span class="profile-font content-font-size ">Please enter your account number.</span>
@@ -552,8 +492,7 @@
   </div>
 </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
-<div bsModal #addPopup="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel"
-  aria-hidden="true">
+<div bsModal #addPopup="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -613,12 +552,10 @@
               <div class="authimage_style"><img width="150" [src]="qrCodeFileName"></div>
             </div>
             <div>
-              <p class="popup-text profile-font content-font-size ">Scan this QR code with your Google Authenticator app on your mobile phone (download for iOS or Android). Once
-                scanned you will be presented with a random 6 digit number. Enter that number below to finish the setup process.
+              <p class="popup-text profile-font content-font-size ">Scan this QR code with your Google Authenticator app on your mobile phone (download for iOS or Android). Once scanned you will be presented with a random 6 digit number. Enter that number below to finish the setup process.
               </p>
             </div>
-            <input type="texts" class="from-newtext" name="secret" [(ngModel)]="secret" #gsecret="ngModel" minlength="6" maxlength="6"
-              id="usr" required onlynumber>
+            <input type="texts" class="from-newtext" name="secret" [(ngModel)]="secret" #gsecret="ngModel" minlength="6" maxlength="6" id="usr" required onlynumber>
             <span *ngIf="gsecret.invalid && googleAuthForm.submitted">
             <span class="text-danger profile-font content-font-size" *ngIf="gsecret.errors.required">Please enter secret code</span>
             <span class="text-danger profile-font content-font-size " *ngIf="gsecret.errors.minlength">Invalid secret code</span><br>
@@ -640,17 +577,19 @@
           </div>
           <div *ngIf="!isMobileVerified">
             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-              <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)"
-                #cty="ngModel" id="usred">
+              <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usred">
                <option [disabled]="true" [selected]="true" class="sub-heading-font-size">Choose Country</option>
                <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size">{{country.name}}</option>
                </select>
               <span class="text-danger profile-font" *ngIf="countryError">Please choose country</span><br>
               <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
               <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
-              <span *ngIf="number.invalid && mobileForm.submitted"><br>
-               <span class="text-danger profile-font " *ngIf="number.errors.required" class="content-font-size">Please enter mobile number</span>
-              </span>
+              <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
+             <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
+             </span>
+              <span *ngIf="number.invalid && mobileForm.submitted">
+           <p class="text-danger otp-error profile-font content-font-size" *ngIf="number.errors.required">Please enter mobile number</p>
+           </span>
               <br>
               <button type="submit" class="btn btn-successsavemobile profile-font butoon-font ">Save Mobile Number</button>
               <button type="submit" class="btn btn-back profile-font butoon-font " (click)="backAuth()">Back</button>
@@ -658,8 +597,12 @@
             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
               <input type="text" name="otp" [(ngModel)]="otp" #otpField="ngModel" id="usr" required onlynumber>
               <span *ngIf="otpField.invalid && otpForm.submitted">
-               <span class="text-danger profile-font " *ngIf="otpField.errors.required" class="content-font-size">Please enter otp</span>
-              </span><br>
+                       <span class="text-danger profile-font" *ngIf="otpField.errors.required">Please enter otp</span>
+              </span>
+              <span *ngIf="otp == '' && !otpField.invalid && otpForm.submitted">
+                       <span class="text-danger profile-font">Please enter otp</span>
+              </span>
+              <br>
               <button type="submit" class="btn btn-successsave-verify profile-font butoon-font">Verify Otp</button>
               <div class="otp profile-font ">
                 <a (click)="reSendOtp()">Resend Otp</a>
@@ -673,8 +616,7 @@
     </div>
   </div>
 </div>
-<div bsModal #profilePicCropper="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}"
-  aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div bsModal #profilePicCropper="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header profile-font ">
