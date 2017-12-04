@@ -51,6 +51,8 @@ import { TradingComponent } from './trading/trading.component';
 import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
 import { DisputeComponent } from './dispute/dispute.component';
+import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -110,15 +112,22 @@ export function highchartsFactory() {
     BsDropdownModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     ImageCropperModule,
-    ClipboardModule
-
+    ClipboardModule,
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
     HttpClient,
     PrivateRouteAuthGuard,
     PublicRouteAuthGuard,
     AppEventEmiterService,
-    StompService
+    StompService,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU',
+      },
+    },
   ],
 
   bootstrap: [AppComponent]

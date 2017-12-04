@@ -14,6 +14,7 @@ import { User } from './entity/user-signup';
 export class SignUpComponent implements OnInit {
 user = new User("","","","","",false);
 loading = false;
+public formModel: FormModel = {};
   constructor(private signUpService: SignUpService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -21,6 +22,9 @@ loading = false;
 
   signUpUser(form) {
     if(form.invalid || this.user.repassword!=this.user.password) return;
+    if (this.formModel.captcha == null) {
+      return;
+    }
     if(this.user.lastName==""){
       this.user.setLastName(null);
     }
@@ -35,4 +39,8 @@ loading = false;
     })
   }
 
+}
+
+export interface FormModel {
+  captcha?: string;
 }
