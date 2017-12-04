@@ -32,6 +32,7 @@ import { TradingComponent } from './trading/trading.component';
 import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
 import { DisputeComponent } from './dispute/dispute.component';
+import { CancelTradeComponent } from './cancel-trade/cancel-trade.component'
 
 
 export const APP_ROUTES: Routes = [
@@ -66,5 +67,6 @@ export const APP_ROUTES: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'about-bolenum-exchange', component: AboutBolenumExchangeComponent },
   { path: 'trading/:orderId', component: TradingComponent },
+  { path:'CancelTrade', component: CancelTradeComponent },
   { path: 'sell/:orderId', component: SellComponent },
   { path: 'createAdvertiesment', component: CreateAdvertiesmentComponent },];
