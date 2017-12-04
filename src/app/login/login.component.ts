@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   is2FaOn: any = false;
   otp: any;
   twoFaOption: any;
+  public formModel: FormModel = {};
   constructor(private route: ActivatedRoute,
     private loginService: LoginService,
     private toastrService: ToastrService,
@@ -38,6 +39,9 @@ export class LoginComponent implements OnInit {
 
   loginUser(form) {
     if (form.invalid) {
+      return;
+    }
+    if (this.formModel.captcha == null) {
       return;
     }
     this.loading = true;
@@ -111,4 +115,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
+}
+
+export interface FormModel {
+  captcha?: string;
 }

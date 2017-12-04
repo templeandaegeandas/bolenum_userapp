@@ -9,32 +9,33 @@
           <div class="text-center">
             <img src="assets/images/bolenum.png" class="img-header">
           </div>
-          <div *ngIf = "!is2FaOn">
-          <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
-            <div class="input-group">
-              <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-              <input id="email" type="email" class="form-control content-font-size" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
-            </div>
-            <span *ngIf="email.invalid && loginForm.submitted">
+          <div *ngIf="!is2FaOn">
+            <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
+              <div class="input-group">
+                <span class="input-group-addon"><img src="assets/images/Email.png"></span>
+                <input id="email" type="email" class="form-control content-font-size" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
+              </div>
+              <span *ngIf="email.invalid && loginForm.submitted">
             <span class="text-danger errorContent-font-size" *ngIf="email.errors.required">Please enter email</span>
-            <span class="text-danger errorContent-font-size" *ngIf="email.errors.pattern">Please enter valid email</span>
-            </span>
-            <div class="input-group">
-              <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-              <span class="clearfix input-icon">
+              <span class="text-danger errorContent-font-size" *ngIf="email.errors.pattern">Please enter valid email</span>
+              </span>
+              <div class="input-group">
+                <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
+                <span class="clearfix input-icon">
                <input id="password" type="password" class="form-control content-font-size" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
                <img src="assets/images/view_uf.png" class="img-responsive"/>
                </span>
-            </div>
-            <span *ngIf="password.invalid && loginForm.submitted">
+              </div>
+              <span *ngIf="password.invalid && loginForm.submitted">
             <span class="text-danger errorContent-font-size" *ngIf="password.errors.required">Please enter password</span>
-            </span>
-            <div class="col-md-6 forgot-pass-content">
-              <a routerLink="/forgot" class="forgot-pass errorContent-font-size">Forgot Password?</a>
-            </div>
-            <button type="submit" class="btn btn-success errorContent-font-size">login</button>
-          </form>
-        </div>
+              </span>
+              <re-captcha name="captcha" #captchaControl="ngModel" [(ngModel)]="formModel.captcha" required></re-captcha>
+                <div class="col-md-6 forgot-pass-content">
+                  <a routerLink="/forgot" class="forgot-pass errorContent-font-size">Forgot Password?</a>
+                </div>
+                <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success errorContent-font-size">login</button>
+            </form>
+          </div>
           <div *ngIf="is2FaOn">
             <form #otpForm="ngForm" (submit)=verify2Fa(otpForm)>
               <div class="input-group">
