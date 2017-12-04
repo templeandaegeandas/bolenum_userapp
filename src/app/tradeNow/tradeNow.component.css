@@ -881,6 +881,8 @@ table thead tr th {
 .padding-level{
 
     margin-bottom: 6px;
+        text-align: center;
+    margin-top: 19px;
 }
 
 .text-center{
@@ -894,7 +896,7 @@ table thead tr th {
     color: white;
     border-radius: 5px;
     outline: none;
-    width: 100px;
+    /* width: 100px; */
 }
 .sell-button-color{
         background-color: #DB2828;;
@@ -903,7 +905,7 @@ table thead tr th {
     color: white;
     border-radius: 5px;
     outline: none;
-    width: 100px;
+    /* width: 100px; */
 }
 .buyAnchor{
         border: none;
@@ -928,13 +930,13 @@ table thead tr th {
 
 }
 
-.margin-buttons{
+/* .margin-buttons{
     margin-left: 186px;
-}
+} */
 
-.margin-buy-Button{
+/* .margin-buy-Button{
         margin-left: 200px;
-}
+} */
 
 .buy-button-colors{
         background-color: #3cb371;
