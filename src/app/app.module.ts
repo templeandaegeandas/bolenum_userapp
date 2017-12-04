@@ -125,7 +125,7 @@ export function highchartsFactory() {
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
-        siteKey: '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU',
+        siteKey: '6LfRizsUAAAAAMmHVQLEhlIrCgfelUbAqNlibfPg',
       },
     },
   ],
