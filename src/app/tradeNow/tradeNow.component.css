@@ -716,7 +716,7 @@ h2 {
 .trade-History tbody, .trade-History thead tr { display: block; }
 
 .trade-History tbody {
-    height: 352px;
+    height: 395px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -734,7 +734,7 @@ h2 {
 .own-Table tbody, .own-Table thead tr { display: block; }
 
 .own-Table tbody {
-    height: 372px;
+    height: 395px;
     overflow-y: auto;
     overflow-x: hidden;
 }
