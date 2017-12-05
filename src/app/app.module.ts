@@ -106,7 +106,6 @@ export function highchartsFactory() {
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
-    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     ToastrModule.forRoot( {preventDuplicates: true}),
     LoadingModule,
     QRCodeModule,

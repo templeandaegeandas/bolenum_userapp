@@ -37,6 +37,7 @@ import { CancelTradeComponent } from './cancel-trade/cancel-trade.component'
 
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  // { path: '**', redirectTo: 'deposit' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [PrivateRouteAuthGuard] },
   { path: 'tradeNow', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
   { path: 'tradenow', component: BeforLoginTradeNowComponent, canActivate: [PublicRouteAuthGuard] },
@@ -60,7 +61,7 @@ export const APP_ROUTES: Routes = [
   { path: 'withdraw', component: WithdrawComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'faq', component: FaqComponent },
-   { path: 'dispute', component: DisputeComponent },
+  { path: 'dispute/:orderId', component: DisputeComponent },
   { path: 'team', component: TeamComponent },
   { path: 'how-to-use', component: HowToUseComponent },
   { path: 'terms-service', component: TermsServiceComponent },
