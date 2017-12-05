@@ -32,7 +32,7 @@
                   <input id="Enter your email" type="Email" class="form-control" name="email" [(ngModel)]="email" #emailId="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Enter your email" required>
                   <img src="assets/images/Email.png" class="img-responsive"/>
                </span>
-          
+
             <div *ngIf="emailId.invalid && forgetpassForm.submitted">
               <div *ngIf="emailId.errors.required">
                 <p class="text-danger">Please enter email</p>
