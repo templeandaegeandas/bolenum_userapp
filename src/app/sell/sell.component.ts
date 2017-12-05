@@ -25,6 +25,7 @@ export class SellComponent implements OnInit {
   totalPrice: any;
   orderStatus: any;
   path: any;
+  subscription: any;
   constructor(
     private sellService: SellService,
     private router: Router,
@@ -70,7 +71,7 @@ export class SellComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED') {
-      var subscription = Observable.interval(1000).subscribe(() => {
+      this.subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
           path = url[0].path;
@@ -91,7 +92,7 @@ export class SellComponent implements OnInit {
         }
         // If the count down is over, write some text
         if (distance < 0) {
-          subscription.unsubscribe();
+          this.subscription.unsubscribe();
           if (path == 'sell') {
             document.getElementById("demo").innerHTML = "EXPIRED";
           }
@@ -101,14 +102,14 @@ export class SellComponent implements OnInit {
       // for timer
     }
     else if (this.orderStatus == 'COMPLETED') {
-      if (subscription != null) {
-        subscription.unsubscribe();
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
       }
       document.getElementById("demo").innerHTML = "Order Completed";
     }
     else {
-      if (subscription != null) {
-        subscription.unsubscribe();
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
       }
       document.getElementById("demo").innerHTML = "Order Cancelled";
     }
@@ -116,6 +117,9 @@ export class SellComponent implements OnInit {
 
   confirmPay() {
     this.sellService.confirmPay(this.orderId).subscribe(success => {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
       this.getOrderDetails();
       console.log(success);
     })
@@ -123,6 +127,9 @@ export class SellComponent implements OnInit {
 
   cancelPay() {
     this.sellService.cancelPay(this.orderId).subscribe(success => {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
       this.getOrderDetails();
       console.log(success);
     })
