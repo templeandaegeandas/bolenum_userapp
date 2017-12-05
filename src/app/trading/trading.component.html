@@ -77,7 +77,7 @@
             <button type="submit" name="cancelTrade" class="btn cancelTrade" data-toggle="modal" data-target="#myModal">Cancel Trade</button>
           </div>
           <div class="col-sm-6">
-            <button type="submit" name="cancelTrade" class="btn disputeTrade" data-toggle="modal" data-target="#myModal">Dispute</button>
+            <button type="submit" name="cancelTrade" class="btn disputeTrade" data-toggle="modal" [routerLink]="['/dispute']">Dispute</button>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@
               <p></p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" >Yes</button>
 
               <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
