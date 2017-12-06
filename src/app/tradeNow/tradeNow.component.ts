@@ -16,6 +16,8 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public hasSellData:boolean = false;
+  public hasData:boolean = false;
   public hasAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
   public hasBlurForMyTrading: boolean = false;
@@ -534,6 +536,29 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
+    if(orderType == 'BUY' && (this.amount == '' || this.price == '')){
+      this.hasData = !this.hasData;
+        setTimeout(() => {
+      this.hasData = ! this.hasData;
+    },3000);
+      return ;
+      
+    }
+
+     else if(orderType == 'SELL' && (this.amount == '' || this.price == '')){
+      this.hasSellData = !this.hasSellData;
+        setTimeout(() => {
+      this.hasSellData = ! this.hasSellData;
+    },3000);
+      return ;
+      
+    }
+
+
+
+
+
+    
     if (this.price < this.minPrice) {
       this.toastrService.error("You can't place order less than 10 NGN", "Error!");
       return;

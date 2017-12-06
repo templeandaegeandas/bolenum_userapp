@@ -47,6 +47,9 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
+                      <div *ngIf="hasData">
+                        <p class="error-buy-sell">Please Enter Amount Or Price </p>
+                      </div>
                       <div class="col-sm-10 padding-level">
                         <div class="col-md-6">
                           <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
@@ -83,6 +86,9 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
+                      <div *ngIf="hasSellData">
+                        <p class="error-buy-sell" >Please Enter Amount Or Price </p>
+                      </div>
                       <div class="col-sm-10 padding-level">
                         <div class="col-md-6">
                           <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
