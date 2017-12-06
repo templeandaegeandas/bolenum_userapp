@@ -121,7 +121,7 @@
 
             <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
               <div class="col-md-12 total-currency-message">
-                <p>You have {{firstCurrencyBal | number:'1.1-8'}} and {{secondCurrencyBal | number:'1.1-8'}} in your wallet. </p>
+                <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
               </div>
               <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                 <p class="tradeErrorTextColor" *ngIf="hasAmount">Please Enter Amount To Start Trading</p>
