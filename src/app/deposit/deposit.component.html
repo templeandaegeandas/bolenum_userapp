@@ -77,7 +77,7 @@
             <td>{{tx.createdOn | date:'shortTime'}}</td>
           </tr>
           <tr *ngIf="txLength >=10">
-            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()">More</p></td>
+            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p></td>
           </tr>
         </tbody>
       </table>

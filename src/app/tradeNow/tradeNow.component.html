@@ -351,7 +351,7 @@
               <td>{{orders.createdOn | date}}</td>
             </tr>
             <tr *ngIf="myOrdersInBookLength >=10" >
-                <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()">more</p></td>
+                <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>
             </tr>
             <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
               <p>You have no open orders . . . !</p>
@@ -412,7 +412,7 @@
 
             </tr>
             <tr *ngIf="allTradedListLength >=10 " >
-                <td colspan="5" ><p (click)="getMoreOrders()" class="more_button">more</p></td>
+                <td colspan="5" ><p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p></td>
             </tr>
 
             <!-- <div *ngIf="allTradedListLength >=10 ">
@@ -453,7 +453,7 @@
               <!-- <td>{{tx.orderStandard}}</td> -->
             </tr>
              <tr *ngIf=" myTradedListLength >=10 " >
-                <td colspan="6" ><p  class="more_button" (click)="getMoreMyTradeList()">more</p></td>
+                <td colspan="6" ><p  class="more_button" (click)="getMoreMyTradeList()" title="click to show more list">more</p></td>
             </tr>
             <div *ngIf=" myTradedListLength ==0 ">
               <p class="hasTableData"> No trades . . . !</p>
