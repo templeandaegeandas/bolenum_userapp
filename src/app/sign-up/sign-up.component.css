@@ -90,7 +90,7 @@ img.img-header {
     background-color:  #DB2828;
     border-color:  #DB2828;
     /* font-family: Lato; */
-    margin-left: 15px;
+    /* margin-left: 15px; */
     margin-top: 11px;
     outline:none;
 }
@@ -262,4 +262,9 @@ img.img-header{
   .btn-success {
    width:79%;
    }
+}
+
+.captch-padding{
+
+    padding-left: 29px;
 }

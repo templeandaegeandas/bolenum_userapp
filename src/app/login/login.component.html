@@ -29,11 +29,18 @@
               <span *ngIf="password.invalid && loginForm.submitted">
             <span class="text-danger errorContent-font-size" *ngIf="password.errors.required">Please enter password</span>
               </span>
+          <div class="row">
+            <div class="col-sm-12 recaptch-margin">
               <re-captcha name="captcha" #captchaControl="ngModel" [(ngModel)]="formModel.captcha" required></re-captcha>
-                <div class="col-md-6 forgot-pass-content">
+            </div>
+            </div>
+          <div class="row">
+              <div class="col-md-12 forgot-pass-content">
+                 <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success errorContent-font-size">login</button>
                   <a routerLink="/forgot" class="forgot-pass errorContent-font-size">Forgot Password?</a>
                 </div>
-                <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success errorContent-font-size">login</button>
+          </div>
+               
             </form>
           </div>
           <div *ngIf="is2FaOn">

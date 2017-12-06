@@ -261,3 +261,7 @@ a.resend-otp {
     margin-right: 0px;
 }
 }
+
+.recaptch-margin{
+    margin-left: 21px;
+}
