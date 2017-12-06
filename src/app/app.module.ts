@@ -54,6 +54,7 @@ import { DisputeComponent } from './dispute/dispute.component';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
+import { FeesDetailsComponent } from './fees-details/fees-details.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -95,6 +96,7 @@ export function highchartsFactory() {
     CreateAdvertiesmentComponent,
     DisputeComponent,
     CancelTradeComponent,
+    FeesDetailsComponent,
 
   ],
   imports: [

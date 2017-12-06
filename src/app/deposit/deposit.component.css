@@ -147,14 +147,14 @@ input[type="text"] {
 }
 
 .deposite-Table tbody {
-    height: 250px;
+    height: 351px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .deposite-Table tbody td,
 .deposite-Table thead th {
-    width: 185px;
+    width: 189px;
     padding: 6px;
 }
 
@@ -240,4 +240,8 @@ input[type="text"] {
     cursor: pointer;
 }
 
+.moreData:hover{
+    text-decoration: underline;
+    color: #DB2828;
+}
 
