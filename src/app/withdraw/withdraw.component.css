@@ -292,3 +292,8 @@ select option{
 .moreText{
     text-align: right;
 }
+
+.moreText:hover{
+    text-decoration: underline;
+    color: #DB2828;
+}

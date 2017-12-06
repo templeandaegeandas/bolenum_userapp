@@ -228,7 +228,7 @@ h3.panel-title {
 .history-Table tbody, .history-Table thead tr { display: block; }
 
 .history-Table tbody {
-    height: 271px;
+    height: 307px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -281,4 +281,9 @@ h3.panel-title {
     text-align: right;
     color: #DB2828;
     cursor: pointer;
+}
+
+.moreData:hover{
+    text-decoration: underline;
+    color: #DB2828;
 }
