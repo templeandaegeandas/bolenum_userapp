@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('BUY')">
+                          <input type="number" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('BUY')">
                         </div>
                       </div>
                     </div>
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('BUY')">
+                          <input type="number" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('BUY')">
                         </div>
                       </div>
                     </div>
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('SELL')">
+                          <input type="number" class="form-control" id="amount" [(ngModel)]="amount" (ngModelChange)="changedList('SELL')">
                         </div>
                       </div>
                     </div>
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('SELL')">
+                          <input type="number" class="form-control" id="amount" [(ngModel)]="price" (ngModelChange)="changedList('SELL')">
                         </div>
                       </div>
                     </div>
@@ -121,7 +121,7 @@
 
             <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
               <div class="col-md-12 total-currency-message">
-                <p>You have {{firstCurrencyBal}} and {{secondCurrencyBal}} in your wallet. </p>
+                <p>You have {{firstCurrencyBal | number:'1.1-8'}} and {{secondCurrencyBal | number:'1.1-8'}} in your wallet. </p>
               </div>
               <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                 <p class="tradeErrorTextColor" *ngIf="hasAmount">Please Enter Amount To Start Trading</p>
@@ -135,7 +135,7 @@
                     <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" [(ngModel)]="order.volume" id="email" >
+                    <input type="number" class="form-control" [(ngModel)]="order.volume" id="email" >
                   </div>
                 </div>
                 <div class="col-md-12 trade-field">
@@ -143,7 +143,7 @@
                     <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{secondCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
+                    <input type="number" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="order.price" id="amount"
                       name="amount">
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                     <label for="email">Total Price (in {{secondCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [(ngModel)]="order.volume*order.price"
+                    <input type="text" class="form-control" title="Equivalent total {{secondCurrency}} price for this order" [ngModel]="order.volume*order.price | number:'1.1-8'" (ngModelChange)="order.volume*order.price=$event"
                       id="amount" name="amount" [disabled]=true>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
                     <label for="amount">Amount (in {{firstCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
+                    <input type="number" class="form-control" id="email" [(ngModel)]="order.volume" (ngModelChange)="oneBtc()">
                   </div>
                 </div>
                 <div class="col-md-12 trade-field">
@@ -186,7 +186,7 @@
                     <label for="price">Price (in {{secondCurrency}})</label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
+                    <input type="number" class="form-control" id="amount" title="Equivalent {{secondCurrency}} price for this order " name="amount"
                       [(ngModel)]="order.price" [disabled]=true>
                   </div>
                 </div>
@@ -478,7 +478,7 @@
           <!-- <p>Some text in the modal.</p> -->
           <div class="row ">
             <div class="col-sm-12">
-              <span >You want to {{order.orderType}} {{order.volume}} {{firstCurrency}} at {{order.price * order.volume}} {{secondCurrency}} price.</span>
+              <span >You want to {{order.orderType}} <span *ngIf="order.volume > 0">{{order.volume | number:'1.1-8'}}</span> {{firstCurrency}} at <span *ngIf="order.volume > 0">{{order.price * order.volume | number:'1.1-8'}}</span> {{secondCurrency}} price.</span>
             </div>
           </div>
         </div>

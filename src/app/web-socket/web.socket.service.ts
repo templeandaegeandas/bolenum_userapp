@@ -4,16 +4,19 @@ import { Observable } from 'rxjs';
 import * as Rx from 'rxjs/Rx';
 import { StompService } from 'ng2-stomp-service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
+import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class WebsocketService {
 
   private subscription: any;
   private openSubscription: any;
-  private deposit:any;
+  private deposit: any;
   private withdraw: any;
 
-  constructor(private stomp: StompService, private appEventEmiterService: AppEventEmiterService) {
+  constructor(private stomp: StompService,
+    private appEventEmiterService: AppEventEmiterService,
+    private router: Router) {
     stomp.configure({
       host: environment.socketUrl,
       debug: true,
@@ -29,13 +32,13 @@ export class WebsocketService {
       //subscribe
       this.subscription = this.stomp.subscribe('/websocket/broker/listner/user/' + userId, this.response);
       this.openSubscription = this.stomp.subscribe('/websocket/broker/listner/order', this.response);
-      this.deposit=this.stomp.subscribe('/websocket/broker/listner/deposit', this.response);
-      this.withdraw=this.stomp.subscribe('/websocket/broker/listner/withdraw', this.response);
+      this.deposit = this.stomp.subscribe('/websocket/broker/listner/deposit', this.response);
+      this.withdraw = this.stomp.subscribe('/websocket/broker/listner/withdraw', this.response);
     })
   }
 
   sendMessage(receiver, messageType) {
-    this.stomp.send('/websocket/app/sender/user',{
+    this.stomp.send('/websocket/app/sender/user', {
       receiver: receiver,
       messageType: messageType
     });
@@ -53,11 +56,17 @@ export class WebsocketService {
 
   disconnect() {
     this.stomp.disconnect().then(() => {
-      console.log( 'Connection closed' )
+      console.log('Connection closed')
     })
   }
 
   response = (data) => {
-    this.appEventEmiterService.changeMessage(data);
+    let newData = data.split('#')
+    if (newData[0] == 'ORDER_CONFIRMATION') {
+      this.router.navigate(['/sell/'+newData[0]]);
+    }
+    else {
+      this.appEventEmiterService.changeMessage(data);
+    }
   }
 }

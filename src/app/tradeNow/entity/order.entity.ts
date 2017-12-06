@@ -1,7 +1,7 @@
 export class Order {
-  volume: any;
+  volume: any = 0;
   totalVolume: any;
-  price: any;
+  price: any = 0;
   orderStandard: any;
   orderType: any;
   pair: any;
