@@ -316,12 +316,15 @@ export class ProfileComponent implements OnInit {
 
     }
 
-
-
     this.profileService.saveUserDetails(this.userProfile).subscribe(success => {
       this.userFirstName = success.data.firstName;
       this.userLastName = success.data.lastName;
+      localStorage.setItem("lName", this.userLastName);
+      if (this.userLastName == null) {
+        localStorage.removeItem("lName")
+      }
       this.ngOnInit();
+      this.appEventEmiterService.changeMessage("lastname");
       this.isDetailsEdit = false;
     }, error => {
       this.toastrService.error(error.message, "Error!")

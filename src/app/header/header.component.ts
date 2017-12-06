@@ -27,9 +27,21 @@ export class HeaderComponent implements OnInit {
     this.websocketService.connectForLoggedInUser(localStorage.getItem("userId"))
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "upload") {
-        setTimeout(()=> {
+        setTimeout(() => {
           this.profilePic = environment.profilePicUrl + localStorage.getItem("profilePic") + "?decache=" + Math.random()
         }, 1000);
+      }
+      else if (message == "lastname") {
+        setTimeout(() => {
+        this.lastName = localStorage.getItem("lName");
+        console.log(this.lastName)
+        if (this.lastName != 'undefined' && this.lastName != null) {
+          this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
+        }
+        else {
+          this.fullName = localStorage.getItem("fName");
+        }
+      }, 1000);
       }
     });
     if (localStorage.getItem("profilePic") != null) {
@@ -38,14 +50,11 @@ export class HeaderComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.lastName = localStorage.getItem("lName");
     if (this.lastName) {
-
       this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
-
     }
     else {
       this.fullName = localStorage.getItem("fName");
     }
-
   }
 
   signOut() {
