@@ -39,7 +39,7 @@ font-size: 18px !important;
 
 
 
-} 
+}
 
 .butoon-font{
 
@@ -627,10 +627,28 @@ input#usr1ed {
     outline: none;
 }
 
+.mobile-edit{
+  cursor: pointer;
+}
+
+.intl-tel-input.allow-dropdown .selected-flag, .intl-tel-input.separate-dial-code .selected-flag {
+    width: 46px;
+    outline: 0;
+}
+
 input#usrphone {
-    display: inline-block;
+    /*display: inline-block;
     padding: 2px 8px;
     width: 153px;
+    border-radius: -13px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid #e2d8d8;
+    outline: none;*/
+    position: relative;
+    bottom: 0px;
+    display: inline-block;
+    padding: 9px 50px;
     border-radius: -13px;
     border-radius: 8px;
     box-shadow: none;
@@ -1006,18 +1024,18 @@ label.switch {
     left: 0;
     right: 0;
     bottom: 0;
-     background-color: #DB2828; 
+     background-color: #DB2828;
     ;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 .sliderOff{
-    background-color: #32CD32; 
+    background-color: #32CD32;
 }
 
 .sliderOn{
-    background-color: #DB2828; 
+    background-color: #DB2828;
 }
 
 .carousel-inner {

@@ -3,12 +3,13 @@ import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'toastr-ng2';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { DisputeService } from './dispute.service';
+import { TradingService } from '../trading/trading.service';
 
 @Component({
   selector: 'app-dispute',
   templateUrl: './dispute.component.html',
   styleUrls: ['./dispute.component.css'],
-  providers: [DisputeService]
+  providers: [DisputeService, TradingService]
 })
 
 export class DisputeComponent implements OnInit {
@@ -24,12 +25,27 @@ export class DisputeComponent implements OnInit {
 
   loading = false;
   addressPdf: Boolean = false;
-
+  bankName: string;
+  branch: string;
+  ifscCode: string;
+  accountNumber: string;
+  walletAddress: string;
+  sellerName: string;
+  orderVolume: any;
+  currencyAbr: string;
+  createdDate: any;
+  totalPrice: any;
+  orderStatus: any;
+  path: any;
+  subscription: any;
+  matchedOn: any;
+  isConfirmed: any;
 
   constructor(private disputeService: DisputeService,
     private toastrService: ToastrService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private tradingService: TradingService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -38,6 +54,29 @@ export class DisputeComponent implements OnInit {
     if (this.orderId == null) {
       this.router.navigate(['tradeNow']);
     }
+    this.getOrderDetails();
+  }
+
+  getOrderDetails() {
+    this.tradingService.orderDetails(this.orderId).subscribe(success => {
+      if (success.data == null) {
+        this.router.navigate(['tradeNow']);
+        return;
+      }
+      this.bankName = success.data.accountDetails.bankName;
+      this.accountNumber = success.data.accountDetails.accountNumber;
+      this.branch = success.data.accountDetails.branch;
+      this.ifscCode = success.data.accountDetails.ifscCode;
+      this.walletAddress = success.data.walletAddress;
+      this.totalPrice = success.data.totalPrice;
+      this.sellerName = success.data.sellerName;
+      this.currencyAbr = success.data.currencyAbr;
+      this.orderVolume = success.data.orderVolume;
+      this.createdDate = success.data.createdDate;
+      this.orderStatus = success.data.orderStatus;
+      this.matchedOn = success.data.matchedOn;
+      this.isConfirmed = success.data.isConfirmed;
+    }, error => this.router.navigate(['tradeNow']))
   }
 
   raiseDispute(form) {
@@ -67,6 +106,16 @@ export class DisputeComponent implements OnInit {
         this.loading = false;
       })
     }
+  }
+
+  cancelPay() {
+    this.tradingService.cancelPay(this.orderId).subscribe(success => {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
+      this.getOrderDetails();
+      this.toastrService.success(success.message, 'Success!')
+    })
   }
 
 }

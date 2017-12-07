@@ -12,6 +12,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service'
 import { Router } from '@angular/router';
 import { WebsocketService } from '../web-socket/web.socket.service';
 
+declare var $:any;
 
 @Component({
   selector: 'app-profile',
@@ -689,8 +690,6 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-
-
   changeState(event) {
     this.stateError = false;
   }
@@ -699,5 +698,9 @@ export class ProfileComponent implements OnInit {
     dateFormat: 'yyyy/mm/dd',
     width: '200px',
     editableDateField: false,
+  }
+
+  onPhoneNumberChange(){
+    this.countryCode = $("#usrphone").intlTelInput("getSelectedCountryData").dialCode;
   }
 }

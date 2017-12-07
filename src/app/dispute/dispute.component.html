@@ -3,10 +3,10 @@
     <div class="col-sm-8 col-sm-offset-2">
       <div class="dispute-section">
         <strong class="text-danger">Trade is under dispute</strong>
-        <p>You are buying <a href="">0.00990099 </a>BTC from southhitz. Bitcoin of the seller is already locked and secured for this trade. After the trade is completed, your Bitcoin will be sent to <a href="">3QDbjRuRMDD3KsektKyPczhjhDxZCqsNhG</a></p>
+        <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If send payment to the seller and not getting {{currencyAbr}} thenwe will solve this issue and your {{currencyAbr}} will be sent to {{walletAddress}}</p>
       </div>
-      <div class=" button-center">
-        <button type="submit" class="btn trade-button">Cancel Trade</button>
+      <div class=" button-center" *ngIf="orderStatus != 'CANCELLED'">
+        <button type="submit" class="btn trade-button" (click)="cancelPay()">Cancel Trade</button>
       </div>
     </div>
   </div>
@@ -18,11 +18,11 @@
             <span class="sr-only">Close</span>
             </button>
       </div>
-      <div class="ng-scope"><em translate-once="trade_disputed_buyer_warning">The trade is under dispute. If you haven't sent payment to seller, please cancel the trade so we can send back Bitcoin to seller.</em></div>
+      <div class="ng-scope"><em translate-once="trade_disputed_buyer_warning">The trade is under dispute. If you haven't sent payment to seller, please cancel the trade so we can send back {{currencyAbr}} to seller.</em></div>
     </div>
   </div>
 </div>
-<div>
+<div *ngIf="orderStatus != 'CANCELLED'">
   <form #disputeForm=ngForm (submit)="raiseDispute(disputeForm)">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1 id">
@@ -89,23 +89,23 @@
           </tr>
           <tr>
             <th>Amount to be paid</th>
-            <td></td>
+            <td>{{totalPrice}} NGN</td>
           </tr>
           <tr>
             <th>Bank name</th>
-            <td></td>
+            <td>{{bankName}}</td>
           </tr>
           <tr>
             <th>BVN code</th>
-            <td></td>
+            <td>{{ifscCode}}</td>
           </tr>
           <tr>
             <th>Bank account number</th>
-            <td></td>
+            <td>{{accountNumber}}</td>
           </tr>
           <tr>
             <th>Payment reference id</th>
-            <td></td>
+            <td>#{{orderId}}</td>
           </tr>
         </tbody>
       </table>

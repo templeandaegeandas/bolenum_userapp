@@ -61,9 +61,10 @@ export class WebsocketService {
   }
 
   response = (data) => {
-    let newData = data.split('#')
-    if (newData[0] == 'ORDER_CONFIRMATION') {
-      this.router.navigate(['/sell/'+newData[0]]);
+    console.log(data.ORDER_CONFIRMATION)
+    if (data.ORDER_CONFIRMATION == 'ORDER_CONFIRMATION') {
+      console.log("in if Condidtion")
+      this.router.navigate(['/sell/' + data.matchedOrderId]);
     }
     else {
       this.appEventEmiterService.changeMessage(data);

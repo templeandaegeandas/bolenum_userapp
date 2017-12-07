@@ -21,10 +21,10 @@
 
         <div class="row">
           <div class="col-sm-6 text-center">
-            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Paid</button>
+            <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Received</button>
           </div>
           <div class="col-sm-6 text-center">
-            <button *ngIf="orderStatus=='LOCKED'" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="cancelPay()">Cancel</button>
+            <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="cancelPay()">Cancel</button>
           </div>
         </div>
 
