@@ -106,13 +106,13 @@
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                   </tr>
-                  <tr>
-                    <td *ngIf="transactionLength >=10" colspan="6">
+                  <tr *ngIf="transactionLength >=10" >
+                    <td  colspan="7">
                       <p (click)="getMoreTransactionList()" class="moreData moreText" title="click to show more list">More</p>
                     </td>
                   </tr>
-                  <tr>
-                    <td *ngIf="transactionLength == 0 " colspan="6">
+                  <tr *ngIf="transactionLength == 0 " >
+                    <td  colspan="7">
                       <p>You don't have done any transaction yet!</p>
                     </td>
                   </tr>
