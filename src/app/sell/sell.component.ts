@@ -26,6 +26,9 @@ export class SellComponent implements OnInit {
   orderStatus: any;
   path: any;
   subscription: any;
+  matchedOn: any;
+  isConfirmed: any;
+  isMatchedConfirm = false;
   constructor(
     private sellService: SellService,
     private router: Router,
@@ -60,6 +63,9 @@ export class SellComponent implements OnInit {
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
+      this.matchedOn = success.data.matchedOn;
+      this.isConfirmed = success.data.isConfirmed;
+      this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.startTradingTimer();
     }, error => this.router.navigate(['tradeNow']))
   }
@@ -67,7 +73,7 @@ export class SellComponent implements OnInit {
   startTradingTimer() {
     // for timer
     // Set the date we're counting down to
-    var date = new Date(this.createdDate);
+    var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED') {
@@ -88,13 +94,23 @@ export class SellComponent implements OnInit {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         // Output the result in an element with id="demo"
         if (path == 'sell') {
-          document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+          try {
+            document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+          }
+          catch(e) {
+            console.log("exception handled")
+          }
         }
         // If the count down is over, write some text
         if (distance < 0) {
           this.subscription.unsubscribe();
           if (path == 'sell') {
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            try {
+              document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+            catch(e) {
+              console.log("exception handled")
+            }
           }
           this.cancelPay();
         }
@@ -105,13 +121,34 @@ export class SellComponent implements OnInit {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      document.getElementById("demo").innerHTML = "Order Completed";
+        try {
+          document.getElementById("demo").innerHTML = "Order Completed";
+        }
+        catch(e) {
+          console.log("exception handled")
+        }
+    }
+    else if(this.orderStatus == 'SUBMITTED'){
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
+        try {
+          document.getElementById("demo").innerHTML = "Order Submitted";
+        }
+        catch(e) {
+          console.log("exception handled")
+        }
     }
     else {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      document.getElementById("demo").innerHTML = "Order Cancelled";
+        try {
+          document.getElementById("demo").innerHTML = "Order Cancelled";
+        }
+        catch(e) {
+          console.log("exception handled")
+        }
     }
   }
 
