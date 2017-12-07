@@ -32,11 +32,16 @@ export class SellComponent implements OnInit {
   constructor(
     private sellService: SellService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-
-    // $(window).on('beforeunload', function() {
-    //   this.cancelPay();
-    // });
+    private activatedRoute: ActivatedRoute,
+    private appEventEmiterService: AppEventEmiterService) {
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      if (message == "ORDER_CANCELLED") {
+        if (this.subscription != null) {
+          this.subscription.unsubscribe();
+        }
+      }
+      this.ngOnInit();
+    });
   }
 
   ngOnInit() {
@@ -97,7 +102,7 @@ export class SellComponent implements OnInit {
           try {
             document.getElementById("demo").innerHTML = minutes + " : " + seconds;
           }
-          catch(e) {
+          catch (e) {
             console.log("exception handled")
           }
         }
@@ -108,7 +113,7 @@ export class SellComponent implements OnInit {
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
             }
-            catch(e) {
+            catch (e) {
               console.log("exception handled")
             }
           }
@@ -121,34 +126,34 @@ export class SellComponent implements OnInit {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-        try {
-          document.getElementById("demo").innerHTML = "Order Completed";
-        }
-        catch(e) {
-          console.log("exception handled")
-        }
+      try {
+        document.getElementById("demo").innerHTML = "Order Completed";
+      }
+      catch (e) {
+        console.log("exception handled")
+      }
     }
-    else if(this.orderStatus == 'SUBMITTED'){
+    else if (this.orderStatus == 'SUBMITTED') {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-        try {
-          document.getElementById("demo").innerHTML = "Order Submitted";
-        }
-        catch(e) {
-          console.log("exception handled")
-        }
+      try {
+        document.getElementById("demo").innerHTML = "Order Submitted";
+      }
+      catch (e) {
+        console.log("exception handled")
+      }
     }
     else {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-        try {
-          document.getElementById("demo").innerHTML = "Order Cancelled";
-        }
-        catch(e) {
-          console.log("exception handled")
-        }
+      try {
+        document.getElementById("demo").innerHTML = "Order Cancelled";
+      }
+      catch (e) {
+        console.log("exception handled")
+      }
     }
   }
 

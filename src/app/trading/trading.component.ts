@@ -182,7 +182,7 @@ export class TradingComponent implements OnInit {
 
   confirmPay() {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
-      console.log(this.subscription)
+      console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }

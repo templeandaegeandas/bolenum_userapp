@@ -61,8 +61,8 @@ export class WebsocketService {
   }
 
   response = (data) => {
-    console.log(data.ORDER_CONFIRMATION)
-    if (data.ORDER_CONFIRMATION == 'ORDER_CONFIRMATION') {
+    console.log(data.PAID_NOTIFICATION)
+    if (data.PAID_NOTIFICATION == 'PAID_NOTIFICATION') {
       console.log("in if Condidtion")
       this.router.navigate(['/sell/' + data.matchedOrderId]);
     }
