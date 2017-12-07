@@ -79,6 +79,11 @@
           <tr *ngIf="txLength >=10">
             <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p></td>
           </tr>
+          <tr *ngIf="txLength == 0">
+            <td colspan="6">
+               <p>You don't have done any transaction yet!</p>
+            </td>
+          </tr>
         </tbody>
       </table>
 </div>
