@@ -231,20 +231,16 @@
                           <img src="assets/images/mobile.png" class="img-profile">
                         </div>
                         <div class="email-text">
-                          <p class="icon-name profile-font sub-heading-font-size">Mobile No &nbsp;
+                          <p class="icon-name profile-font sub-heading-font-size mobile-edit" title="click to edit mobile no">Mobile No &nbsp;
                             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)=editMobile()></i>
                             <p *ngIf="!isMobileEdit" class="text-icon profile-font content-font-size">{{mobileNumber}}</p>
                             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
                               <div class="phone_number-margin">
-
                                 <div class="row">
                                   <div class="col-sm-12">
                                     <div class="row">
-                                      <div class="col-sm-3">
-                                        <input type="text" class="from-newtext" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usrcode" required onlynumber disabled>
-                                      </div>
                                       <div class="col-sm-9">
-                                        <input type="text" class="from-newtext" name="mobileNumber" maxlength="10" [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" required onlynumber>
+                                        <input type="tel"  class="from-newtext" name="mobileNumber" int-tel-input  [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" (ngModelChange)="onPhoneNumberChange()" required onlynumber>
                                         <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
                                          <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
                                          </span>
