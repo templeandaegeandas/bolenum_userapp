@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <section *ngIf="hasTimer">
+    <section>
       <div class="col-sm-10 col-sm-offset-1 trading-margin">
         <p> You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. {{currencyAbr}} of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your {{currencyAbr}} will be sent to {{walletAddress}}
           </p>
@@ -18,7 +18,7 @@
       <div class="col-sm-12 ">
         <div class="col-sm-12">
           <div class="col-sm-6 button-center">
-            <button *ngIf="orderStatus=='LOCKED' && !isConfirmed" type="submit" class="btn trade-button button-color" name="trdeNow" (click)="paymentConfirmation();">Paid</button>
+            <button *ngIf="orderStatus=='LOCKED' && !isConfirmed" type="submit" class="btn trade-button button-color" name="trdeNow" (click)="confirmPay();">Paid</button>
           </div>
           <div class="col-sm-6 button-center">
             <button *ngIf="orderStatus=='LOCKED' && !isConfirmed" type="submit" class="btn trade-button" (click)="cancelPay()" name="trdeNow">Cancel</button>
@@ -63,10 +63,8 @@
       </div>
       <!-- payment details -->
     </section>
-    <!-- timer section -->
 
-    <!-- confirmaton page -->
-    <section *ngIf="hasPaymentConfirm">
+    <!-- <section *ngIf="hasPaymentConfirm">
       <div class="col-sm-10 col-sm-offset-1 marginConfirm">
         <h4 class="heading-Text">WAIT FOR PAYMENT CONFIRMATION</h4>
         <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. {{currencyAbr}} of the seller is already locked and secured for this trade. Please send payment to the seller then confirm below. After the trade is completed, your {{currencyAbr}} will be sent to {{walletAddress}}.
@@ -81,46 +79,9 @@
         </div>
       </div>
 
-      <!-- <div class="col-sm-10 col-sm-offset-1 marginConfirm">
-        <div class="panel">
-          <div class="panel-heading paymentDetails">Payment details</div>
-          <div class="panel-body panel-Body">
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th>Payment method</th>
-                  <td>Bank transfer</td>
-                </tr>
-                <tr>
-                  <th>Amount to be paid</th>
-                  <td>518,548.06 INR</td>
-                </tr>
-                <tr>
-                  <th>Bank name</th>
-                  <td>Punjab national bank</td>
-                </tr>
-                <tr>
-                  <th>Ifsc code</th>
-                  <td>PNBE514278284525</td>
-                </tr>
-                <tr>
-                  <th>Bank account number</th>
-                  <td>44842645054 karol bagh</td>
-                </tr>
-                <tr>
-                  <th>Payment reference id</th>
-                  <td>#54845154448454</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div> -->
-      <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
-          <!-- Modal content cancel trade and dispute-->
           <div class="modal-content">
             <div class="modal-header modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -138,8 +99,7 @@
 
         </div>
       </div>
-      <!-- Modal content cancel trade and dispute end-->
-    </section>
+    </section> -->
     <!-- confirmaton page -->
   </div>
 </div>

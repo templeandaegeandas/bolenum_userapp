@@ -12,9 +12,6 @@ declare var $: any;
 })
 export class TradingComponent implements OnInit {
 
-  hasTrading: boolean = false;
-  hasTimer: boolean = true;
-  hasPaymentConfirm: boolean = false;
   orderId: any;
   bankName: string;
   branch: string;
@@ -36,16 +33,7 @@ export class TradingComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    // $(window).on('beforeunload', function() {
-    //   this.cancelPay();
-    // });
   }
-
-  // @HostListener('window:popstate', ['$event'])
-  // onPopState(event) {
-  //   console.log('Back button pressed');
-  //   this.cancelPay();
-  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -84,8 +72,6 @@ export class TradingComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && !this.isConfirmed) {
-      this.hasTrading = false;
-      this.hasTimer = true;
       this.subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
@@ -173,23 +159,13 @@ export class TradingComponent implements OnInit {
     }
   }
 
-  paymentConfirmation() {
-    this.confirmPay();
-    this.hasPaymentConfirm = true;
-    this.hasTrading = false;
-    this.hasTimer = false;
-  }
-
   confirmPay() {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
       console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      this.getOrderDetails();
-      this.hasPaymentConfirm = true;
-      this.hasTrading = false;
-      this.hasTimer = false;
+      this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
     })
   }
@@ -202,9 +178,5 @@ export class TradingComponent implements OnInit {
       this.getOrderDetails();
       console.log(success);
     })
-  }
-
-  dispute() {
-    this.router.navigate(['/dispute/' + this.orderId])
   }
 }
