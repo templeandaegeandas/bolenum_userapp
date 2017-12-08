@@ -240,7 +240,7 @@
                                   <div class="col-sm-12">
                                     <div class="row">
                                       <div class="col-sm-9">
-                                        <input type="tel"  class="from-newtext" name="mobileNumber" int-tel-input  [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" (ngModelChange)="onPhoneNumberChange()" required onlynumber>
+                                        <input type="tel" class="from-newtext" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usrphone" (ngModelChange)="onPhoneNumberChange()" required onlynumber>
                                         <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
                                          <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
                                          </span>
@@ -579,7 +579,7 @@
                </select>
               <span class="text-danger profile-font" *ngIf="countryError">Please choose country</span><br>
               <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
-              <input type="text" name="mobileNumber" [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
+              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
               <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
              <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
              </span>

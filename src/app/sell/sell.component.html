@@ -2,13 +2,13 @@
   <div class="row">
     <section>
       <div class="col-sm-10 col-sm-offset-1 margin-top-head">
-        <p>Please click on paid when you got the amount.So we can do complete your trade with the buyer.</p>
+        <p>Please click on received when you got the amount.So we can do complete your trade with the buyer.</p>
       </div>
 
       <!-- for timer section -->
       <div class="col-sm-10 col-sm-offset-1 text-center margin-timer">
         <div class="timer-property">
-          <p *ngIf="orderStatus=='LOCKED'"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
+          <p *ngIf="orderStatus=='LOCKED' && isMatchedConfirm"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
           <p class="timer-font-pro" id="demo"></p>
 
@@ -23,9 +23,9 @@
           <div class="col-sm-6 text-center">
             <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Received</button>
           </div>
-          <div class="col-sm-6 text-center">
+          <!-- <div class="col-sm-6 text-center">
             <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="cancelPay()">Cancel</button>
-          </div>
+          </div> -->
         </div>
 
       </div>

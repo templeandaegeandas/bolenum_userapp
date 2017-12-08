@@ -226,12 +226,11 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
-      if (currencyId == 'Undefined' || currencyId == null) {
+      if (success.data.length == 'Undefined' || success.data.length == 0) {
         this.getCurrencyList();
       }
       this.getPair(currencyId);
     }, error => {
-
     })
   }
 
@@ -395,6 +394,9 @@ export class TradeNowComponent implements OnInit {
     let pairArray = pairName.split("/")
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
+    if(this.secondCurrency == 'NGN') {
+      this.secondCurrencyType = 'FIAT';
+    }
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     setTimeout(() => {
@@ -412,6 +414,7 @@ export class TradeNowComponent implements OnInit {
       this.firstCurrencyBal = 0.0;
     })
     this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
+      if(success.data != null)
       this.secondCurrencyBal = success.data.data.balance;
     }, error => {
       this.secondCurrencyBal = 0.0;

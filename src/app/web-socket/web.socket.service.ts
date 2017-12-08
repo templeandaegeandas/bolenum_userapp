@@ -32,8 +32,6 @@ export class WebsocketService {
       //subscribe
       this.subscription = this.stomp.subscribe('/websocket/broker/listner/user/' + userId, this.response);
       this.openSubscription = this.stomp.subscribe('/websocket/broker/listner/order', this.response);
-      this.deposit = this.stomp.subscribe('/websocket/broker/listner/deposit', this.response);
-      this.withdraw = this.stomp.subscribe('/websocket/broker/listner/withdraw', this.response);
     })
   }
 
@@ -61,10 +59,15 @@ export class WebsocketService {
   }
 
   response = (data) => {
-    console.log(data.PAID_NOTIFICATION)
+    console.log(data)
     if (data.PAID_NOTIFICATION == 'PAID_NOTIFICATION') {
       console.log("in if Condidtion")
+      this.appEventEmiterService.changeMessage(data.PAID_NOTIFICATION);
       this.router.navigate(['/sell/' + data.matchedOrderId]);
+    }
+    else if(data.MATCHED_NOTIFICATION == 'MATCHED_NOTIFICATION') {
+      console.log("in else if Condidtion")
+      this.router.navigate(['/trading/' + data.matchedOrderId]);
     }
     else {
       this.appEventEmiterService.changeMessage(data);

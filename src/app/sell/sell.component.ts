@@ -3,6 +3,7 @@ import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { SellService } from './sell.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import { Observable } from 'rxjs/Rx';
+import { ToastrService } from 'toastr-ng2';
 declare var $: any;
 
 @Component({
@@ -33,14 +34,21 @@ export class SellComponent implements OnInit {
     private sellService: SellService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
     private appEventEmiterService: AppEventEmiterService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
+      console.log(message)
       if (message == "ORDER_CANCELLED") {
+        console.log("subscription", this.subscription)
         if (this.subscription != null) {
           this.subscription.unsubscribe();
         }
+        toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
+        this.ngOnInit();
       }
-      this.ngOnInit();
+      else if(message == "PAID_NOTIFICATION") {
+        this.ngOnInit();
+      }
     });
   }
 
@@ -52,11 +60,13 @@ export class SellComponent implements OnInit {
   }
 
   getOrderDetails() {
+    console.log("in get orders details")
     this.sellService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
         this.router.navigate(['tradeNow']);
         return;
       }
+      console.log("in service calling")
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
@@ -78,10 +88,11 @@ export class SellComponent implements OnInit {
   startTradingTimer() {
     // for timer
     // Set the date we're counting down to
+    console.log("status", this.orderStatus)
     var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
-    if (this.orderStatus == 'LOCKED') {
+    if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
       this.subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
@@ -139,6 +150,17 @@ export class SellComponent implements OnInit {
       }
       try {
         document.getElementById("demo").innerHTML = "Order Submitted";
+      }
+      catch (e) {
+        console.log("exception handled")
+      }
+    }
+    else if (this.orderStatus == 'LOCKED') {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
+      try {
+        document.getElementById("demo").innerHTML = "Order Matched";
       }
       catch (e) {
         console.log("exception handled")

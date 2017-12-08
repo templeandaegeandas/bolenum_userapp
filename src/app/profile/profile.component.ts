@@ -86,6 +86,7 @@ export class ProfileComponent implements OnInit {
   addressIdKyc: any = "assets/images/id.png";
   nId: any;
   rId: any
+  code: any;
   constructor(private profileService: ProfileService,
     private toastrService: ToastrService,
     private router: Router,
@@ -121,7 +122,6 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.getLoggedInUserDetails();
-
   }
 
   getKycDetailsUser() {
@@ -254,6 +254,11 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = true;
     this.isOtpEdit = false;
     this.resendOtp = false;
+
+    setTimeout(() => {
+      console.log(this.code+this.mobileNumber)
+      $("#usrphone").intlTelInput("setNumber", "+"+this.code+this.mobileNumber);
+    }, 500)
   }
 
   saveMobile(form) {
@@ -530,6 +535,8 @@ export class ProfileComponent implements OnInit {
       } else {
         this.twoFa = false;
       }
+      this.countryCode = success.data.countryCode;
+      this.code = success.data.countryCode;
       this.mobileNumber = success.data.mobileNumber;
       this.isMobileVerified = success.data.isMobileVerified;
       this.userFirstName = success.data.firstName;
@@ -682,7 +689,6 @@ export class ProfileComponent implements OnInit {
   getStatesByCountryId(countryName) {
     this.countryError = false;
     let c = this.countries.find(x => x.name == countryName);
-    this.countryCode = c.phoneCode;
     this.profileService.getStatesByCountryId(c.countryId).subscribe(success => {
       this.states = success.data;
     }, error => {

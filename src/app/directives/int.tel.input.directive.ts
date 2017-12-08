@@ -8,6 +8,7 @@ declare var $: any;
 })
 export class IntTelInputDirective {
   constructor(private el: ElementRef) {
+    console.log(el)
     $(el.nativeElement).intlTelInput();
   }
 
