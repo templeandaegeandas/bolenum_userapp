@@ -12,9 +12,6 @@ declare var $: any;
 })
 export class TradingComponent implements OnInit {
 
-  hasTrading: boolean = false;
-  hasTimer: boolean = true;
-  hasPaymentConfirm: boolean = false;
   orderId: any;
   bankName: string;
   branch: string;
@@ -29,21 +26,14 @@ export class TradingComponent implements OnInit {
   orderStatus: any;
   path: any;
   subscription: any;
+  matchedOn: any;
+  isConfirmed: any;
   constructor(
     private tradingService: TradingService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    // $(window).on('beforeunload', function() {
-    //   this.cancelPay();
-    // });
   }
-
-  // @HostListener('window:popstate', ['$event'])
-  // onPopState(event) {
-  //   console.log('Back button pressed');
-  //   this.cancelPay();
-  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -69,19 +59,19 @@ export class TradingComponent implements OnInit {
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
+      this.matchedOn = success.data.matchedOn;
+      this.isConfirmed = success.data.isConfirmed;
       this.hasTradeNow();
     }, error => this.router.navigate(['tradeNow']))
   }
 
   hasTradeNow() {
-    this.hasTrading = false;
-    this.hasTimer = true;
     // for timer
     // Set the date we're counting down to
-    var date = new Date(this.createdDate);
+    var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
-    if (this.orderStatus == 'LOCKED') {
+    if (this.orderStatus == 'LOCKED' && !this.isConfirmed) {
       this.subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
@@ -99,13 +89,23 @@ export class TradingComponent implements OnInit {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         // Output the result in an element with id="demo"
         if (path == 'trading') {
-          document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+          try {
+            document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+          }
+          catch (e) {
+            console.log("exception handled");
+          }
         }
         // If the count down is over, write some text
         if (distance < 0) {
           this.subscription.unsubscribe();
           if (path == 'trading') {
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            try {
+              document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+            catch (e) {
+              console.log("exception handled");
+            }
           }
           this.cancelPay();
         }
@@ -116,29 +116,56 @@ export class TradingComponent implements OnInit {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      document.getElementById("demo").innerHTML = "Order Completed";
+      try {
+        document.getElementById("demo").innerHTML = "Order Completed";
+      }
+      catch (e) {
+        console.log("exception handled");
+      }
     }
+    else if (this.orderStatus == 'SUBMITTED') {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
+      try {
+        document.getElementById("demo").innerHTML = "Order Submitted";
+      }
+      catch (e) {
+        console.log("exception handled");
+      }
+    }
+    else if (this.orderStatus == 'CANCELLED') {
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
+      try {
+        document.getElementById("demo").innerHTML = "Order Canceled";
+      }
+      catch (e) {
+        console.log("exception handled");
+      }
+    }
+
     else {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      document.getElementById("demo").innerHTML = "Order Cancelled";
+      try {
+        document.getElementById("demo").innerHTML = "Order Confirmed";
+      }
+      catch (e) {
+        console.log("exception handled");
+      }
     }
-  }
-
-  paymentConfirmation() {
-    this.confirmPay();
-    this.hasPaymentConfirm = true;
-    this.hasTrading = false;
-    this.hasTimer = false;
   }
 
   confirmPay() {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
+      console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
-      this.getOrderDetails();
+      this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
     })
   }

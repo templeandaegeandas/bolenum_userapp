@@ -64,7 +64,7 @@
                 <div class="row">
                   <div class="col-sm-12 captch-padding">
              <re-captcha name="captcha"  #captchaControl="ngModel" [(ngModel)]="formModel.captcha" required></re-captcha>
-            <button type="submit" [disabled]="!user.termConditions || !signUpForm.valid" class="btn btn-success errorContent-font-size">SIGN UP</button>
+            <button type="submit" [disabled]="!user.termConditions" class="btn btn-success errorContent-font-size">SIGN UP</button>
                   </div>
                 </div>
           </form>

@@ -28,12 +28,13 @@ export class WithdrawComponent implements OnInit {
   minWithdrawAmount: any = 0.0;
   withdrawFee: any = 0.0;
   withdrawForm = new WithdrawAmount();
-
+  data: any;
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
         this.getListOfUserWithdrawlTransaction();
+        this.getCoin(this.data);
       }
       message = "default message";
     });
@@ -56,7 +57,7 @@ export class WithdrawComponent implements OnInit {
     let c = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
     this.withdrawService.withdrawFromWallet(c.currencyType, c.currencyAbbreviation, this.withdrawForm).subscribe(success => {
       this.getCoin(c.currencyAbbreviation);
-      form.resetForm();;
+      form.resetForm();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
@@ -80,6 +81,9 @@ export class WithdrawComponent implements OnInit {
 
   getCoin(data) {
     this.loading = true;
+    this.data = data;
+    this.withdrawForm.toAddress = '';
+    this.withdrawForm.withdrawAmount = '';
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.withdrawService.getCoin(c.currencyType, data).subscribe(success => {
       let successData = success.data;

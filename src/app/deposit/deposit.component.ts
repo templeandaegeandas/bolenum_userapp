@@ -29,12 +29,13 @@ export class DepositComponent implements OnInit {
   public coinDataValue: any;
   loading = false;
   isCopied: boolean = false;
-
+  data: any;
 
   constructor(private depositService: DepositService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "DEPOSIT_NOTIFICATION") {
         this.getListOfUserDepositTransaction();
+        this.getCoin(this.data);
       }
     });
   }
@@ -50,6 +51,7 @@ export class DepositComponent implements OnInit {
   getCoin(data) {
     this.isCopied = false;
     this.loading = true;
+    this.data =data;
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe(success => {
       let successData = success.data;

@@ -61,9 +61,15 @@ export class WebsocketService {
   }
 
   response = (data) => {
-    let newData = data.split('#')
-    if (newData[0] == 'ORDER_CONFIRMATION') {
-      this.router.navigate(['/sell/'+newData[0]]);
+    console.log(data)
+    if (data.PAID_NOTIFICATION == 'PAID_NOTIFICATION') {
+      console.log("in if Condidtion")
+      this.appEventEmiterService.changeMessage(data.PAID_NOTIFICATION);
+      this.router.navigate(['/sell/' + data.matchedOrderId]);
+    }
+    else if(data.MATCHED_NOTIFICATION == 'MATCHED_NOTIFICATION') {
+      console.log("in else if Condidtion")
+      this.router.navigate(['/trading/' + data.matchedOrderId]);
     }
     else {
       this.appEventEmiterService.changeMessage(data);
