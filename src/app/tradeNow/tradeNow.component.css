@@ -1044,6 +1044,19 @@ select option {
     color: #DB2828;
 }
 
+.rowMargin{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.top_Button{
+    background-color: #DB2828;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
 
 
 

@@ -22,8 +22,8 @@
               <div class="input-group">
                 <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
                 <span class="clearfix input-icon">
-               <input id="password" type="password" class="form-control content-font-size" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
-               <img src="assets/images/view_uf.png" class="img-responsive"/>
+               <input id="password" type='{{ passwordType }}' class="form-control content-font-size" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
+               <img src="assets/images/view_uf.png" class="img-responsive hand-icon " (click)='hideShowPassword()' title=' {{ viewPassword }}' [ngClass]= "{'passwordShow':hasShowPassword}"/>
                </span>
               </div>
               <span *ngIf="password.invalid && loginForm.submitted">

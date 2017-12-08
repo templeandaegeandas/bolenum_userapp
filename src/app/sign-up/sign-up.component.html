@@ -13,7 +13,7 @@
           <form #signUpForm=ngForm (submit)="signUpUser(signUpForm)">
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-              <input id="FirstName" type="email" class="form-control content-font-size" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$"  placeholder="JonhArr12@gmail.com" required>
+              <input id="FirstName" type="email" class="form-control content-font-size" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"  placeholder="JonhArr12@gmail.com" required>
             </div>
             <span *ngIf="email.invalid && signUpForm.submitted">
               <span class="text-danger errorContent-font-size" *ngIf="email.errors.required ">Please enter email</span>
@@ -56,7 +56,7 @@
             <div class="checkbox custom-checkbox">
               <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
               <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
-              <label for="test1" class="errorContent-font-size">I hearby Accept <a>all terms & condition.</a></label>
+              <label for="test1" class="errorContent-font-size">I hearby Accept <a routerLink='/terms-service'>all terms & condition.</a></label>
               <!--<label>
 			    	    		<input name="remember" type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
 			    	    	</label>-->

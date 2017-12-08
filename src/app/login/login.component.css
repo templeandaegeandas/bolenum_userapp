@@ -269,3 +269,13 @@ a.resend-otp {
 .forgot-padding{
         padding-left: 35px;
 }
+
+.hand-icon{
+    cursor: pointer;
+    
+}
+
+
+.passwordShow{
+background-color: #DB2828;
+}
