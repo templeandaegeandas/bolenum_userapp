@@ -30,13 +30,15 @@
             <p class="content-fontSze-fontFamily">Get Latest update and offer..</p>
             <div class="form">
                <div class="form-group">
+                 <form #emailNotification = 'ngForm' >
                   <div class="input-group ">
-                     <input class="form-control content-fontSze-fontFamily" placeholder="Email Address" type="text">
+                     <input class="form-control content-fontSze-fontFamily" name="email" [(ngModel)]='email' #emailNotify='ngModel' placeholder="Email Address" type="email" >
                      <span class="input-group-btn">
                      <!--<button class="btn btn-primary" type="button">Search !</button>-->
-                    <img src="assets/images/send.png" class="img-resonsive">
+                    <img src="assets/images/send.png" class="img-resonsive " (click)='notification(emailNotificatio)'>
                      </span>
                   </div>
+                </form>
                </div>
                <p class="text-footer content-fontSze-fontFamily ">We are at bolenum believe in user's privacy.We never send spam mail. </p>
             </div>

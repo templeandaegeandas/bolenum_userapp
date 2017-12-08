@@ -29,7 +29,7 @@
   img.img-login {
     width: 100%;
     height: auto;
-    
+
 }
 
 .input-group {
@@ -41,7 +41,7 @@
 
 }
 img.img-header{
-    
+
 	top: 0;
 	left: 0;
 }
@@ -78,7 +78,7 @@ img.img-header{
   .input-group input{
     height: 38px;
   }
-   
+
 .input-groups input {
     height: 38px;
     width: 378px;
@@ -108,7 +108,7 @@ img.img-header{
     z-index: 99999;
     right: 52px;
   }
-  
+
    .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
     color: #fff;
     background-color: #DB2828;
@@ -140,7 +140,7 @@ h4.text-center {
     font-size: 18px;
     color:#DB2828;
     text-align: center;
-   
+
 
 }
 p.text-center {
@@ -162,7 +162,7 @@ p.text-center {
 }
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){
-  
+
    img.img-login {
    width: 100%;
     height: auto;;
@@ -208,7 +208,7 @@ button.btn.btn-continue {
  .input-group {
    width:80%
   }
-  
+
    .input-icons img{
     position: absolute;
     top: 7px;
@@ -219,5 +219,6 @@ button.btn.btn-continue {
      width:81%;}
 }
 
-
-
+.notifys{
+  cursor: pointer;
+}
