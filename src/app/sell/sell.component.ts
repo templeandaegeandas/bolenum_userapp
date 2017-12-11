@@ -193,7 +193,8 @@ export class SellComponent implements OnInit {
         clearInterval(this.subscription)
       }
       this.getOrderDetails();
-      this.toastrService.success("Orders Completed!", "Success!");
+      this.router.navigate(['dashboard'])
+      this.toastrService.success("Trade Completed!", "Success!");
       console.log(success);
     })
   }
