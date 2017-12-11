@@ -244,7 +244,7 @@ export class TradeNowComponent implements OnInit {
 
   showModel(orderType, volume, price, orderId) {
 
-    if((this.order.price * this.order.volume) < 0.0001) {
+    if((price * volume) < 0.0001) {
       this.buySellModel.hide();
       this.toastrService.error("Order value should be 0.0001", 'Error!');
       return;
