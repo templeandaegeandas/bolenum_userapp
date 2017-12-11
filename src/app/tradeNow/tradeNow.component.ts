@@ -247,6 +247,12 @@ export class TradeNowComponent implements OnInit {
     if (this.market1BtcEth == 'Infinity') {
       this.market1BtcEth = 0;
     }
+    this.totalPrice = this.order.price*this.order.volume;
+    this.tradingFee = this.totalPrice*this.tradeFee/100;
+    this.priceWithFee = this.totalPrice + this.tradingFee;
+    if(this.sellColor) {
+      this.priceWithFee = this.totalPrice - this.tradingFee;
+    }
   }
 
   calculateFee() {
@@ -574,7 +580,11 @@ export class TradeNowComponent implements OnInit {
     this.price = '';
   }
 
-  changedList(orderType) {
+  changedList() {
+    let orderType = 'BUY';
+    if (this.sellColor) {
+        orderType = 'SELL';
+    }
     if (this.amount == '' || this.amount == null || this.price == null) {
       if(orderType == 'SELL') {
         this.getBuyOrderBookData(this.pairId);
@@ -584,7 +594,9 @@ export class TradeNowComponent implements OnInit {
       }
     }
     else {
+      console.log(this.price)
       if(this.price == '') {
+        console.log(this.price)
         this.price = this.minPrice;
       }
       this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
@@ -600,12 +612,15 @@ export class TradeNowComponent implements OnInit {
     }
   }
 
-  createAdvertisement(orderType) {
+  createAdvertisement() {
     if(this.amount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
     }
-
+    let orderType = 'BUY';
+    if(this.sellColor) {
+      orderType = 'SELL'
+    }
     if(orderType == 'BUY' && (this.amount == '' || this.price == '')){
       this.hasData = !this.hasData;
         setTimeout(() => {
@@ -717,6 +732,11 @@ buyToggle(){
   this.order.price='';
   this.tradingFee=0.0;
   this.priceWithFee=0.0;
+  this.amount='';
+  this.price='';
+  if(this.firstCurrency == 'NGN' || this.secondCurrency == 'NGN') {
+    this.getBuyOrderBookData(this.pairId);
+  }
 }
 
 sellToggle(){
@@ -729,8 +749,11 @@ sellToggle(){
   this.order.price='';
   this.tradingFee=0.0;
   this.priceWithFee=0.0;
-
-
+  this.amount='';
+  this.price='';
+  if(this.firstCurrency == 'NGN' || this.secondCurrency == 'NGN') {
+    this.getSellOrderBookData(this.pairId);
+  }
 }
 
 
