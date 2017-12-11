@@ -30,7 +30,27 @@
         <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
           <div class="row">
             <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-              <span class="table-heading-content">TRADE IN {{pairName}} </span>
+              <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
+              <div class="row" *ngIf="isMarket" >
+                <div class="col-sm-6 buy-sell-heading heading-hand-icon">
+                  <p (click)="showModel('BUY', order.volume, order.price, null)" ><span >BUY</span></p>
+                </div>
+                <div class="col-sm-6 heading-hand-icon">
+                <p (click)="showModel('SELL', order.volume, order.price, null)" ><span >SELL</span></p>
+                </div>
+              </div>
+
+               <div class="row" *ngIf="!isMarket" >
+                <div class="col-sm-6 buy-sell-heading heading-hand-icon">
+                  <p  (click)="showModel('BUY', order.volume, order.price, null)" ><span >BUY</span></p>
+                </div>
+                <div class="col-sm-6 heading-hand-icon">
+                <p (click)="showModel('SELL', order.volume, order.price, null)" ><span >SELL</span></p>
+                </div>
+              </div>
+            
+            
+            
             </div>
             <div *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">
               <div class="col-md-12 trade-field trade-button-margin">
@@ -183,14 +203,14 @@
                   <hr>
                   <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                 </div>
-                <div class="col-md-12 trade-field">
+                <!-- <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
                     <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
                   </div>
                   <div class="col-md-6  sell-button-right">
                     <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div *ngIf="!isMarket">
                 <div class="col-md-12 trade-field">
@@ -217,14 +237,14 @@
                   <hr>
                   <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                 </div>
-                <div class="col-md-12 trade-field">
+                <!-- <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
                     <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
                   </div>
                   <div class="col-md-6  sell-button-right">
                     <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <!-- for sell section -->

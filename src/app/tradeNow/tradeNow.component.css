@@ -1057,6 +1057,44 @@ select option {
     
 }
 
+.buy-sell-heading{
+        border-right: 2px solid lightgray;
+}
+
+.heading-hand-icon{
+    cursor: pointer;
+}
+
+/* new section page 11 december 2017 */
+
+.heading-left-border{
+    border-left: 2px solid #DB2828;
+    padding-top: 10px;
+
+}
+
+.head-pair-name{
+        text-align: center;
+    background-color: #DB2828;
+    border-radius: 19px;
+    padding: 6px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    width: 172px;
+}
+
+.order-book-width{
+    width: 40%;
+}
+
+.order-table-body-content{
+
+    text-align: center;
+}
+
+
+
 
 
 
