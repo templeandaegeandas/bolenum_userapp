@@ -33,12 +33,15 @@
               <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
               <div class="row" >
                 <div class="col-sm-6 head-padding heading-hand-icon padding-toggle"  (click)="buyToggle()" >
-                  <span class="buy-toggles" [ngClass]="{'buy-color':buyColor ,'buy-button-color-before-active':beforeActiveBUY}" >BUY</span>
-                  
+                 <div class=" heading-padding-sell-buy border-radious-buy " [ngClass]="{'buy-color':buyColor ,'buy-button-color-before-active':beforeActiveBUY}">
+                  <span class=""  >BUY</span>
+                 </div>
                   
                 </div>
                 <div class="col-sm-6 head-padding-right heading-hand-icon padding-toggle"  (click)="sellToggle()" >
-                <span class="sell-toggles"  [ngClass]="{'sell-color':sellColor ,'beforeActivesell':beforeActiveSELL}" >SELL</span>
+                <div class="heading-padding-sell-buy border-radious-sell " [ngClass]="{'sell-color':sellColor ,'beforeActivesell':beforeActiveSELL}">
+                  <span class=""   >SELL</span>
+                </div>
                 </div>
               </div>
 
@@ -200,7 +203,7 @@
                   <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                 </div> -->
                 <div class="col-md-12 button-submit text-center">
-                  <button class="trade-button-buy buy-button-colors ">SUBMIT</button>
+                  <button class="submit_button_limit ">SUBMIT</button>
                 </div>
                  <!-- <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
@@ -239,7 +242,7 @@
                 </div> -->
 
                 <div class="col-md-12 text-center button-submit">
-                  <button class="trade-button-buy buy-button-colors ">SUBMIT</button>
+                  <button class="submit_button_market">SUBMIT</button>
                 </div>
                 <!-- <div class="col-md-12 trade-field">
                   <div class="col-md-6  buy-button-left">
