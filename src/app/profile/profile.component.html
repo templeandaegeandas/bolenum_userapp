@@ -579,7 +579,7 @@
                </select>
               <span class="text-danger profile-font" *ngIf="countryError">Please choose country</span><br>
               <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
-              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" maxlength="10" required onlynumber>
+              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" (ngModelChange)="onPhoneNumberChange()" maxlength="10" required onlynumber>
               <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
              <p class="text-danger otp-error profile-font content-font-size">Please enter mobile number</p>
              </span>
