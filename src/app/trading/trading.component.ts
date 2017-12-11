@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { TradingService } from './trading.service';
 import { Observable } from 'rxjs/Rx';
+import { AppEventEmiterService } from '../app.event.emmiter.service';
+import { ToastrService } from 'toastr-ng2';
 declare var $: any;
 
 @Component({
@@ -31,8 +33,22 @@ export class TradingComponent implements OnInit {
   constructor(
     private tradingService: TradingService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private appEventEmiterService: AppEventEmiterService) {
+      this.appEventEmiterService.currentMessage.subscribe(message => {
+        console.log(message)
+      if (message == "ORDER_CANCELLED") {
+        if (this.subscription != null) {
+          clearInterval(this.subscription);
+        }
+        toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
+        this.ngOnInit();
+      }
+      else if(message == "PAID_NOTIFICATION") {
+        this.ngOnInit();
+      }
+    });
   }
 
   ngOnInit() {
@@ -72,6 +88,7 @@ export class TradingComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && !this.isConfirmed) {
+    console.log("status locked", this.subscription)
       this.subscription = Observable.interval(1000).subscribe(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
@@ -97,8 +114,9 @@ export class TradingComponent implements OnInit {
           }
         }
         // If the count down is over, write some text
-        if (distance < 0) {
+        if (distance <= 0) {
           if (path == 'trading') {
+            console.log("distance subscription", this.subscription)
             this.subscription.unsubscribe();
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
@@ -171,10 +189,10 @@ export class TradingComponent implements OnInit {
   }
 
   cancelPay() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
       this.getOrderDetails();
       console.log(success);
     })

@@ -39,9 +39,8 @@ export class SellComponent implements OnInit {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       console.log(message)
       if (message == "ORDER_CANCELLED") {
-        console.log("subscription", this.subscription)
         if (this.subscription != null) {
-          this.subscription.unsubscribe();
+          clearInterval(this.subscription);
         }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
         this.ngOnInit();
@@ -93,49 +92,18 @@ export class SellComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
-      this.subscription = Observable.interval(1000).subscribe(() => {
-        var path;
-        this.activatedRoute.url.subscribe(url => {
-          path = url[0].path;
-        })
-        // Get todays date and time
-        var now = new Date().getTime();
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        // Output the result in an element with id="demo"
-        if (path == 'sell') {
-          try {
-            document.getElementById("demo").innerHTML = minutes + " : " + seconds;
-          }
-          catch (e) {
-            console.log("exception handled")
-          }
-        }
-        // If the count down is over, write some text
-        if (distance < 0) {
-          if (path == 'sell') {
-            this.subscription.unsubscribe();
-            try {
-              document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-            catch (e) {
-              console.log("exception handled")
-            }
-          }
-          this.cancelPay();
-        }
-      });
+    console.log("status locked", this.subscription)
+    this.subscription = setInterval(() => {
+      this.startTimer(countDownDate);
+    }, 1000)
+      // this.subscription = Observable.interval(1000).subscribe(() => {
+      //
+      // });
       // for timer
     }
     else if (this.orderStatus == 'COMPLETED') {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
+      if (this.subscription) {
+        clearInterval(this.subscription)
       }
       try {
         document.getElementById("demo").innerHTML = "Order Completed";
@@ -145,8 +113,8 @@ export class SellComponent implements OnInit {
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
+      if (this.subscription) {
+        clearInterval(this.subscription)
       }
       try {
         document.getElementById("demo").innerHTML = "Order Submitted";
@@ -156,8 +124,8 @@ export class SellComponent implements OnInit {
       }
     }
     else if (this.orderStatus == 'LOCKED') {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
+      if (this.subscription) {
+        clearInterval(this.subscription)
       }
       try {
         document.getElementById("demo").innerHTML = "Order Matched";
@@ -167,8 +135,8 @@ export class SellComponent implements OnInit {
       }
     }
     else {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
+      if (this.subscription) {
+        clearInterval(this.subscription)
       }
       try {
         document.getElementById("demo").innerHTML = "Order Cancelled";
@@ -179,10 +147,50 @@ export class SellComponent implements OnInit {
     }
   }
 
+  startTimer(countDownDate) {
+    var path;
+    this.activatedRoute.url.subscribe(url => {
+      path = url[0].path;
+    })
+    // Get todays date and time
+    var now = new Date().getTime();
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Output the result in an element with id="demo"
+    if (path == 'sell') {
+      try {
+        document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+      }
+      catch (e) {
+        console.log("exception handled")
+      }
+    }
+    // If the count down is over, write some text
+    if (distance <= 0) {
+      if (path == 'sell') {
+        clearInterval(this.subscription);
+        console.log("distance subscription", this.subscription)
+        try {
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+        catch (e) {
+          console.log("exception handled")
+        }
+      }
+      this.cancelPay();
+    }
+  }
+
   confirmPay() {
     this.sellService.confirmPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
+      if (this.subscription) {
+        clearInterval(this.subscription)
       }
       this.getOrderDetails();
       this.toastrService.success("Orders Completed!", "Success!");
@@ -191,10 +199,10 @@ export class SellComponent implements OnInit {
   }
 
   cancelPay() {
+    if (this.subscription) {
+      clearInterval(this.subscription)
+    }
     this.sellService.cancelPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
       this.getOrderDetails();
       this.toastrService.success(success.message, "Success!");
       console.log(success);

@@ -114,6 +114,7 @@ export class DisputeComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
+      this.router.navigate(['dashboard']);
       this.toastrService.success(success.message, 'Success!')
     })
   }
