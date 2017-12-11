@@ -459,6 +459,12 @@ export class TradeNowComponent implements OnInit {
     this.setTradeValue("Limit Order");
     this.order.volume = volume;
     this.order.price = price
+    this.totalPrice = this.order.price*this.order.volume;
+    this.tradingFee = this.totalPrice*this.tradeFee/100;
+    this.priceWithFee = this.totalPrice + this.tradingFee;
+    if(this.sellColor) {
+      this.priceWithFee = this.totalPrice - this.tradingFee;
+    }
     this.order.orderStandard = "LIMIT"
   }
 
