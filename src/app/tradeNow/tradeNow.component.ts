@@ -68,14 +68,17 @@ export class TradeNowComponent implements OnInit {
   minPrice: any = 10;
   sellOrderLength: any;
   buyOrderLength: any;
-  tradeFee: any = 0.0;
+  tradeFee: any = 0.15;
   tradeFeeFiat: any = 0.0;
   firstCurrencyType: any;
   secondCurrencyType: any;
+  totalPrice: any;
+  tradingFee: any;
+  priceWithFee: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
-    { "valueType": "Market Order" },
-    { "valueType": "Limit Order" }
+    { "valueType": "Limit Order" },
+    { "valueType": "Market Order" }
   ]
 
   public setTradingValue: any;
@@ -188,8 +191,8 @@ export class TradeNowComponent implements OnInit {
     this.order.volume = 0;
     this.order.price = 0;
     this.isLogIn();
-    this.setTradingValue = "Market Order";
-    this.setTradeValue("Market Order");
+    this.setTradingValue = "Limit Order";
+    this.setTradeValue("Limit Order");
     //this.getMarketPrice();
     this.getCurrencyList();
     setTimeout(() => {
@@ -246,6 +249,15 @@ export class TradeNowComponent implements OnInit {
     }
   }
 
+  calculateFee() {
+    this.totalPrice = this.order.price*this.order.volume;
+    this.tradingFee = this.totalPrice*this.tradeFee/100;
+    this.priceWithFee = this.totalPrice + this.tradingFee;
+    if(this.sellColor) {
+      this.priceWithFee = this.totalPrice - this.tradingFee;
+    }
+  }
+
   showModel(orderType, volume, price, orderId) {
 
     if((price * volume) < 0.0001) {
@@ -288,7 +300,12 @@ export class TradeNowComponent implements OnInit {
     this.order.price = price;
     this.order.totalVolume = volume;
     this.order.orderStandard = "MARKET";
-    this.order.orderType = orderType;
+    if(this.sellColor) {
+      this.order.orderType = 'SELL'
+    }
+    else {
+      this.order.orderType = 'BUY';
+    }
   }
 
   hideModel() {
@@ -696,6 +713,10 @@ buyToggle(){
   this.sellColor = false;
   this.beforeActiveBUY = false;
   this.buyColor = true;
+  this.order.volume='';
+  this.order.price='';
+  this.tradingFee=0.0;
+  this.priceWithFee=0.0;
 }
 
 sellToggle(){
@@ -704,8 +725,11 @@ sellToggle(){
   this.sellColor = true;
   this.beforeActiveBUY = true;
   this.buyColor = false;
+  this.order.volume='';
+  this.order.price='';
+  this.tradingFee=0.0;
+  this.priceWithFee=0.0;
 
-   
 
 }
 
