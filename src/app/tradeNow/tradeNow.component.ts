@@ -16,6 +16,10 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public sellColor : boolean = false;
+  public beforeActiveSELL : boolean = true;
+  public buyColor:boolean = false;
+  public beforeActiveBUY :boolean = true;
   public hasSellData:boolean = false;
   public hasData:boolean = false;
   public hasAmount: boolean = false;
@@ -687,7 +691,23 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
+buyToggle(){
+   this.beforeActiveSELL = true;
+  this.sellColor = false;
+  this.beforeActiveBUY = false;
+  this.buyColor = true;
+}
 
+sellToggle(){
+
+  this.beforeActiveSELL = false;
+  this.sellColor = true;
+  this.beforeActiveBUY = true;
+  this.buyColor = false;
+
+   
+
+}
 
 
 }
