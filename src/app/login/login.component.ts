@@ -12,6 +12,9 @@ import { Ng2DeviceService } from 'ng2-device-detector';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
+  hasShowPassword : boolean;
+  viewPassword : any = 'SHOW'
+  passwordType :any = 'password';
   login = new Login("", "");
   loading = false;
   returnUrl: string;
@@ -113,6 +116,27 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.toastrService.error(error.json().message, 'Error!')
     })
+  }
+
+  hideShowPassword(){
+
+     if(this.passwordType == 'password'){
+      this.hasShowPassword = true;
+      this.passwordType = 'text';
+      this.viewPassword = 'HIDE';
+
+
+     }
+
+     else{
+       this.passwordType = 'password';
+       this.viewPassword = 'SHOW';
+       this.hasShowPassword = false;
+     }
+
+
+    
+
   }
 
 }

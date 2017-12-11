@@ -12,35 +12,15 @@
 </select>
       </div>
       <div class=" text-center text-image-div">
-        <!-- for btc image -->
-        <div class=" " *ngIf="setItemValue=='BTC'">
-          <span>
-         <img src="./assets/images/bitcoin.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for boleno image -->
-        <div class=" " *ngIf="setItemValue=='BLN'">
-          <span>
-         <img src="./assets/images/bolenum.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for etherium -->
-        <div class=" " *ngIf="setItemValue=='ETH'">
-          <span>
-         <img src="./assets/images/eth.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for nigerian naira -->
-        <div class=" " *ngIf="setItemValue=='NGN'">
-          <span>
-         <img src="./assets/images/ngn.png" width="46" height="46">
-       </span>
-        </div>
-
-        <div class="available-text">
+       <div class="available-text">
           <span class="balance-text withdraw-heading">
           <!-- Available Balance 0.2156 -->
-            Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
+           <p>
+              <span *ngIf="setItemValue=='BTC'"> <img src="./assets/images/bitcoin.png" width="30" height="30"></span>
+               <span *ngIf="setItemValue=='BLN'"> <img src="./assets/images/bolenum.png" width="30" height="30"></span>
+                <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span>
+              
+              Available Balance : <span>{{balance}} {{coinAbbreviation}}</span></p>
           </span>
         </div>
       </div>

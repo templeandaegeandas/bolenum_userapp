@@ -37,7 +37,7 @@ import { FeesDetailsComponent } from './fees-details/fees-details.component';
 
 
 export const APP_ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '', pathMatch: 'full', redirectTo: 'profile' },
   // { path: '**', redirectTo: 'deposit' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [PrivateRouteAuthGuard] },
   { path: 'tradeNow', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
