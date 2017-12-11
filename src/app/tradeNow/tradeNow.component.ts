@@ -243,14 +243,19 @@ export class TradeNowComponent implements OnInit {
   }
 
   showModel(orderType, volume, price, orderId) {
-    if(volume < 0.0001) {
+    if((this.order.price * this.order.volume) < 0.0001) {
+      this.buySellModel.hide();
+      this.toastrService.error("Order value should be 0.0001", 'Error!');
+      return;
+    }
+    /*if(volume < 0.0001) {
       this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Success!');
       return;
     }
     if(price < 0.0001) {
       this.toastrService.error("You can't create order with less than 0.0001 price!", 'Success!');
       return;
-    }
+    }*/
     if (this.setTradingValue == 'Limit Order') {
       if (volume == '' || price == '') {
         this.hasAmount = true;
@@ -329,14 +334,14 @@ export class TradeNowComponent implements OnInit {
   }
 
   createOrder() {
-    if(this.order.volume < 0.0001) {
+   /* if(this.order.volume < 0.0001) {
       this.buySellModel.hide();
       this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Success!');
       return;
-    }
-    if(this.order.price < 0.0001) {
+    }*/
+    if((this.order.price * this.order.volume) < 0.0001) {
       this.buySellModel.hide();
-      this.toastrService.error("You can't create order with less than 0.0001 price!", 'Success!');
+      this.toastrService.error("Order value should be 0.0001", 'Error!');
       return;
     }
     this.loading = true;
