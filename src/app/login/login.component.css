@@ -279,3 +279,9 @@ a.resend-otp {
 .passwordShow{
 background-color: #DB2828;
 }
+
+.input-icon img{
+    
+    border-radius: 14px;
+
+}

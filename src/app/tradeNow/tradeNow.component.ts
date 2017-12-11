@@ -18,8 +18,8 @@ export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
   public sellColor : boolean = false;
   public beforeActiveSELL : boolean = true;
-  public buyColor:boolean = false;
-  public beforeActiveBUY :boolean = true;
+  public buyColor:boolean = true;
+  public beforeActiveBUY :boolean = false;
   public hasSellData:boolean = false;
   public hasData:boolean = false;
   public hasAmount: boolean = false;
