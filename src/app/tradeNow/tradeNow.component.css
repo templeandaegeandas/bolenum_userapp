@@ -458,7 +458,7 @@ select option {
 }
 
 .trade-in-part{
-    background-color: #DB2828;
+    
     color: white;
     padding: 6px;
         border-top-left-radius: 8px;
@@ -1065,6 +1065,55 @@ select option {
     cursor: pointer;
 }
 
+.button-submit{
+    margin-bottom: 10px;
+}
+
+
+/* toggle */
+
+.buy-color{
+    background-color: #3cb371;
+}
+
+.buy-button-color-before-active{
+    background-color: #DB2828;
+}
+
+.beforeActivesell{
+    background-color: #DB2828;
+}
+
+.sell-color{
+    background-color: #3cb371;
+}
+
+.buy-toggles{
+  padding: 12px;
+    padding-left: 162px;
+    padding-right: 57px;
+}
+
+.sell-toggles{
+   padding: 12px;
+    padding-left: 157px;
+    padding-right: 57px;
+}
+
+.padding-toggle{
+    padding-left: 8px;
+}
+
+.head-padding{
+    padding-right: 0px;
+}
+
+.head-padding-right{
+    padding-left: 0px;
+}
+
+/* 
+toggle */
 /* new section page 11 december 2017 */
 
 .heading-left-border{
