@@ -119,8 +119,8 @@ export class SellComponent implements OnInit {
         }
         // If the count down is over, write some text
         if (distance < 0) {
-          this.subscription.unsubscribe();
           if (path == 'sell') {
+            this.subscription.unsubscribe();
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
             }
@@ -185,6 +185,7 @@ export class SellComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
+      this.toastrService.success("Orders Completed!", "Success!");
       console.log(success);
     })
   }
@@ -195,6 +196,7 @@ export class SellComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
+      this.toastrService.success(success.message, "Success!");
       console.log(success);
     })
   }

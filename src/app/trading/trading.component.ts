@@ -98,8 +98,8 @@ export class TradingComponent implements OnInit {
         }
         // If the count down is over, write some text
         if (distance < 0) {
-          this.subscription.unsubscribe();
           if (path == 'trading') {
+            this.subscription.unsubscribe();
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
             }

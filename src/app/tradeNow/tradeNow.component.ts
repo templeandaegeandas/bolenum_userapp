@@ -243,6 +243,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   showModel(orderType, volume, price, orderId) {
+
     if((this.order.price * this.order.volume) < 0.0001) {
       this.buySellModel.hide();
       this.toastrService.error("Order value should be 0.0001", 'Error!');
@@ -253,7 +254,7 @@ export class TradeNowComponent implements OnInit {
       return;
     }
     if(price < 0.0001) {
-      this.toastrService.error("You can't create order with less than 0.0001 price!", 'Success!');
+      this.toastrService.error("You can't create order with less than 0.0001 price!", 'Error!');
       return;
     }*/
     if (this.setTradingValue == 'Limit Order') {
@@ -293,12 +294,12 @@ export class TradeNowComponent implements OnInit {
   createFiatOrder() {
     if(this.order.volume < 1) {
       this.buySellModel.hide();
-      this.toastrService.error("You can't create order with less than 1.0 volume!", 'Success!');
+      this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
     }
     if(this.order.price < 1) {
       this.buySellModel.hide();
-      this.toastrService.error("You can't create order with less than 1.0 price!", 'Success!');
+      this.toastrService.error("You can't create order with less than 1.0 price!", 'Error!');
       return;
     }
     this.loading = true;
@@ -336,7 +337,7 @@ export class TradeNowComponent implements OnInit {
   createOrder() {
    /* if(this.order.volume < 0.0001) {
       this.buySellModel.hide();
-      this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Success!');
+      this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Error!');
       return;
     }*/
     if((this.order.price * this.order.volume) < 0.0001) {
@@ -580,7 +581,7 @@ export class TradeNowComponent implements OnInit {
 
   createAdvertisement(orderType) {
     if(this.amount < 1) {
-      this.toastrService.error("You can't create order with less than 1.0 volume!", 'Success!');
+      this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
     }
 

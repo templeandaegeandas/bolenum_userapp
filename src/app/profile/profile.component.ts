@@ -12,7 +12,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service'
 import { Router } from '@angular/router';
 import { WebsocketService } from '../web-socket/web.socket.service';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-profile',
@@ -97,17 +97,23 @@ export class ProfileComponent implements OnInit {
     this.cropperSettings.height = 200;
     this.cropperSettings.noFileInput = true;
 
-    this.cropperSettings.croppedWidth = 200;
-    this.cropperSettings.croppedHeight = 200;
+    this.cropperSettings.croppedWidth = 100;
+    this.cropperSettings.croppedHeight = 100;
 
-    this.cropperSettings.canvasWidth = 500;
+    this.cropperSettings.canvasWidth = 550;
     this.cropperSettings.canvasHeight = 300;
+
+    // this.cropperSettings.width = 100;
+    // this.cropperSettings.height = 100;
+    // this.cropperSettings.croppedWidth = 100;
+    // this.cropperSettings.croppedHeight = 100;
+    // this.cropperSettings.canvasWidth = 400;
+    // this.cropperSettings.canvasHeight = 300;
 
     this.cropperSettings.minWidth = 10;
     this.cropperSettings.minHeight = 10;
 
     this.cropperSettings.rounded = false;
-    this.cropperSettings.keepAspect = false;
 
     this.cropperSettings.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
     this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
@@ -205,6 +211,12 @@ export class ProfileComponent implements OnInit {
     this.twoFactorAuthType = data;
     if (data == 'MOBILE' && !this.isMobileVerified) {
       this.isMobileEdit = true;
+      if(this.mobileNumber != null && this.mobileNumber != 'undefined') {
+        setTimeout(() => {
+          console.log(this.code + this.mobileNumber)
+          $("#usred").intlTelInput("setNumber", "+" + this.code + this.mobileNumber);
+        }, 500)
+      }
       this.getAllCountries();
     }
   }
@@ -254,11 +266,13 @@ export class ProfileComponent implements OnInit {
     this.isMobileEdit = true;
     this.isOtpEdit = false;
     this.resendOtp = false;
-
-    setTimeout(() => {
-      console.log(this.code+this.mobileNumber)
-      $("#usrphone").intlTelInput("setNumber", "+"+this.code+this.mobileNumber);
-    }, 500)
+    console.log(this.mobileNumber)
+    if(this.mobileNumber != null && this.mobileNumber != 'undefined') {
+      setTimeout(() => {
+        console.log(this.code + this.mobileNumber)
+        $("#usrphone").intlTelInput("setNumber", "+" + this.code + this.mobileNumber);
+      }, 500)
+    }
   }
 
   saveMobile(form) {
@@ -536,8 +550,10 @@ export class ProfileComponent implements OnInit {
         this.twoFa = false;
       }
       this.countryCode = success.data.countryCode;
-      this.code = success.data.countryCode;
-      this.mobileNumber = success.data.mobileNumber;
+      if(success.data.mobileNumber != null) {
+        this.code = success.data.countryCode;
+        this.mobileNumber = success.data.mobileNumber;
+      }
       this.isMobileVerified = success.data.isMobileVerified;
       this.userFirstName = success.data.firstName;
       this.userLastName = success.data.lastName;
@@ -706,7 +722,7 @@ export class ProfileComponent implements OnInit {
     editableDateField: false,
   }
 
-  onPhoneNumberChange(){
+  onPhoneNumberChange() {
     this.countryCode = $("#usrphone").intlTelInput("getSelectedCountryData").dialCode;
   }
 }
