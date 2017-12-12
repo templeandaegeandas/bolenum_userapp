@@ -112,6 +112,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
@@ -123,6 +126,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else if (this.orderStatus == 'LOCKED') {
@@ -134,6 +140,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else {
@@ -145,6 +154,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
   }
@@ -171,6 +183,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     // If the count down is over, write some text
@@ -183,6 +198,9 @@ export class SellComponent implements OnInit {
         }
         catch (e) {
           console.log("exception handled")
+          if (this.subscription) {
+            clearInterval(this.subscription)
+          }
         }
       }
       this.cancelPay();
@@ -196,6 +214,9 @@ export class SellComponent implements OnInit {
       }
       this.getOrderDetails();
       this.router.navigate(['dashboard'])
+      if (this.subscription) {
+        clearInterval(this.subscription)
+      }
       this.toastrService.success("Trade Completed!", "Success!");
       console.log(success);
     })
@@ -210,6 +231,9 @@ export class SellComponent implements OnInit {
       this.toastrService.success(success.message, "Success!");
       console.log(success);
     })
+    if (this.subscription) {
+      clearInterval(this.subscription)
+    }
   }
 
   disputeTrade() {
