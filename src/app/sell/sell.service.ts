@@ -20,4 +20,9 @@ export class SellService {
     return this.http.put('/api/v1/user/order/fiat/cancel?orderId=' + orderId, '')
       .map(res => res.json());
   }
+
+  dispute(orderId) {
+    return this.http.put('/api/v1/user/order/raise/seller/dispute?orderId=' + orderId, '')
+      .map(res => res.json());
+  }
 }

@@ -127,7 +127,6 @@ export class TradingComponent implements OnInit {
               this.subscription.unsubscribe();
             }
           }
-          this.cancelPay();
         }
       });
       // for timer

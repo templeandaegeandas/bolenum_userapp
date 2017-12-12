@@ -20,6 +20,7 @@ export class SellComponent implements OnInit {
   accountNumber: string;
   walletAddress: string;
   sellerName: string;
+  buyerName: string;
   orderVolume: any;
   currencyAbr: string;
   createdDate: any;
@@ -75,6 +76,7 @@ export class SellComponent implements OnInit {
       this.walletAddress = success.data.walletAddress;
       this.totalPrice = success.data.totalPrice;
       this.sellerName = success.data.sellerName;
+      this.buyerName = success.data.buyerName;
       this.currencyAbr = success.data.currencyAbr;
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
@@ -82,6 +84,7 @@ export class SellComponent implements OnInit {
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
+      this.dispute = success.data.isDispute;
       this.startTradingTimer();
     }, error => this.router.navigate(['tradeNow']))
   }
@@ -203,7 +206,6 @@ export class SellComponent implements OnInit {
           }
         }
       }
-      this.cancelPay();
     }
   }
 
@@ -213,7 +215,6 @@ export class SellComponent implements OnInit {
         clearInterval(this.subscription)
       }
       this.getOrderDetails();
-      this.router.navigate(['dashboard'])
       if (this.subscription) {
         clearInterval(this.subscription)
       }
@@ -241,6 +242,9 @@ export class SellComponent implements OnInit {
     if (this.subscription) {
       clearInterval(this.subscription)
     }
+    this.sellService.dispute(this.orderId).subscribe(success => {
+      this.toastrService.success(success.message, "Success");
+    })
   }
 
 }
