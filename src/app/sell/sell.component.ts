@@ -30,6 +30,7 @@ export class SellComponent implements OnInit {
   matchedOn: any;
   isConfirmed: any;
   isMatchedConfirm = false;
+  dispute = false;
   constructor(
     private sellService: SellService,
     private router: Router,
@@ -39,6 +40,7 @@ export class SellComponent implements OnInit {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       console.log(message)
       if (message == "ORDER_CANCELLED") {
+        this.dispute = false;
         if (this.subscription != null) {
           clearInterval(this.subscription);
         }
@@ -128,7 +130,7 @@ export class SellComponent implements OnInit {
         clearInterval(this.subscription)
       }
       try {
-        document.getElementById("demo").innerHTML = "Order Matched";
+        document.getElementById("demo").innerHTML = "Please wait for buyer to make payment";
       }
       catch (e) {
         console.log("exception handled")
@@ -208,6 +210,13 @@ export class SellComponent implements OnInit {
       this.toastrService.success(success.message, "Success!");
       console.log(success);
     })
+  }
+
+  disputeTrade() {
+    this.dispute = true;
+    if (this.subscription) {
+      clearInterval(this.subscription)
+    }
   }
 
 }
