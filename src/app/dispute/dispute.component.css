@@ -45,6 +45,21 @@ p {
     padding-bottom: 10px;
 }
 
+.button-dispute{
+          background-color: #3cb371;
+    color: white;
+    width: 100px;
+    padding: 8px;
+}
+
+.upload-button{
+          background-color: #3cb371;
+    color: white;
+    width: 221px;
+    padding: 8px;
+}
+
+
 .margin-zero{
     margin: 0;
 }
@@ -102,9 +117,13 @@ label.btn.btn-default {
 p.uopload-img {
     margin-left: 11px;
 }
+
+.margin-top-level{
+    margin-top: 10px;
+}
 .id {
-    margin-left: 108px;
-    width: 40%;
+    /* margin-left: 108px; */
+    width: 24%;
 }
 @media screen and (min-width: 320px) and (max-width: 767px){
     button.btn.btn-success.green {
