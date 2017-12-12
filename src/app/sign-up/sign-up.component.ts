@@ -18,6 +18,7 @@ public formModel: FormModel = {};
   constructor(private signUpService: SignUpService, private toastrService: ToastrService) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   signUpUser(form) {

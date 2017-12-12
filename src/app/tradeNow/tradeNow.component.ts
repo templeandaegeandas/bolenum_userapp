@@ -185,6 +185,7 @@ export class TradeNowComponent implements OnInit {
 
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.order.volume = 0;
     this.order.price = 0;
     this.isLogIn();

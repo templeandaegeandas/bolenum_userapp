@@ -41,6 +41,7 @@ export class WithdrawComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getCurrencyList();
     setTimeout(() => {
       this.getListOfUserWithdrawlTransaction();

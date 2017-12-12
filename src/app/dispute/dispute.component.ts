@@ -48,6 +48,7 @@ export class DisputeComponent implements OnInit {
     private tradingService: TradingService) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });

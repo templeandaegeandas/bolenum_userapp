@@ -10,6 +10,7 @@ export class AppComponent {
   token;
   url: String;
   constructor(private activatedRouter: ActivatedRoute, private router: Router) {
+    window.scrollTo(0, 0);
     this.isLoggedIn();
   }
   title = 'app';

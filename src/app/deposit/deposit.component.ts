@@ -42,6 +42,7 @@ export class DepositComponent implements OnInit {
 
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getCurrencyName();
     setTimeout(() => {
       this.getListOfUserDepositTransaction();
