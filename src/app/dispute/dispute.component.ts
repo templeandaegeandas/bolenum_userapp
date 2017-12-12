@@ -4,6 +4,7 @@ import { ToastrService } from 'toastr-ng2';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { DisputeService } from './dispute.service';
 import { TradingService } from '../trading/trading.service';
+import { AppEventEmiterService } from '../app.event.emmiter.service';
 
 @Component({
   selector: 'app-dispute',
@@ -45,7 +46,16 @@ export class DisputeComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private tradingService: TradingService) { }
+    private tradingService: TradingService,
+    private appEventEmiterService: AppEventEmiterService) {
+      this.appEventEmiterService.currentMessage.subscribe(message => {
+        console.log(message)
+      if(message == "PAID_NOTIFICATION") {
+        this.router.navigate(['tradeNow']);
+        toastrService.success("You trade is completed successfully! You will get the BLN after some time!", "Success");
+      }
+    });
+    }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -115,6 +125,7 @@ export class DisputeComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
+      this.router.navigate(['dashboard']);
       this.toastrService.success(success.message, 'Success!')
     })
   }
