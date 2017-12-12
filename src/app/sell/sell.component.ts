@@ -55,6 +55,7 @@ export class SellComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });

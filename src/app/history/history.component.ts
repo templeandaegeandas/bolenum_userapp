@@ -38,6 +38,7 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.historyService.getUserDetails().subscribe(success => {
       this.userId = success.data.userId;
       this.getTradeHistory();

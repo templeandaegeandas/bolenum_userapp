@@ -352,3 +352,8 @@ span.exchange-color {
 .navBarPadding{
     padding-right: 20px !important;
 }
+
+.bolenumLogo{
+    outline: 0;
+    cursor: pointer;
+}

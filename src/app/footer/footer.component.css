@@ -12,7 +12,7 @@ li {
 footer {
     background-color: #141415;
    
-    min-height: 265px;
+    /* min-height: 265px; */
 }
 
 .footer-col {

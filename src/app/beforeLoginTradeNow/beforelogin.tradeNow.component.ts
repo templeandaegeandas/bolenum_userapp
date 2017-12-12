@@ -150,18 +150,8 @@ export class BeforLoginTradeNowComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-  ngOnInit() {
+ngOnInit() {
+    window.scrollTo(0, 0);
     this.isLogIn();
     this.setTradingValue = "Market Order";
     // this.setTradeValue("Market Order");

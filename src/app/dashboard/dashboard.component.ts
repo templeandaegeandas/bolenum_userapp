@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
     public totalNumberOfBuy:any;
     public totalNumberOfSell:any;
   constructor( private router: Router,private dashBoardService:DashBoardService) {
+
+    window.scrollTo(0, 0);
     this.options = {
            chart: {
         type: 'areaspline'
@@ -88,6 +90,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
      this.getTradingCountofUser();
+    window.scrollTo(0, 0);
   }
 
   getTradingCountofUser(){
