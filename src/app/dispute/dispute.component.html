@@ -3,7 +3,7 @@
     <div class="col-sm-8 col-sm-offset-2">
       <div class="dispute-section">
         <strong class="text-danger">Trade is under dispute</strong>
-        <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If send payment to the seller and not getting {{currencyAbr}} thenwe will solve this issue and your {{currencyAbr}} will be sent to {{walletAddress}}</p>
+        <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If you send payment to the seller and not getting {{currencyAbr}} then we will solve this issue and your {{currencyAbr}} will be received from {{walletAddress}}</p>
       </div>
       <div class=" button-center" *ngIf="orderStatus == 'LOCKED'">
         <button type="submit" class="btn trade-button" (click)="cancelPay()">Cancel Trade</button>

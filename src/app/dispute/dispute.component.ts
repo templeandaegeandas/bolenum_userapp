@@ -111,6 +111,7 @@ export class DisputeComponent implements OnInit {
       this.disputeService.raiseDispute(formData).subscribe(success => {
         this.loading = false;
         this.toastrService.success(success.message, 'Success!')
+        this.router.navigate(['dashboard']);
       }, error => {
         this.toastrService.error(error.json().message, 'Error!')
         this.loading = false;
@@ -125,6 +126,9 @@ export class DisputeComponent implements OnInit {
       }
       this.getOrderDetails();
       this.router.navigate(['dashboard']);
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+      }
       this.toastrService.success(success.message, 'Success!')
     })
   }
