@@ -1,33 +1,49 @@
 <div class="container">
   <div class="row">
     <section>
-      <div class="col-sm-10 col-sm-offset-1 margin-top-head">
-        <p>Please click on received when you got the amount.So we can do complete your trade with the buyer.</p>
-      </div>
-
-      <!-- for timer section -->
-      <div class="col-sm-10 col-sm-offset-1 text-center margin-timer">
-        <div class="timer-property">
-          <p *ngIf="orderStatus=='LOCKED' && isMatchedConfirm"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
-
-          <p class="timer-font-pro" id="demo"></p>
-
-          <p>When deposit time went out the trade will be cancelled. Any deposit comes after that will be credited to your account.</p>
+      <div *ngIf="!dispute">
+        <div *ngIf="orderStatus == 'LOCKED' && isMatchedConfirm" class="col-sm-10 col-sm-offset-1 margin-top-head">
+          <p>Please click on received when you got the amount.So we can do complete your trade with the buyer.</p>
         </div>
-      </div>
-      <!-- for timer section -->
-      <!-- button section -->
-      <div class="-sm-10 col-sm-offset-1 ">
+        <div *ngIf="orderStatus == 'LOCKED' && !isMatchedConfirm" class="col-sm-10 col-sm-offset-1 margin-top-head">
+          <p>You are selling {{orderVolume}} {{currencyAbr}} to {{buyerName}}. Your {{currencyAbr}} is already locked and secured for this trade. After the trade is completed, your {{currencyAbr}} will be sent to {{walletAddress}}</p>
+        </div>
 
-        <div class="row">
-          <div class="col-sm-11 text-center">
-            <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Received</button>
+        <!-- for timer section -->
+        <div class="col-sm-10 col-sm-offset-1 text-center margin-timer">
+          <div class="timer-property">
+            <p *ngIf="orderStatus=='LOCKED' && isMatchedConfirm"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
+
+            <p class="timer-font-pro" id="demo"></p>
+
+            <p *ngIf="orderStatus == 'LOCKED' && isMatchedConfirm">When deposit time went out the trade will be cancelled. Any deposit comes after that will be credited to your account.</p>
           </div>
-          <!-- <div class="col-sm-6 text-center">
-            <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="cancelPay()">Cancel</button>
-          </div> -->
         </div>
+        <!-- for timer section -->
+        <!-- button section -->
+        <div class="-sm-10 col-sm-offset-1 ">
 
+          <div class="row">
+            <div class="col-sm-6 text-center">
+              <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">Received</button>
+            </div>
+            <div class="col-sm-6 text-center">
+              <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase cancel_button" type="submit" name="paid" (click)="disputeTrade()">Dispute</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="dispute">
+        <div *ngIf="orderStatus == 'LOCKED' && isMatchedConfirm" class="col-sm-10 col-sm-offset-1 margin-top-head">
+          <p>Your trade is under dispute. Please wait for admin to take action.</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button" type="submit" name="paid" (click)="confirmPay()">I have recevied payment</button>
+          </div>
+        </div>
       </div>
       <!-- button section -->
       <!-- payment details -->
