@@ -16,6 +16,7 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
   public sellColor : boolean = false;
   public beforeActiveSELL : boolean = true;
   public buyColor:boolean = true;
@@ -75,6 +76,7 @@ export class TradeNowComponent implements OnInit {
   totalPrice: any;
   tradingFee: any;
   priceWithFee: any;
+  cancelOrderId: any;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Limit Order" },
@@ -323,6 +325,16 @@ export class TradeNowComponent implements OnInit {
     this.buySellModel.hide();
   }
 
+  cancelOrderModel(id) {
+    console.log(id)
+    this.cancelOrderId = id;
+    this.orderCancelModel.show();
+  }
+
+  hideOrderCancelModel() {
+    this.orderCancelModel.hide();
+  }
+
   createFiatOrder() {
     if(this.order.volume < 1) {
       this.buySellModel.hide();
@@ -389,6 +401,8 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
+      this.tradingFee=0.0;
+      this.priceWithFee=0.0;
       setTimeout(() => {
         this.getAllTradedOrders();
       }, 100);
@@ -403,10 +417,20 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
+      this.tradingFee=0.0;
+      this.priceWithFee=0.0;
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
 
+  }
+
+  cancelOrder() {
+    this.tradeNowService.cancelOrder(this.cancelOrderId).subscribe(success => {
+      this.hideOrderCancelModel();
+      this.getMyOrdersFromBook();
+      this.toastrService.success(success.message, "Success!");
+    })
   }
 
   getPair(currencyId) {
