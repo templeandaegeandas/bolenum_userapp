@@ -56,6 +56,7 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
 import { IntTelInputDirective } from  './directives/int.tel.input.directive';
+import { NotifyUserComponent } from './notify-user/notify-user.component';
 declare var require: any;
 export function highchartsFactory() {
   const hc = require('highcharts');
@@ -97,7 +98,8 @@ export function highchartsFactory() {
     DisputeComponent,
     CancelTradeComponent,
     FeesDetailsComponent,
-    IntTelInputDirective
+    IntTelInputDirective,
+    NotifyUserComponent
 
   ],
   imports: [

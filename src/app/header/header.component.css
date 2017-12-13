@@ -357,3 +357,9 @@ span.exchange-color {
     outline: 0;
     cursor: pointer;
 }
+
+.bell-icon{
+        width: 51px;
+    padding: 0px 18px;
+    margin-left: -21px;
+}
