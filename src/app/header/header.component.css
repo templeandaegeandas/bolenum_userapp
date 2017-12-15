@@ -152,7 +152,7 @@ span.exchange-color {
     /* font-size: 28px;
     font-weight: 600; */
     /* font-family: Lato; */
-    margin-left:  20px
+    margin-left:  7px;
     }
 
 .header-menu .navbar-default .navbar-nav>.open>a{
@@ -362,4 +362,15 @@ span.exchange-color {
         width: 51px;
     padding: 0px 18px;
     margin-left: -21px;
+}
+
+.header-menu .navbar.navbar-default {
+padding-left: 0px;
+    padding-right: 0px;
+
+}
+
+.header-menu .navbar-default {
+
+    padding: 23px 0px;
 }

@@ -1215,3 +1215,58 @@ toggle */
 .order-table-body-content {
     text-align: center;
 }
+
+
+/* new page css */
+ .margin-container {
+
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+
+}
+
+.chart-market{
+    border: 1px solid lightgray;
+    
+    margin-bottom: 50px;
+}
+
+.heading-left-border{
+    border-left: 4px solid #DB2828;
+}
+
+.head-pair-name{
+        text-align: center;
+    background-color: #DB2828;
+    border-radius: 19px;
+    padding: 6px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    width: 172px;
+}
+
+.heading-pair-margin-bootom{
+        margin-bottom: 36px;
+}
+
+.heading-margin{
+
+
+    margin-left: 0;
+    margin-right: 0;
+    
+}
+
+.trade-history-width{
+        width: 32.333333%;
+}
+
+.border-order-book{
+        border: 1px solid lightgray;
+}
+
+.margin-bootom-section{
+    margin-bottom: 36px;
+}

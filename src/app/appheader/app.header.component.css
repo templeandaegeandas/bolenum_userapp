@@ -88,7 +88,7 @@
 .navbar-brand img
 {
    margin-top:-5px;
-   margin-left:30px;
+   margin-left:0px;
    }
 
 .nav li > a{
@@ -137,13 +137,35 @@ span.exchange-color {
     /* font-size: 28px;
     font-weight: 600;
     font-family: Lato; */
-    margin-left:  20px
+    margin-left:  6px;
     }
+
+
+   .header-menu .navbar.navbar-default {
+    padding-left: 36px;
+    padding-right: 36px;
+}
 
 .header-menu .navbar-default .navbar-nav>.open>a{
    background: #fff;
    color: #000;
 }
+
+.navbar-margin{
+        margin-top: 0px;
+}
+
+.header-menu.navbar-default{
+   
+    height: 85px;
+    
+}
+
+.header-menu .navbar-collapse {
+    margin-top: 16px;
+}
+
+
 
 .navbar-default .navbar-brand {
     color: #1d1c1c;
@@ -153,7 +175,7 @@ span.exchange-color {
 .nav>li>a {
     position: relative;
     display: block;
-    padding: -6px 35px;
+    padding: 0px 20px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {

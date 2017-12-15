@@ -62,6 +62,18 @@ mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp 
 }
 
 body{
+        font-size: 1.1em;
      font-family: Lato-Regular-font;
+}
+
+.containt-bolenum{
+    font-family: Lato-Regular-font;
+    
+
+
+}
+
+.content-color{
+    color: red;
 }
 
