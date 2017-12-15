@@ -9,6 +9,8 @@ li {
 
 footer {
     background-color: #141415;
+    position: relative;
+    /* min-height: 265px; */
 }
 
 .footer-col {
@@ -77,6 +79,7 @@ footer {
 .copyright {
     min-height: 40px;
     background-color: #0C0C0C;
+    position: relative;
 }
 
 .copyright p {
