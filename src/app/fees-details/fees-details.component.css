@@ -2,3 +2,41 @@
     margin-top: 30px;
     margin-bottom: 80px
 }
+
+
+/* for depositetable */
+
+.deposite-Table table {
+    border-spacing: 0;
+}
+
+.deposite-Table tbody,
+.deposite-Table thead tr {
+    display: block;
+    text-align: center;
+}
+
+.deposite-Table tbody {
+    height: 351px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.deposite-Table tbody td,
+.deposite-Table thead th {
+    width: 189px;
+    padding: 6px;
+}
+
+
+
+/* for depositiable table */
+
+.panel-default .panel-heading {
+       background-color: #DB2828;
+    color: #fff;
+}
+
+.panel-body {
+    padding: 0;
+}

@@ -17,6 +17,7 @@ export class ForgotComponent implements OnInit {
   constructor(private forgetpasswordService: ForgetPasswordService, private toastrService: ToastrService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   forgetPassword(form) {

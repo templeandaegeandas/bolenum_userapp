@@ -3,9 +3,9 @@
     <div class="col-sm-8 col-sm-offset-2">
       <div class="dispute-section">
         <strong class="text-danger">Trade is under dispute</strong>
-        <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If send payment to the seller and not getting {{currencyAbr}} thenwe will solve this issue and your {{currencyAbr}} will be sent to {{walletAddress}}</p>
+        <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If you send payment to the seller and not getting {{currencyAbr}} then we will solve this issue and your {{currencyAbr}} will be received from {{walletAddress}}</p>
       </div>
-      <div class=" button-center" *ngIf="orderStatus != 'CANCELLED'">
+      <div class=" button-center" *ngIf="orderStatus == 'LOCKED'">
         <button type="submit" class="btn trade-button" (click)="cancelPay()">Cancel Trade</button>
       </div>
     </div>
@@ -24,12 +24,21 @@
 </div>
 <div *ngIf="orderStatus != 'CANCELLED'">
   <form #disputeForm=ngForm (submit)="raiseDispute(disputeForm)">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1 id">
-        <div class="form-group">
-          <label for="usr">Transaction ID:</label>
+    <div class="row margin-zero">
+      <div class="col-sm-12 margin-top-level">
+        <div class="row">
+          <div class="col-sm-6 text-right">
+            <label for="usr">Transaction ID:</label>
+            </div>
+        <div class="col-sm-6 id">
+        <div class="form-group ">
+          
           <input type="text" name="tId" #tId="ngModel" class="form-control input-text" class="form-control" id="usr" [(ngModel)]="transactionId" >
         </div>
+        </div>
+
+        </div>
+
       </div>
     </div>
     <div class="col-sm-10 col-sm-offset-1 margin-table">
@@ -48,12 +57,12 @@
             </div>
               </span>
               <div class="col-button">
-                <div class="col-sm-5">
-                  <button type="submit" class="btn btn-success green"> Submit</button>
+                <div class="col-sm-5 text-right">
+                  <button type="submit" class="btn button-dispute"> Submit</button>
                 </div>
                 <div class="col-sm-7">
                   <span id="fileselector">
-                  <label class="btn btn-default" for="upload-file-selector">
+                  <label class="btn upload-button" for="upload-file-selector">
                   <input id="upload-file-selector" #fileInput type="file" accept="image/x-png,image/jpeg,application/pdf">
                   <i class="fa_icon icon-upload-alt margin-correction"></i>Upload your payment proof
                   </label>
@@ -76,6 +85,7 @@
       </div>
     </div>
   </form>
+  <div class="clearfix"></div>
 </div>
 <div class="col-sm-10 col-sm-offset-1 margin-table">
   <div class="panel">
@@ -112,3 +122,4 @@
     </div>
   </div>
 </div>
+<div class="clearfix"></div>

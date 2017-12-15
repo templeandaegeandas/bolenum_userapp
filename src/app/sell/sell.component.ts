@@ -20,6 +20,7 @@ export class SellComponent implements OnInit {
   accountNumber: string;
   walletAddress: string;
   sellerName: string;
+  buyerName: string;
   orderVolume: any;
   currencyAbr: string;
   createdDate: any;
@@ -30,6 +31,7 @@ export class SellComponent implements OnInit {
   matchedOn: any;
   isConfirmed: any;
   isMatchedConfirm = false;
+  dispute = false;
   constructor(
     private sellService: SellService,
     private router: Router,
@@ -39,6 +41,7 @@ export class SellComponent implements OnInit {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       console.log(message)
       if (message == "ORDER_CANCELLED") {
+        this.dispute = false;
         if (this.subscription != null) {
           clearInterval(this.subscription);
         }
@@ -52,6 +55,7 @@ export class SellComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
@@ -73,6 +77,7 @@ export class SellComponent implements OnInit {
       this.walletAddress = success.data.walletAddress;
       this.totalPrice = success.data.totalPrice;
       this.sellerName = success.data.sellerName;
+      this.buyerName = success.data.buyerName;
       this.currencyAbr = success.data.currencyAbr;
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
@@ -80,6 +85,7 @@ export class SellComponent implements OnInit {
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
+      this.dispute = success.data.isDispute;
       this.startTradingTimer();
     }, error => this.router.navigate(['tradeNow']))
   }
@@ -110,6 +116,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
@@ -121,6 +130,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else if (this.orderStatus == 'LOCKED') {
@@ -128,10 +140,13 @@ export class SellComponent implements OnInit {
         clearInterval(this.subscription)
       }
       try {
-        document.getElementById("demo").innerHTML = "Order Matched";
+        document.getElementById("demo").innerHTML = "Please wait for buyer to make payment";
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     else {
@@ -143,6 +158,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
   }
@@ -169,6 +187,9 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
+        if (this.subscription) {
+          clearInterval(this.subscription)
+        }
       }
     }
     // If the count down is over, write some text
@@ -181,9 +202,11 @@ export class SellComponent implements OnInit {
         }
         catch (e) {
           console.log("exception handled")
+          if (this.subscription) {
+            clearInterval(this.subscription)
+          }
         }
       }
-      this.cancelPay();
     }
   }
 
@@ -193,7 +216,9 @@ export class SellComponent implements OnInit {
         clearInterval(this.subscription)
       }
       this.getOrderDetails();
-      this.router.navigate(['dashboard'])
+      if (this.subscription) {
+        clearInterval(this.subscription)
+      }
       this.toastrService.success("Trade Completed!", "Success!");
       console.log(success);
     })
@@ -207,6 +232,19 @@ export class SellComponent implements OnInit {
       this.getOrderDetails();
       this.toastrService.success(success.message, "Success!");
       console.log(success);
+    })
+    if (this.subscription) {
+      clearInterval(this.subscription)
+    }
+  }
+
+  disputeTrade() {
+    this.dispute = true;
+    if (this.subscription) {
+      clearInterval(this.subscription)
+    }
+    this.sellService.dispute(this.orderId).subscribe(success => {
+      this.toastrService.success(success.message, "Success");
     })
   }
 

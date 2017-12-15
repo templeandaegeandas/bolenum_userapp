@@ -127,6 +127,7 @@ export class ProfileComponent implements OnInit {
     });
   }
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getLoggedInUserDetails();
   }
 
@@ -353,8 +354,10 @@ export class ProfileComponent implements OnInit {
 
   readUrl(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size >= 1024 * 1024 * 5) {
-        this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
+      if (event.target.files[0].size >= 1024 * 1024 * 10) {
+        this.fileInput.nativeElement.value = "";
+        this.fileInputAddress.nativeElement.value = "";
+        this.toastrService.error("Please choose file less than 10 Mb!", 'Error!')
         return;
       }
       let fileName = event.target.files[0].name;
@@ -509,10 +512,13 @@ export class ProfileComponent implements OnInit {
 
   readUrlAddress(event) {
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].size > 1024 * 1024 * 5) {
-        this.toastrService.error("Please choose file less than 5 Mb!", 'Error!')
+      if (event.target.files[0].size > 1024 * 1024 * 10) {
+        this.fileInput.nativeElement.value = "";
+        this.fileInputAddress.nativeElement.value = "";
+        this.toastrService.error("Please choose file less than 10 Mb!", 'Error!')
         return;
       }
+      console.log("fghjk")
       let fileName = event.target.files[0].name;
       let dot = fileName.lastIndexOf(".")
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();

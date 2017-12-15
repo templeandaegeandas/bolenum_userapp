@@ -52,6 +52,7 @@ export class TradingComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
@@ -111,6 +112,7 @@ export class TradingComponent implements OnInit {
           }
           catch (e) {
             console.log("exception handled");
+            this.subscription.unsubscribe();
           }
         }
         // If the count down is over, write some text
@@ -123,9 +125,9 @@ export class TradingComponent implements OnInit {
             }
             catch (e) {
               console.log("exception handled");
+              this.subscription.unsubscribe();
             }
           }
-          this.cancelPay();
         }
       });
       // for timer
@@ -139,6 +141,7 @@ export class TradingComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled");
+        this.subscription.unsubscribe();
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
@@ -150,6 +153,7 @@ export class TradingComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled");
+        this.subscription.unsubscribe();
       }
     }
     else if (this.orderStatus == 'CANCELLED') {
