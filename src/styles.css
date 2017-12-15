@@ -8,53 +8,7 @@ chart
     width: 100% !important;
 }
 
-/*@font-face {
-    font-family: "Lato-Regular";
-    src: url(".assets/font/Lato-Regular.ttf");
-}
 
-.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled
-{
-    display: none;
-    border: none;
-}
-
-.mydp .selectiongroup {
-    position: relative;
-    display: table;
-    border: none;
-    border-spacing: 4px;
-    background-color: #FFF!important;
-    width: 3px;
-    outline: none;
-    margin-right: 20px;
-}
-
-.mydp, .mydp .headertodaybtn, .mydp .selection, .mydp .selectiongroup, .mydp .selector {
-     outline: none;
-     border: none;
-}
-.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled .mydp, .mydp .headertodaybtn span.mydpicon.icon-mydpremove{
-    border: transparent;
-    display: none;
-    border: none;
-}
-
-.btnclear.btnclearenabled {
-    display: none !important;
-}
-
-.mydp {
-    border: 0 !important;
-    background: none!important;
-    width: 20px;
-}
-mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp .headerbtn, .mydp .headermonthtxt, .mydp .headertodaybtn, .mydp .headeryeartxt, .mydp .yearchangebtn {
-    background: #DB2828 !important;
-    color:white !important;
-    
-    
-}*/
 
 @font-face{
     font-family: Lato-Regular-font;
@@ -62,18 +16,23 @@ mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp 
 }
 
 body{
-        font-size: 1.1em;
+
      font-family: Lato-Regular-font;
 }
 
-.containt-bolenum{
-    font-family: Lato-Regular-font;
-    
-
+.main_heading{
+    font-size: 20px;
 
 }
 
-.content-color{
-    color: red;
+.sub_heading{
+    font-size: 13px;
 }
+
+.content_text{
+    font-size: 10px;
+}
+
+
+
 
