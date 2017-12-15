@@ -196,14 +196,9 @@ export class TradeNowComponent implements OnInit {
     this.isLogIn();
     this.setTradingValue = "Limit Order";
     this.setTradeValue("Limit Order");
-    //this.getMarketPrice();
     this.getCurrencyList();
-    // setTimeout(() => {
       this.getAllTradedOrders();
-    // }, 100);
-    // setTimeout(() => {
       this.getMyOrdersFromBook();
-    // }, 100);
     this.userId = localStorage.getItem('userId');
     this.tradingFees()
   }
@@ -269,14 +264,6 @@ export class TradeNowComponent implements OnInit {
       this.toastrService.error("Order value should be 0.0001", 'Error!');
       return;
     }
-    /*if(volume < 0.0001) {
-      this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Success!');
-      return;
-    }
-    if(price < 0.0001) {
-      this.toastrService.error("You can't create order with less than 0.0001 price!", 'Error!');
-      return;
-    }*/
     if (this.setTradingValue == 'Limit Order') {
       if (volume == '' || price == '') {
         this.hasAmount = true;
@@ -348,21 +335,15 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      // setTimeout(() => {
         this.getAllTradedOrders();
-      // }, 100);
-      // setTimeout(() => {
         this.getMyOrdersFromBook();
-      // }, 100);
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
       console.log(success.data)
       if (this.order.orderType == 'BUY') {
-        // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
         this.router.navigate(['trading/' + success.data.orderId]);
       }
       else {
-        // this.appEventEmiterService.changeMessage(JSON.stringify(success.data));
         this.router.navigate(['sell/' + success.data.orderId]);
       }
     }, error => {
@@ -375,11 +356,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   createOrder() {
-   /* if(this.order.volume < 0.0001) {
-      this.buySellModel.hide();
-      this.toastrService.error("You can't create order with less than 0.0001 volume!", 'Error!');
-      return;
-    }*/
     if((this.order.price * this.order.volume) < 0.0001) {
       this.buySellModel.hide();
       this.toastrService.error("Order value should be 0.0001", 'Error!');
@@ -399,12 +375,8 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = '';
       this.tradingFee=0.0;
       this.priceWithFee=0.0;
-      // setTimeout(() => {
         this.getAllTradedOrders();
-      // }, 100);
-      // setTimeout(() => {
         this.getMyOrdersFromBook();
-      // }, 100);
       this.getUserBalance();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
@@ -438,6 +410,10 @@ export class TradeNowComponent implements OnInit {
       this.secondCurrencyType = this.pairList[0].pairedCurrency[0].currencyType;
       let pairId = this.pairList[0].pairId;
       let pairName = this.pairList[0].pairName;
+      let pairArray = pairName.split("/")
+      if(pairArray[0]=='BLN') {
+        this.minPrice = this.pairList[0].toCurrency[0].priceNGN;
+      }
       this.changePair(pairId, pairName);
       this.loading = false;
     }, error => {
@@ -457,9 +433,7 @@ export class TradeNowComponent implements OnInit {
     }
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
-    // setTimeout(() => {
       this.getSellOrderBookData(pairId);
-    // }, 500);
     this.order.price = '';
     this.order.volume = '';
     this.loading = false;
@@ -627,7 +601,6 @@ export class TradeNowComponent implements OnInit {
     else {
       console.log(this.price)
       if(this.price == '') {
-        console.log(this.price)
         this.price = this.minPrice;
       }
       this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
