@@ -429,7 +429,7 @@
               <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
             </tr>
             <tr *ngIf="myOrdersInBookLength >=10" >
-                <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>
+                <td colspan="6" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>
             </tr>
             <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
               <p>You have no open orders . . . !</p>
