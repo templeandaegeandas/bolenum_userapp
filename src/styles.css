@@ -20,6 +20,10 @@ body{
      font-family: Lato-Regular-font;
 }
 
+.boxShadow-card{
+          box-shadow: 1px 1px 3px -2px #644C47;
+}
+
 .main_heading{
     font-size: 20px;
 
@@ -33,6 +37,14 @@ body{
     font-size: 12px;
 }
 
+.lebel-heading{
+    font-size: 13px;
+}
+
+.button-font-size{
+    font-size: 10px;
+
+}
 
 
 

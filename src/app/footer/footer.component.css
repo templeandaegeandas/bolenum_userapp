@@ -68,6 +68,12 @@ footer {
     color: #DA2828;
 }
 
+.footer-cursor-pointer:hover{
+     transition: color 0.2s linear 0s, background 0.2s linear 0s;
+    color: #DA2828;
+
+}
+
 .copyright {
     min-height: 40px;
     background-color: #0C0C0C;
