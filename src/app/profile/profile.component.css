@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 .container-fluid {
     background: #f8f8f8;
 }
@@ -16,52 +15,10 @@
     content: " ";
     display: table;
 }
-/* font-family and font size for all profile */
-.profile-font{
-       font-family: Lato-Regular-font !important;
-}
-
- .heading-font-size{
-
-font-size: 18px !important;
-
-}
-
-.sub-heading-font-size{
-
-    font-size: 17px !important;
-
-}
-
-.content-font-size{
-
-    font-size: 16px !important;
-
-
-
-}
-
-.butoon-font{
-
-    font-family: Lato-Regular-font !important;
-      font-size: 12px !important;
-
-
-}
-
-.profile-fontSize{
-
-     font-size: 21px !important;
-
-}
-
-/* font-family and font size for all profile */
 
 .clearfix:after {
     clear: both;
 }
-
-
 
 h1 {
     color: #ccc;
@@ -84,19 +41,9 @@ a {
 }
 
 .head-icon {
-    /*position: absolute;
-    top: 172px;
-    margin-left: 294px;*/
     color: white;
-    font-size: 20px;
+   
 }
-
-
-/*.header-text {
-   position: absolute;
-    bottom: 28%;
-    left: 8%;
-}*/
 
 .top-profile {
     background-image: url("/assets/images/header (1).png");
@@ -105,9 +52,6 @@ a {
 }
 
 .slider-info {
-    /*position: absolute;
-    top: 50%;
-    transform: translateY(-50%);*/
     display: table;
 }
 
@@ -124,19 +68,15 @@ a {
 
 p.top-text {
     color: white;
-    font-size: 23px;
-    /*margin-left: 294px;
-    position: absolute;
-    top: 138px;*/
+   
 }
 
 .profile-email {
     position: absolute;
     top: 209px;
     margin-left: 258px;
-    font-size: 22px;
+   
     color: #FFFFFF;
-    /* padding-top: 20px; */
 }
 
 .tab_container {
@@ -158,7 +98,7 @@ section {
 
 label {
     font-weight: 600;
-    font-size: 16px;
+ 
     display: block;
     float: left;
     width: 32%;
@@ -208,7 +148,7 @@ label {
 
 .upload-kyc {
     text-align: center;
-        margin-top: 3%;
+    margin-top: 3%;
     margin-left: 19px;
 }
 
@@ -251,7 +191,7 @@ label {
 .text-danger {
     color: #a94442;
     margin: 1px;
-    font-size: 15px;
+    
 }
 
 .sign-block {
@@ -265,7 +205,7 @@ img.img-header {
 }
 
 p.kyc-text {
-    font-size: 17px;
+    
     text-transform: uppercase;
     color: #747474;
     text-align: center;
@@ -322,7 +262,7 @@ p.kyc-text {
     position: absolute;
     top: .1em;
     left: .1em;
-    font-size: 1.3em;
+    
     line-height: 0.8;
     color: #09ad7e;
     transition: all .2s;
@@ -416,10 +356,10 @@ a {
 
 @media only screen and (max-width: 930px) {
     label span {
-        font-size: 14px;
+    
     }
     label .fa {
-        font-size: 14px;
+        
     }
 }
 
@@ -430,7 +370,7 @@ a {
 .locate-details {
     cursor: pointer;
     color: #DB2828;
-    font-size: 17px;
+    
 }
 
 .margin-account-holder-name {
@@ -459,8 +399,6 @@ a {
 
 .col-backgrnd {
     background: #FFFFFF;
-    /*float: left;
-    width: 105%;*/
     height: 440px;
     margin: 0px -5px 0 -13px;
     border-radius: 4px;
@@ -470,18 +408,17 @@ a {
 p.text-title {
     position: absolute;
     top: 27px;
-    font-size: 25px;
+    
     font-weight: 500;
     color: #747474;
 }
 
 p.last-prof {
-    font-size: 20px;
+
     margin: 18px;
 }
 
 .email-text {
-    /* margin-left: 26px; */
     padding: 5px 24px;
     margin-bottom: 24px;
 }
@@ -489,8 +426,7 @@ p.last-prof {
 a.btn.btn-dark-blue {
     width: 80%;
     padding: 8px;
-    /* font-family: lato; */
-    font-size: 25px;
+
     font-weight: 600;
     color: #fb162B;
     border: 1px solid #CACACA;
@@ -526,13 +462,12 @@ span.dolor {
 
 p.text1 {
     margin-top: 55px;
-    /* font-family: lato; */
-    font-size: 18px;
+
     color: black;
 }
 
 p.text2 {
-    font-size: 22px;
+    
     margin-bottom: 14px;
     color: #CDCDCD;
     font-weight: 400;
@@ -540,7 +475,7 @@ p.text2 {
 
 p.text3 {
     margin-top: 10px;
-    font-size: 18px;
+    
     color: #686868;
 }
 
@@ -555,20 +490,32 @@ p.text3 {
     border: 2px solid #d5b6b6 !important;
     border-radius: 7px !important;
     padding: -23px;
-    /* width: 9px; */
 }
 
 .prof-verify {
-    /* padding: 20px; */
     background: white;
     margin: 20px -15px 0;
     padding: 15px;
     border-radius: 4px;
 }
 
+img.porf-pic {
+    position: absolute;
+    margin-left: 5px;
+    border-radius: 7px;
+    border: 2px solid;
+    border-color: lightgray;
+}
+
 img.profile-img {
     height: 330px;
     width: 100%;
+}
+
+.profile-pic-header {
+    border-radius: 3px;
+    border: 2px solid;
+    border-color: lightgray;
 }
 
 .profile-new-var {
@@ -627,24 +574,17 @@ input#usr1ed {
     outline: none;
 }
 
-.mobile-edit{
-  cursor: pointer;
+.mobile-edit {
+    cursor: pointer;
 }
 
-.intl-tel-input.allow-dropdown .selected-flag, .intl-tel-input.separate-dial-code .selected-flag {
+.intl-tel-input.allow-dropdown .selected-flag,
+.intl-tel-input.separate-dial-code .selected-flag {
     width: 46px;
     outline: 0;
 }
 
 input#usrphone {
-    /*display: inline-block;
-    padding: 2px 8px;
-    width: 153px;
-    border-radius: -13px;
-    border-radius: 8px;
-    box-shadow: none;
-    border: 2px solid #e2d8d8;
-    outline: none;*/
     position: relative;
     bottom: 0px;
     display: inline-block;
@@ -667,7 +607,7 @@ span#fileselector label.btn.btn-default {
     background: #DB2828;
     border-color: #DB2828;
     color: white;
-    font-size: 15px;
+
     min-height: 21px;
 }
 
@@ -701,7 +641,6 @@ select#usr {
     outline: none;
     width: 204px;
     background: none;
-    /* border: 2px #e2d8d8; */
     border-color: 2px #e2d8d8;
     border-color: #8a5858;
     border: 2px solid #e2d8d8;
@@ -717,17 +656,17 @@ hr {
 }
 
 p.icon-name {
-    font-size: 20px;
+    
     color: #747474;
     margin-left: 2px;
     font-weight: 500;
 }
 
 p.text-icon {
-    font-size: 15px;
+    
     margin-left: 3px;
-    color: #CDCDCD;
-    font-size: 18px;
+    /* color: #CDCDCD; */
+    
 }
 
 .btn-success:hover {
@@ -736,7 +675,7 @@ p.text-icon {
 }
 
 p.col-id {
-    font-size: 19px;
+
     padding: 4px;
     color: #8a8787;
     font-weight: 600;
@@ -756,12 +695,6 @@ button.btn.btn-defaults {
     margin-bottom: 27px;
 }
 
-
-/*.custom-data {
-    border-right: 1px solid #ccc;
-}
-*/
-
 label.btn.btn-dark-blue {
     width: 464px;
     color: #FB162B;
@@ -779,7 +712,7 @@ label.btn.btn-dark-blue {
 
 span.font-1 {
     color: black;
-    font-size: 17px;
+    
     padding: -31px;
 }
 
@@ -832,13 +765,13 @@ select#usred {
 
 p.bank-icon {
     color: #D4D4D4;
-    font-size: 16px;
+    
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 p.bank-text {
-    font-size: 18px;
+
     color: #747474;
 }
 
@@ -898,7 +831,7 @@ img.porf-pic {
 /*kyc section */
 
 p.kyc-text {
-    font-size: 17px;
+    
     text-transform: uppercase;
     color: #747474;
     text-align: center;
@@ -931,7 +864,6 @@ img.img-.bakprofile {
     color: #fff;
     background-color: #DB2828;
     border-color: #DB2828;
-    /* width: 111px; */
     margin-left: 34%;
     padding: 9px;
 }
@@ -947,14 +879,11 @@ img.img-center {
     margin: 0;
     text-align: center;
     display: block;
-    /* width: 34%; */
 }
 
 a.btn.btn-dark-blue {
     width: 87%;
     padding: 5px;
-    /* font-family: lato; */
-    font-size: 18px;
     font-weight: 600;
     color: #fB162B;
     border: 1px solid #CACACA;
@@ -967,7 +896,7 @@ span.kyc-color {
 
 .kyc-data {
     text-align: center;
-    font-size: 15px;
+
 }
 
 
@@ -984,7 +913,6 @@ label.switch {
     min-width: 26%;
     min-height: 16%;
     position: relative;
-    /* color: red; */
 }
 
 .uploadbtn {
@@ -1024,17 +952,17 @@ label.switch {
     left: 0;
     right: 0;
     bottom: 0;
-     background-color: #DB2828;
+    background-color: #DB2828;
     ;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
-.sliderOff{
+.sliderOff {
     background-color: #32CD32;
 }
 
-.sliderOn{
+.sliderOn {
     background-color: #DB2828;
 }
 
@@ -1136,9 +1064,7 @@ button.btn.btn-primary.new {
 }
 
 label.btn-bs-file.btn.btn-lg.btn-success {
-    /* width: 106px; */
     margin-right: 7px;
-    /* padding: 2px 2px 2px 2px; */
     min-height: 20px;
 }
 
@@ -1147,9 +1073,7 @@ button.btnbrowse {
     border-radius: 4px;
     outline: none;
     border: none;
-    font-size: 16px;
-    /* width: 200px; */
-    font-size: 15px;
+   
     font-weight: 600;
     background: #DB2828;
     color: #FFFFFF;
@@ -1157,7 +1081,6 @@ button.btnbrowse {
 
 .bank-client-details {
     float: left;
-    /* margin-left: 20px; */
     padding: 2px;
     margin-bottom: 24px;
 }
@@ -1171,7 +1094,6 @@ button.btnbrowse {
 
 @keyframes fadeInScale {
     0% {
-        /*transform: scale(0.9);*/
         opacity: 0;
     }
     100% {
@@ -1188,7 +1110,7 @@ button.btnbrowse {
     margin-left: 90px;
     color: #D4D4D4;
     margin-top: 6px;
-    font-size: 16px;
+  
 }
 
 .margin-balance {
@@ -1311,7 +1233,7 @@ p.createdepositmodal-heading.hedartext {
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
     label .fa {
-        font-size: 16px;
+     
     }
     span.slider.round {
         margin-top: 25px;
@@ -1335,7 +1257,7 @@ p.createdepositmodal-heading.hedartext {
         width: 100%;
     }
     p.popup-text {
-        font-size: 12px;
+       
         text-align: justify;
         margin-top: -28px;
     }
@@ -1344,7 +1266,7 @@ p.createdepositmodal-heading.hedartext {
     }
     label {
         font-weight: 700;
-        font-size: 18px;
+      
         display: block;
         float: left;
         width: 33%;
@@ -1359,10 +1281,10 @@ p.createdepositmodal-heading.hedartext {
         margin-left: 50px;
     }
     p.top-text {
-        font-size: 14px;
+      
     }
     .head-icon {
-        font-size: 14px;
+       
     }
     .header-text img {
         width: 75px;
@@ -1383,7 +1305,6 @@ p.createdepositmodal-heading.hedartext {
     }
     .mob-tab-content {
         margin: 0 auto;
-        /*display: block*/
     }
     .tab_container {
         margin-left: 28px !important;
@@ -1483,7 +1404,6 @@ p.createdepositmodal-heading.hedartext {
         margin-left: -21px;
     }
     img.img-center {
-        /* height: 360px; */
         margin: 0 auto;
         display: block;
         height: auto;
@@ -1500,16 +1420,16 @@ p.createdepositmodal-heading.hedartext {
     }
 }
 
-.mobile-verification{
-        padding-top: 43px;
+.mobile-verification {
+    padding-top: 43px;
     padding-left: 31px;
 }
 
-.kyc_margin{
-        text-align: center;
+.kyc_margin {
+    text-align: center;
     margin-bottom: 6px;
 }
 
-.p_margin{
-   margin: 0 0 0px;
+.p_margin {
+    margin: 0 0 0px;
 }
