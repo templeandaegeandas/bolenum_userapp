@@ -282,7 +282,7 @@
         <div class="row" *ngIf="isCustomerView">
           <div class="col-md-12">
             <div class="col-md-6 bank-details-card-width" *ngFor="let customerData of getOurBankDetails">
-              <div class="bank-backgrnd bank-details-padding">
+              <div class="bank-backgrnd bank-details-padding boxShadow-card">
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
                     <div class="col-md-6">
@@ -332,7 +332,7 @@
       <section id="content2" class="tab-content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12 col-xs-6 user-bank-details" *ngIf=accounDetails>
+            <div class="col-md-12 col-xs-6 user-bank-details boxShadow-card" *ngIf=accounDetails>
               <form #customerDetaisForm="ngForm" (ngSubmit)=" customerDetails(customerDetaisForm)" autocomplete="false">
                 <div class="col-md-10 col-md-offset-2 form-left">
                   <div class="row margin-balance-details">
@@ -410,7 +410,7 @@
           <div class="row">
             <!-- for identity verification status start -->
             <div class=" col-lg-6 col-md-6 col-sm-6">
-              <div class="kyc-col">
+              <div class="kyc-col boxShadow-card">
                 <div class="kyc-details">
                   <p class="kyc-text profile-font sub-heading-font-size p_margin lebel-heading">national identity verification status</p>
                   <div class="kyc_margin"><span class="kyc-color content_text"> {{nationalIdStatus}} </span></div>
@@ -444,7 +444,7 @@
             <!-- for identity verification status end -->
             <!-- for address proof verification start -->
             <div class=" col-lg-6 col-md-6 col-sm-6">
-              <div class="kyc-col">
+              <div class="kyc-col boxShadow-card">
                 <div class="kyc-details">
                   <p class="kyc-text profile-font sub-heading-font-size p_margin lebel-heading"> Address Proof Verification status</p>
                   <div class="kyc_margin"><span class="kyc-color profile-font content_text"> {{addressIdStatus}} </span></div>
