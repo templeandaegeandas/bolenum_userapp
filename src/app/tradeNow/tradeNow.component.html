@@ -426,7 +426,7 @@
               <td>{{orders.volume | number:'1.1-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.price * orders.volume | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.createdOn | date}}</td>
-              <td><button class="trade-button-buy " (click)="cancelOrderModel(orders.id)">Cancel Order</button></td>
+              <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
             </tr>
             <tr *ngIf="myOrdersInBookLength >=10" >
                 <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>

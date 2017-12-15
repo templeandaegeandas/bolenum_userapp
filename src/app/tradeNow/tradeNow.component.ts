@@ -61,7 +61,7 @@ export class TradeNowComponent implements OnInit {
   myTradedList: any;
   allTradedList: any;
   myOrdersInBook: any;
-  userId: number;
+  userId: any;
   selecedOrderId: any;
   showModal: boolean = false;
   amount: any;
@@ -112,12 +112,12 @@ export class TradeNowComponent implements OnInit {
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
         this.getMyTradedOrders();
-        setTimeout(() => {
+        // setTimeout(() => {
           this.getAllTradedOrders();
-        }, 100);
-        setTimeout(() => {
+        // }, 100);
+        // setTimeout(() => {
           this.getMyOrdersFromBook();
-        }, 100);
+        // }, 100);
       }
     });
     this.options = {
@@ -198,17 +198,13 @@ export class TradeNowComponent implements OnInit {
     this.setTradeValue("Limit Order");
     //this.getMarketPrice();
     this.getCurrencyList();
-    setTimeout(() => {
+    // setTimeout(() => {
       this.getAllTradedOrders();
-    }, 100);
-    setTimeout(() => {
+    // }, 100);
+    // setTimeout(() => {
       this.getMyOrdersFromBook();
-    }, 100);
-    this.tradeNowService.getUserDetails().subscribe(success => {
-      this.userId = success.data.userId;
-    }, error => {
-      console.log(error)
-    })
+    // }, 100);
+    this.userId = localStorage.getItem('userId');
     this.tradingFees()
   }
 
@@ -352,12 +348,12 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      setTimeout(() => {
+      // setTimeout(() => {
         this.getAllTradedOrders();
-      }, 100);
-      setTimeout(() => {
+      // }, 100);
+      // setTimeout(() => {
         this.getMyOrdersFromBook();
-      }, 100);
+      // }, 100);
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
       console.log(success.data)
@@ -403,12 +399,12 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = '';
       this.tradingFee=0.0;
       this.priceWithFee=0.0;
-      setTimeout(() => {
+      // setTimeout(() => {
         this.getAllTradedOrders();
-      }, 100);
-      setTimeout(() => {
+      // }, 100);
+      // setTimeout(() => {
         this.getMyOrdersFromBook();
-      }, 100);
+      // }, 100);
       this.getUserBalance();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
@@ -461,9 +457,9 @@ export class TradeNowComponent implements OnInit {
     }
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
-    setTimeout(() => {
+    // setTimeout(() => {
       this.getSellOrderBookData(pairId);
-    }, 500);
+    // }, 500);
     this.order.price = '';
     this.order.volume = '';
     this.loading = false;
