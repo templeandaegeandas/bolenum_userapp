@@ -117,10 +117,10 @@ export class TradeNowComponent implements OnInit {
         this.getSellOrderBookData(this.pairId);
         this.getMyTradedOrders();
         // setTimeout(() => {
-          this.getAllTradedOrders();
+        this.getAllTradedOrders();
         // }, 100);
         // setTimeout(() => {
-          this.getMyOrdersFromBook();
+        this.getMyOrdersFromBook();
         // }, 100);
       }
     });
@@ -129,7 +129,7 @@ export class TradeNowComponent implements OnInit {
         type: 'areaspline'
       },
       title: {
-        text:''
+        text: ''
       },
       legend: {
         marker: { symbol: 'square', radius: 12 }
@@ -202,8 +202,8 @@ export class TradeNowComponent implements OnInit {
     this.setTradingValue = "Limit Order";
     this.setTradeValue("Limit Order");
     this.getCurrencyList();
-      this.getAllTradedOrders();
-      this.getMyOrdersFromBook();
+    this.getAllTradedOrders();
+    this.getMyOrdersFromBook();
     this.userId = localStorage.getItem('userId');
     this.tradingFees()
   }
@@ -214,7 +214,6 @@ export class TradeNowComponent implements OnInit {
       this.buyOrderList.map(value => {
         this.totalBuy = value.volume * value.price;
       });
-      console.log(this.totalBuy)
       this.buyOrderLength = this.buyOrderList.length;
     })
   }
@@ -308,7 +307,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   cancelOrderModel(id) {
-    console.log(id)
     this.cancelOrderId = id;
     this.orderCancelModel.show();
   }
@@ -334,11 +332,10 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-        this.getAllTradedOrders();
-        this.getMyOrdersFromBook();
+      this.getAllTradedOrders();
+      this.getMyOrdersFromBook();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
-      console.log(success.data)
       if (this.order.orderType == 'BUY') {
         this.router.navigate(['trading/' + success.data.orderId]);
       }
@@ -349,13 +346,15 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
+      this.tradingFee = 0.0;
+      this.priceWithFee = 0.0;
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
   }
 
   createOrder() {
-    if((this.order.price * this.order.volume) < 0.0001) {
+    if ((this.order.price * this.order.volume) < 0.0001) {
       this.buySellModel.hide();
       this.toastrService.error("Order value should be 0.0001", 'Error!');
       return;
@@ -372,10 +371,10 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.tradingFee=0.0;
-      this.priceWithFee=0.0;
-        this.getAllTradedOrders();
-        this.getMyOrdersFromBook();
+      this.tradingFee = 0.0;
+      this.priceWithFee = 0.0;
+      this.getAllTradedOrders();
+      this.getMyOrdersFromBook();
       this.getUserBalance();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
@@ -384,8 +383,8 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.tradingFee=0.0;
-      this.priceWithFee=0.0;
+      this.tradingFee = 0.0;
+      this.priceWithFee = 0.0;
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
@@ -424,7 +423,7 @@ export class TradeNowComponent implements OnInit {
       this.getCurrencyList();
     })
   }
-  
+
   cancelOrder() {
     this.tradeNowService.cancelOrder(this.cancelOrderId).subscribe(success => {
       this.hideOrderCancelModel();
@@ -450,6 +449,8 @@ export class TradeNowComponent implements OnInit {
     this.getSellOrderBookData(pairId);
     this.order.price = '';
     this.order.volume = '';
+    this.tradingFee = 0.0;
+    this.priceWithFee = 0.0;
     this.loading = false;
   }
 
@@ -614,7 +615,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       console.log(this.price)
-      if(this.price == '') {
+      if (this.price == '') {
         this.price = this.minPrice;
       }
       this.tradeNowService.getListFiatOrders(this.amount, this.price, orderType, this.pairId).subscribe(success => {
@@ -666,7 +667,6 @@ export class TradeNowComponent implements OnInit {
     this.order.price = this.price;
     this.order.totalVolume = this.amount;
     this.tradeNowService.createAdvertisment(this.order, this.pairId).subscribe(success => {
-      console.log(success);
       this.getBuyOrderBookData(this.pairId);
       this.getSellOrderBookData(this.pairId);
       this.getMyOrdersFromBook();
