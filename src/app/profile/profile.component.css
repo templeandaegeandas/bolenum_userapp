@@ -61,9 +61,16 @@ a {
 }
 
 .slider-info .slider-title {
-    padding: 0 95px;
-    vertical-align: middle;
+       padding: 0px 20px;
+    vertical-align: bottom;
     display: table-cell;
+}
+
+.linkOnHover:hover{
+    text-decoration: underline;
+    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+    color: #DA2828;
+    cursor: pointer;
 }
 
 p.top-text {
@@ -78,6 +85,8 @@ p.top-text {
    
     color: #FFFFFF;
 }
+
+
 
 .tab_container {
     width: 73%;
@@ -96,8 +105,12 @@ section {
     display: none;
 }
 
+.label-box-shadow{
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
 label {
-    font-weight: 600;
+    /* font-weight: 600; */
  
     display: block;
     float: left;
@@ -108,6 +121,7 @@ label {
     text-align: center;
     background: #FFFFFF;
     min-height: 130px;
+    
 }
 
 #tab1:checked~#content1,
@@ -137,14 +151,23 @@ label {
 }
 
 .tab_container [id^="tab"]:checked+label {
-    border-bottom: 3px solid #DB2828;
+    border-bottom: 2px solid #DB2828;
     ;
     background: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    box-shadow: 0 0 9px #636363;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,5,0.2);
     transform: scale(1.1, 1.1)
 }
+
+.tab_container [id^="tab"]:hover {
+   
+}
+
+.margin-top-profile{
+    margin-top: 31px;
+}
+
 
 .upload-kyc {
     text-align: center;
@@ -174,24 +197,56 @@ label {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/profile (1).png");
+     -webkit-animation: none;
+    
 }
 
 .tab_container [id^="tab"]:checked+label .img-tab1 {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/bank_details_f.png");
+    -webkit-animation: none;
 }
 
 .tab_container [id^="tab"]:checked+label .img-tab2 {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/KYC_f.png");
+    -webkit-animation: none;
 }
+
+
+.img-tab:hover {
+
+     background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/assets/images/profile (1).png");
+    -webkit-animation: fadeInScale 0.7s ease-in-out;
+}
+.img-tab1:hover {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/assets/images/bank_details_f.png");
+        -webkit-animation: fadeInScale 0.7s ease-in-out;
+}
+
+.img-tab2:hover {
+    background-repeat: no-repeat;
+    background-position: center;
+     background-image: url("/assets/images/KYC_f.png");
+         -webkit-animation: fadeInScale 0.7s ease-in-out;
+}
+
+
 
 .text-danger {
     color: #a94442;
     margin: 1px;
     
+}
+
+.box-hover:hover{
+    color: red;
 }
 
 .sign-block {
@@ -209,12 +264,12 @@ p.kyc-text {
     text-transform: uppercase;
     color: #747474;
     text-align: center;
-    padding: 11px;
+    /* padding: 11px; */
 }
 
 .kyc-col {
     background: #FFFFFF;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .bank-backgrnds {
@@ -373,6 +428,10 @@ a {
     
 }
 
+.lebel-image-margin{
+        margin-top: 9px;
+}
+
 .margin-account-holder-name {
     margin-left: 65px;
 }
@@ -399,10 +458,14 @@ a {
 
 .col-backgrnd {
     background: #FFFFFF;
-    height: 440px;
+    height: 432px;
     margin: 0px -5px 0 -13px;
     border-radius: 4px;
-    padding: 34px 3px 47px 43px;
+    padding: 34px 3px 47px 32px;
+}
+
+.new-col-background{
+        padding: 37px 0px 56px 48px;
 }
 
 p.text-title {
@@ -419,7 +482,7 @@ p.last-prof {
 }
 
 .email-text {
-    padding: 5px 24px;
+    padding: 15px 29px;
     margin-bottom: 24px;
 }
 
@@ -440,7 +503,7 @@ span.dolor {
     background: #FFFFFF;
     padding: 18px 2px 27px 33px;
     border-radius: 5px;
-    height: 440px;
+    height: 432px;
     width: 560px;
 }
 
@@ -485,6 +548,16 @@ p.text3 {
     margin-top: 7px;
 }
 
+.email-img-new{
+    float: left;
+    margin-right: 9px;
+    margin-top: 13px;
+}
+
+.button-align{
+    margin-left: 379px;
+}
+
 .mydp,
 .mydp .headertodaybtn {
     border: 2px solid #d5b6b6 !important;
@@ -513,8 +586,15 @@ img.profile-img {
 }
 
 .profile-pic-header {
-    border-radius: 3px;
-    border: 2px solid;
+    border-radius: 2px !important;
+    border: 1px solid !important;
+    border-color: lightgray  !important;
+}
+
+img.porf-pic {
+    
+    border-radius: 2px;
+    border: 1px solid !important;
     border-color: lightgray;
 }
 
@@ -590,9 +670,9 @@ input#usrphone {
     display: inline-block;
     padding: 9px 50px;
     border-radius: -13px;
-    border-radius: 8px;
+    border-radius: 3px;
     box-shadow: none;
-    border: 2px solid #e2d8d8;
+    border: 1px solid #e2d8d8;
     outline: none;
 }
 
@@ -614,8 +694,8 @@ span#fileselector label.btn.btn-default {
 button.btn.btn-successsave {
     background: #DB2828;
     color: white;
-    margin-right: 116px;
-    margin-top: 20px;
+    /* margin-right: 116px;
+    margin-top: 20px; */
     outline: none;
 }
 
@@ -630,9 +710,15 @@ button.btn.btn-back {
 button.btn.btn-successsavedetail {
     background: #DB2828;
     color: white;
-    margin-right: 115px;
-    margin-top: 3px;
+    /* margin-right: 115px;
+    margin-top: 3px; */
     outline: none;
+}
+
+
+.email-text-new{
+        padding: 16px 32px;
+    margin-bottom: 14px;
 }
 
 select#usr {
@@ -711,7 +797,7 @@ label.btn.btn-dark-blue {
 }
 
 span.font-1 {
-    color: black;
+    color: gray;
     
     padding: -31px;
 }
@@ -764,7 +850,7 @@ select#usred {
 }
 
 p.bank-icon {
-    color: #D4D4D4;
+    /* color: #D4D4D4; */
     
     text-overflow: ellipsis;
     overflow: hidden;
@@ -811,6 +897,15 @@ input#user {
     filter: alpha(opacity=50)
 }
 
+.input-box-edit{
+    
+    padding: 8px 8px !important;
+    width: 206px !important;
+    border-radius: 3px !important;
+    border: 1px solid #e2d8d8 !important;
+   
+}
+
 input#usrcode {
     display: block;
     padding: 2px 8px;
@@ -824,7 +919,8 @@ input#usrcode {
 
 img.porf-pic {
     position: absolute;
-    margin-left: 46px;
+    margin-left: 0px;
+        top: 83px;
 }
 
 
@@ -835,7 +931,7 @@ p.kyc-text {
     text-transform: uppercase;
     color: #747474;
     text-align: center;
-    padding: 11px;
+    /* padding: 11px; */
 }
 
 .kyc-col {
@@ -869,7 +965,7 @@ img.img-.bakprofile {
 }
 
 img.img-center {
-    height: 360px;
+    height: 325px;
     max-width: 720px;
     margin: 0 auto;
     display: block;
@@ -956,6 +1052,7 @@ label.switch {
     ;
     -webkit-transition: .4s;
     transition: .4s;
+    
 }
 
 .sliderOff {
@@ -990,15 +1087,15 @@ label.switch {
 }
 
 .slider:before {
-    position: absolute;
+       position: absolute;
     content: "";
-    height: 36px;
-    width: 36px;
-    left: 4px;
-    bottom: 4px;
+    height: 27px;
+    width: 28px;
+    left: 6px;
+    bottom: 2px;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s;
+    
 }
 
 button.btn.btn-successsave-verify {
@@ -1036,8 +1133,8 @@ input:checked+.slider:before {
 }
 
 span.slider.round {
-    width: 67px;
-    height: 42px;
+        width: 59px;
+    height: 31px;
 }
 
 button.btn.btn-primary.new {
@@ -1074,7 +1171,7 @@ button.btnbrowse {
     outline: none;
     border: none;
    
-    font-weight: 600;
+
     background: #DB2828;
     color: #FFFFFF;
 }
@@ -1212,7 +1309,7 @@ p.createdepositmodal-heading.hedartext {
 }
 
 .kyc-image-formate {
-    margin-top: 12px;
+    margin-top: 1px;
 }
 
 .phone_number-margin {
@@ -1265,7 +1362,7 @@ p.createdepositmodal-heading.hedartext {
         margin-right: -7px;
     }
     label {
-        font-weight: 700;
+        /* font-weight: 700; */
       
         display: block;
         float: left;
@@ -1348,7 +1445,7 @@ p.createdepositmodal-heading.hedartext {
         float: none;
     }
     button.btn.btn-successsavedetail {
-        margin-right: 134px;
+        /* margin-right: 134px; */
     }
 }
 
@@ -1421,13 +1518,13 @@ p.createdepositmodal-heading.hedartext {
 }
 
 .mobile-verification {
-    padding-top: 43px;
-    padding-left: 31px;
+    padding-top: 56px;
+    padding-left: 24px;
 }
 
 .kyc_margin {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: 1px;
 }
 
 .p_margin {
