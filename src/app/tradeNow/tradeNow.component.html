@@ -14,20 +14,74 @@
   </div>
 </div>
 <!-- for images -->
-<div class="container container-padding ">
+<div class="container-fluid">
+
+<div class="col-sm-12">
+  <div class="col-md-3 padding-0">
+  <div class="aside clearfix">
+      <div class="text-center">
+      <div class="row">
+        <div class="col-md-12 marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding"  *ngFor="let coinList of currecyList">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered market-margin ">
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-9 padding-0">
+
+<div class="main">
+  <!-- <first Row> -->
   <div class="row tradeNow-background-img">
     <!-- new page -->
-    <div class="col-md-6  ">
-      <div class="exchange-border-right">
+
+    <div class="text-left">
+       <div class="exchange-border-right">
       <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
        <div class="exchange-pair-text">{{pairName}}</div>
       </div>
-      <!-- for bln btc -->
+        <chart [options]="options"></chart>
+    </div>
+  </div>
+
+<!-- <second Row> -->
+  <div class="row">
+   <!--  <div class="col-md-3">
+
+    </div -->
+    <div class="">
+     <!-- for bln btc -->
       <div class="row">
         <div class="col-md-5 tab-margin">
           <!-- <div class="exchange-pair-text">{{pairName}}</div> -->
         </div>
-        <div class="col-md-8  trade-border trade-margin table-bg-color trade-Form">
+        <div class="col-md-12  trade-border trade-margin table-bg-color trade-Form">
           <div class="row">
             <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
               <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
@@ -39,16 +93,11 @@
 
                 </div>
                 <div class="col-sm-6 head-padding-right heading-hand-icon padding-toggle"  (click)="sellToggle()" >
-                <div class="heading-padding-sell-buy border-radious-sell " [ngClass]="{'sell-color':sellColor ,'beforeActivesell':beforeActiveSELL}">
+                <div class="heading-padding-sell-buy border-radious-sell" [ngClass]="{'sell-color':sellColor ,'beforeActivesell':beforeActiveSELL}">
                   <span class=""   >SELL</span>
                 </div>
                 </div>
               </div>
-
-
-
-
-
             </div>
             <div *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">
               <!-- <div class="col-md-12 trade-field trade-button-margin">
@@ -94,7 +143,6 @@
                     <div *ngIf="sellOrderLength==0 && !sellColor" class="col-sm-12 padding-level margin-buy-Button">
                       <button class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
                     </div>
-
                   </div>
                 </div>
               </section>
@@ -137,7 +185,6 @@
                 </div>
               </section> -->
             </div>
-
             <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
               <div class="col-md-12 total-currency-message">
                 <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
@@ -288,38 +335,6 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 text-center marketing-margin ">
-      <div class="row">
-        <div class="col-md-9 col-md-offset-2 marketing-border marketing-border-padding">
-          <div class="table-heading-content marketing-heading">MARKET</div>
-          <div class="table-responsive table-responsive-padding">
-            <div class="row">
-              <div class="col-sm-12">
-                <ul class="nav nav-tabs">
-                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
-                </ul>
-              </div>
-            </div>
-            <table class="table  table-bordered market-margin ">
-              <thead class="market-head-color table-Heading">
-                <tr>
-                  <th>Coin</th>
-                  <th>Price</th>
-                  <th>Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let pair of pairList" class="marketBodyColor">
-                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
-                  <th class="table-content-font">0</th>
-                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <!-- for drop-down -->
   <!-- before login div -->
@@ -365,7 +380,7 @@
         <!-- test -->
         <!-- test -->
         <!-- table1 -->
-        <div class="col-md-4 col-md-offset-2 padding-to-all padding-buy-button trade-width sell-table border-radious-top">
+        <div class="col-md-6 padding-to-all padding-buy-button trade-width sell-table border-radious-top">
           <div class="sell-orders border-radious-top">
             <span class="table-heading-content">SELL ORDERS</span>
           </div>
@@ -595,5 +610,8 @@
     </div>
   </div>
   <!-- popup model -->
+</div>
+</div>
+</div>
 </div>
 <!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->

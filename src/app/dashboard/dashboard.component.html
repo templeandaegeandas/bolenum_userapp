@@ -1,51 +1,57 @@
 <!--start content-header-->
 <div class="main">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-4 ">
-        <div class="new-img">
+        <div class="new-img boxShadow-card">
           <img src="assets/images/total-sales-icons.png" class="dashbord-img">
         </div>
-        <div class="small-box bg-aqua">
+        <div class="small-box bg-aqua boxShadow-card">
           <div class="inner">
-            <h1 class="dashboard-Heading"> {{totalNumberOfTrading}}</h1>
+            <h3 class="dashboard-Heading main_heading"> {{totalNumberOfTrading}}</h3>
             <hr>
-            <p class="text-black dashboard-Content">Total no of trading</p>
+            <p class="text-black content_text">Total no of trading</p>
           </div>
         </div>
       </div>
       <!-- ./col -->
       <div class="col-md-4">
-        <div class="new-img1">
+        <div class="new-img1 boxShadow-card">
           <img src="assets/images/total_buy_png.png" class="dashbord-img">
         </div>
-        <div class="small-box bg-green">
+        <div class="small-box bg-green boxShadow-card">
           <div class="inner">
-            <h1 class="dashboard-Heading"> {{totalNumberOfBuy}}</h1>
+            <h3 class="dashboard-Heading main_heading"> {{totalNumberOfBuy}}</h3>
             <hr>
-            <p class="text-black dashboard-Content">Total no of buy</p>
+            <p class="text-black content_text">Total no of buy</p>
           </div>
         </div>
       </div>
       <!-- ./col -->
       <div class="col-md-4">
-        <div class="new-img2">
+        <div class="new-img2 boxShadow-card">
           <img src="assets/images/total_no_sell.png" class="dashbord-img">
         </div>
-        <div class="small-box bg-yellow">
+        <div class="small-box bg-yellow boxShadow-card">
           <div class="inner">
-            <h1 class="dashboard-Heading">{{ totalNumberOfSell }}</h1>
+            <h3 class="dashboard-Heading main_heading">{{ totalNumberOfSell }}</h3>
             <hr>
-            <p class="text-black dashboard-Content">Total no of sell</p>
+            <p class="text-black content_text">Total no of sell</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="graph-col">
-      <div class="col-xs-12">
-        <chart [options]="options"></chart>
+    <div class="row">
+      <div class="col-sm-12 chart-margin">
+        <div class="">
+        <div class="graph-col">
+          <div class="col-xs-12">
+            <div class="boxShadow-card">
+            <chart [options]="options"></chart>
+          </div>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
