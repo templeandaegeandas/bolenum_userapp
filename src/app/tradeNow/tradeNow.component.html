@@ -437,6 +437,7 @@
               <th>Amount</th>
               <th>Total</th>
               <th>Date</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody class="table-content-font">
@@ -446,9 +447,10 @@
               <td>{{orders.volume | number:'1.1-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.price * orders.volume | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</td>
               <td>{{orders.createdOn | date}}</td>
+              <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
             </tr>
             <tr *ngIf="myOrdersInBookLength >=10" >
-                <td colspan="5" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>
+                <td colspan="6" ><p  class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p></td>
             </tr>
             <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
               <p>You have no open orders . . . !</p>
@@ -583,6 +585,32 @@
           <button *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
           <button *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
           <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- cancel popup-->
+
+  <div bsModal #orderCancelModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header trade-pop-upheader">
+          <button type="button" class="close" (click)="hideOrderCancelModel()">&times;</button>
+          <h4 class="modal-title confirm-order">Order Cancel Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p>Some text in the modal.</p> -->
+          <div class="row ">
+            <div class="col-sm-12">
+              <span >Are you sure. You want to cancel this order?</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn confirm-Button button-Confirm" (click)="cancelOrder()">Yes</button>
+          <button type="button" class="btn confirm-Button button-Confirm" (click)="hideOrderCancelModel()">Close</button>
         </div>
       </div>
     </div>

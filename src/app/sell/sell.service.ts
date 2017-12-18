@@ -22,7 +22,7 @@ export class SellService {
   }
 
   dispute(orderId) {
-    return this.http.put('/api/v1/order/raise/seller/dispute?orderId=' + orderId, '')
+    return this.http.put('/api/v1/raise/seller/dispute?orderId=' + orderId, '')
       .map(res => res.json());
   }
 }
