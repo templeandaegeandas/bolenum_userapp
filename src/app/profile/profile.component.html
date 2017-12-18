@@ -43,7 +43,7 @@
          </label>
       <!--profile-->
       <section id="content1" class="tab-content mob-tab-content">
-        <div class="container-fluid">
+        <div class="container-fluid margin-top-profile">
           <div class="row">
             <div *ngIf="!isDetailsEdit" class="col-md-6 col-sm-6">
               <div class="col-backgrnd boxShadow-card new-col-background">
@@ -283,7 +283,7 @@
       <!--bank detail-->
       <section id="content2" class="tab-content">
         <div class="row" *ngIf="isCustomerView">
-          <div class="col-md-12">
+          <div class="col-md-12 margin-top-profile">
             <div class="col-md-6 bank-details-card-width" *ngFor="let customerData of getOurBankDetails">
               <div class="bank-backgrnd bank-details-padding boxShadow-card">
                 <div class="row">
@@ -409,7 +409,7 @@
       <!-- bank-details -->
       <!--kyc detail-->
       <section id="content3" class="tab-content">
-        <div class="container-fluid">
+        <div class="container-fluid margin-top-profile">
           <div class="row">
             <!-- for identity verification status start -->
             <div class=" col-lg-6 col-md-6 col-sm-6">

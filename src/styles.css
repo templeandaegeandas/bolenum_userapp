@@ -21,8 +21,10 @@ body{
 }
 
 .boxShadow-card{
-             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) !important;
+             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1) !important;
 }
+
+
 
 .main_heading{
     font-size: 20px !important;

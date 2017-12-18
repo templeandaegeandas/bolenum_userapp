@@ -86,6 +86,8 @@ p.top-text {
     color: #FFFFFF;
 }
 
+
+
 .tab_container {
     width: 73%;
     margin: 0 auto;
@@ -154,12 +156,16 @@ label {
     background: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,5,0.4);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,5,0.2);
     transform: scale(1.1, 1.1)
 }
 
 .tab_container [id^="tab"]:hover {
    
+}
+
+.margin-top-profile{
+    margin-top: 31px;
 }
 
 
@@ -191,6 +197,7 @@ label {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/profile (1).png");
+     -webkit-animation: none;
     
 }
 
@@ -198,12 +205,14 @@ label {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/bank_details_f.png");
+    -webkit-animation: none;
 }
 
 .tab_container [id^="tab"]:checked+label .img-tab2 {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("/assets/images/KYC_f.png");
+    -webkit-animation: none;
 }
 
 
@@ -255,7 +264,7 @@ p.kyc-text {
     text-transform: uppercase;
     color: #747474;
     text-align: center;
-    padding: 11px;
+    /* padding: 11px; */
 }
 
 .kyc-col {
@@ -922,7 +931,7 @@ p.kyc-text {
     text-transform: uppercase;
     color: #747474;
     text-align: center;
-    padding: 11px;
+    /* padding: 11px; */
 }
 
 .kyc-col {
@@ -1300,7 +1309,7 @@ p.createdepositmodal-heading.hedartext {
 }
 
 .kyc-image-formate {
-    margin-top: 12px;
+    margin-top: 1px;
 }
 
 .phone_number-margin {
@@ -1515,7 +1524,7 @@ p.createdepositmodal-heading.hedartext {
 
 .kyc_margin {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: 1px;
 }
 
 .p_margin {
