@@ -412,6 +412,9 @@ export class TradeNowComponent implements OnInit {
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
+        if (pairArray[0] == 'BLN') {
+          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
+        }
         if (this.secondCurrency == 'NGN') {
           this.secondCurrencyType = 'FIAT';
         }
@@ -441,9 +444,6 @@ export class TradeNowComponent implements OnInit {
     let pairArray = pairName.split("/")
     this.firstCurrency = pairArray[0];
     this.secondCurrency = pairArray[1];
-    if (pairArray[0] == 'BLN') {
-      this.minPrice = this.pairList[0].toCurrency[0].priceNGN;
-    }
     if (this.secondCurrency == 'NGN') {
       this.secondCurrencyType = 'FIAT';
     }
