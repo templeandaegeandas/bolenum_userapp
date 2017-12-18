@@ -21,30 +21,49 @@ body{
 }
 
 .boxShadow-card{
-          box-shadow: 1px 1px 3px -2px #644C47;
+             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1) !important;
 }
 
+
+
 .main_heading{
-    font-size: 20px;
+    font-size: 20px !important;
 
 }
 
 .sub_heading{
-    font-size: 13px;
+    font-size: 16px !important;
 }
 
 .content_text{
-    font-size: 12px;
+    font-size: 13px !important;
 }
 
 .lebel-heading{
-    font-size: 13px;
+    font-size: 14px !important;
 }
 
 .button-font-size{
-    font-size: 10px;
+    font-size: 12px !important;
 
 }
+
+.level-font-weight{
+    font-weight: 700 !important;
+}
+
+.button-property-new{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) !important;
+}
+
+.button-property-new:hover{
+   box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.5) !important;
+}
+
+
+
+
+
 
 
 
