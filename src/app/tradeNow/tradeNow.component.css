@@ -5,12 +5,21 @@
     background-repeat: no-repeat;
     background-position: top;
 }
+
 .padding-0{
     padding: 0;
 }
 .padding-10{
    padding-top: 10px;
 } 
+label.exchange-color {
+    color:#DB2828;
+    font-size: 12px;
+    font-weight: 500;
+     font-family: Lato; 
+    margin-right: 2px;
+    margin-bottom: 0px;
+    }
 
 .exchange-border-right {
     border-left: 4px solid #bdb4b4;
@@ -40,13 +49,13 @@
 }
 
 .tradeSubheading-fontSze-fontFamily {
-    font-size: 18px !important;
+    font-size: 15px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
 
 .tradeSubheading-fontSze-fontFamily thead tr th {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
     border:none;
@@ -65,7 +74,7 @@
 }
 
 .table-heading-content {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
@@ -95,6 +104,7 @@
 }
 
 .buy-orders {
+    overflow: hidden;
     background-color: #f8f8f8;
     text-align: center;
     color: #000;
@@ -102,6 +112,7 @@
     padding-bottom: 6px;
     font-size: 14px;
     padding-left: 12px;
+    padding-right: 12px;
 }
 
 tr th {
@@ -109,6 +120,7 @@ tr th {
 }
 
 .sell-orders {
+    overflow: hidden;
     background-color: #f8f8f8;
     text-align: center;
     color: #000;
@@ -116,6 +128,7 @@ tr th {
     padding-bottom: 6px;
     /* font-size: 14px; */
     padding-left: 12px;
+    padding-right: 12px;
 }
 
 .create-advertisement-button {
@@ -542,6 +555,13 @@ thead.heading {
     .trade-width {
         width: 100%;
     }
+    .aside{
+        position: relative !important;
+    width: 100% !important;
+    top: 10px !important;
+
+    }
+    
     .trade-margin {
         margin-top: 15px;
         margin-left: 16px;
@@ -591,7 +611,7 @@ thead.heading {
     /*background-color: #DDD;*/
     /* font-size: 21px; */
     overflow-y: scroll;
-    top: 69px;
+    top: 88px;
     bottom: 0;
     left: 0px;
     /* padding: 0; */
@@ -697,6 +717,7 @@ thead.heading {
 
 .trade-Form {
     width: 92%;
+    font-size:11px !important;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -912,6 +933,7 @@ table thead tr th {
 
 .trade-History-Button {
     text-align: right;
+    font-size: 11px !important;
 }
 
 .button-property {
