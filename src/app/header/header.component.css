@@ -28,7 +28,7 @@
 }
 
 .headerMargin{
-        margin-bottom: 90px;
+        margin-bottom: 56px;
 }
 
 
@@ -169,6 +169,9 @@ span.exchange-color {
     /* font-size: 28px;
     font-weight: 600; */
 }
+.navbar-header{
+  margin-top: 15px;
+}
 .nav>li>a {
     position: relative;
     display: block;
@@ -226,6 +229,7 @@ span.exchange-color {
 .header-menu .navbar-collapse{
     float: right;
     padding: 0;
+    margin-top:20px;
 }
 .header-menu .navbar.navbar-default{
   margin-bottom: 0;
@@ -259,6 +263,15 @@ img.img-profile-icon {
   .header-menu .navbar-default .navbar-collapse{
     border: none;
     box-shadow: none;
+    margin: 0px;
+    width: 362px;
+  }
+  .navbar-toggle{
+    margin-right: 10px;
+    margin-top: 12px; 
+  }
+  .navbar-header{
+    margin-top: 0px !important;
   }
   .header-menu{
     overflow-x: auto;
@@ -269,8 +282,8 @@ img.img-profile-icon {
   }
   
   .navbar-brand img {
-    margin-top: -5px;
-    margin-left: -43px;
+    /*margin-top: -5px;*/
+    /*margin-left: -43px;*/
   }
    span.red {
     display: none;
@@ -290,9 +303,9 @@ img.img-profile-icon {
     content: ""; 
     background: #DB2828;
     padding: 2px;
-    width: 18px;
+    width: 80px;
     height: 5px;
-    margin-left:44px;
+    margin-left:0px;
     text-align: center;
     display: block;
     border-radius: 4px;
@@ -331,6 +344,7 @@ a.navbar-brand.insight span.exchange-color{
   .header-menu{
     
   }
+  
   .navbar-nav {
     float: none;;
     margin: 0;
@@ -350,8 +364,8 @@ span.exchange-color {
     
     }
  .navbar-brand img {
-    margin-top: -5px;
-    margin-left: -20px;
+    margin-top: 5px;
+    /*margin-left: -20px;*/
 }
 
 }
@@ -366,7 +380,7 @@ span.exchange-color {
 }
 
 .bell-icon{
-        width: 51px;
+        width: 60px;
     padding: 0px 18px;
     margin-left: -21px;
 }

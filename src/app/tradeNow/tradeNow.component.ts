@@ -129,6 +129,7 @@ export class TradeNowComponent implements OnInit {
         type: 'areaspline'
       },
       title: {
+        text:''
       },
       legend: {
         marker: { symbol: 'square', radius: 12 }
