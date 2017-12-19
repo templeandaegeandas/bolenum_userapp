@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if (this.token = this.route.snapshot.queryParams['token']) {
       this.verifyUserEmail(this.token);
+
     }
     this.loginService.getUserIpAddress().subscribe(success => {
       this.ip = success.ip;
@@ -110,7 +111,8 @@ export class LoginComponent implements OnInit {
   }
 
   verifyUserEmail(token: String) {
-    this.loginService.verifyMail(token).subscribe(success => {
+      this.loginService.verifyMail(token).subscribe(success => {
+      localStorage.clear();
       this.router.navigate(['login']);
       this.toastrService.success(success.data.message, 'Success!');
     }, error => {
@@ -124,19 +126,12 @@ export class LoginComponent implements OnInit {
       this.hasShowPassword = true;
       this.passwordType = 'text';
       this.viewPassword = 'HIDE';
-
-
      }
-
      else{
        this.passwordType = 'password';
        this.viewPassword = 'SHOW';
        this.hasShowPassword = false;
      }
-
-
-    
-
   }
 
 }
