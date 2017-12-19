@@ -31,6 +31,10 @@ export class WithdrawComponent implements OnInit {
   data: any;
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
+    this.getCurrencyList();
+    setTimeout(() => {
+      this.getListOfUserWithdrawlTransaction();
+    }, 200);
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
         this.getListOfUserWithdrawlTransaction();
@@ -42,10 +46,6 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.getCurrencyList();
-    setTimeout(() => {
-      this.getListOfUserWithdrawlTransaction();
-    }, 200);
   }
 
   withdrawAmount(form) {
@@ -55,12 +55,7 @@ export class WithdrawComponent implements OnInit {
       return;
     }
     this.loading = true;
-    let currency;
-    this.currencyData.map(function(value) {
-      if (value.currencyAbbreviation == this.setItemValue) {
-        currency = value;
-      }
-    })
+    let currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
     this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
       this.getCoin(currency.currencyAbbreviation);
       form.resetForm();

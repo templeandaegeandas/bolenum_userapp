@@ -12,15 +12,13 @@
 </select>
       </div>
       <div class=" text-center text-image-div">
-       <div class="available-text">
+        <div class="available-text">
           <span class="balance-text withdraw-heading">
           <!-- Available Balance 0.2156 -->
            <p>
               <span *ngIf="setItemValue=='BTC'"> <img src="./assets/images/bitcoin.png" width="30" height="30"></span>
-               <span *ngIf="setItemValue=='BLN'"> <img src="./assets/images/bolenum.png" width="30" height="30"></span>
-                <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span>
-              
-              Available Balance : <span>{{balance}} {{coinAbbreviation}}</span></p>
+          <span *ngIf="setItemValue=='BLN'"> <img src="./assets/images/bolenum.png" width="30" height="30"></span>
+          <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span> Available Balance : <span>{{balance}} {{coinAbbreviation}}</span></p>
           </span>
         </div>
       </div>
@@ -88,13 +86,13 @@
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                     <td>{{tx.fee}}</td>
                   </tr>
-                  <tr *ngIf="transactionLength >=10" >
-                    <td  colspan="7">
+                  <tr *ngIf="transactionLength >=10">
+                    <td colspan="7">
                       <p (click)="getMoreTransactionList()" class="moreData moreText" title="click to show more list">More</p>
                     </td>
                   </tr>
-                  <tr *ngIf="transactionLength == 0 " >
-                    <td  colspan="7">
+                  <tr *ngIf="transactionLength == 0 ">
+                    <td colspan="7">
                       <p>You don't have any transaction yet!</p>
                     </td>
                   </tr>
