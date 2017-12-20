@@ -100,6 +100,10 @@ export class DepositComponent implements OnInit {
     }, 1000);
   }
 
+  log(event: boolean) {
+    console.log(`Accordion has been ${event ? 'opened' : 'closed'}`);
+  }
+
   getMoreDepositeList() {
 
     let currentPage = 1;

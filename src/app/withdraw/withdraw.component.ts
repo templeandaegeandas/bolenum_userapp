@@ -85,6 +85,11 @@ export class WithdrawComponent implements OnInit {
 
   }
 
+  
+  log(event: boolean) {
+    console.log(`Accordion has been ${event ? 'opened' : 'closed'}`);
+  }
+
   getCoin(data) {
     this.loading = true;
     this.data = data;
