@@ -128,6 +128,9 @@ export class TradeNowComponent implements OnInit {
       chart: {
         type: 'areaspline'
       },
+      position: {
+        width: 700
+    },
       title: {
         text: ''
       },

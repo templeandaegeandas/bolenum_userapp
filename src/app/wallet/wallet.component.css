@@ -2,7 +2,7 @@
     background-image: url("/assets/images/header (1).png");
     background-repeat: no-repeat;
     background-position: top;
-    height: 282px;
+    height: 230px;
     width: 100%;
     margin: 0;
 }
@@ -28,7 +28,7 @@ img.wallet-image {
 }
 
 .tab-wallet {
-    background: #FFFFFF;
+    background: #fff;
     border-radius: 6px;
     -webkit-box-shadow: 0 8px 6px -6px #eee;
     border-top-left-radius: 5px;
@@ -37,7 +37,7 @@ img.wallet-image {
     position: relative;
     }
 .tab-wallet.active{
-    border-bottom: 4px solid#DB2828;
+    border-bottom: 2px solid#DB2828;
     border-top-left-radius: 4px;
     border-top-right-radius:4px;
     box-shadow: 0 0 9px #636363;
@@ -52,34 +52,40 @@ img.wallet-image {
 .tab-wallet .img1{
    background-repeat: no-repeat;
    background-position: center;
-   background-image: url("/assets/images/bitcoin_withdraw_uf.png")
+   background-image: url("/assets/images/bitcoin_withdraw_uf.png");
+   height: 100px;
 
   }
   .tab-wallet .img2{
   background-repeat: no-repeat;
    background-position: center;
-  background-image: url("/assets/images/bitcoin_withdraw_ufpng.png")
+  background-image: url("/assets/images/bitcoin_withdraw_ufpng.png");
+  height: 100px;
   }
 .tab-wallet .img3{
   background-repeat: no-repeat;
    background-position: center;
-  background-image: url("/assets/images/history_uf.png")
+  background-image: url("/assets/images/history_uf.png");
+  height: 100px;
   }
 .tab-wallet.active .img1{
   background-repeat: no-repeat;
    background-position: center;
-  background-image: url("/assets/images/bitcoin_withdraw.png")
+  background-image: url("/assets/images/bitcoin_withdraw.png");
+  height: 100px;
 
   }
   .tab-wallet.active .img2{
   background-repeat: no-repeat;
    background-position: center;
-  background-image: url("/assets/images/bitcoin_withdraw_fpng.png")
+  background-image: url("/assets/images/bitcoin_withdraw_fpng.png");
+  height: 100px;
   }
   .tab-wallet.active .img3{
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/assets/images/history_f.png")
+  background-image: url("/assets/images/history_f.png");
+  height: 100px;
   }
 
  p.wallet.text-center {

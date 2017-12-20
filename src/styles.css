@@ -8,6 +8,18 @@ chart
     width: 100% !important;
 }
 
+.panel-default>.panel-heading{
+   background-color: #fff !important;
+}
+
+.panel{
+  background-color: #f8f8f8 !important;
+}
+
+.panel-group .panel{
+    border: none;
+    box-shadow:2px 2px 5px 1px rgba(0,0,0,0.1) !important;
+}
 
 
 @font-face{
