@@ -31,6 +31,10 @@ body{
 
 }
 
+.form_heading{
+    font-size: 18px !important;
+}
+
 .sub_heading{
     font-size: 16px !important;
 }
@@ -48,6 +52,16 @@ body{
 
 }
 
+.error-msg-fontSize{
+    font-size: 12px !important;
+}
+
+.terms_condition{
+
+    font-size: 12px !important;
+
+}
+
 .level-font-weight{
     font-weight: 700 !important;
 }
@@ -59,6 +73,8 @@ body{
 .button-property-new:hover{
    box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.5) !important;
 }
+
+
 
 
 

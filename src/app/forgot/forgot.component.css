@@ -1,23 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
-.footer-font-size{
-    font-family: Lato-Regular-font !important;
-    font-size: 16px !important;
-}
-
-.footer-content-font-size{
-    font-family: Lato-Regular-font !important;
-    font-size: 15px !important;
-}
-.footerError-content-font-size{
-    font-family: Lato-Regular-font !important;
-    font-size: 13px !important;
-}
-
-.footerButton-font-size{
-    font-family: Lato-Regular-font !important;
-    font-size: 13px !important;
-}
 
 .login-content {
     margin-top: 80px;
@@ -28,7 +9,7 @@
 }
   img.img-login {
     width: 100%;
-    height: auto;
+    height: 512px;
 
 }
 
@@ -37,7 +18,7 @@
     display: table;
     border-collapse: separate;
     margin: 11px;
-   font-family: Lato;
+   
 
 }
 img.img-header{
@@ -53,12 +34,11 @@ img.img-header{
     text-align: left;
     color: #DB2828;;
     text-transform: uppercase;
-    font-size: 15px;
+    
 
 }
 .login-or {
     position: relative;
-    font-size: 18px;
     color: #aaa;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -129,31 +109,33 @@ button.btn.btn-continue {
     padding: 6px;
     background-color: #DB2828;
     border-color: #DB2828;
-    font-family: Lato;
-    margin-left: 25px;
-    margin-top: 10px;
+    margin-left: 11px;
+    margin-top: 4px;
     outline: none;
 }
 h4.text-center {
-    margin: 20px;
-    text-transform: uppercase;
-    font-size: 18px;
+    
+    
     color:#DB2828;
     text-align: center;
 
 
 }
+
+.padding-div{
+        padding-right: 45px;
+}
 p.text-center {
     text-align: center;
-    font-size: 16px;
+
 }
 .forget-pass {
-    margin-top: 95px;
+    margin-top: 115px;
 }
 .text-danger {
     color: #a94442;
-    margin-left: 28px;
-    margin-top: 4px;
+    margin-left: 13px;
+    margin-top: 0px;
 }
 
 .invalid-user-error{
