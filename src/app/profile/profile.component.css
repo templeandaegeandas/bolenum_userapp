@@ -48,7 +48,7 @@ a {
 .top-profile {
     background-image: url("/assets/images/header (1).png");
     background-size: cover;
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .slider-info {
@@ -922,7 +922,7 @@ input#usrcode {
 img.porf-pic {
     position: absolute;
     margin-left: 0px;
-        top: 83px;
+        top: 50px;
 }
 
 

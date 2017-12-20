@@ -565,6 +565,9 @@ thead.heading {
     top: 10px !important;
 
     }
+    .aisde-right{
+        left:0px !important;
+    }
 
     .trade-margin {
         margin-top: 15px;
