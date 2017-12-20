@@ -56,6 +56,12 @@ img.wallet-image {
    height: 100px;
 
   }
+
+  .tab-wallet .img1:hover,
+  .tab-wallet .img2:hover,
+  .tab-wallet .img3:hover{
+    -webkit-animation: fadeInScale 2s ease-in-out;
+  }
   .tab-wallet .img2{
   background-repeat: no-repeat;
    background-position: center;

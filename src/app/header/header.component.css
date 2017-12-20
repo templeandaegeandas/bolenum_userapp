@@ -263,14 +263,30 @@ img.img-profile-icon {
 /* start media query */
 @media screen and (min-width: 320px) and (max-width: 767px){
   .header-menu .navbar-default .navbar-collapse{
-    border: none;
+   /* border: none;*/
     box-shadow: none;
     margin: 0px;
-    width: 362px;
+    width: 100%;
+    background-color: #f8f8f8;
+  }
+  .dropdown-menu .divider{
+    margin: 0px;
+  }
+  .header-menu .navbar-default .navbar-nav>.open>a{
+   background: none;
+   color: #777;
+  }
+  .dropdown-menu>li>a{
+    background-color: transparent;
+    color:#777;
+  }
+  .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+    background-color: transparent;
+    color:#777;
   }
   .navbar-toggle{
     margin-right: 10px;
-    margin-top: 12px; 
+    margin-top: -2px; 
   }
   .navbar-header{
     margin-top: 0px !important;
@@ -284,8 +300,7 @@ img.img-profile-icon {
   }
   
   .navbar-brand img {
-    /*margin-top: -5px;*/
-    /*margin-left: -43px;*/
+    margin-top: -5px;
   }
    span.red {
     display: none;

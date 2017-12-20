@@ -4,9 +4,17 @@
 .transaction-History{
         /*background-color: white;*/
     padding-top: 21px;
+    /*margin-left: 113px;*/
     /* padding-bottom: 315px; */
 }
-
+/*.no-transaction{
+  text-transform: capitalize;
+    top: 130px;
+    color: #000;
+    font-size: 22px;
+    position: relative;
+}
+*/
 .transaction-History-Property{
     border: 1px solid lightgray;
     height: 299px;

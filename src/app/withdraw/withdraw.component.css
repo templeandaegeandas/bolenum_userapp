@@ -97,6 +97,10 @@ select option{
   .col-width{
     width: 100%;
   }
+  .widthdraw-container-padding{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   .color-box{
     margin-bottom: 20px;
   }

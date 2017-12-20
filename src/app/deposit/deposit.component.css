@@ -249,3 +249,11 @@ input[type="text"] {
     color: #DB2828;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px){
+
+    .deposit-container-padding {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
