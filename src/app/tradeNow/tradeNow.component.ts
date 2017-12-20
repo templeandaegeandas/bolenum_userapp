@@ -212,6 +212,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   getBuyOrderBookData(pairId) {
+    this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
@@ -222,6 +223,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   getSellOrderBookData(pairId) {
+    this.totalSell = 0.0;
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
@@ -398,7 +400,6 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
-      // this.firstCurrency =
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -415,6 +416,9 @@ export class TradeNowComponent implements OnInit {
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
+        if (pairArray[0] == 'BLN') {
+          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
+        }
         if (this.secondCurrency == 'NGN') {
           this.secondCurrencyType = 'FIAT';
         }

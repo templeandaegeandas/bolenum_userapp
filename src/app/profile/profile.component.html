@@ -108,12 +108,12 @@
                   </div>
                 </div>
                 <div class="clearfix"></div>
-                
+
                    <div class="">
                   <button type="button" class="btn btn-successsave profile-font text-uppercase butoon-font button-font-size button-property-new" (click)=editDetails()>Edit Details</button>
                 </div>
-                 
-               
+
+
               </div>
             </div>
             <form #editForm=ngForm (submit)="saveDetails(editForm)" *ngIf="isDetailsEdit">
@@ -578,13 +578,14 @@
           </div>
           <div *ngIf="!isMobileVerified">
             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-              <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usred">
+              <!-- <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usred">
                <option [disabled]="true" [selected]="true" class="sub-heading-font-size">Choose Country</option>
                <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size">{{country.name}}</option>
                </select>
-              <span class="text-danger profile-font error-msg-fontSize" *ngIf="countryError">Please choose country</span><br>
-              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
-              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" (ngModelChange)="onPhoneNumberChange()" maxlength="10" required onlynumber>
+
+              <span class="text-danger profile-font" *ngIf="countryError">Please choose country</span><br>
+              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled> -->
+              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" (ngModelChange)="onPhoneNumberChange()" required onlynumber>
               <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
              <p class="text-danger otp-error profile-font content-font-size error-msg-fontSize">Please enter mobile number</p>
              </span>
