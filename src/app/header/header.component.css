@@ -28,7 +28,7 @@
 }
 
 .headerMargin{
-        margin-bottom: 56px;
+        margin-bottom: 60px;
 }
 
 
@@ -138,16 +138,17 @@
 .navbar-default .navbar-brand {
    color: #DB2828;;
 }
+.navbar-header{
+  margin-top: -15px;
+}
 
 .header-menu .navbar-default {
-    /* background: none; */
+    background: #f8f8f8;
     border: none;
     border-radius: 0;
-    /* font-size: 18px; */
     line-height: 34px;
-   /* height: 100px;
-    padding: 26px 67px;*/
-    /* font-family: Lato; */
+    height: 60px;
+    padding: 15px 67px;
 
 }
 
@@ -169,13 +170,14 @@ span.exchange-color {
     /* font-size: 28px;
     font-weight: 600; */
 }
-.navbar-header{
+/*.navbar-header{
   margin-top: 15px;
-}
+}*/
 .nav>li>a {
     position: relative;
     display: block;
-    font-size:13px;
+    font-size:15px;
+    text-transform: capitalize;
     /*padding-bottom: 0px;*/
     /*padding: -6px 35px;*/
 }
@@ -207,7 +209,7 @@ span.exchange-color {
   border-radius: 2px;
   padding-top: 7px;
   padding-bottom: 5px;
-  min-width: 220px;
+  min-width: 206px;
     z-index: 1;
 }
 .dropdown-menu .divider {
@@ -229,7 +231,7 @@ span.exchange-color {
 .header-menu .navbar-collapse{
     float: right;
     padding: 0;
-    margin-top:20px;
+    margin-top:-12px;
 }
 .header-menu .navbar.navbar-default{
   margin-bottom: 0;
@@ -245,7 +247,7 @@ span.exchange-color {
 }
 
 li.dropdown {
-    margin-top: -11px;
+    margin-top: -10px;
     text-transform: uppercase;
 }
 img.drop-icon {

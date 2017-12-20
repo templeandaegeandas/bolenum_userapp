@@ -3,6 +3,9 @@
     /* padding-bottom: 34px;
     padding-top: 37px; */
 }
+.accordion-grp{
+  padding-top: 10px;
+}
 
 /* font-size-family */
 
@@ -84,7 +87,7 @@ select option{
     margin-top: 20px;
 }
 .color-box {
-    background-color: #FFFFFF;
+    background-color: #f8f8f8;
     /* padding-bottom: 60px; */
 }
 
@@ -146,8 +149,8 @@ select option{
     text-align: center;
 }
 .table-Head {
-        background-color: #db2828;
-    color: white;
+        background-color: #dedede;
+    color: #000;
 }
 .table-content-font{
         font-size: 13px !important;
@@ -211,6 +214,12 @@ select option{
 .tranction-Table table {
    /*   width: 716px; 140px * 5 column + 16px scrollbar width */
     border-spacing: 0;
+    border:none;
+}
+.panel-default >.panel-heading{
+  color: #000;
+  background-color:#fff;
+  border-color: #ddd;
 }
 
 .tranction-Table tbody, .tranction-Table thead tr { display: block; }

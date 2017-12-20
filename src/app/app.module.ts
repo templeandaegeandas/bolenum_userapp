@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'toastr-ng2';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppHeaderComponent } from './appheader/app.header.component';
@@ -106,6 +107,7 @@ export function highchartsFactory() {
     BrowserModule,
     ChartModule,
     HttpModule,
+    AccordionModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),
