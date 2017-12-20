@@ -625,10 +625,10 @@ input#usr {
     display: block;
     padding: 2px 8px;
     width: 206px;
-    border-radius: -13px;
-    border-radius: 8px;
+    /* border-radius: -13px;
+    border-radius: 8px; */
     box-shadow: none;
-    border: 2px solid #e2d8d8;
+    border: 1px solid #e2d8d8;
     outline: none;
 }
 

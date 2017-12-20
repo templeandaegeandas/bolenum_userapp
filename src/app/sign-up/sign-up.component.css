@@ -1,27 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-
-/* font-family and font-size */
-.signUpHeading-font-size{
-   font-family: Lato-Regular-font !important;
-    font-size: 15px !important;
-} 
-
-.content-font-size{
-   font-family: Lato-Regular-font !important;
-    font-size: 14px !important;
-} 
-
-.errorContent-font-size{
-   font-family: Lato-Regular-font !important;
-    font-size: 13px !important;
-}
 
 
 /* font-family and fontsize */
 
 .login-content {
     margin-top: 80px;
-    box-shadow:  0 0 27px #eee;
+    
     width: 84%;
     margin-left: 80px;
     margin-bottom:89px;
@@ -46,8 +29,8 @@ img.img-header {
 }
 .text-center {
     text-align: center;
-    padding: 26px;
-    margin-top: 28px;
+    
+    margin-top: 66px;
 }
 .text-left {
     text-align: left;
@@ -108,10 +91,12 @@ span.condition {
     color: #0085ff;
 }
 h4.create-text {
-    margin: 12px;
-    text-transform: uppercase;
+    /* margin: 12px; */
+    /* text-transform: uppercase; */
     /* font-size: 18px; */
     color:#DB2828;
+        margin-right: 73px;
+    margin-top: 27px;
 }
 .input-group {
     position: relative;
@@ -159,7 +144,7 @@ h4.create-text {
   content: '✔';
   position: absolute;
   top: .1em; left: .1em;
-  font-size: 1.3em;
+  /* font-size: 1.3em; */
   line-height: 0.8;
   color: #09ad7e;
   transition: all .2s;
