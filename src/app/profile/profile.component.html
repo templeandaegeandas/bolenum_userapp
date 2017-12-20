@@ -25,21 +25,23 @@
     <div class="tab_container">
       <input id="tab1" type="radio" name="tabs" checked >
       <label for="tab1" class="label-box-shadow">
-            <div class="img-tab lebel-image-margin"><br><br><br>
-               <span class="sub_heading">Profile</span>
+            <div class="img-tab lebel-image-margin">
             </div>
+            <p class="sub_heading">Profile</p>
          </label>
       <input id="tab2" type="radio" name="tabs">
       <label for="tab2" (click)="getUserBankDetails()" class="label-box-shadow">
-            <div class="img-tab1 lebel-image-margin"><br><br><br>
-               <span class="sub_heading">Bank Details</span>
+        <div class="">    
+        <div class="img-tab1 lebel-image-margin">
             </div>
+             <p class="sub_heading">Bank Details</p>
+        </div>
          </label>
       <input id="tab3" type="radio" name="tabs">
       <label for="tab3" class="label-box-shadow" >
-            <div class="img-tab2 lebel-image-margin" (click)="getKycDetailsUser()"><br><br><br>
-               <span class="sub_heading">KYC Details</span>
-            </div>
+            <div class="img-tab2 lebel-image-margin" (click)="getKycDetailsUser()">
+           </div>
+            <p class="sub_heading">KYC Details</p>
          </label>
       <!--profile-->
       <section id="content1" class="tab-content mob-tab-content">

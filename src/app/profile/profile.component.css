@@ -239,6 +239,7 @@ label {
 
 
 
+
 .text-danger {
     color: #a94442;
     margin: 1px;
@@ -429,7 +430,8 @@ a {
 }
 
 .lebel-image-margin{
-        margin-top: 9px;
+        
+        height: 67px;
 }
 
 .margin-account-holder-name {

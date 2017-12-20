@@ -830,7 +830,7 @@ thead.heading {
 }
 
 .trade-History tbody {
-    height: 395px;
+    height: 352px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1103,9 +1103,9 @@ table thead tr th {
 }
 
 .spiner-position {
-    position: absolute;
-    top: 249px;
-    left: 563px;
+       position: absolute;
+    top: 229px;
+    left: 456px;
 }
 
 
