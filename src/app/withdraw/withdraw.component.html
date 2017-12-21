@@ -27,7 +27,7 @@
           </span>
         </div>
       </div>  -->
-      <accordion class="accordion-grp ">
+      <accordion class="accordion-grp" [closeOthers]="true">
   <accordion-group  heading="Bitcoin">
     <div class="">
         <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm)">

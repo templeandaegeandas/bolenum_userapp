@@ -22,7 +22,7 @@
                 <!--  <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p> -->
             </div>
 
-            <accordion class="accordion-grp">
+            <accordion class="accordion-grp" [closeOthers]="true">
                 <accordion-group heading="Bitcoin">
 
                     <div *ngIf=qrCode>
