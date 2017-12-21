@@ -95,7 +95,7 @@ h4.create-text {
     /* text-transform: uppercase; */
     /* font-size: 18px; */
     color:#DB2828;
-        margin-right: 73px;
+        margin-right: 66px;
     margin-top: 27px;
 }
 .input-group {
@@ -143,7 +143,8 @@ h4.create-text {
 .custom-checkbox input[type="checkbox"]:checked + label:after {
   content: '✔';
   position: absolute;
-  top: .1em; left: .1em;
+  top: 4px;
+  left: 3px;
   /* font-size: 1.3em; */
   line-height: 0.8;
   color: #09ad7e;
