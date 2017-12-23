@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'toastr-ng2';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppHeaderComponent } from './appheader/app.header.component';
@@ -56,6 +57,7 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
 import { IntTelInputDirective } from  './directives/int.tel.input.directive';
+import { NotifyUserComponent } from './notify-user/notify-user.component';
 declare var require: any;
 export function highchartsFactory() {
   const hc = require('highcharts');
@@ -97,13 +99,15 @@ export function highchartsFactory() {
     DisputeComponent,
     CancelTradeComponent,
     FeesDetailsComponent,
-    IntTelInputDirective
+    IntTelInputDirective,
+    NotifyUserComponent
 
   ],
   imports: [
     BrowserModule,
     ChartModule,
     HttpModule,
+    AccordionModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES, {useHash: true}),

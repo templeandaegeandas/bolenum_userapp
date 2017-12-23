@@ -2,11 +2,19 @@
     display: block;
 }*/
 .transaction-History{
-        background-color: white;
+        /*background-color: white;*/
     padding-top: 21px;
+    /*margin-left: 113px;*/
     /* padding-bottom: 315px; */
 }
-
+/*.no-transaction{
+  text-transform: capitalize;
+    top: 130px;
+    color: #000;
+    font-size: 22px;
+    position: relative;
+}
+*/
 .transaction-History-Property{
     border: 1px solid lightgray;
     height: 299px;
@@ -52,7 +60,7 @@ span.mydpicon.icon-mydpcalendar {
 
 
 button.btn.btn-primary.dropdown-toggle {
-    background:#DB2828;
+    background:#dedede;
     padding: 0px;
     border: none;
     outline: none;
@@ -80,14 +88,14 @@ img.text-right {
     font-size: 15px;
 }
 .panel-primary>.panel-heading {
-    color: #fff;
-    background-color: #DB2828;
-    border-color: #DB2828;
+    color: #000;
+    background-color: #dedede;
+    border-color: #dedede;
     border: none; 
     
 }
 .panel-heading {
-    padding: 17px 7px;
+    padding: 10px 7px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;

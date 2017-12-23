@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="login-content">
+  <div class="login-content boxShadow-card">
     <div class="row">
       <div class="col-md-6 col-xs-12 col-sm-6">
         <img src="assets/images/login-img.png" class="img-login">
@@ -8,27 +8,28 @@
         <div class="login-text">
           <div class="text-center">
             <img src="assets/images/bolenum.png" class="img-header">
+            <h4 class="titleHeading form_heading level-font-weight">Login</h4>
           </div>
           <div *ngIf="!is2FaOn">
             <form #loginForm="ngForm" (submit)=loginUser(loginForm)>
               <div class="input-group">
                 <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-                <input id="email" type="email" class="form-control content-font-size" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
+                <input id="email" type="email" class="form-control content-font-size content_text" name="username" [(ngModel)]="login.emailId" #email="ngModel" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,6}$" placeholder="Email" required>
               </div>
-              <span *ngIf="email.invalid && loginForm.submitted">
-            <span class="text-danger errorContent-font-size" *ngIf="email.errors.required">Please enter email</span>
-              <span class="text-danger errorContent-font-size" *ngIf="email.errors.pattern">Please enter valid email</span>
-              </span>
+              <div *ngIf="email.invalid && loginForm.submitted">
+            <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="email.errors.required">Please enter email</p>
+              <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="email.errors.pattern">Please enter valid email</p>
+              </div>
               <div class="input-group">
                 <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
                 <span class="clearfix input-icon">
-               <input id="password" type='{{ passwordType }}' class="form-control content-font-size" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
+               <input id="password" type='{{ passwordType }}' class="form-control content-font-size content_text" name="password" [(ngModel)]="login.password" #password="ngModel" placeholder="Password" required>
                <img src="assets/images/view_uf.png" class="img-responsive hand-icon " (click)='hideShowPassword()' title=' {{ viewPassword }}' [ngClass]= "{'passwordShow':hasShowPassword}"/>
                </span>
               </div>
-              <span *ngIf="password.invalid && loginForm.submitted">
-            <span class="text-danger errorContent-font-size" *ngIf="password.errors.required">Please enter password</span>
-              </span>
+              <div *ngIf="password.invalid && loginForm.submitted">
+            <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="password.errors.required">Please enter password</p>
+              </div>
           <div class="row">
             <div class="col-sm-12 recaptch-margin">
               <re-captcha name="captcha" #captchaControl="ngModel" [(ngModel)]="formModel.captcha" required></re-captcha>
@@ -36,13 +37,13 @@
             </div>
           <div class="row">
               <div class="col-md-12 forgot-pass-content">
-                 <button type="submit" class="btn btn-success errorContent-font-size">login</button>
+                 <button type="submit" class="btn btn-success errorContent-font-size button-property-new button-font-size">login</button>
                  </div>
           </div>
 
           <div class="row">
             <div class="col-md-12 forgot-padding">
-                <a routerLink="/forgot" class="forgot-pass errorContent-font-size">Forgot Password?</a>
+                <a routerLink="/forgot" class="forgot-pass errorContent-font-size content_text">Forgot Password?</a>
             </div>
           </div>
 

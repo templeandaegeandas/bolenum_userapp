@@ -34,6 +34,7 @@ import { CreateAdvertiesmentComponent } from './create-advertiesment/create-adve
 import { DisputeComponent } from './dispute/dispute.component';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
+import { NotifyUserComponent }  from './notify-user/notify-user.component';
 
 
 export const APP_ROUTES: Routes = [
@@ -64,6 +65,7 @@ export const APP_ROUTES: Routes = [
   { path: 'faq', component: FaqComponent },
   { path: 'dispute/:orderId', component: DisputeComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'notify', component: NotifyUserComponent },
   { path: 'how-to-use', component: HowToUseComponent },
   { path: 'terms-service', component: TermsServiceComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },

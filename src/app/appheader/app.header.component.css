@@ -88,7 +88,7 @@
 .navbar-brand img
 {
    margin-top:-5px;
-   margin-left:30px;
+   margin-left:0px;
    }
 
 .nav li > a{
@@ -121,13 +121,13 @@
 }
 
 .header-menu .navbar-default {
-    background: none;
+    background: #f8f8f8;
     border: none;
     border-radius: 0;
     /* font-size: 18px; */
     line-height: 34px;
-    height: 100px;
-    padding: 26px 67px;
+    height: 80px;
+    padding: 15px 67px;
     /* font-family: Lato; */
 
 }
@@ -137,13 +137,35 @@ span.exchange-color {
     /* font-size: 28px;
     font-weight: 600;
     font-family: Lato; */
-    margin-left:  20px
+    margin-left:  6px;
     }
+
+
+   .header-menu .navbar.navbar-default {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 .header-menu .navbar-default .navbar-nav>.open>a{
    background: #fff;
    color: #000;
 }
+
+.navbar-margin{
+        margin-top: 0px;
+}
+
+.header-menu.navbar-default{
+   
+    height: 85px;
+    
+}
+
+.header-menu .navbar-collapse {
+    margin-top: 16px;
+}
+
+
 
 .navbar-default .navbar-brand {
     color: #1d1c1c;
@@ -153,23 +175,23 @@ span.exchange-color {
 .nav>li>a {
     position: relative;
     display: block;
-    padding: -6px 35px;
+    padding: 0px 20px;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color:#DB2828;
+    color:#333;
     background: none !important;
    }
 
    .navbar-toggle {
- margin-right: -44px;
+      margin-right: -44px;
 
 }
 .nav li.active a:after{
     content: "";
-    background: #DB2828;
+    background: #bdb4b4;
     padding: 2px;
-    width: 40px;
+    width: 47px;
     height: 5px;
     margin: 6px auto;
     text-align: center;
@@ -238,7 +260,23 @@ img.img-profile-icon {
   .header-menu .navbar-default .navbar-collapse{
     border: none;
     box-shadow: none;
+    /*margin-top: 0px;*/
+    margin-bottom: 10px;
   }
+  .navbar-toggle {
+      margin-top:2px;
+}
+  .nav li {
+        width: 300px;
+    position: relative;
+    }
+
+  .header-menu .navbar.navbar-default{
+    padding-left: 60px;
+    padding-right: 60px;
+    height: 65px;
+  }
+
   .header-menu{
     overflow-x: auto;;
   }
@@ -247,7 +285,7 @@ img.img-profile-icon {
   }
 
   .navbar-brand img {
-    margin-top: -5px;
+    /*margin-top: 5px;*/
     margin-left: -43px;
   }
    span.red {
@@ -257,8 +295,8 @@ img.img-profile-icon {
     display: none;
   }
   .nav li.active a:after {
-    margin-left: 8px;
-    width: 34px;
+    margin-left: 0px !important;
+    width: 80px !important;
     height: 5px;
 
 }
@@ -275,7 +313,7 @@ img.img-profile-icon {
  }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: #DB2828;;
+    background-color: #333;;
 }
 a.navbar-brand.insight span.exchange-color{
     margin-top: -52px;
@@ -288,9 +326,9 @@ a.navbar-brand.insight span.exchange-color{
   }
 .logo-img {
     display: inline-block;
-    width: 63px;
+    width: 44px;
     vertical-align: middle;
-    margin: -67px -10px 20px -55px;
+   /* margin: -67px -10px 20px -55px;*/
     float: left;
 }
 

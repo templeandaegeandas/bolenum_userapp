@@ -14,13 +14,274 @@
   </div> -->
 </div>
 <!-- for images -->
-<div class="container container-padding ">
-  <div class="row tradeNow-background-img">
-    <div class="col-md-8 exchange-border-right ">
+<div class="container-fluid container-padding ">
+
+  <div class="col-md-12">
+    <div class="col-sm-3">
+      <div class="aside">
+         <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="text-center">
+      <div class="row pad-btm-10">
+        <div class="marketing-border marketing-border-padding">
+          <div class="table-heading-content marketing-heading">MARKET</div>
+          <div class="table-responsive table-responsive-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <table class="table  table-bordered">
+              <!-- <thead class="heading">
+
+                <tr>
+                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
+
+                </tr>
+              </thead> -->
+              <thead class="market-head-color table-Heading">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Name</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pair of pairList">
+                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                  <th class="table-content-font">0</th>
+                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+</div>
+
+  <div class="col-md-9">
+
+     <div class="row tradeNow-background-img">
+   <!--  <div class="exchange-border-right "> -->
 
        <!-- order field -->
-  <div class="row">
-    <div class="col-md-12 order pad-top pad-order ">
+  <div class="row margin-0">
+    <div class="col-md-12 order">
       <div class="">
         <span class="border-bot order-text tradeSubheading-fontSze-fontFamily">ORDERS</span>
       </div>
@@ -94,49 +355,107 @@
   </div>
   <!-- order field -->
 
-    </div>
-    <div class="col-md-4 text-center marketing-margin ">
+<div class="row">
+    <div class="col-sm-12 tradeHistory-Table-margin">
       <div class="row">
-        <div class="col-md-8 col-md-offset-4 marketing-border marketing-border-padding">
-          <div class="table-heading-content marketing-heading">MARKET</div>
-          <div class="table-responsive table-responsive-padding">
-            <div class="row">
-              <div class="col-sm-12">
-                <ul class="nav nav-tabs">
-                  <li class="hand-icon" *ngFor="let coinList of currecyList" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
-
-                </ul>
-              </div>
-            </div>
-            <table class="table  table-bordered market-margin ">
-              <!-- <thead class="heading">
-
-                <tr>
-                  <th class="market-tab" (click)=getPair(coinList.currencyId) *ngFor="let coinList of currecyList">{{coinList.currencyAbbreviation}}</th>
-
-                </tr>
-              </thead> -->
-              <thead class="market-head-color table-Heading">
-                <tr>
-                  <th>Coin</th>
-                  <th>Price</th>
-                  <th>Name</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let pair of pairList">
-                  <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
-                  <th class="table-content-font">0</th>
-                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
-                </tr>
-              </tbody>
-            </table>
+        <div class="col-sm-12">
+          <div class="trade-history-heading">
+            <p class="tradeSubheading-fontSze-fontFamily">TRADE HISTORY</p>
+            <div class="title-Trade"></div>
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <!-- <div class="col-sm-3 col-sm-offset-9">
+          <div class="row"> -->
+        <div class="col-sm-12 trade-History-Button margin-btm-5">
+          <span class=" button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span>
+          <!-- <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
+             <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button> 
+          </div> -->
+          <!-- <div class="switchTrade">
+                <div class="switch-market" (click)="marketTradeList()">
+                   <span class="market-text tradeSwith">MARKET TRADES</span>
+                  <button type="submit" name="marketOrder">MARKET TRADES</button>
+                </div>
+                <div class="switch-mytrade" (click)="myTradeList()">
+                   <button type="submit" name="marketOrder">MY TRADES</button>
+                   <span class="my-trade tradeSwith">MY TRADES</span>
+                </div>
+              </div> -->
+        </div>
+        <!-- </div> -->
+        <!-- </div> -->
+      </div>
+
+      <div class="trade-History">
+        <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily"
+          >
+          <thead class="table-Head ">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Price (1 Unit)</th>
+              <th>Amount</th>
+              <th>Total Price</th>
+              <th>Order Standard</th>
+            </tr>
+          </thead>
+          <tbody class="table-content-font ">
+            <tr *ngFor="let tx of allTradedList">
+              <td>{{tx.createdOn | date}}</td>
+              <td>{{tx.createdOn | date:'shortTime'}}</td>
+              <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.orderStandard}}</td>
+            </tr>
+            <tr class="more-details">
+              <div>
+                <a href=""> More... </a>
+                <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="trade-History">
+        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
+          <thead class="table-Head ">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Price (1 Unit)</th>
+              <th>Amount</th>
+              <th>Total Price</th>
+              <th>Order Standard</th>
+            </tr>
+          </thead>
+          <tbody class="table-content-font">
+            <tr *ngFor="let tx of myTradedList">
+              <td>{{tx.createdOn | date}}</td>
+              <td>{{tx.createdOn | date:'shortTime'}}</td>
+              <td style=color:#2AD747>
+                <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
+                <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
+              </td>
+              <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+              <td>{{tx.orderStandard}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+   <!--  </div> -->
+  </div>
+   
+
   <!-- for drop-down -->
   <!-- before login div -->
   <!-- <div class="row">
@@ -220,103 +539,9 @@
   <!-- my orders page -->
 
   <!-- trade history page -->
-  <div class="row">
-    <div class="col-sm-10  col-sm-offset-1 tradeHistory-Table-margin">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="trade-history-heading">
-            <p class="tradeSubheading-fontSze-fontFamily">TRADE HISTORY</p>
-            <div class="title-Trade"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- <div class="col-sm-3 col-sm-offset-9">
-          <div class="row"> -->
-        <div class="col-sm-12 trade-History-Button">
-          <span class=" button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span>
-          <!-- <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
-             <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button> 
-          </div> -->
-          <!-- <div class="switchTrade">
-                <div class="switch-market" (click)="marketTradeList()">
-                   <span class="market-text tradeSwith">MARKET TRADES</span>
-                  <button type="submit" name="marketOrder">MARKET TRADES</button>
-                </div>
-                <div class="switch-mytrade" (click)="myTradeList()">
-                   <button type="submit" name="marketOrder">MY TRADES</button>
-                   <span class="my-trade tradeSwith">MY TRADES</span>
-                </div>
-              </div> -->
-        </div>
-        <!-- </div> -->
-        <!-- </div> -->
-      </div>
-
-      <div class="trade-History">
-        <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily"
-          >
-          <thead class="table-Head ">
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Price (1 Unit)</th>
-              <th>Amount</th>
-              <th>Total Price</th>
-              <th>Order Standard</th>
-            </tr>
-          </thead>
-          <tbody class="table-content-font ">
-            <tr *ngFor="let tx of allTradedList">
-              <td>{{tx.createdOn | date}}</td>
-              <td>{{tx.createdOn | date:'shortTime'}}</td>
-              <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.orderStandard}}</td>
-            </tr>
-            <tr class="more-details">
-              <div>
-                <a href=""> More... </a>
-                <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
-              </div>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="trade-History">
-        <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
-          <thead class="table-Head ">
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Type</th>
-              <th>Price (1 Unit)</th>
-              <th>Amount</th>
-              <th>Total Price</th>
-              <th>Order Standard</th>
-            </tr>
-          </thead>
-          <tbody class="table-content-font">
-            <tr *ngFor="let tx of myTradedList">
-              <td>{{tx.createdOn | date}}</td>
-              <td>{{tx.createdOn | date:'shortTime'}}</td>
-              <td style=color:#2AD747>
-                <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
-                <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
-              </td>
-              <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-              <td>{{tx.orderStandard}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  
   </div>
+</div>
   <!-- trade history page -->
 </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

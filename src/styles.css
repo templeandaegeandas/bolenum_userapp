@@ -8,53 +8,19 @@ chart
     width: 100% !important;
 }
 
-/*@font-face {
-    font-family: "Lato-Regular";
-    src: url(".assets/font/Lato-Regular.ttf");
+.panel-default>.panel-heading{
+   background-color: #fff !important;
 }
 
-.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled
-{
-    display: none;
+.panel{
+  background-color: #f8f8f8 !important;
+}
+
+.panel-group .panel{
     border: none;
+    box-shadow:2px 2px 5px 1px rgba(0,0,0,0.1) !important;
 }
 
-.mydp .selectiongroup {
-    position: relative;
-    display: table;
-    border: none;
-    border-spacing: 4px;
-    background-color: #FFF!important;
-    width: 3px;
-    outline: none;
-    margin-right: 20px;
-}
-
-.mydp, .mydp .headertodaybtn, .mydp .selection, .mydp .selectiongroup, .mydp .selector {
-     outline: none;
-     border: none;
-}
-.datepciker-history .mydp input,.datepciker-history .btnclear.btnclearenabled .mydp, .mydp .headertodaybtn span.mydpicon.icon-mydpremove{
-    border: transparent;
-    display: none;
-    border: none;
-}
-
-.btnclear.btnclearenabled {
-    display: none !important;
-}
-
-.mydp {
-    border: 0 !important;
-    background: none!important;
-    width: 20px;
-}
-mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp .headerbtn, .mydp .headermonthtxt, .mydp .headertodaybtn, .mydp .headeryeartxt, .mydp .yearchangebtn {
-    background: #DB2828 !important;
-    color:white !important;
-    
-    
-}*/
 
 @font-face{
     font-family: Lato-Regular-font;
@@ -62,6 +28,70 @@ mydp .btnclear, .mydp .btndecrease, .mydp .btnincrease, .mydp .btnpicker, .mydp 
 }
 
 body{
+
      font-family: Lato-Regular-font;
 }
+
+.boxShadow-card{
+             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1) !important;
+}
+
+
+
+.main_heading{
+    font-size: 20px !important;
+
+}
+
+.form_heading{
+    font-size: 18px !important;
+}
+
+.sub_heading{
+    font-size: 16px !important;
+}
+
+.content_text{
+    font-size: 13px !important;
+}
+
+.lebel-heading{
+    font-size: 14px !important;
+}
+
+.button-font-size{
+    font-size: 12px !important;
+
+}
+
+.error-msg-fontSize{
+    font-size: 12px !important;
+}
+
+.terms_condition{
+
+    font-size: 12px !important;
+
+}
+
+.level-font-weight{
+    font-weight: 700 !important;
+}
+
+.button-property-new{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3) !important;
+}
+
+.button-property-new:hover{
+   box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.5) !important;
+}
+
+
+
+
+
+
+
+
+
 

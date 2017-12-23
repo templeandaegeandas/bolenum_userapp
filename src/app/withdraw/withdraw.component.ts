@@ -31,6 +31,10 @@ export class WithdrawComponent implements OnInit {
   data: any;
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
+    this.getCurrencyList();
+    setTimeout(() => {
+      this.getListOfUserWithdrawlTransaction();
+    }, 200);
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
         this.getListOfUserWithdrawlTransaction();
@@ -42,10 +46,6 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.getCurrencyList();
-    setTimeout(() => {
-      this.getListOfUserWithdrawlTransaction();
-    }, 200);
   }
 
   withdrawAmount(form) {
@@ -55,9 +55,9 @@ export class WithdrawComponent implements OnInit {
       return;
     }
     this.loading = true;
-    let c = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
-    this.withdrawService.withdrawFromWallet(c.currencyType, c.currencyAbbreviation, this.withdrawForm).subscribe(success => {
-      this.getCoin(c.currencyAbbreviation);
+    let currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
+    this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
+      this.getCoin(currency.currencyAbbreviation);
       form.resetForm();
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
@@ -75,9 +75,14 @@ export class WithdrawComponent implements OnInit {
         this.getCoin(this.setItemValue);
       }
     }, error => {
-
+      console.log(error)
     });
 
+  }
+
+  
+  log(event: boolean) {
+    console.log(`Accordion has been ${event ? 'opened' : 'closed'}`);
   }
 
   getCoin(data) {
@@ -85,11 +90,13 @@ export class WithdrawComponent implements OnInit {
     this.data = data;
     this.withdrawForm.toAddress = '';
     this.withdrawForm.withdrawAmount = '';
-    if (this.currencyData.length == 0) {
-      this.getCurrencyList();
-    }
-    let c = this.currencyData.find(x => x.currencyAbbreviation == data);
-    this.withdrawService.getCoin(c.currencyType, data).subscribe(success => {
+    let currency;
+    this.currencyData.map(function(value) {
+      if (value.currencyAbbreviation == data) {
+        currency = value;
+      }
+    })
+    this.withdrawService.getCoin(currency.currencyType, data).subscribe(success => {
       let successData = success.data;
       if (successData.data != null) {
         this.address = successData.data.address;
@@ -101,7 +108,7 @@ export class WithdrawComponent implements OnInit {
       this.getCoin(data);
       this.loading = false;
     })
-    this.withdrawFees(c.currencyId);
+    this.withdrawFees(currency.currencyId);
   }
 
   getListOfUserWithdrawlTransaction() {
@@ -112,7 +119,6 @@ export class WithdrawComponent implements OnInit {
       this.hasBlur = false;
       this.txList = success.data.content;
       this.transactionLength = this.txList.length;
-      console.log("tx length>>>>>>>>>>>>>>>>>>>>", this.transactionLength);
     })
   }
 
@@ -129,7 +135,6 @@ export class WithdrawComponent implements OnInit {
       this.hasBlur = false;
       this.txList = success.data.content;
       this.transactionLength = this.txList.length;
-      console.log("tx length>>>>>>>>>>>>>>>>>>>>", this.transactionLength);
     })
   }
 

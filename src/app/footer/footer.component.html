@@ -1,20 +1,20 @@
 <footer>
-   <div class="container">
+   <div class="container-fluid">
       <div class="row">
          <div class="col-lg-4 col-xs-12  col-sm-4 footer-col">
             <div class="logofooter heading-fontSze-fontFamily">
                <img src="assets/images/logo_footer.png">
-               <h3 class="text-center">Bolenum</h3>
+               <h3 class="text-center main_heading ">Bolenum</h3>
             </div>
-            <p class="footer-texthead footerContent-fontSze-fontFamily">A blockchain company</p>
+            <p class="footer-texthead  sub_heading">A blockchain company</p>
             <!--<p class="footer-text"> It is a long established fact that a reader ill be distracted by the readable content.</p>-->
             <!-- <p class="content-fontSze-fontFamily "><img src="assets/images/location_black.png">   Temple & Agendas Limted, Skyebank House, Lekki Admiralty Way, Lekki Phase 1,  Lekki, Lagos, Nigeria </p>
             <p class="content-fontSze-fontFamily " ><img src="assets/images/call.png">   011-45165136,  454164611</p> -->
-            <p class="content-fontSze-fontFamily "><img src="assets/images/mail.png"> <a class="footer-cursor-pointer">contact@bolenum.com</a></p>
+            <p class=""><img src="assets/images/mail.png"> <a class="footer-cursor-pointer content_text">contact@bolenum.com</a></p>
          </div>
          <div class="col-lg-4 col-xs-12 col-sm-4 footer-col">
-            <h6 class="heading7 subHeading-fontSze-fontFamily">Explore</h6>
-            <ul class="footer-ul content-fontSze-fontFamily ">
+            <h6 class="heading7 sub_heading">Explore</h6>
+            <ul class="footer-ul content_text ">
                <li><a routerLink="/tradeNow" target="_blank"><i class="fa fa-chevron-right"></i>Trade Now</a></li>
                <li><a href="https://bolenumexchange.freshdesk.com" target="_blank"><i class="fa fa-chevron-right"></i>Support</a></li>
                 <li><a routerLink="/feeDetails" target="_blank"><i class="fa fa-chevron-right"></i>Fee</a></li>
@@ -26,13 +26,13 @@
 
          </div>
          <div class="col-lg-4 col-xs-12 col-sm-4 footer-col">
-            <h6 class="heading7 subHeading-fontSze-fontFamily">Newsletter</h6>
-            <p class="content-fontSze-fontFamily">Get Latest update and offer..</p>
+            <h6 class="heading7 sub_heading">Newsletter</h6>
+            <p class="content_text">Get Latest update and offer..</p>
             <div class="form">
                <div class="form-group">
                  <form #emailNotification = 'ngForm' >
                   <div class="input-group ">
-                     <input class="form-control content-fontSze-fontFamily" name="email" [(ngModel)]='email' #emailNotify='ngModel' placeholder="Email Address" type="email" >
+                     <input class="form-control content_text" name="email" [(ngModel)]='email' #emailNotify='ngModel' placeholder="Email Address" type="email" >
                      <span class="input-group-btn">
                      <!--<button class="btn btn-primary" type="button">Search !</button>-->
                     <img src="assets/images/send.png" class="img-resonsive " (click)='notification()'>
@@ -40,15 +40,15 @@
                   </div>
                 </form>
                </div>
-               <p class="text-footer content-fontSze-fontFamily ">We are at bolenum believe in user's privacy.We never send spam mail. </p>
+               <p class="text-footer content_text">We are at bolenum believe in user's privacy.We never send spam mail. </p>
             </div>
          </div>
       </div>
    </div>
 </footer>
 <!--footer start from here-->
-<div class="copyright content-fontSze-fontFamily">
-   <div class="container">
+<div class="copyright content_text">
+   <div class="container-fluid">
       <div class="col-md-12 copyright-position">
         <p>Copyrights@bolenum  2017-2026 All rights reserved </p>
       </div>
