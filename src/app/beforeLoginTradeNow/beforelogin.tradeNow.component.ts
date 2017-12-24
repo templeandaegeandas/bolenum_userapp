@@ -74,14 +74,6 @@ export class BeforLoginTradeNowComponent implements OnInit {
   totalSell = 0.0;
   totalBuy = 0.0;
   cancelOrderId: any;
-  public isMarket: boolean = true;
-  public tradeValue: any[] = [
-    { "valueType": "Limit Order" },
-    { "valueType": "Market Order" }
-  ]
-
-  public setTradingValue: any;
-  // table
   public btc: boolean = true;
   public eth: boolean = false;
   public bln: boolean = false;
@@ -123,7 +115,7 @@ export class BeforLoginTradeNowComponent implements OnInit {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
-        this.totalBuy = value.volume * value.price;
+        this.totalBuy += value.volume * value.price;
       });
       this.buyOrderLength = this.buyOrderList.length;
     })
@@ -134,7 +126,7 @@ export class BeforLoginTradeNowComponent implements OnInit {
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
-        this.totalSell = value.volume;
+        this.totalSell += value.volume;
       });
       this.sellOrderLength = this.sellOrderList.length;
     })

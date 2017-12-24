@@ -73,26 +73,22 @@
                 </div>
                 <!-- table 1 -->
                 <div class=" table-responsive sell-Buy-table ">
-
                   <table class=" table table-striped table-color tradeSubheading-fontSze-fontFamily ">
                     <thead>
                       <tr>
                         <th>Price</th>
-                        <th>{{secondCurrency}}</th>
                         <th>{{firstCurrency}}</th>
-                        <th>Total {{firstCurrency}}</th>
+                        <th>Total {{secondCurrency}}</th>
                       </tr>
                     </thead>
-                    <tbody class="table-content-font">
+                    <tbody class="table-content-font trade-table-cursor">
                       <tr *ngFor="let buyOrder of buyOrderList">
-                        <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.price}}</td>
-                        <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price}}</td>
-                        <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume}}</td>
-                        <td (click)="fillData(buyOrder.volume,buyOrder.price)">{{buyOrder.totalVolume}}</td>
+                        <td class="trade-table-cursor">{{buyOrder.price | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor">{{buyOrder.volume | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor">{{buyOrder.volume * buyOrder.price | number:'1.1-8'}}</td>
                       </tr>
                     </tbody>
                   </table>
-
                 </div>
               </div>
               <!-- test -->
@@ -108,29 +104,20 @@
                   <table class="table table-striped table-color tradeSubheading-fontSze-fontFamily">
                     <thead>
                       <tr>
-                        <th>Total {{firstCurrency}}</th>
-                        <th>{{firstCurrency}}</th>
-                        <th>{{secondCurrency}}</th>
                         <th>Price</th>
+                        <th>{{firstCurrency}}</th>
+                        <th>Total {{secondCurrency}}</th>
                       </tr>
                     </thead>
                     <tbody class="table-content-font">
                       <tr *ngFor="let sellOrder of sellOrderList">
-                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.totalVolume}}</td>
-                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume}}</td>
-                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price}}</td>
-                        <td (click)="fillData(sellOrder.volume,sellOrder.price)">{{sellOrder.price}}</td>
+                        <td class="trade-table-cursor">{{sellOrder.price | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor">{{sellOrder.volume | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor">{{sellOrder.volume * sellOrder.price | number:'1.1-8'}}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <!-- table 2-->
-                <!-- <div class="col-md-12 pagination-section">
-                  <ul class="pagination">
-                     <li><a href="#">View More ...</a></li>
-
-                   </ul>
-                  </div> -->
               </div>
             </div>
           </div>
@@ -138,42 +125,27 @@
         <!-- order field -->
 
         <div class="row">
-          <div class="col-sm-12 tradeHistory-Table-margin">
+          <div class="col-sm-12  tradeHistory-Table-margin padding-Table">
             <div class="row">
               <div class="col-sm-12">
-                <div class="trade-history-heading">
-                  <p class="tradeSubheading-fontSze-fontFamily">TRADE HISTORY</p>
+                <div class="trade-historytable">
+                  <p class="tradeSubheading-fontSze-fontFamily title">TRADE HISTORY</p>
                   <div class="title-Trade"></div>
                 </div>
               </div>
             </div>
-
             <div class="row">
               <!-- <div class="col-sm-3 col-sm-offset-9">
-          <div class="row"> -->
-              <div class="col-sm-12 trade-History-Button margin-btm-5">
-                <span class=" button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span>
-                <!-- <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn button-property" (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}" >MARKET TRADES</button>
-             <button type="button" class="btn button-property" (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}" >MY TRADES</button>
-          </div> -->
-                <!-- <div class="switchTrade">
-                <div class="switch-market" (click)="marketTradeList()">
-                   <span class="market-text tradeSwith">MARKET TRADES</span>
-                  <button type="submit" name="marketOrder">MARKET TRADES</button>
-                </div>
-                <div class="switch-mytrade" (click)="myTradeList()">
-                   <button type="submit" name="marketOrder">MY TRADES</button>
-                   <span class="my-trade tradeSwith">MY TRADES</span>
-                </div>
-              </div> -->
+                    <div class="row"> -->
+              <div class="col-sm-12 trade-History-Button">
+                <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span> | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}">MY TRADES</span>                  </p>
               </div>
               <!-- </div> -->
               <!-- </div> -->
             </div>
-
             <div class="trade-History">
-              <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily">
+              <div class="loader spiner-position" *ngIf="isLoading"></div>
+              <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr>
                     <th>Date</th>
@@ -181,53 +153,25 @@
                     <th>Price (1 Unit)</th>
                     <th>Amount</th>
                     <th>Total Price</th>
-                    <th>Order Standard</th>
                   </tr>
                 </thead>
                 <tbody class="table-content-font ">
                   <tr *ngFor="let tx of allTradedList">
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
-                    <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.orderStandard}}</td>
+                    <td>{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                    <td>{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
+                    <td>{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
                   </tr>
-                  <tr class="more-details">
-                    <div>
-                      <a href=""> More... </a>
-                      <!-- <i class="fa fa-refresh " style="font-size:24px"></i> -->
-                    </div>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="trade-History">
-              <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade'>
-                <thead class="table-Head ">
-                  <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Type</th>
-                    <th>Price (1 Unit)</th>
-                    <th>Amount</th>
-                    <th>Total Price</th>
-                    <th>Order Standard</th>
-                  </tr>
-                </thead>
-                <tbody class="table-content-font">
-                  <tr *ngFor="let tx of myTradedList">
-                    <td>{{tx.createdOn | date}}</td>
-                    <td>{{tx.createdOn | date:'shortTime'}}</td>
-                    <td style=color:#2AD747>
-                      <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
-                      <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
+                  <tr *ngIf="allTradedListLength >=10 ">
+                    <td colspan="5">
+                      <p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p>
                     </td>
-                    <td>{{tx.price}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.volume}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.price * tx.volume}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.orderStandard}}</td>
                   </tr>
+                  <div *ngIf="allTradedListLength==0">
+                    <p class="hasTableData"> No trades . . . !</p>
+                    <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
+                  </div>
                 </tbody>
               </table>
             </div>
