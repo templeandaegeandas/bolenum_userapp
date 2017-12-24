@@ -381,7 +381,7 @@
                         <div class="buy-orders border-radious-top">
                            <div class="inline-block">
                               <span class="table-heading-content pull-left">BUY ORDERS</span>
-                              <span class="table-heading-content pull-right"><label class="exchange-color">Total:</label>{{totalBuy}} {{secondCurrency}}</span>
+                              <span class="table-heading-content pull-right"><label class="exchange-color">Total:</label>{{totalBuy | number:'1.1-8'}} {{secondCurrency}}</span>
                            </div>
                         </div>
                         <!-- table 1 -->
@@ -413,7 +413,7 @@
                         <div class="sell-orders border-radious-top">
                            <div class="inline-block">
                               <span class="pull-left table-heading-content">SELL ORDERS</span>
-                              <span class="pull-right table-heading-content"><label class="exchange-color">Total:</label>{{totalSell}} {{firstCurrency}}</span>
+                              <span class="pull-right table-heading-content"><label class="exchange-color">Total:</label>{{totalSell | number:'1.1-8'}} {{firstCurrency}}</span>
                            </div>
                         </div>
                         <!-- table 2-->
