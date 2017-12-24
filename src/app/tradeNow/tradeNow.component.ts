@@ -216,7 +216,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
-        this.totalBuy = value.volume * value.price;
+        this.totalBuy += value.volume * value.price;
       });
       this.buyOrderLength = this.buyOrderList.length;
     })
@@ -227,7 +227,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
-        this.totalSell = value.volume;
+        this.totalSell += value.volume;
       });
       this.sellOrderLength = this.sellOrderList.length;
     })
