@@ -130,7 +130,7 @@ export class TradeNowComponent implements OnInit {
       },
       position: {
         width: 700
-    },
+      },
       title: {
         text: ''
       },
@@ -462,12 +462,20 @@ export class TradeNowComponent implements OnInit {
   }
 
   getUserBalance() {
-    this.depositService.getCoin(this.firstCurrencyType, this.firstCurrency).subscribe(success => {
+    if (this.firstCurrency == 'NGN') {
+      this.secondCurrencyType = 'FIAT';
+      this.firstCurrencyType = 'ERC20TOKEN';
+    }
+    if (this.secondCurrency == 'NGN') {
+      this.secondCurrencyType = 'ERC20TOKEN';
+      this.firstCurrencyType = 'FIAT';
+    }
+      this.depositService.getCoin(this.secondCurrencyType, this.firstCurrency).subscribe(success => {
       this.firstCurrencyBal = success.data.data.balance;
     }, error => {
       this.firstCurrencyBal = 0.0;
     })
-    this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
+    this.depositService.getCoin(this.firstCurrencyType, this.secondCurrency).subscribe(success => {
       if (success.data != null)
         this.secondCurrencyBal = success.data.data.balance;
     }, error => {
