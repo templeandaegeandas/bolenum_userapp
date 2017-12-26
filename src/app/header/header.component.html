@@ -1,6 +1,6 @@
 <div class="header-menu headerMargin headerMargin ">
-    <div class="main">
-        <!-- <div class="top_bar">
+  <div class="main">
+    <!-- <div class="top_bar">
             <div class="container">
                 <div class="col-md-6">
                     <ul class="topnav">
@@ -15,44 +15,67 @@
                 </div>
             </div>
         </div> -->
-        <nav class="navbar navbar-default navbar-fixed-top ">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+    <nav class="navbar navbar-default navbar-fixed-top ">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
             <span class="sr-only header-font-family">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-                <span routerLink="/tradeNow" class="bolenumLogo" ><a  class="navbar-brand insight" >
+        <span routerLink="/tradeNow" class="bolenumLogo"><a  class="navbar-brand insight" >
             <img class="img-responsive logo-img" src="assets/images/bolenum.png" title="Bolenum Exchange">
             <span class="exchange-color header-font-family heading-font-size"> Bolenum  </span> <span class="red header-font-family heading-font-size">Exchange</span>
-                </a>
-                </span>
-            </div>
-            <!-- Collection of nav links, forms, and other content for toggling -->
-            <div id="navbarCollapse" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="menufont" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
-                    <li class="menufont" routerLinkActive="active"><a routerLink="/tradeNow">Trade Now</a></li>
-                     <li class="menufont" ><a href="https://bolenumexchange.freshdesk.com" target="_blank">Support</a></li>
-
-                    <li class="menufont" *ngIf="token==null" routerLinkActive="active"><a routerLink="/login">LOGIN</a></li>
-                    <li class="menufont" *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up">SIGNUP</a></li>
-                    <li class="dropdown menufont">
-                        <a class="dropdown-toggle menufont" data-toggle="dropdown">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px; margin-left:6px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
-                        <ul class="dropdown-menu">
-                            <li class="drop-down-font-size"><a routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">wallet</a></li>
-                             <li class="divider"></li>
-                            <li class="drop-down-font-size"><a routerLink="/profile"> <img src="assets/images/profile (1).png" class="img-profile-icon">Profile</a></li>
-                             <li class="divider"></li>
-                            <li class="drop-down-font-size"><a href="#" (click)="signOut()"><img src="assets/images/logout.png" class="img-profile-icon">Logout</a></li>
-                        </ul>
-                    </li>
-                    <li class="menufont bellmenu" ><a routerLink="/notify" ><img src="./assets/images/notifythree.png" class="bell-icon" title="Notification"></a></li>
+        </a>
+        </span>
+      </div>
+      <!-- Collection of nav links, forms, and other content for toggling -->
+      <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
+          <li class="" >
+            
+              <div class="dropdown padding-dropdown">
+                <button class=" dropdown-toggle more-drop-down heading-sub-menu " type="button" data-toggle="dropdown">MORE
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu more-dropDown-menu">
+                  <li><a href="#">About</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Term & Conditions</a></li>
                 </ul>
-            </div>
+              </div>
+          </li>
+          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/tradeNow">Trade Now</a></li>
+          <li class="menufont heading-sub-menu"><a href="https://bolenumexchange.freshdesk.com" target="_blank">Support</a></li>
 
-        </nav>
-    </div>
+          <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/login">LOGIN</a></li>
+          <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up">SIGNUP</a></li>
+          <li class="dropdown menufont ">
+            <a class="dropdown-toggle menufont heading-sub-menu drop-down-height" data-toggle="dropdown">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px; margin-left:6px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
+            <ul class="dropdown-menu">
+              <li class="drop-down-font-size"><a routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">wallet</a></li>
+              <li class="divider"></li>
+              <li class="drop-down-font-size"><a routerLink="/profile"> <img src="assets/images/profile (1).png" class="img-profile-icon">Profile</a></li>
+              <li class="divider"></li>
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Balances</a></li>
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Deposits</a></li>
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Withdrawals</a></li>
+              <li class="divider"></li>
+
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Orders</a></li>
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Trade History</a></li>
+              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Setting</a></li>
+
+              <li class="divider"></li>
+
+              <li class="drop-down-font-size"><a href="#" (click)="signOut()"><img src="assets/images/logout.png" class="img-profile-icon">Logout</a></li>
+            </ul>
+          </li>
+          <li class="menufont bellmenu"><a routerLink="/notify"><img src="./assets/images/notifythree.png" class="bell-icon" title="Notification"></a></li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
 </div>

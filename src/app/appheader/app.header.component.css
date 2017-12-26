@@ -1,38 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-
-/* font family and font-size for all header */
-
-.appHeader-font-family{
-       font-family: Lato-Regular-font !important;
-         font-size: 27px !important;
-}
-
-.appHeaderMenufont{
-
-     font-family: Lato-Regular-font !important;
-      font-size: 15px !important;
-}
-
-
-
-/* .drop-down-font-size{
-      font-size: 13px !important;
-       font-family: Lato-Regular-font !important;
-} */
-/* font family and font-size for all header */
-
-
 .logo-img {
     display: inline-block;
-    width: 60px;
+    width: 40px;
     vertical-align: middle;
     margin: 10px 0;
     float:left;
 }
 
+.heading-font-size{
+    font-size: 20px;
+}
+
+.heading-sub-menu{
+    font-size: 11px;
+}
 .insight {
-    /* font-size: 30px;
-     font-weight: 700; */
+   
      margin-left: 20 !important;
      float: none;
      vertical-align: middle;
@@ -44,27 +26,35 @@
    min-height:20px;
    background: #DB2828;
 }
+
+.nav-right-margin{
+        margin-right: 35px;
+}
+
+.nav-left-margin{
+        margin-left: 35px;
+}
+
 .topnav {
   list-style-type:none;
   margin-bottom:0px;
   float:left;
   padding:0px;
   margin-left:0px;
-  /* font-family: lato; */
+
   }
 .topnav li {
     float: left;
     padding: 7px;
     color: #FFFFFF;
-    /* font-size: 20px; */
+   
     text-transform: uppercase;
-    /* font-weight: 600;
-    font-family: lato; */
+   
 
 }
 .topnav  li a {
    padding:0 10px;
-   /* font-size:13px; */
+ 
    line-height:40px;
    color:#FFF;
    }
@@ -76,7 +66,7 @@
   }
 .rightc li {
   margin:0px -7px;
-  /* font-size:13px; */
+ 
   float:left;
   line-height:40px;
   color:#FFF;
@@ -87,8 +77,8 @@
 
 .navbar-brand img
 {
-   margin-top:-5px;
-   margin-left:0px;
+   margin-top:7px;
+   margin-left:35px;
    }
 
 .nav li > a{
@@ -109,12 +99,10 @@
 
 
 .nav.navbar-nav.navbar-right span {
-  /* font-family: Lato;
-  font-weight:300; */
+  
   }
 .navbar-right li a {
-  /* font-family: Lato;
-  font-size:16px; */
+ 
   }
 .navbar-default .navbar-brand {
    color: #DB2828;;
@@ -124,20 +112,18 @@
     background: #f8f8f8;
     border: none;
     border-radius: 0;
-    /* font-size: 18px; */
+  
     line-height: 34px;
-    height: 80px;
-    padding: 15px 67px;
-    /* font-family: Lato; */
+    height: 65px;
+    padding: 5px 67px;
+   
 
 }
 
 span.exchange-color {
     color:#DB2828;
-    /* font-size: 28px;
-    font-weight: 600;
-    font-family: Lato; */
-    margin-left:  6px;
+    
+    margin-left:  2px;
     }
 
 
@@ -169,8 +155,7 @@ span.exchange-color {
 
 .navbar-default .navbar-brand {
     color: #1d1c1c;
-    /* font-size: 28px;
-    font-weight: 600; */
+  
 }
 .nav>li>a {
     position: relative;
@@ -188,12 +173,12 @@ span.exchange-color {
 
 }
 .nav li.active a:after{
-    content: "";
+       content: "";
     background: #bdb4b4;
-    padding: 2px;
-    width: 47px;
-    height: 5px;
-    margin: 6px auto;
+    padding: 0px;
+    width: 31px;
+    height: 3px;
+    margin: 0px auto;
     text-align: center;
     display: block;
     border-radius: 4px;
@@ -260,7 +245,7 @@ img.img-profile-icon {
   .header-menu .navbar-default .navbar-collapse{
     border: none;
     box-shadow: none;
-    /*margin-top: 0px;*/
+  
     margin-bottom: 10px;
   }
   .navbar-toggle {
@@ -285,7 +270,7 @@ img.img-profile-icon {
   }
 
   .navbar-brand img {
-    /*margin-top: 5px;*/
+   
     margin-left: -43px;
   }
    span.red {
@@ -328,7 +313,7 @@ a.navbar-brand.insight span.exchange-color{
     display: inline-block;
     width: 44px;
     vertical-align: middle;
-   /* margin: -67px -10px 20px -55px;*/
+  
     float: left;
 }
 
@@ -363,16 +348,16 @@ a.navbar-brand.insight span.exchange-color{
     margin-top: 2px;
 }
 .navbar-default .navbar-brand {
-    font-size: 19px;
+
     }
 .nav>li>a {
     position: relative;
     display: block;
     padding: 13px 6px;
-    font-size: 11px;
+
 }
 span.exchange-color {
-    font-size: 19px;
+    
 
     }
  .navbar-brand img {
