@@ -437,8 +437,8 @@ select option {
 }
 
 .trade-margin {
-    margin-top: 25px;
-    margin-left: 42px;
+    margin-top: 55px;
+    /*margin-left: 20px;*/
 }
 
 .trade-heading-center {
@@ -651,6 +651,17 @@ thead.heading {
   /*  left: 0px;*/
     margin: 0;
 }
+
+.width-45{
+    width:45% !important;
+}
+.buyTradeBox{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.sellTradeBox{
+    margin-left: 20px;
+}
 .padding-20{
     padding-top: 20px;
 }
@@ -776,7 +787,7 @@ thead.heading {
 }
 
 .trade-Form {
-    width: 92%;
+   /* width: 92%;*/
     font-size:11px !important;
     /*border-top-left-radius: 8px;
     border-top-right-radius: 8px;*/
