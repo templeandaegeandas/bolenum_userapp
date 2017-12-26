@@ -40,7 +40,7 @@
                            </thead>
                            <tbody>
                               <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor">
-                                 <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                                 <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                                  <th class="table-content-font">0</th>
                                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
                               </tr>
@@ -55,21 +55,31 @@
       <div class="col-md-9 padding-0">
          <div class="main">
             <!-- <first Row> -->
-            <div class="col-sm-9 padding-0">
-               <div class="row tradeNow-background-img">
-                  <!-- new page -->
-                  <div class="text-left">
+               <div class="row brdr-btm">
+                  <div class="col-xs-12 col-md-6 padding-0">
                      <div class="exchange-border-right">
                         <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
                         <div class="exchange-pair-text">{{pairName}}</div>
                      </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6 padding-0">
+                     <div class="showHide-btn padding-20">
+                     <a class="btn btn-xs btn-warning" id="hide-chart-button" (click)="showHideDiv()"> <span *ngIf="!selected">Show</span>
+            <span *ngIf="selected">Hide</span> charts</a>
+                     </div>
+                  </div>
+                   </div>
+            <div class="col-sm-6 width-75 padding-0" *ngIf="showHide">
+               <div class="row tradeNow-background-img">
+                  <!-- new page -->
+                 
                      <div>
-                     <chart [options]="options"></chart>
+                     <chart class="chart" [options]="options"></chart>
                   </div>
-                  </div>
+                 
                </div>
             </div>
-            <div class="col-sm-3 padding-0">
+            <div class="col-sm-3 width-25 padding-0" *ngIf="showHide">
                <div class="aisde-right">
                   <div class="text-center">
                      <div class="row">
@@ -77,38 +87,6 @@
                            <div class="table-responsive"  *ngFor="let coinList of currecyList">
                               <div class="table-heading-content marketing-heading">BTC</div>
                               <table class="table table-condensed table-btc-value">
-                                 <tbody>
-                                    <tr>
-                                       <th>Last Price</th>
-                                       <td><span class="market-summary-last-price red">0.04540000</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h Volume</th>
-                                       <td><span class="market-summary-volume">35.01035376</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>Bid</th>
-                                       <td><span class="market-summary-bid-price red">0.04500003</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>Ask</th>
-                                       <td><span class="market-summary-ask-price red">0.04550000</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h High</th>
-                                       <td><span class="market-summary-high">0.04540000</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h Low</th>
-                                       <td><span class="market-summary-low">0.03882008</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h Trade Count</th>
-                                       <td><span class="market-summary-trade-count">2636</span></td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                               <table class="table table-condensed table-btc-value">
                                  <tbody>
                                     <tr>
                                        <th>Last Price</th>
@@ -163,12 +141,14 @@
                               <div class="row" >
                                  <div class="col-sm-6 head-padding heading-hand-icon padding-toggle"  (click)="buyToggle()" >
                                     <div class=" heading-padding-sell-buy border-radious-buy " [ngClass]="{'buy-color':buyColor ,'buy-button-color-before-active':beforeActiveBUY}">
-                                       <span class=""  >BUY</span>
+                                       <span class="pull-left">BUY</span>
+                                       <span class="pull-right">Available Balance:0.00</span>
                                     </div>
                                  </div>
                                  <div class="col-sm-6 head-padding-right heading-hand-icon padding-toggle"  (click)="sellToggle()" >
                                     <div class="heading-padding-sell-buy border-radious-sell" [ngClass]="{'sell-color':sellColor ,'beforeActivesell':beforeActiveSELL}">
-                                       <span class=""   >SELL</span>
+                                       <span class="pull-left">SELL</span>
+                                        <span class="pull-right">Available Balance:0.00</span>
                                     </div>
                                  </div>
                               </div>
