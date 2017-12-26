@@ -129,6 +129,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getLoggedInUserDetails();
+
   }
 
   getKycDetailsUser() {
@@ -542,6 +543,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getLoggedInUserDetails() {
+    this.getAllCountries();
     this.profileService.getUserDetails().subscribe(success => {
       localStorage.setItem("fName", success.data.firstName);
       if (success.data.lastName != null) {
@@ -706,6 +708,7 @@ export class ProfileComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+
   }
 
   getStatesByCountryId(countryName) {
