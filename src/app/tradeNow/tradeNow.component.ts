@@ -24,6 +24,9 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveBUY: boolean = false;
   public hasSellData: boolean = false;
   public hasData: boolean = false;
+  public showHide:boolean = true;
+  public selected:boolean =false;
+  public selectedRow;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
   public hasAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
@@ -130,7 +133,7 @@ export class TradeNowComponent implements OnInit {
       },
       position: {
         width: 700
-      },
+    },
       title: {
         text: ''
       },
@@ -195,6 +198,20 @@ export class TradeNowComponent implements OnInit {
 
   }
 
+ showHideDiv(){
+   this.showHide = !this.showHide;
+   this.selected = !this.selected;
+ }
+
+ select(pair){
+  console.log(pair);
+      this.selectedRow = pair;
+  }
+
+  isActive(pair) {
+      return this.selectedRow === pair;
+  }
+
 
 
   ngOnInit() {
@@ -212,22 +229,20 @@ export class TradeNowComponent implements OnInit {
   }
 
   getBuyOrderBookData(pairId) {
-    this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
-        this.totalBuy += value.volume * value.price;
+        this.totalBuy = value.volume * value.price;
       });
       this.buyOrderLength = this.buyOrderList.length;
     })
   }
 
   getSellOrderBookData(pairId) {
-    this.totalSell = 0.0;
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
-        this.totalSell += value.volume;
+        this.totalSell = value.volume;
       });
       this.sellOrderLength = this.sellOrderList.length;
     })
@@ -400,6 +415,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      // this.firstCurrency =
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -416,9 +432,6 @@ export class TradeNowComponent implements OnInit {
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
-        if (pairArray[0] == 'BLN') {
-          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
-        }
         if (this.secondCurrency == 'NGN') {
           this.secondCurrencyType = 'FIAT';
         }
@@ -462,20 +475,12 @@ export class TradeNowComponent implements OnInit {
   }
 
   getUserBalance() {
-    if (this.firstCurrency == 'NGN') {
-      this.secondCurrencyType = 'FIAT';
-      this.firstCurrencyType = 'ERC20TOKEN';
-    }
-    if (this.secondCurrency == 'NGN') {
-      this.secondCurrencyType = 'ERC20TOKEN';
-      this.firstCurrencyType = 'FIAT';
-    }
-      this.depositService.getCoin(this.secondCurrencyType, this.firstCurrency).subscribe(success => {
+    this.depositService.getCoin(this.firstCurrencyType, this.firstCurrency).subscribe(success => {
       this.firstCurrencyBal = success.data.data.balance;
     }, error => {
       this.firstCurrencyBal = 0.0;
     })
-    this.depositService.getCoin(this.firstCurrencyType, this.secondCurrency).subscribe(success => {
+    this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
       if (success.data != null)
         this.secondCurrencyBal = success.data.data.balance;
     }, error => {

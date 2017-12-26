@@ -23,7 +23,7 @@ label.exchange-color {
 
 .exchange-border-right {
     border-left: 4px solid #bdb4b4;
-    margin-left: 24px;
+   /* margin-left: 24px;*/
     padding-left: 13px;
     margin-bottom: 15px;
 }
@@ -107,6 +107,7 @@ label.exchange-color {
 .buy-orders {
     overflow: hidden;
     background-color: #f8f8f8;
+    border:1px solid #dedede;
     text-align: center;
     color: #000;
     padding-top: 6px;
@@ -124,6 +125,7 @@ tr th {
     overflow: hidden;
     background-color: #f8f8f8;
     text-align: center;
+    border:1px solid #dedede;
     color: #000;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -435,8 +437,8 @@ select option {
 }
 
 .trade-margin {
-    /*margin-top: 15px;*/
-    margin-left: 42px;
+    margin-top: 55px;
+    /*margin-left: 20px;*/
 }
 
 .trade-heading-center {
@@ -512,8 +514,8 @@ select option {
 .trade-in-part {
     color: #000;
     /* padding: 6px; */
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    /*border-top-left-radius: 8px;
+    border-top-right-radius: 8px;*/
 }
 /*.trade-in-part-white{
     color:#fff !important;
@@ -535,7 +537,7 @@ thead.heading {
 .market-margin {
     margin-top: 0px;
 }
-
+.active th{color:red;}
 .table-bg-color {
     background-color: #f1f0f0;
 }
@@ -611,14 +613,27 @@ thead.heading {
     margin-top: 10px;
 }
 .aside{
-    position: fixed;
+   /* position: fixed;
     width: 24%;
     padding: 0px 15px 0px 15px;
     overflow-y: auto;
     max-height: 700px;
-    top: 64px;
+    top: 100px;
     bottom: 0;
     left: 0px;
+    margin: 0;*/
+     position: relative;
+    width: 100%;
+    left: -10%;
+    z-index: 999;
+    overflow-y: auto;
+    /*margin: 0;*/
+    max-height: 465px;
+    /*width: 100%;*/
+    padding: 0px 15px;
+    top: 20px;
+    bottom: 0;
+  /*  left: 0px;*/
     margin: 0;
 }
 .aisde-right{
@@ -631,10 +646,48 @@ thead.heading {
     max-height: 465px;
     /*width: 100%;*/
     padding: 0px 15px;
-    top: 0px;
+    top: 25px;
     bottom: 0;
   /*  left: 0px;*/
     margin: 0;
+}
+
+.active th{
+    color:#DB2828;
+}
+
+.width-45{
+    width:45% !important;
+}
+.buyTradeBox{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.sellTradeBox{
+    margin-left: 20px;
+}
+.padding-20{
+    padding-top: 20px;
+}
+.brdr-btm{
+    border-bottom: 1px solid #dedede;
+}
+.chart{
+  margin-top: 4%;
+    margin-left: -3%;
+}
+.showHide-btn a{
+    float: right;
+}
+
+.main{
+    width:100% !important;
+}
+.width-75{
+    width:75% !important;
+}
+.width-25{
+    width:25% !important;
 }
 
 /*.aside{
@@ -738,10 +791,10 @@ thead.heading {
 }
 
 .trade-Form {
-    width: 92%;
+   /* width: 92%;*/
     font-size:11px !important;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    /*border-top-left-radius: 8px;
+    border-top-right-radius: 8px;*/
 }
 
 .trade-pop-upheader {
@@ -796,7 +849,7 @@ thead.heading {
     /*padding-left: 15px;
     padding-right: 15px;*/
     /*padding-top: 15px;*/
-    /*overflow-y: scroll;*/
+    overflow-y: scroll;
     max-height: 300px;
     background-color: #dedede;
 }
@@ -807,8 +860,8 @@ thead.heading {
     color: #000;
     padding-left: 10p;
     background-color: #f8f8f8;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    /*border-top-left-radius: 8px;
+    border-top-right-radius: 8px;*/
 }
 .table-btc-value tbody tr th{
      text-align: left !important;
@@ -1147,10 +1200,10 @@ select option {
     margin-left: 58px;
 }*/
 
-.border-radious-top {
+/*.border-radious-top {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
+}*/
 
 .padding-Table {
     padding-left: 20px;
@@ -1262,6 +1315,7 @@ select option {
 
 .heading-padding-sell-buy {
     padding: 6px;
+    overflow: hidden;
 }
 
 .submit_button_limit {
