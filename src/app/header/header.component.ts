@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { HeaderService } from './header.service';
 import { environment } from '../../environments/environment';
 import { AppEventEmiterService } from '../app.event.emmiter.service'
