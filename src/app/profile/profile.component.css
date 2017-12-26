@@ -160,9 +160,6 @@ label {
     transform: scale(1.1, 1.1)
 }
 
-.tab_container [id^="tab"]:hover {
-   
-}
 
 .margin-top-profile{
     margin-top: 31px;
@@ -222,6 +219,7 @@ label {
     background-position: center;
     background-image: url("/assets/images/profile (1).png");
     -webkit-animation: fadeInScale 2s ease-in-out;
+    
 }
 .img-tab1:hover {
     background-repeat: no-repeat;
@@ -484,7 +482,7 @@ p.last-prof {
 }
 
 .email-text {
-    padding: 15px 29px;
+    padding: 10px 29px;
     margin-bottom: 24px;
 }
 
