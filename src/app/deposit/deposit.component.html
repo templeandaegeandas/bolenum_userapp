@@ -1,8 +1,8 @@
-<div class="container deposit-container-padding">
-    <div class="row ">
-        <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color">
+<div class="container deposit-container-padding" >
+  <div class="row ">
+    <div class="col-md-10 col-md-offset-1 main-div deposit-bg-color"  >
 
-            <!-- <div class="pull-right">
+      <!-- <div class="pull-right">
         <ul>
           <li>
             <img src="./assets/images/send_uf.png" width="46" height="46">
@@ -12,241 +12,82 @@
           </li>
         </ul>
       </div> -->
-            <div class="clearfix"></div>
-            <div class="col-md-12 text-center">
-                <!-- <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
-<optgroup>
+      <div class="clearfix"></div>
+      <div class="col-md-12 text-center">
+        <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
+
             <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
-</optgroup>
-          </select> -->
-                <!--  <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p> -->
-            </div>
 
-            <accordion class="accordion-grp" [closeOthers]="true">
-                <accordion-group heading="Bitcoin">
-
-                    <div *ngIf=qrCode>
-                        <div class="col-md-12 text-center">
-                            <div class="qrCode deposite-Content">
-                                <qr-code [value]="address" [size]="100"></qr-code>
-                            </div>
-                        </div>
-                        <div class="col-md-12 input-box">
-
-                            <div class="form-group">
-                                <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
-                                <input type="text" class="form-control deposite-Content input-lg" readonly id="usr" [(ngModel)]="address" #inputTarget>
-                                <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
-                                <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-12 text-center deposite-Content">
-                            <!-- <span class="network">Network Fee:</span> -->
-                            <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoin.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span> Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-12 text-center margin-button">
-        <button class="genarate-button text-capitalize">Generate New Address</button>
-      </div> -->
-                    <!-- for table -->
-                    <div class="row">
-                        <div class="col-md-12 margin-Table">
-                            <div class="deposite-Table">
-                                <div class="loader spiner-position" *ngIf="isLoading"></div>
-                                <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
-                                    <thead class="table-Head table-Heading ">
-                                        <tr>
-                                            <th>Transaction Hash</th>
-                                            <th>Currency</th>
-                                            <th>Amount</th>
-                                            <th>Sender Address</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-content-font">
-                                        <tr *ngFor="let tx of txList">
-                                            <td class="ellipsis" title="{{tx.txHash}}">{{tx.txHash }}</td>
-
-                                            <td>{{tx.currencyName}}</td>
-                                            <td>{{tx.txAmount | number:'1.1-8'}}</td>
-                                            <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
-                                            <td>{{tx.createdOn | date}}</td>
-                                            <td>{{tx.createdOn | date:'shortTime'}}</td>
-                                        </tr>
-                                        <tr *ngIf="txLength >=10">
-                                            <td colspan="6">
-                                                <p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p>
-                                            </td>
-                                        </tr>
-                                        <tr *ngIf="txLength == 0">
-                                            <td colspan="6">
-                                                <p>You don't have any transaction yet!</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </accordion-group>
-                <accordion-group heading="Bolenum" (isOpenChange)="log($event)">
-
-                    <div *ngIf=qrCode>
-                        <div class="col-md-12 text-center">
-                            <div class="qrCode deposite-Content">
-                                <qr-code [value]="address" [size]="100"></qr-code>
-                            </div>
-                        </div>
-                        <div class="col-md-12 input-box">
-
-                            <div class="form-group">
-                                <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
-                                <input type="text" class="form-control deposite-Content input-lg" readonly id="usr" [(ngModel)]="address" #inputTarget>
-                                <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
-                                <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-12 text-center deposite-Content">
-                            <!-- <span class="network">Network Fee:</span> -->
-                            <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoin.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span> Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-12 text-center margin-button">
-        <button class="genarate-button text-capitalize">Generate New Address</button>
-      </div> -->
-                    <!-- for table -->
-                    <div class="row">
-                        <div class="col-md-12 margin-Table">
-                            <div class="deposite-Table">
-                                <div class="loader spiner-position" *ngIf="isLoading"></div>
-                                <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
-                                    <thead class="table-Head table-Heading ">
-                                        <tr>
-                                            <th>Transaction Hash</th>
-                                            <th>Currency</th>
-                                            <th>Amount</th>
-                                            <th>Sender Address</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-content-font">
-                                        <tr *ngFor="let tx of txList">
-                                            <td class="ellipsis" title="{{tx.txHash}}">{{tx.txHash }}</td>
-
-                                            <td>{{tx.currencyName}}</td>
-                                            <td>{{tx.txAmount | number:'1.1-8'}}</td>
-                                            <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
-                                            <td>{{tx.createdOn | date}}</td>
-                                            <td>{{tx.createdOn | date:'shortTime'}}</td>
-                                        </tr>
-                                        <tr *ngIf="txLength >=10">
-                                            <td colspan="6">
-                                                <p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p>
-                                            </td>
-                                        </tr>
-                                        <tr *ngIf="txLength == 0">
-                                            <td colspan="6">
-                                                <p>You don't have any transaction yet!</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </accordion-group>
-                <accordion-group heading="Ethereum">
-
-                    <div *ngIf=qrCode>
-                        <div class="col-md-12 text-center">
-                            <div class="qrCode deposite-Content">
-                                <qr-code [value]="address" [size]="100"></qr-code>
-                            </div>
-                        </div>
-                        <div class="col-md-12 input-box">
-
-                            <div class="form-group">
-                                <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
-                                <input type="text" class="form-control deposite-Content input-lg" readonly id="usr" [(ngModel)]="address" #inputTarget>
-                                <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
-                                <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-12 text-center deposite-Content">
-                            <!-- <span class="network">Network Fee:</span> -->
-                            <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoin.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
-                            <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span> Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-12 text-center margin-button">
-        <button class="genarate-button text-capitalize">Generate New Address</button>
-      </div> -->
-                    <!-- for table -->
-                    <div class="row">
-                        <div class="col-md-12 margin-Table">
-                            <div class="deposite-Table">
-                                <div class="loader spiner-position" *ngIf="isLoading"></div>
-                                <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
-                                    <thead class="table-Head table-Heading ">
-                                        <tr>
-                                            <th>Transaction Hash</th>
-                                            <th>Currency</th>
-                                            <th>Amount</th>
-                                            <th>Sender Address</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-content-font">
-                                        <tr *ngFor="let tx of txList">
-                                            <td class="ellipsis" title="{{tx.txHash}}">{{tx.txHash }}</td>
-
-                                            <td>{{tx.currencyName}}</td>
-                                            <td>{{tx.txAmount | number:'1.1-8'}}</td>
-                                            <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
-                                            <td>{{tx.createdOn | date}}</td>
-                                            <td>{{tx.createdOn | date:'shortTime'}}</td>
-                                        </tr>
-                                        <tr *ngIf="txLength >=10">
-                                            <td colspan="6">
-                                                <p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p>
-                                            </td>
-                                        </tr>
-                                        <tr *ngIf="txLength == 0">
-                                            <td colspan="6">
-                                                <p>You don't have any transaction yet!</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </accordion-group>
-            </accordion>
-
-            <!-- for table -->
+          </select>
+        <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p>
+      </div>
+      <div *ngIf=qrCode>
+        <div class="col-md-12 text-center">
+          <div class="qrCode deposite-Content">
+            <qr-code [value]="address" [size]="100"></qr-code>
+          </div>
         </div>
-    </div>
+        <div class="col-md-12 input-box">
+
+          <div class="form-group">
+  <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
+            <input type="text" class="form-control deposite-Content input-lg" readonly id="usr" [(ngModel)]="address" #inputTarget  >
+             <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
+             <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
+          </div>
+
+        </div>
+
+
+      <div class="col-md-12 text-center deposite-Content">
+         <!-- <span class="network">Network Fee:</span> -->
+        <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span>
+          <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
+            <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span>
+          Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
+        </div>
+      </div>
+      <!-- <div class="col-md-12 text-center margin-button">
+        <button class="genarate-button text-capitalize">Generate New Address</button>
+      </div> -->
+        <!-- for table -->
+    <div class="row">
+  <div class="col-md-12 margin-Table">
+<div class="deposite-Table">
+  <div class="loader spiner-position" *ngIf="isLoading" ></div>
+   <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
+        <thead class="table-Head table-Heading ">
+          <tr>
+            <th>Transaction Hash</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Sender Address</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody class="table-content-font">
+          <tr *ngFor="let tx of txList">
+            <td class="ellipsis" title="{{tx.txHash}}" >{{tx.txHash }}</td>
+
+            <td>{{tx.currencyName}}</td>
+            <td>{{tx.txAmount | number:'1.1-8'}}</td>
+            <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
+            <td>{{tx.createdOn | date}}</td>
+            <td>{{tx.createdOn | date:'shortTime'}}</td>
+          </tr>
+          <tr *ngIf="txLength >=10">
+            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()">More</p></td>
+          </tr>
+        </tbody>
+      </table>
 </div>
-<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+
+</div>
+</div>
+    <!-- for table -->
+    </div>
+ </div>
+</div>
+ <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
 <!-- <div class="myloader"></div> -->

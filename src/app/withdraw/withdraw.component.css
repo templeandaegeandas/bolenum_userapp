@@ -3,9 +3,6 @@
     /* padding-bottom: 34px;
     padding-top: 37px; */
 }
-.accordion-grp{
-  padding-top: 10px;
-}
 
 /* font-size-family */
 
@@ -87,7 +84,7 @@ select option{
     margin-top: 20px;
 }
 .color-box {
-    background-color: #f8f8f8;
+    background-color: #FFFFFF;
     /* padding-bottom: 60px; */
 }
 
@@ -96,10 +93,6 @@ select option{
   @media screen and (min-width: 320px) and (max-width: 767px){
   .col-width{
     width: 100%;
-  }
-  .widthdraw-container-padding{
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
   .color-box{
     margin-bottom: 20px;
@@ -153,8 +146,8 @@ select option{
     text-align: center;
 }
 .table-Head {
-        background-color: #dedede;
-    color: #000;
+        background-color: #db2828;
+    color: white;
 }
 .table-content-font{
         font-size: 13px !important;
@@ -218,12 +211,6 @@ select option{
 .tranction-Table table {
    /*   width: 716px; 140px * 5 column + 16px scrollbar width */
     border-spacing: 0;
-    border:none;
-}
-.panel-default >.panel-heading{
-  color: #000;
-  background-color:#fff;
-  border-color: #ddd;
 }
 
 .tranction-Table tbody, .tranction-Table thead tr { display: block; }
@@ -306,7 +293,8 @@ select option{
     text-align: right;
 }
 
-.moreText:hover{
+.moreData:hover{
     text-decoration: underline;
     color: #DB2828;
+
 }

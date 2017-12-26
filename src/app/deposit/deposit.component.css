@@ -55,10 +55,6 @@ select.center-dropddown {
     color: white;
     border: none;
 }
-.panel{
-  background-color: #fff !important;
-}
-
 
 .coinNotFound {
     color: #DB2828;
@@ -70,9 +66,9 @@ input[type="text"] {
 }
 
 .deposit-bg-color {
-    background-color: #f8f8f8;
+    background-color: white;
     padding-bottom: 0px;
-    padding-top: 10px;
+    padding-top: 65px;
 }
 
 .deposit-container-padding {
@@ -102,8 +98,8 @@ input[type="text"] {
 }
 
 .table-Head {
-    background-color: #dedede;
-    color: #000;
+    background-color: #db2828;
+    color: white;
 }
 
 .table-content-font {
@@ -158,7 +154,7 @@ input[type="text"] {
 
 .deposite-Table tbody td,
 .deposite-Table thead th {
-    width: 189px;
+    width: 185px;
     padding: 6px;
 }
 
@@ -249,11 +245,4 @@ input[type="text"] {
     color: #DB2828;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px){
-
-    .deposit-container-padding {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-}
 
