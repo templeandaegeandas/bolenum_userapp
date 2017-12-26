@@ -48,7 +48,7 @@ a {
 .top-profile {
     background-image: url("/assets/images/header (1).png");
     background-size: cover;
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .slider-info {
@@ -236,6 +236,7 @@ label {
      background-image: url("/assets/images/KYC_f.png");
          -webkit-animation: fadeInScale 2s ease-in-out;
 }
+
 
 
 
@@ -429,7 +430,8 @@ a {
 }
 
 .lebel-image-margin{
-        margin-top: 9px;
+        
+        height: 67px;
 }
 
 .margin-account-holder-name {
@@ -625,10 +627,10 @@ input#usr {
     display: block;
     padding: 2px 8px;
     width: 206px;
-    border-radius: -13px;
-    border-radius: 8px;
+    /* border-radius: -13px;
+    border-radius: 8px; */
     box-shadow: none;
-    border: 2px solid #e2d8d8;
+    border: 1px solid #e2d8d8;
     outline: none;
 }
 
@@ -920,7 +922,7 @@ input#usrcode {
 img.porf-pic {
     position: absolute;
     margin-left: 0px;
-        top: 83px;
+        top: 50px;
 }
 
 

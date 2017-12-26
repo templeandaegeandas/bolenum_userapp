@@ -128,6 +128,9 @@ export class TradeNowComponent implements OnInit {
       chart: {
         type: 'areaspline'
       },
+      position: {
+        width: 700
+      },
       title: {
         text: ''
       },
@@ -213,7 +216,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
-        this.totalBuy = value.volume * value.price;
+        this.totalBuy += value.volume * value.price;
       });
       this.buyOrderLength = this.buyOrderList.length;
     })
@@ -224,7 +227,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
-        this.totalSell = value.volume;
+        this.totalSell += value.volume;
       });
       this.sellOrderLength = this.sellOrderList.length;
     })
@@ -459,12 +462,20 @@ export class TradeNowComponent implements OnInit {
   }
 
   getUserBalance() {
-    this.depositService.getCoin(this.firstCurrencyType, this.firstCurrency).subscribe(success => {
+    if (this.firstCurrency == 'NGN') {
+      this.secondCurrencyType = 'FIAT';
+      this.firstCurrencyType = 'ERC20TOKEN';
+    }
+    if (this.secondCurrency == 'NGN') {
+      this.secondCurrencyType = 'ERC20TOKEN';
+      this.firstCurrencyType = 'FIAT';
+    }
+      this.depositService.getCoin(this.secondCurrencyType, this.firstCurrency).subscribe(success => {
       this.firstCurrencyBal = success.data.data.balance;
     }, error => {
       this.firstCurrencyBal = 0.0;
     })
-    this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
+    this.depositService.getCoin(this.firstCurrencyType, this.secondCurrency).subscribe(success => {
       if (success.data != null)
         this.secondCurrencyBal = success.data.data.balance;
     }, error => {

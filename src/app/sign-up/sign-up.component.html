@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="login-content">
+  <div class="login-content boxShadow-card">
     <div class="row">
       <div class="col-md-6 col-xs-12 col-sm-6">
         <img src="assets/images/login-img.png" class="img-login">
@@ -8,55 +8,56 @@
         <div class="sign-block">
           <div class="text-center">
             <img src="assets/images/bolenum.png" class="img-header">
+            <h4 class="create-text form_heading level-font-weight ">Create New</h4>
           </div>
-          <h4 class="create-text signUpHeading-font-size">Create new</h4>
+          
           <form #signUpForm=ngForm (submit)="signUpUser(signUpForm)">
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/Email.png"></span>
-              <input id="FirstName" type="email" class="form-control content-font-size" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"  placeholder="JonhArr12@gmail.com" required>
+              <input id="FirstName" type="email" class="form-control content-font-size content_text" name="email" [(ngModel)]="user.emailId" #email="ngModel" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"  placeholder="JonhArr12@gmail.com" required>
             </div>
             <span *ngIf="email.invalid && signUpForm.submitted">
-              <span class="text-danger errorContent-font-size" *ngIf="email.errors.required ">Please enter email</span>
-            <span class="text-danger errorContent-font-size" *ngIf="email.errors.pattern">Please enter valid email</span>
+              <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="email.errors.required ">Please enter email</span>
+            <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="email.errors.pattern">Please enter valid email</span>
             </span>
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/profile.png"></span>
-              <input id="FirstName" type="text" class="form-control content-font-size" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" minlength="3" placeholder="First Name" pattern="^[a-zA-Z0-9]*$" required>
+              <input id="FirstName" type="text" class="form-control content-font-size content_text" name="FirstName" [(ngModel)]="user.firstName" #firstName="ngModel" minlength="3" placeholder="First Name" pattern="^[a-zA-Z0-9]*$" required>
             </div>
             <span *ngIf="firstName.invalid && signUpForm.submitted">
-              <span class="text-danger errorContent-font-size" *ngIf="firstName.errors.required">Please enter first name</span>
-            <span class="text-danger errorContent-font-size" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
-            <p class="text-danger errorContent-font-size" *ngIf="firstName.errors.pattern">Space or special characters are not allowed</p>
+              <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="firstName.errors.required">Please enter first name</span>
+            <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
+            <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="firstName.errors.pattern">Space or special characters are not allowed</p>
             </span>
 
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/profile.png"></span>
-              <input id="LastName" type="text" class="form-control content-font-size" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" minlength="3" placeholder="Last Name" pattern="^[a-zA-Z0-9]*$">
+              <input id="LastName" type="text" class="form-control content-font-size content_text" name="LastName" [(ngModel)]="user.lastName" #lastName="ngModel" minlength="3" placeholder="Last Name" pattern="^[a-zA-Z0-9]*$">
             </div>
             <span *ngIf="lastName.invalid && signUpForm.submitted">
-              <span class="text-danger errorContent-font-size" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
-            <p class="text-danger errorContent-font-size" *ngIf="lastName.errors.pattern">Space or special characters are not allowed</p>
+              <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
+            <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="lastName.errors.pattern">Space or special characters are not allowed</p>
             </span>
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-              <input id="Create Password" type="password" class="form-control content-font-size" name="Create Password" [(ngModel)]="user.password" #password="ngModel" placeholder="Create Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$" required>
+              <input id="Create Password" type="password" class="form-control content-font-size content_text" name="Create Password" [(ngModel)]="user.password" #password="ngModel" placeholder="Create Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,64}$" required>
             </div>
             <span *ngIf="password.invalid && signUpForm.submitted">
-              <p class="text-danger errorContent-font-size" *ngIf="password.errors.required">Please enter password</p>
-              <p class="text-danger text-align-justify errorContent-font-size" *ngIf="password.errors.pattern">Password not strong enough(length between 8 to 64, 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, no white space) </p>
+              <p class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="password.errors.required">Please enter password</p>
+              <p class="text-danger text-align-justify errorContent-font-size error-msg-fontSize" *ngIf="password.errors.pattern">Password not strong enough(length between 8 to 64, 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, no white space) </p>
           </span>
             <div class="input-group">
               <span class="input-group-addon"><img src="assets/images/pasword.png"></span>
-              <input id="Conform Password" type="password" class="form-control content-font-size" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Confirm Password" required>
+              <input id="Conform Password" type="password" class="form-control content-font-size content_text" name="Conform Password" [(ngModel)]="user.repassword" #repassword="ngModel" placeholder="Confirm Password" required>
             </div>
             <span *ngIf="repassword.invalid && signUpForm.submitted">
-              <span class="text-danger errorContent-font-size" *ngIf="repassword.errors.required">Please enter confirm password</span>
+              <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="repassword.errors.required">Please enter confirm password</span>
             </span>
-            <span class="text-danger errorContent-font-size" *ngIf="user.repassword!=user.password && !repassword.invalid">Password did not match</span>
+            <span class="text-danger errorContent-font-size error-msg-fontSize" *ngIf="user.repassword!=user.password && !repassword.invalid">Password did not match</span>
             <div class="checkbox custom-checkbox">
               <!--<input type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>-->
               <input type="checkbox" name="termConditions" [(ngModel)]="user.termConditions" id="test1" />
-              <label for="test1" class="errorContent-font-size">I hearby Accept <a routerLink='/terms-service'>all terms & condition.</a></label>
+              <label for="test1" class="errorContent-font-size terms_condition">I hearby Accept <a routerLink='/terms-service'>all terms & condition.</a></label>
               <!--<label>
 			    	    		<input name="remember" type="checkbox" value="I hearbly Accept All"> I hearby Accept all <span class="condition">term & condition.</span>
 			    	    	</label>-->
@@ -64,7 +65,7 @@
                 <div class="row">
                   <div class="col-sm-12 captch-padding">
              <re-captcha name="captcha"  #captchaControl="ngModel" [(ngModel)]="formModel.captcha" required></re-captcha>
-            <button type="submit" [disabled]="!user.termConditions" class="btn btn-success errorContent-font-size">SIGN UP</button>
+            <button type="submit" [disabled]="!user.termConditions" class="btn btn-success errorContent-font-size button-property-new button-font-size">SIGN UP</button>
                   </div>
                 </div>
           </form>

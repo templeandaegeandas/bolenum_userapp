@@ -179,7 +179,7 @@ span.exchange-color {
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color:#DB2828;
+    color:#333;
     background: none !important;
    }
 
@@ -189,9 +189,9 @@ span.exchange-color {
 }
 .nav li.active a:after{
     content: "";
-    background: #DB2828;
+    background: #bdb4b4;
     padding: 2px;
-    width: 40px;
+    width: 47px;
     height: 5px;
     margin: 6px auto;
     text-align: center;
@@ -313,7 +313,7 @@ img.img-profile-icon {
  }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: #DB2828;;
+    background-color: #333;;
 }
 a.navbar-brand.insight span.exchange-color{
     margin-top: -52px;
