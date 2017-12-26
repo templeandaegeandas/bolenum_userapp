@@ -652,6 +652,10 @@ thead.heading {
     margin: 0;
 }
 
+.active th{
+    color:#DB2828;
+}
+
 .width-45{
     width:45% !important;
 }

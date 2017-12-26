@@ -39,7 +39,7 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor">
+                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" (click)="select(pair.pairId)" [ngClass]="{active: isActive(pair.pairId)}">
                                  <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                                  <th class="table-content-font">0</th>
                                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>

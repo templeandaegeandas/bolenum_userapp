@@ -203,6 +203,15 @@ export class TradeNowComponent implements OnInit {
    this.selected = !this.selected;
  }
 
+ select(pair){
+  console.log(pair);
+      this.selectedRow = pair; 
+  }
+
+  isActive(pair) {
+      return this.selectedRow === pair;
+  }
+ 
 
 
   ngOnInit() {
