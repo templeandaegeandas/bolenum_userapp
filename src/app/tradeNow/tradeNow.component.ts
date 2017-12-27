@@ -24,6 +24,8 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveBUY: boolean = false;
   public hasSellData: boolean = false;
   public hasData: boolean = false;
+  public showHide:boolean = true;
+  public selected:boolean =false;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
   public hasAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
@@ -838,6 +840,11 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData(this.pairId);
     }
   }
+
+  showHideDiv(){
+   this.showHide = !this.showHide;
+   this.selected = !this.selected;
+ }
 
 
 }
