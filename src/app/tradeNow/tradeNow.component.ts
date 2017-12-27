@@ -24,9 +24,6 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveBUY: boolean = false;
   public hasSellData: boolean = false;
   public hasData: boolean = false;
-  public showHide:boolean = true;
-  public selected:boolean =false;
-  public selectedRow;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
   public hasAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
@@ -78,12 +75,20 @@ export class TradeNowComponent implements OnInit {
   tradeFeeFiat: any = 0.0;
   firstCurrencyType: any;
   secondCurrencyType: any;
-  totalPrice: any;
-  tradingFee: any;
+  sellTotalPrice: any;
+  buyTotalPrice: any;
   priceWithFee: any;
   totalSell = 0.0;
   totalBuy = 0.0;
   cancelOrderId: any;
+  sellVolume;
+  sellPrice;
+  sellTradingFee = 0;
+  sellPriceWithFee = 0;
+  buyVolume;
+  buyPrice;
+  buyTradingFee = 0;
+  buyPriceWithFee = 0;
   public isMarket: boolean = true;
   public tradeValue: any[] = [
     { "valueType": "Limit Order" },
@@ -133,7 +138,7 @@ export class TradeNowComponent implements OnInit {
       },
       position: {
         width: 700
-    },
+      },
       title: {
         text: ''
       },
@@ -198,20 +203,6 @@ export class TradeNowComponent implements OnInit {
 
   }
 
- showHideDiv(){
-   this.showHide = !this.showHide;
-   this.selected = !this.selected;
- }
-
- select(pair){
-  console.log(pair);
-      this.selectedRow = pair;
-  }
-
-  isActive(pair) {
-      return this.selectedRow === pair;
-  }
-
 
 
   ngOnInit() {
@@ -229,20 +220,22 @@ export class TradeNowComponent implements OnInit {
   }
 
   getBuyOrderBookData(pairId) {
+    this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
       this.buyOrderList.map(value => {
-        this.totalBuy = value.volume * value.price;
+        this.totalBuy += value.volume * value.price;
       });
       this.buyOrderLength = this.buyOrderList.length;
     })
   }
 
   getSellOrderBookData(pairId) {
+    this.totalSell = 0.0;
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
       this.sellOrderList.map(value => {
-        this.totalSell = value.volume;
+        this.totalSell += value.volume;
       });
       this.sellOrderLength = this.sellOrderList.length;
     })
@@ -254,26 +247,49 @@ export class TradeNowComponent implements OnInit {
     })
   }*/
 
-  oneBtc() {
+  oneBuyBtc() {
     this.order.price = this.marketPrice;
     if (this.market1BtcEth == 'Infinity') {
       this.market1BtcEth = 0;
     }
-    this.totalPrice = this.order.price * this.order.volume;
-    this.tradingFee = this.totalPrice * this.tradeFee / 100;
-    this.priceWithFee = this.totalPrice + this.tradingFee;
-    if (this.sellColor) {
-      this.priceWithFee = this.totalPrice - this.tradingFee;
+
+    this.buyTotalPrice = this.buyPrice * this.buyVolume;
+    if(this.buyPrice == undefined || this.buyVolume == undefined) {
+      this.buyTotalPrice = 0;
     }
+    this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
+    this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
   }
 
-  calculateFee() {
-    this.totalPrice = this.order.price * this.order.volume;
-    this.tradingFee = this.totalPrice * this.tradeFee / 100;
-    this.priceWithFee = this.totalPrice + this.tradingFee;
-    if (this.sellColor) {
-      this.priceWithFee = this.totalPrice - this.tradingFee;
+  oneSellBtc() {
+    this.order.price = this.marketPrice;
+    if (this.market1BtcEth == 'Infinity') {
+      this.market1BtcEth = 0;
     }
+    this.sellTotalPrice = this.sellPrice * this.sellVolume;
+    if(this.sellPrice == undefined || this.sellVolume == undefined) {
+      this.sellTotalPrice = 0;
+    }
+    this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
+    this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
+  }
+
+  calculateBuyFee() {
+    this.buyTotalPrice = this.buyPrice * this.buyVolume;
+    if(this.buyPrice == undefined || this.buyVolume == undefined) {
+      this.buyTotalPrice = 0;
+    }
+    this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
+    this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
+  }
+
+  calculateSellFee() {
+    this.sellTotalPrice = this.sellPrice * this.sellVolume;
+    if(this.sellPrice == undefined || this.sellVolume == undefined) {
+      this.sellTotalPrice = 0;
+    }
+    this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
+    this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
   }
 
   showModel(orderType, volume, price, orderId) {
@@ -293,7 +309,6 @@ export class TradeNowComponent implements OnInit {
 
     }
     else if (this.setTradingValue == 'Market Order') {
-
       if (volume == '' || price == '') {
         this.hasAmount = true;
         setTimeout(() => {
@@ -303,23 +318,34 @@ export class TradeNowComponent implements OnInit {
       }
     }
 
+
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;
     this.order.price = price;
     this.order.totalVolume = volume;
     this.order.orderStandard = "MARKET";
-    if (orderType == null) {
-      if (this.sellColor) {
-        this.order.orderType = 'SELL'
-      }
-      else {
-        this.order.orderType = 'BUY';
-      }
-    }
-    else {
+    this.order.orderType = orderType;
+
+    if (orderType == 'SELL') {
+      this.buySellModel.show();
+      this.selecedOrderId = orderId;
+      this.order.volume = volume;
+      this.order.price = price;
+      this.order.totalVolume = volume;
+      this.order.orderStandard = "MARKET";
       this.order.orderType = orderType;
     }
+    else {
+      this.buySellModel.show();
+      this.selecedOrderId = orderId;
+      this.order.volume = volume;
+      this.order.price = price;
+      this.order.totalVolume = volume;
+      this.order.orderStandard = "MARKET";
+      this.order.orderType = orderType;
+    }
+
   }
 
   hideModel() {
@@ -366,7 +392,6 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.tradingFee = 0.0;
       this.priceWithFee = 0.0;
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
@@ -391,7 +416,6 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.tradingFee = 0.0;
       this.priceWithFee = 0.0;
       this.getAllTradedOrders();
       this.getMyOrdersFromBook();
@@ -403,7 +427,6 @@ export class TradeNowComponent implements OnInit {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
-      this.tradingFee = 0.0;
       this.priceWithFee = 0.0;
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
@@ -415,7 +438,6 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
-      // this.firstCurrency =
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -432,6 +454,9 @@ export class TradeNowComponent implements OnInit {
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
+        if (pairArray[0] == 'BLN') {
+          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
+        }
         if (this.secondCurrency == 'NGN') {
           this.secondCurrencyType = 'FIAT';
         }
@@ -467,20 +492,34 @@ export class TradeNowComponent implements OnInit {
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     this.getSellOrderBookData(pairId);
-    this.order.price = '';
-    this.order.volume = '';
-    this.tradingFee = 0.0;
-    this.priceWithFee = 0.0;
+    this.buyPrice = '';
+    this.buyVolume = '';
+    this.buyPriceWithFee = 0.0;
+    this.buyTotalPrice = 0.0;
+    this.buyTradingFee = 0.0;
+    this.sellPrice = '';
+    this.sellVolume = '';
+    this.sellPriceWithFee = 0.0;
+    this.sellTradingFee = 0.0;
+    this.sellTotalPrice = 0.0;
     this.loading = false;
   }
 
   getUserBalance() {
-    this.depositService.getCoin(this.firstCurrencyType, this.firstCurrency).subscribe(success => {
+    if (this.firstCurrency == 'NGN') {
+      this.secondCurrencyType = 'FIAT';
+      this.firstCurrencyType = 'ERC20TOKEN';
+    }
+    if (this.secondCurrency == 'NGN') {
+      this.secondCurrencyType = 'ERC20TOKEN';
+      this.firstCurrencyType = 'FIAT';
+    }
+    this.depositService.getCoin(this.secondCurrencyType, this.firstCurrency).subscribe(success => {
       this.firstCurrencyBal = success.data.data.balance;
     }, error => {
       this.firstCurrencyBal = 0.0;
     })
-    this.depositService.getCoin(this.secondCurrencyType, this.secondCurrency).subscribe(success => {
+    this.depositService.getCoin(this.firstCurrencyType, this.secondCurrency).subscribe(success => {
       if (success.data != null)
         this.secondCurrencyBal = success.data.data.balance;
     }, error => {
@@ -488,17 +527,25 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  fillData(volume, price) {
+  fillBuyData(volume, price) {
     this.setTradingValue = "Limit Order";
     this.setTradeValue("Limit Order");
-    this.order.volume = volume;
-    this.order.price = price
-    this.totalPrice = this.order.price * this.order.volume;
-    this.tradingFee = this.totalPrice * this.tradeFee / 100;
-    this.priceWithFee = this.totalPrice + this.tradingFee;
-    if (this.sellColor) {
-      this.priceWithFee = this.totalPrice - this.tradingFee;
-    }
+    this.buyVolume = volume;
+    this.buyPrice = price;
+    this.buyTotalPrice = this.buyPrice * this.buyVolume;
+    this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
+    this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
+    this.order.orderStandard = "LIMIT"
+  }
+
+  fillSellData(volume, price) {
+    this.setTradingValue = "Limit Order";
+    this.setTradeValue("Limit Order");
+    this.sellVolume = volume;
+    this.sellPrice = price;
+    this.sellTotalPrice = this.sellPrice * this.sellVolume;
+    this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
+    this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
     this.order.orderStandard = "LIMIT"
   }
 
@@ -768,7 +815,6 @@ export class TradeNowComponent implements OnInit {
     this.buyColor = true;
     this.order.volume = '';
     this.order.price = '';
-    this.tradingFee = 0.0;
     this.priceWithFee = 0.0;
     this.amount = '';
     this.price = '';
@@ -785,7 +831,6 @@ export class TradeNowComponent implements OnInit {
     this.buyColor = false;
     this.order.volume = '';
     this.order.price = '';
-    this.tradingFee = 0.0;
     this.priceWithFee = 0.0;
     this.amount = '';
     this.price = '';
