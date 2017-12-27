@@ -545,19 +545,24 @@ export class TradeNowComponent implements OnInit {
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
     this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
-    this.order.orderStandard = "LIMIT"
-  }
-
-  fillSellData(volume, price) {
-    this.setTradingValue = "Limit Order";
-    this.setTradeValue("Limit Order");
+    this.order.orderStandard = "LIMIT";
     this.sellVolume = volume;
     this.sellPrice = price;
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
     this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
     this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
-    this.order.orderStandard = "LIMIT"
   }
+
+  // fillSellData(volume, price) {
+  //   this.setTradingValue = "Limit Order";
+  //   this.setTradeValue("Limit Order");
+  //   this.sellVolume = volume;
+  //   this.sellPrice = price;
+  //   this.sellTotalPrice = this.sellPrice * this.sellVolume;
+  //   this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
+  //   this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
+  //   this.order.orderStandard = "LIMIT"
+  // }
 
   getMyTradedOrders() {
     this.isLoadingForMyTrade = true;
