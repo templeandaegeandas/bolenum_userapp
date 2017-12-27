@@ -25,7 +25,8 @@ export class TradeNowComponent implements OnInit {
   public hasSellData: boolean = false;
   public hasData: boolean = false;
   public showHide: boolean = true;
-  public selected: boolean = false;
+  public selected: boolean = false;;
+  public selectedRow;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
   public hasAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
@@ -438,6 +439,10 @@ export class TradeNowComponent implements OnInit {
 
   }
 
+  getPair(coin){
+    console.log("click", coin);
+  }
+
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
@@ -450,6 +455,7 @@ export class TradeNowComponent implements OnInit {
         });
       }
       setTimeout(() => {
+        console.log("Paired Currency", this.pairedCurrency);
         this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
@@ -858,6 +864,15 @@ export class TradeNowComponent implements OnInit {
   showHideDiv() {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
+  }
+
+  select(pair){
+  console.log(pair);
+      this.selectedRow = pair; 
+  }
+
+  isActive(pair) {
+      return this.selectedRow === pair;
   }
 
 

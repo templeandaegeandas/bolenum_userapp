@@ -1846,12 +1846,12 @@ select option {
 }
 
 .trade-drop-down-margin {
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top: 0px;
+    margin-bottom: 8px;
 }
 
 .trade-field {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     font-family: Lato-Regular-font !important;
 }
 
@@ -1993,7 +1993,7 @@ thead.heading {
 }
 
 .total-currency-message {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 .aside{
    /* position: fixed;
@@ -2697,17 +2697,19 @@ select option {
 }
 
 .heading-padding-sell-buy {
+    background-color: #dedede;
     padding: 6px;
     overflow: hidden;
+    cursor: auto !important;
 }
 
 .submit_button_limit {
     border: none;
     padding: 6px;
     color: white;
-    border-radius: 5px;
+    border-radius: 4px;
     outline: none;
-    width: 75px;
+    width: 150px;
     background-color: #bdb4b4;
 }
 
