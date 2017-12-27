@@ -467,7 +467,7 @@ export class TradeNowComponent implements OnInit {
         this.getUserBalance();
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
-      }, 500)
+      }, 1000)
     }, error => {
       this.getCurrencyList();
     })
