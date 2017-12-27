@@ -180,7 +180,6 @@ input[type="checkbox"]:checked + label:after {
 .table-responsive.history-Table {
     font-size: 11px;
 }
-
 @media screen and (min-width: 320px) and (max-width: 767px){
   .transaction-history {
     background-color: #DB2828;
@@ -218,7 +217,7 @@ h3.panel-title {
 
  /* font family and font size */
  .table-Heading {
-    font-size: 13px !important;
+    font-size: 16px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
