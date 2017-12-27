@@ -160,7 +160,7 @@ input[type="text"] {
 }
 
 .deposite-Table tbody {
-    height: 351px;
+    height: 315px;
     font-size: 11px;
     overflow-y: auto;
     overflow-x: hidden;
