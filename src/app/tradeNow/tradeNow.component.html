@@ -26,7 +26,7 @@
                         <div class="row">
                            <div class="col-sm-12">
                               <ul class="nav nav-tabs">
-                                 <li class="hand-icon" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                                 <li class="hand-icon" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyAbbreviation =='ETH'||'BLN'||'BTC'"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
                               </ul>
                            </div>
                         </div>
@@ -39,7 +39,7 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor">
+                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" (click)="select(pair.pairId)" [ngClass]="{active: isActive(pair.pairId)}">
                                  <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                                  <th class="table-content-font">0</th>
                                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
@@ -144,7 +144,8 @@
 
                                  <div class="col-sm-12 head-padding heading-hand-icon padding-toggle" >
                                     <div class=" heading-padding-sell-buy border-radious-buy">
-                                       <span>BUY</span>
+                                       <span class="pull-left">BUY</span>
+                                       <span class="pull-right">Available Balance: 0.0</span>
                                     </div>
                                     <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                                        <div class="col-md-12 total-currency-message">
@@ -208,7 +209,7 @@
                                              <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                                              </div> -->
                                           <div class="col-md-12 button-submit text-center">
-                                             <button class="submit_button_limit " (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT</button>
+                                             <button class="submit_button_limit " (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
                                           </div>
                                           <!-- <div class="col-md-12 trade-field">
                                              <div class="col-md-6  buy-button-left">
@@ -347,7 +348,8 @@
 
                                  <div class="col-sm-12 head-padding heading-hand-icon padding-toggle" >
                                    <div class="heading-padding-sell-buy border-radious-sell">
-                                       <span>SELL</span>
+                                       <span class="pull-left">SELL</span>
+                                       <span class="pull-right">Available Balance: 0.0</span>
                                     </div>
                                     <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                                        <div class="col-md-12 total-currency-message">
@@ -411,7 +413,7 @@
                                              <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                                              </div> -->
                                           <div class="col-md-12 button-submit text-center">
-                                             <button class="submit_button_limit " (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT</button>
+                                             <button class="submit_button_limit " (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
                                           </div>
                                           <!-- <div class="col-md-12 trade-field">
                                              <div class="col-md-6  buy-button-left">
