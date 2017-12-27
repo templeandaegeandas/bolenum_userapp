@@ -238,7 +238,7 @@ h3.panel-title {
 .history-Table tbody, .history-Table thead tr { display: block; }
 
 .history-Table tbody {
-    height: 307px;
+    height: 252px;
     overflow-y: auto;
     overflow-x: hidden;
 }

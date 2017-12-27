@@ -160,7 +160,7 @@ export class BeforLoginTradeNowComponent implements OnInit {
         }
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
-      }, 500)
+      }, 1000)
     }, error => {
       this.getCurrencyList();
     })
