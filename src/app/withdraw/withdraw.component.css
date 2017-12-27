@@ -90,7 +90,7 @@ select option{
     margin-top: 20px;
 }
 .color-box {
-    background-color: #f8f8f8;
+    background-color: #FFF;
     /* padding-bottom: 60px; */
 }
 
@@ -220,7 +220,6 @@ select option{
     font-weight: 100!important;
     background-color: #f8f8f8;
     color: #000;
-
 
 }
 .ellipsis {
