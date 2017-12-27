@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { HeaderService } from './header.service';
 import { environment } from '../../environments/environment';
 import { AppEventEmiterService } from '../app.event.emmiter.service'
@@ -13,6 +12,7 @@ import { WebsocketService } from '../web-socket/web.socket.service';
   styleUrls: ['./header.component.css'],
   providers: [HeaderService, WebsocketService]
 })
+
 export class HeaderComponent implements OnInit {
   public isOpen: boolean = false;
   public subMenu = false;
@@ -33,15 +33,15 @@ export class HeaderComponent implements OnInit {
       }
       else if (message == "lastname") {
         setTimeout(() => {
-        this.lastName = localStorage.getItem("lName");
-        console.log(this.lastName)
-        if (this.lastName != 'undefined' && this.lastName != null) {
-          this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
-        }
-        else {
-          this.fullName = localStorage.getItem("fName");
-        }
-      }, 1000);
+          this.lastName = localStorage.getItem("lName");
+          console.log(this.lastName)
+          if (this.lastName != 'undefined' && this.lastName != null) {
+            this.fullName = localStorage.getItem("fName") + " " + localStorage.getItem("lName");
+          }
+          else {
+            this.fullName = localStorage.getItem("fName");
+          }
+        }, 1000);
       }
     });
     if (localStorage.getItem("profilePic") != null) {
@@ -58,13 +58,13 @@ export class HeaderComponent implements OnInit {
   }
 
   signOut() {
-    this.headerService.logOut().subscribe(success => {
-      localStorage.clear();
+      this.headerService.logOut().subscribe(success => {
       this.router.navigate(['login']);
+      localStorage.clear();
       this.websocketService.disconnect();
     }, error => {
-      localStorage.clear();
       this.router.navigate(['login']);
+      localStorage.clear();
     })
   }
   showDropdown() {

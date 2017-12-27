@@ -33,7 +33,7 @@ ul li {
     border: none;
     padding: 11px;
     color: white;
-    font-size: 14px;
+    font-size: 11px !important;
     border-radius: 5px;
     outline: none;
     width: 21%;
@@ -49,11 +49,13 @@ ul li {
 }
 
 select.center-dropddown {
-    background: #DB2828;
+    background: #bdb4b4;
     width: 225px;
-    padding: 10px;
+    padding: 7px;
     color: white;
     border: none;
+    font-family: Lato-Regular-font !important;
+    font-size: 11px !important;
 }
 .panel{
   background-color: #fff !important;
@@ -66,22 +68,27 @@ select.center-dropddown {
 }
 
 input[type="text"] {
-    width: 41%;
+    width: 33%;
+    height:40px;
 }
 
 .deposit-bg-color {
-    background-color: #f8f8f8;
+    background-color: #FFF;
     padding-bottom: 0px;
     padding-top: 10px;
 }
-
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    font-weight: 300;
+}
 .deposit-container-padding {
     margin-top: 67px;
     margin-bottom: 51px;
 }
 
 .option-box {
-    background-color: white;
+    background-color: #FFF;
     color: black;
 }
 
@@ -102,12 +109,14 @@ input[type="text"] {
 }
 
 .table-Head {
-    background-color: #dedede;
+   background-color: #f8f8f8;
     color: #000;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100!important;
 }
 
 .table-content-font {
-    font-size: 13px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
@@ -120,19 +129,19 @@ input[type="text"] {
 /*  font-family and font size*/
 
 .table-Heading {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
 
 .drop-down-font {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
 }
 
 .deposite-Content {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
 }
@@ -152,8 +161,10 @@ input[type="text"] {
 
 .deposite-Table tbody {
     height: 351px;
+    font-size: 11px;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: #dedede;
 }
 
 .deposite-Table tbody td,
@@ -227,7 +238,7 @@ input[type="text"] {
 .copy-Text {
     position: relative;
     top: -47px;
-    left: 223px;
+    left: 205px;
 }
 
 .copyColor {
@@ -242,6 +253,7 @@ input[type="text"] {
 
 .cursorPointer{
     cursor: pointer;
+    margin-top: 6px;
 }
 
 .moreData:hover{
@@ -256,4 +268,3 @@ input[type="text"] {
         margin-bottom: 20px;
     }
 }
-
