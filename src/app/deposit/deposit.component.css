@@ -49,10 +49,10 @@ ul li {
 }
 
 select.center-dropddown {
-    background: #bdb4b4;
+    background: #dedede;
     width: 225px;
     padding: 7px;
-    color: white;
+    color: black;
     border: none;
     font-family: Lato-Regular-font !important;
     font-size: 11px !important;
