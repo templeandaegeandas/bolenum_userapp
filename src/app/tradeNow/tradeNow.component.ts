@@ -10,6 +10,8 @@ import { WebsocketService } from '../web-socket/web.socket.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import 'rxjs/add/operator/toPromise';
 
+declare var $: any;
+
 @Component({
   selector: 'app-tradeNow',
   templateUrl: './tradeNow.component.html',
@@ -102,6 +104,7 @@ export class TradeNowComponent implements OnInit {
   ]
 
   public setTradingValue: any;
+   public coinMarketData:any=[];
   // table
   public btc: boolean = true;
   public eth: boolean = false;
@@ -121,6 +124,7 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
+     this.getCoinMarketCapData();
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -467,7 +471,6 @@ export class TradeNowComponent implements OnInit {
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
-      console.log("currency List", this.currecyList);
       let currencyId = this.currecyList[0].currencyId;
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
@@ -477,7 +480,6 @@ export class TradeNowComponent implements OnInit {
         });
       }
       setTimeout(() => {
-        console.log("Paired currency", pairedCurrency);
         this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
@@ -896,17 +898,28 @@ export class TradeNowComponent implements OnInit {
   }
   
   select(pair){
-  console.log(pair);
       this.selectedRow = pair;
   }
 
   getPair(pair){
     console.log(pair);
-
   }
 
   isActive(pair) {
       return this.selectedRow === pair;
+  }
+
+    getCoinMarketCapData() {
+    $.ajax({
+      url: 'https://api.coinmarketcap.com/v1/ticker/bolenum/',
+      type: 'GET',
+      success: resp => {
+        this.coinMarketData=resp;
+      },
+      error: e => {
+        console.log(e)
+      }
+    });
   }
 
 
