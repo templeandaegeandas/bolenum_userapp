@@ -15,9 +15,9 @@
       <div class="clearfix"></div>
       <div class="col-md-12 text-center">
         <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
-<optgroup>
+
             <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
-</optgroup>
+
           </select>
         <p *ngIf="errorCoin" class="coinNotFound deposite-Content">Address of this coin is not available</p>
       </div>

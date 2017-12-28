@@ -60,7 +60,7 @@ span.mydpicon.icon-mydpcalendar {
 
 
 button.btn.btn-primary.dropdown-toggle {
-    background:#bdb4b4;
+    background:#dedede;
     padding: 0px;
     border: none;
     outline: none;
@@ -88,8 +88,8 @@ img.text-right {
     font-size: 12px;
 }
 .panel-primary>.panel-heading {
-    color: #fff;
-    background-color: #bdb4b4;
+    color: #000;
+    background-color: #dedede;
     border-color: #DB2828;
     border: none;
     font-size: 11px;

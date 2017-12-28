@@ -202,3 +202,7 @@ img.img-resonsive {
     margin-right: 0px;
     margin-left: 0px;
 }
+
+.error-color{
+    color: #DB2828 !important;
+}
