@@ -156,22 +156,35 @@
                   </tr>
                 </thead>
                 <tbody class="table-content-font ">
-                  <tr *ngFor="let tx of allTradedList">
-                    <td>{{tx.createdOn | date}}</td>
-                    <td>{{tx.createdOn | date:'shortTime'}}</td>
-                    <td>{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-                    <td>{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                  </tr>
-                  <tr *ngIf="allTradedListLength >=10 ">
-                    <td colspan="5">
-                      <p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p>
-                    </td>
-                  </tr>
-                  <div *ngIf="allTradedListLength==0">
-                    <p class="hasTableData"> No trades . . . !</p>
-                    <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
-                  </div>
+                   <tr *ngFor="let tx of allTradedList">
+                      <td>{{tx.createdOn | date}}</td>
+                      <td>{{tx.createdOn | date:'shortTime'}}</td>
+                      <td>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      </td>
+                      <td>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      </td>
+                      <td>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                        <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      </td>
+                      <!-- <td>{{tx.orderStandard}}</td> -->
+                   </tr>
+                   <tr *ngIf="allTradedListLength >=10 " >
+                      <td colspan="5" >
+                         <p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p>
+                      </td>
+                   </tr>
+                   <!-- <div *ngIf="allTradedListLength >=10 ">
+                      <p (click)="getMoreOrders()">More...</p>
+                      </div> -->
+                   <div *ngIf="allTradedListLength==0">
+                      <p class="hasTableData"> No trades . . . !</p>
+                      <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
+                   </div>
                 </tbody>
               </table>
             </div>
