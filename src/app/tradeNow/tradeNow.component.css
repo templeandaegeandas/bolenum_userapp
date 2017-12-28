@@ -1059,9 +1059,12 @@ table thead tr th {
 }
 
 .padding-level {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-align: center;
-    margin-top: 19px;
+  /*  margin-top: 8px;*/
+}
+.pad-marg-top{
+    margin-top: 8px;
 }
 
 .text-center {
@@ -1994,6 +1997,7 @@ thead.heading {
 
 .total-currency-message {
     margin-top: 8px;
+    cursor: auto;
 }
 .aside{
    /* position: fixed;
@@ -2445,11 +2449,11 @@ table thead tr th {
     margin-top: 30px;
 }
 
-.padding-level {
+/*.padding-level {
     margin-bottom: 6px;
     text-align: center;
     margin-top: 19px;
-}
+}*/
 
 .text-center {
     text-align: center;
