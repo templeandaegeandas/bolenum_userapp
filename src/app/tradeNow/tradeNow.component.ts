@@ -471,7 +471,6 @@ export class TradeNowComponent implements OnInit {
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
-      console.log("currency List", this.currecyList);
       let currencyId = this.currecyList[0].currencyId;
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
@@ -481,7 +480,6 @@ export class TradeNowComponent implements OnInit {
         });
       }
       setTimeout(() => {
-        console.log("Paired currency", pairedCurrency);
         this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
@@ -900,13 +898,11 @@ export class TradeNowComponent implements OnInit {
   }
   
   select(pair){
-  console.log(pair);
       this.selectedRow = pair;
   }
 
   getPair(pair){
     console.log(pair);
-
   }
 
   isActive(pair) {
@@ -919,7 +915,6 @@ export class TradeNowComponent implements OnInit {
       type: 'GET',
       success: resp => {
         this.coinMarketData=resp;
-        console.log(this.coinMarketData);
       },
       error: e => {
         console.log(e)
