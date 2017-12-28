@@ -28,7 +28,8 @@ export class TradeNowComponent implements OnInit {
   public selected: boolean = false;;
   public selectedRow;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
-  public hasAmount: boolean = false;
+  public hasBuyAmount: boolean = false;
+  public hasSellAmount: boolean = false;
   public isLoadingForMyTrade: boolean = false;
   public hasBlurForMyTrading: boolean = false;
   public isOpenOrders: boolean = false;
@@ -221,7 +222,8 @@ export class TradeNowComponent implements OnInit {
     this.getAllTradedOrders();
     this.getMyOrdersFromBook();
     this.userId = localStorage.getItem('userId');
-    this.tradingFees()
+    this.tradingFees();
+
   }
 
   getBuyOrderBookData(pairId) {
@@ -304,20 +306,34 @@ export class TradeNowComponent implements OnInit {
       return;
     }
     if (this.setTradingValue == 'Limit Order') {
-      if (volume == '' || price == '') {
-        this.hasAmount = true;
+      if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
+        this.hasBuyAmount = true;
         setTimeout(() => {
-          this.hasAmount = false;
+          this.hasBuyAmount = false;
+        }, 3000);
+        return;
+      }
+      if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
+        this.hasSellAmount = true;
+        setTimeout(() => {
+          this.hasSellAmount = false;
         }, 3000);
         return;
       }
 
     }
     else if (this.setTradingValue == 'Market Order') {
-      if (volume == '' || price == '') {
-        this.hasAmount = true;
+      if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
+        this.hasBuyAmount = true;
         setTimeout(() => {
-          this.hasAmount = false;
+          this.hasBuyAmount = false;
+        }, 3000);
+        return;
+      }
+      if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
+        this.hasSellAmount = true;
+        setTimeout(() => {
+          this.hasSellAmount = false;
         }, 3000);
         return;
       }
@@ -419,9 +435,16 @@ export class TradeNowComponent implements OnInit {
     this.order.totalVolume = this.order.volume;
     this.tradeNowService.createOrder(this.order, this.pairId).subscribe(success => {
       this.buySellModel.hide();
-      this.order.price = '';
-      this.order.volume = '';
-      this.priceWithFee = 0.0;
+      this.buyPrice = '';
+      this.buyVolume = '';
+      this.buyTotalPrice = 0.0;
+      this.buyTradingFee = 0.0;
+      this.buyPriceWithFee = 0.0;
+      this.sellPrice = '';
+      this.sellVolume = '';
+      this.sellTotalPrice = 0.0;
+      this.sellTradingFee = 0.0;
+      this.sellPriceWithFee = 0.0;
       this.getAllTradedOrders();
       this.getMyOrdersFromBook();
       this.getUserBalance();
@@ -439,13 +462,12 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getPair(coin){
-    console.log("click", coin);
-  }
+
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
+      console.log("currency List", this.currecyList);
       let currencyId = this.currecyList[0].currencyId;
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
@@ -455,12 +477,14 @@ export class TradeNowComponent implements OnInit {
         });
       }
       setTimeout(() => {
-        console.log("Paired Currency", this.pairedCurrency);
+        console.log("Paired currency", pairedCurrency);
         this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
         this.pairName = pairedCurrency[0].pairName;
+        this.select(this.pairId);
+        this.isActive(this.pairId);
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
@@ -870,10 +894,15 @@ export class TradeNowComponent implements OnInit {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
   }
-
+  
   select(pair){
   console.log(pair);
-      this.selectedRow = pair; 
+      this.selectedRow = pair;
+  }
+
+  getPair(pair){
+    console.log(pair);
+
   }
 
   isActive(pair) {

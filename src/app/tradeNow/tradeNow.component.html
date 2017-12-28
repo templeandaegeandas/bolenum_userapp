@@ -26,7 +26,7 @@
                         <div class="row">
                            <div class="col-sm-12">
                               <ul class="nav nav-tabs">
-                                 <li class="hand-icon" (click)=getPair(coinList.currencyId) [class.active]="coinList.currencyId"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActive(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
                               </ul>
                            </div>
                         </div>
@@ -144,15 +144,15 @@
 
                                  <div class="col-sm-12 head-padding heading-hand-icon padding-toggle" >
                                     <div class=" heading-padding-sell-buy border-radious-buy">
-                                       <span class="pull-left">BUY</span>
-                                       <span class="pull-right">Available Balance: 0.0</span>
+                                       <span class="text-center">BUY</span>
+                                       <!-- <span class="pull-right">Available Balance: 0.0</span> -->
                                     </div>
                                     <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                                        <div class="col-md-12 total-currency-message">
                                           <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
                                        </div>
                                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-                                          <p class="tradeErrorTextColor" *ngIf="hasAmount">Please Enter Amount To Start Trading</p>
+                                          <p class="tradeErrorTextColor" *ngIf="hasBuyAmount">Please Enter Amount To Start Trading</p>
                                           <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
                                           <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                                           </select>
@@ -306,29 +306,30 @@
                                           <div *ngIf="hasData">
                                              <p class="error-buy-sell">Please Enter Amount Or Price </p>
                                           </div>
-                                          <div class="col-sm-10 padding-level">
-                                             <div class="col-md-6">
+                                          <div class="col-sm-12 pad-marg-top padding-level">
+                                             <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                                              </div>
-                                             <div class="col-md-6">
+                                             <div class="col-md-7">
                                                 <input type="number" class="form-control" id="amount" [(ngModel)]="buyAmount" (ngModelChange)="changedBuyList()">
                                              </div>
                                           </div>
                                        </div>
                                        <div class="col-sm-12">
-                                          <div class="col-sm-10 padding-level">
-                                             <div class="col-md-6">
+                                          <div class="col-sm-12 padding-level">
+                                             <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                                              </div>
-                                             <div class="col-md-6">
+                                             <div class="col-md-7">
                                                 <input type="number" class="form-control" id="amount" [(ngModel)]="buyPrice" (ngModelChange)="changedBuyList()">
                                              </div>
                                           </div>
                                        </div>
+                                       <hr>
                                        <!-- <div *ngIf="buyOrderLength==0 && sellColor" class="col-sm-12 padding-level margin-buy-Button">
                                           <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                        </div> -->
-                                       <div *ngIf="sellOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                                       <div *ngIf="sellOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                           <button class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
                                        </div>
                                     </div>
@@ -348,15 +349,15 @@
 
                                  <div class="col-sm-12 head-padding heading-hand-icon padding-toggle" >
                                    <div class="heading-padding-sell-buy border-radious-sell">
-                                       <span class="pull-left">SELL</span>
-                                       <span class="pull-right">Available Balance: 0.0</span>
+                                       <span class="text-center">SELL</span>
+                                      <!--  <span class="pull-right">Available Balance: 0.0</span> -->
                                     </div>
                                     <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                                        <div class="col-md-12 total-currency-message">
                                           <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
                                        </div>
                                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-                                          <p class="tradeErrorTextColor" *ngIf="hasAmount">Please Enter Amount To Start Trading</p>
+                                          <p class="tradeErrorTextColor" *ngIf="hasSellAmount">Please Enter Amount To Start Trading</p>
                                           <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
                                           <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                                           </select>
@@ -510,26 +511,27 @@
                                           <div *ngIf="hasData">
                                              <p class="error-buy-sell">Please Enter Amount Or Price </p>
                                           </div>
-                                          <div class="col-sm-10 padding-level">
-                                             <div class="col-md-6">
+                                          <div class="col-sm-12 pad-marg-top padding-level">
+                                             <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                                              </div>
-                                             <div class="col-md-6">
+                                             <div class="col-md-7">
                                                 <input type="number" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
                                              </div>
                                           </div>
                                        </div>
                                        <div class="col-sm-12">
-                                          <div class="col-sm-10 padding-level">
-                                             <div class="col-md-6">
+                                          <div class="col-sm-12 padding-level">
+                                             <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                                              </div>
-                                             <div class="col-md-6">
+                                             <div class="col-md-7">
                                                 <input type="number" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
                                              </div>
                                           </div>
                                        </div>
-                                       <div *ngIf="buyOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                                       <hr>
+                                       <div *ngIf="buyOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                           <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                        </div>
                                        <!-- <div *ngIf="sellOrderLength==0 && !sellColor" class="col-sm-12 padding-level margin-buy-Button">
