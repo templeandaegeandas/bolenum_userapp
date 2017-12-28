@@ -325,10 +325,11 @@
                                              </div>
                                           </div>
                                        </div>
+                                       <hr>
                                        <!-- <div *ngIf="buyOrderLength==0 && sellColor" class="col-sm-12 padding-level margin-buy-Button">
                                           <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                        </div> -->
-                                       <div *ngIf="sellOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                                       <div *ngIf="sellOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                           <button class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
                                        </div>
                                     </div>
@@ -529,7 +530,8 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div *ngIf="buyOrderLength==0" class="col-sm-12 padding-level margin-buy-Button">
+                                       <hr>
+                                       <div *ngIf="buyOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                           <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                        </div>
                                        <!-- <div *ngIf="sellOrderLength==0 && !sellColor" class="col-sm-12 padding-level margin-buy-Button">
