@@ -104,7 +104,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Change 1h | 24h | 7d</th>
-                                                    <td><span class="market-summary-high red-color">
+                                                    <td><span class="market-summary-high">
 <span [ngClass]="{'positive': coinList.percent_change_1h > 0, 'negative': coinList.percent_change_1h < 0}">{{coinList.percent_change_1h}} </span>| <span [ngClass]="{'positive': coinList.percent_change_24h > 0, 'negative': coinList.percent_change_24h < 0}">{{coinList.percent_change_24h}}</span> | <span [ngClass]="{'positive': coinList.percent_change_7d > 0, 'negative': coinList.percent_change_7d < 0}">{{coinList.percent_change_7d}}</span></span>
                                                     </td>
                                                 </tr>
@@ -516,6 +516,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <hr>
                                                 <div *ngIf="buyOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                                     <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                                 </div>
