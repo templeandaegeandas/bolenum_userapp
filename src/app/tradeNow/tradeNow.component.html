@@ -26,7 +26,7 @@
                         <div class="row">
                            <div class="col-sm-12">
                               <ul class="nav nav-tabs">
-                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActive(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
                               </ul>
                            </div>
                         </div>
@@ -39,8 +39,8 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" (click)="select(pair.pairId)" [ngClass]="{active: isActive(pair.pairId)}">
-                                 <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
+                              <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" [ngClass]="{active: isActive(pair.pairId,coinList.currencyId)}">
+                                 <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,coinList.currencyId,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
                                  <th class="table-content-font">0</th>
                                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
                               </tr>
@@ -153,11 +153,11 @@
                                        </div>
                                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                                           <p class="tradeErrorTextColor" *ngIf="hasBuyAmount">Please Enter Amount To Start Trading</p>
-                                          <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
+                                          <select class="trade-dropdown" [(ngModel)]="setBuyTradingValue" (ngModelChange)="setBuyTradeValue(setBuyTradingValue)">
                                           <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                                           </select>
                                        </div>
-                                       <div *ngIf="isMarket">
+                                       <div *ngIf="isBuyMarket">
                                           <div class="col-md-12 trade-field">
                                              <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
@@ -220,7 +220,7 @@
                                              </div>
                                              </div>  -->
                                        </div>
-                                       <div *ngIf="!isMarket">
+                                       <div *ngIf="!isBuyMarket">
                                           <div class="col-md-12 trade-field">
                                              <div class="col-md-5">
                                                 <label for="amount">Amount (in {{firstCurrency}})</label>
@@ -357,11 +357,11 @@
                                        </div>
                                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                                           <p class="tradeErrorTextColor" *ngIf="hasSellAmount">Please Enter Amount To Start Trading</p>
-                                          <select class="trade-dropdown" [(ngModel)]="setTradingValue" (ngModelChange)="setTradeValue(setTradingValue)">
+                                          <select class="trade-dropdown" [(ngModel)]="setSellTradingValue" (ngModelChange)="setSellTradeValue(setSellTradingValue)">
                                           <option [value]="tv.valueType" *ngFor="let tv of tradeValue" >{{tv.valueType}}</option>
                                           </select>
                                        </div>
-                                       <div *ngIf="isMarket">
+                                       <div *ngIf="isSellMarket">
                                           <div class="col-md-12 trade-field">
                                              <div class="col-md-5">
                                                 <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{firstCurrency}})</label>
@@ -424,7 +424,7 @@
                                              </div>
                                              </div>  -->
                                        </div>
-                                       <div *ngIf="!isMarket">
+                                       <div *ngIf="!isSellMarket">
                                           <div class="col-md-12 trade-field">
                                              <div class="col-md-5">
                                                 <label for="amount">Amount (in {{firstCurrency}})</label>

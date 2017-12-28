@@ -11,12 +11,12 @@
 }
 .padding-10{
    padding-top: 10px;
-} 
+}
 label.exchange-color {
     color:#DB2828;
     font-size: 12px;
     font-weight: 500;
-     font-family: Lato; 
+     font-family: Lato;
     margin-right: 2px;
     margin-bottom: 0px;
     }
@@ -688,15 +688,15 @@ thead.heading {
 
 /*.aside{
     position:relative;
-    left:0; 
+    left:0;
     width: 20%;
     bottom: 0;
 }
 .main{
      position: relative;
-    left:178px; 
+    left:178px;
     width: 80%;
-    right:0; 
+    right:0;
     bottom:0;
 }*/
 
@@ -1343,19 +1343,19 @@ select option {
 ::-webkit-scrollbar {
     width: 7px;
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 
-/* 
+/*
 toggle */
 
 
