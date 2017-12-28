@@ -222,7 +222,8 @@ export class TradeNowComponent implements OnInit {
     this.getAllTradedOrders();
     this.getMyOrdersFromBook();
     this.userId = localStorage.getItem('userId');
-    this.tradingFees()
+    this.tradingFees();
+
   }
 
   getBuyOrderBookData(pairId) {
@@ -461,9 +462,7 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getPair(coin){
-    console.log("click", coin);
-  }
+
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
@@ -477,12 +476,13 @@ export class TradeNowComponent implements OnInit {
         });
       }
       setTimeout(() => {
-        console.log("Paired Currency", this.pairedCurrency);
         this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
         this.pairName = pairedCurrency[0].pairName;
+        this.select(this.pairId);
+        this.isActive(this.pairId);
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
@@ -567,19 +567,24 @@ export class TradeNowComponent implements OnInit {
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
     this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
-    this.order.orderStandard = "LIMIT"
-  }
-
-  fillSellData(volume, price) {
-    this.setTradingValue = "Limit Order";
-    this.setTradeValue("Limit Order");
+    this.order.orderStandard = "LIMIT";
     this.sellVolume = volume;
     this.sellPrice = price;
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
     this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
     this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
-    this.order.orderStandard = "LIMIT"
   }
+
+  // fillSellData(volume, price) {
+  //   this.setTradingValue = "Limit Order";
+  //   this.setTradeValue("Limit Order");
+  //   this.sellVolume = volume;
+  //   this.sellPrice = price;
+  //   this.sellTotalPrice = this.sellPrice * this.sellVolume;
+  //   this.sellTradingFee = this.sellTotalPrice * this.tradeFee / 100;
+  //   this.sellPriceWithFee = this.sellTotalPrice - this.sellTradingFee;
+  //   this.order.orderStandard = "LIMIT"
+  // }
 
   getMyTradedOrders() {
     this.isLoadingForMyTrade = true;
@@ -887,7 +892,7 @@ export class TradeNowComponent implements OnInit {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
   }
-
+  
   select(pair){
   console.log(pair);
       this.selectedRow = pair;
