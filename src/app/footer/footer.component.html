@@ -35,9 +35,15 @@
                      <input class="form-control content_text" name="email" [(ngModel)]='email' #emailNotify='ngModel' placeholder="Email Address" type="email" >
                      <span class="input-group-btn">
                      <!--<button class="btn btn-primary" type="button">Search !</button>-->
-                    <img src="assets/images/send.png" class="img-resonsive " (click)='notification()'>
+                    <img src="assets/images/send.png" class="img-resonsive " (click)='notification(emailNotify)'>
                      </span>
                   </div>
+                    <div >
+                      <p class="error-msg-fontSize error-color" *ngIf='hasEmail'>Please enter your email</p>
+                      <p class="error-msg-fontSize error-color" *ngIf='hasValid'>Please enter your valid email</p>
+                    </div>
+                
+                    
                 </form>
                </div>
                <p class="text-footer content_text">We are at bolenum believe in user's privacy.We never send spam mail. </p>
