@@ -1818,10 +1818,10 @@ select option {
 .trade-border-heading {
     border-bottom: 1px solid lightgray;
 }
-.red-color{
+.negative{
    color : #DB2828; 
 }
-.green-color{
+.positive{
     color:#5cb85c;
 }
 
