@@ -437,7 +437,7 @@ select option {
 }
 
 .trade-margin {
-    margin-top: 55px;
+    margin-top: 25px;
     /*margin-left: 20px;*/
 }
 
@@ -1818,9 +1818,15 @@ select option {
 .trade-border-heading {
     border-bottom: 1px solid lightgray;
 }
+.red-color{
+   color : #DB2828; 
+}
+.green-color{
+    color:#5cb85c;
+}
 
 .trade-margin {
-    margin-top: 55px;
+    margin-top: 25px;
     /*margin-left: 20px;*/
 }
 

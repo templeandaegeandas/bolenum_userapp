@@ -82,37 +82,29 @@
                   <div class="text-center">
                      <div class="row">
                         <div class="col-md-12 padding-0">
-                           <div class="table-responsive"  *ngFor="let coinList of currecyList">
-                              <div class="table-heading-content marketing-heading">BTC</div>
+                           <div class="table-responsive"  *ngFor="let coinList of coinMarketData">
+                               <div class="table-heading-content marketing-heading">COIN MARKET DATA</div>
                               <table class="table table-condensed table-btc-value">
                                  <tbody>
                                     <tr>
-                                       <th>Last Price</th>
-                                       <td><span class="market-summary-last-price red">0.04540000</span></td>
+                                       <th>BTC Price</th>
+                                       <td><span class="market-summary-last-price green-color"> {{coinList.price_btc}}</span></td>
                                     </tr>
                                     <tr>
-                                       <th>24h Volume</th>
-                                       <td><span class="market-summary-volume">35.01035376</span></td>
+                                       <th>USD Price</th>
+                                       <td><span class="market-summary-volume green-color"> {{coinList.price_usd}}  </span></td>
                                     </tr>
                                     <tr>
-                                       <th>Bid</th>
-                                       <td><span class="market-summary-bid-price red">0.04500003</span></td>
+                                       <th>24h Volume USD</th>
+                                       <td><span class="market-summary-bid-price green-color">{{coinList['24h_volume_usd']}}</span></td>
                                     </tr>
                                     <tr>
-                                       <th>Ask</th>
-                                       <td><span class="market-summary-ask-price red">0.04550000</span></td>
+                                       <th>Available Supply</th>
+                                       <td><span class="market-summary-ask-price green-color">{{coinList.available_supply}}</span></td>
                                     </tr>
                                     <tr>
-                                       <th>24h High</th>
-                                       <td><span class="market-summary-high">0.04540000</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h Low</th>
-                                       <td><span class="market-summary-low">0.03882008</span></td>
-                                    </tr>
-                                    <tr>
-                                       <th>24h Trade Count</th>
-                                       <td><span class="market-summary-trade-count">2636</span></td>
+                                       <th>Change 1h | 24h | 7d</th>
+                                       <td><span class="market-summary-high red-color">{{coinList.percent_change_1h}} | {{coinList.percent_change_24h}} | {{coinList.percent_change_7d}}</span></td>
                                     </tr>
                                  </tbody>
                               </table>
@@ -530,7 +522,6 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <hr>
                                        <div *ngIf="buyOrderLength==0" class="col-sm-12 text-center margin-buy-Button">
                                           <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
                                        </div>

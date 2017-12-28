@@ -10,6 +10,8 @@ import { WebsocketService } from '../web-socket/web.socket.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import 'rxjs/add/operator/toPromise';
 
+declare var $: any;
+
 @Component({
   selector: 'app-tradeNow',
   templateUrl: './tradeNow.component.html',
@@ -102,6 +104,7 @@ export class TradeNowComponent implements OnInit {
   ]
 
   public setTradingValue: any;
+   public coinMarketData:any=[];
   // table
   public btc: boolean = true;
   public eth: boolean = false;
@@ -121,6 +124,7 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
+     this.getCoinMarketCapData();
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -907,6 +911,20 @@ export class TradeNowComponent implements OnInit {
 
   isActive(pair) {
       return this.selectedRow === pair;
+  }
+
+    getCoinMarketCapData() {
+    $.ajax({
+      url: 'https://api.coinmarketcap.com/v1/ticker/bolenum/',
+      type: 'GET',
+      success: resp => {
+        this.coinMarketData=resp;
+        console.log(this.coinMarketData);
+      },
+      error: e => {
+        console.log(e)
+      }
+    });
   }
 
 
