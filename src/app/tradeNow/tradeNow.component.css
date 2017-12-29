@@ -2730,14 +2730,24 @@ select option {
     background-color: #3cb371;
 }
 
-.submit_button_market {
+.submit_button_market_buy {
     border: none;
     padding: 6px;
     color: white;
     border-radius: 5px;
     outline: none;
-    width: 75px;
-    background-color: #bdb4b4;
+    width: 150px;
+    background-color: #3cb371;
+}
+
+.submit_button_market_sell {
+    border: none;
+    padding: 6px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    width: 150px;
+    background-color: #DB2828;
 }
 
 
