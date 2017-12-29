@@ -407,6 +407,15 @@ a {
     margin-left: 245px;
 }
 
+.label_tab{
+    font-weight: 500;
+}
+
+
+.label-box-shadow p {
+    margin: 39px 0 10px;
+} 
+
 
 /*Media query*/
 
