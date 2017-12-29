@@ -267,7 +267,7 @@
                                              <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                                              </div> -->
                                                     <div class="col-md-12 text-center button-submit">
-                                                        <button class="submit_button_market" (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT</button>
+                                                        <button class="submit_button_market_buy" (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
                                                     </div>
                                                     <!-- <div class="col-md-12 trade-field">
                                              <div class="col-md-6  buy-button-left">
@@ -343,7 +343,7 @@
                                         <!--  /* BUY CODE STARTS HERE */ -->
 
                                  <div class="col-sm-12 head-padding heading-hand-icon padding-toggle" >
-                                   <div class="heading-padding-sell-buy border-radious-sell">
+                                   <div class="heading-padding-sell-buy-red border-radious-sell">
                                        <span class="text-center">SELL</span>
                                       <!--  <span class="pull-right">Available Balance: 0.0</span> -->
                                     </div>
@@ -472,7 +472,7 @@
                                              <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
                                              </div> -->
                                                     <div class="col-md-12 text-center button-submit">
-                                                        <button class="submit_button_market" (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT</button>
+                                                        <button class="submit_button_market_sell" (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
                                                     </div>
                                                     <!-- <div class="col-md-12 trade-field">
                                              <div class="col-md-6  buy-button-left">
