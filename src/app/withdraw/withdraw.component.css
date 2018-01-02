@@ -238,7 +238,7 @@ select option{
 .tranction-Table tbody, .tranction-Table thead tr { display: block; }
 
 .tranction-Table tbody {
-    height: 353px;
+    height: 318px;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #dedede;
