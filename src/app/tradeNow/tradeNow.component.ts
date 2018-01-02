@@ -26,8 +26,8 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveBUY: boolean = false;
   public hasSellData: boolean = false;
   public hasData: boolean = false;
-  public showHide: boolean = true;
-  public selected: boolean = false;;
+  public showHide: boolean = false;
+  public selected: boolean = false;
   public selectedRow;
   public selectedPair;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
@@ -51,6 +51,7 @@ export class TradeNowComponent implements OnInit {
   public myTradeColor: boolean = false;
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
+  public currencyName: any;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -128,7 +129,6 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
-    this.getCoinMarketCapData();
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -356,7 +356,6 @@ export class TradeNowComponent implements OnInit {
     }
     // }
 
-
     this.buySellModel.show();
     this.selecedOrderId = orderId;
     this.order.volume = volume;
@@ -479,12 +478,12 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-
-
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      this.currencyName = this.currecyList[0].currencyName;
+      this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -526,7 +525,9 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType) {
+  changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType, currencyName) {
+    console.log("currencyName=", currencyName);
+    console.log("data >>>>>>>>>>>>>>>>>", pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType);
     this.loading = true;
     this.pairId = pairId;
     this.firstCurrencyType = firstCurrencyType;
@@ -542,6 +543,12 @@ export class TradeNowComponent implements OnInit {
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     this.getSellOrderBookData(pairId);
+    if ((pairName == 'BLN/NGN')) {
+      currencyName = "bolenum";
+      this.secondCurrency = "NGN";
+    }
+    this.getCoinMarketCapData(currencyName, this.secondCurrency);
+    console.log("currencyName = "+currencyName+"secondCurrency = "+this.secondCurrency);
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -939,12 +946,17 @@ export class TradeNowComponent implements OnInit {
     return this.selectedRow === pair;
   }
 
-  getCoinMarketCapData() {
+  getCoinMarketCapData(currencyName, currencyAbber) {
+    let seturl: any;
+
+    seturl = 'https://api.coinmarketcap.com/v1/ticker/' + currencyName + '/?convert=' + currencyAbber;
+
     $.ajax({
-      url: 'https://api.coinmarketcap.com/v1/ticker/bolenum/',
+      url: seturl,
       type: 'GET',
       success: resp => {
         this.coinMarketData = resp;
+        console.log("coin market >>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", this.coinMarketData);
       },
       error: e => {
         console.log(e)

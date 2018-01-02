@@ -13,7 +13,7 @@
    padding-top: 10px;
 }
 label.exchange-color {
-    color:#DB2828;
+    color:#fff;
     font-size: 12px;
     font-weight: 500;
      font-family: Lato;
@@ -106,9 +106,9 @@ label.exchange-color {
 
 .buy-orders {
     overflow: hidden;
-    background-color: #f8f8f8;
+    background-color: #3cb371;
     text-align: center;
-    color: #000;
+    color: #fff;
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 14px;
@@ -122,9 +122,9 @@ tr th {
 
 .sell-orders {
     overflow: hidden;
-    background-color: #f8f8f8;
+    background-color: #db2828;
     text-align: center;
-    color: #000;
+    color: #fff;
     padding-top: 6px;
     padding-bottom: 6px;
     /* font-size: 14px; */
@@ -236,8 +236,8 @@ tr th {
 .border-bot:after {
     display: table;
     position: absolute;
-    width: 120px;
-    height: 6px;
+    width: 96px;
+    height: 3px;
     background: #bdb4b4;
     content: "";
     margin: 6px auto;
@@ -665,8 +665,8 @@ thead.heading {
 
 .title-Trade {
     display: table;
-    width: 120px;
-    height: 6px;
+    width: 96px;
+    height: 3px;
     background: #bdb4b4;
     content: "";
     margin: 6px auto;
@@ -1152,15 +1152,19 @@ select option {
     border-top-right-radius: 8px;
 }
 
-.padding-Table {
+/* .padding-Table {
     padding-left: 20px;
     padding-right: 20px;
-}
+} */
 
 .trade-historytable {
     text-align: center;
     margin-top: 7px;
     /* margin-bottom: 29px; */
+}
+
+.trade-History-Button p {
+    margin: 0 0 5px;
 }
 
 .title {

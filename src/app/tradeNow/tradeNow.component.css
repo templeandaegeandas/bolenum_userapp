@@ -1276,12 +1276,12 @@ select option {
 }
 
 .border-radious-sell{
-    border-top-right-radius: 8px;
+    /*border-top-right-radius: 8px;*/
 }
 
 
 .border-radious-buy{
-    border-top-left-radius: 8px;
+    /*border-top-left-radius: 8px;*/
 }
 
 .buy-toggles {
@@ -2670,12 +2670,12 @@ select option {
 }
 
 .border-radious-sell{
-    border-top-right-radius: 8px;
+    /*border-top-right-radius: 8px;*/
 }
 
 
 .border-radious-buy{
-    border-top-left-radius: 8px;
+    /*border-top-left-radius: 8px;*/
 }
 
 .buy-toggles {
@@ -2704,10 +2704,19 @@ select option {
 }
 
 .heading-padding-sell-buy {
-    background-color: #dedede;
+    background-color: #3cb371;
     padding: 6px;
     overflow: hidden;
     cursor: auto !important;
+    color: #fff;
+}
+
+.heading-padding-sell-buy-red {
+    background-color: #DB2828;
+    padding: 6px;
+    overflow: hidden;
+    cursor: auto !important;
+    color: #fff;
 }
 
 .submit_button_limit {
@@ -2730,14 +2739,24 @@ select option {
     background-color: #3cb371;
 }
 
-.submit_button_market {
+.submit_button_market_buy {
     border: none;
     padding: 6px;
     color: white;
     border-radius: 5px;
     outline: none;
-    width: 75px;
-    background-color: #bdb4b4;
+    width: 150px;
+    background-color: #3cb371;
+}
+
+.submit_button_market_sell {
+    border: none;
+    padding: 6px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    width: 150px;
+    background-color: #DB2828;
 }
 
 
