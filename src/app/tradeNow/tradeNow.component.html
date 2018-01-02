@@ -26,7 +26,7 @@
                         <div class="row">
                            <div class="col-sm-12">
                               <ul class="nav nav-tabs">
-                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                                 <li class="hand-icon" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
                               </ul>
                            </div>
                         </div>
@@ -41,7 +41,7 @@
                            <tbody>
                               <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" [ngClass]="{active: isActive(pair.pairId,coinList.currencyId)}">
                                  <th class="hand-icon table-content-font"  (click)=changePair(pair.pairId,pair.pairName,coinList.currencyId,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
-                                 <th class="table-content-font">0</th>
+                                 <th class="table-content-font">{{pair.lastPrice}}</th>
                                  <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
                               </tr>
                            </tbody>
