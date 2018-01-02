@@ -51,6 +51,7 @@ export class TradeNowComponent implements OnInit {
   public myTradeColor: boolean = false;
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
+  public currencyName: any;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -107,7 +108,7 @@ export class TradeNowComponent implements OnInit {
 
   public setBuyTradingValue: any;
   public setSellTradingValue: any;
-   public coinMarketData:any=[];
+  public coinMarketData: any = [];
   // table
   public btc: boolean = true;
   public eth: boolean = false;
@@ -127,7 +128,7 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
-     this.getCoinMarketCapData();
+    //  this.getCoinMarketCapData();
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -315,39 +316,38 @@ export class TradeNowComponent implements OnInit {
       return;
     }
     // if (this.setTradingValue == 'Limit Order') {
-      if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
-        this.hasBuyAmount = true;
-        setTimeout(() => {
-          this.hasBuyAmount = false;
-        }, 3000);
-        return;
-      }
-      if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
-        this.hasSellAmount = true;
-        setTimeout(() => {
-          this.hasSellAmount = false;
-        }, 3000);
-        return;
-      }
+    if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
+      this.hasBuyAmount = true;
+      setTimeout(() => {
+        this.hasBuyAmount = false;
+      }, 3000);
+      return;
+    }
+    if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
+      this.hasSellAmount = true;
+      setTimeout(() => {
+        this.hasSellAmount = false;
+      }, 3000);
+      return;
+    }
 
     // }
     // else if (this.setTradingValue == 'Market Order') {
-      if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
-        this.hasBuyAmount = true;
-        setTimeout(() => {
-          this.hasBuyAmount = false;
-        }, 3000);
-        return;
-      }
-      if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
-        this.hasSellAmount = true;
-        setTimeout(() => {
-          this.hasSellAmount = false;
-        }, 3000);
-        return;
-      }
+    if (orderType == 'BUY' && (this.buyVolume == undefined || this.buyPrice == undefined)) {
+      this.hasBuyAmount = true;
+      setTimeout(() => {
+        this.hasBuyAmount = false;
+      }, 3000);
+      return;
+    }
+    if (orderType == 'SELL' && (this.sellVolume == undefined || this.sellPrice == undefined)) {
+      this.hasSellAmount = true;
+      setTimeout(() => {
+        this.hasSellAmount = false;
+      }, 3000);
+      return;
+    }
     // }
-
 
     this.buySellModel.show();
     this.selecedOrderId = orderId;
@@ -471,12 +471,12 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-
-
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      this.currencyName = this.currecyList[0].currencyName;
+      this.getCoinMarketCapData(this.currencyName, "ETH");
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -518,7 +518,38 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType) {
+  changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType, currencyName) {
+    // let fullNames: any;
+    // let currencyAbber: any;
+    // if (pairName == 'ETH/BTC') {
+    //   fullNames = 'ethereum';
+    //   currencyAbber = 'BTC';
+    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
+    // }
+    // else if (pairName == 'BLN/BTC') {
+    //   fullNames = 'bolenum';
+    //   currencyAbber = 'BTC';
+    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
+    // }
+    // else if (pairName == 'BLN/ETH') {
+    //   fullNames = 'bolenum';
+    //   currencyAbber = 'ETH';
+    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
+    // }
+    // else if (pairName == 'BLN/NGN') {
+    //   fullNames = 'bolenum';
+    //   currencyAbber = 'NGN';
+    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
+    // }
+    // else if (pairName == 'BTC/ETH') {
+    //   fullNames = 'bitcoin';
+    //   currencyAbber = 'ETH';
+    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
+    // }
+
+
+    console.log("currencyName=", currencyName);
+    console.log("data >>>>>>>>>>>>>>>>>", pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType);
     this.loading = true;
     this.pairId = pairId;
     this.firstCurrencyType = firstCurrencyType;
@@ -534,6 +565,12 @@ export class TradeNowComponent implements OnInit {
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     this.getSellOrderBookData(pairId);
+    if ((pairName == 'BLN/NGN')) {
+      currencyName = "bolenum";
+      this.secondCurrency = "NGN";
+    }
+    this.getCoinMarketCapData(currencyName, this.secondCurrency);
+    console.log("currencyName = "+currencyName+"secondCurrency = "+this.secondCurrency);
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -663,7 +700,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   setBuyTradeValue(setData) {
-    console.log("buy",setData)
+    console.log("buy", setData)
     if (setData === "Limit Order") {
       this.isBuyMarket = true;
     }
@@ -677,7 +714,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   setSellTradeValue(setData) {
-    console.log("sell",setData)
+    console.log("sell", setData)
     if (setData === "Limit Order") {
       this.isSellMarket = true;
     }
@@ -785,7 +822,7 @@ export class TradeNowComponent implements OnInit {
       this.toastrService.error("You can't place order less than 10 NGN", "Error!");
       return;
     }
-    if(orderType == 'BUY') {
+    if (orderType == 'BUY') {
       this.order.orderType = orderType;
       this.order.orderStandard = 'LIMIT';
       this.order.volume = this.buyAmount;
@@ -918,9 +955,9 @@ export class TradeNowComponent implements OnInit {
     this.selected = !this.selected;
   }
 
-  select(pair, toCurrency){
-  this.selectedPair = toCurrency;
-      this.selectedRow = pair;
+  select(pair, toCurrency) {
+    this.selectedPair = toCurrency;
+    this.selectedRow = pair;
   }
 
   isActiveTab(pair) {
@@ -928,15 +965,20 @@ export class TradeNowComponent implements OnInit {
   }
 
   isActive(pair, toCurrency) {
-      return this.selectedRow === pair;
+    return this.selectedRow === pair;
   }
 
-    getCoinMarketCapData() {
+  getCoinMarketCapData(currencyName, currencyAbber) {
+    let seturl: any;
+
+    seturl = 'https://api.coinmarketcap.com/v1/ticker/' + currencyName + '/?convert=' + currencyAbber;
+
     $.ajax({
-      url: 'https://api.coinmarketcap.com/v1/ticker/bolenum/',
+      url: seturl,
       type: 'GET',
       success: resp => {
-        this.coinMarketData=resp;
+        this.coinMarketData = resp;
+        console.log("coin market >>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", this.coinMarketData);
       },
       error: e => {
         console.log(e)
