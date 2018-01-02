@@ -40,8 +40,15 @@
 .panel-body {
     padding: 0;
 }
+
+ .heading-content{
+    font-size: 12px !important;
+    font-weight: 500;
+    
+}
  .market-font-size{
     font-size: 11px !important;
+    
 }
 td {
     text-align: center;

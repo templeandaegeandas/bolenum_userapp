@@ -120,6 +120,7 @@ export class TradeNowComponent implements OnInit {
   public afterLogin: boolean = false;
   options: any;
   pairedCurrency = [];
+  jsonMessage: any;
 
   constructor(
     private tradeNowService: TradeNowService,
@@ -128,22 +129,28 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
-    //  this.getCoinMarketCapData();
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
+      this.jsonMessage = message;
+      if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
+        this.pairedCurrency[this.jsonMessage.toCurrency].map((value) => {
+          if(value.pairId == this.jsonMessage.pairId) {
+            if(value.lastPrice == null || value.lastPrice > this.jsonMessage.price ) {
+              value.lastPrice = this.jsonMessage.price;
+              return value;
+            }
+          }
+        })
+      }
       if (message == "ORDER_BOOK_NOTIFICATION") {
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
         this.getMyTradedOrders();
-        // setTimeout(() => {
         this.getAllTradedOrders();
-        // }, 100);
-        // setTimeout(() => {
         this.getMyOrdersFromBook();
-        // }, 100);
       }
     });
     this.options = {
@@ -476,7 +483,7 @@ export class TradeNowComponent implements OnInit {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
       this.currencyName = this.currecyList[0].currencyName;
-      this.getCoinMarketCapData(this.currencyName, "ETH");
+      this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
       let pairedCurrency;
       for (let i = 0; i < this.currecyList.length; i++) {
         this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
@@ -519,35 +526,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType, currencyName) {
-    // let fullNames: any;
-    // let currencyAbber: any;
-    // if (pairName == 'ETH/BTC') {
-    //   fullNames = 'ethereum';
-    //   currencyAbber = 'BTC';
-    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
-    // }
-    // else if (pairName == 'BLN/BTC') {
-    //   fullNames = 'bolenum';
-    //   currencyAbber = 'BTC';
-    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
-    // }
-    // else if (pairName == 'BLN/ETH') {
-    //   fullNames = 'bolenum';
-    //   currencyAbber = 'ETH';
-    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
-    // }
-    // else if (pairName == 'BLN/NGN') {
-    //   fullNames = 'bolenum';
-    //   currencyAbber = 'NGN';
-    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
-    // }
-    // else if (pairName == 'BTC/ETH') {
-    //   fullNames = 'bitcoin';
-    //   currencyAbber = 'ETH';
-    //   console.log("data >>>>>>>>>>>>>>>>>>>>>>>", fullNames, currencyAbber);
-    // }
-
-
     console.log("currencyName=", currencyName);
     console.log("data >>>>>>>>>>>>>>>>>", pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType);
     this.loading = true;
