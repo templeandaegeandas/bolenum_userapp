@@ -26,8 +26,8 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveBUY: boolean = false;
   public hasSellData: boolean = false;
   public hasData: boolean = false;
-  public showHide: boolean = true;
-  public selected: boolean = false;;
+  public showHide: boolean = false;
+  public selected: boolean = false;
   public selectedRow;
   public selectedPair;
   @ViewChild('orderCancelModel') public orderCancelModel: ModalDirective;
