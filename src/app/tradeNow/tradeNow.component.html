@@ -1,3 +1,5 @@
+
+
 <div class="container image-width " *ngIf="beforeLogin">
     <div class="row image-row-margin top-bg-image">
         <div class="col-md-12 text-align-center padding-text-image">
@@ -26,7 +28,7 @@
                         <div class="row">
                            <div class="col-sm-12">
                               <ul class="nav nav-tabs">
-                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                                 <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a>{{coinList.currencyAbbreviation}}</a></li>
                               </ul>
                            </div>
                         </div>
@@ -801,7 +803,7 @@
                 <!-- popup model -->
                 <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content trade-content">
                             <div class="modal-header trade-pop-upheader">
                                 <button type="button" class="close" (click)="hideModel()">&times;</button>
                                 <h4 class="modal-title confirm-order">Order Confirmation</h4>

@@ -28,7 +28,7 @@ label.exchange-color {
     margin-bottom: 15px;
 }
 
-.exchange-pair-text {
+/*.exchange-pair-text {
     text-align: center;
     background-color: #f8f8f8;
     border-radius: 19px;
@@ -38,7 +38,7 @@ label.exchange-color {
     font-size: 12px;
     cursor: pointer;
     width: 172px;
-}
+}*/
 
 
 /* font family and font size */
@@ -796,6 +796,9 @@ thead.heading {
 .trade-pop-upheader {
     background-color: #db2828;
 }
+.trade-content{
+    border-radius: 0px;
+}
 
 .model-text-color {
     color: white;
@@ -973,10 +976,7 @@ thead.heading {
     background-color: #DB2828;
 }
 
-.confirm-order {
-    font-size: 16px !important;
-    font-family: Lato-Regular-font !important;
-}
+
 
 .confirm-Order-Label {
     font-size: 14px !important;
@@ -1419,7 +1419,7 @@ label.exchange-color {
     color: #000;
     border: 1px solid #dedede;
     font-size: 12px;
-    cursor: pointer;
+    cursor: auto;
     width: 172px;
 }
 
@@ -2380,6 +2380,7 @@ thead.heading {
 .button-Confirm {
     font-size: 13px !important;
     font-family: Lato-Regular-font !important;
+    width:100px;
 }
 
 .close {
@@ -2469,6 +2470,7 @@ table thead tr th {
     color: white;
     border-radius: 5px;
     outline: none;
+    text-transform: uppercase;
     /* width: 100px; */
 }
 
@@ -2480,6 +2482,7 @@ table thead tr th {
     color: white;
     border-radius: 5px;
     outline: none;
+    text-transform: uppercase;
     /* width: 100px; */
 }
 

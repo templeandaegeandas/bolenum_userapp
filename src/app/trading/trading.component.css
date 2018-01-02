@@ -1,15 +1,37 @@
 .paymentDetails{
-    background-color: #DB2828;
-    color: white;
+   /* background-color: #DB2828;
+    color: white;*/
+    background-color: #f8f8f8;
+    color: #da3030;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #dedede;
 }
 
-.panel-Body{
+/*.panel-Body{
         border: 1px solid lightgray;
-}
+}*/
 
 .trading-margin{
     margin-top: 34px;
     
+}
+.payment-table th , td{
+    border-top:none !important;
+}
+.trading-margin p{
+    font-size: 14px;
+    font-family:  Lato-Regular-font;
+    color: #5f5555;
+}
+.red-bold{
+    color:#DB2828;
+}
+.float-LR{
+    float: left;
+}
+.font-thick{
+    font-weight: 700;
 }
 
 .table-margin{
@@ -29,9 +51,14 @@
     padding-top: 8px;
     padding-bottom: 10px;
 }
+.trade-button:hover{
+    box-shadow: 0px 2px 10px 2px grey;
+}
 
 .timer-margin{
           margin-bottom: 30px;
+          border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     /* margin-top: 39px; */
     text-align: center;
     /* padding-left: 419px; */
@@ -44,6 +71,7 @@
     background-color: #f3f3f3;
     padding-bottom: 52px;
     padding-top: 52px;
+    border-radius: 3px;
     /* color: #DB2828;
     font-size: 47px; */
     
@@ -56,6 +84,7 @@
 
 .button-color{
     background-color: #3cb371;
+    float: right;
 }
 
 .margin-table{
