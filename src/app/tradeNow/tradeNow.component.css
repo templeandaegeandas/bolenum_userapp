@@ -5,6 +5,9 @@
     background-repeat: no-repeat;
     background-position: top;
 }
+.border-0{
+    border-radius: 0px;
+}
 
 .padding-0{
     padding: 0;

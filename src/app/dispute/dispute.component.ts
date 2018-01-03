@@ -21,6 +21,7 @@ export class DisputeComponent implements OnInit {
   public isOff: boolean = false;
   public isOn: boolean = true;
   public spinner:any;
+  public showDisupteSection:boolean=false;
   public getAddress:any;
   public saveButton: boolean = false;
   public disputeStatus: any;
@@ -134,12 +135,16 @@ export class DisputeComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
       this.toastrService.success(success.message, 'Success!')
     })
+  }
+
+  disputeSection(){
+   this.showDisupteSection = !this.showDisupteSection;
   }
 
 }

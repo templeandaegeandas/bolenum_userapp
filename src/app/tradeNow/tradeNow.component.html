@@ -187,7 +187,7 @@
                         <span class="text-center">BUY</span>
                         <!-- <span class="pull-right">Available Balance: 0.0</span> -->
                       </div>
-                      <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
+                      <div style="cursor: auto;" *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                         <div class="col-md-12 total-currency-message">
                           <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
                         </div>
@@ -388,7 +388,7 @@
                         <span class="text-center">SELL</span>
                         <!--  <span class="pull-right">Available Balance: 0.0</span> -->
                       </div>
-                      <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
+                      <div style="cursor: auto;" *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                         <div class="col-md-12 total-currency-message">
                           <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
                         </div>
@@ -838,7 +838,7 @@
         <!-- popup model -->
         <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content border-0">
               <div class="modal-header trade-pop-upheader">
                 <button type="button" class="close" (click)="hideModel()">&times;</button>
                 <h4 class="modal-title confirm-order">Order Confirmation</h4>
@@ -864,7 +864,7 @@
         <!-- cancel popup-->
         <div bsModal #orderCancelModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content border-0">
               <div class="modal-header trade-pop-upheader">
                 <button type="button" class="close" (click)="hideOrderCancelModel()">&times;</button>
                 <h4 class="modal-title confirm-order">Order Cancel Confirmation</h4>
