@@ -44,15 +44,13 @@ export class DepositComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getCurrencyName();
-    setTimeout(() => {
-      this.getListOfUserDepositTransaction();
-    }, 200);
   }
 
   getCoin(data) {
     this.isCopied = false;
     this.loading = true;
     this.data =data;
+    this.getListOfUserDepositTransaction();
     let c = this.currencyData.find(x => x.currencyAbbreviation == data);
     this.depositService.getCoin(c.currencyType, data).subscribe(success => {
       let successData = success.data;
@@ -84,7 +82,7 @@ export class DepositComponent implements OnInit {
   getListOfUserDepositTransaction() {
     this.isLoading = true;
     this.hasBlur = true;
-    this.depositService.getListOfDepositTransaction(1, 10, "createdOn", "desc").subscribe(success => {
+    this.depositService.getListOfDepositTransaction(1, 10, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
@@ -111,7 +109,7 @@ export class DepositComponent implements OnInit {
     this.isLoading = true;
     this.hasBlur = true;
     pageSize = pageSize + 10;
-    this.depositService.getListOfDepositTransaction(1, pageSize, "createdOn", "desc").subscribe(success => {
+    this.depositService.getListOfDepositTransaction(1, pageSize, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;

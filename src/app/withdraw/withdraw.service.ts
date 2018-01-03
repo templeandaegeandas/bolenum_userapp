@@ -24,13 +24,14 @@ export class WithdrawService {
       .map(res => res.json());
   }
 
-  getListOfWithdrawlTransaction(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
+  getListOfWithdrawlTransaction(currentPage: number, pageSize: number, sortBy: String, sortOrder: String, coinCode: String) {
     this.pageNumber = currentPage - 1;
     return this.http.get('/api/v1/user/withdraw/list?pageNumber='
       + this.pageNumber + '&pageSize='
       + pageSize + '&sortBy='
       + sortBy + '&sortOrder='
-      + sortOrder)
+      + sortOrder + '&currencyName='
+      + coinCode)
       .map(res => res.json());
   }
 
