@@ -59,6 +59,7 @@ export class SellComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
+     clearInterval(this.subscription);
     this.getOrderDetails();
   }
 
