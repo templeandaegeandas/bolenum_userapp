@@ -20,6 +20,9 @@ export class DisputeComponent implements OnInit {
   public commentByDisputeRaiser: any;
   public isOff: boolean = false;
   public isOn: boolean = true;
+  public spinner:any;
+  public showDisupteSection:boolean=false;
+  public getAddress:any;
   public saveButton: boolean = false;
   public disputeStatus: any;
   @ViewChild('fileInput') fileInput;
@@ -92,6 +95,7 @@ export class DisputeComponent implements OnInit {
 
   raiseDispute(form) {
     if (form.invalid) return;
+     this.spinner=true;
     this.loading = true;
     let fileBrowser = this.fileInput.nativeElement;
     if ((fileBrowser.files && fileBrowser.files[0])) {
@@ -100,6 +104,7 @@ export class DisputeComponent implements OnInit {
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
         this.loading = false;
+        this.spinner=false;
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
         fileBrowser.value = "";
         return;
@@ -120,18 +125,26 @@ export class DisputeComponent implements OnInit {
     }
   }
 
+ getUploadedDocument(fileInput: any){
+    this.getAddress=this.fileInput.nativeElement.files[0].name;
+    console.log("Get Address",this.getAddress);
+}
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
       this.toastrService.success(success.message, 'Success!')
     })
+  }
+
+  disputeSection(){
+   this.showDisupteSection = !this.showDisupteSection;
   }
 
 }

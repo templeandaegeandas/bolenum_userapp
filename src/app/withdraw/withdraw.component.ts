@@ -32,12 +32,9 @@ export class WithdrawComponent implements OnInit {
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
     this.getCurrencyList();
-    setTimeout(() => {
-      this.getListOfUserWithdrawlTransaction();
-    }, 200);
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
-        this.getListOfUserWithdrawlTransaction();
+        this.getListOfUserWithdrawlTransaction(this.data);
         this.getCoin(this.data);
       }
       message = "default message";
@@ -80,7 +77,7 @@ export class WithdrawComponent implements OnInit {
 
   }
 
-  
+
   log(event: boolean) {
     console.log(`Accordion has been ${event ? 'opened' : 'closed'}`);
   }
@@ -109,12 +106,13 @@ export class WithdrawComponent implements OnInit {
       this.loading = false;
     })
     this.withdrawFees(currency.currencyId);
+    this.getListOfUserWithdrawlTransaction(data);
   }
 
-  getListOfUserWithdrawlTransaction() {
+  getListOfUserWithdrawlTransaction(coinCode) {
     this.isLoading = true;
     this.hasBlur = true;
-    this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc").subscribe(success => {
+    this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
@@ -130,7 +128,7 @@ export class WithdrawComponent implements OnInit {
     this.isLoading = true;
     this.hasBlur = true;
     pageSize = pageSize + 10;
-    this.withdrawService.getListOfWithdrawlTransaction(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.withdrawService.getListOfWithdrawlTransaction(currentPage, pageSize, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;

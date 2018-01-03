@@ -100,6 +100,10 @@ img.wallet-image {
     font-weight: 500;
 }
 
+.tab-card-box{
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+}
+
 
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){

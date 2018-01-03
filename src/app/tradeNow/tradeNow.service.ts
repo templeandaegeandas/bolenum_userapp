@@ -104,4 +104,9 @@ export class TradeNowService {
     return this.http.delete("/api/v1/user/cancel/order?orderId=" + orderId)
       .map(res => res.json());
   }
+
+  marketData(pairId) {
+    return this.http.get("/api/v1/user/order/coin/data?pairId=" + pairId)
+      .map(res => res.json());
+  }
 }

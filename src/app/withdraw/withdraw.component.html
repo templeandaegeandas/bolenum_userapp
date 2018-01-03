@@ -67,32 +67,34 @@
               <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr class="table-Heading">
-                    <th>Transaction Hash</th>
+                    <th class="ellipsis-heading">Transaction Hash</th>
                     <th>Currency</th>
                     <th>Amount</th>
-                    <th>Receiver Address</th>
+                    <th class="ellipsis-heading" >Receiver Address</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Fee</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let tx of txList" class="table-content-font">
                     <td class="ellipsis td-widthForTransactionAddress" title="{{tx.txHash}}">{{tx.txHash}}</td>
                     <td>{{tx.currencyName}}</td>
-                    <td>{{tx.txAmount | number:'1.1-8'}}</td>
+                    <td>{{tx.txAmount | number:'1.8-8'}}</td>
                     <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
-                    <td>{{tx.fee}}</td>
+                    <td>{{tx.fee | number:'1.8-8'}}</td>
+                    <td>N/A</td>
                   </tr>
                   <tr *ngIf="transactionLength >=10">
-                    <td colspan="7">
+                    <td colspan="8">
                       <p (click)="getMoreTransactionList()" class="moreData moreText" title="click to show more list">More</p>
                     </td>
                   </tr>
                   <tr *ngIf="transactionLength == 0 ">
-                    <td colspan="7">
+                    <td colspan="8">
                       <p>You don't have any transaction yet!</p>
                     </td>
                   </tr>

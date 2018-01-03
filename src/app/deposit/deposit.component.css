@@ -56,6 +56,7 @@ select.center-dropddown {
     border: none;
     font-family: Lato-Regular-font !important;
     font-size: 11px !important;
+    outline: none;
 }
 .panel{
   background-color: #fff !important;
@@ -177,7 +178,7 @@ input[type="text"] {
 /* for depositiable table */
 
 .ellipsis {
-    max-width: 94px;
+    max-width: 140px !important;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

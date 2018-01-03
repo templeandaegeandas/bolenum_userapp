@@ -3,21 +3,23 @@
     /* padding-bottom: 34px;
     padding-top: 37px; */
 }
-.accordion-grp{
-  padding-top: 10px;
+
+.accordion-grp {
+    padding-top: 10px;
 }
+
 
 /* font-size-family */
 
-.table-content{
+.table-content {
     font-size: 11px !important;
     font-family: Lato-Regular-font !important;
 }
 
+
 /* font-family-size */
 
 .balance-text {
-
     /* font-size: 21px;
     color: #b2a89b; */
 }
@@ -40,8 +42,8 @@
 }
 
 .button-padding {
-   padding-left: 21px;
-   margin-top: 11px;
+    padding-left: 21px;
+    margin-top: 11px;
 }
 
 .submit-button {
@@ -55,6 +57,7 @@
     outline: none;
     width: 25%;
 }
+
 select.center-dropddown {
     background: #dedede;
     width: 225px;
@@ -63,32 +66,35 @@ select.center-dropddown {
     border: none;
     outline: none;
     font-family: Lato-Regular-font !important;
-     font-size: 11px !important;
+    font-size: 11px !important;
 }
+
 select.center-dropddown option {
     /* width: 225px; */
     outline: none;
 }
+
 .col-md-12.withdraw-dropdown {
     text-align: center;
-      margin-top: 75px;
+    margin-top: 75px;
     margin-bottom: 24px;
 }
 
-select option{
+select option {
     margin: 40px;
     background: #fff;
     color: #000;
 }
 
-.col-width{
+.col-width {
     width: 45%;
     font-size: 11px;
 }
 
-.available-text{
+.available-text {
     margin-top: 20px;
 }
+
 .color-box {
     background-color: #FFF;
     /* padding-bottom: 60px; */
@@ -96,174 +102,194 @@ select option{
 
 
 /*start media query*/
-  @media screen and (min-width: 320px) and (max-width: 767px){
-  .col-width{
-    width: 100%;
-  }
-  .widthdraw-container-padding{
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .color-box{
-    margin-bottom: 20px;
-  }
-  .top-margin-field {
-    margin-top: 0px;
-  }
-  .text-image-div {
-    background-color: #f3f3f3;
-    /* padding-bottom: 34px;
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .col-width {
+        width: 100%;
+    }
+    .widthdraw-container-padding {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .color-box {
+        margin-bottom: 20px;
+    }
+    .top-margin-field {
+        margin-top: 0px;
+    }
+    .text-image-div {
+        background-color: #f3f3f3;
+        /* padding-bottom: 34px;
     padding-top: 37px; */
-  }
-  .main-div-margin {
-    margin-bottom: 0px;
-    margin-top: 0px;
-  }
-  .wallet-background-img {
-    height: 282px;
-    width: 103%;
-  }
-  .submit-button {
-   margin-left: 12px;
-   width: 30%;
-}
- .col-md-12.withdraw-dropdown{
-   margin-bottom: 20px;
- }
- }
-@media screen and (min-width: 768px) and (max-width: 1023px){
-  .wallet-background-img {
-    height: 282px;
-    width: 103%;
+    }
+    .main-div-margin {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+    .wallet-background-img {
+        height: 282px;
+        width: 103%;
+    }
+    .submit-button {
+        margin-left: 12px;
+        width: 30%;
+    }
+    .col-md-12.withdraw-dropdown {
+        margin-bottom: 20px;
+    }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .wallet-background-img {
+        height: 282px;
+        width: 103%;
+    }
 }
 
-.text-label-top-padding{
-        padding-top: 9px;
+.text-label-top-padding {
+    padding-top: 9px;
 }
 
-.trade-History-table{
+.trade-History-table {
     border: 1px solid lightgray;
 }
 
- .border-left th{
-        border-left: 1px solid lightgray;
-        text-align: center;
-
-}
-.table-Content td{
+.border-left th {
+    border-left: 1px solid lightgray;
     text-align: center;
 }
+
+.table-Content td {
+    text-align: center;
+}
+
 .table-Head {
     font-family: Lato-Regular-font !important;
     background-color: #f8f8f8;
     color: #000;
     font-weight: 100!important;
-
 }
+
 .table>thead>tr>th {
     vertical-align: bottom;
     border-bottom: 2px solid #ddd;
     font-weight: 300;
 }
-.table-content-font{
+
+.table-content-font {
     font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
 
-.margin-Table{
+.margin-Table {
     margin-top: 50px;
 }
+
+
 /*.table-content-font{
     font-size: 13px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }*/
 
-.withdraw-heading{
-     font-size: 11px !important;
-    font-family: Lato-Regular-font !important;
-    font-weight: 100;
-
-}
-
-.input-field-withdraw{
+.withdraw-heading {
     font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
-
 }
 
-.drop-down-font{
-
+.input-field-withdraw {
     font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100;
-
 }
 
-.error-message-font{
-     font-size: 11px !important;
+.drop-down-font {
+    font-size: 11px !important;
+    font-family: Lato-Regular-font !important;
+    font-weight: 100;
+}
+
+.error-message-font {
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
+
 .button-font {
     font-family: Lato-Regular-font !important;
     font-size: 11px !important;
 }
 
-.table-Heading{
-        font-size: 11px !important;
+.table-Heading {
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
     background-color: #f8f8f8;
     color: #000;
-
 }
-.ellipsis {
-    max-width: 40px;
+
+.ellipsis-heading {
+    width: 156px !important;
+    max-width: 140px !important;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
+
+.ellipsis {
+    width: 146px !important;
+    max-width: 140px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
 /* for sell and buy table */
+
 .tranction-Table table {
-   /*   width: 716px; 140px * 5 column + 16px scrollbar width */
+    /*   width: 716px; 140px * 5 column + 16px scrollbar width */
     border-spacing: 0;
     background-color: #dedede;
 }
 
-.tranction-Table tbody, .tranction-Table thead tr { display: block; }
+.tranction-Table tbody,
+.tranction-Table thead tr {
+    display: block;
+}
 
 .tranction-Table tbody {
-    height: 353px;
+    height: 318px !important;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #dedede;
     font-size: 11px;
 }
 
-.tranction-Table tbody td, .tranction-Table thead th {
-    width: 216px;
+.tranction-Table tbody td,
+.tranction-Table thead th {
+    width: 216px !important;
     padding: 6px;
 }
+
+
 /* for sell and buy table */
 
-.td-widthForReceiverAddress{
-        padding-left: 25px !important;
+.td-widthForReceiverAddress {
+    padding-left: 25px !important;
 }
 
-.td-widthForTransactionAddress{
-       padding-left: 11px !important;
+.td-widthForTransactionAddress {
+    padding-left: 11px !important;
 }
 
-.ellipsis {    max-width: 40px;    text-overflow: ellipsis;    overflow: hidden;    white-space: nowrap;}
 
 /* for loader */
+
 .loader {
-     border: 5px solid #f3f3f3;
+    border: 5px solid #f3f3f3;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
     border-top: 5px solid #db2828;
@@ -273,32 +299,42 @@ select option{
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.spiner-position{
-        position: absolute;
-        top: 136px;
+.spiner-position {
+    position: absolute;
+    top: 136px;
     left: 460px;
 }
 
+
 /* for loader */
 
-.opecity-table{
-      opacity: 0.5;
+.opecity-table {
+    opacity: 0.5;
 }
 
-select.center-dropddown option{
+select.center-dropddown option {
     /* width: 0px; */
     outline: none;
 }
-select option{
+
+select option {
     margin: 0px;
     background: #fff;
     color: #000;
@@ -308,16 +344,17 @@ select option{
     background-color: white;
     color: black;
 }
-.moreData{
-        color: #DB2828;
+
+.moreData {
+    color: #DB2828;
     cursor: pointer;
 }
 
-.moreText{
+.moreText {
     text-align: right;
 }
 
-.moreText:hover{
+.moreText:hover {
     text-decoration: underline;
     color: #DB2828;
 }

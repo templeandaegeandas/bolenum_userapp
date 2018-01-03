@@ -1,6 +1,6 @@
 .fee-details{
     margin-top: 30px;
-    margin-bottom: 80px
+    margin-bottom: 146px
 }
 
 
@@ -33,10 +33,23 @@
 /* for depositiable table */
 
 .panel-default .panel-heading {
-       background-color: #DB2828;
-    color: #fff;
+       background-color: #f8f8f8 !important;
+    color: #000;
 }
 
 .panel-body {
     padding: 0;
+}
+
+ .heading-content{
+    font-size: 12px !important;
+    font-weight: 500;
+    
+}
+ .market-font-size{
+    font-size: 11px !important;
+    
+}
+td {
+    text-align: center;
 }
