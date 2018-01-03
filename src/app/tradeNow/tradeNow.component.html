@@ -41,7 +41,7 @@
                   <tbody>
                     <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" [ngClass]="{active: isActive(pair.pairId,coinList.currencyId)}">
                       <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,coinList.currencyId,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType,pair.pairedCurrency[0].currencyName)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
-                      <th class="table-content-font">{{pair.lastPrice}}</th>
+                      <th class="table-content-font">{{pair.lastPrice | number:'1.8-8'}}</th>
                       <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
                     </tr>
                   </tbody>
@@ -89,27 +89,27 @@
                       <tbody>
                         <tr>
                           <th>Last Price</th>
-                          <td><span class="market-summary-last-price green-color"> {{lastPrice}}</span></td>
+                          <td><span class="market-summary-last-price green-color"> {{lastPrice | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Volume</th>
-                          <td><span class="market-summary-volume green-color"> {{volume24h}}  </span></td>
+                          <td><span class="market-summary-volume green-color"> {{volume24h | number:'1.8-8'}}  </span></td>
                         </tr>
                         <tr>
                           <th>Bid</th>
-                          <td><span class="market-summary-bid-price green-color">{{bid}}</span></td>
+                          <td><span class="market-summary-bid-price green-color">{{bid | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>Ask</th>
-                          <td><span class="market-summary-ask-price green-color">{{ask}}</span></td>
+                          <td><span class="market-summary-ask-price green-color">{{ask | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h High</th>
-                          <td><span class="market-summary-ask-price green-color">{{high24h}}</span></td>
+                          <td><span class="market-summary-ask-price green-color">{{high24h | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Low</th>
-                          <td><span class="market-summary-ask-price green-color">{{low24h}}</span></td>
+                          <td><span class="market-summary-ask-price green-color">{{low24h | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Trade Count</th>
@@ -189,7 +189,7 @@
                       </div>
                       <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                         <div class="col-md-12 total-currency-message">
-                          <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
+                          <p>You have {{firstCurrencyBal | number:'1.8-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.8-8'}} {{secondCurrency}} in your wallet. </p>
                         </div>
                         <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                           <p class="tradeErrorTextColor" *ngIf="hasBuyAmount">Please Enter Amount To Start Trading</p>
@@ -390,7 +390,7 @@
                       </div>
                       <div *ngIf="firstCurrency!='NGN' && secondCurrency!='NGN'">
                         <div class="col-md-12 total-currency-message">
-                          <p>You have {{firstCurrencyBal | number:'1.1-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.1-8'}} {{secondCurrency}} in your wallet. </p>
+                          <p>You have {{firstCurrencyBal | number:'1.8-8'}} {{firstCurrency}} and {{secondCurrencyBal | number:'1.8-8'}} {{secondCurrency}} in your wallet. </p>
                         </div>
                         <div class="col-md-12 trade-drop-down trade-drop-down-margin">
                           <p class="tradeErrorTextColor" *ngIf="hasSellAmount">Please Enter Amount To Start Trading</p>
@@ -615,9 +615,9 @@
                     </thead>
                     <tbody class="table-content-font trade-table-cursor">
                       <tr *ngFor="let buyOrder of buyOrderList">
-                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.price | number:'1.1-8'}}</td>
-                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume | number:'1.1-8'}}</td>
-                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.price | number:'1.8-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume | number:'1.8-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(buyOrder.volume,buyOrder.price)">{{buyOrder.volume * buyOrder.price | number:'1.8-8'}}</td>
                         <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">
                           <button class="trade-button-buy buy-button-color " (click)="showModel('SELL', buyOrder.volume, buyOrder.price, buyOrder.id)">SELL</button>
                         </td>
@@ -649,9 +649,9 @@
                     </thead>
                     <tbody class="table-content-font">
                       <tr *ngFor="let sellOrder of sellOrderList">
-                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.price | number:'1.1-8'}}</td>
-                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume | number:'1.1-8'}}</td>
-                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price | number:'1.1-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.price | number:'1.8-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume | number:'1.8-8'}}</td>
+                        <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price | number:'1.8-8'}}</td>
                         <td *ngIf="firstCurrency=='NGN' || secondCurrency=='NGN'">
                           <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price, sellOrder.id)">BUY</button>
                         </td>
@@ -691,16 +691,16 @@
                   <tr *ngFor="let orders of myOrdersInBook">
                     <td>{{orders.orderType}}</td>
                     <td>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price | number:'1.1-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.volume | number:'1.1-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.volume | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price * orders.volume | number:'1.1-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price * orders.volume | number:'1.1-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>{{orders.createdOn | date}}</td>
                     <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
@@ -757,16 +757,16 @@
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <!-- <td>{{tx.orderStandard}}</td> -->
                   </tr>
@@ -808,16 +808,16 @@
                       <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.1-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
                     </td>
                   </tr>
                   <tr *ngIf=" myTradedListLength >=10 ">
@@ -847,7 +847,7 @@
                 <!-- <p>Some text in the modal.</p> -->
                 <div class="row ">
                   <div class="col-sm-12">
-                    <span>You want to {{order.orderType}} <span *ngIf="order.volume > 0">{{order.volume | number:'1.1-8'}}</span> {{firstCurrency}} at <span *ngIf="order.volume > 0">{{order.price * order.volume | number:'1.1-8'}}</span> {{secondCurrency}}
+                    <span>You want to {{order.orderType}} <span *ngIf="order.volume > 0">{{order.volume | number:'1.8-8'}}</span> {{firstCurrency}} at <span *ngIf="order.volume > 0">{{order.price * order.volume | number:'1.1-8'}}</span> {{secondCurrency}}
                     price.
                     </span>
                   </div>
