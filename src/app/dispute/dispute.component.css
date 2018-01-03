@@ -61,6 +61,7 @@ p {
     margin-bottom: 20px;
     padding-top: 8px;
     padding-bottom: 10px;
+     text-transform: uppercase;
 }
 
 .button-dispute{

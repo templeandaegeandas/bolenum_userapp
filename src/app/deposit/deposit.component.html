@@ -56,29 +56,30 @@
    <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
         <thead class="table-Head table-Heading ">
           <tr>
-            <th>Transaction Hash</th>
+            <th class="ellipsis" >Transaction Hash</th>
             <th>Currency</th>
             <th>Amount</th>
-            <th>Sender Address</th>
+            <th class="ellipsis" >Sender Address</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody class="table-content-font">
           <tr *ngFor="let tx of txList">
             <td class="ellipsis" title="{{tx.txHash}}" >{{tx.txHash }}</td>
-
             <td>{{tx.currencyName}}</td>
             <td>{{tx.txAmount | number:'1.8-8'}}</td>
             <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
+            <td>N/A</td>
           </tr>
           <tr *ngIf="txLength >=10">
-            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p></td>
+            <td colspan="7"><p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p></td>
           </tr>
           <tr *ngIf="txLength == 0">
-            <td colspan="6">
+            <td colspan="7">
                <p>You don't have any transaction yet!</p>
             </td>
           </tr>
