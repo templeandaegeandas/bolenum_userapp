@@ -26,7 +26,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <ul class="nav nav-tabs">
-                      <li class="hand-icon" (click)="getPair(coinList.currencyId)" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a data-toggle="tab">{{coinList.currencyAbbreviation}}</a></li>
+                      <li class="hand-icon" [ngClass]="{active: isActiveTab(coinList.currencyId)}"><a>{{coinList.currencyAbbreviation}}</a></li>
                     </ul>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
                   <tbody>
                     <tr *ngFor="let pair of pairedCurrency[coinList.currencyAbbreviation]" class="marketBodyColor" [ngClass]="{active: isActive(pair.pairId,coinList.currencyId)}">
                       <th class="hand-icon table-content-font" (click)=changePair(pair.pairId,pair.pairName,coinList.currencyId,pair.toCurrency[0].currencyType,pair.pairedCurrency[0].currencyType,pair.pairedCurrency[0].currencyName)>{{pair.pairedCurrency[0].currencyAbbreviation}}</th>
-                      <th class="table-content-font">0</th>
+                      <th class="table-content-font">{{pair.lastPrice}}</th>
                       <th class="table-content-font">{{pair.pairedCurrency[0].currencyName}}</th>
                     </tr>
                   </tbody>
@@ -77,6 +77,51 @@
             </div>
           </div>
 
+        </div>
+        <div class="col-sm-3 width-25 padding-0" *ngIf="showHide">
+          <div class="aisde-right">
+            <div class="text-center">
+              <div class="row">
+                <div class="col-md-12 padding-0">
+                  <div class="table-responsive" *ngFor="let coinList of coinMarketData">
+                    <div class="table-heading-content marketing-heading">COIN MARKET DATA</div>
+                    <table class="table table-condensed table-btc-value">
+                      <tbody>
+                        <tr>
+                          <th>Last Price</th>
+                          <td><span class="market-summary-last-price green-color"> {{lastPrice}}</span></td>
+                        </tr>
+                        <tr>
+                          <th>24h Volume</th>
+                          <td><span class="market-summary-volume green-color"> {{volume24h}}  </span></td>
+                        </tr>
+                        <tr>
+                          <th>Bid</th>
+                          <td><span class="market-summary-bid-price green-color">{{bid}}</span></td>
+                        </tr>
+                        <tr>
+                          <th>Ask</th>
+                          <td><span class="market-summary-ask-price green-color">{{ask}}</span></td>
+                        </tr>
+                        <tr>
+                          <th>24h High</th>
+                          <td><span class="market-summary-ask-price green-color">{{high24h}}</span></td>
+                        </tr>
+                        <tr>
+                          <th>24h Low</th>
+                          <td><span class="market-summary-ask-price green-color">{{low24h}}</span></td>
+                        </tr>
+                        <tr>
+                          <th>24h Trade Count</th>
+                          <td><span class="market-summary-ask-price green-color">{{countTrade24h}}</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-sm-3 width-25 padding-0" *ngIf="showHide">
           <div class="aisde-right">
