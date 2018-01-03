@@ -189,12 +189,24 @@ span.exchange-color {
     content: "";
     background: #bdb4b4;
     /* padding: 2px; */
-    width: 56px;
+    width: 45px;
     height: 2px;
     margin: 1px auto;
     text-align: center;
     display: block;
     border-radius: 5px;
+}
+
+a .bell {
+    color: #777;
+    text-decoration: none;
+}
+
+
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #f8f8f8;
+    border-color: #bdb4b4;
 }
 
 .dropdown-menu {
@@ -396,3 +408,193 @@ img.img-profile-icon {
     padding-right: 0px;
 }
 
+
+
+
+
+/* for test only */
+
+
+/* msg center */
+
+.notificatiion-popup{
+        list-style: none;
+    margin-right: 17px;
+    margin-top: 8px;
+    outline: 0;
+}
+
+.notification-Bage{
+        background-color: #DB2828;
+    color: #fff;
+    border-radius: 11px;
+    padding: 5px;
+    font-size: 10px;
+}
+
+.border-notification{
+    border-top: 1px solid #c8baba;
+    border-bottom: 1px solid #c8baba;
+}
+
+.notification-padding{
+        padding-left: 8px;
+        color: #6e6e6e;
+        font-size: 12px;
+}
+
+.see-more-notification{
+    color: #6e6e6e;
+        font-size: 12px;
+}
+
+.top-dropdown-menu {
+  width: 249px;
+    left: auto;
+    right: 16px;
+    top: 55px;
+  @include scrollbars(.4em, rgba(0,0,0,0.5), #fff);
+  .header {
+    padding: 10px 12px;
+    border-bottom: 1px solid $default;
+    font-size: 12px;
+    strong {
+      float: left;
+      color: $dropdown-text;
+    }
+    & > a {
+      float: right;
+      margin-left: 12px;
+      text-decoration: none;
+      &:hover {
+        color: $dropdown-text;
+      }
+    }
+  }
+  .msg-list {
+    max-height: 296px;
+    overflow: scroll;
+    overflow-x: hidden;
+    & > a {
+      border-top: 1px solid $default;
+      padding: 10px 12px;
+      display: block;
+      text-decoration: none;
+      color: $dropdown-text;
+      font-size: 12px;
+      &:first-child {
+        border-top: none;
+      }
+      .img-area {
+        float: left;
+        width: 36px;
+        img {
+          width: 36px;
+          height: 36px;
+          &.photo-msg-item{
+            border-radius: 18px;
+          }
+        }
+        & > div {
+          width: 36px;
+          height: 36px;
+          border-radius: 4px;
+          font-size: 24px;
+          text-align: center;
+          &.comments {
+            color: $warning;
+          }
+          &.orders {
+            color: $warning;
+          }
+          i {
+            width: 36px;
+            line-height: 36px;
+          }
+        }
+      }
+      .msg-area {
+        float: right;
+        width: 230px;
+        div {
+          max-height: 34px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        span {
+          font-style: italic;
+          text-align: right;
+          display: block;
+          font-size: 11px;
+        }
+      }
+      &:hover {
+        background: #E2F0FF;
+      }
+    }
+  }
+  & > a {
+    border-top: 1px solid $default;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    &:hover {
+      color: $dropdown-text;
+    }
+  }
+
+  &.profile-dropdown {
+    width: 145px;
+    top: 55px;
+    right: -25px;
+    a {
+      text-align: left;
+      border: none;
+      text-decoration: none;
+      color: $dropdown-text;
+      padding: 4px 16px 4px 20px;
+      &.signout {
+        border-top: 1px solid $default;
+      }
+      i {
+        margin-right: 10px;
+      }
+      &:hover {
+        background: #f4fcff;
+      }
+    }
+    i.dropdown-arr {
+      right: 25px;
+    }
+  }
+
+  i.dropdown-arr {
+    position: absolute;
+    top: -22px;
+    right: 42px;
+    display: block;
+    width: 0;
+    height: 0;
+    border: 11px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, .15);
+    &:after {
+      top: -9px;
+      left: 0px;
+      margin-left: -10px;
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-bottom-color: $default;
+    }
+  }
+}
+
+
+
+
+/* for test only */
