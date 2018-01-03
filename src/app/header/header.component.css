@@ -216,8 +216,12 @@ a .bell {
     border-radius: 2px;
     padding-top: 7px;
     padding-bottom: 9px;
-    min-width: 167px;
+    min-width: 201px;
     z-index: 1;
+}
+
+.transition-effect-dropdown{
+   -webkit-animation: fadeInScale 2s ease-in-out;
 }
 
 .dropdown-menu .divider {
@@ -447,6 +451,12 @@ img.img-profile-icon {
     color: #6e6e6e;
         font-size: 12px;
 }
+
+.notification-scroll{
+    overflow-y: scroll;
+    max-height: 207px;
+}
+
 
 .top-dropdown-menu {
   width: 249px;

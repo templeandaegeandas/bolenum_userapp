@@ -22,25 +22,25 @@
                       <tbody class="table-content-font text-center">
                         <tr>
                           <td>ETH/BTC</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
                          </tr>
                         <tr>
                           <td>BLN/BTC</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
                         
                         </tr>
                         <tr>
                           <td>BLN/ETH</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
                         
                         </tr>
                         <tr>
                           <td>BLN/BTC</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
                          
                         </tr>
                       </tbody>
@@ -66,22 +66,12 @@
                         </tr>
                       </thead>
                       <tbody class=" market-font-size">
-                        <tr>
-                          <td>BTC</td>
-                          <td>0.001</td>
+                        <tr *ngFor='let withdrawValue of withdrawFee'>
+                          <td>{{withdrawValue.currency.currencyAbbreviation}}</td>
+                          <td>{{withdrawValue.fee}}</td>
                           <td>N/A</td>
                         </tr>
-                        <tr>
-                          <td>ETH</td>
-                          <td>0.01</td>
-                          <td>N/A</td>
-                        </tr>
-                        <tr>
-                          <td>BLN</td>
-                          <td>1</td>
-                          <td>N/A</td>
-                        </tr>
-                      </tbody>
+                       </tbody>
                     </table>
                   </div>
                 </div>
