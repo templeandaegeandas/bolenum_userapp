@@ -97,6 +97,13 @@ export class TradeNowComponent implements OnInit {
   buyVolume;
   buyPrice;
   buyAmount;
+  volume24h;
+  countTrade24h;
+  low24h;
+  high24h;
+  bid = 0;
+  ask = 0;
+  lastPrice = 0;
   buyTradingFee = 0;
   buyPriceWithFee = 0;
   public isBuyMarket: boolean = true;
@@ -137,8 +144,8 @@ export class TradeNowComponent implements OnInit {
       this.jsonMessage = message;
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
         this.pairedCurrency[this.jsonMessage.toCurrency].map((value) => {
-          if(value.pairId == this.jsonMessage.pairId) {
-            if(value.lastPrice == null || value.lastPrice > this.jsonMessage.price ) {
+          if (value.pairId == this.jsonMessage.pairId) {
+            if (value.lastPrice == null || value.lastPrice == 0 || value.lastPrice > this.jsonMessage.price) {
               value.lastPrice = this.jsonMessage.price;
               return value;
             }
@@ -247,6 +254,12 @@ export class TradeNowComponent implements OnInit {
     this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
+      if (this.buyOrderList.length > 0) {
+        this.bid = this.buyOrderList[0].price;
+      }
+      else {
+        this.bid = 0;
+      }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
       });
@@ -258,6 +271,14 @@ export class TradeNowComponent implements OnInit {
     this.totalSell = 0.0;
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
+      if (this.sellOrderList.length > 0) {
+        this.bid = this.sellOrderList[0].price;
+        this.lastPrice = this.bid;
+      }
+      else {
+        this.bid = 0;
+        this.lastPrice = this.bid;
+      }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
       });
@@ -511,6 +532,7 @@ export class TradeNowComponent implements OnInit {
         this.getUserBalance();
         this.getBuyOrderBookData(this.pairId);
         this.getSellOrderBookData(this.pairId);
+        this.getOurMarketData();
       }, 1000)
     }, error => {
       this.getCurrencyList();
@@ -526,8 +548,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType, currencyName) {
-    console.log("currencyName=", currencyName);
-    console.log("data >>>>>>>>>>>>>>>>>", pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType);
     this.loading = true;
     this.pairId = pairId;
     this.firstCurrencyType = firstCurrencyType;
@@ -543,12 +563,12 @@ export class TradeNowComponent implements OnInit {
     this.getUserBalance();
     this.getBuyOrderBookData(pairId);
     this.getSellOrderBookData(pairId);
+    this.getOurMarketData();
     if ((pairName == 'BLN/NGN')) {
       currencyName = "bolenum";
       this.secondCurrency = "NGN";
     }
     this.getCoinMarketCapData(currencyName, this.secondCurrency);
-    console.log("currencyName = "+currencyName+"secondCurrency = "+this.secondCurrency);
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -775,7 +795,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
-    if (this.buyAmount < 1) {
+    if (this.buyAmount < 1 || this.sellAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
     }
@@ -956,7 +976,6 @@ export class TradeNowComponent implements OnInit {
       type: 'GET',
       success: resp => {
         this.coinMarketData = resp;
-        console.log("coin market >>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", this.coinMarketData);
       },
       error: e => {
         console.log(e)
@@ -964,5 +983,13 @@ export class TradeNowComponent implements OnInit {
     });
   }
 
+  getOurMarketData() {
+    this.tradeNowService.marketData(this.pairId).subscribe(success => {
+      this.volume24h = success.data.volume24h;
+      this.low24h = success.data.low24h;
+      this.high24h = success.data.high24h;
+      this.countTrade24h = success.data.countTrade24h;
+    })
+  }
 
 }
