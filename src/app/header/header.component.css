@@ -433,12 +433,19 @@ img.img-profile-icon {
 }
 
 .border-notification{
-    border-top: 1px solid #777;
-    border-bottom: 1px solid #777;
+    border-top: 1px solid #c8baba;
+    border-bottom: 1px solid #c8baba;
 }
 
 .notification-padding{
-        padding-left: 4px;
+        padding-left: 8px;
+        color: #6e6e6e;
+        font-size: 12px;
+}
+
+.see-more-notification{
+    color: #6e6e6e;
+        font-size: 12px;
 }
 
 .top-dropdown-menu {
