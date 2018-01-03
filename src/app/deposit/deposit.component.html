@@ -69,7 +69,7 @@
           <tr *ngFor="let tx of txList">
             <td class="ellipsis" title="{{tx.txHash}}" >{{tx.txHash }}</td>
             <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount | number:'1.1-8'}}</td>
+            <td>{{tx.txAmount | number:'1.8-8'}}</td>
             <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
