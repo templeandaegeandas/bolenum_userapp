@@ -8,5 +8,5 @@ export const environment = {
   documentUrl: 'http://localhost:3050/static/documents/',
   profilePicUrl: 'http://localhost:3050/static/profile-images/',
   googleQrCodeUrl: 'http://localhost:3050/static/google/qrcode/',
-  socketUrl: 'http://165.227.86.165:8080/websocket/bolenum/exchange'
+  socketUrl: 'http://localhost:8080/websocket/bolenum/exchange'
 };
