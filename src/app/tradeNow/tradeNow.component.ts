@@ -531,9 +531,8 @@ export class TradeNowComponent implements OnInit {
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
-        if (pairArray[0] == 'BLN') {
-          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
-        }
+        let temp = this.pairedCurrency['BLN'];
+        this.minPrice =temp[0].lastPrice;
         if (this.secondCurrency == 'NGN') {
           this.secondCurrencyType = 'FIAT';
         }
@@ -803,7 +802,11 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
-    if (this.buyAmount < 1 || this.sellAmount < 1) {
+    if (orderType == 'BUY' && this.buyAmount < 1) {
+      this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
+      return;
+    }
+    if (orderType == 'SELL' && this.sellAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
     }
@@ -824,8 +827,8 @@ export class TradeNowComponent implements OnInit {
       return;
 
     }
-    if (this.price < this.minPrice) {
-      this.toastrService.error("You can't place order less than 10 NGN", "Error!");
+    if ((orderType == 'BUY' && this.buyPrice < this.minPrice) || (orderType == 'SELL' && this.sellPrice < this.minPrice)) {
+      this.toastrService.error("You can't place order less than "+this.minPrice+" NGN", "Error!");
       return;
     }
     if (orderType == 'BUY') {
