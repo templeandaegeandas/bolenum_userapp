@@ -5,24 +5,26 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="dispute-section">
-        <strong class="text-danger">Trade is under dispute</strong>
+        <strong class="text-danger">Trade</strong>
         <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If you send payment to the seller and not getting {{currencyAbr}} then we will solve this issue and your {{currencyAbr}} will be received from <span class="red-bold">{{walletAddress}}.</span></p>
       </div>
       <div class="row">
         <div class="col-sm-6">
-      <div class=" button-center pull-right"  *ngIf="orderStatus == 'LOCKED'">
+        <div class=" button-center pull-right">
+        <button type="submit" class="btn trade-button button-color" (click)="disputeSection()">Dispute</button>
+      </div>
+    </div>
+        <div class="col-sm-6">
+      <div class=" button-center pull-left"  *ngIf="orderStatus == 'LOCKED'">
         <button type="submit" class="btn trade-button" (click)="cancelPay()">Cancel Trade</button>
       </div>
     </div>
-    <div class="col-sm-6">
-        <div class=" button-center pull-left">
-        <button type="submit" class="btn trade-button" (click)="disputeSection()">Dispute</button>
-      </div>
-    </div>
+    
   </div>
     </div>
   </div>
-  <div *ngIf="showDisupteSection">
+  <div class="text-center" *ngIf="showDisupteSection">
+     <strong class="text-danger">Trade is under dispute</strong>
   <div class="row">
     <div class="col-sm-12">
      <!--  <div class="alert-warning fade-and-collapse text-center ng-isolate-scope alert" uib-alert="" role="alert">

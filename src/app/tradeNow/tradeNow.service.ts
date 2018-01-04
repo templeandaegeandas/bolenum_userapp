@@ -96,7 +96,7 @@ export class TradeNowService {
   }
 
   tradingFee() {
-    return this.http.get("/api/v1/admin/get/trade/fees")
+    return this.http.get("/api/v1/admin/trade/fees")
       .map(res => res.json());
   }
 

@@ -13,7 +13,7 @@
         </ul>
       </div> -->
       <div class="clearfix"></div>
-      <div class="col-md-12 text-center">
+      <div class="col-md-12 text-center margin-dropdown">
         <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
 
             <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
@@ -36,6 +36,7 @@
              <span class="copy-Text"(click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="43"[ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
           </div>
         </div>
+        <div class="clearfix"></div>
 
       <div class="col-md-12 text-center deposite-Content">
          <!-- <span class="network">Network Fee:</span> -->

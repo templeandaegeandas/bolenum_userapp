@@ -14,7 +14,7 @@
           <div class="timer-property">
             <p *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="font-thick"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay.</p>
 
-            <p class="timer-font-pro" id="demo"></p>
+             <p class="timer-font-pro" id="demo">{{showTime}}</p>
 
             <p *ngIf="orderStatus == 'LOCKED' && isMatchedConfirm">When deposit time went out the trade will be cancelled. Any deposit comes after that will be credited to your account.</p>
           </div>
