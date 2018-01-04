@@ -90,7 +90,10 @@ export class DisputeComponent implements OnInit {
       this.orderStatus = success.data.orderStatus;
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => {
+         this.appEventEmiterService.changeMessage("cancelPay");
+        this.router.navigate(['tradeNow']);
+    });
   }
 
   raiseDispute(form) {
@@ -135,6 +138,7 @@ export class DisputeComponent implements OnInit {
         this.subscription.unsubscribe();
       }
       this.getOrderDetails();
+      this.appEventEmiterService.changeMessage("cancelPay");
       this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
