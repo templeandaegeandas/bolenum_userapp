@@ -73,7 +73,7 @@
             <ul class="notificatiion-popup">
               <li class="dropdowns">
                 <a href class="dropdown-toggle bell backgroun-bell-color" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell-o"></i><span class='notification-Bage'>4</span>
+                <i class="fa fa-bell-o"></i><span class='notification-Bage'>{{countOfUnseeNotification}}</span>
                   <div class="notification-ring"></div>
                   </a>
                 <div class="top-dropdown-menu dropdown-menu notification-scroll" aria-labelledby="msg-dd1">
@@ -83,34 +83,13 @@
                     <!-- <a href>Mark All as Read</a>
                     <a href>Settings</a> -->
                   </div>
-                  <div class="msg-list">
+                  <div class="msg-list" *ngFor="let list of listOfUserNotification">
                     <a href class="clearfix">
                       <div class="msg-area border-notification">
-                        <div class="notification-padding">New Order Received</div>
-                      </div>
-                    </a>
-                     <a href class="clearfix">
-                      <div class="msg-area ">
-                        <div class="notification-padding" >New Order Received</div>
-                      </div>
-                    </a>
-                     <a href class="clearfix">
-                      <div class="msg-area border-notification">
-                        <div class="notification-padding" >New Order Received</div>
-                      </div>
-                    </a>
-                     <a href class="clearfix">
-                      <div class="msg-area">
-                        <div class="notification-padding" >New Order Received</div>
-                      </div>
-                    </a>
-                     <a href class="clearfix">
-                      <div class="msg-area border-notification">
-                        <div class="notification-padding" >New Order Received</div>
+                        <div class="notification-padding">{{list.message}}</div>
                       </div>
                     </a>
                   </div>
-                 
                     <div class="msg-area  text-center">
                        <a class="see-more-notification">See all notifications</a>
                       </div>

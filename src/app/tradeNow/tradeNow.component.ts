@@ -828,7 +828,7 @@ export class TradeNowComponent implements OnInit {
       return;
 
     }
-    if (this.buyPrice < this.minPrice || this.sellPrice < this.minPrice) {
+    if ((orderType == 'BUY' && this.buyPrice < this.minPrice) || (orderType == 'SELL' && this.sellPrice < this.minPrice)) {
       this.toastrService.error("You can't place order less than "+this.minPrice+" NGN", "Error!");
       return;
     }
