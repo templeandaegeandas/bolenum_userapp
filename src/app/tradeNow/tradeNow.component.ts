@@ -504,6 +504,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
+      console.log("Get Currency Id", currencyId);
       this.currencyName = this.currecyList[0].currencyName;
       this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
       let pairedCurrency;
@@ -518,15 +519,15 @@ export class TradeNowComponent implements OnInit {
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
-        console.log(this.pairId);
-        console.log(pairedCurrency[0].toCurrency[0].currencyId);
-        this.pairName = pairedCurrency[0].pairName;
         if(this.jsonMessage=="cancelPay"){
-           this.select(4, 4);
-        this.isActive(4, 4);
+           this.select(4, 3);
+          this.isActive(4, 3);
+          this.pairName="BLN/NGN";
+          currencyId=3;
         }else{
         this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
         this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
+        this.pairName = pairedCurrency[0].pairName;
       }
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
@@ -966,6 +967,7 @@ export class TradeNowComponent implements OnInit {
 
   select(pair, toCurrency) {
     this.selectedPair = toCurrency;
+    console.log(this.selectedPair);
     this.selectedRow = pair;
   }
 
