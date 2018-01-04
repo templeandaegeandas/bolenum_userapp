@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="dispute-section">
-        <strong class="text-danger">Trade is under dispute</strong>
+        <strong class="text-danger">Trade</strong>
         <p>You are buying {{orderVolume}} {{currencyAbr}} from {{sellerName}}. If you send payment to the seller and not getting {{currencyAbr}} then we will solve this issue and your {{currencyAbr}} will be received from <span class="red-bold">{{walletAddress}}.</span></p>
       </div>
       <div class="row">
@@ -23,7 +23,8 @@
   </div>
     </div>
   </div>
-  <div *ngIf="showDisupteSection">
+  <div class="text-center" *ngIf="showDisupteSection">
+     <strong class="text-danger">Trade is under dispute</strong>
   <div class="row">
     <div class="col-sm-12">
      <!--  <div class="alert-warning fade-and-collapse text-center ng-isolate-scope alert" uib-alert="" role="alert">
