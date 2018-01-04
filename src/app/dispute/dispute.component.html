@@ -10,15 +10,16 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-      <div class=" button-center pull-right"  *ngIf="orderStatus == 'LOCKED'">
+        <div class=" button-center pull-right">
+        <button type="submit" class="btn trade-button button-color" (click)="disputeSection()">Dispute</button>
+      </div>
+    </div>
+        <div class="col-sm-6">
+      <div class=" button-center pull-left"  *ngIf="orderStatus == 'LOCKED'">
         <button type="submit" class="btn trade-button" (click)="cancelPay()">Cancel Trade</button>
       </div>
     </div>
-    <div class="col-sm-6">
-        <div class=" button-center pull-left">
-        <button type="submit" class="btn trade-button" (click)="disputeSection()">Dispute</button>
-      </div>
-    </div>
+    
   </div>
     </div>
   </div>

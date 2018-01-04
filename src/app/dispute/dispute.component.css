@@ -12,6 +12,9 @@
     font-size: 14px;
     margin: 0;
 }
+.button-color{
+    background-color: #3cb371 !important;
+}
 
 .payment-table th , td{
     border-top:none !important;

@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener,EventEmitter } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { SellService } from './sell.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import { Observable } from 'rxjs/Rx';
 import { ToastrService } from 'toastr-ng2';
+
 declare var $: any;
 
 @Component({
@@ -54,14 +55,7 @@ export class SellComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    window.scrollTo(0, 0);
-    this.activatedRoute.params.subscribe(params => {
-      this.orderId = +params['orderId'];
-    });
-     clearInterval(this.subscription);
-    this.getOrderDetails();
-  }
+
 
   getOrderDetails() {
     console.log("in get orders details")
@@ -103,17 +97,16 @@ export class SellComponent implements OnInit {
     this.subscription = setInterval(() => {
       this.startTimer(countDownDate);
     }, 1000)
-      // this.subscription = Observable.interval(1000).subscribe(() => {
-      //
-      // });
-      // for timer
+    console.log("Subscription ID",this.subscription);
     }
     else if (this.orderStatus == 'COMPLETED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+      // if (this.subscription) {
+      //   clearInterval(this.subscription)
+      // }
+      this.ngOnDestroy();
       try {
         document.getElementById("demo").innerHTML = "Order Completed";
+         console.log("Complete is::::")
       }
       catch (e) {
         console.log("exception handled")
@@ -123,45 +116,44 @@ export class SellComponent implements OnInit {
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+      // if (this.subscription) {
+      //   clearInterval(this.subscription)
+      // }
       try {
         document.getElementById("demo").innerHTML = "Order Submitted";
       }
       catch (e) {
-        console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        // if (this.subscription) {
+        //   clearInterval(this.subscription)
+        // }
       }
     }
     else if (this.orderStatus == 'LOCKED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+      // if (this.subscription) {
+      //   clearInterval(this.subscription)
+      // }
       try {
         document.getElementById("demo").innerHTML = "Please wait for buyer to make payment";
       }
       catch (e) {
         console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        // if (this.subscription) {
+        //   clearInterval(this.subscription)
+        // }
       }
     }
     else {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+      // if (this.subscription) {
+      //   clearInterval(this.subscription)
+      // }
       try {
         document.getElementById("demo").innerHTML = "Order Cancelled";
       }
       catch (e) {
         console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        // if (this.subscription) {
+        //   clearInterval(this.subscription)
+        // }
       }
     }
   }
@@ -188,24 +180,22 @@ export class SellComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        // if (this.subscription) {
+        //   clearInterval(this.subscription)
+        // }
       }
     }
     // If the count down is over, write some text
     if (distance <= 0) {
       if (path == 'sell') {
         clearInterval(this.subscription);
-        console.log("distance subscription", this.subscription)
         try {
           document.getElementById("demo").innerHTML = "EXPIRED";
         }
         catch (e) {
-          console.log("exception handled")
-          if (this.subscription) {
-            clearInterval(this.subscription)
-          }
+          // if (this.subscription) {
+          //   clearInterval(this.subscription)
+          // }
         }
       }
     }
@@ -213,40 +203,52 @@ export class SellComponent implements OnInit {
 
   confirmPay() {
     this.sellService.confirmPay(this.orderId).subscribe(success => {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+      // console.log("Get response", success);
+      // if (this.subscription) {
+      //   clearInterval(this.subscription)
+      // }
       this.getOrderDetails();
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       this.toastrService.success("Trade Completed!", "Success!");
-      console.log(success);
     })
   }
 
   cancelPay() {
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
+    // if (this.subscription) {
+    //   clearInterval(this.subscription)
+    // }
     this.sellService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
       this.toastrService.success(success.message, "Success!");
-      console.log(success);
     })
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
+    // if (this.subscription) {
+    //   clearInterval(this.subscription)
+    // }
   }
 
   disputeTrade() {
     this.dispute = true;
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
+    // if (this.subscription) {
+    //   clearInterval(this.subscription)
+    // }
     this.sellService.dispute(this.orderId).subscribe(success => {
       this.toastrService.success(success.message, "Success");
     })
   }
+
+    ngOnInit() {
+    window.scrollTo(0, 0);
+    this.activatedRoute.params.subscribe(params => {
+      this.orderId = +params['orderId'];
+    });
+     clearInterval(this.subscription);
+    this.getOrderDetails();
+  }
+
+  ngOnDestroy() {
+  if (this.subscription) {
+    console.log("Subscription is", this.subscription);
+    clearInterval(this.subscription);
+  }
+}
 
 }
