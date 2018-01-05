@@ -42,8 +42,9 @@
 }
 
  .heading-content{
-    font-size: 12px !important;
-    font-weight: 500;
+    font-size: 15px !important;
+    font-weight: 200;
+    text-transform: uppercase !important;
     
 }
  .market-font-size{
