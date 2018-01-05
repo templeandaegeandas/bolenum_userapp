@@ -519,6 +519,7 @@ export class TradeNowComponent implements OnInit {
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
+        console.log("Json message", this.jsonMessage)
         if(this.jsonMessage=="cancelPay"){
           console.log("IN:::::::::::")
            this.select(4, 3);
