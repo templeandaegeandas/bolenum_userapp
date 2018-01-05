@@ -520,10 +520,10 @@ export class TradeNowComponent implements OnInit {
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
         if(this.jsonMessage=="cancelPay"){
+          console.log("IN:::::::::::")
            this.select(4, 3);
           this.isActive(4, 3);
           this.pairName="BLN/NGN";
-          currencyId=3;
         }else{
         this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
         this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
