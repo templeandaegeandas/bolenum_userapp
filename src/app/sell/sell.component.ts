@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy} from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { SellService } from './sell.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./sell.component.css'],
   providers: [SellService]
 })
-export class SellComponent implements OnInit  {
+export class SellComponent implements OnInit, OnDestroy {
   orderId: any;
   bankName: string;
   branch: string;
@@ -46,7 +46,7 @@ export class SellComponent implements OnInit  {
        if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
         if (this.subscription != null) {
-          clearInterval(this.subscription);
+          this.clearInterval();
         }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
         // this.ngOnInit();
@@ -70,14 +70,13 @@ export class SellComponent implements OnInit  {
 
   clearInterval(){
     console.log("subscription", this.subscription);
-    clearInterval(this.subscription);
+     clearInterval(this.subscription);
   }
 
-//   ngOnDestroy() {
-//     console.log("Ng On Destroy Triggered");
-//     this.subscription =  undefined;
-//     clearInterval(this.subscription)
-// }
+  ngOnDestroy() {
+    console.log("Ng On Destroy Triggered");
+     this.clearInterval();
+}
 
 
 
@@ -103,14 +102,7 @@ export class SellComponent implements OnInit  {
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.dispute = success.data.isDispute;
-      if(this.getMessage=="receivedPayment"){
-           this.showTime = "Order Completed";
-            this.clearInterval();
-           console.log("receivedPayment", this.showTime);
-      }else{
         this.startTradingTimer();
-      }
-      
     }, error => this.router.navigate(['tradeNow']))
   }
 
@@ -122,8 +114,12 @@ export class SellComponent implements OnInit  {
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
     this.subscription = setInterval(() => {
+      console.log("IN TIMER::::::::::::::::");
+      if(this.getMessage!="receivedPayment"){
       this.startTimer(countDownDate);
+    }
     }, 1000)
+
     }
     else if (this.orderStatus == 'COMPLETED') {
       try {
@@ -201,6 +197,7 @@ export class SellComponent implements OnInit  {
   }
 
   confirmPay() {
+    // this.clearInterval();
     this.appEventEmiterService.changeMessage("receivedPayment");
     this.sellService.confirmPay(this.orderId).subscribe(success => {
       this.getOrderDetails();

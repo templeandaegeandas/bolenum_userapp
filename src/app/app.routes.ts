@@ -38,7 +38,7 @@ import { NotifyUserComponent }  from './notify-user/notify-user.component';
 
 
 export const APP_ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'profile' },
+  { path: '', pathMatch: 'full', redirectTo: 'tradeNow' },
   // { path: '**', redirectTo: 'deposit' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [PrivateRouteAuthGuard] },
   { path: 'tradeNow', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
