@@ -11,9 +11,15 @@ export class HeaderService {
     return this.http.delete("/api/v1/logout").map(res => res.json());
   }
 
-  GetUserNotification(currentPage: number, pageSize: number, sortBy: String, sortOrder: String ) {
+  GetUserNotification(
+    currentPage: number,
+    pageSize: number,
+    sortBy: String,
+    sortOrder: String
+  ) {
     this.pageNumber = currentPage - 1;
-    return this.http.get(
+    return this.http
+      .get(
       "/api/v1/user/notification?pageNumber=" +
       this.pageNumber +
       "&pageSize=" +
@@ -34,7 +40,10 @@ export class HeaderService {
 
   changeReadStatusOfUserNotification(arrayOfNotification: any) {
     return this.http
-      .put('/api/v1/user/notification?arrayOfNotification=' + arrayOfNotification, '')
+      .put(
+      "/api/v1/user/notification?arrayOfNotification=" + arrayOfNotification,
+      ""
+      )
       .map(res => res.json());
   }
 }
