@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
+      console.log("Header component", this.jsonMessage);
 
       if (
         message == "DOCUMENT_VERIFICATION" ||

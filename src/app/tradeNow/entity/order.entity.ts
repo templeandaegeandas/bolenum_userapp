@@ -4,5 +4,6 @@ export class Order {
   price: any = 0;
   orderStandard: any;
   orderType: any;
-  pair: any;
+  marketCurrency: any;
+  pairedCurrency: any;
 }
