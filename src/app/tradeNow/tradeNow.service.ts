@@ -13,6 +13,7 @@ export class TradeNowService {
   }
 
   sellOrderBook(pairId) {
+  console.log("Pair Id", pairId);
     return this.http.get('/api/v1/user/get/sell/orders?pairId=' + pairId)
       .map(res => res.json());
   }
