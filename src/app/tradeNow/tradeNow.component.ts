@@ -145,20 +145,21 @@ export class TradeNowComponent implements OnInit {
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
-      console.log(this.jsonMessage)
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
-        this.pairedCurrency[this.jsonMessage.toCurrency].map((value) => {
-          if (value.pairId == this.jsonMessage.pairId) {
-            if (value.lastPrice == null || value.lastPrice == 0 || value.lastPrice > this.jsonMessage.price) {
-              value.lastPrice = this.jsonMessage.price;
-              return value;
+        this.currecyList.map((value) => {
+          value.market.map((marketValue) => {
+            if (marketValue.currencyAbbreviation == this.jsonMessage.pairedCurrency) {
+              if (marketValue.lastPrice == null || marketValue.lastPrice == 0 || marketValue.lastPrice > this.jsonMessage.price) {
+                marketValue.lastPrice = this.jsonMessage.price;
+                return marketValue;
+              }
             }
-          }
+          })
         })
       }
       if (message == "ORDER_BOOK_NOTIFICATION") {
-        this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
-        this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyTradedOrders();
         this.getAllTradedOrders();
         this.getMyOrdersFromBook();
@@ -254,9 +255,9 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getBuyOrderBookData(marketCurrency, pairedCurrency) {
+  getBuyOrderBookData() {
     this.totalBuy = 0.0;
-    this.tradeNowService.buyOrderBook(marketCurrency.currencyId, pairedCurrency.currencyId).subscribe(success => {
+    this.tradeNowService.buyOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.buyOrderList = success.data.content;
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
@@ -271,9 +272,9 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getSellOrderBookData(marketCurrency, pairedCurrency) {
+  getSellOrderBookData() {
     this.totalSell = 0.0;
-    this.tradeNowService.sellOrderBook(marketCurrency.currencyId, pairedCurrency.currencyId).subscribe(success => {
+    this.tradeNowService.sellOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.sellOrderList = success.data.content;
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
@@ -519,8 +520,8 @@ export class TradeNowComponent implements OnInit {
       this.pairedCurrencyType = this.currecyList[0].market[0].currencyType;
       this.marketCurrencyType = this.currecyList[0].currencyType;
       this.getUserBalance();
-      this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
-      this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+      this.getBuyOrderBookData();
+      this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
       // this.currecyList = success.data;
@@ -588,12 +589,13 @@ export class TradeNowComponent implements OnInit {
     this.marketCurrency = marketCurrency.currencyAbbreviation;
     this.pairedCurrency = pairedCurrency.currencyAbbreviation;
     this.pairName = this.pairedCurrency + "/" + this.marketCurrency;
-    // if (this.pairedCurrency == 'NGN') {
-    //   this.pairedCurrencyType = 'FIAT';
-    // }
+    if (this.pairedCurrencyType == 'FIAT') {
+      this.marketCurrency = pairedCurrency.currencyAbbreviation;
+      this.pairedCurrency = marketCurrency.currencyAbbreviation;
+    }
     this.getUserBalance();
-    this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
-    this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+    this.getBuyOrderBookData();
+    this.getSellOrderBookData();
     this.getOurMarketData();
     this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
     this.buyPrice = '';
@@ -616,13 +618,13 @@ export class TradeNowComponent implements OnInit {
       }, error => {
         this.pairedCurrencyBal = 0.0;
       })
+      this.depositService.getCoin(this.marketCurrencyType, this.marketCurrency).subscribe(success => {
+        if (success.data != null)
+          this.marketCurrencyBal = success.data.data.balance;
+      }, error => {
+        this.marketCurrencyBal = 0.0;
+      })
     }
-    this.depositService.getCoin(this.marketCurrencyType, this.marketCurrency).subscribe(success => {
-      if (success.data != null)
-        this.marketCurrencyBal = success.data.data.balance;
-    }, error => {
-      this.marketCurrencyBal = 0.0;
-    })
   }
 
   fillBuyData(volume, price) {
@@ -785,7 +787,7 @@ export class TradeNowComponent implements OnInit {
 
   changedBuyList() {
     if (this.buyAmount == '' || this.buyAmount == null || this.buyPrice == null) {
-      this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+      this.getSellOrderBookData();
     }
     else {
       if (this.buyPrice == '') {
@@ -801,7 +803,7 @@ export class TradeNowComponent implements OnInit {
 
   changedSellList() {
     if (this.sellAmount == '' || this.sellAmount == null || this.sellPrice == null) {
-      this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+      this.getBuyOrderBookData();
     }
     else {
       if (this.sellPrice == '') {
@@ -854,8 +856,8 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
-        this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
-        this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
@@ -871,8 +873,8 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
-        this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
-        this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
@@ -957,7 +959,7 @@ export class TradeNowComponent implements OnInit {
     this.amount = '';
     this.price = '';
     if (this.marketCurrency == 'NGN' || this.pairedCurrency == 'NGN') {
-      this.getBuyOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+      this.getBuyOrderBookData();
     }
   }
 
@@ -973,7 +975,7 @@ export class TradeNowComponent implements OnInit {
     this.amount = '';
     this.price = '';
     if (this.marketCurrency == 'NGN' || this.pairedCurrency == 'NGN') {
-      this.getSellOrderBookData(this.currecyList[0], this.currecyList[0].market[0]);
+      this.getSellOrderBookData();
     }
   }
 

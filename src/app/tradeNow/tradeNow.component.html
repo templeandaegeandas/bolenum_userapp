@@ -785,17 +785,17 @@
                 <tbody class="table-content-font">
                   <tr *ngFor="let orders of myOrdersInBook">
                     <td>{{orders.orderType}}</td>
-                    <td>{{orders.price | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}
-                      <!-- <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span> -->
+                    <td>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation=='NGN'">{{orders.price | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation!='NGN'">{{orders.price | number:'1.8-8'}} {{orders.marketCurrency.currencyAbbreviation}}</span>
                     </td>
-                    <td>{{orders.volume | number:'1.8-8'}} {{orders.marketCurrency.currencyAbbreviation}}
-                      <!-- <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span> -->
+                    <td>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation=='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.marketCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation!='NGN'">{{orders.volume | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}</span>
                     </td>
-                    <td>{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}
-                      <!-- <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="orders.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pair.toCurrency[0].currencyAbbreviation}}</span> -->
+                    <td>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation=='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="orders.pairedCurrency.currencyAbbreviation!='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.marketCurrency.currencyAbbreviation}}</span>
                     </td>
                     <td>{{orders.createdOn | date}}</td>
                     <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
@@ -852,16 +852,16 @@
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
                     </td>
                     <!-- <td>{{tx.orderStandard}}</td> -->
                   </tr>
@@ -903,16 +903,16 @@
                       <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
                     </td>
                     <td>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</span>
-                      <span *ngIf="tx.pair.pairedCurrency[0].currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
                     </td>
                   </tr>
                   <tr *ngIf=" myTradedListLength >=10 ">
