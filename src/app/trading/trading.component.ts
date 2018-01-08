@@ -82,6 +82,11 @@ export class TradingComponent implements OnInit {
     }, error => this.router.navigate(['tradeNow']))
   }
 
+   clearInterval(){
+    console.log("subscription", this.subscription);
+     clearInterval(this.subscription);
+  }
+
   hasTradeNow() {
     // for timer
     // Set the date we're counting down to
@@ -119,7 +124,7 @@ export class TradingComponent implements OnInit {
         if (distance <= 0) {
           if (path == 'trading') {
             console.log("distance subscription", this.subscription)
-            this.subscription.unsubscribe();
+           this.clearInterval();
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
             }
@@ -186,6 +191,7 @@ export class TradingComponent implements OnInit {
       console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.subscription.unsubscribe();
+        this.clearInterval();
       }
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
@@ -195,7 +201,9 @@ export class TradingComponent implements OnInit {
   cancelPay() {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
+      this.clearInterval();
     }
+    this.appEventEmiterService.changeMessage("cancelPay");
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
       console.log(success);

@@ -49,7 +49,10 @@ export class SellComponent implements OnInit, OnDestroy {
           this.clearInterval();
         }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
-        // this.ngOnInit();
+         // this.ngOnInit();
+         this.showTime = "Order Canceled";
+          this.appEventEmiterService.changeMessage("cancelPay");
+         // this.clearInterval();
       }
       else if(this.getMessage == "PAID_NOTIFICATION") {
          // clearInterval(this.subscription);
@@ -206,6 +209,7 @@ export class SellComponent implements OnInit, OnDestroy {
   }
 
   cancelPay() {
+    this.appEventEmiterService.changeMessage("cancelPay");
     this.sellService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
       this.toastrService.success(success.message, "Success!");
