@@ -22,11 +22,15 @@ export class DisputeComponent implements OnInit {
   public isOn: boolean = true;
   public spinner:any;
   public showDisupteSection:boolean=false;
+  public isImageUploaderVisibile:boolean=false;
   public showReplyScreen:boolean=false;
+  public getImageLink:any;
   public getAddress:any;
   public saveButton: boolean = false;
   public disputeStatus: any;
   @ViewChild('fileInput') fileInput;
+  @ViewChild('showUploadedImage') showUploadedImage;
+  @ViewChild('showUploadedImageLink') showUploadedImageLink;
 
   loading = false;
   addressPdf: Boolean = false;
@@ -101,10 +105,13 @@ export class DisputeComponent implements OnInit {
     if (form.invalid) return;
      // this.spinner=true;
     // this.loading = true;
-    this.showReplyScreen = !this.showReplyScreen;
+    this.showReplyScreen = true;
+    
     let fileBrowser = this.fileInput.nativeElement;
+      console.log(fileBrowser);
     if ((fileBrowser.files && fileBrowser.files[0])) {
       let fileName = fileBrowser.files[0].name;
+
       let dot = fileName.lastIndexOf(".");
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
@@ -131,9 +138,13 @@ export class DisputeComponent implements OnInit {
   }
 
  getUploadedDocument(fileInput: any){
-    this.getAddress=this.fileInput.nativeElement.files[0].name;
-    console.log("Get Address",this.getAddress);
+  this.isImageUploaderVisibile=true;
+  this.showUploadedImage.nativeElement.src=URL.createObjectURL(fileInput.target.files[0]);
+  this.showUploadedImageLink.nativeElement.href=URL.createObjectURL(fileInput.target.files[0]);
+   // this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
+  this.getAddress=this.fileInput.nativeElement.files[0].name;
 }
+
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
       if (this.subscription != null) {
