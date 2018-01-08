@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   public afterLogin: boolean = false;
   jsonMessage: any;
   countOfUnseeNotification: any;
-
+  arrayOfNotification: any;
 
   profilePic: String = "assets/images/pic.png";
   constructor(private headerService: HeaderService, private websocketService: WebsocketService, private router: Router, private appEventEmiterService: AppEventEmiterService) {
@@ -103,7 +103,6 @@ export class HeaderComponent implements OnInit {
       this.listOfUserNotification = success.data.content;
       this.listOfUserNotificationLength = this.listOfUserNotification.length;
 
-
     }, error => {
       console.log(error);
     })
@@ -117,17 +116,23 @@ export class HeaderComponent implements OnInit {
     else {
       this.beforeLogin = false;
       this.afterLogin = true;
-
     }
   }
 
   getCountOfUnseeNotification() {
-      this.headerService.getTotalOfUnseeNotification().subscribe(success => {
+    this.headerService.getTotalOfUnseeNotification().subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.countOfUnseeNotification = success.data;
     })
   }
 
+  changeStatusOfUserNotification() {
+    this.arrayOfNotification = this.listOfUserNotification;
+    this.headerService.changeReadStatusOfUserNotification(this.arrayOfNotification).subscribe(success => {
+      this.isLoading = false;
+      this.hasBlur = false;
+    })
+  }
 
 }
