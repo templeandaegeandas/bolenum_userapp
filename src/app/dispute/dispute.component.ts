@@ -22,6 +22,7 @@ export class DisputeComponent implements OnInit {
   public isOn: boolean = true;
   public spinner:any;
   public showDisupteSection:boolean=false;
+  public showReplyScreen:boolean=false;
   public getAddress:any;
   public saveButton: boolean = false;
   public disputeStatus: any;
@@ -98,16 +99,17 @@ export class DisputeComponent implements OnInit {
 
   raiseDispute(form) {
     if (form.invalid) return;
-     this.spinner=true;
-    this.loading = true;
+     // this.spinner=true;
+    // this.loading = true;
+    this.showReplyScreen = !this.showReplyScreen;
     let fileBrowser = this.fileInput.nativeElement;
     if ((fileBrowser.files && fileBrowser.files[0])) {
       let fileName = fileBrowser.files[0].name;
       let dot = fileName.lastIndexOf(".");
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
-        this.loading = false;
-        this.spinner=false;
+        // this.loading = false;
+        // this.spinner=false;
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
         fileBrowser.value = "";
         return;
@@ -118,7 +120,7 @@ export class DisputeComponent implements OnInit {
       formData.append("transactionId", this.transactionId);
       formData.append("commentByDisputeRaiser", this.commentByDisputeRaiser);
       this.disputeService.raiseDispute(formData).subscribe(success => {
-        this.loading = false;
+        // this.loading = false;
         this.toastrService.success(success.message, 'Success!')
         this.router.navigate(['dashboard']);
       }, error => {

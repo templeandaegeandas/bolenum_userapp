@@ -46,13 +46,17 @@ export class SellComponent implements OnInit, OnDestroy {
        if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
         if (this.subscription != null) {
-          this.clearInterval();
+          console.log("Show Time" , this.showTime);
+            this.clearInterval();
         }
+        this.showTime = "Order Canceled";
+        this.appEventEmiterService.changeMessage("receivedPayment");
+        this.clearInterval();
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
-         // this.ngOnInit();
-         this.showTime = "Order Canceled";
-          this.appEventEmiterService.changeMessage("cancelPay");
-         // this.clearInterval();
+         
+         //console.log(this.showTime);
+         // this.appEventEmiterService.changeMessage("cancelPay");
+          
       }
       else if(this.getMessage == "PAID_NOTIFICATION") {
          // clearInterval(this.subscription);
@@ -65,15 +69,18 @@ export class SellComponent implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
+      // this.clearInterval();
+      this.getOrderDetails();
+     // window.sessionStorage.setItem('orderId',btoa(+params['orderId']))
     });
-    this.subscription =  undefined;
-    this.getOrderDetails();
+    
   }
 
 
   clearInterval(){
     console.log("subscription", this.subscription);
      clearInterval(this.subscription);
+     this.subscription=undefined;
   }
 
   ngOnDestroy() {
@@ -117,8 +124,9 @@ export class SellComponent implements OnInit, OnDestroy {
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
     this.subscription = setInterval(() => {
-      console.log("IN TIMER::::::::::::::::");
+      console.log("IN TIMER 1::::::::::::::::");
       if(this.getMessage!="receivedPayment"){
+        console.log("IN TIMER 2::::::::::::::::");
       this.startTimer(countDownDate);
     }
     }, 1000)
@@ -127,17 +135,16 @@ export class SellComponent implements OnInit, OnDestroy {
     else if (this.orderStatus == 'COMPLETED') {
       try {
        this.showTime = "Order Completed";
+       this.clearInterval();
       }
       catch (e) {
         console.log(this.subscription);
-        // if (this.subscription) {
-        //   clearInterval(this.subscription)
-        // }
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
       try {
         this.showTime = "Order Submitted";
+        this.clearInterval();
       }
       catch (e) {
          console.log(this.subscription);
@@ -146,6 +153,7 @@ export class SellComponent implements OnInit, OnDestroy {
     else if (this.orderStatus == 'LOCKED') {
       try {
         this.showTime = "Please wait for buyer to make payment";
+        this.clearInterval();
       }
       catch (e) {
          console.log(this.subscription);
@@ -154,6 +162,7 @@ export class SellComponent implements OnInit, OnDestroy {
     else {
       try {
         this.showTime = "Order Cancelled";
+        this.clearInterval();
       }
       catch (e) {
         console.log(this.subscription);
@@ -180,6 +189,7 @@ export class SellComponent implements OnInit, OnDestroy {
     if (path == 'sell') {
       try {
         this.showTime = minutes + " : " + seconds;
+        
       }
       catch (e) {
         console.log("exception handled")
@@ -188,7 +198,7 @@ export class SellComponent implements OnInit, OnDestroy {
     // If the count down is over, write some text
     if (distance <= 0) {
       if (path == 'sell') {
-        this.clearInterval();
+        // this.clearInterval();
         try {
          this.showTime = "EXPIRED";
 

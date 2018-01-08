@@ -142,7 +142,6 @@ export class TradeNowComponent implements OnInit {
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
-      console.log(this.jsonMessage);
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
         this.pairedCurrency[this.jsonMessage.toCurrency].map((value) => {
           if (value.pairId == this.jsonMessage.pairId) {
@@ -255,6 +254,7 @@ export class TradeNowComponent implements OnInit {
     this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
       this.buyOrderList = success.data.content;
+      console.log("Buy Order List", this.buyOrderList);
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
       }
@@ -272,6 +272,7 @@ export class TradeNowComponent implements OnInit {
     this.totalSell = 0.0;
     this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
       this.sellOrderList = success.data.content;
+      console.log("Sell Order List", this.sellOrderList);
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
         this.lastPrice = this.bid;
@@ -489,7 +490,6 @@ export class TradeNowComponent implements OnInit {
       this.loading = false;
       this.toastrService.success(success.message, 'Success!');
     }, error => {
-      console.log(error);
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
@@ -504,7 +504,6 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       let currencyId = this.currecyList[0].currencyId;
-      console.log("Get Currency Id", currencyId);
       this.currencyName = this.currecyList[0].currencyName;
       this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
       let pairedCurrency;
@@ -519,17 +518,17 @@ export class TradeNowComponent implements OnInit {
         this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
         this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
         this.pairId = pairedCurrency[0].pairId;
-        console.log("Json message", this.jsonMessage)
-        if(this.jsonMessage=="cancelPay"){
-          console.log("IN:::::::::::")
-           this.select(4, 3);
-          this.isActive(4, 3);
-          this.pairName="BLN/NGN";
-        }else{
+        console.log(this.pairId);
+        // if(this.jsonMessage=="cancelPay"){
+        //    this.select(4, 3);
+        //   this.isActive(4, 3);
+        //    // this.pairId=4;
+        //   this.pairName="BLN/NGN";
+        // }else{
         this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
         this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
         this.pairName = pairedCurrency[0].pairName;
-      }
+      // }
         let pairArray = this.pairName.split("/")
         this.firstCurrency = pairArray[0];
         this.secondCurrency = pairArray[1];
@@ -707,7 +706,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   setBuyTradeValue(setData) {
-    console.log("buy", setData)
     if (setData === "Limit Order") {
       this.isBuyMarket = true;
     }
@@ -721,7 +719,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   setSellTradeValue(setData) {
-    console.log("sell", setData)
     if (setData === "Limit Order") {
       this.isSellMarket = true;
     }
@@ -783,6 +780,7 @@ export class TradeNowComponent implements OnInit {
       }
       this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.pairId).subscribe(success => {
         this.sellOrderList = success.data.content;
+        console.log("Sell Order List", this.sellOrderList);
         this.sellOrderLength = this.sellOrderList.length;
       })
     }
@@ -798,6 +796,7 @@ export class TradeNowComponent implements OnInit {
       }
       this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.pairId).subscribe(success => {
         this.buyOrderList = success.data.content;
+        console.log("Buy Order List", this.buyOrderList);
         this.buyOrderLength = this.buyOrderList.length;
       })
     }
@@ -968,7 +967,6 @@ export class TradeNowComponent implements OnInit {
 
   select(pair, toCurrency) {
     this.selectedPair = toCurrency;
-    console.log(this.selectedPair);
     this.selectedRow = pair;
   }
 
