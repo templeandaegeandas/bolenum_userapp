@@ -578,6 +578,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(marketCurrency, pairedCurrency) {
+    this.selectedRow=pairedCurrency.currencyId;
     this.loading = true;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;
@@ -795,7 +796,6 @@ export class TradeNowComponent implements OnInit {
       }
       this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.sellOrderList = success.data.content;
-        console.log("Sell Order List", this.sellOrderList);
         this.sellOrderLength = this.sellOrderList.length;
       })
     }
@@ -811,7 +811,6 @@ export class TradeNowComponent implements OnInit {
       }
       this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.buyOrderList = success.data.content;
-        console.log("Buy Order List", this.buyOrderList);
         this.buyOrderLength = this.buyOrderList.length;
       })
     }
@@ -984,17 +983,19 @@ export class TradeNowComponent implements OnInit {
     this.selected = !this.selected;
   }
 
-  select(pair, toCurrency) {
-    this.selectedPair = toCurrency;
-    this.selectedRow = pair;
-  }
+  // select(pair, toCurrency) {
+  //   this.selectedPair = toCurrency;
+  //   this.selectedRow = pair;
+  // }
 
+/* To select Market pair by default */
   isActiveTab(pair) {
-    return this.selectedPair === pair;
+    console.log("Select n", pair)
+    this.selectedPair = pair;
   }
 
-  isActive(pair, toCurrency) {
-    return this.selectedRow === pair;
+  isActive(pair) {
+   return this.selectedRow === pair;
   }
 
   getCoinMarketCapData(currencyName, currencyAbber) {

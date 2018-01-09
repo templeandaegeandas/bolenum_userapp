@@ -40,8 +40,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let pair of coinList.market" class="marketBodyColor" [ngClass]="{active: isActive(pair.pairId,coinList.currencyId)}">
-                      <th class="hand-icon table-content-font" (click)=changePair(coinList,pair)>{{pair.currencyAbbreviation}}</th>
+                    <tr *ngFor="let pair of coinList.market" class="marketBodyColor" (click)=changePair(coinList,pair)  [ngClass]="{active: isActive(pair.currencyId)}">
+                      <th class="hand-icon table-content-font">{{pair.currencyAbbreviation}}</th>
                       <th class="table-content-font">{{pair.lastPrice | number:'1.8-8'}}</th>
                       <th class="table-content-font">{{pair.currencyName}}</th>
                     </tr>

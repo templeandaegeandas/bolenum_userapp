@@ -152,7 +152,7 @@ export class DisputeComponent implements OnInit {
       }
       this.getOrderDetails();
       this.appEventEmiterService.changeMessage("cancelPay");
-      this.router.navigate(['tradeNow']);
+      // this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
