@@ -27,8 +27,6 @@ export class HeaderComponent implements OnInit {
 	countOfUnseeNotification: any;
 	arrayOfNotification: any;
 	Notification: any;
-
-<<<<<<< HEAD
   profilePic: String = "assets/images/pic.png";
   constructor(
     private headerService: HeaderService,
