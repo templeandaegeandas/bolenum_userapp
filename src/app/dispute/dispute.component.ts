@@ -141,21 +141,17 @@ export class DisputeComponent implements OnInit {
   this.isImageUploaderVisibile=true;
   this.showUploadedImage.nativeElement.src=URL.createObjectURL(fileInput.target.files[0]);
   this.showUploadedImageLink.nativeElement.href=URL.createObjectURL(fileInput.target.files[0]);
-   // this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
-  this.getAddress=this.fileInput.nativeElement.files[0].name;
+   
+  this.getAddress=this.fileInput.nativeElement.files[0].name;// this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
 }
 
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
       this.getOrderDetails();
-      this.appEventEmiterService.changeMessage("cancelPay");
-      // this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
+       this.router.navigate(['tradeNow']);
       this.toastrService.success(success.message, 'Success!')
     })
   }

@@ -157,6 +157,7 @@ export class TradeNowComponent implements OnInit {
           })
         })
       }
+
       if (message == "ORDER_BOOK_NOTIFICATION") {
         this.getBuyOrderBookData();
         this.getSellOrderBookData();
@@ -508,6 +509,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   getCurrencyList() {
+    // console.log("IN::::::::::::::::::");
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       this.pairName = this.currecyList[0].market[0].currencyAbbreviation + "/" + this.currecyList[0].currencyAbbreviation;
@@ -524,8 +526,14 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
-      this.select(this.pairedCurrencyId, this.marketCurrencyId);
-      this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
+      if(this.jsonMessage=="PAID_NOTIFICATION" || this.jsonMessage=="receivedPayment" || this.jsonMessage=="ORDER_BOOK_NOTIFICATION" || this.jsonMessage==""){
+            this.pairName="NGN/BLN";
+             this.select(4, 3);
+            this.isActive(4, 3);
+      }else{
+          this.select(this.pairedCurrencyId, this.marketCurrencyId);
+          this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
+    }
       // this.currecyList = success.data;
       // let currencyId = this.currecyList[0].currencyId;
       // this.currencyName = this.currecyList[0].currencyName;
@@ -588,6 +596,8 @@ export class TradeNowComponent implements OnInit {
     this.pairedCurrencyType = pairedCurrency.currencyType;
     this.marketCurrencyId = marketCurrency.currencyId;
     this.pairedCurrencyId = pairedCurrency.currencyId;
+    // console.log("Get Currency Pair ID",this.pairedCurrencyId);
+    // console.log("Get Market Currency ID",this.marketCurrencyId);
     this.select(this.pairedCurrencyId, this.marketCurrencyId);
     this.marketCurrency = marketCurrency.currencyAbbreviation;
     this.pairedCurrency = pairedCurrency.currencyAbbreviation;
