@@ -101,12 +101,10 @@ export class WithdrawComponent implements OnInit {
       successData = success.data;
       if (successData.data != null) {
         this.address = successData.data.address;
-        this.balance = successData.data.balance + ' ' + data;
-        this.coinAbbreviation = successData.data.coinAbbreviation;
+        this.balance = successData.data.balance;
       }
       this.loading = false;
     }, errorData => {
-      // this.getCoin(data);
       this.loading = false;
     });
     this.withdrawFees(currency.currencyId);
