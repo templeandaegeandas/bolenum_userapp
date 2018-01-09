@@ -56,8 +56,7 @@ export class DepositComponent implements OnInit {
       let successData = success.data;
       if (successData.data != null) {
         this.address = successData.data.address;
-        this.balance = successData.data.balance + " " + data;
-        this.coinAbbreviation = successData.data.coinAbbreviation;
+        this.balance = successData.data.balance;
       }
       this.qrCode = true;
       this.errorCoin = false;
