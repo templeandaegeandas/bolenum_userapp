@@ -62,8 +62,8 @@ export class WebsocketService {
 
   response = (data) => {
     console.log(data)
-    if (data.PAID_NOTIFICATION == 'PAID_NOTIFICATION') {
-      this.appEventEmiterService.changeMessage(data.PAID_NOTIFICATION);
+    if (data.CONFIRM_NOTIFICATION == 'CONFIRM_NOTIFICATION') {
+      this.appEventEmiterService.changeMessage(data.CONFIRM_NOTIFICATION);
       this.router.navigate(['/sell/' + data.matchedOrderId]);
     }
     else if(data.MATCHED_NOTIFICATION == 'MATCHED_NOTIFICATION') {

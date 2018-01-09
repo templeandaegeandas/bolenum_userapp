@@ -61,7 +61,7 @@ export class TradingComponent implements OnInit {
   getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
       this.bankName = success.data.accountDetails.bankName;
@@ -78,7 +78,7 @@ export class TradingComponent implements OnInit {
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.hasTradeNow();
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => this.router.navigate(['market']))
   }
 
    clearInterval(){

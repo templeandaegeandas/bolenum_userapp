@@ -52,7 +52,7 @@ export class SellComponent implements OnInit, OnDestroy {
         this.clearInterval();
         // this.ngOnInit(); 
       }
-      else if(this.getMessage == "PAID_NOTIFICATION") {
+      else if(this.getMessage == "CONFIRM_NOTIFICATION") {
          this.ngOnInit();
       }
     });
@@ -79,9 +79,10 @@ export class SellComponent implements OnInit, OnDestroy {
   getOrderDetails() {
     this.sellService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
+      console.log("Data of success", success);
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
@@ -94,13 +95,13 @@ export class SellComponent implements OnInit, OnDestroy {
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
-      console.log(this.orderStatus);
+      console.log("Give status", this.orderStatus);
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.dispute = success.data.isDispute;
         this.startTradingTimer();
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => this.router.navigate(['market']))
   }
 
 
@@ -117,12 +118,12 @@ export class SellComponent implements OnInit, OnDestroy {
     }, 1000)
 
     }
-    else if (this.orderStatus == 'COMPLETED') {
+    else if (this.orderStatus == 'COMPLETED' && this.getMessage!="CONFIRM_NOTIFICATION") {
       try {
         this.showTime='';
-       this.showTime = "Order Completed";
-        console.log(this.getMessage , this.orderStatus);
-       this.clearInterval();
+        this.showTime = "Order Completed";
+        console.log("this.orderStatus", this.getMessage , this.orderStatus);
+        this.clearInterval();
       }
       catch (e) {
         console.log(this.subscription);
