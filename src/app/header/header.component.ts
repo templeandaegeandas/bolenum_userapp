@@ -27,7 +27,9 @@ export class HeaderComponent implements OnInit {
 	countOfUnseeNotification: any;
 	arrayOfNotification: any;
 	Notification: any;
-  	profilePic: String = "assets/images/pic.png";
+
+<<<<<<< HEAD
+  profilePic: String = "assets/images/pic.png";
   constructor(
     private headerService: HeaderService,
     private websocketService: WebsocketService,
@@ -157,6 +159,7 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
+		console.log("hihihih");
 		let arrayOfNotification = [];
 		for (var i = 0; i < this.listOfUserNotification.length; i++) {
 			arrayOfNotification[i] = this.listOfUserNotification[i].id;
@@ -166,6 +169,7 @@ export class HeaderComponent implements OnInit {
 		this.headerService
 			.changeReadStatusOfUserNotification(arrayOfNotification)
 			.subscribe(success => {
+				console.log("hihihih");
 				this.isLoading = false;
 				this.hasBlur = false;
 			});
