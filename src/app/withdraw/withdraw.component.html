@@ -18,7 +18,7 @@
            <p>
               <span *ngIf="setItemValue=='BTC'"> <img src="./assets/images/bitcoin.png" width="30" height="30"></span>
           <span *ngIf="setItemValue=='BLN'"> <img src="./assets/images/bolenum.png" width="30" height="30"></span>
-          <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span> Available Balance : <span>{{balance}} {{coinAbbreviation}}</span></p>
+          <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span> Available Balance : <span>{{balance | number:'1.8-8'}} {{setItemValue}}</span></p>
           </span>
         </div>
       </div>

@@ -8,9 +8,11 @@
 .border-0{
     border-radius: 0px;
 }
-
 .padding-0{
     padding: 0;
+}
+.active th{
+    color:#DB2828;
 }
 .padding-10{
    padding-top: 10px;
@@ -540,7 +542,7 @@ thead.heading {
 .market-margin {
     margin-top: 0px;
 }
-.active th{color:red;}
+/*.active th{color:red;}*/
 .table-bg-color {
     background-color: #f1f0f0;
 }
@@ -1929,7 +1931,7 @@ thead.heading {
 .market-margin {
     margin-top: 0px;
 }
-.active th{color:red;}
+/*.active th{color:red;}*/
 .table-bg-color {
     background-color: #f1f0f0;
 }
@@ -2045,9 +2047,9 @@ thead.heading {
     margin: 0;
 }
 
-.active th{
+/*.active th{
     color:#DB2828;
-}
+}*/
 
 .width-45{
     width:45% !important;
