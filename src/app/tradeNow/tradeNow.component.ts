@@ -62,11 +62,8 @@ export class TradeNowComponent implements OnInit {
   pairList: any;
   order = new Order();
   pairName: any;
-  firstCurrency: any;
-  secondCurrency: any;
-  firstCurrencyBal: any;
-  secondCurrencyBal: any;
-  pairId: any;
+  marketCurrencyBal: any;
+  pairedCurrencyBal: any;
   loading = false;
   myTradedList: any;
   allTradedList: any;
@@ -81,8 +78,6 @@ export class TradeNowComponent implements OnInit {
   buyOrderLength: any;
   tradeFee: any = 0.15;
   tradeFeeFiat: any = 0.0;
-  firstCurrencyType: any;
-  secondCurrencyType: any;
   sellTotalPrice: any;
   buyTotalPrice: any;
   priceWithFee: any;
@@ -126,9 +121,17 @@ export class TradeNowComponent implements OnInit {
   public beforeLogin: boolean = true;
   public afterLogin: boolean = false;
   options: any;
-  pairedCurrency = [];
+  // pairedCurrency = [];
   jsonMessage: any;
 
+  marketCurrency;
+  pairedCurrency;
+  marketCurrencyType;
+  pairedCurrencyType;
+  marketCurrencyId;
+  pairedCurrencyId;
+  marketCurrencyObj;
+  pairedCurrencyObj;
   constructor(
     private tradeNowService: TradeNowService,
     private depositService: DepositService,
@@ -143,18 +146,20 @@ export class TradeNowComponent implements OnInit {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
-        this.pairedCurrency[this.jsonMessage.toCurrency].map((value) => {
-          if (value.pairId == this.jsonMessage.pairId) {
-            if (value.lastPrice == null || value.lastPrice == 0 || value.lastPrice > this.jsonMessage.price) {
-              value.lastPrice = this.jsonMessage.price;
-              return value;
+        this.currecyList.map((value) => {
+          value.market.map((marketValue) => {
+            if (marketValue.currencyAbbreviation == this.jsonMessage.pairedCurrency) {
+              if (marketValue.lastPrice == null || marketValue.lastPrice == 0 || marketValue.lastPrice > this.jsonMessage.price) {
+                marketValue.lastPrice = this.jsonMessage.price;
+                return marketValue;
+              }
             }
-          }
+          })
         })
       }
       if (message == "ORDER_BOOK_NOTIFICATION") {
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyTradedOrders();
         this.getAllTradedOrders();
         this.getMyOrdersFromBook();
@@ -250,11 +255,10 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getBuyOrderBookData(pairId) {
+  getBuyOrderBookData() {
     this.totalBuy = 0.0;
-    this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
+    this.tradeNowService.buyOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.buyOrderList = success.data.content;
-      console.log("Buy Order List", this.buyOrderList);
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
       }
@@ -268,11 +272,10 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  getSellOrderBookData(pairId) {
+  getSellOrderBookData() {
     this.totalSell = 0.0;
-    this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
+    this.tradeNowService.sellOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.sellOrderList = success.data.content;
-      console.log("Sell Order List", this.sellOrderList);
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
         this.lastPrice = this.bid;
@@ -290,7 +293,7 @@ export class TradeNowComponent implements OnInit {
 
   /*getMarketPrice() {
     this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
-      this.marketPrice = success.data.priceBTC;
+    this.marketPrice = success.data.priceBTC;
     })
   }*/
 
@@ -434,7 +437,9 @@ export class TradeNowComponent implements OnInit {
     }
     this.loading = true;
     this.order.totalVolume = this.order.volume;
-    this.tradeNowService.createFiatOrder(this.order, this.pairId, this.selecedOrderId).subscribe(success => {
+    this.order.marketCurrency = this.marketCurrencyObj;
+    this.order.pairedCurrency = this.pairedCurrencyObj;
+    this.tradeNowService.createFiatOrder(this.order, this.selecedOrderId).subscribe(success => {
       this.buySellModel.hide();
       this.order.price = '';
       this.order.volume = '';
@@ -472,7 +477,9 @@ export class TradeNowComponent implements OnInit {
       this.order.orderStandard = 'MARKET';
     }
     this.order.totalVolume = this.order.volume;
-    this.tradeNowService.createOrder(this.order, this.pairId).subscribe(success => {
+    this.order.marketCurrency = this.marketCurrencyObj;
+    this.order.pairedCurrency = this.pairedCurrencyObj;
+    this.tradeNowService.createOrder(this.order).subscribe(success => {
       this.buySellModel.hide();
       this.buyPrice = '';
       this.buyVolume = '';
@@ -503,45 +510,60 @@ export class TradeNowComponent implements OnInit {
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
-      let currencyId = this.currecyList[0].currencyId;
-      this.currencyName = this.currecyList[0].currencyName;
-      this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
-      let pairedCurrency;
-      for (let i = 0; i < this.currecyList.length; i++) {
-        this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
-          this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
-          pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
-        });
-      }
-      setTimeout(() => {
-        this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
-        this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
-        this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
-        this.pairId = pairedCurrency[0].pairId;
-        console.log(this.pairId);
-        // if(this.jsonMessage=="cancelPay"){
-        //    this.select(4, 3);
-        //   this.isActive(4, 3);
-        //    // this.pairId=4;
-        //   this.pairName="BLN/NGN";
-        // }else{
-        this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-        this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-        this.pairName = pairedCurrency[0].pairName;
+      this.pairName = this.currecyList[0].market[0].currencyAbbreviation + "/" + this.currecyList[0].currencyAbbreviation;
+      this.marketCurrencyObj = this.currecyList[0];
+      this.pairedCurrencyObj = this.currecyList[0].market[0];
+      this.pairedCurrency = this.currecyList[0].market[0].currencyAbbreviation;
+      this.marketCurrency = this.currecyList[0].currencyAbbreviation;
+      this.pairedCurrencyId = this.currecyList[0].market[0].currencyId;
+      this.marketCurrencyId = this.currecyList[0].currencyId;
+      this.pairedCurrencyType = this.currecyList[0].market[0].currencyType;
+      this.marketCurrencyType = this.currecyList[0].currencyType;
+      this.getUserBalance();
+      this.getBuyOrderBookData();
+      this.getSellOrderBookData();
+      this.getOurMarketData();
+      this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
+      // this.currecyList = success.data;
+      // let currencyId = this.currecyList[0].currencyId;
+      // this.currencyName = this.currecyList[0].currencyName;
+      // this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
+      // let pairedCurrency;
+      // for (let i = 0; i < this.currecyList.length; i++) {
+      //   this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
+      //     this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
+      //     pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
+      //   });
       // }
-        let pairArray = this.pairName.split("/")
-        this.firstCurrency = pairArray[0];
-        this.secondCurrency = pairArray[1];
-        let temp = this.pairedCurrency['BLN'];
-        this.minPrice =temp[0].lastPrice;
-        if (this.secondCurrency == 'NGN') {
-          this.secondCurrencyType = 'FIAT';
-        }
-        this.getUserBalance();
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
-        this.getOurMarketData();
-      }, 1000)
+      // setTimeout(() => {
+      //   this.marketCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
+      //   this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
+      //   this.pairedCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
+      //   this.pairId = pairedCurrency[0].pairId;
+      //   console.log(this.pairId);
+      //   // if(this.jsonMessage=="cancelPay"){
+      //   //    this.select(4, 3);
+      //   //   this.isActive(4, 3);
+      //   //    // this.pairId=4;
+      //   //   this.pairName="BLN/NGN";
+      //   // }else{
+      //   this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
+      //   this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
+      //   this.pairName = pairedCurrency[0].pairName;
+      // // }
+      //   let pairArray = this.pairName.split("/")
+      //   this.marketCurrency = pairArray[0];
+      //   this.pairedCurrency = pairArray[1];
+      //   let temp = this.pairedCurrency['BLN'];
+      //   this.minPrice =temp[0].lastPrice;
+      //   if (this.pairedCurrency == 'NGN') {
+      //     this.pairedCurrencyType = 'FIAT';
+      //   }
+      //   this.getUserBalance();
+      //   this.getBuyOrderBookData(this.pairId);
+      //   this.getSellOrderBookData(this.pairId);
+      //   this.getOurMarketData();
+      // }, 1000)
     }, error => {
       this.getCurrencyList();
     })
@@ -555,28 +577,27 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  changePair(pairId, pairName, toCurrency, firstCurrencyType, secondCurrencyType, currencyName) {
+  changePair(marketCurrency, pairedCurrency) {
     this.loading = true;
-    this.pairId = pairId;
-    this.firstCurrencyType = firstCurrencyType;
-    this.secondCurrencyType = secondCurrencyType;
-    this.pairName = pairName;
-    this.select(this.pairId, toCurrency);
-    let pairArray = pairName.split("/")
-    this.firstCurrency = pairArray[0];
-    this.secondCurrency = pairArray[1];
-    if (this.secondCurrency == 'NGN') {
-      this.secondCurrencyType = 'FIAT';
+    this.marketCurrencyObj = marketCurrency;
+    this.pairedCurrencyObj = pairedCurrency;
+    this.marketCurrencyType = marketCurrency.currencyType;
+    this.pairedCurrencyType = pairedCurrency.currencyType;
+    this.marketCurrencyId = marketCurrency.currencyId;
+    this.pairedCurrencyId = pairedCurrency.currencyId;
+    // this.select(this.pairId, toCurrency);
+    this.marketCurrency = marketCurrency.currencyAbbreviation;
+    this.pairedCurrency = pairedCurrency.currencyAbbreviation;
+    this.pairName = this.pairedCurrency + "/" + this.marketCurrency;
+    if (this.pairedCurrencyType == 'FIAT') {
+      this.marketCurrency = pairedCurrency.currencyAbbreviation;
+      this.pairedCurrency = marketCurrency.currencyAbbreviation;
     }
     this.getUserBalance();
-    this.getBuyOrderBookData(pairId);
-    this.getSellOrderBookData(pairId);
+    this.getBuyOrderBookData();
+    this.getSellOrderBookData();
     this.getOurMarketData();
-    if ((pairName == 'BLN/NGN')) {
-      currencyName = "bolenum";
-      this.secondCurrency = "NGN";
-    }
-    this.getCoinMarketCapData(currencyName, this.secondCurrency);
+    this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -591,25 +612,19 @@ export class TradeNowComponent implements OnInit {
   }
 
   getUserBalance() {
-    if (this.firstCurrency == 'NGN') {
-      this.secondCurrencyType = 'FIAT';
-      this.firstCurrencyType = 'ERC20TOKEN';
+    if (this.pairedCurrencyType != 'FIAT') {
+      this.depositService.getCoin(this.pairedCurrencyType, this.pairedCurrency).subscribe(success => {
+        this.pairedCurrencyBal = success.data.data.balance;
+      }, error => {
+        this.pairedCurrencyBal = 0.0;
+      })
+      this.depositService.getCoin(this.marketCurrencyType, this.marketCurrency).subscribe(success => {
+        if (success.data != null)
+          this.marketCurrencyBal = success.data.data.balance;
+      }, error => {
+        this.marketCurrencyBal = 0.0;
+      })
     }
-    if (this.secondCurrency == 'NGN') {
-      this.secondCurrencyType = 'ERC20TOKEN';
-      this.firstCurrencyType = 'FIAT';
-    }
-    this.depositService.getCoin(this.secondCurrencyType, this.firstCurrency).subscribe(success => {
-      this.firstCurrencyBal = success.data.data.balance;
-    }, error => {
-      this.firstCurrencyBal = 0.0;
-    })
-    this.depositService.getCoin(this.firstCurrencyType, this.secondCurrency).subscribe(success => {
-      if (success.data != null)
-        this.secondCurrencyBal = success.data.data.balance;
-    }, error => {
-      this.secondCurrencyBal = 0.0;
-    })
   }
 
   fillBuyData(volume, price) {
@@ -772,13 +787,13 @@ export class TradeNowComponent implements OnInit {
 
   changedBuyList() {
     if (this.buyAmount == '' || this.buyAmount == null || this.buyPrice == null) {
-      this.getSellOrderBookData(this.pairId);
+      this.getSellOrderBookData();
     }
     else {
       if (this.buyPrice == '') {
         this.buyPrice = this.minPrice;
       }
-      this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.pairId).subscribe(success => {
+      this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.sellOrderList = success.data.content;
         console.log("Sell Order List", this.sellOrderList);
         this.sellOrderLength = this.sellOrderList.length;
@@ -788,13 +803,13 @@ export class TradeNowComponent implements OnInit {
 
   changedSellList() {
     if (this.sellAmount == '' || this.sellAmount == null || this.sellPrice == null) {
-      this.getBuyOrderBookData(this.pairId);
+      this.getBuyOrderBookData();
     }
     else {
       if (this.sellPrice == '') {
         this.sellPrice = this.minPrice;
       }
-      this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.pairId).subscribe(success => {
+      this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.buyOrderList = success.data.content;
         console.log("Buy Order List", this.buyOrderList);
         this.buyOrderLength = this.buyOrderList.length;
@@ -829,7 +844,7 @@ export class TradeNowComponent implements OnInit {
 
     }
     if ((orderType == 'BUY' && this.buyPrice < this.minPrice) || (orderType == 'SELL' && this.sellPrice < this.minPrice)) {
-      this.toastrService.error("You can't place order less than "+this.minPrice+" NGN", "Error!");
+      this.toastrService.error("You can't place order less than " + this.minPrice + " NGN", "Error!");
       return;
     }
     if (orderType == 'BUY') {
@@ -838,9 +853,11 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = this.buyAmount;
       this.order.price = this.buyPrice;
       this.order.totalVolume = this.buyAmount;
-      this.tradeNowService.createAdvertisment(this.order, this.pairId).subscribe(success => {
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
+      this.order.marketCurrency = this.marketCurrencyObj;
+      this.order.pairedCurrency = this.pairedCurrencyObj;
+      this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
@@ -853,9 +870,11 @@ export class TradeNowComponent implements OnInit {
       this.order.volume = this.sellAmount;
       this.order.price = this.sellPrice;
       this.order.totalVolume = this.sellAmount;
-      this.tradeNowService.createAdvertisment(this.order, this.pairId).subscribe(success => {
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
+      this.order.marketCurrency = this.marketCurrencyObj;
+      this.order.pairedCurrency = this.pairedCurrencyObj;
+      this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
@@ -939,8 +958,8 @@ export class TradeNowComponent implements OnInit {
     this.priceWithFee = 0.0;
     this.amount = '';
     this.price = '';
-    if (this.firstCurrency == 'NGN' || this.secondCurrency == 'NGN') {
-      this.getBuyOrderBookData(this.pairId);
+    if (this.marketCurrency == 'NGN' || this.pairedCurrency == 'NGN') {
+      this.getBuyOrderBookData();
     }
   }
 
@@ -955,8 +974,8 @@ export class TradeNowComponent implements OnInit {
     this.priceWithFee = 0.0;
     this.amount = '';
     this.price = '';
-    if (this.firstCurrency == 'NGN' || this.secondCurrency == 'NGN') {
-      this.getSellOrderBookData(this.pairId);
+    if (this.marketCurrency == 'NGN' || this.pairedCurrency == 'NGN') {
+      this.getSellOrderBookData();
     }
   }
 
@@ -996,7 +1015,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   getOurMarketData() {
-    this.tradeNowService.marketData(this.pairId).subscribe(success => {
+    this.tradeNowService.marketData(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.volume24h = success.data.volume24h;
       this.low24h = success.data.low24h;
       this.high24h = success.data.high24h;
