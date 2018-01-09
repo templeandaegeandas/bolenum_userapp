@@ -27,21 +27,19 @@ export class HeaderComponent implements OnInit {
 	countOfUnseeNotification: any;
 	arrayOfNotification: any;
 	Notification: any;
-
-	profilePic: String = "assets/images/pic.png";
-	constructor(
-		private headerService: HeaderService,
-		private websocketService: WebsocketService,
-		private router: Router,
-		private appEventEmiterService: AppEventEmiterService
-	) {
-		this.isLogIn();
-		if (this.beforeLogin) {
-			websocketService.connectForNonLoggedInUser();
-		}
-		this.appEventEmiterService.currentMessage.subscribe(message => {
-			this.jsonMessage = message;
-			console.log("Header component", this.jsonMessage);
+  profilePic: String = "assets/images/pic.png";
+  constructor(
+    private headerService: HeaderService,
+    private websocketService: WebsocketService,
+    private router: Router,
+    private appEventEmiterService: AppEventEmiterService
+  ) {
+    this.isLogIn();
+    if (this.beforeLogin) {
+      websocketService.connectForNonLoggedInUser();
+    }
+    this.appEventEmiterService.currentMessage.subscribe(message => {
+      this.jsonMessage = message;
 
 			if (
 				message == "DOCUMENT_VERIFICATION" ||
