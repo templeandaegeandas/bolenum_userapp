@@ -172,6 +172,7 @@ export class HeaderComponent implements OnInit {
 				console.log("hihihih");
 				this.isLoading = false;
 				this.hasBlur = false;
+				this.getCountOfUnseeNotification();
 			});
 	}
 }
