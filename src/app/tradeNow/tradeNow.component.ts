@@ -524,6 +524,8 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
+      this.select(this.pairedCurrencyId, this.marketCurrencyId);
+      this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
       // this.currecyList = success.data;
       // let currencyId = this.currecyList[0].currencyId;
       // this.currencyName = this.currecyList[0].currencyName;
@@ -586,7 +588,7 @@ export class TradeNowComponent implements OnInit {
     this.pairedCurrencyType = pairedCurrency.currencyType;
     this.marketCurrencyId = marketCurrency.currencyId;
     this.pairedCurrencyId = pairedCurrency.currencyId;
-    // this.select(this.pairId, toCurrency);
+    this.select(this.pairedCurrencyId, this.marketCurrencyId);
     this.marketCurrency = marketCurrency.currencyAbbreviation;
     this.pairedCurrency = pairedCurrency.currencyAbbreviation;
     this.pairName = this.pairedCurrency + "/" + this.marketCurrency;
@@ -983,19 +985,17 @@ export class TradeNowComponent implements OnInit {
     this.selected = !this.selected;
   }
 
-  // select(pair, toCurrency) {
-  //   this.selectedPair = toCurrency;
-  //   this.selectedRow = pair;
-  // }
-
-/* To select Market pair by default */
-  isActiveTab(pair) {
-    console.log("Select n", pair)
-    this.selectedPair = pair;
+  select(pairedCurrency, marketCurrency) {
+    this.selectedPair = marketCurrency;
+    this.selectedRow = pairedCurrency;
   }
 
-  isActive(pair) {
-   return this.selectedRow === pair;
+  isActiveTab(marketCurrency) {
+    return this.selectedPair === marketCurrency;
+  }
+
+  isActive(pairedCurrencyId, marketCurrencyId) {
+    return this.selectedRow === pairedCurrencyId;
   }
 
   getCoinMarketCapData(currencyName, currencyAbber) {

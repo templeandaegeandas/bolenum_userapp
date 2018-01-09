@@ -6,11 +6,10 @@
         <div class="panel-heading">
           <h3 class="panel-title table-Heading">Transaction History</h3>
           <div class="pull-right">
-
             <div class="btn-group" dropdown>
               <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                  <img src="assets/images/filter.png" class="text-right"> <span class=""></span>
-                  </button>
+              <img src="assets/images/filter.png" class="text-right"> <span class=""></span>
+              </button>
               <ul *dropdownMenu class="dropdown-menu" role="menu">
                 <li role="menuitem">
                   <a class="dropdown-item">
@@ -33,7 +32,7 @@
             </div>
             <div class="date-picker">
               <my-date-picker class="datepciker-history" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" (dateChanged)="onDateChanged($event)"
-                required></my-date-picker>
+              required></my-date-picker>
             </div>
             <div class="clearfix"></div>
           </div>
@@ -62,9 +61,18 @@
                   <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
                   <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
                 </td>
-                <td class="table-content">{{tx.price | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
-                <td class="table-content">{{tx.volume | number:'1.8-8'}} {{tx.pair.toCurrency[0].currencyAbbreviation}}</td>
-                <td class="table-content">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pair.pairedCurrency[0].currencyAbbreviation}}</td>
+                <td>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                </td>
+                <td>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                </td>
+                <td>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                  <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                </td>
                 <!-- <td class="table-content">{{tx.orderStandard}}</td> -->
               </tr>
               <tr *ngIf="txLength >= 10">
