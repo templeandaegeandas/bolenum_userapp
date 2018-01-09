@@ -38,10 +38,10 @@ import { NotifyUserComponent }  from './notify-user/notify-user.component';
 
 
 export const APP_ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'tradeNow' },
+  { path: '', pathMatch: 'full', redirectTo: 'market' },
   // { path: '**', redirectTo: 'deposit' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [PrivateRouteAuthGuard] },
-  { path: 'tradeNow', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
+  { path: 'market', component: TradeNowComponent, canActivate: [PrivateRouteAuthGuard] },
   { path: 'tradenow', component: BeforLoginTradeNowComponent, canActivate: [PublicRouteAuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [PublicRouteAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [PublicRouteAuthGuard] },
