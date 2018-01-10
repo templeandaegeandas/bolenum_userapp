@@ -47,16 +47,6 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
-  // getPairedCurrenciesByPairId(pairId) {
-  //   return this.http.get('/api/v1/admin/currency/pair?pairId=' + pairId)
-  //     .map(res => res.json());
-  // }
-
-  // getPairedCurrencies(currencyId) {
-  //   return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
-  //     .map(res => res.json());
-  // }
-
   getTradedOrders(currentPage: number, pageSize: number, sortBy: String, sortOrder: String) {
     this.pageNumber = currentPage - 1;
     return this.http.get('/api/v1/user/get/loggedin/trade/list?pageNumber='

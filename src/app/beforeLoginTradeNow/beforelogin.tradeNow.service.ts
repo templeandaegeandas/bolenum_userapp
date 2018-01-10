@@ -7,13 +7,13 @@ export class BeforeLoginTradeNowService {
   pageNumber: number;
   constructor(private http: HttpClient) { }
 
-  buyOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/buy/orders?pairId=' + pairId)
+  buyOrderBook(marketCurrencyId, pairedCurrencyId) {
+    return this.http.get('/api/v1/user/get/buy/orders?marketCurrencyId=' + marketCurrencyId+ '&pairedCurrencyId='+pairedCurrencyId)
       .map(res => res.json());
   }
 
-  sellOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/sell/orders?pairId=' + pairId)
+  sellOrderBook(marketCurrencyId, pairedCurrencyId) {
+    return this.http.get('/api/v1/user/get/sell/orders?marketCurrencyId=' + marketCurrencyId+ '&pairedCurrencyId='+pairedCurrencyId)
       .map(res => res.json());
   }
 
@@ -24,16 +24,6 @@ export class BeforeLoginTradeNowService {
 
   getListOfCurrency() {
     return this.http.get('/api/v1/admin/currency/list/market')
-      .map(res => res.json());
-  }
-
-  getPairedCurrenciesByPairId(pairId) {
-    return this.http.get('/api/v1/admin/currency/pair?pairId=' + pairId)
-      .map(res => res.json());
-  }
-
-  getPairedCurrencies(currencyId) {
-    return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
       .map(res => res.json());
   }
 
