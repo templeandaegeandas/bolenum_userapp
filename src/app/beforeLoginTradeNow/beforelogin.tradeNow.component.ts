@@ -89,15 +89,15 @@ export class BeforLoginTradeNowComponent implements OnInit {
         this.currecyList.map((value) => {
           value.market.map((marketValue) => {
             if (marketValue.currencyAbbreviation == this.jsonMessage.pairedCurrency) {
-              if (this.jsonMessage.priceBTC != null && (marketValue.priceBTC == null || marketValue.priceBTC == 0 || marketValue.priceBTC > this.jsonMessage.priceBTC)) {
+              if (this.jsonMessage.priceBTC > 0 && (marketValue.priceBTC == null || marketValue.priceBTC == 0 || marketValue.priceBTC > this.jsonMessage.priceBTC)) {
                 marketValue.priceBTC = this.jsonMessage.priceBTC;
                 return marketValue;
               }
-              else if (this.jsonMessage.priceETH != null && (marketValue.priceETH == null || marketValue.priceETH == 0 || marketValue.priceETH > this.jsonMessage.priceETH)) {
+              else if (this.jsonMessage.priceETH > 0 && (marketValue.priceETH == null || marketValue.priceETH == 0 || marketValue.priceETH > this.jsonMessage.priceETH)) {
                 marketValue.priceETH = this.jsonMessage.priceETH;
                 return marketValue;
               }
-              else if (this.jsonMessage.priceBLN != null && (marketValue.priceBLN == null || marketValue.priceBLN == 0 || marketValue.priceBLN > this.jsonMessage.priceBLN)) {
+              else if (this.jsonMessage.priceBLN > 0 && (marketValue.priceBLN == null || marketValue.priceBLN == 0 || marketValue.priceBLN > this.jsonMessage.priceBLN)) {
                 marketValue.priceBLN = this.jsonMessage.priceBLN;
                 return marketValue;
               }
