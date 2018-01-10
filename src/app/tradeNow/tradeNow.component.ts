@@ -509,7 +509,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   getCurrencyList() {
-    // console.log("IN::::::::::::::::::");
+    console.log("IN::::::::::::::::::");
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       this.pairName = this.currecyList[0].market[0].currencyAbbreviation + "/" + this.currecyList[0].currencyAbbreviation;
@@ -596,8 +596,6 @@ export class TradeNowComponent implements OnInit {
     this.pairedCurrencyType = pairedCurrency.currencyType;
     this.marketCurrencyId = marketCurrency.currencyId;
     this.pairedCurrencyId = pairedCurrency.currencyId;
-    // console.log("Get Currency Pair ID",this.pairedCurrencyId);
-    // console.log("Get Market Currency ID",this.marketCurrencyId);
     this.select(this.pairedCurrencyId, this.marketCurrencyId);
     this.marketCurrency = marketCurrency.currencyAbbreviation;
     this.pairedCurrency = pairedCurrency.currencyAbbreviation;
