@@ -5,7 +5,7 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class HeaderService {
   pageNumber: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   logOut() {
     return this.http.delete("/api/v1/logout").map(res => res.json());
@@ -20,14 +20,14 @@ export class HeaderService {
     this.pageNumber = currentPage - 1;
     return this.http
       .get(
-      "/api/v1/user/notification?pageNumber=" +
-      this.pageNumber +
-      "&pageSize=" +
-      pageSize +
-      "&sortBy=" +
-      sortBy +
-      "&sortOrder=" +
-      sortOrder
+        "/api/v1/user/notification?pageNumber=" +
+          this.pageNumber +
+          "&pageSize=" +
+          pageSize +
+          "&sortBy=" +
+          sortBy +
+          "&sortOrder=" +
+          sortOrder
       )
       .map(res => res.json());
   }
@@ -38,11 +38,11 @@ export class HeaderService {
       .map(res => res.json());
   }
 
-  changeReadStatusOfUserNotification(arrayOfNotification: any) {
+  changeReadStatusOfUserNotification(arrayOfNotification) {
     return this.http
       .put(
-      "/api/v1/user/notification?arrayOfNotification=" + arrayOfNotification,
-      ""
+        "/api/v1/user/notification?arrayOfNotification=" + arrayOfNotification,
+        ""
       )
       .map(res => res.json());
   }

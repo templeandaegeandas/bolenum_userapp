@@ -20,6 +20,7 @@ export class WithdrawComponent implements OnInit {
   public address: any;
   public balance: any;
   public coinAbbreviation: any;
+  public pageSize: any = 10;
   loading = false;
   txList: any;
   public beforeLogin: boolean = true;
@@ -127,11 +128,10 @@ export class WithdrawComponent implements OnInit {
   getMoreTransactionList() {
     let currentPage: any;
     currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-    this.withdrawService.getListOfWithdrawlTransaction(currentPage, pageSize, "createdOn", "desc", this.data).subscribe(success => {
+    this.withdrawService.getListOfWithdrawlTransaction(currentPage, this.pageSize, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;

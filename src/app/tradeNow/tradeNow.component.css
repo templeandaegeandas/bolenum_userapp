@@ -1223,6 +1223,7 @@ select option {
 
 .more_button {
     text-align: -webkit-right;
+    text-align: right;
     cursor: pointer;
     color: #DB2828;
 }
