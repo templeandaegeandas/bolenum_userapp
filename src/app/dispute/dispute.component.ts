@@ -47,6 +47,7 @@ export class DisputeComponent implements OnInit {
   orderStatus: any;
   path: any;
   subscription: any;
+  jsonMessage:any
   matchedOn: any;
   isConfirmed: any;
 
@@ -58,8 +59,9 @@ export class DisputeComponent implements OnInit {
     private appEventEmiterService: AppEventEmiterService) {
       this.appEventEmiterService.currentMessage.subscribe(message => {
         console.log(message)
-      if(message == "PAID_NOTIFICATION") {
-        this.router.navigate(['tradeNow']);
+        this.jsonMessage = message;
+      if(this.jsonMessage.PAID_NOTIFICATION == "PAID_NOTIFICATION") {
+        this.router.navigate(['market']);
         toastrService.success("You trade is completed successfully! You will get the BLN after some time!", "Success");
       }
     });
@@ -71,7 +73,7 @@ export class DisputeComponent implements OnInit {
       this.orderId = +params['orderId'];
     });
     if (this.orderId == null) {
-      this.router.navigate(['tradeNow']);
+      this.router.navigate(['market']);
     }
     this.getOrderDetails();
   }
@@ -79,7 +81,7 @@ export class DisputeComponent implements OnInit {
   getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
       this.bankName = success.data.accountDetails.bankName;
@@ -97,7 +99,7 @@ export class DisputeComponent implements OnInit {
       this.isConfirmed = success.data.isConfirmed;
     }, error => {
          this.appEventEmiterService.changeMessage("cancelPay");
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
     });
   }
 
@@ -141,21 +143,17 @@ export class DisputeComponent implements OnInit {
   this.isImageUploaderVisibile=true;
   this.showUploadedImage.nativeElement.src=URL.createObjectURL(fileInput.target.files[0]);
   this.showUploadedImageLink.nativeElement.href=URL.createObjectURL(fileInput.target.files[0]);
-   // this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
-  this.getAddress=this.fileInput.nativeElement.files[0].name;
+   
+  this.getAddress=this.fileInput.nativeElement.files[0].name;// this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
 }
 
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
       this.getOrderDetails();
-      this.appEventEmiterService.changeMessage("cancelPay");
-      // this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
+       this.router.navigate(['market']);
       this.toastrService.success(success.message, 'Success!')
     })
   }

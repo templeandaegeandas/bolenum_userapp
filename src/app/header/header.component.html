@@ -18,11 +18,11 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-            <span class="sr-only header-font-family">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
+          <span class="sr-only header-font-family">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <span routerLink="/tradeNow" class="bolenumLogo"><a  class="navbar-brand insight" >
             <img class="img-responsive logo-img" src="assets/images/bolenum.png" title="Bolenum Exchange">
             <span class="exchange-color header-font-family heading-font-size"> Bolenum  </span> <span class="red header-font-family heading-font-size">Exchange</span>
@@ -37,22 +37,18 @@
           <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/market">Market</a></li>
           <li class="menufont heading-sub-menu" routerLinkActive="active"><a _ngcontent-c3="" routerlink="/feeDetails" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/feeDetails"
               href="#/feeDetails"><i _ngcontent-c3=""></i>Fees</a></li>
+
           <li class="menufont heading-sub-menu"><a href="https://bolenumexchange.freshdesk.com" target="_blank">Support</a></li>
           <li class="">
-
             <div class="dropdown padding-dropdown">
               <button class=" dropdown-toggle more-drop-down heading-sub-menu " type="button" data-toggle="dropdown">MORE
                 <span class="caret"></span></button>
               <ul class="dropdown-menu more-dropDown-menu">
-                <li><a _ngcontent-c3="" routerlink="/about-bolenum-exchange" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/about-bolenum-exchange"
-                    href="#/about-bolenum-exchange"><i _ngcontent-c3=""></i>About</a></li>
-
-                <li><a _ngcontent-c3="" routerlink="/terms-service" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/terms-service"
-                    href="#/terms-service"><i _ngcontent-c3="" ></i>Term & Conditions</a></li>
+                <li><a _ngcontent-c3="" routerlink="/about-bolenum-exchange" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/about-bolenum-exchange" href="#/about-bolenum-exchange"><i _ngcontent-c3=""></i>About</a></li>
+                <li><a _ngcontent-c3="" routerlink="/terms-service" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/terms-service" href="#/terms-service"><i _ngcontent-c3="" ></i>Term & Conditions</a></li>
               </ul>
             </div>
           </li>
-
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/login">LOGIN</a></li>
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up">SIGNUP</a></li>
           <li class="dropdown menufont ">
@@ -72,7 +68,7 @@
             <!-- test -->
             <ul class="notificatiion-popup">
               <li class="dropdowns">
-                <a href class="dropdown-toggle bell backgroun-bell-color" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle bell backgroun-bell-color" (click)="changeStatusOfUserNotification()" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell-o"></i><span class='notification-Bage'>{{countOfUnseeNotification}}</span>
                   <div class="notification-ring"></div>
                   </a>
@@ -87,14 +83,14 @@
                     <a href='/'>
                       <div class="msg-area border-notification">
                         <div class="notification-padding notification-text">
-                        <p class="notification-text notify"> {{list.message}} </p>
+                          <p class="notification-text notify"> {{list.message}} </p>
                         </div>
                       </div>
                     </a>
                   </div>
-                    <div class="msg-area  text-center seeall-Notification-border-top">
-                       <a class="see-more-notification notification-text-font">See all notifications</a>
-                      </div>
+                  <div class="msg-area  text-center seeall-Notification-border-top">
+                    <a class="see-more-notification notification-text-font">See all notifications</a>
+                  </div>
                 </div>
               </li>
             </ul>

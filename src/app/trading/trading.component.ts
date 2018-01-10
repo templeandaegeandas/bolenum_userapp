@@ -37,7 +37,6 @@ export class TradingComponent implements OnInit {
     private toastrService: ToastrService,
     private appEventEmiterService: AppEventEmiterService) {
       this.appEventEmiterService.currentMessage.subscribe(message => {
-        console.log(message)
       if (message == "ORDER_CANCELLED") {
         if (this.subscription != null) {
           clearInterval(this.subscription);
@@ -62,7 +61,7 @@ export class TradingComponent implements OnInit {
   getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
       this.bankName = success.data.accountDetails.bankName;
@@ -79,11 +78,10 @@ export class TradingComponent implements OnInit {
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.hasTradeNow();
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => this.router.navigate(['market']))
   }
 
    clearInterval(){
-    console.log("subscription", this.subscription);
      clearInterval(this.subscription);
      this.subscription=undefined;
   }
@@ -189,22 +187,22 @@ export class TradingComponent implements OnInit {
   confirmPay() {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
       console.log("subscription: ",this.subscription)
-      // if (this.subscription != null) {
-      //   this.subscription.unsubscribe();
-      //   this.clearInterval();
-      // }
+      if (this.subscription != null) {
+        this.subscription.unsubscribe();
+        this.clearInterval();
+      }
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
     })
   }
 
   cancelPay() {
-    // if (this.subscription != null) {
-    //   this.subscription.unsubscribe();
-    //   this.clearInterval();
-    // }
-  this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      this.appEventEmiterService.changeMessage("cancelPay");
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+      this.clearInterval();
+    }
+    this.tradingService.cancelPay(this.orderId).subscribe(success => {
+      // this.appEventEmiterService.changeMessage("cancelPay");
       this.getOrderDetails();
       console.log(success);
     })

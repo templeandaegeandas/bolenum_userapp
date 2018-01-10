@@ -9,5 +9,6 @@ export class AppEventEmiterService {
   constructor() { }
   changeMessage(message: string) {
     this.messageSource.next(message)
+    console.log("Get Message", message);
   }
 }
