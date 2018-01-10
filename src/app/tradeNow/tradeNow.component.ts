@@ -150,8 +150,16 @@ export class TradeNowComponent implements OnInit {
         this.currecyList.map((value) => {
           value.market.map((marketValue) => {
             if (marketValue.currencyAbbreviation == this.jsonMessage.pairedCurrency) {
-              if (marketValue.lastPrice == null || marketValue.lastPrice == 0 || marketValue.lastPrice > this.jsonMessage.price) {
-                marketValue.lastPrice = this.jsonMessage.price;
+              if (this.jsonMessage.priceBTC > 0 && (marketValue.priceBTC == null || marketValue.priceBTC == 0 || marketValue.priceBTC > this.jsonMessage.priceBTC)) {
+                marketValue.priceBTC = this.jsonMessage.priceBTC;
+                return marketValue;
+              }
+              else if (this.jsonMessage.priceETH > 0 && (marketValue.priceETH == null || marketValue.priceETH == 0 || marketValue.priceETH > this.jsonMessage.priceETH)) {
+                marketValue.priceETH = this.jsonMessage.priceETH;
+                return marketValue;
+              }
+              else if (this.jsonMessage.priceBLN > 0 && (marketValue.priceBLN == null || marketValue.priceBLN == 0 || marketValue.priceBLN > this.jsonMessage.priceBLN)) {
+                marketValue.priceBLN = this.jsonMessage.priceBLN;
                 return marketValue;
               }
             }
@@ -510,7 +518,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   getCurrencyList() {
-    // console.log("IN::::::::::::::::::");
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
       this.pairName = this.currecyList[0].market[0].currencyAbbreviation + "/" + this.currecyList[0].currencyAbbreviation;
@@ -527,56 +534,16 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
-      if(this.jsonMessage=="PAID_NOTIFICATION" || this.jsonMessage=="receivedPayment" || this.jsonMessage=="ORDER_BOOK_NOTIFICATION" || this.jsonMessage==""){
-            this.pairName="NGN/BLN";
-             this.select(4, 3);
-            this.isActive(4, 3);
-      }else{
-          this.select(this.pairedCurrencyId, this.marketCurrencyId);
-          this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
-    }
-      // this.currecyList = success.data;
-      // let currencyId = this.currecyList[0].currencyId;
-      // this.currencyName = this.currecyList[0].currencyName;
-      // this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
-      // let pairedCurrency;
-      // for (let i = 0; i < this.currecyList.length; i++) {
-      //   this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
-      //     this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
-      //     pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
-      //   });
-      // }
-      // setTimeout(() => {
-      //   this.marketCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
-      //   this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
-      //   this.pairedCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
-      //   this.pairId = pairedCurrency[0].pairId;
-      //   console.log(this.pairId);
-      //   // if(this.jsonMessage=="cancelPay"){
-      //   //    this.select(4, 3);
-      //   //   this.isActive(4, 3);
-      //   //    // this.pairId=4;
-      //   //   this.pairName="BLN/NGN";
-      //   // }else{
-      //   this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.pairName = pairedCurrency[0].pairName;
-      // // }
-      //   let pairArray = this.pairName.split("/")
-      //   this.marketCurrency = pairArray[0];
-      //   this.pairedCurrency = pairArray[1];
-      //   let temp = this.pairedCurrency['BLN'];
-      //   this.minPrice =temp[0].lastPrice;
-      //   if (this.pairedCurrency == 'NGN') {
-      //     this.pairedCurrencyType = 'FIAT';
-      //   }
-      //   this.getUserBalance();
-      //   this.getBuyOrderBookData(this.pairId);
-      //   this.getSellOrderBookData(this.pairId);
-      //   this.getOurMarketData();
-      // }, 1000)
+      if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
+        this.pairName = "NGN/BLN";
+        this.select(4, 3);
+        this.isActive(4, 3);
+      } else {
+        this.select(this.pairedCurrencyId, this.marketCurrencyId);
+        this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
+      }
     }, error => {
-      this.getCurrencyList();
+      console.log("Error in getting currency list")
     })
   }
 
@@ -589,7 +556,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(marketCurrency, pairedCurrency) {
-    this.selectedRow=pairedCurrency.currencyId;
+    this.selectedRow = pairedCurrency.currencyId;
     this.loading = true;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;

@@ -38,42 +38,23 @@ export class BeforLoginTradeNowComponent implements OnInit {
   public myTradeColor: boolean = false;
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
-  orders: any;
+  pairName;
+  volume24h;
+  countTrade24h;
+  low24h;
+  high24h;
+  bid = 0;
+  ask = 0;
   currecyList: any;
   buyOrderList: any;
   sellOrderList: any;
-  marketPrice: any;
-  market1Btc: any;
-  market1BtcEth: any;
-  pairList: any;
-  pairName: any;
-  firstCurrency: any;
-  secondCurrency: any;
-  firstCurrencyBal: any;
-  secondCurrencyBal: any;
-  pairId: any;
   loading = false;
-  myTradedList: any;
   allTradedList: any;
-  myOrdersInBook: any;
   userId: any;
-  selecedOrderId: any;
-  showModal: boolean = false;
-  amount: any;
-  price: any;
-  minPrice: any = 10;
-  sellOrderLength: any;
-  buyOrderLength: any;
-  tradeFee: any = 0.15;
-  tradeFeeFiat: any = 0.0;
-  firstCurrencyType: any;
-  secondCurrencyType: any;
-  totalPrice: any;
-  tradingFee: any;
-  priceWithFee: any;
   totalSell = 0.0;
   totalBuy = 0.0;
-  cancelOrderId: any;
+  selectedRow;
+  selectedPair;
   public btc: boolean = true;
   public eth: boolean = false;
   public bln: boolean = false;
@@ -83,7 +64,15 @@ export class BeforLoginTradeNowComponent implements OnInit {
   public beforeLogin: boolean = true;
   public afterLogin: boolean = false;
   options: any;
-  pairedCurrency = [];
+  jsonMessage: any;
+  marketCurrency;
+  pairedCurrency;
+  marketCurrencyType;
+  pairedCurrencyType;
+  marketCurrencyId;
+  pairedCurrencyId;
+  marketCurrencyObj;
+  pairedCurrencyObj;
 
   constructor(
     private tradeNowService: BeforeLoginTradeNowService,
@@ -95,9 +84,30 @@ export class BeforLoginTradeNowComponent implements OnInit {
       websocketService.connectForNonLoggedInUser();
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
+      this.jsonMessage = message;
+      if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
+        this.currecyList.map((value) => {
+          value.market.map((marketValue) => {
+            if (marketValue.currencyAbbreviation == this.jsonMessage.pairedCurrency) {
+              if (this.jsonMessage.priceBTC > 0 && (marketValue.priceBTC == null || marketValue.priceBTC == 0 || marketValue.priceBTC > this.jsonMessage.priceBTC)) {
+                marketValue.priceBTC = this.jsonMessage.priceBTC;
+                return marketValue;
+              }
+              else if (this.jsonMessage.priceETH > 0 && (marketValue.priceETH == null || marketValue.priceETH == 0 || marketValue.priceETH > this.jsonMessage.priceETH)) {
+                marketValue.priceETH = this.jsonMessage.priceETH;
+                return marketValue;
+              }
+              else if (this.jsonMessage.priceBLN > 0 && (marketValue.priceBLN == null || marketValue.priceBLN == 0 || marketValue.priceBLN > this.jsonMessage.priceBLN)) {
+                marketValue.priceBLN = this.jsonMessage.priceBLN;
+                return marketValue;
+              }
+            }
+          })
+        })
+      }
       if (message == "ORDER_BOOK_NOTIFICATION") {
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
+        this.getBuyOrderBookData();
+        this.getSellOrderBookData();
         this.getAllTradedOrders();
       }
     });
@@ -110,76 +120,81 @@ export class BeforLoginTradeNowComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
   }
 
-  getBuyOrderBookData(pairId) {
+   getBuyOrderBookData() {
     this.totalBuy = 0.0;
-    this.tradeNowService.buyOrderBook(pairId).subscribe(success => {
+    this.tradeNowService.buyOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.buyOrderList = success.data.content;
+      if (this.buyOrderList.length > 0) {
+        this.bid = this.buyOrderList[0].price;
+      }
+      else {
+        this.bid = 0;
+      }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
       });
-      this.buyOrderLength = this.buyOrderList.length;
     })
   }
 
-  getSellOrderBookData(pairId) {
+  getSellOrderBookData() {
     this.totalSell = 0.0;
-    this.tradeNowService.sellOrderBook(pairId).subscribe(success => {
+    this.tradeNowService.sellOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.sellOrderList = success.data.content;
+      if (this.sellOrderList.length > 0) {
+        this.bid = this.sellOrderList[0].price;
+      }
+      else {
+        this.bid = 0;
+      }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
       });
-      this.sellOrderLength = this.sellOrderList.length;
     })
   }
 
   getCurrencyList() {
     this.tradeNowService.getListOfCurrency().subscribe(success => {
       this.currecyList = success.data;
-      let currencyId = this.currecyList[0].currencyId;
-      let pairedCurrency;
-      for (let i = 0; i < this.currecyList.length; i++) {
-        this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
-          this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
-          pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
-        });
-      }
-      setTimeout(() => {
-        this.firstCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
-        this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
-        this.secondCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
-        this.pairId = pairedCurrency[0].pairId;
-        this.pairName = pairedCurrency[0].pairName;
-        let pairArray = this.pairName.split("/")
-        this.firstCurrency = pairArray[0];
-        this.secondCurrency = pairArray[1];
-        if (pairArray[0] == 'BLN') {
-          this.minPrice = pairedCurrency[0].toCurrency[0].priceNGN;
-        }
-        if (this.secondCurrency == 'NGN') {
-          this.secondCurrencyType = 'FIAT';
-        }
-        this.getBuyOrderBookData(this.pairId);
-        this.getSellOrderBookData(this.pairId);
-      }, 1000)
+      this.pairName = this.currecyList[0].market[0].currencyAbbreviation + "/" + this.currecyList[0].currencyAbbreviation;
+      this.marketCurrencyObj = this.currecyList[0];
+      this.pairedCurrencyObj = this.currecyList[0].market[0];
+      this.pairedCurrency = this.currecyList[0].market[0].currencyAbbreviation;
+      this.marketCurrency = this.currecyList[0].currencyAbbreviation;
+      this.pairedCurrencyId = this.currecyList[0].market[0].currencyId;
+      this.marketCurrencyId = this.currecyList[0].currencyId;
+      this.pairedCurrencyType = this.currecyList[0].market[0].currencyType;
+      this.marketCurrencyType = this.currecyList[0].currencyType;
+      this.getBuyOrderBookData();
+      this.getSellOrderBookData();
+      
+        this.select(this.pairedCurrencyId, this.marketCurrencyId);
+        this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
     }, error => {
-      this.getCurrencyList();
+      console.log("Error in getting currency list")
     })
   }
 
-  changePair(pairId, pairName, firstCurrencyType, secondCurrencyType) {
+  changePair(marketCurrency, pairedCurrency) {
+    this.selectedRow = pairedCurrency.currencyId;
     this.loading = true;
-    this.pairId = pairId;
-    this.firstCurrencyType = firstCurrencyType;
-    this.secondCurrencyType = secondCurrencyType;
-    this.pairName = pairName;
-    let pairArray = pairName.split("/")
-    this.firstCurrency = pairArray[0];
-    this.secondCurrency = pairArray[1];
-    if (this.secondCurrency == 'NGN') {
-      this.secondCurrencyType = 'FIAT';
+    this.marketCurrencyObj = marketCurrency;
+    this.pairedCurrencyObj = pairedCurrency;
+    this.marketCurrencyType = marketCurrency.currencyType;
+    this.pairedCurrencyType = pairedCurrency.currencyType;
+    this.marketCurrencyId = marketCurrency.currencyId;
+    this.pairedCurrencyId = pairedCurrency.currencyId;
+    // console.log("Get Currency Pair ID",this.pairedCurrencyId);
+    // console.log("Get Market Currency ID",this.marketCurrencyId);
+    this.select(this.pairedCurrencyId, this.marketCurrencyId);
+    this.marketCurrency = marketCurrency.currencyAbbreviation;
+    this.pairedCurrency = pairedCurrency.currencyAbbreviation;
+    this.pairName = this.pairedCurrency + "/" + this.marketCurrency;
+    if (this.pairedCurrencyType == 'FIAT') {
+      this.marketCurrency = pairedCurrency.currencyAbbreviation;
+      this.pairedCurrency = marketCurrency.currencyAbbreviation;
     }
-    this.getBuyOrderBookData(pairId);
-    this.getSellOrderBookData(pairId);
+    this.getBuyOrderBookData();
+    this.getSellOrderBookData();
     this.loading = false;
   }
 
@@ -209,15 +224,11 @@ export class BeforLoginTradeNowComponent implements OnInit {
   showBuyOrder() {
     this.hasSell = false;
     this.hasBuy = true;
-    this.amount = '';
-    this.price = '';
   }
 
   showSellOrder() {
     this.hasBuy = false;
     this.hasSell = true;
-    this.amount = '';
-    this.price = '';
   }
 
   getMoreOrders() {
@@ -237,5 +248,18 @@ export class BeforLoginTradeNowComponent implements OnInit {
     }, error => {
       console.log(error);
     })
+  }
+
+  select(pairedCurrency, marketCurrency) {
+    this.selectedPair = marketCurrency;
+    this.selectedRow = pairedCurrency;
+  }
+
+  isActiveTab(marketCurrency) {
+    return this.selectedPair === marketCurrency;
+  }
+
+  isActive(pairedCurrencyId, marketCurrencyId) {
+    return this.selectedRow === pairedCurrencyId;
   }
 }
