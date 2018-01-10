@@ -51,7 +51,7 @@
 }
 
 .topnav li a {
-  padding: 0 7px;
+  padding: 0 10px;
   line-height: 40px;
   color: #FFF;
 }
@@ -71,6 +71,12 @@
     background: #f8f8f8;
     text-transform: capitalize;
     color: #777;
+}
+
+.sub-Menu-Item{
+    
+   margin-left: 14px;
+    margin-right: 14px;
 }
 
 
