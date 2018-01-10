@@ -162,18 +162,15 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
-		console.log("hihihih");
 		if (!this.isSelected) {
 			let arrayOfNotification = [];
 			for (var i = 0; i < this.listOfUserNotification.length; i++) {
 				arrayOfNotification[i] = this.listOfUserNotification[i].id;
 			}
 			console.log(arrayOfNotification);
-
 			this.headerService
 				.changeReadStatusOfUserNotification(arrayOfNotification)
 				.subscribe(success => {
-					console.log("hihihih");
 					this.isLoading = false;
 					this.hasBlur = false;
 					this.getCountOfUnseeNotification();
