@@ -21,7 +21,7 @@
 
 .transaction-History-Property {
     border: 1px solid lightgray;
-    height: 299px;
+    height: 278px;
 }
 
 .container.container-padding {
@@ -285,7 +285,7 @@ input[type="checkbox"]:checked+label:after {
 
 .history-Table tbody td,
 .history-Table thead th {
-    width: 216px;
+    width: 155px;
     padding: 3px;
 }
 
@@ -330,8 +330,8 @@ input[type="checkbox"]:checked+label:after {
 
 .spiner-position {
     position: absolute;
-    top: 168px;
-    left: 573px;
+    top: 158px;
+    left: 454px;
 }
 
 
