@@ -123,6 +123,9 @@ export class HeaderComponent implements OnInit {
 	}
 
 	showDropdown() {
+		if (!this.subMenu) {
+			this.getAllUserNotifications();
+		}
 		this.subMenu = !this.subMenu;
 	}
 
@@ -137,6 +140,7 @@ export class HeaderComponent implements OnInit {
 					this.hasBlur = false;
 					this.listOfUserNotification = success.data.content;
 					this.listOfUserNotificationLength = this.listOfUserNotification.length;
+					this.changeStatusOfUserNotification();
 				},
 				error => {
 					console.log(error);
@@ -162,19 +166,17 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
-		if (!this.isSelected) {
-			let arrayOfNotification = [];
-			for (var i = 0; i < this.listOfUserNotification.length; i++) {
-				arrayOfNotification[i] = this.listOfUserNotification[i].id;
-			}
-			this.headerService
-				.changeReadStatusOfUserNotification(arrayOfNotification)
-				.subscribe(success => {
-					this.isLoading = false;
-					this.hasBlur = false;
-					this.getCountOfUnseeNotification();
-					this.isSelected = true;
-				});
+		let arrayOfNotification = [];
+		for (var i = 0; i < this.listOfUserNotification.length; i++) {
+			arrayOfNotification[i] = this.listOfUserNotification[i].id;
 		}
+		this.headerService
+			.changeReadStatusOfUserNotification(arrayOfNotification)
+			.subscribe(success => {
+				this.isLoading = false;
+				this.hasBlur = false;
+				this.getCountOfUnseeNotification();
+				this.isSelected = true;
+			});
 	}
 }
