@@ -14,6 +14,7 @@ import { WebsocketService } from "../web-socket/web.socket.service";
 export class HeaderComponent implements OnInit {
 	public isOpen = false;
 	public subMenu = false;
+	public address:any;
 	token: String;
 	fullName: String;
 	lastName: String;
@@ -151,24 +152,13 @@ export class HeaderComponent implements OnInit {
 
 
 	/* Identify Notification Type on click of list of notifications */
-        getNotificationType(){
-			let notifyType;
-			let notifyId;
-        		for(var i=0; i<this.listOfUserNotification.length;i++){
-        			notifyType=this.listOfUserNotification[i].notificationType;
-        			notifyId=this.listOfUserNotification[i].id;
-        			console.log(notifyType);						
-        		}
-        		if(notifyType != "null"){
-        			if(notifyType=="PAID_NOTIFICATION"){
-        				this.router.navigate(['sell/' + notifyId]);
-        			}else if(notifyType=="MATCHED_NOTIFICATION"){
-        				this.router.navigate(['trading/' + notifyId]);
+        getNotificationType(notifyType,notifyId){
+        			if(notifyType != "null" && notifyType=="PAID_NOTIFICATION"){
+        				window.open('sell/' + notifyId ,"fullspace", "width=500,height=700");
+					}else if(notifyType != "null" && notifyType=="MATCHED_NOTIFICATION"){
+						window.open('trading/' + notifyId , "fullspace", "width=500,height=700");
         			}
-        		}
-
-        }
-
+			 }
 	/*End Of Function Identify Notification Type */
 
 	isLogIn() {
