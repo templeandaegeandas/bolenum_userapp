@@ -14,6 +14,7 @@ import { WebsocketService } from "../web-socket/web.socket.service";
 export class HeaderComponent implements OnInit {
 	public isOpen = false;
 	public subMenu = false;
+	public address:any;
 	token: String;
 	fullName: String;
 	lastName: String;
@@ -123,6 +124,9 @@ export class HeaderComponent implements OnInit {
 	}
 
 	showDropdown() {
+		if (!this.subMenu) {
+			this.getAllUserNotifications();
+		}
 		this.subMenu = !this.subMenu;
 	}
 
@@ -130,19 +134,32 @@ export class HeaderComponent implements OnInit {
 		this.isLoading = true;
 		this.hasBlur = true;
 		this.headerService
-			.GetUserNotification(1, 5, "readStatus", "asc")
+			.GetUserNotification(1, 5, "createdOn", "desc")
 			.subscribe(
 				success => {
 					this.isLoading = false;
 					this.hasBlur = false;
 					this.listOfUserNotification = success.data.content;
+					console.log("List of Noyifications", this.listOfUserNotification);
 					this.listOfUserNotificationLength = this.listOfUserNotification.length;
+					this.changeStatusOfUserNotification();
 				},
 				error => {
 					console.log(error);
 				}
 			);
 	}
+
+
+	/* Identify Notification Type on click of list of notifications */
+        getNotificationType(notifyType,notifyId){
+        			if(notifyType != "null" && notifyType=="PAID_NOTIFICATION"){
+        				window.open('#/sell/' + notifyId ,"fullspace", "width=1024,height=700");
+					}else if(notifyType != "null" && notifyType=="MATCHED_NOTIFICATION"){
+						window.open('#/trading/' + notifyId , "fullspace", "width=1024,height=700");
+        			}
+			 }
+	/*End Of Function Identify Notification Type */
 
 	isLogIn() {
 		if (localStorage.getItem("token") == null) {
@@ -162,20 +179,17 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
-		if (!this.isSelected) {
-			let arrayOfNotification = [];
-			for (var i = 0; i < this.listOfUserNotification.length; i++) {
-				arrayOfNotification[i] = this.listOfUserNotification[i].id;
-			}
-			console.log(arrayOfNotification);
-			this.headerService
-				.changeReadStatusOfUserNotification(arrayOfNotification)
-				.subscribe(success => {
-					this.isLoading = false;
-					this.hasBlur = false;
-					this.getCountOfUnseeNotification();
-					this.isSelected = true;
-				});
+		let arrayOfNotification = [];
+		for (var i = 0; i < this.listOfUserNotification.length; i++) {
+			arrayOfNotification[i] = this.listOfUserNotification[i].id;
 		}
+		this.headerService
+			.changeReadStatusOfUserNotification(arrayOfNotification)
+			.subscribe(success => {
+				this.isLoading = false;
+				this.hasBlur = false;
+				this.getCountOfUnseeNotification();
+				this.isSelected = true;
+			});
 	}
 }

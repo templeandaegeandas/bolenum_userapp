@@ -239,11 +239,11 @@ a .bell {
 .notification-text{
      font-size: 11px;
     line-height: 16px;
-
+     cursor: pointer;
 }
 
 p .notify{
-        margin: 0 0 0px;
+        margin: 0 0 0px;   
 }
 
 .seeall-Notification-border-top{
