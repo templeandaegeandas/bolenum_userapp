@@ -154,9 +154,9 @@ export class HeaderComponent implements OnInit {
 	/* Identify Notification Type on click of list of notifications */
         getNotificationType(notifyType,notifyId){
         			if(notifyType != "null" && notifyType=="PAID_NOTIFICATION"){
-        				window.open('sell/' + notifyId ,"fullspace", "width=1024,height=700");
+        				window.open('#/sell/' + notifyId ,"fullspace", "width=1024,height=700");
 					}else if(notifyType != "null" && notifyType=="MATCHED_NOTIFICATION"){
-						window.open('trading/' + notifyId , "fullspace", "width=1024,height=700");
+						window.open('#/trading/' + notifyId , "fullspace", "width=1024,height=700");
         			}
 			 }
 	/*End Of Function Identify Notification Type */
