@@ -167,7 +167,6 @@ export class HeaderComponent implements OnInit {
 			for (var i = 0; i < this.listOfUserNotification.length; i++) {
 				arrayOfNotification[i] = this.listOfUserNotification[i].id;
 			}
-			console.log(arrayOfNotification);
 			this.headerService
 				.changeReadStatusOfUserNotification(arrayOfNotification)
 				.subscribe(success => {
