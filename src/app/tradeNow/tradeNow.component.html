@@ -39,14 +39,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let pair of coinList.market" class="marketBodyColor" (click)=changePair(coinList,pair)  [ngClass]="{active: isActive(pair.currencyId, coinList.currencyId)}">
-                      <th class="hand-icon table-content-font">{{pair.currencyAbbreviation}}</th>
-                      <th class="table-content-font">
+                    <tr *ngFor="let pair of coinList.market; let i=index;" class="marketBodyColor">
+                      <td class="hand-icon table-content-font" [ngClass]="{active: isActive(i)}" (click)=changePair(coinList,pair)>{{pair.currencyAbbreviation}}</td>
+                      <td class="table-content-font">
                         <span *ngIf="coinList.currencyAbbreviation=='BTC'">{{pair.priceBTC | number:'1.8-8'}}</span>
                         <span *ngIf="coinList.currencyAbbreviation=='ETH'">{{pair.priceETH | number:'1.8-8'}}</span>
                         <span *ngIf="coinList.currencyAbbreviation=='BLN'">{{pair.priceBLN | number:'1.8-8'}}</span>
-                      </th>
-                      <th class="table-content-font">{{pair.currencyName}}</th>
+                      </td>
+                      <td class="table-content-font">{{pair.currencyName}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -87,7 +87,8 @@
               <div class="row">
                 <div class="col-md-12 padding-0">
                   <div class="table-responsive" *ngFor="let coinList of coinMarketData">
-                    <div class="table-heading-content marketing-heading">{{pairedCurrency}}</div>
+                    <div class="table-heading-content marketing-heading"><span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span>
+                    <span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></div>
                     <table class="table table-condensed table-btc-value">
                       <tbody>
                         <tr>
@@ -149,7 +150,7 @@
                         </tr>
                         <tr>
                           <th>Available Supply</th>
-                          <td><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} {{pairedCurrency}}</span></td>
+                          <td><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} <span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span><span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></span></td>
                         </tr>
                         <tr>
                           <th>Change 1h | 24h | 7d</th>
@@ -791,7 +792,7 @@
                       <span *ngIf="orders.pairedCurrency.currencyAbbreviation=='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.pairedCurrency.currencyAbbreviation}}</span>
                       <span *ngIf="orders.pairedCurrency.currencyAbbreviation!='NGN'">{{orders.price * orders.volume | number:'1.8-8'}} {{orders.marketCurrency.currencyAbbreviation}}</span>
                     </td>
-                    <td>{{orders.createdOn | date: 'MMM d, y h:mm a'}}</td>
+                    <td>{{orders.createdOn | date}}</td>
                     <td><a (click)="cancelOrderModel(orders.id)" style="cursor:pointer">Cancel Order</a></td>
                   </tr>
                   <tr *ngIf="myOrdersInBookLength >=10">
