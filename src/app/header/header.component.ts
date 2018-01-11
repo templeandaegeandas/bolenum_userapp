@@ -136,6 +136,7 @@ export class HeaderComponent implements OnInit {
 					this.isLoading = false;
 					this.hasBlur = false;
 					this.listOfUserNotification = success.data.content;
+					console.log("List of Noyifications", this.listOfUserNotification);
 					this.listOfUserNotificationLength = this.listOfUserNotification.length;
 				},
 				error => {
@@ -143,6 +144,28 @@ export class HeaderComponent implements OnInit {
 				}
 			);
 	}
+
+
+	/* Identify Notification Type on click of list of notifications */
+        getNotificationType(){
+			let notifyType;
+			let notifyId;
+        		for(var i=0; i<this.listOfUserNotification.length;i++){
+        			notifyType=this.listOfUserNotification[i].notificationType;
+        			notifyId=this.listOfUserNotification[i].id;
+        			console.log(notifyType);						
+        		}
+        		if(notifyType != "null"){
+        			if(notifyType=="PAID_NOTIFICATION"){
+        				this.router.navigate(['sell/' + notifyId]);
+        			}else if(notifyType=="MATCHED_NOTIFICATION"){
+        				this.router.navigate(['trading/' + notifyId]);
+        			}
+        		}
+
+        }
+
+	/*End Of Function Identify Notification Type */
 
 	isLogIn() {
 		if (localStorage.getItem("token") == null) {

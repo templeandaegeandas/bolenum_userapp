@@ -83,7 +83,7 @@
                   <div class="msg-list" *ngFor="let list of listOfUserNotification">
                       <div class="msg-area border-notification">
                         <div class="notification-padding notification-text">
-                          <p class="notification-text notify"> {{list.message}} </p>
+                          <p class="notification-text notify" (click)="getNotificationType()"> {{list.message}} </p>
                         </div>
                       </div>
                   </div>
