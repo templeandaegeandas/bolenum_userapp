@@ -564,8 +564,6 @@ export class TradeNowComponent implements OnInit {
     this.pairedCurrencyType = pairedCurrency.currencyType;
     this.marketCurrencyId = marketCurrency.currencyId;
     this.pairedCurrencyId = pairedCurrency.currencyId;
-    // console.log("Get Currency Pair ID",this.pairedCurrencyId);
-    // console.log("Get Market Currency ID",this.marketCurrencyId);
     this.select(this.pairedCurrencyId, this.marketCurrencyId);
     this.marketCurrency = marketCurrency.currencyAbbreviation;
     this.pairedCurrency = pairedCurrency.currencyAbbreviation;
