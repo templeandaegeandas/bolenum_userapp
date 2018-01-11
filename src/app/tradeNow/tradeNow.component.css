@@ -12,8 +12,7 @@
     padding: 0;
 }
 tr td.active{
-    color:#fff;
-    background-color:#DB2828;
+    color:#DB2828;
 }
 .nav-tabs>li.active a{
    color:#DB2828 !important; 
@@ -1427,7 +1426,7 @@ label.exchange-color {
     background-color: #f8f8f8;
     border-radius: 19px;
     padding: 6px;
-    color: #000;
+    color:#DB2828;
     border: 1px solid #dedede;
     font-size: 12px;
     cursor: auto;
