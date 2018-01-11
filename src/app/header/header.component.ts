@@ -130,7 +130,7 @@ export class HeaderComponent implements OnInit {
 		this.isLoading = true;
 		this.hasBlur = true;
 		this.headerService
-			.GetUserNotification(1, 5, "readStatus", "asc")
+			.GetUserNotification(1, 5, "createdOn", "desc")
 			.subscribe(
 				success => {
 					this.isLoading = false;
