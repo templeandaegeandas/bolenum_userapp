@@ -123,6 +123,9 @@ export class HeaderComponent implements OnInit {
 	}
 
 	showDropdown() {
+		if (!this.subMenu) {
+			this.getAllUserNotifications();
+		}
 		this.subMenu = !this.subMenu;
 	}
 
@@ -130,7 +133,7 @@ export class HeaderComponent implements OnInit {
 		this.isLoading = true;
 		this.hasBlur = true;
 		this.headerService
-			.GetUserNotification(1, 5, "readStatus", "asc")
+			.GetUserNotification(1, 5, "createdOn", "desc")
 			.subscribe(
 				success => {
 					this.isLoading = false;
@@ -138,6 +141,7 @@ export class HeaderComponent implements OnInit {
 					this.listOfUserNotification = success.data.content;
 					console.log("List of Noyifications", this.listOfUserNotification);
 					this.listOfUserNotificationLength = this.listOfUserNotification.length;
+					this.changeStatusOfUserNotification();
 				},
 				error => {
 					console.log(error);
@@ -185,20 +189,17 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
-		if (!this.isSelected) {
-			let arrayOfNotification = [];
-			for (var i = 0; i < this.listOfUserNotification.length; i++) {
-				arrayOfNotification[i] = this.listOfUserNotification[i].id;
-			}
-			console.log(arrayOfNotification);
-			this.headerService
-				.changeReadStatusOfUserNotification(arrayOfNotification)
-				.subscribe(success => {
-					this.isLoading = false;
-					this.hasBlur = false;
-					this.getCountOfUnseeNotification();
-					this.isSelected = true;
-				});
+		let arrayOfNotification = [];
+		for (var i = 0; i < this.listOfUserNotification.length; i++) {
+			arrayOfNotification[i] = this.listOfUserNotification[i].id;
 		}
+		this.headerService
+			.changeReadStatusOfUserNotification(arrayOfNotification)
+			.subscribe(success => {
+				this.isLoading = false;
+				this.hasBlur = false;
+				this.getCountOfUnseeNotification();
+				this.isSelected = true;
+			});
 	}
 }
