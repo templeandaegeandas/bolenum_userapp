@@ -1,8 +1,7 @@
 .wallet-background-img {
-    background-image: url("/assets/images/header (1).png");
+    background-image: url("/assets/images/BGimagered.png");
     background-repeat: no-repeat;
-    background-position: top;
-    height: 230px;
+    height: 277px;
     width: 100%;
     margin: 0;
 }

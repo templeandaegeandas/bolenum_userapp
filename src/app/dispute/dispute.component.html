@@ -54,7 +54,7 @@
 <span id="commentSelector">
               <div *ngIf="tId.invalid && disputeForm.submitted">
                 <div *ngIf="tId.errors.required">
-                  <p class="red-bold text-err">Please enter Transaction Id.</p>
+                  <p class="red-bold text-err text-left">Please enter Transaction Id.</p>
               </div>
             </div>
               </span>
@@ -83,7 +83,7 @@
                 <div class="col-sm-6 text-right">
                   <button type="submit" class="btn button-dispute"> Submit</button>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 text-left">
                   <span id="fileselector">
                   <label class="btn upload-button" for="upload-file-selector">
                   <input id="upload-file-selector" (change)="getUploadedDocument($event)" #fileInput type="file" accept="image/x-png,image/jpeg,application/pdf" placeholder="BROWSE">
@@ -95,7 +95,7 @@
                       <p>Please Upload file.</p>
                     </div>
                     </div>
-                     <p>{{getAddress}}</p>
+                     <p class="wrap-word">{{getAddress}}</p>
                   </span>
 
                 </div>
@@ -109,7 +109,81 @@
       </div>
     </div>
   </form>
+ 
   <div class="clearfix"></div>
+   <div class="col-sm-12" *ngIf="showReplyScreen">
+    <div class="row margin-btn">
+      <div class="col-sm-2 padding0">
+        <span class="pull-right"><strong>Message :- </strong> </span>
+      </div>
+    <div class="col-sm-6">
+    <span class="pull-left">{{commentByDisputeRaiser}}
+    </span>
+  </div>
+    </div>
+  </div>
+  <div class="col-sm-12" [style.display]="isImageUploaderVisibile ? 'block' : 'none'">
+     <div class="row margin-btn">
+       <a class="documentImage" #showUploadedImageLink target="_blank" href={{getImageLink}}>
+       <img #showUploadedImage class="documentImage"  src="{{getUploadedImage}}">
+     </a>
+    </div>
+  </div>
+  <div class="col-sm-10 col-sm-offset-1 margin-table" *ngIf="showReplyScreen">
+  <div class="panel">
+    <div class="panel-heading paymentDetails">Message Details</div>
+    <div class="panel-body panel-Body">
+      <table class="table table-bordered message-table">
+        <thead>
+           <tr>
+            <th>User Id</th>
+            <th>Message</th>
+            <th>Image Uploaded</th>
+          </tr>
+        </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>{{commentByDisputeRaiser}}</td>
+            <td><a #showUploadedImageLink target="_blank" href={{getImageLink}}>{{getImageLink}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+ <!--  <form *ngIf="showReplyScreen">
+    <div class="col-sm-10 col-sm-offset-1 margin-table">
+      <div class="panel"> -->
+        <!-- <div class="panel-heading"></div> -->
+        <!-- <div class="panel-body panel-Body new">
+          <div class="widget-area no-padding blank">
+            <div class="status-upload"> -->
+           <!--    <p><strong>Reply :-</strong></p>
+              <div> -->
+              <!-- <textarea name="replySection" required></textarea>
+            </div> -->
+             <!--  <span id="commentSelector">
+              <div *ngIf="replySection.invalid && disputeForm.submitted">
+                <div *ngIf="commentDisputeRaiser.errors.required">
+                  <p class="red-bold text-err">Please enter message.</p>
+              </div>
+            </div>
+              </span> -->
+              <!-- <div class="col-button">
+                <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn button-dispute"> Submit</button>
+                </div>
+
+              </div>
+            </div> -->
+            <!-- Widget Area -->
+        <!--   </div>
+        </div>
+      </div>
+    </div>
+  </form> -->
 </div>
 </div>
 <div class="col-sm-10 col-sm-offset-1 margin-table">

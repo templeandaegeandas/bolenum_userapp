@@ -24,6 +24,7 @@ export class DepositComponent implements OnInit {
   public shortIfo: boolean = false;
   public pageNumber: number;
   public date: any = "";
+  public pageSize: any =10;
   address = "";
   public txList: any;
   public coinDataValue: any;
@@ -56,8 +57,7 @@ export class DepositComponent implements OnInit {
       let successData = success.data;
       if (successData.data != null) {
         this.address = successData.data.address;
-        this.balance = successData.data.balance + " " + data;
-        this.coinAbbreviation = successData.data.coinAbbreviation;
+        this.balance = successData.data.balance;
       }
       this.qrCode = true;
       this.errorCoin = false;
@@ -105,11 +105,10 @@ export class DepositComponent implements OnInit {
   getMoreDepositeList() {
 
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize + 10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-    this.depositService.getListOfDepositTransaction(1, pageSize, "createdOn", "desc", this.data).subscribe(success => {
+    this.depositService.getListOfDepositTransaction(1, this.pageSize, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;

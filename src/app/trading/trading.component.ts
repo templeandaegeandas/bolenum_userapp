@@ -37,7 +37,6 @@ export class TradingComponent implements OnInit {
     private toastrService: ToastrService,
     private appEventEmiterService: AppEventEmiterService) {
       this.appEventEmiterService.currentMessage.subscribe(message => {
-        console.log(message)
       if (message == "ORDER_CANCELLED") {
         if (this.subscription != null) {
           clearInterval(this.subscription);
@@ -62,7 +61,7 @@ export class TradingComponent implements OnInit {
   getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
       this.bankName = success.data.accountDetails.bankName;
@@ -79,7 +78,12 @@ export class TradingComponent implements OnInit {
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.hasTradeNow();
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => this.router.navigate(['market']))
+  }
+
+   clearInterval(){
+     clearInterval(this.subscription);
+     this.subscription=undefined;
   }
 
   hasTradeNow() {
@@ -119,7 +123,6 @@ export class TradingComponent implements OnInit {
         if (distance <= 0) {
           if (path == 'trading') {
             console.log("distance subscription", this.subscription)
-            this.subscription.unsubscribe();
             try {
               document.getElementById("demo").innerHTML = "EXPIRED";
             }
@@ -134,7 +137,7 @@ export class TradingComponent implements OnInit {
     }
     else if (this.orderStatus == 'COMPLETED') {
       if (this.subscription != null) {
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
       try {
         document.getElementById("demo").innerHTML = "Order Completed";
@@ -153,12 +156,12 @@ export class TradingComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled");
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
     }
     else if (this.orderStatus == 'CANCELLED') {
       if (this.subscription != null) {
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
       try {
         document.getElementById("demo").innerHTML = "Order Canceled";
@@ -186,6 +189,7 @@ export class TradingComponent implements OnInit {
       console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.subscription.unsubscribe();
+        this.clearInterval();
       }
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
@@ -195,8 +199,10 @@ export class TradingComponent implements OnInit {
   cancelPay() {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
+      this.clearInterval();
     }
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
+      // this.appEventEmiterService.changeMessage("cancelPay");
       this.getOrderDetails();
       console.log(success);
     })

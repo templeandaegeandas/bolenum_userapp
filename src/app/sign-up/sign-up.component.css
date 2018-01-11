@@ -133,9 +133,9 @@ h4.create-text {
   position: absolute;
   left: 0; top: 0;
   width: 1.25em; height: 1.25em;
-  border: 2px solid #ccc;
+  border: 2px solid #ccc !important;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
 }
 /* checked mark aspect */
@@ -143,11 +143,14 @@ h4.create-text {
 .custom-checkbox input[type="checkbox"]:checked + label:after {
   content: '✔';
   position: absolute;
-  top: .1em; left: .1em;
+  /* top: .1em; left: .1em; */
+  top: 0.3em;
+    left: .2em;
   /* font-size: 1.3em; */
   line-height: 0.8;
   color: #09ad7e;
   transition: all .2s;
+  
 }
 /* checked mark aspect changes */
 .custom-checkbox input[type="checkbox"]:not(:checked) + label:after {

@@ -15,6 +15,23 @@
 .button-color{
     background-color: #3cb371 !important;
 }
+.wrap-word{
+    overflow: hidden;
+}
+
+.margin-btn{
+    margin-bottom: 20px;
+}
+.padding0{
+    padding: 0px;
+}
+.documentImage{
+    width: 300px;
+    height: 200px;
+}
+.message-table tbody tr td{
+    text-align: left;
+}
 
 .payment-table th , td{
     border-top:none !important;

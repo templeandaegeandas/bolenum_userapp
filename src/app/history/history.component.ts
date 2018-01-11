@@ -14,6 +14,7 @@ export class HistoryComponent implements OnInit {
   public txLength:any;
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
+  public pageSize: any = 10;
 
   userId: any;
   txList: any;
@@ -86,12 +87,10 @@ export class HistoryComponent implements OnInit {
 
   getMoreDta(){
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize =this.pageSize + 10;
      this.isLoading = true;
     this.hasBlur = true;
-
-    pageSize = pageSize+10;
-    this.historyService.getTradedOrders(1, pageSize, "createdOn", "desc", this.orderType, this.date).subscribe(success => {
+    this.historyService.getTradedOrders(1, this.pageSize, "createdOn", "desc", this.orderType, this.date).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;

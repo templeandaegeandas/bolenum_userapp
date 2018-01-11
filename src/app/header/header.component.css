@@ -236,6 +236,20 @@ a .bell {
     color: gray;
 }
 
+.notification-text{
+     font-size: 11px;
+    line-height: 16px;
+     cursor: pointer;
+}
+
+p .notify{
+        margin: 0 0 0px;   
+}
+
+.seeall-Notification-border-top{
+        border-top: 1px solid #c8baba;
+}
+
 .dropdown-menu>li>a:hover,
 .dropdown-menu>li>a:focus {
     background-color: #FFFFFF;
@@ -423,7 +437,7 @@ img.img-profile-icon {
 
 .notificatiion-popup{
         list-style: none;
-    margin-right: 17px;
+    margin-right: 35px;
     margin-top: 8px;
     outline: 0;
 }
@@ -438,7 +452,7 @@ img.img-profile-icon {
 
 .border-notification{
     border-top: 1px solid #c8baba;
-    border-bottom: 1px solid #c8baba;
+    /* border-bottom: 1px solid #c8baba; */
 }
 
 .notification-padding{
@@ -454,12 +468,18 @@ img.img-profile-icon {
 
 .notification-scroll{
     overflow-y: scroll;
-    max-height: 207px;
+    max-height: 320px;
 }
 
+strong{
+    font-weight: 100;
+}
+.notification-text-font{
+    font-size: 11px;
+}
 
 .top-dropdown-menu {
-  width: 249px;
+  width: 315px;
     left: auto;
     right: 16px;
     top: 55px;

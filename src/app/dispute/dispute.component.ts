@@ -22,10 +22,15 @@ export class DisputeComponent implements OnInit {
   public isOn: boolean = true;
   public spinner:any;
   public showDisupteSection:boolean=false;
+  public isImageUploaderVisibile:boolean=false;
+  public showReplyScreen:boolean=false;
+  public getImageLink:any;
   public getAddress:any;
   public saveButton: boolean = false;
   public disputeStatus: any;
   @ViewChild('fileInput') fileInput;
+  @ViewChild('showUploadedImage') showUploadedImage;
+  @ViewChild('showUploadedImageLink') showUploadedImageLink;
 
   loading = false;
   addressPdf: Boolean = false;
@@ -42,6 +47,7 @@ export class DisputeComponent implements OnInit {
   orderStatus: any;
   path: any;
   subscription: any;
+  jsonMessage:any
   matchedOn: any;
   isConfirmed: any;
 
@@ -53,8 +59,9 @@ export class DisputeComponent implements OnInit {
     private appEventEmiterService: AppEventEmiterService) {
       this.appEventEmiterService.currentMessage.subscribe(message => {
         console.log(message)
-      if(message == "PAID_NOTIFICATION") {
-        this.router.navigate(['tradeNow']);
+        this.jsonMessage = message;
+      if(this.jsonMessage.PAID_NOTIFICATION == "PAID_NOTIFICATION") {
+        this.router.navigate(['market']);
         toastrService.success("You trade is completed successfully! You will get the BLN after some time!", "Success");
       }
     });
@@ -66,7 +73,7 @@ export class DisputeComponent implements OnInit {
       this.orderId = +params['orderId'];
     });
     if (this.orderId == null) {
-      this.router.navigate(['tradeNow']);
+      this.router.navigate(['market']);
     }
     this.getOrderDetails();
   }
@@ -74,7 +81,7 @@ export class DisputeComponent implements OnInit {
   getOrderDetails() {
     this.tradingService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
       this.bankName = success.data.accountDetails.bankName;
@@ -92,22 +99,26 @@ export class DisputeComponent implements OnInit {
       this.isConfirmed = success.data.isConfirmed;
     }, error => {
          this.appEventEmiterService.changeMessage("cancelPay");
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
     });
   }
 
   raiseDispute(form) {
     if (form.invalid) return;
-     this.spinner=true;
-    this.loading = true;
+     // this.spinner=true;
+    // this.loading = true;
+    this.showReplyScreen = true;
+    
     let fileBrowser = this.fileInput.nativeElement;
+      console.log(fileBrowser);
     if ((fileBrowser.files && fileBrowser.files[0])) {
       let fileName = fileBrowser.files[0].name;
+
       let dot = fileName.lastIndexOf(".");
       let extension = (dot == -1) ? "" : fileName.substring(dot + 1).toLowerCase();
       if (extension != "png" && extension != "jpeg" && extension != "jpg" && extension != "pdf") {
-        this.loading = false;
-        this.spinner=false;
+        // this.loading = false;
+        // this.spinner=false;
         this.toastrService.error("Please choose a valid file (image/pdf)", 'Error!');
         fileBrowser.value = "";
         return;
@@ -118,7 +129,7 @@ export class DisputeComponent implements OnInit {
       formData.append("transactionId", this.transactionId);
       formData.append("commentByDisputeRaiser", this.commentByDisputeRaiser);
       this.disputeService.raiseDispute(formData).subscribe(success => {
-        this.loading = false;
+        // this.loading = false;
         this.toastrService.success(success.message, 'Success!')
         this.router.navigate(['dashboard']);
       }, error => {
@@ -129,20 +140,20 @@ export class DisputeComponent implements OnInit {
   }
 
  getUploadedDocument(fileInput: any){
-    this.getAddress=this.fileInput.nativeElement.files[0].name;
-    console.log("Get Address",this.getAddress);
+  this.isImageUploaderVisibile=true;
+  this.showUploadedImage.nativeElement.src=URL.createObjectURL(fileInput.target.files[0]);
+  this.showUploadedImageLink.nativeElement.href=URL.createObjectURL(fileInput.target.files[0]);
+   
+  this.getAddress=this.fileInput.nativeElement.files[0].name;// this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
 }
+
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
       this.getOrderDetails();
-      this.appEventEmiterService.changeMessage("cancelPay");
-      this.router.navigate(['tradeNow']);
       if (this.subscription != null) {
         this.subscription.unsubscribe();
       }
+       this.router.navigate(['market']);
       this.toastrService.success(success.message, 'Success!')
     })
   }

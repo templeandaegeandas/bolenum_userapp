@@ -7,13 +7,13 @@ export class TradeNowService {
   pageNumber: number;
   constructor(private http: HttpClient) { }
 
-  buyOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/buy/orders?pairId=' + pairId)
+  buyOrderBook(marketCurrencyId, pairedCurrencyId) {
+    return this.http.get('/api/v1/user/get/buy/orders?marketCurrencyId=' + marketCurrencyId+ '&pairedCurrencyId='+pairedCurrencyId)
       .map(res => res.json());
   }
 
-  sellOrderBook(pairId) {
-    return this.http.get('/api/v1/user/get/sell/orders?pairId=' + pairId)
+  sellOrderBook(marketCurrencyId, pairedCurrencyId) {
+    return this.http.get('/api/v1/user/get/sell/orders?marketCurrencyId=' + marketCurrencyId+ '&pairedCurrencyId='+pairedCurrencyId)
       .map(res => res.json());
   }
 
@@ -22,18 +22,18 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
-  createOrder(order, pairId) {
-    return this.http.post('/api/v1/user/create/order?pairId=' + pairId, order)
+  createOrder(order) {
+    return this.http.post('/api/v1/user/create/order', order)
       .map(res => res.json());
   }
 
-  createAdvertisment(order, pairId) {
-    return this.http.post('/api/v1/user/create/order/fiat?pairId=' + pairId, order)
+  createAdvertisment(order) {
+    return this.http.post('/api/v1/user/create/order/fiat', order)
       .map(res => res.json());
   }
 
-  createFiatOrder(order, pairId, orderId) {
-    return this.http.put('/api/v1/user/create/order/fiat?pairId=' + pairId + "&orderId=" + orderId, order)
+  createFiatOrder(order, orderId) {
+    return this.http.put('/api/v1/user/create/order/fiat?orderId=' + orderId, order)
       .map(res => res.json());
   }
 
@@ -44,16 +44,6 @@ export class TradeNowService {
 
   getCurrency(currencyId) {
     return this.http.get('/api/v1/admin/currency?currencyId=' + currencyId)
-      .map(res => res.json());
-  }
-
-  getPairedCurrenciesByPairId(pairId) {
-    return this.http.get('/api/v1/admin/currency/pair?pairId=' + pairId)
-      .map(res => res.json());
-  }
-
-  getPairedCurrencies(currencyId) {
-    return this.http.get('/api/v1/admin/paired/currency/list?currencyId=' + currencyId)
       .map(res => res.json());
   }
 
@@ -90,8 +80,8 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
-  getListFiatOrders(volume, price, orderType, pairId) {
-    return this.http.get("/api/v1/user/orders?volume=" + volume + "&price=" + price + "&orderType=" + orderType + "&pairId=" + pairId)
+  getListFiatOrders(volume, price, orderType, marketCurrencyId, pairedCurrencyId) {
+    return this.http.get("/api/v1/user/orders?volume=" + volume + "&price=" + price + "&orderType=" + orderType + "&marketCurrencyId=" + marketCurrencyId + "&pairedCurrencyId=" +pairedCurrencyId)
       .map(res => res.json());
   }
 
@@ -105,8 +95,8 @@ export class TradeNowService {
       .map(res => res.json());
   }
 
-  marketData(pairId) {
-    return this.http.get("/api/v1/user/order/coin/data?pairId=" + pairId)
+  marketData(marketCurrencyId, pairedCurrencyId) {
+    return this.http.get("/api/v1/user/order/coin/data?marketCurrencyId=" + marketCurrencyId + "&pairedCurrencyId=" + pairedCurrencyId)
       .map(res => res.json());
   }
 }
