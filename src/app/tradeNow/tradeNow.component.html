@@ -85,7 +85,8 @@
               <div class="row">
                 <div class="col-md-12 padding-0">
                   <div class="table-responsive" *ngFor="let coinList of coinMarketData">
-                    <div class="table-heading-content marketing-heading">{{pairedCurrency}}</div>
+                    <div class="table-heading-content marketing-heading"><span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span>
+                    <span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></div>
                     <table class="table table-condensed table-btc-value">
                       <tbody>
                         <tr>
@@ -148,7 +149,7 @@
                         </tr>
                         <tr>
                           <th>Available Supply</th>
-                          <td><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} {{pairedCurrency}}</span></td>
+                          <td><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} <span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span><span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></span></td>
                         </tr>
                         <tr>
                           <th>Change 1h | 24h | 7d</th>

@@ -26,20 +26,22 @@ export class HeaderComponent implements OnInit {
 	jsonMessage: any;
 	countOfUnseeNotification: any;
 	arrayOfNotification: any;
-	Notification: any;
-  profilePic: String = "assets/images/pic.png";
-  constructor(
-    private headerService: HeaderService,
-    private websocketService: WebsocketService,
-    private router: Router,
-    private appEventEmiterService: AppEventEmiterService
-  ) {
-    this.isLogIn();
-    if (this.beforeLogin) {
-      websocketService.connectForNonLoggedInUser();
-    }
-    this.appEventEmiterService.currentMessage.subscribe(message => {
-      this.jsonMessage = message;
+	isSelected: any;
+
+	profilePic: String = "assets/images/pic.png";
+	constructor(
+		private headerService: HeaderService,
+		private websocketService: WebsocketService,
+		private router: Router,
+		private appEventEmiterService: AppEventEmiterService
+	) {
+		this.isLogIn();
+		this.isSelected = false;
+		if (this.beforeLogin) {
+			websocketService.connectForNonLoggedInUser();
+		}
+		this.appEventEmiterService.currentMessage.subscribe(message => {
+			this.jsonMessage = message;
 
 			if (
 				message == "DOCUMENT_VERIFICATION" ||
@@ -50,6 +52,7 @@ export class HeaderComponent implements OnInit {
 			) {
 				this.getCountOfUnseeNotification();
 				this.getAllUserNotifications();
+				this.isSelected = false;
 			}
 		});
 	}
@@ -61,6 +64,7 @@ export class HeaderComponent implements OnInit {
 
 		this.getAllUserNotifications();
 		this.getCountOfUnseeNotification();
+		this.isSelected = false;
 		this.appEventEmiterService.currentMessage.subscribe(message => {
 			if (message == "upload") {
 				setTimeout(() => {
@@ -117,6 +121,7 @@ export class HeaderComponent implements OnInit {
 			}
 		);
 	}
+
 	showDropdown() {
 		this.subMenu = !this.subMenu;
 	}
@@ -125,7 +130,7 @@ export class HeaderComponent implements OnInit {
 		this.isLoading = true;
 		this.hasBlur = true;
 		this.headerService
-			.GetUserNotification(1, 5, "createdOn", "desc")
+			.GetUserNotification(1, 5, "readStatus", "asc")
 			.subscribe(
 				success => {
 					this.isLoading = false;
@@ -157,20 +162,20 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changeStatusOfUserNotification() {
-		console.log("hihihih");
-		let arrayOfNotification = [];
-		for (var i = 0; i < this.listOfUserNotification.length; i++) {
-			arrayOfNotification[i] = this.listOfUserNotification[i].id;
+		if (!this.isSelected) {
+			let arrayOfNotification = [];
+			for (var i = 0; i < this.listOfUserNotification.length; i++) {
+				arrayOfNotification[i] = this.listOfUserNotification[i].id;
+			}
+			console.log(arrayOfNotification);
+			this.headerService
+				.changeReadStatusOfUserNotification(arrayOfNotification)
+				.subscribe(success => {
+					this.isLoading = false;
+					this.hasBlur = false;
+					this.getCountOfUnseeNotification();
+					this.isSelected = true;
+				});
 		}
-		console.log(arrayOfNotification);
-
-		this.headerService
-			.changeReadStatusOfUserNotification(arrayOfNotification)
-			.subscribe(success => {
-				console.log("hihihih");
-				this.isLoading = false;
-				this.hasBlur = false;
-				this.getCountOfUnseeNotification();
-			});
 	}
 }
