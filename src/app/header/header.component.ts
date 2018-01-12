@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
 				message == "DISPUTE_NOTIFICATION"
 			) {
 				this.getCountOfUnseeNotification();
-				this.getAllUserNotifications();
+				console.log(this.countOfUnseeNotification);
 				this.isSelected = false;
 			}
 		});
@@ -189,6 +189,7 @@ export class HeaderComponent implements OnInit {
 			this.isLoading = false;
 			this.hasBlur = false;
 			this.countOfUnseeNotification = success.data;
+			console.log(this.countOfUnseeNotification);
 		});
 	}
 
