@@ -133,6 +133,8 @@ export class TradeNowComponent implements OnInit {
   pairedCurrencyId;
   marketCurrencyObj;
   pairedCurrencyObj;
+  marketBuyPrice;
+  marketSellPrice;
   constructor(
     private tradeNowService: TradeNowService,
     private depositService: DepositService,
@@ -263,9 +265,11 @@ export class TradeNowComponent implements OnInit {
       this.buyOrderList = success.data.content;
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
+        this.marketBuyPrice = this.bid;
       }
       else {
         this.bid = 0;
+        this.marketBuyPrice = this.bid;
       }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
@@ -280,11 +284,11 @@ export class TradeNowComponent implements OnInit {
       this.sellOrderList = success.data.content;
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
-        this.lastPrice = this.bid;
+        this.marketSellPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.lastPrice = this.bid;
+        this.marketSellPrice = this.bid;
       }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
@@ -293,18 +297,9 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  /*getMarketPrice() {
-    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
-    this.marketPrice = success.data.priceBTC;
-    })
-  }*/
-
   oneBuyBtc() {
     this.order.price = this.marketPrice;
-    if (this.market1BtcEth == 'Infinity') {
-      this.market1BtcEth = 0;
-    }
-
+    this.buyPrice = this.marketBuyPrice;
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     if (this.buyPrice == undefined || this.buyVolume == undefined) {
       this.buyTotalPrice = 0;
@@ -315,9 +310,7 @@ export class TradeNowComponent implements OnInit {
 
   oneSellBtc() {
     this.order.price = this.marketPrice;
-    if (this.market1BtcEth == 'Infinity') {
-      this.market1BtcEth = 0;
-    }
+    this.sellPrice = this.marketSellPrice;
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
     if (this.sellPrice == undefined || this.sellVolume == undefined) {
       this.sellTotalPrice = 0;
@@ -998,8 +991,11 @@ export class TradeNowComponent implements OnInit {
     return this.selectedPair === marketCurrency;
   }
 
-  isActive(pairedCurrencyId, marketCurrencyId) {
-    return this.selectedRow === pairedCurrencyId;
+  isActive(marketCurrencyId, pairedCurrencyId) {
+    if(marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
+      return true;
+    }
+    
   }
 
   getCoinMarketCapData(currencyName, currencyAbber) {
