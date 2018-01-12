@@ -1002,8 +1002,11 @@ export class TradeNowComponent implements OnInit {
     return this.selectedPair === marketCurrency;
   }
 
-  isActive(pairedCurrencyId, marketCurrencyId) {
-    return this.selectedRow === pairedCurrencyId;
+  isActive(marketCurrencyId, pairedCurrencyId) {
+    if(marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
+      return true;
+    }
+    
   }
 
   getCoinMarketCapData(currencyName, currencyAbber) {
