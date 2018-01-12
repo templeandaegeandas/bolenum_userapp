@@ -539,7 +539,8 @@ export class TradeNowComponent implements OnInit {
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
     }, error => {
-      this.toastrService.error(error.json().message, "Success!");
+      this.hideOrderCancelModel();
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
 

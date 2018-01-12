@@ -202,7 +202,7 @@ export class SellComponent implements OnInit, OnDestroy {
       this.getOrderDetails();
       this.toastrService.success("Trade Completed!", "Success!");
     }, error => {
-      this.toastrService.error(error.json().message, "Success!");
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
 
@@ -214,7 +214,7 @@ export class SellComponent implements OnInit, OnDestroy {
       console.log("success.message");
       this.toastrService.success(success.message, "Success!");
     }, error => {
-      this.toastrService.error(error.json().message, "Success!");
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
 
@@ -224,7 +224,7 @@ export class SellComponent implements OnInit, OnDestroy {
       console.log("success.message");
       this.toastrService.success(success.message, "Success");
     }, error => {
-      this.toastrService.error(error.json().message, "Success!");
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
 

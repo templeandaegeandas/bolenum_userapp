@@ -205,6 +205,7 @@ export class TradingComponent implements OnInit {
       this.getOrderDetails();
       console.log(success);
     }, error => {
+      console.log(error)
       this.toastrService.error(error.json().message, "Success!");
     })
   }

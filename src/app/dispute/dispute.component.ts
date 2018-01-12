@@ -155,7 +155,8 @@ export class DisputeComponent implements OnInit {
        this.router.navigate(['market']);
       this.toastrService.success(success.message, 'Success!')
     }, error => {
-      this.toastrService.error(error.json().message, 'Success!')
+      console.log(error)
+      this.toastrService.error(error.json().message, 'Error!')
     })
   }
 
