@@ -58,9 +58,7 @@ export class DisputeComponent implements OnInit {
     private tradingService: TradingService,
     private appEventEmiterService: AppEventEmiterService) {
       this.appEventEmiterService.currentMessage.subscribe(message => {
-        console.log(message)
-        this.jsonMessage = message;
-      if(this.jsonMessage.PAID_NOTIFICATION == "PAID_NOTIFICATION") {
+      if(message == "PAID_NOTIFICATION") {
         this.router.navigate(['market']);
         toastrService.success("You trade is completed successfully! You will get the BLN after some time!", "Success");
       }
@@ -133,6 +131,7 @@ export class DisputeComponent implements OnInit {
         this.toastrService.success(success.message, 'Success!')
         this.router.navigate(['dashboard']);
       }, error => {
+        console.log(error)
         this.toastrService.error(error.json().message, 'Error!')
         this.loading = false;
       })
@@ -155,6 +154,9 @@ export class DisputeComponent implements OnInit {
       }
        this.router.navigate(['market']);
       this.toastrService.success(success.message, 'Success!')
+    }, error => {
+      console.log(error)
+      this.toastrService.error(error.json().message, 'Error!')
     })
   }
 
