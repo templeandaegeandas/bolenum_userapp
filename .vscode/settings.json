@@ -1,8 +1,0 @@
-// Place your settings in this file to overwrite default and user settings.
-{
-    "terminal.integrated.env.linux": {
-        "PATH": "/home/himanshu/.platformio/penv/bin:/home/himanshu/.local/share/umake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin"
-    },
-    "files.autoSave": true,
-    "editor.fontSize": 14
-}
