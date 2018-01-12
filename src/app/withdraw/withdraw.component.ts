@@ -33,7 +33,6 @@ export class WithdrawComponent implements OnInit {
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService,
      private toastrService: ToastrService) {
-    this.getCurrencyList();
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
         this.getListOfUserWithdrawlTransaction(this.data);
@@ -45,6 +44,7 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.getCurrencyList();
   }
 
   withdrawAmount(form) {

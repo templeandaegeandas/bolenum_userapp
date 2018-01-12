@@ -17,7 +17,6 @@ export class SellComponent implements OnInit, OnDestroy {
   orderId: any;
   bankName: string;
   branch: string;
-  ifscCode: string;
   showTime:any;
   accountNumber: string;
   walletAddress: string;
@@ -86,7 +85,6 @@ export class SellComponent implements OnInit, OnDestroy {
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
-      this.ifscCode = success.data.accountDetails.ifscCode;
       this.walletAddress = success.data.walletAddress;
       this.totalPrice = success.data.totalPrice;
       this.sellerName = success.data.sellerName;

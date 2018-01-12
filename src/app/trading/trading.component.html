@@ -7,12 +7,9 @@
       <div class="col-sm-10 col-sm-offset-1 timer-margin">
         <div class="timer-property">
           <p *ngIf="orderStatus=='LOCKED' && !isConfirmed" class="font-thick"><i class="fa fa-clock-o" aria-hidden="true"></i> Time left to pay</p>
-
           <p class="timer-font-pro" id="demo"></p>
-
           <p>When payment time went out, the trade will be cancelled and we will send back the fund to seller.</p>
         </div>
-
       </div>
       <div class="col-sm-12 ">
         <div class="col-sm-12">
@@ -43,10 +40,6 @@
                   <th>Bank name</th>
                   <td>{{bankName}}</td>
                 </tr>
-                <!-- <tr>
-                  <th>BVN code</th>
-                  <td>{{ifscCode}}</td>
-                </tr> -->
                 <tr>
                   <th>Bank account number</th>
                   <td>{{accountNumber}}</td>
@@ -62,7 +55,6 @@
       </div>
       <!-- payment details -->
     </section>
-
     <!-- <section *ngIf="hasPaymentConfirm">
       <div class="col-sm-10 col-sm-offset-1 marginConfirm">
         <h4 class="heading-Text">WAIT FOR PAYMENT CONFIRMATION</h4>
@@ -77,10 +69,8 @@
           </div>
         </div>
       </div>
-
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
           <div class="modal-content">
             <div class="modal-header modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -91,11 +81,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" >Yes</button>
-
               <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
           </div>
-
         </div>
       </div>
     </section> -->
