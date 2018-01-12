@@ -39,8 +39,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let pair of coinList.market; let i=index;" class="marketBodyColor">
-                      <td class="hand-icon table-content-font" [ngClass]="{active: isActive(coinList.currencyId,pair.currencyId)}" (click)=changePair(coinList,pair)>{{pair.currencyAbbreviation}}</td>
+                    <tr *ngFor="let pair of coinList.market; let i=index;" class="marketBodyColor"
+                      [ngClass]="{active: isActive(coinList.currencyId,pair.currencyId)}" (click)=changePair(coinList,pair)>
+                      <td class="hand-icon table-content-font">{{pair.currencyAbbreviation}}</td>
                       <td class="table-content-font">
                         <span *ngIf="coinList.currencyAbbreviation=='BTC'">{{pair.priceBTC | number:'1.8-8'}}</span>
                         <span *ngIf="coinList.currencyAbbreviation=='ETH'">{{pair.priceETH | number:'1.8-8'}}</span>
@@ -166,511 +167,434 @@
             </div>
           </div>
         </div>
-        <!-- <second Row> -->
-        <!--  <div class="row"> -->
-        <!--  <div class="col-md-3">
-        </div -->
-        <!--  <div class=""> -->
-        <!-- for bln btc -->
-        <!-- <div class="row">
-          <div class="col-md-5 tab-margin">
-            <!-- <div class="exchange-pair-text">{{pairName}}</div> -->
-            <!--  </div> -->
-            <div class="col-md-12 trade-margin">
+        <div class="col-md-12 trade-margin">
+          <div class="row">
+            <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form">
               <div class="row">
-                <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form">
+                <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
+                  <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
                   <div class="row">
-                    <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-                      <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
-                      <div class="row">
-                        <!--  /* BUY CODE STARTS HERE */ -->
-                        <div class="col-sm-12 head-padding heading-hand-icon padding-toggle">
-                          <div class=" heading-padding-sell-buy border-radious-buy">
-                            <span class="text-center">BUY</span>
-                            <!-- <span class="pull-right">Available Balance: 0.0</span> -->
+                    <!--  /* BUY CODE STARTS HERE */ -->
+                    <div class="col-sm-12 head-padding heading-hand-icon padding-toggle">
+                      <div class=" heading-padding-sell-buy border-radious-buy">
+                        <span class="text-center">BUY</span>
+                        <!-- <span class="pull-right">Available Balance: 0.0</span> -->
+                      </div>
+                      <div style="cursor: auto;" *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'">
+                        <div class="col-md-12 total-currency-message">
+                          <p>You have {{marketCurrencyBal | number:'1.8-8'}} {{marketCurrency}} and {{pairedCurrencyBal | number:'1.8-8'}} {{pairedCurrency}} in your wallet. </p>
+                        </div>
+                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+                          <p class="tradeErrorTextColor" *ngIf="hasBuyAmount">Please Enter Amount To Start Trading</p>
+                          <select class="trade-dropdown" [(ngModel)]="setBuyTradingValue" (ngModelChange)="setBuyTradeValue(setBuyTradingValue)">
+                            <option [value]="tv.valueType" *ngFor="let tv of tradeValue">{{tv.valueType}}</option>
+                          </select>
+                        </div>
+                        <div *ngIf="isBuyMarket">
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{pairedCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="buyVolumeData" #buyVolumeData="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" [(ngModel)]="buyVolume" id="email" (ngModelChange)="calculateBuyFee()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="buyVolumeData.invalid">
+                                  <div *ngIf="buyVolumeData.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div style="cursor: auto;" *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'">
-                            <div class="col-md-12 total-currency-message">
-                              <p>You have {{marketCurrencyBal | number:'1.8-8'}} {{marketCurrency}} and {{pairedCurrencyBal | number:'1.8-8'}} {{pairedCurrency}} in your wallet. </p>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{marketCurrency}})</label>
                             </div>
-                            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-                              <p class="tradeErrorTextColor" *ngIf="hasBuyAmount">Please Enter Amount To Start Trading</p>
-                              <select class="trade-dropdown" [(ngModel)]="setBuyTradingValue" (ngModelChange)="setBuyTradeValue(setBuyTradingValue)">
-                                <option [value]="tv.valueType" *ngFor="let tv of tradeValue">{{tv.valueType}}</option>
-                              </select>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="priceVolumeData" #priceVolumeData="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="buyPrice" id="amount" name="amount" (ngModelChange)="calculateBuyFee()">
                             </div>
-                            <div *ngIf="isBuyMarket">
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{pairedCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="buyVolumeData" #buyVolumeData="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" [(ngModel)]="buyVolume" id="email" (ngModelChange)="calculateBuyFee()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="buyVolumeData.invalid">
-                                      <div *ngIf="buyVolumeData.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="priceVolumeData.invalid">
+                                  <div *ngIf="priceVolumeData.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct price.</p>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="priceVolumeData" #priceVolumeData="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="buyPrice" id="amount" name="amount" (ngModelChange)="calculateBuyFee()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="priceVolumeData.invalid">
-                                      <div *ngIf="priceVolumeData.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct price.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Total Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text"  class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="buyTotalPrice | number:'1.8-8'" (ngModelChange)="totalPrice=$event" id="amount" name="amount" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="Fees" [ngModel]="buyTradingFee | number:'1.8-8'" (ngModelChange)="buyVolume*buyPrice=$event" name="Fees" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Net Total (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="netTotal" [ngModel]="buyPriceWithFee | number:'1.8-8'" (ngModelChange)="buyVolume*buyPrice=$event" name="netTotal" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 total-coin">
-                                <p>Equivalent total {{marketCurrency}} price for this order</p>
-                              </div>
-                              <hr>
-                              <div class="col-md-12 button-submit text-center">
-                                <button [disabled]="buyVolumeData.invalid || priceVolumeData.invalid" class="submit_button_buy " (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
-                              </div>
-                              <!-- <div class="col-md-12 trade-field">
-                                <div class="col-md-6  buy-button-left">
-                                  <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
-                                </div>
-                                <div class="col-md-6  sell-button-right">
-                                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
-                                </div>
-                              </div>  -->
                             </div>
-                            <div *ngIf="!isBuyMarket">
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="amount">Amount (in {{pairedCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="sellBuyVloume" #sellBuyVloume="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="email" [(ngModel)]="buyVolume" (ngModelChange)="oneBuyBtc()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyVloume.invalid">
-                                      <div *ngIf="sellBuyVloume.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="price">Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="buyPrice" [disabled]=true>
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyPrice.invalid">
-                                      <div *ngIf="sellBuyPrice.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Total Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="buyTotalPrice | number:'1.8-8'" (ngModelChange)="buyTotalPrice=$event" id="amount" name="amount" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="Fees" [ngModel]="buyTradingFee | number:'1.8-8'" name="Fees" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Net Total (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="netTotal" [ngModel]="buyPriceWithFee | number:'1.8-8'" name="netTotal" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 total-coin">
-                                <p>Equivalent {{marketCurrency}} price for this order</p>
-                              </div>
-                              <hr>
-                              <!-- <div class="col-md-12 trade-field">
-                                <hr>
-                                <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
-                              </div> -->
-                              <div class="col-md-12 text-center button-submit">
-                                <button [disabled]="sellBuyVloume.invalid || sellBuyPrice.invalid" class="submit_button_market_buy" (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
-                              </div>
-                              <!-- <div class="col-md-12 trade-field">
-                                <div class="col-md-6  buy-button-left">
-                                  <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
-                                </div>
-                                <div class="col-md-6  sell-button-right">
-                                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
-                                </div>
-                              </div> -->
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Total Price (in {{marketCurrency}})</label>
                             </div>
+                            <div class="col-md-7">
+                              <input type="text"  class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="buyTotalPrice | number:'1.8-8'" (ngModelChange)="totalPrice=$event" id="amount" name="amount" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="Fees" [ngModel]="buyTradingFee | number:'1.8-8'" (ngModelChange)="buyVolume*buyPrice=$event" name="Fees" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Net Total (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="netTotal" [ngModel]="buyPriceWithFee | number:'1.8-8'" (ngModelChange)="buyVolume*buyPrice=$event" name="netTotal" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 total-coin">
+                            <p>Equivalent total {{marketCurrency}} price for this order</p>
+                          </div>
+                          <hr>
+                          <div class="col-md-12 button-submit text-center">
+                            <button [disabled]="buyVolumeData.invalid || priceVolumeData.invalid" class="submit_button_buy " (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
                           </div>
                         </div>
-                        <!--  /* BUY CODE ENDS HERE */ -->
+                        <div *ngIf="!isBuyMarket">
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="amount">Amount (in {{pairedCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="sellBuyVloume" #sellBuyVloume="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="email" [(ngModel)]="buyVolume" (ngModelChange)="oneBuyBtc()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyVloume.invalid">
+                                  <div *ngIf="sellBuyVloume.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="price">Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="buyPrice" [disabled]=true>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyPrice.invalid">
+                                  <div *ngIf="sellBuyPrice.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Total Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="buyTotalPrice | number:'1.8-8'" (ngModelChange)="buyTotalPrice=$event" id="amount" name="amount" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="Fees" [ngModel]="buyTradingFee | number:'1.8-8'" name="Fees" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Net Total (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="netTotal" [ngModel]="buyPriceWithFee | number:'1.8-8'" name="netTotal" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 total-coin">
+                            <p>Equivalent {{marketCurrency}} price for this order</p>
+                          </div>
+                          <hr>
+                          <div class="col-md-12 text-center button-submit">
+                            <button [disabled]="sellBuyVloume.invalid || sellBuyPrice.invalid" class="submit_button_market_buy" (click)="showModel('BUY', buyVolume, buyPrice, null)">SUBMIT BUY ORDER</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
-                      <!-- <div class="col-md-12 trade-field trade-button-margin">
-                        <div class="col-md-6  buy-button-left">
-                          <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
-                        </div>
-                        <div class="col-md-6  sell-button-right">
-                          <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
-                        </div>
-                      </div> -->
-                      <!-- for buy section -->
-                      <section>
-                        <div class="col-md-12 trade-field">
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div *ngIf="hasData">
-                                <p class="error-buy-sell">Please Enter Amount Or Price </p>
-                              </div>
-                              <div class="col-sm-12 pad-marg-top padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="buyDataAmount" #buyDataAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyAmount" (ngModelChange)="changedBuyList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="buyDataAmount.invalid">
-                                      <div *ngIf="buyDataAmount.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12">
-                              <div class="col-sm-12 padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="buyDataPrice" #buyDataPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyPrice" (ngModelChange)="changedBuyList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="buyDataPrice.invalid">
-                                      <div *ngIf="buyDataPrice.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct price.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <!-- <div *ngIf="buyOrderLength==0 && sellColor" class="col-sm-12 padding-level margin-buy-Button">
-                              <button class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
-                            </div> -->
-                            <div  class="col-sm-12 text-center margin-buy-Button">
-                              <button [disabled]="sellOrderLength!=0" class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                    <!-- for sell section -->
+                    <!--  /* BUY CODE ENDS HERE */ -->
                   </div>
                 </div>
-                <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form">
-                  <div class="row">
-                    <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
-                      <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
+                <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
+                  <section>
+                    <div class="col-md-12 trade-field">
                       <div class="row">
-                        <!--  /* BUY CODE STARTS HERE */ -->
-                        <div class="col-sm-12 head-padding heading-hand-icon padding-toggle">
-                          <div class="heading-padding-sell-buy-red border-radious-sell">
-                            <span class="text-center">SELL</span>
-                            <!--  <span class="pull-right">Available Balance: 0.0</span> -->
+                        <div class="col-sm-12">
+                          <div *ngIf="hasData">
+                            <p class="error-buy-sell">Please Enter Amount Or Price </p>
                           </div>
-                          <div style="cursor: auto;" *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'">
-                            <div class="col-md-12 total-currency-message">
-                              <p>You have {{marketCurrencyBal | number:'1.8-8'}} {{marketCurrency}} and {{pairedCurrencyBal | number:'1.8-8'}} {{pairedCurrency}} in your wallet. </p>
+                          <div class="col-sm-12 pad-marg-top padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                             </div>
-                            <div class="col-md-12 trade-drop-down trade-drop-down-margin">
-                              <p class="tradeErrorTextColor" *ngIf="hasSellAmount">Please Enter Amount To Start Trading</p>
-                              <select class="trade-dropdown" [(ngModel)]="setSellTradingValue" (ngModelChange)="setSellTradeValue(setSellTradingValue)">
-                                <option [value]="tv.valueType" *ngFor="let tv of tradeValue">{{tv.valueType}}</option>
-                              </select>
+                            <div class="col-md-7">
+                              <input type="text" name="buyDataAmount" #buyDataAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyAmount" (ngModelChange)="changedBuyList()">
                             </div>
-                            <div *ngIf="isSellMarket">
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{pairedCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="sellFee" #sellFee="ngModel" class="form-control" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" [(ngModel)]="sellVolume" id="email" (ngModelChange)="calculateSellFee()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellFee.invalid">
-                                      <div *ngIf="sellFee.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="buyDataAmount.invalid">
+                                  <div *ngIf="buyDataAmount.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" placeholder="0.00000000" name="amountFee" #amountFee="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="sellPrice" id="amount" name="amount" (ngModelChange)="calculateSellFee()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="amountFee.invalid">
-                                      <div *ngIf="amountFee.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct price.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Total Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="sellTotalPrice | number:'1.8-8'" (ngModelChange)="totalPrice=$event" id="amount" name="amount" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="Fees" [ngModel]="sellTradingFee | number:'1.8-8'" (ngModelChange)="sellVolume*sellPrice=$event" name="Fees" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Net Total (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="netTotal" [ngModel]="sellPriceWithFee | number:'1.8-8'" (ngModelChange)="sellVolume*sellPrice=$event" name="netTotal" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 total-coin">
-                                <p>Equivalent total {{marketCurrency}} price for this order</p>
-                              </div>
-                              <hr>
-                              <div class="col-md-12 button-submit text-center">
-                                <button [disabled]="sellFee.invalid || amountFee.invalid" class="submit_button_limit " (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
-                              </div>
-                              <!-- <div class="col-md-12 trade-field">
-                                <div class="col-md-6  buy-button-left">
-                                  <button class="trade-button-buy buy-button-colors" (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
-                                </div>
-                                <div class="col-md-6  sell-button-right">
-                                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
-                                </div>
-                              </div>  -->
-                            </div>
-                            <div *ngIf="!isSellMarket">
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="amount">Amount (in {{pairedCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="number" class="form-control" id="email" [(ngModel)]="sellVolume" (ngModelChange)="oneSellBtc()">
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="price">Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="number" class="form-control" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="sellPrice" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Total Price (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="sellTotalPrice | number:'1.8-8'" (ngModelChange)="sellTotalPrice=$event" id="amount" name="amount" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="Fees" [ngModel]="sellTradingFee | number:'1.8-8'" name="Fees" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 trade-field">
-                                <div class="col-md-5">
-                                  <label for="email">Net Total (in {{marketCurrency}})</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" class="form-control" id="netTotal" [ngModel]="sellPriceWithFee | number:'1.8-8'" name="netTotal" [disabled]=true>
-                                </div>
-                              </div>
-                              <div class="col-md-12 total-coin">
-                                <p>Equivalent {{marketCurrency}} price for this order</p>
-                              </div>
-                              <hr>
-                              <!-- <div class="col-md-12 trade-field">
-                                <hr>
-                                <p>Fee : {{tradeFee | number:'1.1-8'}}%</p>
-                              </div> -->
-                              <div class="col-md-12 text-center button-submit">
-                                <button class="submit_button_market_sell" (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
-                              </div>
-                              <!-- <div class="col-md-12 trade-field">
-                                <div class="col-md-6  buy-button-left">
-                                  <button class="trade-button-buy buy-button-colors " (click)="showModel('BUY', order.volume, order.price, null)">BUY</button>
-                                </div>
-                                <div class="col-md-6  sell-button-right">
-                                  <button class="trade-button-sell " (click)="showModel('SELL', order.volume, order.price, null)">SELL</button>
-                                </div>
-                              </div> -->
                             </div>
                           </div>
                         </div>
-                        <!--  /* BUY CODE ENDS HERE */ -->
+                        <div class="col-sm-12">
+                          <div class="col-sm-12 padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" name="buyDataPrice" #buyDataPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyPrice" (ngModelChange)="changedBuyList()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="buyDataPrice.invalid">
+                                  <div *ngIf="buyDataPrice.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct price.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div  class="col-sm-12 text-center margin-buy-Button">
+                          <button [disabled]="sellOrderLength!=0" class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
+                        </div>
                       </div>
                     </div>
-                    <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
-                      <!-- <div class="col-md-12 trade-field trade-button-margin">
-                        <div class="col-md-6  buy-button-left">
-                          <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
-                        </div>
-                        <div class="col-md-6  sell-button-right">
-                          <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
-                        </div>
-                      </div> -->
-                      <!-- for buy section -->
-                      <section>
-                        <div class="col-md-12 trade-field">
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div *ngIf="hasSellData">
-                                <p class="error-buy-sell">Please Enter Amount Or Price </p>
-                              </div>
-                              <div class="col-sm-12 pad-marg-top padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="sellBuyAmount" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyAmount.invalid">
-                                      <div *ngIf="sellBuyAmount.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-12">
-                              <div class="col-sm-12 padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyPrice.invalid">
-                                      <div *ngIf="sellBuyPrice.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct price.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <hr>
-                            <div class="col-sm-12 text-center margin-buy-Button">
-                              <button [disabled]="buyOrderLength!=0" class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
-                            </div>
-                            <!-- <div *ngIf="sellOrderLength==0 && !sellColor" class="col-sm-12 padding-level margin-buy-Button">
-                              <button class="buy-button-color" (click)="createAdvertisement('BUY')">Create Advertisement</button>
-                            </div> -->
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                    <!-- for sell section -->
-                  </div>
+                  </section>
                 </div>
+                <!-- for sell section -->
               </div>
             </div>
-          <!-- </div>
-        </div> -->
-        <!--  </div> -->
+            <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form">
+              <div class="row">
+                <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
+                  <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
+                  <div class="row">
+                    <!--  /* BUY CODE STARTS HERE */ -->
+                    <div class="col-sm-12 head-padding heading-hand-icon padding-toggle">
+                      <div class="heading-padding-sell-buy-red border-radious-sell">
+                        <span class="text-center">SELL</span>
+                      </div>
+                      <div style="cursor: auto;" *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'">
+                        <div class="col-md-12 total-currency-message">
+                          <p>You have {{marketCurrencyBal | number:'1.8-8'}} {{marketCurrency}} and {{pairedCurrencyBal | number:'1.8-8'}} {{pairedCurrency}} in your wallet. </p>
+                        </div>
+                        <div class="col-md-12 trade-drop-down trade-drop-down-margin">
+                          <p class="tradeErrorTextColor" *ngIf="hasSellAmount">Please Enter Amount To Start Trading</p>
+                          <select class="trade-dropdown" [(ngModel)]="setSellTradingValue" (ngModelChange)="setSellTradeValue(setSellTradingValue)">
+                            <option [value]="tv.valueType" *ngFor="let tv of tradeValue">{{tv.valueType}}</option>
+                          </select>
+                        </div>
+                        <div *ngIf="isSellMarket">
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Amount (in {{pairedCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="sellFee" #sellFee="ngModel" class="form-control" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" [(ngModel)]="sellVolume" id="email" (ngModelChange)="calculateSellFee()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellFee.invalid">
+                                  <div *ngIf="sellFee.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" placeholder="0.00000000" name="amountFee" #amountFee="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" title="Equivalent ETH price for this order" [(ngModel)]="sellPrice" id="amount" name="amount" (ngModelChange)="calculateSellFee()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="amountFee.invalid">
+                                  <div *ngIf="amountFee.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct price.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Total Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="sellTotalPrice | number:'1.8-8'" (ngModelChange)="totalPrice=$event" id="amount" name="amount" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="Fees" [ngModel]="sellTradingFee | number:'1.8-8'" (ngModelChange)="sellVolume*sellPrice=$event" name="Fees" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Net Total (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="netTotal" [ngModel]="sellPriceWithFee | number:'1.8-8'" (ngModelChange)="sellVolume*sellPrice=$event" name="netTotal" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 total-coin">
+                            <p>Equivalent total {{marketCurrency}} price for this order</p>
+                          </div>
+                          <hr>
+                          <div class="col-md-12 button-submit text-center">
+                            <button [disabled]="sellFee.invalid || amountFee.invalid" class="submit_button_limit " (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
+                          </div>
+                        </div>
+                        <div *ngIf="!isSellMarket">
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="amount">Amount (in {{pairedCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="number" class="form-control" id="email" [(ngModel)]="sellVolume" (ngModelChange)="oneSellBtc()">
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="price">Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="number" class="form-control" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="sellPrice" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Total Price (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" title="Equivalent total {{marketCurrency}} price for this order" [ngModel]="sellTotalPrice | number:'1.8-8'" (ngModelChange)="sellTotalPrice=$event" id="amount" name="amount" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Fee ({{tradeFee}}% in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="Fees" [ngModel]="sellTradingFee | number:'1.8-8'" name="Fees" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 trade-field">
+                            <div class="col-md-5">
+                              <label for="email">Net Total (in {{marketCurrency}})</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" class="form-control" id="netTotal" [ngModel]="sellPriceWithFee | number:'1.8-8'" name="netTotal" [disabled]=true>
+                            </div>
+                          </div>
+                          <div class="col-md-12 total-coin">
+                            <p>Equivalent {{marketCurrency}} price for this order</p>
+                          </div>
+                          <hr>
+                          <div class="col-md-12 text-center button-submit">
+                            <button class="submit_button_market_sell" (click)="showModel('SELL', sellVolume, sellPrice, null)">SUBMIT SELL ORDER</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--  /* BUY CODE ENDS HERE */ -->
+                  </div>
+                </div>
+                <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
+                  <!-- for buy section -->
+                  <section>
+                    <div class="col-md-12 trade-field">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div *ngIf="hasSellData">
+                            <p class="error-buy-sell">Please Enter Amount Or Price </p>
+                          </div>
+                          <div class="col-sm-12 pad-marg-top padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" name="sellBuyAmount" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyAmount.invalid">
+                                  <div *ngIf="sellBuyAmount.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="col-sm-12 padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyPrice.invalid">
+                                  <div *ngIf="sellBuyPrice.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct price.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="col-sm-12 text-center margin-buy-Button">
+                          <button [disabled]="buyOrderLength!=0" class="sell-button-color" (click)="createAdvertisement('SELL')">Create Advertisement</button>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <!-- for sell section -->
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- for drop-down -->
         <!-- before login div -->
         <div class="row">
@@ -821,162 +745,152 @@
               </div>
             </div>
             <div class="row">
-              <!-- <div class="col-sm-3 col-sm-offset-9">
-                <div class="row"> -->
-                  <div class="col-sm-12 trade-History-Button">
-                    <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span> | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}">MY TRADES</span>                  </p>
-                  </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
-                </div>
-                <div class="trade-History">
-                  <div class="loader spiner-position" *ngIf="isLoading"></div>
-                  <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
-                    <thead class="table-Head ">
-                      <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Price (1 Unit)</th>
-                        <th>Amount</th>
-                        <th>Total Price</th>
-                        <!-- <th>Order Standard</th> -->
-                      </tr>
-                    </thead>
-                    <tbody class="table-content-font ">
-                      <tr *ngFor="let tx of allTradedList">
-                        <td>{{tx.createdOn | date}}</td>
-                        <td>{{tx.createdOn | date:'shortTime'}}</td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                        </td>
-                        <!-- <td>{{tx.orderStandard}}</td> -->
-                      </tr>
-                      <tr *ngIf="allTradedListLength >=10 ">
-                        <td colspan="5">
-                          <p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p>
-                        </td>
-                      </tr>
-                      <!-- <div *ngIf="allTradedListLength >=10 ">
-                        <p (click)="getMoreOrders()">More...</p>
-                      </div> -->
-                      <div *ngIf="allTradedListLength==0">
-                        <p class="hasTableData"> No trades . . . !</p>
-                        <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
-                      </div>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="trade-History">
-                  <div class="loader spiner-position" *ngIf="isLoadingForMyTrade"></div>
-                  <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlurForMyTrading}">
-                    <thead class="table-Head ">
-                      <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Type</th>
-                        <th>Price (1 Unit)</th>
-                        <th>Amount</th>
-                        <th>Total Price</th>
-                        <!-- <th>Order Standard</th> -->
-                      </tr>
-                    </thead>
-                    <tbody class="table-content-font">
-                      <tr *ngFor="let tx of myTradedList">
-                        <td>{{tx.createdOn | date}}</td>
-                        <td>{{tx.createdOn | date:'shortTime'}}</td>
-                        <td style=color:#2AD747>
-                          <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
-                          <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
-                        </td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
-                          <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
-                        </td>
-                      </tr>
-                      <tr *ngIf=" myTradedListLength >=10 ">
-                        <td colspan="6">
-                          <p class="more_button" (click)="getMoreMyTradeList()" title="click to show more list">more</p>
-                        </td>
-                      </tr>
-                      <div *ngIf=" myTradedListLength ==0 ">
-                        <p class="hasTableData"> No trades . . . !</p>
-                        <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
-                      </div>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="col-sm-12 trade-History-Button">
+                <p>View: <span (click)="marketTradeList()" [ngClass]="{'button-color':marketTradeColor,'button-color-before-active':beforeActiveMarket}">MARKET TRADES</span> | <span (click)="myTradeList()" [ngClass]="{'button-color':myTradeColor ,'button-color-before-active':beforeActiveMyTrade}">MY TRADES</span>                  </p>
               </div>
             </div>
-            <!-- trade history page -->
-            <!-- popup model -->
-            <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content border-0">
-                  <div class="modal-header trade-pop-upheader">
-                    <button type="button" class="close" (click)="hideModel()">&times;</button>
-                    <h4 class="modal-title confirm-order">Order Confirmation</h4>
+            <div class="trade-History">
+              <div class="loader spiner-position" *ngIf="isLoading"></div>
+              <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
+                <thead class="table-Head ">
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Price (1 Unit)</th>
+                    <th>Amount</th>
+                    <th>Total Price</th>
+                  </tr>
+                </thead>
+                <tbody class="table-content-font ">
+                  <tr *ngFor="let tx of allTradedList">
+                    <td>{{tx.createdOn | date}}</td>
+                    <td>{{tx.createdOn | date:'shortTime'}}</td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="allTradedListLength >=10 ">
+                    <td colspan="5">
+                      <p (click)="getMoreOrders()" class="more_button" title="click to show more list">more</p>
+                    </td>
+                  </tr>
+                  <div *ngIf="allTradedListLength==0">
+                    <p class="hasTableData"> No trades . . . !</p>
+                    <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
                   </div>
-                  <div class="modal-body">
-                    <!-- <p>Some text in the modal.</p> -->
-                    <div class="row ">
-                      <div class="col-sm-12">
-                        <span>You want to {{order.orderType}} <span *ngIf="order.volume > 0">{{order.volume | number:'1.8-8'}}</span> {{pairedCurrency}} at <span *ngIf="order.volume > 0">{{order.price * order.volume | number:'1.8-8'}}</span> {{marketCurrency}}
-                        price.
-                      </span>
-                    </div>
+                </tbody>
+              </table>
+            </div>
+            <div class="trade-History">
+              <div class="loader spiner-position" *ngIf="isLoadingForMyTrade"></div>
+              <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlurForMyTrading}">
+                <thead class="table-Head ">
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Price (1 Unit)</th>
+                    <th>Amount</th>
+                    <th>Total Price</th>
+                  </tr>
+                </thead>
+                <tbody class="table-content-font">
+                  <tr *ngFor="let tx of myTradedList">
+                    <td>{{tx.createdOn | date}}</td>
+                    <td>{{tx.createdOn | date:'shortTime'}}</td>
+                    <td style=color:#2AD747>
+                      <span *ngIf="tx.buyer.userId==userId" style=color:#2AD747>Buy</span>
+                      <span *ngIf="tx.seller.userId==userId" style=color:#DB2828>Sell</span>
+                    </td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation=='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.pairedCurrency.currencyAbbreviation}}</span>
+                      <span *ngIf="tx.pairedCurrency.currencyAbbreviation!='NGN'">{{tx.price * tx.volume | number:'1.8-8'}} {{tx.marketCurrency.currencyAbbreviation}}</span>
+                    </td>
+                  </tr>
+                  <tr *ngIf=" myTradedListLength >=10 ">
+                    <td colspan="6">
+                      <p class="more_button" (click)="getMoreMyTradeList()" title="click to show more list">more</p>
+                    </td>
+                  </tr>
+                  <div *ngIf=" myTradedListLength ==0 ">
+                    <p class="hasTableData"> No trades . . . !</p>
+                    <p class="message-padding">You have not made any trades yet, Once you make some trades, they will appear here.</p>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
-                  <button *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
-                  <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
-                </div>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
-          <!-- cancel popup-->
-          <div bsModal #orderCancelModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content border-0">
-                <div class="modal-header trade-pop-upheader">
-                  <button type="button" class="close" (click)="hideOrderCancelModel()">&times;</button>
-                  <h4 class="modal-title confirm-order">Order Cancel Confirmation</h4>
-                </div>
-                <div class="modal-body">
-                  <!-- <p>Some text in the modal.</p> -->
-                  <div class="row ">
-                    <div class="col-sm-12">
-                      <span>Are you sure. You want to cancel this order?</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn confirm-Button button-Confirm" (click)="cancelOrder()">Yes</button>
-                  <button type="button" class="btn confirm-Button button-Confirm" (click)="hideOrderCancelModel()">Close</button>
+        </div>
+        <!-- trade history page -->
+        <!-- popup model -->
+        <div bsModal #buySellModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content border-0">
+              <div class="modal-header trade-pop-upheader">
+                <button type="button" class="close" (click)="hideModel()">&times;</button>
+                <h4 class="modal-title confirm-order">Order Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <!-- <p>Some text in the modal.</p> -->
+                <div class="row ">
+                  <div class="col-sm-12">
+                    <span>You want to {{order.orderType}} <span *ngIf="order.volume > 0">{{order.volume | number:'1.8-8'}}</span> {{pairedCurrency}} at <span *ngIf="order.volume > 0">{{order.price * order.volume | number:'1.8-8'}}</span> {{marketCurrency}}
+                    price.
+                  </span>
                 </div>
               </div>
             </div>
+            <div class="modal-footer">
+              <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+              <button *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
+              <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
+            </div>
           </div>
-          <!-- popup model -->
         </div>
       </div>
+      <!-- cancel popup-->
+      <div bsModal #orderCancelModel="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content border-0">
+            <div class="modal-header trade-pop-upheader">
+              <button type="button" class="close" (click)="hideOrderCancelModel()">&times;</button>
+              <h4 class="modal-title confirm-order">Order Cancel Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              <!-- <p>Some text in the modal.</p> -->
+              <div class="row ">
+                <div class="col-sm-12">
+                  <span>Are you sure. You want to cancel this order?</span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn confirm-Button button-Confirm" (click)="cancelOrder()">Yes</button>
+              <button type="button" class="btn confirm-Button button-Confirm" (click)="hideOrderCancelModel()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- popup model -->
     </div>
   </div>
-  <!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
+</div>
+</div>
+<!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
