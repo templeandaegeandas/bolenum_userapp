@@ -52,6 +52,7 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
   public currencyName: any;
+  public pageSize: any = 10;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -519,54 +520,14 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
-      if(this.jsonMessage=="PAID_NOTIFICATION" || this.jsonMessage=="receivedPayment" || this.jsonMessage=="ORDER_BOOK_NOTIFICATION" || this.jsonMessage==""){
-            this.pairName="NGN/BLN";
-             this.select(4, 3);
-            this.isActive(4, 3);
-      }else{
-          this.select(this.pairedCurrencyId, this.marketCurrencyId);
-          this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
-    }
-      // this.currecyList = success.data;
-      // let currencyId = this.currecyList[0].currencyId;
-      // this.currencyName = this.currecyList[0].currencyName;
-      // this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
-      // let pairedCurrency;
-      // for (let i = 0; i < this.currecyList.length; i++) {
-      //   this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
-      //     this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
-      //     pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
-      //   });
-      // }
-      // setTimeout(() => {
-      //   this.marketCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
-      //   this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
-      //   this.pairedCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
-      //   this.pairId = pairedCurrency[0].pairId;
-      //   console.log(this.pairId);
-      //   // if(this.jsonMessage=="cancelPay"){
-      //   //    this.select(4, 3);
-      //   //   this.isActive(4, 3);
-      //   //    // this.pairId=4;
-      //   //   this.pairName="BLN/NGN";
-      //   // }else{
-      //   this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.pairName = pairedCurrency[0].pairName;
-      // // }
-      //   let pairArray = this.pairName.split("/")
-      //   this.marketCurrency = pairArray[0];
-      //   this.pairedCurrency = pairArray[1];
-      //   let temp = this.pairedCurrency['BLN'];
-      //   this.minPrice =temp[0].lastPrice;
-      //   if (this.pairedCurrency == 'NGN') {
-      //     this.pairedCurrencyType = 'FIAT';
-      //   }
-      //   this.getUserBalance();
-      //   this.getBuyOrderBookData(this.pairId);
-      //   this.getSellOrderBookData(this.pairId);
-      //   this.getOurMarketData();
-      // }, 1000)
+      if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
+        this.pairName = "NGN/BLN";
+        this.select(4, 3);
+        this.isActive(4, 3);
+      } else {
+        this.select(this.pairedCurrencyId, this.marketCurrencyId);
+        this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
+      }
     }, error => {
       this.getCurrencyList();
     })
@@ -577,11 +538,14 @@ export class TradeNowComponent implements OnInit {
       this.hideOrderCancelModel();
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
+    }, error => {
+      this.hideOrderCancelModel();
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
 
   changePair(marketCurrency, pairedCurrency) {
-    this.selectedRow=pairedCurrency.currencyId;
+    this.selectedRow = pairedCurrency.currencyId;
     this.loading = true;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;
@@ -893,12 +857,10 @@ export class TradeNowComponent implements OnInit {
 
   getMoreOrders() {
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-
-    this.tradeNowService.getAllTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+  this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
@@ -913,11 +875,10 @@ export class TradeNowComponent implements OnInit {
   getMoreMyTradeList() {
 
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
-    pageSize = pageSize + 10;
-    this.tradeNowService.getTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoadingForMyTrade = false;
       this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
@@ -933,12 +894,10 @@ export class TradeNowComponent implements OnInit {
   getMoreMyOrder() {
 
     let currentPage = 1;
-    let pageSize = 10;
-
+    this.pageSize = this.pageSize+10;
     this.isOpenOrders = true;
     this.hasBlurOpenOrders = true;
-    pageSize = pageSize + 10;
-    this.tradeNowService.getMyOrdersFromBook(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getMyOrdersFromBook(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
       this.myOrdersInBook = success.data;
@@ -996,10 +955,10 @@ export class TradeNowComponent implements OnInit {
   }
 
   isActive(marketCurrencyId, pairedCurrencyId) {
-    if(marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
+    if (marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
       return true;
     }
-    
+
   }
 
   getCoinMarketCapData(currencyName, currencyAbber) {
