@@ -52,6 +52,7 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
   public currencyName: any;
+  public pageSize: any = 10;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -900,12 +901,10 @@ export class TradeNowComponent implements OnInit {
 
   getMoreOrders() {
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-
-    this.tradeNowService.getAllTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+  this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
@@ -920,11 +919,10 @@ export class TradeNowComponent implements OnInit {
   getMoreMyTradeList() {
 
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
-    pageSize = pageSize + 10;
-    this.tradeNowService.getTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoadingForMyTrade = false;
       this.hasBlurForMyTrading = false;
       this.myTradedList = success.data.content;
@@ -940,12 +938,10 @@ export class TradeNowComponent implements OnInit {
   getMoreMyOrder() {
 
     let currentPage = 1;
-    let pageSize = 10;
-
+    this.pageSize = this.pageSize+10;
     this.isOpenOrders = true;
     this.hasBlurOpenOrders = true;
-    pageSize = pageSize + 10;
-    this.tradeNowService.getMyOrdersFromBook(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getMyOrdersFromBook(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
       this.myOrdersInBook = success.data;
