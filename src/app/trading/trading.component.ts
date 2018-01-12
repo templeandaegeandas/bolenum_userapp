@@ -191,6 +191,8 @@ export class TradingComponent implements OnInit {
       }
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
+    }, error => {
+      this.toastrService.error(error.json().message, "Success!");
     })
   }
 
@@ -200,9 +202,10 @@ export class TradingComponent implements OnInit {
       this.clearInterval();
     }
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
-      // this.appEventEmiterService.changeMessage("cancelPay");
       this.getOrderDetails();
       console.log(success);
+    }, error => {
+      this.toastrService.error(error.json().message, "Success!");
     })
   }
 }

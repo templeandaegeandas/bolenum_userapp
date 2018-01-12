@@ -1,4 +1,4 @@
-import { Component, OnInit , OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { SellService } from './sell.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
@@ -17,7 +17,7 @@ export class SellComponent implements OnInit, OnDestroy {
   orderId: any;
   bankName: string;
   branch: string;
-  showTime:any;
+  showTime: any;
   accountNumber: string;
   walletAddress: string;
   sellerName: string;
@@ -31,7 +31,7 @@ export class SellComponent implements OnInit, OnDestroy {
   subscription: any;
   matchedOn: any;
   isConfirmed: any;
-  getMessage:any;
+  getMessage: any;
   isMatchedConfirm = false;
   dispute = false;
   constructor(
@@ -41,38 +41,38 @@ export class SellComponent implements OnInit, OnDestroy {
     private toastrService: ToastrService,
     private appEventEmiterService: AppEventEmiterService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
-       this.getMessage=message;
-       console.log("Get message",this.getMessage);      
-       if (this.getMessage == "ORDER_CANCELLED") {
+      this.getMessage = message;
+      console.log("Get message", this.getMessage);
+      if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
-        this.showTime="Order Canceled";
+        this.showTime = "Order Canceled";
         this.appEventEmiterService.changeMessage("cancelPay");
         this.clearInterval();
         // this.ngOnInit(); 
       }
-      else if(this.getMessage == "CONFIRM_NOTIFICATION") {
-         this.ngOnInit();
+      else if (this.getMessage == "CONFIRM_NOTIFICATION") {
+        this.ngOnInit();
       }
     });
   }
 
-   ngOnInit() {
+  ngOnInit() {
     window.scrollTo(0, 0);
     this.activatedRoute.params.subscribe(params => {
-      this.orderId = +params['orderId'];  
+      this.orderId = +params['orderId'];
     });
-     this.getOrderDetails();  
-    
+    this.getOrderDetails();
+
   }
 
-  clearInterval(){
-     this.subscription=undefined;
+  clearInterval() {
+    this.subscription = undefined;
     clearInterval(this.subscription);
   }
 
   ngOnDestroy() {
-     this.clearInterval();
+    this.clearInterval();
   }
 
   getOrderDetails() {
@@ -98,29 +98,29 @@ export class SellComponent implements OnInit, OnDestroy {
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.dispute = success.data.isDispute;
-        this.startTradingTimer();
+      this.startTradingTimer();
     }, error => this.router.navigate(['market']))
   }
 
 
-   
+
   startTradingTimer() {
     var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
-    this.subscription = setInterval(() => {
-      if(this.getMessage!="receivedPayment" && this.getMessage !="ORDER_BOOK_NOTIFICATION"){
-      this.startTimer(countDownDate);
-      }
-    }, 1000)
+      this.subscription = setInterval(() => {
+        if (this.getMessage != "receivedPayment" && this.getMessage != "ORDER_BOOK_NOTIFICATION") {
+          this.startTimer(countDownDate);
+        }
+      }, 1000)
 
     }
-    else if (this.orderStatus == 'COMPLETED' && this.getMessage!="CONFIRM_NOTIFICATION") {
+    else if (this.orderStatus == 'COMPLETED' && this.getMessage != "CONFIRM_NOTIFICATION") {
       try {
-        this.showTime='';
+        this.showTime = '';
         this.showTime = "Order Completed";
-        console.log("this.orderStatus", this.getMessage , this.orderStatus);
+        console.log("this.orderStatus", this.getMessage, this.orderStatus);
         this.clearInterval();
       }
       catch (e) {
@@ -133,7 +133,7 @@ export class SellComponent implements OnInit, OnDestroy {
         this.clearInterval();
       }
       catch (e) {
-         console.log(this.subscription);
+        console.log(this.subscription);
       }
     }
     else if (this.orderStatus == 'LOCKED') {
@@ -142,7 +142,7 @@ export class SellComponent implements OnInit, OnDestroy {
         this.clearInterval();
       }
       catch (e) {
-         console.log(this.subscription);
+        console.log(this.subscription);
       }
     }
     else {
@@ -175,7 +175,7 @@ export class SellComponent implements OnInit, OnDestroy {
     if (path == 'sell') {
       try {
         this.showTime = minutes + " : " + seconds;
-        
+
       }
       catch (e) {
         console.log("exception handled")
@@ -186,7 +186,7 @@ export class SellComponent implements OnInit, OnDestroy {
       if (path == 'sell') {
         // this.clearInterval();
         try {
-         this.showTime = "EXPIRED";
+          this.showTime = "EXPIRED";
 
         }
         catch (e) {
@@ -196,11 +196,13 @@ export class SellComponent implements OnInit, OnDestroy {
   }
 
   confirmPay() {
-     this.clearInterval();
-      this.appEventEmiterService.changeMessage("receivedPayment");
-      this.sellService.confirmPay(this.orderId).subscribe(success => {
+    this.clearInterval();
+    this.appEventEmiterService.changeMessage("receivedPayment");
+    this.sellService.confirmPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
       this.toastrService.success("Trade Completed!", "Success!");
+    }, error => {
+      this.toastrService.error(error.json().message, "Success!");
     })
   }
 
@@ -211,6 +213,8 @@ export class SellComponent implements OnInit, OnDestroy {
       this.getOrderDetails();
       console.log("success.message");
       this.toastrService.success(success.message, "Success!");
+    }, error => {
+      this.toastrService.error(error.json().message, "Success!");
     })
   }
 
@@ -219,9 +223,11 @@ export class SellComponent implements OnInit, OnDestroy {
     this.sellService.dispute(this.orderId).subscribe(success => {
       console.log("success.message");
       this.toastrService.success(success.message, "Success");
+    }, error => {
+      this.toastrService.error(error.json().message, "Success!");
     })
   }
 
-   
+
 
 }
