@@ -158,7 +158,7 @@ export class HeaderComponent implements OnInit {
 	getNotificationType(notifyType, notifyId) {
 		if (notifyType != "null" && notifyType == "PAID_NOTIFICATION") {
 			window.open(
-				"sell/" + notifyId,
+				"#/sell/" + notifyId,
 				"fullspace",
 				"width=1024,height=700"
 			);
@@ -167,7 +167,7 @@ export class HeaderComponent implements OnInit {
 			notifyType == "MATCHED_NOTIFICATION"
 		) {
 			window.open(
-				"trading/" + notifyId,
+				"#/trading/" + notifyId,
 				"fullspace",
 				"width=1024,height=700"
 			);

@@ -106,9 +106,9 @@ label.exchange-color {
 
 .buy-orders {
     overflow: hidden;
-    background-color: #3cb371;
+    background-color: #f8f8f8;
     text-align: center;
-    color: #fff;
+    color: #000;
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 14px;
@@ -122,9 +122,9 @@ tr th {
 
 .sell-orders {
     overflow: hidden;
-    background-color: #db2828;
+    background-color: #f8f8f8;
     text-align: center;
-    color: #fff;
+    color: #000;
     padding-top: 6px;
     padding-bottom: 6px;
     /* font-size: 14px; */
@@ -1147,10 +1147,10 @@ select option {
     margin-left: 58px;
 }*/
 
-.border-radious-top {
+/* .border-radious-top {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
+} */
 
 /* .padding-Table {
     padding-left: 20px;
