@@ -38,6 +38,7 @@ export class BeforLoginTradeNowComponent implements OnInit {
   public myTradeColor: boolean = false;
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
+  public pageSize:any =10;
   pairName;
   volume24h;
   countTrade24h;
@@ -233,12 +234,10 @@ export class BeforLoginTradeNowComponent implements OnInit {
 
   getMoreOrders() {
     let currentPage = 1;
-    let pageSize = 10;
+    this.pageSize = this.pageSize+10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-
-    this.tradeNowService.getAllTradedOrders(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;

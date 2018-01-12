@@ -14,6 +14,7 @@ import { WebsocketService } from "../web-socket/web.socket.service";
 export class HeaderComponent implements OnInit {
 	public isOpen = false;
 	public subMenu = false;
+	public address:any;
 	token: String;
 	fullName: String;
 	lastName: String;
@@ -139,6 +140,7 @@ export class HeaderComponent implements OnInit {
 					this.isLoading = false;
 					this.hasBlur = false;
 					this.listOfUserNotification = success.data.content;
+					console.log("List of Noyifications", this.listOfUserNotification);
 					this.listOfUserNotificationLength = this.listOfUserNotification.length;
 					this.changeStatusOfUserNotification();
 				},
@@ -147,6 +149,17 @@ export class HeaderComponent implements OnInit {
 				}
 			);
 	}
+
+
+	/* Identify Notification Type on click of list of notifications */
+        getNotificationType(notifyType,notifyId){
+        			if(notifyType != "null" && notifyType=="PAID_NOTIFICATION"){
+        				window.open('#/sell/' + notifyId ,"fullspace", "width=1024,height=700");
+					}else if(notifyType != "null" && notifyType=="MATCHED_NOTIFICATION"){
+						window.open('#/trading/' + notifyId , "fullspace", "width=1024,height=700");
+        			}
+			 }
+	/*End Of Function Identify Notification Type */
 
 	isLogIn() {
 		if (localStorage.getItem("token") == null) {
