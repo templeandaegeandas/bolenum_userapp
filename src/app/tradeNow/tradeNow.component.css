@@ -11,12 +11,12 @@
 .padding-0{
     padding: 0;
 }
-tr td.active{
+tr.active td{
     color:#DB2828;
 }
-.nav-tabs>li.active a{
+/*.nav-tabs>li.active a{
    color:#DB2828 !important; 
-}
+}*/
 
 .padding-10{
    padding-top: 10px;
