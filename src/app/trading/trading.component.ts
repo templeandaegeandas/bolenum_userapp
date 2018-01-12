@@ -17,7 +17,6 @@ export class TradingComponent implements OnInit {
   orderId: any;
   bankName: string;
   branch: string;
-  ifscCode: string;
   accountNumber: string;
   walletAddress: string;
   sellerName: string;
@@ -67,7 +66,6 @@ export class TradingComponent implements OnInit {
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
-      this.ifscCode = success.data.accountDetails.ifscCode;
       this.walletAddress = success.data.walletAddress;
       this.totalPrice = success.data.totalPrice;
       this.sellerName = success.data.sellerName;

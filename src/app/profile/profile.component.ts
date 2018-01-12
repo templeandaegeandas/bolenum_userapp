@@ -158,9 +158,9 @@ export class ProfileComponent implements OnInit {
               this.nationalIdPdf = true;
             }
             this.addressIdKyc =
-              environment.documentUrl + this.kycDocument[0].document;
+              environment.documentUrl + this.kycDocument[0].document + "?decache=" + Math.random();
             this.nationalIdKyc =
-              environment.documentUrl + this.kycDocument[1].document;
+              environment.documentUrl + this.kycDocument[1].document + "?decache=" + Math.random();
             this.addressIdStatus = this.kycDocument[0].documentStatus;
             this.nationalIdStatus = this.kycDocument[1].documentStatus;
           } else {
