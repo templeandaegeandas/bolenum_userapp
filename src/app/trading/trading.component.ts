@@ -192,7 +192,7 @@ export class TradingComponent implements OnInit {
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
     }, error => {
-      this.toastrService.error(error.json().message, "Success!");
+      this.toastrService.error(error.message, "Success!");
     })
   }
 
@@ -206,7 +206,7 @@ export class TradingComponent implements OnInit {
       console.log(success);
     }, error => {
       console.log(error)
-      this.toastrService.error(error.json().message, "Success!");
+      this.toastrService.error(error.message, "Success!");
     })
   }
 }
