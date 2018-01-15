@@ -75,5 +75,6 @@ export class WebsocketService {
     else {
       this.appEventEmiterService.changeMessage(data);
     }
+    this.appEventEmiterService.changeMessage('default message');
   }
 }
