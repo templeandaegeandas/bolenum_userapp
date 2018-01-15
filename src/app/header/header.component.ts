@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
 	countOfUnseeNotification: any;
 	arrayOfNotification: any;
 	isSelected: any;
+	notificationCount: any;
 
 	profilePic: String = "assets/images/pic.png";
 	constructor(
@@ -62,8 +63,6 @@ export class HeaderComponent implements OnInit {
 		this.websocketService.connectForLoggedInUser(
 			localStorage.getItem("userId")
 		);
-
-		this.getAllUserNotifications();
 		this.getCountOfUnseeNotification();
 		this.isSelected = false;
 		this.appEventEmiterService.currentMessage.subscribe(message => {
@@ -189,6 +188,10 @@ export class HeaderComponent implements OnInit {
 			this.isLoading = false;
 			this.hasBlur = false;
 			this.countOfUnseeNotification = success.data;
+			if (this.countOfUnseeNotification > 99) {
+				this.countOfUnseeNotification = "+" + 99;
+			}
+
 			console.log(this.countOfUnseeNotification);
 		});
 	}
