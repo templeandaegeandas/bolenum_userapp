@@ -987,4 +987,8 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
+  openCoinCap() {
+    window.open("https://coinmarketcap.com/currencies/"+this.pairedCurrencyObj.currencyName, '_blank');
+  }
+
 }
