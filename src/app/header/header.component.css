@@ -26,6 +26,10 @@
     margin-bottom: 60px;
 }
 
+.pointer-icon{
+    cursor: pointer;
+}
+
 .count-underscore{
     text-decoration: none;
 }

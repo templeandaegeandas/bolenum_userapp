@@ -26,30 +26,30 @@
         <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm)">
           <div class="col-md-8 col-md-offset-2 top-margin-field">
           </div>
-          <div class="col-md-9 col-md-offset-1">
+          <div class="col-md-9 col-md-offset-1 withdraw-field">
             <div class="col-md-3 col-md-offset-1 label-text-color text-label-top-padding ">
               <label class="input-field-withdraw">Wallet Address</label>
             </div>
             <div class="col-md-6 col-width">
-              <div class="form-group">
+              <div class="form-group margin-error">
                 <input type="text" class="form-control input-field-withdraw" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required>
               </div>
-              <span *ngIf="address.invalid && withrawForm.submitted">
-                  <span class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</span>
-              </span>
+              <div *ngIf="address.invalid && withrawForm.submitted">
+                  <p class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</p>
+              </div>
             </div>
           </div>
           <div class="col-md-9 col-md-offset-1">
             <div class="col-md-3 col-md-offset-1 label-text-color text-label-top-padding input-field-withdraw">
               <label class="input-field-withdraw">Withdraw Amount</label>
             </div>
-            <div class="col-md-6 col-width">
-              <div class="form-group">
+            <div class="col-md-6 col-width margin-error">
+              <div class="form-group ">
                 <input type="number" min="0" class="form-control input-field-withdraw" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount" required>
               </div>
-              <span *ngIf="amount.invalid && withrawForm.submitted">
-                  <span class="red-text-color error-message-font" *ngIf="amount.errors.required">Please enter amount</span>
-              </span>
+              <div *ngIf="amount.invalid && withrawForm.submitted">
+                  <p class="red-text-color error-message-font" *ngIf="amount.errors.required">Please enter amount</p>
+              </div>
 
               <p><span class="red-text-color error-message-font">Minimum Withdrawal Amount: </span>{{minWithdrawAmount | number:'1.1-8'}} {{setItemValue}}</p>
               <p><span class="red-text-color error-message-font">Transaction Fee: </span>{{withdrawFee | number:'1.1-8'}} {{setItemValue}}</p>
