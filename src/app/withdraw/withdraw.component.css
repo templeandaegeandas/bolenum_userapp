@@ -24,8 +24,16 @@
     color: #b2a89b; */
 }
 
+.form-group  {
+    margin-bottom: 2px;
+}
+
 .top-margin-field {
     margin-top: 33px;
+}
+
+.withdraw-field{
+        margin-bottom: 10px;
 }
 
 .label-text-color {
