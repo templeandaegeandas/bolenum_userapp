@@ -519,7 +519,7 @@ export class TradeNowComponent implements OnInit {
       this.getBuyOrderBookData();
       this.getSellOrderBookData();
       this.getOurMarketData();
-      this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
+      this.getCoinMarketCapData(this.pairedCurrencyObj.currencyName, this.marketCurrency);
       if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
         this.pairName = "NGN/BLN";
         this.select(4, 3);
@@ -565,7 +565,12 @@ export class TradeNowComponent implements OnInit {
     this.getBuyOrderBookData();
     this.getSellOrderBookData();
     this.getOurMarketData();
-    this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
+    if(pairedCurrency.currencyType=='FIAT') {
+      this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
+    }
+    else {
+      this.getCoinMarketCapData(pairedCurrency.currencyName, this.marketCurrency);
+    }
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
