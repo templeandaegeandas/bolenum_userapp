@@ -26,6 +26,14 @@
     margin-bottom: 60px;
 }
 
+.pointer-icon{
+    cursor: pointer;
+}
+
+.count-underscore{
+    text-decoration: none;
+}
+
 .logo-img {
     display: inline-block;
     width: 40px;

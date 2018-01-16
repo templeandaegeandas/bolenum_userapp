@@ -788,6 +788,7 @@ export class ProfileComponent implements OnInit {
 
     this.isCustomerView = true;
     this.accounDetails = false;
+     this.getUserBankDetails();
     if (this.getOurBankDetails.length === 2) {
       this.addNewButton = false;
       return;
