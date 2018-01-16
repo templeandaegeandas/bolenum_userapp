@@ -709,6 +709,39 @@ thead.heading {
     bottom:0;
 }*/
 
+.padding-main-div{
+    padding-left: 0px;
+}
+
+.modal-coinmarket{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.modal-color{
+    color: #000 !important;
+}
+.margin-modal{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-footer{
+    padding-left: 17px;
+    padding-top: 15px;
+
+}
+
+.cursor-pointer-market{
+    cursor: pointer;
+}
+
+.modal-border-coin{
+    border-top: 1px solid lightgray;
+}
+
+.border-bottom-modal{
+    border-bottom: 1px solid lightgray; 
+}
 .total-coin {
     text-align: right;
     margin-top: 0px;
