@@ -720,9 +720,32 @@ thead.heading {
 .modal-color{
     color: #000 !important;
 }
+
+.cross-color{
+    color: lightgray !important;
+}
 .margin-modal{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-title-font{
+    font-size: 18px;
+}
+
+.footer-margin{
+    margin-top: 10px;
+}
+
+
+.content_text{
+    font-size: 13px !important;
+}
+.label-font-size{
+    font-size: 15px;
+}
+.modal-width{
+        width: 775px;
 }
 
 .padding-footer{
