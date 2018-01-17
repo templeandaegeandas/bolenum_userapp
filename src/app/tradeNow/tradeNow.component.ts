@@ -948,10 +948,12 @@ export class TradeNowComponent implements OnInit {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
     if(this.showHide) {
+      console.log(this.showHide);
       this.getCoinMarketCapData();
       this.getDataIn10Min();
     }
     else {
+      console.log("In Timer")
       clearInterval(this.subscription);
     }
   }
@@ -975,9 +977,9 @@ export class TradeNowComponent implements OnInit {
 
   getDataIn10Min() {
     if(this.showHide) {
-      this.subscription = Observable.interval(10000 * 60).subscribe(x => {
+      this.subscription = setInterval(() => {
       this.getCoinMarketCapData();
-    });
+    }, 10000 * 60);
     }
   }
 
