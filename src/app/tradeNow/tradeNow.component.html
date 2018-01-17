@@ -961,9 +961,9 @@
            </div>
          </div>
         
-        <div class="padding-main-div padding-footer">
+        <div *ngIf="pairedCurrencyObj.currencyType!='FIAT' class="padding-main-div padding-footer">
          <p>For more Information about BLN click on the following link.</p>
-         <p><a href="https://coinmarketcap.com/assets" target="_blank">https://coinmarketcap.com/assets</a></p>
+         <p><a href="https://coinmarketcap.com/assets" target="_blank">https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}</a></p>
         </div>
       </div>
       
