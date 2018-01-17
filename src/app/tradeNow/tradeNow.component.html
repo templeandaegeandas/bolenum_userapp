@@ -146,11 +146,11 @@
                         </tr>
                         <tr>
                           <th>USD Price</th>
-                          <td><span class="market-summary-volume green-color"> {{coinList.price_usd | number:'1.8-8'}}  </span></td>
+                          <td><span class="market-summary-volume green-color"> ${{coinList.price_usd | number:'1.8-8'}}  </span></td>
                         </tr>
                         <tr>
                           <th>24h Volume USD</th>
-                          <td><span class="market-summary-bid-price green-color">{{coinList['24h_volume_usd'] | number:'1.8-8'}}</span></td>
+                          <td><span class="market-summary-bid-price green-color">${{coinList['24h_volume_usd'] | number:'1.2'}}</span></td>
                         </tr>
                         <tr>
                           <th>Available Supply</th>
@@ -159,7 +159,7 @@
                         <tr>
                           <th>Change 1h | 24h | 7d</th>
                           <td><span class="market-summary-high">
-                            <span [ngClass]="{'positive': coinList.percent_change_1h > 0, 'negative': coinList.percent_change_1h < 0}">{{coinList.percent_change_1h}} </span>| <span [ngClass]="{'positive': coinList.percent_change_24h > 0, 'negative': coinList.percent_change_24h < 0}">{{coinList.percent_change_24h}}</span>                            | <span [ngClass]="{'positive': coinList.percent_change_7d > 0, 'negative': coinList.percent_change_7d < 0}">{{coinList.percent_change_7d}}</span></span>
+                            <span [ngClass]="{'positive': coinList.percent_change_1h > 0, 'negative': coinList.percent_change_1h < 0}">{{coinList.percent_change_1h}}% </span>| <span [ngClass]="{'positive': coinList.percent_change_24h > 0, 'negative': coinList.percent_change_24h < 0}">{{coinList.percent_change_24h}}%</span>                            | <span [ngClass]="{'positive': coinList.percent_change_7d > 0, 'negative': coinList.percent_change_7d < 0}">{{coinList.percent_change_7d}}%</span></span>
                           </td>
                         </tr>
                       </tbody>
@@ -961,9 +961,21 @@
            </div>
          </div>
         
-        <div class="padding-main-div padding-footer">
-         <p>For more Information about BLN click on the following link.</p>
-         <p><a href="https://coinmarketcap.com/assets" target="_blank">https://coinmarketcap.com/assets</a></p>
+        <div class=" row ">
+          <div class="col-md-12 margin-modal ">
+            <div class="col-md-9">
+               <p>For more Information about BLN click on the following link.</p>
+         <p>
+          <a *ngIf="pairedCurrencyObj==null" href="https://coinmarketcap.com/assets/ETHEREUM" target="_blank">https://coinmarketcap.com/assets/ETHEREUM</a>
+          <a *ngIf="pairedCurrencyObj!=null && pairedCurrencyObj.currencyType!='FIAT'" href="https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}" target="_blank">https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}</a>
+          <a *ngIf="pairedCurrencyObj!=null && pairedCurrencyObj.currencyType=='FIAT'" href="https://coinmarketcap.com/assets/{{marketCurrencyObj.currencyName}}" target="_blank">https://coinmarketcap.com/assets/{{marketCurrencyObj.currencyName}}</a>
+        </p>
+            </div>
+            <div class="col-md-3 close-button-modal">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        
         </div>
       </div>
       

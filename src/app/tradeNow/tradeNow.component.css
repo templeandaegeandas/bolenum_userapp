@@ -731,6 +731,11 @@ thead.heading {
 
 }
 
+.close-button-modal{
+    padding-top: 13px;
+    padding-left: 72px;
+}
+
 .cursor-pointer-market{
     cursor: pointer;
 }
