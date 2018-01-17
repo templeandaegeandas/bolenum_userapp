@@ -896,84 +896,89 @@
   </div>
 </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="myOpenModal" role="dialog">
-<div class="modal-dialog">
-  
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close modal-color" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title modal-color">CoinMarketCap Information</h4>
-    </div>
-    <div class="modal-body">
-      <p>This data shows the data from CoinMarketCap.com.</p>
-      <p>Updated every 10 minutes.</p>
-    </div>
-    <div class="row modal-coinmarket">
-      <div class=" col-md-12 margin-modal modal-border-coin border-bottom-modal padding-main-div">
-        <div class="col-md-4">
-          <span><b>BTC Price</b></span>
+  <!-- Modal -->
+  <div class="modal fade" id="myOpenModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close modal-color" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title modal-color">CoinMarketCap Information</h4>
         </div>
-        <div class="col-md-8">
-          <span>Average price across exchanges shown in bitcoin.</span>
+        <div class="modal-body">
+          <p>This data shows the data from CoinMarketCap.com.</p>
+          <p>Updated every 10 minutes.</p>
         </div>
-      </div>
-    </div>
-    <div class="row modal-coinmarket">
-      <div class=" col-md-12 margin-modal  border-bottom-modal padding-main-div ">
-        <div class="col-md-4">
-          <span><b>USD Price</b></span>
-        </div>
-        <div class="col-md-8">
-          <span>Average price across exchanges shown in bitcoin.</span>
-        </div>
-      </div>
-    </div>
-    <div class="row modal-coinmarket">
-      <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
-        <div class="col-md-4">
-          <span><b>24h Volume USD</b></span>
-        </div>
-        <div class="col-md-8">
-          <span>Total volume across all exchanges over the last 24 hours.</span>
-        </div>
-      </div>
-    </div>
-    <div class="row modal-coinmarket">
-      <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
-        <div class="col-md-4">
-          <span><b>Available Supply</b></span>
-        </div>
-        <div class="col-md-8">
-          <span>The current available coin supply,not available for all currencies.</span>
-        </div>
-      </div>
-    </div>
-    <div class="row modal-coinmarket">
-      <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
-        <div class="col-md-4">
-          <span><b>Change 1h | 24h | 7d</b></span>
-        </div>
-        <div class="col-md-8">
-          <span>Price change over the last 1 hour,24 hours and 7 days.</span>
-        </div>
-      </div>
-    </div>
-    <div class=" row ">
-      <div class="col-md-12 margin-modal ">
-        <div *ngIf="pairedCurrencyObj.currencyType!='FIAT' class="col-md-9">
-          <p>For more Information about BLN click on the following link.</p>
-          <p><a href="https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}" target="_blank">https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}</a></p>
-        </div>
-        <div class="col-md-3 close-button-modal">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <div class="row modal-coinmarket">
+           <div class=" col-md-12 margin-modal modal-border-coin border-bottom-modal padding-main-div">
+           <div class="col-md-4">
+             <span><b>BTC Price</b></span>
+           </div>
+           <div class="col-md-8">
+             <span>Average price across exchanges shown in bitcoin.</span>
+           </div>
+           </div>
+         </div>
+           <div class="row modal-coinmarket">
+           <div class=" col-md-12 margin-modal  border-bottom-modal padding-main-div ">
+           <div class="col-md-4">
+             <span><b>USD Price</b></span>
+           </div>
+           <div class="col-md-8">
+             <span>Average price across exchanges shown in bitcoin.</span>
+           </div>
+           </div>
+         </div>
+           <div class="row modal-coinmarket">
+           <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
+           <div class="col-md-4">
+             <span><b>24h Volume USD</b></span>
+           </div>
+           <div class="col-md-8">
+             <span>Total volume across all exchanges over the last 24 hours.</span>
+           </div>
+           </div>
+         </div>
+           <div class="row modal-coinmarket">
+           <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
+           <div class="col-md-4">
+             <span><b>Available Supply</b></span>
+           </div>
+           <div class="col-md-8">
+             <span>The current available coin supply,not available for all currencies.</span>
+           </div>
+           </div>
+         </div>
+           <div class="row modal-coinmarket">
+           <div class=" col-md-12 margin-modal border-bottom-modal padding-main-div ">
+           <div class="col-md-4">
+             <span><b>Change 1h | 24h | 7d</b></span>
+           </div>
+           <div class="col-md-8">
+             <span>Price change over the last 1 hour,24 hours and 7 days.</span>
+           </div>
+           </div>
+         </div>
+        
+        <div class=" row ">
+          <div class="col-md-12 margin-modal ">
+            <div class="col-md-9">
+               <p>For more Information about BLN click on the following link.</p>
+         <p>
+          <a *ngIf="pairedCurrencyObj==null" href="https://coinmarketcap.com/assets/ETHEREUM" target="_blank">https://coinmarketcap.com/assets/ETHEREUM</a>
+          <a *ngIf="pairedCurrencyObj!=null && pairedCurrencyObj.currencyType!='FIAT'" href="https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}" target="_blank">https://coinmarketcap.com/assets/{{pairedCurrencyObj.currencyName}}</a>
+          <a *ngIf="pairedCurrencyObj!=null && pairedCurrencyObj.currencyType=='FIAT'" href="https://coinmarketcap.com/assets/{{marketCurrencyObj.currencyName}}" target="_blank">https://coinmarketcap.com/assets/{{marketCurrencyObj.currencyName}}</a>
+        </p>
+            </div>
+            <div class="col-md-3 close-button-modal">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        
         </div>
       </div>
       
     </div>
   </div>
-  
-</div>
-</div>
 <!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
