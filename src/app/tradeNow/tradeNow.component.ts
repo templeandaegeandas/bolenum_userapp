@@ -9,6 +9,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { WebsocketService } from '../web-socket/web.socket.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Rx';
 
 declare var $: any;
 
@@ -135,6 +136,7 @@ export class TradeNowComponent implements OnInit {
   pairedCurrencyObj;
   marketBuyPrice;
   marketSellPrice;
+  subscription;
   constructor(
     private tradeNowService: TradeNowService,
     private depositService: DepositService,
@@ -519,7 +521,7 @@ export class TradeNowComponent implements OnInit {
       this.getBuyOrderBookData();
       this.getSellOrderBookData();
       this.getOurMarketData();
-      this.getCoinMarketCapData(this.pairedCurrencyObj.currencyName, this.marketCurrency);
+      // this.getCoinMarketCapData();
       if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
         this.pairName = "NGN/BLN";
         this.select(4, 3);
@@ -565,11 +567,8 @@ export class TradeNowComponent implements OnInit {
     this.getBuyOrderBookData();
     this.getSellOrderBookData();
     this.getOurMarketData();
-    if(pairedCurrency.currencyType=='FIAT') {
-      this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
-    }
-    else {
-      this.getCoinMarketCapData(pairedCurrency.currencyName, this.marketCurrency);
+    if (pairedCurrency.currencyType != 'FIAT' && this.showHide) {
+      this.getCoinMarketCapData();
     }
     this.buyPrice = '';
     this.buyVolume = '';
@@ -862,10 +861,10 @@ export class TradeNowComponent implements OnInit {
 
   getMoreOrders() {
     let currentPage = 1;
-    this.pageSize = this.pageSize+10;
+    this.pageSize = this.pageSize + 10;
     this.isLoading = true;
     this.hasBlur = true;
-  this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
+    this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.allTradedList = success.data.content;
@@ -880,7 +879,7 @@ export class TradeNowComponent implements OnInit {
   getMoreMyTradeList() {
 
     let currentPage = 1;
-    this.pageSize = this.pageSize+10;
+    this.pageSize = this.pageSize + 10;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
     this.tradeNowService.getTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
@@ -899,7 +898,7 @@ export class TradeNowComponent implements OnInit {
   getMoreMyOrder() {
 
     let currentPage = 1;
-    this.pageSize = this.pageSize+10;
+    this.pageSize = this.pageSize + 10;
     this.isOpenOrders = true;
     this.hasBlurOpenOrders = true;
     this.tradeNowService.getMyOrdersFromBook(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
@@ -948,6 +947,15 @@ export class TradeNowComponent implements OnInit {
   showHideDiv() {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
+    if(this.showHide) {
+      console.log(this.showHide);
+      this.getCoinMarketCapData();
+      this.getDataIn10Min();
+    }
+    else {
+      console.log("In Timer")
+      clearInterval(this.subscription);
+    }
   }
 
   select(pairedCurrency, marketCurrency) {
@@ -966,11 +974,19 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getCoinMarketCapData(currencyName, currencyAbber) {
-    let seturl: any;
 
-    seturl = 'https://api.coinmarketcap.com/v1/ticker/' + currencyName + '/?convert=' + currencyAbber;
+  getDataIn10Min() {
+    if(this.showHide) {
+      this.subscription = setInterval(() => {
+      this.getCoinMarketCapData();
+    }, 10000 * 60);
+    }
+  }
 
+
+
+  getCoinMarketCapData() {
+    let seturl = 'https://api.coinmarketcap.com/v1/ticker/' + this.pairedCurrencyObj.currencyName + '/?convert=' + this.marketCurrencyObj.currencyAbbreviation;
     $.ajax({
       url: seturl,
       type: 'GET',
@@ -993,7 +1009,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   openCoinCap() {
-    window.open("https://coinmarketcap.com/currencies/"+this.pairedCurrencyObj.currencyName, '_blank');
+    window.open("https://coinmarketcap.com/currencies/" + this.pairedCurrencyObj.currencyName, '_blank');
   }
 
 }
