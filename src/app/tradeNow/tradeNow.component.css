@@ -709,6 +709,14 @@ thead.heading {
     bottom:0;
 }*/
 
+.table-data{
+    text-align: left !important;
+}
+
+.padding-table-coinMarket{
+        padding-right: 0px;
+}
+
 .padding-main-div{
     padding-left: 0px;
 }

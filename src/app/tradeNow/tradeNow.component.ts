@@ -301,19 +301,33 @@ export class TradeNowComponent implements OnInit {
 
   oneBuyBtc() {
     this.order.price = this.marketPrice;
-    this.buyPrice = this.marketBuyPrice;
+    if(this.buyVolume==""){
+      this.buyPrice="";
+      console.log(this.buyPrice);
+    }else{
+      this.buyPrice = this.marketBuyPrice;
+    }
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     if (this.buyPrice == undefined || this.buyVolume == undefined) {
       this.buyTotalPrice = 0;
     }
+
+    
     this.buyTradingFee = this.buyTotalPrice * this.tradeFee / 100;
     this.buyPriceWithFee = this.buyTotalPrice + this.buyTradingFee;
   }
 
   oneSellBtc() {
     this.order.price = this.marketPrice;
-    this.sellPrice = this.marketSellPrice;
-    this.sellTotalPrice = this.sellPrice * this.sellVolume;
+    if(this.sellVolume==""){
+      this.sellPrice="";
+      console.log("sell price",this.sellPrice );
+      
+    }
+    else{
+  this.sellPrice = this.marketSellPrice;
+    }
+  this.sellTotalPrice = this.sellPrice * this.sellVolume;
     if (this.sellPrice == undefined || this.sellVolume == undefined) {
       this.sellTotalPrice = 0;
     }
