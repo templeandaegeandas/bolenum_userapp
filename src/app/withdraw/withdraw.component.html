@@ -12,35 +12,13 @@
 </select>
       </div>
       <div class=" text-center text-image-div">
-        <!-- for btc image -->
-        <div class=" " *ngIf="setItemValue=='BTC'">
-          <span>
-         <img src="./assets/images/bitcoin.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for boleno image -->
-        <div class=" " *ngIf="setItemValue=='BLN'">
-          <span>
-         <img src="./assets/images/bolenum.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for etherium -->
-        <div class=" " *ngIf="setItemValue=='ETH'">
-          <span>
-         <img src="./assets/images/eth.png" width="46" height="46">
-       </span>
-        </div>
-        <!-- for nigerian naira -->
-        <div class=" " *ngIf="setItemValue=='NGN'">
-          <span>
-         <img src="./assets/images/ngn.png" width="46" height="46">
-       </span>
-        </div>
-
         <div class="available-text">
           <span class="balance-text withdraw-heading">
           <!-- Available Balance 0.2156 -->
-            Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
+           <p>
+              <span *ngIf="setItemValue=='BTC'"> <img src="./assets/images/bitcoin.png" width="30" height="30"></span>
+          <span *ngIf="setItemValue=='BLN'"> <img src="./assets/images/bolenum.png" width="30" height="30"></span>
+          <span *ngIf="setItemValue=='ETH'"> <img src="./assets/images/eth.png" width="30" height="30"></span> Available Balance : <span>{{balance | number:'1.8-8'}} {{setItemValue}}</span></p>
           </span>
         </div>
       </div>
@@ -48,30 +26,30 @@
         <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm)">
           <div class="col-md-8 col-md-offset-2 top-margin-field">
           </div>
-          <div class="col-md-9 col-md-offset-1">
+          <div class="col-md-9 col-md-offset-1 withdraw-field">
             <div class="col-md-3 col-md-offset-1 label-text-color text-label-top-padding ">
               <label class="input-field-withdraw">Wallet Address</label>
             </div>
             <div class="col-md-6 col-width">
-              <div class="form-group">
+              <div class="form-group margin-error">
                 <input type="text" class="form-control input-field-withdraw" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required>
               </div>
-              <span *ngIf="address.invalid && withrawForm.submitted">
-                  <span class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</span>
-              </span>
+              <div *ngIf="address.invalid && withrawForm.submitted">
+                  <p class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</p>
+              </div>
             </div>
           </div>
           <div class="col-md-9 col-md-offset-1">
             <div class="col-md-3 col-md-offset-1 label-text-color text-label-top-padding input-field-withdraw">
               <label class="input-field-withdraw">Withdraw Amount</label>
             </div>
-            <div class="col-md-6 col-width">
-              <div class="form-group">
+            <div class="col-md-6 col-width margin-error">
+              <div class="form-group ">
                 <input type="number" min="0" class="form-control input-field-withdraw" name="amount" #amount="ngModel" [(ngModel)]="withdrawForm.withdrawAmount" required>
               </div>
-              <span *ngIf="amount.invalid && withrawForm.submitted">
-                  <span class="red-text-color error-message-font" *ngIf="amount.errors.required">Please enter amount</span>
-              </span>
+              <div *ngIf="amount.invalid && withrawForm.submitted">
+                  <p class="red-text-color error-message-font" *ngIf="amount.errors.required">Please enter amount</p>
+              </div>
 
               <p><span class="red-text-color error-message-font">Minimum Withdrawal Amount: </span>{{minWithdrawAmount | number:'1.1-8'}} {{setItemValue}}</p>
               <p><span class="red-text-color error-message-font">Transaction Fee: </span>{{withdrawFee | number:'1.1-8'}} {{setItemValue}}</p>
@@ -89,31 +67,35 @@
               <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr class="table-Heading">
-                    <th>Transaction Hash</th>
+                    <th class="ellipsis-heading">Transaction Hash</th>
                     <th>Currency</th>
                     <th>Amount</th>
-                    <th>Receiver Address</th>
+                    <th class="ellipsis-heading" >Receiver Address</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Fee</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let tx of txList" class="table-content-font">
                     <td class="ellipsis td-widthForTransactionAddress" title="{{tx.txHash}}">{{tx.txHash}}</td>
                     <td>{{tx.currencyName}}</td>
-                    <td>{{tx.txAmount | number:'1.1-8'}}</td>
+                    <td>{{tx.txAmount | number:'1.8-8'}}</td>
                     <td class="ellipsis td-widthForReceiverAddress" title="{{tx.toAddress}}">{{tx.toAddress}}</td>
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
+                    <td>{{tx.fee | number:'1.8-8'}}</td>
+                    <td>N/A</td>
                   </tr>
-                  <tr>
-                    <td *ngIf="transactionLength >=10" colspan="6">
-                      <p (click)="getMoreTransactionList()" class="moreData moreText">More</p>
+                  <tr *ngIf="transactionLength >=10">
+                    <td colspan="8">
+                      <p (click)="getMoreTransactionList()" class="moreData moreText" title="click to show more list">More</p>
                     </td>
                   </tr>
-                  <tr>
-                    <td *ngIf="transactionLength == 0 " colspan="6">
-                      <p>You don't have done any transaction yet!</p>
+                  <tr *ngIf="transactionLength == 0 ">
+                    <td colspan="8">
+                      <p>You don't have any transaction yet!</p>
                     </td>
                   </tr>
                 </tbody>

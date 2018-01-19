@@ -32,6 +32,7 @@ export class WebsocketService {
       //subscribe
       this.subscription = this.stomp.subscribe('/websocket/broker/listner/user/' + userId, this.response);
       this.openSubscription = this.stomp.subscribe('/websocket/broker/listner/order', this.response);
+      this.subscription = this.stomp.subscribe('/websocket/broker/listner/market', this.response);
     })
   }
 
@@ -49,6 +50,7 @@ export class WebsocketService {
 
       //subscribe
       this.subscription = this.stomp.subscribe('/websocket/broker/listner/order', this.response);
+      this.subscription = this.stomp.subscribe('/websocket/broker/listner/market', this.response);
     })
   }
 
@@ -60,17 +62,19 @@ export class WebsocketService {
 
   response = (data) => {
     console.log(data)
-    if (data.PAID_NOTIFICATION == 'PAID_NOTIFICATION') {
-      console.log("in if Condidtion")
-      this.appEventEmiterService.changeMessage(data.PAID_NOTIFICATION);
+    if (data.CONFIRM_NOTIFICATION == 'CONFIRM_NOTIFICATION') {
+      this.appEventEmiterService.changeMessage(data.CONFIRM_NOTIFICATION);
       this.router.navigate(['/sell/' + data.matchedOrderId]);
     }
     else if(data.MATCHED_NOTIFICATION == 'MATCHED_NOTIFICATION') {
-      console.log("in else if Condidtion")
       this.router.navigate(['/trading/' + data.matchedOrderId]);
+    }
+    else if(data.MARKET_UPDATE == 'MARKET_UPDATE') {
+      this.appEventEmiterService.changeMessage(data);
     }
     else {
       this.appEventEmiterService.changeMessage(data);
     }
+    this.appEventEmiterService.changeMessage('default message');
   }
 }

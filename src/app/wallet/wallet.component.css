@@ -1,8 +1,7 @@
 .wallet-background-img {
-    background-image: url("/assets/images/header (1).png");
+    background-image: url("/assets/images/BGimagered.png");
     background-repeat: no-repeat;
-    background-position: top;
-    height: 230px;
+    height: 277px;
     width: 100%;
     margin: 0;
 }
@@ -100,6 +99,10 @@ img.wallet-image {
     font-weight: 500;
 }
 
+.tab-card-box{
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+}
+
 
 /*start media for mobile device*/
 @media screen and (min-width: 320px) and (max-width: 767px){
@@ -139,7 +142,5 @@ img.wallet-image {
 
  .profile-font{
     font-family: Lato-Regular-font !important;
-     font-size: 18px !important;
+     font-size: 12px !important;
 }
-
- 

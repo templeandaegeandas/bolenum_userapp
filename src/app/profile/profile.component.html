@@ -3,8 +3,6 @@
     <div class="top-header">
       <div class="top-profile">
         <!--<img src="assets/images/header (1).png" class="profile-img">-->
-
-
         <div class="slider-info">
           <div class="header-text" style="position: static;">
             <img [src]="profilePic" class="porf-pic upload-profile " height="140" width="140" style="border-radius: 10px;border: 3px solid;border-color: white;">
@@ -15,34 +13,33 @@
               <p class="top-text profile-font heading-font-size">{{ userFirstName }} {{ userLastName }}</p>
             </div>
             <div class="head-icon" style="position: static;">
-              <img src="assets/images/mail (1).png">&nbsp;<span  class="profile-font content-font-size linkOnHover ">{{emailId}}</span>
+              <img src="assets/images/mail (1).png">&nbsp;<span class="profile-font content-font-size linkOnHover ">{{emailId}}</span>
             </div>
           </div>
         </div>
       </div>
-
     </div>
     <div class="tab_container">
-      <input id="tab1" type="radio" name="tabs" checked >
-      <label for="tab1" class="label-box-shadow">
-            <div class="img-tab lebel-image-margin">
-            </div>
-            <p class="sub_heading">Profile</p>
-         </label>
-      <input id="tab2" type="radio" name="tabs">
-      <label for="tab2" (click)="getUserBankDetails()" class="label-box-shadow">
-        <div class="">    
-        <div class="img-tab1 lebel-image-margin">
-            </div>
-             <p class="sub_heading">Bank Details</p>
+      <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1" class="label-box-shadow box-tab ">
+        <div class="img-tab lebel-image-margin">
         </div>
-         </label>
+        <p class="sub_heading label_tab">Profile</p>
+      </label>
+      <input id="tab2" type="radio" name="tabs">
+      <label for="tab2" (click)="getUserBankDetails()" class="label-box-shadow box-tab ">
+        <div class="">
+          <div class="img-tab1 lebel-image-margin">
+          </div>
+          <p class="sub_heading label_tab">Bank Details</p>
+        </div>
+      </label>
       <input id="tab3" type="radio" name="tabs">
-      <label for="tab3" class="label-box-shadow" >
-            <div class="img-tab2 lebel-image-margin" (click)="getKycDetailsUser()">
-           </div>
-            <p class="sub_heading">KYC Details</p>
-         </label>
+      <label for="tab3" class="label-box-shadow box-tab ">
+        <div class="img-tab2 lebel-image-margin" (click)="getKycDetailsUser()">
+        </div>
+        <p class="sub_heading label_tab">KYC Details</p>
+      </label>
       <!--profile-->
       <section id="content1" class="tab-content mob-tab-content">
         <div class="container-fluid margin-top-profile">
@@ -54,7 +51,8 @@
                     <img src="assets/images/profile.png" class="img-profile">
                   </div>
                   <div class="email-text-new">
-                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">First Name<br>
+                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">First Name
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text">{{userProfile.firstName}}</p>
                   </div>
                 </div>
@@ -63,7 +61,8 @@
                     <img src="assets/images/profile.png" class="img-profile">
                   </div>
                   <div class="email-text-new">
-                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Last Name<br>
+                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Last Name
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text">{{userProfile.lastName}}</p>
                   </div>
                 </div>
@@ -73,7 +72,8 @@
                     <img src="assets/images/DOB.png" class="img-profile">
                   </div>
                   <div class="email-text-new">
-                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Date of birth<br>
+                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Date of birth
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text">{{userProfile.dob | date}}</p>
                   </div>
                 </div>
@@ -82,7 +82,8 @@
                     <img src="assets/images/location_black.png" class="img-profile">
                   </div>
                   <div class="email-text-new">
-                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Address<br>
+                    <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Address
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text ">{{userProfile.address}}</p>
                   </div>
                 </div>
@@ -93,7 +94,8 @@
                   </div>
                   <div class="email-text-new">
                     <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">
-                      Country<br>
+                      Country
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text ">{{userProfile.country}}</p>
                   </div>
                 </div>
@@ -103,17 +105,15 @@
                   </div>
                   <div class="email-text-new">
                     <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">
-                      State<br>
+                      State
+                      <br>
                       <p class="text-icon profile-font content-font-size content_text">{{userProfile.state}}</p>
                   </div>
                 </div>
                 <div class="clearfix"></div>
-                
-                   <div class="">
+                <div class="">
                   <button type="button" class="btn btn-successsave profile-font text-uppercase butoon-font button-font-size button-property-new" (click)=editDetails()>Edit Details</button>
                 </div>
-                 
-               
               </div>
             </div>
             <form #editForm=ngForm (submit)="saveDetails(editForm)" *ngIf="isDetailsEdit">
@@ -125,11 +125,11 @@
                     </div>
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">First Name</p>
-                        <input type="texts" class="from-newtext input-box-edit" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3" id="usr" required nonumberspecialcharacter>
-                        <span *ngIf="firstName.invalid && editForm.submitted">
+                      <input type="texts" class="from-newtext input-box-edit" name="firstName" [(ngModel)]="userProfile.firstName" #firstName="ngModel" minlength="3" id="usr" required nonumberspecialcharacter>
+                      <span *ngIf="firstName.invalid && editForm.submitted">
                                  <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="firstName.errors.required">Please enter first name</span>
-                        <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
-                        </span>
+                      <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="firstName.errors.minlength">First name length must be 3 characters and above</span>
+                      </span>
                     </div>
                   </div>
                   <div class="email-part">
@@ -138,10 +138,10 @@
                     </div>
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Last Name</p>
-                        <input type="texts" class="from-newtext input-box-edit" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3" id="usr" nonumberspecialcharacter>
-                        <span *ngIf="lastName.invalid && editForm.submitted">
+                      <input type="texts" class="from-newtext input-box-edit" name="lastName" [(ngModel)]="userProfile.lastName" #lastName="ngModel" minlength="3" id="usr" nonumberspecialcharacter>
+                      <span *ngIf="lastName.invalid && editForm.submitted">
                                  <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="lastName.errors.minlength">Last name length must be 3 characters and above</span>
-                        </span>
+                      </span>
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -151,12 +151,12 @@
                     </div>
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight ">Date of birth</p>
-                        <div class="date-picker">
-                          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="dob" #dateofbirth="ngModel" required></my-date-picker>
-                        </div>
-                        <span *ngIf="dateofbirth.invalid && editForm.submitted">
+                      <div class="date-picker">
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="dob" #dateofbirth="ngModel" required></my-date-picker>
+                      </div>
+                      <span *ngIf="dateofbirth.invalid && editForm.submitted">
                               <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="dateofbirth.errors.required ">Please enter dob</span>
-                        </span>
+                      </span>
                     </div>
                   </div>
                   <div class="email-part">
@@ -165,10 +165,10 @@
                     </div>
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">Address</p>
-                        <input type="texts" class="from-newtext input-box-edit " name="address" [(ngModel)]="userProfile.address" #address="ngModel" id="usr" required>
-                        <span *ngIf="address.invalid && editForm.submitted">
+                      <input type="texts" class="from-newtext input-box-edit " name="address" [(ngModel)]="userProfile.address" #address="ngModel" id="usr" required>
+                      <span *ngIf="address.invalid && editForm.submitted">
                                  <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="address.errors.required">Please enter address</span>
-                        </span>
+                      </span>
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -179,11 +179,11 @@
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">
                         Country</p>
-                        <select class="from-newtext profile-font input-box-edit" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
-                                 <option [disabled]="true" [selected]="true" class="sub-heading-font-size lebel-heading">Choose Country</option>
-                                 <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size content_text">{{country.name}}</option>
-                                 </select>
-                        <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="countryError">Please choose country</span>
+                      <select class="from-newtext profile-font input-box-edit" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usr">
+                        <option [disabled]="true" [selected]="true" class="sub-heading-font-size lebel-heading">Choose Country</option>
+                        <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size content_text">{{country.name}}</option>
+                      </select>
+                      <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="countryError">Please choose country</span>
                     </div>
                   </div>
                   <!--<div class="clearfix"></div>-->
@@ -194,11 +194,11 @@
                     <div class="email-text-new">
                       <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">
                         State</p>
-                        <select class="from-newtext profile-font input-box-edit" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
-                                 <option [disabled]="true" [selected]="true" class="sub-heading-font-size lebel-heading">Choose State</option>
-                                 <option [ngValue]="state.stateName" *ngFor="let state of states" class="content-font-size content_text">{{state.stateName}}</option>
-                                 </select>
-                        <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="stateError">Please choose state</span>
+                      <select class="from-newtext profile-font input-box-edit" name="state" [(ngModel)]="state" #st="ngModel" (ngModelChange)="changeState($event)" id="usr">
+                        <option [disabled]="true" [selected]="true" class="sub-heading-font-size lebel-heading">Choose State</option>
+                        <option [ngValue]="state.stateName" *ngFor="let state of states" class="content-font-size content_text">{{state.stateName}}</option>
+                      </select>
+                      <span class="text-danger profile-font content-font-size error-msg-fontSize" *ngIf="stateError">Please choose state</span>
                     </div>
                   </div>
                   <div class="">
@@ -222,13 +222,12 @@
                   <div class="col-md-6">
                     <div class="toggle-switch ">
                       <label class="switch ">
-                                 <input type="checkbox" name="2fa" [(ngModel)] = "twoFa" (ngModelChange)="chenge2Fa($event)">
-                                 <span class="slider round button-property-new " ></span>
-                                 </label>
+                        <input type="checkbox" name="2fa" [(ngModel)]="twoFa" (ngModelChange)="chenge2Fa($event)">
+                        <span class="slider round button-property-new "></span>
+                      </label>
                     </div>
                   </div>
                   <!-- for mobile verification -->
-
                   <div class="row">
                     <div class="col-sm-12 mobile-verification">
                       <div class="email-part">
@@ -272,7 +271,6 @@
                             </form>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <!-- for mobile verification -->
@@ -320,12 +318,6 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="col-md-6">
-                      <p class="bank-text profile-font sub-heading-font-size lebel-heading level-font-weight"> BVN Code </p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="bank-icon profile-font content-font-size content_text "> {{customerData.ifscCode}}</p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -382,17 +374,6 @@
                     </div>
                   </div>
                   <div class="row margin-balance-details">
-                    <div class="col-md-5 balance-details">
-                      <p class="bank-text profile-font sub-heading-font-size lebel-heading level-font-weight ">BVN Code</p>
-                    </div>
-                    <div class="col-md-7">
-                      <input type="text" class="form-control" id="usr" name="bvnCode" [(ngModel)]="bankDetails.ifscCode" #bvnCode="ngModel" required>
-                      <div *ngIf="bvnCode.invalid && (bvnCode.dirty  || bvnCode.touched || customerDetaisForm.submitted )" class="error-msg">
-                        <div *ngIf="bvnCode.errors.required">
-                          <span class="profile-font content-font-size error-msg-fontSize">Please enter BVN Code.</span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -434,9 +415,9 @@
                   <div class="id-input-details clearfix">
                     <div class="browse-button">
                       <label class="btn-bs-file btn btn-lg btn-success text-uppercase profile-font butoon-font button-font-size button-property-new button-font-size">
-                                 Browse
-                                 <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
-                                 </label>
+                        Browse
+                        <input class="from-newtext" type="file" #fileInput id="usr" (change)="readUrl($event)" accept="image/x-png,image/jpeg,application/pdf">
+                      </label>
                     </div>
                     <!-- <button type="button" class="btnbrowse" (click)="uploadKyc()">Upload Documents</button> -->
                   </div>
@@ -468,9 +449,9 @@
                   <div class="id-input-details clearfix">
                     <div class="browse-button">
                       <label class="btn-bs-file btn btn-lg btn-success text-uppercase profile-font butoon-font button-font-size button-property-new button-font-size">
-                                 Browse
-                                 <input class="from-newtext" type="file" #fileInputAddress id="usr" (change)="readUrlAddress($event)" accept="image/x-png,image/jpeg,application/pdf">
-                                 </label>
+                        Browse
+                        <input class="from-newtext" type="file" #fileInputAddress id="usr" (change)="readUrlAddress($event)" accept="image/x-png,image/jpeg,application/pdf">
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -479,7 +460,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="col-sm-12 upload-kyc">
                 <button type="button" class="btnbrowse text-uppercase profile-font butoon-font button-property-new button-font-size" (click)="uploadKyc()">Upload Documents</button>
@@ -502,8 +482,8 @@
           <img class="f2fimage" *ngIf="twoFactorAuthType!='NONE'" src="assets/images/2.png">
           <p class="createdepositmodal-heading hedartext profile-font sub-heading-font-size">Enable Two Step
             <button type="button" class="close pull-right" (click)="addPopupClose()" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-               </button>
+              <span aria-hidden="true">&times;</span>
+            </button>
           </p>
         </div>
       </div>
@@ -559,7 +539,8 @@
             <input type="texts" class="from-newtext" name="secret" [(ngModel)]="secret" #gsecret="ngModel" minlength="6" maxlength="6" id="usr" required onlynumber>
             <span *ngIf="gsecret.invalid && googleAuthForm.submitted">
             <span class="text-danger profile-font  error-msg-fontSize " *ngIf="gsecret.errors.required">Please enter secret code</span>
-            <span class="text-danger profile-font  error-msg-fontSize " *ngIf="gsecret.errors.minlength">Invalid secret code</span><br>
+            <span class="text-danger profile-font  error-msg-fontSize " *ngIf="gsecret.errors.minlength">Invalid secret code</span>
+            <br>
             </span>
             <button class="modal-buttn profile-font butoon-font " type="submit">Enable</button>
             <button class="modal-buttn profile-font butoon-font" type="button" (click)="openTwoFaVerification('NONE')">Back</button>
@@ -578,13 +559,14 @@
           </div>
           <div *ngIf="!isMobileVerified">
             <form *ngIf="isMobileEdit" #mobileForm=ngForm (submit)="saveMobile(mobileForm)">
-              <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usred">
+              <!-- <select class="from-newtext profile-font" name="country" [(ngModel)]="country" (ngModelChange)="getStatesByCountryId($event)" #cty="ngModel" id="usred">
                <option [disabled]="true" [selected]="true" class="sub-heading-font-size">Choose Country</option>
                <option [ngValue]="country.name" *ngFor="let country of countries" class="content-font-size">{{country.name}}</option>
                </select>
-              <span class="text-danger profile-font error-msg-fontSize" *ngIf="countryError">Please choose country</span><br>
-              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled>
-              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" (ngModelChange)="onPhoneNumberChange()" maxlength="10" required onlynumber>
+
+              <span class="text-danger profile-font" *ngIf="countryError">Please choose country</span><br>
+              <input type="text" name="CountryCode" [(ngModel)]="countryCode" #CountryCode="ngModel" id="usr1ed" required onlynumber disabled> -->
+              <input type="text" name="mobileNumber" int-tel-input [(ngModel)]="mobileNumber" #number="ngModel" id="usred" (ngModelChange)="onPhoneNumberChange()" required onlynumber>
               <span *ngIf="mobileNumber=='' && !number.invalid  && mobileForm.submitted">
              <p class="text-danger otp-error profile-font content-font-size error-msg-fontSize">Please enter mobile number</p>
              </span>
@@ -623,8 +605,8 @@
       <div class="modal-header profile-font ">
         Crop Your image
         <button type="button" class="close pull-right" (click)="profilePicCropper.hide()" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
@@ -635,3 +617,4 @@
     </div>
   </div>
 </div>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import { SellService } from './sell.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import { Observable } from 'rxjs/Rx';
 import { ToastrService } from 'toastr-ng2';
+
 declare var $: any;
 
 @Component({
@@ -12,11 +13,11 @@ declare var $: any;
   styleUrls: ['./sell.component.css'],
   providers: [SellService]
 })
-export class SellComponent implements OnInit {
+export class SellComponent implements OnInit, OnDestroy {
   orderId: any;
   bankName: string;
   branch: string;
-  ifscCode: string;
+  showTime: any;
   accountNumber: string;
   walletAddress: string;
   sellerName: string;
@@ -30,6 +31,7 @@ export class SellComponent implements OnInit {
   subscription: any;
   matchedOn: any;
   isConfirmed: any;
+  getMessage: any;
   isMatchedConfirm = false;
   dispute = false;
   constructor(
@@ -39,16 +41,17 @@ export class SellComponent implements OnInit {
     private toastrService: ToastrService,
     private appEventEmiterService: AppEventEmiterService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
-      console.log(message)
-      if (message == "ORDER_CANCELLED") {
+      this.getMessage = message;
+      console.log("Get message", this.getMessage);
+      if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
-        if (this.subscription != null) {
-          clearInterval(this.subscription);
-        }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
-        this.ngOnInit();
+        this.showTime = "Order Canceled";
+        this.appEventEmiterService.changeMessage("cancelPay");
+        this.clearInterval();
+        // this.ngOnInit(); 
       }
-      else if(message == "PAID_NOTIFICATION") {
+      else if (this.getMessage == "CONFIRM_NOTIFICATION") {
         this.ngOnInit();
       }
     });
@@ -60,20 +63,28 @@ export class SellComponent implements OnInit {
       this.orderId = +params['orderId'];
     });
     this.getOrderDetails();
+
+  }
+
+  clearInterval() {
+    this.subscription = undefined;
+    clearInterval(this.subscription);
+  }
+
+  ngOnDestroy() {
+    this.clearInterval();
   }
 
   getOrderDetails() {
-    console.log("in get orders details")
     this.sellService.orderDetails(this.orderId).subscribe(success => {
       if (success.data == null) {
-        this.router.navigate(['tradeNow']);
+        this.router.navigate(['market']);
         return;
       }
-      console.log("in service calling")
+      console.log("Data of success", success);
       this.bankName = success.data.accountDetails.bankName;
       this.accountNumber = success.data.accountDetails.accountNumber;
       this.branch = success.data.accountDetails.branch;
-      this.ifscCode = success.data.accountDetails.ifscCode;
       this.walletAddress = success.data.walletAddress;
       this.totalPrice = success.data.totalPrice;
       this.sellerName = success.data.sellerName;
@@ -82,85 +93,65 @@ export class SellComponent implements OnInit {
       this.orderVolume = success.data.orderVolume;
       this.createdDate = success.data.createdDate;
       this.orderStatus = success.data.orderStatus;
+      console.log("Give status", this.orderStatus);
       this.matchedOn = success.data.matchedOn;
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.dispute = success.data.isDispute;
       this.startTradingTimer();
-    }, error => this.router.navigate(['tradeNow']))
+    }, error => this.router.navigate(['market']))
   }
 
+
+
   startTradingTimer() {
-    // for timer
-    // Set the date we're counting down to
-    console.log("status", this.orderStatus)
     var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
-    console.log("status locked", this.subscription)
-    this.subscription = setInterval(() => {
-      this.startTimer(countDownDate);
-    }, 1000)
-      // this.subscription = Observable.interval(1000).subscribe(() => {
-      //
-      // });
-      // for timer
+      this.subscription = setInterval(() => {
+        if (this.getMessage != "receivedPayment" && this.getMessage != "ORDER_BOOK_NOTIFICATION") {
+          this.startTimer(countDownDate);
+        }
+      }, 1000)
+
     }
-    else if (this.orderStatus == 'COMPLETED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
+    else if (this.orderStatus == 'COMPLETED' && this.getMessage != "CONFIRM_NOTIFICATION") {
       try {
-        document.getElementById("demo").innerHTML = "Order Completed";
+        this.showTime = '';
+        this.showTime = "Order Completed";
+        console.log("this.orderStatus", this.getMessage, this.orderStatus);
+        this.clearInterval();
       }
       catch (e) {
-        console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        console.log(this.subscription);
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       try {
-        document.getElementById("demo").innerHTML = "Order Submitted";
+        this.showTime = "Order Submitted";
+        this.clearInterval();
       }
       catch (e) {
-        console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        console.log(this.subscription);
       }
     }
     else if (this.orderStatus == 'LOCKED') {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       try {
-        document.getElementById("demo").innerHTML = "Please wait for buyer to make payment";
+        this.showTime = "Please wait for buyer to make payment";
+        this.clearInterval();
       }
       catch (e) {
-        console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        console.log(this.subscription);
       }
     }
     else {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       try {
-        document.getElementById("demo").innerHTML = "Order Cancelled";
+        this.showTime = "Order Cancelled";
+        //this.clearInterval();
       }
       catch (e) {
-        console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
+        console.log(this.subscription);
       }
     }
   }
@@ -183,69 +174,60 @@ export class SellComponent implements OnInit {
     // Output the result in an element with id="demo"
     if (path == 'sell') {
       try {
-        document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+        this.showTime = minutes + " : " + seconds;
+
       }
       catch (e) {
         console.log("exception handled")
-        if (this.subscription) {
-          clearInterval(this.subscription)
-        }
       }
     }
     // If the count down is over, write some text
     if (distance <= 0) {
       if (path == 'sell') {
-        clearInterval(this.subscription);
-        console.log("distance subscription", this.subscription)
+        // this.clearInterval();
         try {
-          document.getElementById("demo").innerHTML = "EXPIRED";
+          this.showTime = "EXPIRED";
+
         }
         catch (e) {
-          console.log("exception handled")
-          if (this.subscription) {
-            clearInterval(this.subscription)
-          }
         }
       }
     }
   }
 
   confirmPay() {
+    this.clearInterval();
+    this.appEventEmiterService.changeMessage("receivedPayment");
     this.sellService.confirmPay(this.orderId).subscribe(success => {
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       this.getOrderDetails();
-      if (this.subscription) {
-        clearInterval(this.subscription)
-      }
       this.toastrService.success("Trade Completed!", "Success!");
-      console.log(success);
+    }, error => {
+      this.toastrService.error(error.message, "Error!");
     })
   }
 
   cancelPay() {
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
+    this.clearInterval();
+    this.appEventEmiterService.changeMessage("cancelPay");
     this.sellService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
+      console.log("success.message");
       this.toastrService.success(success.message, "Success!");
-      console.log(success);
+    }, error => {
+      this.toastrService.error(error.message, "Error!");
     })
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
   }
 
   disputeTrade() {
     this.dispute = true;
-    if (this.subscription) {
-      clearInterval(this.subscription)
-    }
     this.sellService.dispute(this.orderId).subscribe(success => {
+      console.log("success.message");
       this.toastrService.success(success.message, "Success");
+    }, error => {
+      this.toastrService.error(error.json().message, "Error!");
     })
   }
+
+
 
 }

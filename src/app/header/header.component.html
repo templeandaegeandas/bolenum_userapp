@@ -9,7 +9,6 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="rightc">
-
                         <li> <img class="navimg" src="assets/images/settings-icons.png"> </li>
                     </ul>
                 </div>
@@ -19,11 +18,11 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-            <span class="sr-only header-font-family">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
+          <span class="sr-only header-font-family">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <span routerLink="/tradeNow" class="bolenumLogo"><a  class="navbar-brand insight" >
             <img class="img-responsive logo-img" src="assets/images/bolenum.png" title="Bolenum Exchange">
             <span class="exchange-color header-font-family heading-font-size"> Bolenum  </span> <span class="red header-font-family heading-font-size">Exchange</span>
@@ -33,49 +32,71 @@
       <!-- Collection of nav links, forms, and other content for toggling -->
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
-          <li class="" >
-            
-              <div class="dropdown padding-dropdown">
-                <button class=" dropdown-toggle more-drop-down heading-sub-menu " type="button" data-toggle="dropdown">MORE
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu more-dropDown-menu">
-                  <li><a href="#">About</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Term & Conditions</a></li>
-                </ul>
-              </div>
-          </li>
-          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/tradeNow">Trade Now</a></li>
-          <li class="menufont heading-sub-menu"><a href="https://bolenumexchange.freshdesk.com" target="_blank">Support</a></li>
+          <!-- <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li> -->
 
+          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/market">Market</a></li>
+          <li class="menufont heading-sub-menu" routerLinkActive="active"><a _ngcontent-c3="" routerlink="/feeDetails" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/feeDetails"
+              href="#/feeDetails"><i _ngcontent-c3=""></i>Fees</a></li>
+
+          <li class="menufont heading-sub-menu"><a href="https://bolenumexchange.freshdesk.com" target="_blank">Support</a></li>
+          <li class="">
+            <div class="dropdown padding-dropdown">
+              <button class=" dropdown-toggle more-drop-down heading-sub-menu " type="button" data-toggle="dropdown">MORE
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu more-dropDown-menu">
+                <li><a _ngcontent-c3="" routerlink="/about-bolenum-exchange" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/about-bolenum-exchange" href="#/about-bolenum-exchange"><i _ngcontent-c3=""></i>About</a></li>
+                <li><a _ngcontent-c3="" routerlink="/terms-service" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/terms-service" href="#/terms-service"><i _ngcontent-c3="" ></i>Term & Conditions</a></li>
+              </ul>
+            </div>
+          </li>
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/login">LOGIN</a></li>
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up">SIGNUP</a></li>
           <li class="dropdown menufont ">
             <a class="dropdown-toggle menufont heading-sub-menu drop-down-height" data-toggle="dropdown">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px; margin-left:6px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
             <ul class="dropdown-menu">
-              <li class="drop-down-font-size"><a routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">wallet</a></li>
+              <li class="drop-down-font-size"><a routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">withdrawal</a></li>
+              <li class="drop-down-font-size"><a routerLink="/wallet/deposit"> <img src="assets/images/wallet.png" class="img-profile-icon">Deposit</a></li>
               <li class="divider"></li>
+              <li class="drop-down-font-size"><a routerLink="/wallet/history"> <img src="assets/images/wallet.png" class="img-profile-icon">Trade History</a></li>
               <li class="drop-down-font-size"><a routerLink="/profile"> <img src="assets/images/profile (1).png" class="img-profile-icon">Profile</a></li>
               <li class="divider"></li>
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Balances</a></li>
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Deposits</a></li>
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Withdrawals</a></li>
-              <li class="divider"></li>
-
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Orders</a></li>
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Trade History</a></li>
-              <li class="drop-down-font-size"><a> <img src="" class="img-profile-icon">Setting</a></li>
-
-              <li class="divider"></li>
-
               <li class="drop-down-font-size"><a href="#" (click)="signOut()"><img src="assets/images/logout.png" class="img-profile-icon">Logout</a></li>
             </ul>
           </li>
-          <li class="menufont bellmenu"><a routerLink="/notify"><img src="./assets/images/notifythree.png" class="bell-icon" title="Notification"></a></li>
+          <!-- <li class="menufont bellmenu"><a routerLink="/notify"><img src="./assets/images/notifythree.png" class="bell-icon" title="Notification"></a></li> -->
+          <li>
+            <!-- test -->
+            <ul class="notificatiion-popup">
+              <li class="dropdowns">
+                <a class="dropdown-toggle bell backgroun-bell-color count-underscore"
+                (click)="showDropdown()" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell-o"> </i><span class='notification-Bage' *ngIf= "countOfUnseeNotification>0"> {{countOfUnseeNotification}}</span>
+                  <div class="notification-ring"></div>
+                  </a>
+                <div class="top-dropdown-menu dropdown-menu notification-scroll" aria-labelledby="msg-dd1">
+                  <i class="dropdown-arr"></i>
+                  <div class="header clearfix text-center notification-text-font">
+                    <strong>NOTIFICATIONS</strong>
+                    <!-- <a href>Mark All as Read</a>
+                    <a href>Settings</a> -->
+                  </div>
+                  <div class="msg-list" *ngFor="let list of listOfUserNotification">
+                      <div class="msg-area border-notification">
+                        <div class="notification-padding notification-text">
+                          <p class="notification-text notify" (click)="getNotificationType(list.notificationType, list.notificationRelationId)"> {{list.message}} </p>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="msg-area  text-center seeall-Notification-border-top">
+                    <a class="see-more-notification notification-text-font pointer-icon">See all notifications</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <!-- test -->
+          </li>
         </ul>
       </div>
-
     </nav>
   </div>
 </div>

@@ -1,50 +1,48 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-11 col-sm-offset-1 fee-details">
+    <div class="col-md-12 fee-details">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-12">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <div class="panel panel-default">
-                <div class="panel-heading">Market Trading Fees</div>
+                <div class="panel-heading heading-content">Market Trading Fees</div>
                 <div class="panel-body">
                   <div class="">
-                    <table class="table table-striped trade-History-table border-left ">
-                      <thead class="table-Head table-Heading ">
+                    <table class="table table-striped trade-History-table border-left market-font-size">
+                      <thead class="table-Head market-font-size ">
                         <tr>
                           <th class="text-center">Market</th>
                           <th class="text-center">Buy Fee</th>
                           <th class="text-center">Sell Fee</th>
+                         
+
                         </tr>
                       </thead>
                       <tbody class="table-content-font text-center">
                         <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>ETH/BTC</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
+                         </tr>
+                        <tr>
+                          <td>BLN/BTC</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
+                        
                         </tr>
                         <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>BLN/ETH</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
+                        
                         </tr>
                         <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                          <td>BLN/BTC</td>
+                          <td>{{marketValue}}</td>
+                          <td>{{marketValue}}</td>
+                         
                         </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-
-
                       </tbody>
                     </table>
                   </div>
@@ -54,48 +52,26 @@
 
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <div class="panel panel-default">
-                <div class="panel-heading">Withdrawal Fees</div>
+                <div class="panel-heading heading-content text">Withdrawal Fees</div>
                 <div class="panel-body">
                   <div class="">
                     <table class="table table-striped trade-History-table border-left ">
-                      <thead class="table-Head table-Heading ">
+                      <thead class="table-Head table-Heading market-font-size">
                         <tr>
-                          <th class="text-center">Coin</th>
-                          <th class="text-center">Short Code</th>
-                          <th class="text-center">Sell Fee</th>
+                          <th class="text-center market-font-size text-center">Coin</th>
+                          <th class="text-center market-font-size text-center ">Withdraw Fees</th>
+                          <th class="text-center market-font-size text-center ">Deposit Fees</th>
                         </tr>
                       </thead>
-                      <tbody class="table-content-font text-center">
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
+                      <tbody class=" market-font-size">
+                        <tr *ngFor='let withdrawValue of withdrawFee'>
+                          <td>{{withdrawValue.currency.currencyAbbreviation}}</td>
+                          <td>{{withdrawValue.fee}}</td>
+                          <td>N/A</td>
                         </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-                        <tr>
-                          <td>BTC/NGN</td>
-                          <td>0.15%</td>
-                          <td>0.15%</td>
-                        </tr>
-
-
-                      </tbody>
+                       </tbody>
                     </table>
                   </div>
                 </div>

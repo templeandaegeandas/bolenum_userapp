@@ -20,6 +20,7 @@ export class WithdrawComponent implements OnInit {
   public address: any;
   public balance: any;
   public coinAbbreviation: any;
+  public pageSize: any = 10;
   loading = false;
   txList: any;
   public beforeLogin: boolean = true;
@@ -30,37 +31,32 @@ export class WithdrawComponent implements OnInit {
   withdrawForm = new WithdrawAmount();
   data: any;
 
-  constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService, private toastrService: ToastrService) {
+  constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService,
+     private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
-        this.getListOfUserWithdrawlTransaction();
+        this.getListOfUserWithdrawlTransaction(this.data);
         this.getCoin(this.data);
       }
-      message = "default message";
+      message = 'default message';
     });
   }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getCurrencyList();
-    setTimeout(() => {
-      this.getListOfUserWithdrawlTransaction();
-    }, 200);
   }
 
   withdrawAmount(form) {
-    if (form.invalid) return;
+    if (form.invalid) {return;
+    }
     if (this.withdrawForm.withdrawAmount < this.minWithdrawAmount) {
-      this.toastrService.error("You can not withdraw less than min withdraw limit", 'Error!');
+      this.toastrService.error('You can not withdraw less than min withdraw limit', 'Error!');
       return;
     }
     this.loading = true;
-    let currency;
-    this.currencyData.map(function(value) {
-      if (value.currencyAbbreviation == this.setItemValue) {
-        currency = value;
-      }
-    })
+    let currency: any;
+     currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
     this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
       this.getCoin(currency.currencyAbbreviation);
       form.resetForm();
@@ -69,7 +65,7 @@ export class WithdrawComponent implements OnInit {
     }, error => {
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
-    })
+    });
   }
 
   getCurrencyList() {
@@ -80,12 +76,12 @@ export class WithdrawComponent implements OnInit {
         this.getCoin(this.setItemValue);
       }
     }, error => {
-      console.log(error)
+      console.log(error);
     });
 
   }
 
-  
+
   log(event: boolean) {
     console.log(`Accordion has been ${event ? 'opened' : 'closed'}`);
   }
@@ -100,47 +96,47 @@ export class WithdrawComponent implements OnInit {
       if (value.currencyAbbreviation == data) {
         currency = value;
       }
-    })
+    });
     this.withdrawService.getCoin(currency.currencyType, data).subscribe(success => {
-      let successData = success.data;
+      let successData: any;
+      successData = success.data;
       if (successData.data != null) {
         this.address = successData.data.address;
-        this.balance = successData.data.balance + " " + data;
-        this.coinAbbreviation = successData.data.coinAbbreviation;
+        this.balance = successData.data.balance;
       }
       this.loading = false;
     }, errorData => {
-      this.getCoin(data);
       this.loading = false;
-    })
+    });
     this.withdrawFees(currency.currencyId);
+    this.getListOfUserWithdrawlTransaction(data);
   }
 
-  getListOfUserWithdrawlTransaction() {
+  getListOfUserWithdrawlTransaction(coinCode) {
     this.isLoading = true;
     this.hasBlur = true;
-    this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc").subscribe(success => {
+    this.withdrawService.getListOfWithdrawlTransaction(1, 10, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
       this.transactionLength = this.txList.length;
-    })
+    });
   }
 
-  //for get more transaction
+  // for get more transaction
 
   getMoreTransactionList() {
-    let currentPage = 1;
-    let pageSize = 10;
+    let currentPage: any;
+    currentPage = 1;
+    this.pageSize = this.pageSize+10;
     this.isLoading = true;
     this.hasBlur = true;
-    pageSize = pageSize + 10;
-    this.withdrawService.getListOfWithdrawlTransaction(currentPage, pageSize, "createdOn", "desc").subscribe(success => {
+    this.withdrawService.getListOfWithdrawlTransaction(currentPage, this.pageSize, "createdOn", "desc", this.data).subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
       this.txList = success.data.content;
       this.transactionLength = this.txList.length;
-    })
+    });
   }
 
   withdrawFees(currencyId) {
@@ -149,6 +145,6 @@ export class WithdrawComponent implements OnInit {
         this.withdrawFee = success.data.fee;
         this.minWithdrawAmount = success.data.minWithDrawAmount;
       }
-    })
+    });
   }
 }

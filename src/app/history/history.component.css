@@ -1,12 +1,15 @@
 /*ul.dropdown-menu{
     display: block;
 }*/
-.transaction-History{
-        /*background-color: white;*/
+
+.transaction-History {
+    background-color: white;
     padding-top: 21px;
     /*margin-left: 113px;*/
     /* padding-bottom: 315px; */
 }
+
+
 /*.no-transaction{
   text-transform: capitalize;
     top: 130px;
@@ -15,101 +18,117 @@
     position: relative;
 }
 */
-.transaction-History-Property{
+
+.transaction-History-Property {
     border: 1px solid lightgray;
-    height: 299px;
+    height: 278px;
 }
+
 .container.container-padding {
     padding-top: 60px;
     padding-bottom: 20px;
 }
+
 .table-color {
     background-color: #f1f0f0;
 }
+
 select.right-dropddown {
     float: right;
     background: none;
     border: none;
     margin-right: 81px;
 }
+
 .mydp .selbtngroup {
     position: relative;
     white-space: nowrap;
     font-size: 0;
 }
-.btn span.glyphicon {    			
-	opacity: 0;				
-}
-.btn.active span.glyphicon {				
-	opacity: 1;				
+
+.btn span.glyphicon {
+    opacity: 0;
 }
 
- .date-picker {
+.btn.active span.glyphicon {
+    opacity: 1;
+}
+
+.date-picker {
     float: right;
     background: none!important;
     vertical-align: middle;
     margin-bottom: -10px;
-  
 }
+
 span.mydpicon.icon-mydpcalendar {
     padding-left: 105px !important;
 }
+
 .mdp span.mydpicon.icon-mydpcalendar {
     margin-right: -239px;
 }
 
-
 button.btn.btn-primary.dropdown-toggle {
-    background:#dedede;
+    background: #dedede;
     padding: 0px;
     border: none;
     outline: none;
 }
-	
-.clickable{
-   cursor: pointer;   
+
+.clickable {
+    cursor: pointer;
 }
+
 img.text-right {
     margin-right: 14px;
     height: 22px;
 }
+
 .panel-heading div {
     margin-top: -18px;
-	font-size: 15px;
+    font-size: 11px;
 }
-.panel-heading div span{
-	margin-left:5px;
+
+.panel-heading div span {
+    margin-left: 5px;
 }
-.panel-body{
-   display: none;
-		}
+
+.panel-body {
+    display: none;
+}
+
 .panel-heading div {
     margin-top: -13px;
-    font-size: 15px;
+    font-size: 12px;
 }
+
 .panel-primary>.panel-heading {
     color: #000;
     background-color: #dedede;
-    border-color: #dedede;
-    border: none; 
-    
+    border-color: #DB2828;
+    border: none;
+    font-size: 11px;
 }
+
 .panel-heading {
     padding: 10px 7px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
+
 .panel-primary {
     border: none;
 }
+
 h3.panel-title {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 600;
     float: none!important;
     width: 100%;
     display: block;
-    }
+}
 
 .dropdown-menu>li>a {
     display: block;
@@ -121,140 +140,168 @@ h3.panel-title {
     white-space: nowrap;
     color: #B2B2B2;
 }
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
     /* padding: 8px 48px; */
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;
     text-align: center;
 }
+
 .open>.dropdown-menu {
     display: block;
     border: none;
     border-radius: 0;
 }
-.btn span.glyphicon {    			
-	opacity: 0;				
+
+.btn span.glyphicon {
+    opacity: 0;
 }
-.btn.active span.glyphicon {				
-	opacity: 1;				
+
+.btn.active span.glyphicon {
+    opacity: 1;
 }
+
 .btn-danger {
     color: #fff;
     border-color: #DB2828;
     outline: none;
 }
-  
-label {
-  cursor: pointer;
-}
-input[type="checkbox"] {
-  visibility: hidden;
-}
-input[type="checkbox"]:checked {
-     visibility: hidden;
-}
-input[type="checkbox"] + label:before {
-  border: 1px solid #CDCDCD;
-  content: "\00a0";
-  display: inline-block;
-  font: 16px/1em sans-serif;
-  height: 19px;
-  background-color:  white;
-  margin: 0 .25em 0 0;
-  padding: 0;
-  vertical-align: top;
-  width: 23px;
-  border-radius: 4px;
-}
-input[type="checkbox"]:checked + label:before {
-  background:#DB2828;;
-  color: white;
-  content: "\2713";
-  text-align: center;
-}
-input[type="checkbox"]:checked + label:after {
-  font-weight: bold;
-}
-    
-@media screen and (min-width: 320px) and (max-width: 767px){
-  .transaction-history {
-    background-color: #DB2828;
-    text-align: left;
-    color: white;
-    width: 420px;
-   
-}
-h3.panel-title {
-   
-    float: none!important;
-    width: 100%;
-    margin-bottom:30px;
-    }
-.date-picker {
-    float: right;
-    background: none!important;
-    vertical-align: middle;
-    margin-bottom: -16px;
-    margin-right:50px
-   
-}
-}
-@media screen and (min-width: 768px) and (max-width: 1023px){
-  h3.panel-title {
-    font-size: 18px;
-    font-weight: 600;
-    float: none!important;
-    width: 100%;
-    display: block;
-   
-    }
-  
- }
 
- /* font family and font size */
- .table-Heading {
+label {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked {
+    visibility: hidden;
+}
+
+input[type="checkbox"]+label:before {
+    border: 1px solid #CDCDCD;
+    content: "\00a0";
+    display: inline-block;
+    font: 16px/1em sans-serif;
+    height: 19px;
+    background-color: white;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    vertical-align: top;
+    width: 23px;
+    border-radius: 4px;
+}
+
+input[type="checkbox"]:checked+label:before {
+    background: #DB2828;
+    ;
+    color: white;
+    content: "\2713";
+    text-align: center;
+}
+
+input[type="checkbox"]:checked+label:after {
+    font-weight: bold;
+}
+
+.table-responsive.history-Table {
+    font-size: 11px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .transaction-history {
+        background-color: #DB2828;
+        text-align: left;
+        color: white;
+        width: 420px;
+    }
+    h3.panel-title {
+        float: none!important;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .date-picker {
+        float: right;
+        background: none!important;
+        vertical-align: middle;
+        margin-bottom: -16px;
+        margin-right: 50px
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    h3.panel-title {
+        font-size: 18px;
+        font-weight: 600;
+        float: none!important;
+        width: 100%;
+        display: block;
+    }
+}
+
+
+/* font family and font size */
+
+.table-Heading {
     font-size: 16px !important;
     font-family: Lato-Regular-font !important;
     font-weight: 100!important;
 }
 
- .table-content {
-    font-size: 14px !important;
+.table-content {
+    font-size: 11px !important;
     font-family: Lato-Regular-font !important;
-    font-weight: 100!important;
+    font-weight: 300;
 }
+
 
 /* font family and font size */
 
-/* for depositetable */
-.history-Table table {
 
+/* for depositetable */
+
+.history-Table table {
     border-spacing: 0;
 }
 
-.history-Table tbody, .history-Table thead tr { display: block; }
+.history-Table tbody,
+.history-Table thead tr {
+    display: block;
+}
 
 .history-Table tbody {
-    height: 307px;
+    height: 252px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.history-Table tbody td, .history-Table thead th {
-    width: 216px;
+.history-Table tbody td,
+.history-Table thead th {
+    width: 155px;
     padding: 3px;
-    
 }
 
- .history-Table thead th{
-        font-weight: bold !important;
-}
+
+/*.history-Table thead th{
+
+}*/
+
+
 /* for depositiable table */
 
+
 /* for loader */
+
 .loader {
-     border: 5px solid #f3f3f3;
+    border: 5px solid #f3f3f3;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
     border-top: 5px solid #db2828;
@@ -264,25 +311,34 @@ h3.panel-title {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.spiner-position{
-        position: absolute;
-         top: 201px;
-    left: 455px;
+.spiner-position {
+    position: absolute;
+    top: 158px;
+    left: 454px;
 }
+
 
 /* for loader */
 
-.opecity-table{
-      opacity: 0.5;
+.opecity-table {
+    opacity: 0.5;
 }
 
 .moreData {
@@ -291,7 +347,7 @@ h3.panel-title {
     cursor: pointer;
 }
 
-.moreData:hover{
+.moreData:hover {
     text-decoration: underline;
     color: #DB2828;
 }

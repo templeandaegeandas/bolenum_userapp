@@ -13,7 +13,7 @@
         </ul>
       </div> -->
       <div class="clearfix"></div>
-      <div class="col-md-12 text-center">
+      <div class="col-md-12 text-center margin-dropdown">
         <select class="center-dropddown drop-down-font" [(ngModel)]="setItemValue" (ngModelChange)="getCoin(setItemValue)">
 
             <option *ngFor="let setCoin of currencyData" [value]="setCoin.currencyAbbreviation" class="option-box text-uppercase drop-down-font">{{setCoin.currencyName}} ({{setCoin.currencyAbbreviation}})</option>
@@ -33,18 +33,17 @@
   <span *ngIf="isCopied==true" class="copyColor">Address Copied</span>
             <input type="text" class="form-control deposite-Content input-lg" readonly id="usr" [(ngModel)]="address" #inputTarget  >
              <!-- <button class="btn btn-default copy-Text" [class.copyColor]= "isCopied" type="button" [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"><span *ngIf="isCopied==true">Copied</span><span *ngIf="isCopied==false">Copy</span></button>  -->
-             <span class="copy-Text" (click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="46"   [ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
+             <span class="copy-Text"(click)="isCoppied();" title="copy to clipboard"><img src="./assets/images/copy.png" class="cursorPointer" width="46" height="43"[ngxClipboard]="inputTarget" (cbOnSuccess)="isCopied = true"></span>
           </div>
-
         </div>
-
+        <div class="clearfix"></div>
 
       <div class="col-md-12 text-center deposite-Content">
          <!-- <span class="network">Network Fee:</span> -->
-        <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoinsmall.png" width="30" height="30" /></span>
+        <span *ngIf="setItemValue=='BTC'"><img src="./assets/images/bitcoin.png" width="30" height="30" /></span>
           <span *ngIf="setItemValue=='BLN'"><img src="./assets/images/bolenum.png" width="30" height="30" /></span>
             <span *ngIf="setItemValue=='ETH'"><img src="./assets/images/eth.png" width="30" height="30" /></span>
-          Available Balance : <span>{{balance}} {{coinAbbreviation}}</span>
+          Available Balance : <span>{{balance | number:'1.8-8'}} {{setItemValue}}</span>
         </div>
       </div>
       <!-- <div class="col-md-12 text-center margin-button">
@@ -58,26 +57,32 @@
    <table class="table table-striped trade-History-table border-left " [ngClass]="{'opecity-table':hasBlur}">
         <thead class="table-Head table-Heading ">
           <tr>
-            <th>Transaction Hash</th>
+            <th class="ellipsis" >Transaction Hash</th>
             <th>Currency</th>
             <th>Amount</th>
-            <th>Sender Address</th>
+            <th class="ellipsis" >Sender Address</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody class="table-content-font">
           <tr *ngFor="let tx of txList">
             <td class="ellipsis" title="{{tx.txHash}}" >{{tx.txHash }}</td>
-
             <td>{{tx.currencyName}}</td>
-            <td>{{tx.txAmount | number:'1.1-8'}}</td>
+            <td>{{tx.txAmount | number:'1.8-8'}}</td>
             <td class="ellipsis" title="{{tx.fromAddress}}">{{tx.fromAddress}}</td>
             <td>{{tx.createdOn | date}}</td>
             <td>{{tx.createdOn | date:'shortTime'}}</td>
+            <td>N/A</td>
           </tr>
           <tr *ngIf="txLength >=10">
-            <td colspan="6"><p class="moreData" (click)="getMoreDepositeList()">More</p></td>
+            <td colspan="7"><p class="moreData" (click)="getMoreDepositeList()" title="click to show more list">More</p></td>
+          </tr>
+          <tr *ngIf="txLength == 0">
+            <td colspan="7">
+               <p>You don't have any transaction yet!</p>
+            </td>
           </tr>
         </tbody>
       </table>
