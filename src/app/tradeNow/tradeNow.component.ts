@@ -144,6 +144,10 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
+      this.loading = true;
+      setTimeout(()=>{
+        this.loading = false;
+      },1000)
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -561,8 +565,8 @@ export class TradeNowComponent implements OnInit {
   }
 
   changePair(marketCurrency, pairedCurrency) {
+    
     this.selectedRow = pairedCurrency.currencyId;
-    this.loading = true;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;
     this.marketCurrencyType = marketCurrency.currencyType;
@@ -594,7 +598,11 @@ export class TradeNowComponent implements OnInit {
     this.sellPriceWithFee = 0.0;
     this.sellTradingFee = 0.0;
     this.sellTotalPrice = 0.0;
-    this.loading = false;
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
+    
   }
 
   getUserBalance() {
@@ -802,6 +810,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
+    this.loading = true;
     if (orderType == 'BUY' && this.buyAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
       return;
@@ -869,6 +878,9 @@ export class TradeNowComponent implements OnInit {
     this.sellAmount = '';
     this.buyPrice = '';
     this.sellPrice = '';
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
   }
 
   // to get more orders on tradeHistory table on click of more

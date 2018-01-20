@@ -634,7 +634,7 @@ thead.heading {
      position: relative;
     width: 100%;
     left: -10%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
@@ -2094,7 +2094,7 @@ thead.heading {
      position: relative;
     width: 100%;
     left: -10%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;

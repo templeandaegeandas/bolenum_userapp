@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutBolenumExchangeComponent implements OnInit {
 
-  constructor() { }
+ public loading: boolean;
+
+  constructor() { this.loading = true;
+  setTimeout(()=>{
+  this.loading = false;
+  },1000); }
 
   ngOnInit() {
   }
+  
+
 
 }
