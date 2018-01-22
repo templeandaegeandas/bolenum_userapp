@@ -272,7 +272,7 @@ export class TradeNowComponent implements OnInit {
                interval: 'D',
               container_id: "tv_chart_container",
               //  BEWARE: no trailing slash is expected in feed URL
-              datafeed: new Datafeeds.UDFCompatibleDatafeed("http://staging.bolenumexchange.com/api/v1/user/chart"),
+              datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart"),
               library_path: "../../assets/js/",
               locale: "en",
               // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
