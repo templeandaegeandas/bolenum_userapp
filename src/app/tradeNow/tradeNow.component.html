@@ -551,7 +551,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="sellBuyAmount" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
+                              <input type="text" name="sellBuyAmount" placeholder="0.00000000" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
@@ -571,7 +571,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
+                              <input type="text" name="sellBuyPrice" placeholder="0.00000000" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
