@@ -136,12 +136,18 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loading =true;
+    setTimeout(()=>{
+      this.loading = false;
+    },2000);
     this.getLoggedInUserDetails();
   }
 
   getKycDetailsUser() {
+    this.loading = true;
     this.profileService.getKycDetailUsers().subscribe(
       success => {
+        this.loading = false;
         this.kycDocument = success.data;
         if (this.kycDocument.length > 0) {
           if (this.kycDocument[0].documentType == "RESIDENCE_PROOF") {
@@ -191,7 +197,9 @@ export class ProfileComponent implements OnInit {
           }
         }
       },
-      error => {}
+      error => {
+        this.loading = false;
+      }
     );
   }
 
@@ -290,6 +298,7 @@ export class ProfileComponent implements OnInit {
   }
 
   editDetails() {
+    this.loading = true;
     this.getAllCountries();
     this.isDetailsEdit = true;
     let d = new Date(this.userProfile.dob);
@@ -302,6 +311,9 @@ export class ProfileComponent implements OnInit {
         }
       };
     }
+  setTimeout(()=>{
+    this.loading = false;
+  },1000);
   }
 
   editMobile() {
@@ -373,6 +385,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveDetails(form) {
+    this.loading = true;
     if (form.invalid) return;
     if (this.country == "Choose Country") {
       this.countryError = true;
@@ -393,6 +406,7 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.saveUserDetails(this.userProfile).subscribe(
       success => {
+        this.loading = false;
         this.userFirstName = success.data.firstName;
         this.userLastName = success.data.lastName;
         localStorage.setItem("lName", this.userLastName);
@@ -808,8 +822,10 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserBankDetails() {
+    this.loading = true;
     this.profileService.getUserBankDetails().subscribe(
       successData => {
+        this.loading = false;
         this.getOurBankDetails = successData.data;
         let customerDta = this.getOurBankDetails;
         if (customerDta.length === 2) {
@@ -821,7 +837,9 @@ export class ProfileComponent implements OnInit {
           this.isCustomerView = true;
         }
       },
-      errorData => {}
+      errorData => {
+        this.loading = false;
+      }
     );
   }
 
@@ -863,5 +881,13 @@ export class ProfileComponent implements OnInit {
     this.countryCode = $("#usrphone").intlTelInput(
       "getSelectedCountryData"
     ).dialCode;
+  }
+//method to show loader on profile tab click.
+  showLoader(){
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
+
   }
 }

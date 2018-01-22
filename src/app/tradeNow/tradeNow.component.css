@@ -649,7 +649,7 @@ thead.heading {
     position: relative;
     width: 100%;
     left: 12%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
@@ -731,6 +731,7 @@ thead.heading {
 
 .cross-color{
     color: lightgray !important;
+    outline: none;
 }
 .margin-modal{
     padding-top: 10px;
@@ -2109,7 +2110,7 @@ thead.heading {
     position: relative;
     width: 100%;
     left: 12%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
