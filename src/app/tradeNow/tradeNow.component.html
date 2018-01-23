@@ -266,7 +266,7 @@
                         <div *ngIf="!isBuyMarket">
                           <div class="col-md-12 trade-field">
                             <div class="col-md-5">
-                              <label for="amount">Amount (in {{pairedCurrency}})</label>
+                              <label for="amount">Amounts (in {{pairedCurrency}})</label>
                             </div>
                             <div class="col-md-7">
                               <input type="text" placeholder="0.00000000" name="sellBuyVloume" #sellBuyVloume="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="email" [(ngModel)]="buyVolume" (ngModelChange)="oneBuyBtc()">
@@ -755,7 +755,7 @@
             </div>
             <div class="trade-History">
               <div class="loader spiner-position" *ngIf="isLoading"></div>
-              <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
+              <table class="table table-scroll table-striped table-responsive trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr>
                     <th>Date</th>
@@ -862,7 +862,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+              <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm"  (click)="createOrder()">Yes</button>
               <button *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
               <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
             </div>
