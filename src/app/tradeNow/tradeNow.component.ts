@@ -135,6 +135,7 @@ export class TradeNowComponent implements OnInit {
   pairedCurrencyId;
   marketCurrencyObj;
   pairedCurrencyObj;
+  subscription;
   public tradingView;
 
   constructor(
@@ -561,7 +562,7 @@ export class TradeNowComponent implements OnInit {
       this.getBuyOrderBookData();
       this.getSellOrderBookData();
       this.getOurMarketData();
-      this.getCoinMarketCapData(this.marketCurrencyObj.currencyName, this.pairedCurrency);
+      this.getCoinMarketCapData();
       if(this.jsonMessage=="PAID_NOTIFICATION" || this.jsonMessage=="receivedPayment" || this.jsonMessage=="ORDER_BOOK_NOTIFICATION" || this.jsonMessage==""){
             this.pairName="NGN/BLN";
              this.select(4, 3);
@@ -648,7 +649,12 @@ export class TradeNowComponent implements OnInit {
     this.getBuyOrderBookData();
     this.getSellOrderBookData();
     this.getOurMarketData();
-    this.getCoinMarketCapData(marketCurrency.currencyName, this.pairedCurrency);
+    if (pairedCurrency.currencyType != 'FIAT' && this.showHide) {
+      this.getCoinMarketCapData();
+    }
+    if(this.showHide) {
+      this.getTradeViewChart();
+    }
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -1048,7 +1054,16 @@ export class TradeNowComponent implements OnInit {
   showHideDiv() {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
-    this.getTradeViewChart();
+    if(this.showHide) {
+      console.log(this.showHide);
+      this.getCoinMarketCapData();
+      this.getDataIn10Min();
+      this.getTradeViewChart();
+    }
+    else {
+      console.log("In Timer")
+      clearInterval(this.subscription);
+    }
   }
 
   select(pairedCurrency, marketCurrency) {
@@ -1067,11 +1082,16 @@ export class TradeNowComponent implements OnInit {
     
   }
 
-  getCoinMarketCapData(currencyName, currencyAbber) {
-    let seturl: any;
+  getDataIn10Min() {
+    if(this.showHide) {
+      this.subscription = setInterval(() => {
+      this.getCoinMarketCapData();
+    }, 10000 * 60);
+    }
+  }
 
-    seturl = 'https://api.coinmarketcap.com/v1/ticker/' + currencyName + '/?convert=' + currencyAbber;
-
+  getCoinMarketCapData() {
+    let seturl = 'https://api.coinmarketcap.com/v1/ticker/' + this.pairedCurrencyObj.currencyName + '/?convert=' + this.marketCurrencyObj.currencyAbbreviation;
     $.ajax({
       url: seturl,
       type: 'GET',
@@ -1091,6 +1111,10 @@ export class TradeNowComponent implements OnInit {
       this.high24h = success.data.high24h;
       this.countTrade24h = success.data.countTrade24h;
     })
+  }
+
+  openCoinCap() {
+    window.open("https://coinmarketcap.com/currencies/" + this.pairedCurrencyObj.currencyName, '_blank');
   }
 
 }
