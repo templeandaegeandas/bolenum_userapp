@@ -22,12 +22,12 @@ public test:any =0;
     return super.request(url, options).catch((error: Response) => {
         if ((error.status === 401 || error.status === 403 || error.status === 0)) {
       this.test = this.test + 1;
-		 window.localStorage.clear();
+		 localStorage.clear();
 		 this.router.navigate(['/login']);
      
      if(this.test==1){
        window.setTimeout(() => {
-        this.toastrService.error('Error!', 'ERROR',"Your session has been invalidated. It might be because someone else has logged in from your account. Please login again");
+        this.toastrService.info('Session expired! Please login again', 'Info');
     },1000)
       
      }
