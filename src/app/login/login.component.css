@@ -28,7 +28,6 @@
 }
 .text-center {
     text-align: center;
-    padding: 26px;
      margin-top: 29px;
 }
 
@@ -190,7 +189,7 @@ span.input-group-addon {
     border-collapse: separate;
     margin: 11px;
     margin-right: 37px;
-    padding: 8px;
+    /* padding: 8px; */
 }
 .login-text {
     /* margin: 2px 2px 61px -22px; */

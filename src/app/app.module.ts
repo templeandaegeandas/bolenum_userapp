@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule,Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +53,7 @@ import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
 import { DisputeComponent } from './dispute/dispute.component';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
+import { AuthenticatedHttpService } from './interceptor';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
@@ -126,6 +127,7 @@ export function highchartsFactory() {
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
     HttpClient,
+   { provide: Http, useClass: AuthenticatedHttpService },
     PrivateRouteAuthGuard,
     PublicRouteAuthGuard,
     AppEventEmiterService,
