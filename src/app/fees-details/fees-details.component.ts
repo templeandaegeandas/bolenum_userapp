@@ -10,11 +10,16 @@ import { FeesService } from './fees-details.service';
 export class FeesDetailsComponent implements OnInit {
   public marketValue: any;
   public withdrawFee: any;
+  public loading: boolean;
 
   constructor(private feesService: FeesService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
     this.getMarketValue();
     this.withdrawFees();
    }

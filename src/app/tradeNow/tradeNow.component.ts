@@ -144,6 +144,10 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
+      this.loading = true;
+      setTimeout(()=>{
+        this.loading = false;
+      },1000)
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -268,7 +272,7 @@ export class TradeNowComponent implements OnInit {
               fullscreen: true,
                width:'200',
                height:'200',
-               symbol: 'BTC',
+               symbol: this.marketCurrencyId+'BE'+this.pairedCurrencyId,
                interval: 'D',
               container_id: "tv_chart_container",
               //  BEWARE: no trailing slash is expected in feed URL
@@ -611,16 +615,21 @@ export class TradeNowComponent implements OnInit {
   }
 
   cancelOrder() {
+    this.loading = true;
     this.tradeNowService.cancelOrder(this.cancelOrderId).subscribe(success => {
+      this.loading = false;
       this.hideOrderCancelModel();
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
+    }, error => {
+      this.hideOrderCancelModel();
+      this.toastrService.error(error.json().message, "Error!");
+      this.loading = false;
     })
   }
 
   changePair(marketCurrency, pairedCurrency) {
-    this.selectedRow=pairedCurrency.currencyId;
-    this.loading = true;
+    this.selectedRow = pairedCurrency.currencyId;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;
     this.marketCurrencyType = marketCurrency.currencyType;
@@ -650,7 +659,11 @@ export class TradeNowComponent implements OnInit {
     this.sellPriceWithFee = 0.0;
     this.sellTradingFee = 0.0;
     this.sellTotalPrice = 0.0;
-    this.loading = false;
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
+    
   }
 
   getUserBalance() {
@@ -858,12 +871,15 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
+    this.loading = true;
     if (orderType == 'BUY' && this.buyAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
+      this.loading = false;
       return;
     }
     if (orderType == 'SELL' && this.sellAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
+      this.loading = false;
       return;
     }
     if (orderType == 'BUY' && (this.buyAmount == '' || this.buyPrice == '')) {
@@ -871,6 +887,7 @@ export class TradeNowComponent implements OnInit {
       setTimeout(() => {
         this.hasData = !this.hasData;
       }, 3000);
+      this.loading = false;
       return;
 
     }
@@ -880,11 +897,13 @@ export class TradeNowComponent implements OnInit {
       setTimeout(() => {
         this.hasSellData = !this.hasSellData;
       }, 3000);
+      this.loading = false;
       return;
 
     }
     if ((orderType == 'BUY' && this.buyPrice < this.minPrice) || (orderType == 'SELL' && this.sellPrice < this.minPrice)) {
       this.toastrService.error("You can't place order less than " + this.minPrice + " NGN", "Error!");
+      this.loading = false;
       return;
     }
     if (orderType == 'BUY') {
@@ -896,12 +915,14 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.loading = false;
         this.getBuyOrderBookData();
         this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
         this.toastrService.error(error.json().message, "Error!");
+        this.loading = false;
       })
     }
     else {
@@ -913,18 +934,23 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.loading = false;
         this.getBuyOrderBookData();
         this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
         this.toastrService.error(error.json().message, "Error!");
+        this.loading = false;
       })
     }
     this.buyAmount = '';
     this.sellAmount = '';
     this.buyPrice = '';
     this.sellPrice = '';
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
   }
 
   // to get more orders on tradeHistory table on click of more

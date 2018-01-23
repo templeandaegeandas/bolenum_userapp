@@ -634,7 +634,7 @@ thead.heading {
      position: relative;
     width: 100%;
     left: -10%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
@@ -649,7 +649,7 @@ thead.heading {
     position: relative;
     width: 100%;
     left: 12%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
@@ -709,6 +709,76 @@ thead.heading {
     bottom:0;
 }*/
 
+.table-data{
+    text-align: left !important;
+}
+
+.padding-table-coinMarket{
+        padding-right: 0px;
+}
+
+.padding-main-div{
+    padding-left: 0px;
+}
+
+.modal-coinmarket{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.modal-color{
+    color: #000 !important;
+}
+
+.cross-color{
+    color: lightgray !important;
+    outline: none;
+}
+.margin-modal{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-title-font{
+    font-size: 18px;
+}
+
+.footer-margin{
+    margin-top: 10px;
+}
+
+
+.content_text{
+    font-size: 13px !important;
+}
+.label-font-size{
+    font-size: 15px;
+}
+.modal-width{
+        width: 775px;
+}
+
+.padding-footer{
+    padding-left: 17px;
+    padding-top: 15px;
+
+}
+
+.close-button-modal{
+    padding-top: 13px;
+    padding-left: 72px;
+}
+
+.cursor-pointer-market{
+    cursor: pointer;
+}
+
+.modal-border-coin{
+    border-top: 1px solid lightgray;
+}
+
+.border-bottom-modal{
+    border-bottom: 1px solid lightgray; 
+}
 .total-coin {
     text-align: right;
     margin-top: 0px;
@@ -2025,7 +2095,7 @@ thead.heading {
      position: relative;
     width: 100%;
     left: -10%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
@@ -2040,7 +2110,7 @@ thead.heading {
     position: relative;
     width: 100%;
     left: 12%;
-    z-index: 999;
+    /* z-index: 999; */
     overflow-y: auto;
     /*margin: 0;*/
     max-height: 465px;
