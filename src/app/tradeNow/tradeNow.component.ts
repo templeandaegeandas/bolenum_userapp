@@ -554,16 +554,15 @@ export class TradeNowComponent implements OnInit {
   }
 
   cancelOrder() {
-    this.loading = true;
     this.tradeNowService.cancelOrder(this.cancelOrderId).subscribe(success => {
-      this.loading = false;
       this.hideOrderCancelModel();
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
+      
     }, error => {
       this.hideOrderCancelModel();
       this.toastrService.error(error.json().message, "Error!");
-      this.loading = false;
+      
     })
   }
 
@@ -942,7 +941,7 @@ export class TradeNowComponent implements OnInit {
     this.tradeNowService.getMyOrdersFromBook(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
-      this.myOrdersInBook = success.data;
+      this.myOrdersInBook = success.data.content;
       this.myOrdersInBookLength = this.myOrdersInBook.length;
 
 
