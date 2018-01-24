@@ -598,58 +598,51 @@
                         <!--  /* BUY CODE ENDS HERE */ -->
                       </div>
                     </div>
-                    <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
-                      <!-- <div class="col-md-12 trade-field trade-button-margin">
-                        <div class="col-md-6  buy-button-left">
-                          <a class="buyAnchor" (click)="showBuyOrder()">I want to buy BLN</a>
-                        </div>
-                        <div class="col-md-6  sell-button-right">
-                          <a class="sellAnchor" (click)="showSellOrder()">I want to sell BLN</a>
-                        </div>
-                      </div> -->
-                      <!-- for buy section -->
-                      <section>
-                        <div class="col-md-12 trade-field">
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div *ngIf="hasSellData">
-                                <p class="error-buy-sell">Please Enter Amount Or Price </p>
-                              </div>
-                              <div class="col-sm-12 pad-marg-top padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="sellBuyAmount" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyAmount.invalid">
-                                      <div *ngIf="sellBuyAmount.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct amount.</p>
-                                      </div>
-                                    </div>
+                    <!--  /* BUY CODE ENDS HERE */ -->
+                  </div>
+                </div>
+                <div *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
+                  <!-- for buy section -->
+                  <section>
+                    <div class="col-md-12 trade-field">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div *ngIf="hasSellData">
+                            <p class="error-buy-sell">Please Enter Amount Or Price </p>
+                          </div>
+                          <div class="col-sm-12 pad-marg-top padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" name="sellBuyAmount" placeholder="0.00000000" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyAmount.invalid">
+                                  <div *ngIf="sellBuyAmount.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct amount.</p>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-sm-12">
-                              <div class="col-sm-12 padding-level">
-                                <div class="col-md-5">
-                                  <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
-                                </div>
-                                <div class="col-md-7">
-                                  <input type="text" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
-                                </div>
-                                <div class="col-md-12">
-                                  <div class="col-sm-5"></div>
-                                  <div class="col-sm-7">
-                                    <div *ngIf="sellBuyPrice.invalid">
-                                      <div *ngIf="sellBuyPrice.errors.pattern">
-                                        <p class="red-bold text-err">Please enter the correct price.</p>
-                                      </div>
-                                    </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="col-sm-12 padding-level">
+                            <div class="col-md-5">
+                              <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
+                            </div>
+                            <div class="col-md-7">
+                              <input type="text" name="sellBuyPrice" placeholder="0.00000000" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-sm-5"></div>
+                              <div class="col-sm-7">
+                                <div *ngIf="sellBuyPrice.invalid">
+                                  <div *ngIf="sellBuyPrice.errors.pattern">
+                                    <p class="red-bold text-err">Please enter the correct price.</p>
                                   </div>
                                 </div>
                               </div>
@@ -981,4 +974,5 @@
       </div>
     </div>
   </div>
-  <!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
+<ngx-loading [show]="loading" [config]="{backdropBackgroundColour: 'rgba(128,128,128,0.8)', backdropBorderRadius: '10px',fullScreenBackdrop: true}"></ngx-loading>
+

@@ -19,6 +19,12 @@ public formModel: FormModel = {};
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loading = true;
+    setTimeout(()=>{
+
+      this.loading = false;
+
+    },3000)
   }
 
   signUpUser(form) {

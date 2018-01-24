@@ -116,6 +116,10 @@ export class BeforLoginTradeNowComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },3000)
     this.getCurrencyList();
     this.getAllTradedOrders();
     this.userId = localStorage.getItem('userId');
