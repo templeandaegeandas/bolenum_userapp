@@ -284,7 +284,7 @@ export class TradeNowComponent implements OnInit {
               drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
               disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","create_volume_indicator_by_default_once","compare_symbol","header_compare"],
               enabled_features: ["study_templates"],
-              charts_storage_url: 'http://saveload.tradingview.com',
+              charts_storage_url: 'https://saveload.tradingview.com',
               charts_storage_api_version: "1.1",
               client_id: 'tradingview.com',
               user_id: 'public_user_id'
@@ -851,7 +851,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.buyPrice == '') {
-        this.buyPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.sellOrderList = success.data.content;
@@ -866,7 +866,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.sellPrice == '') {
-        this.sellPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.buyOrderList = success.data.content;
