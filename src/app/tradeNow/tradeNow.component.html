@@ -64,10 +64,10 @@
           <div class="col-xs-12 col-md-6 padding-0">
             <div class="exchange-border-right">
               <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
-              <div class="exchange-pair-text">{{pairName}}</div>
+              <div class="exchange-pair-text pair-text">{{pairName}}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-6 padding-0">
+          <div class="col-xs-12 col-md-6 padding-0 show-hide-button">
             <div class="showHide-btn padding-20">
               <a class="btn btn-xs btn-warning" id="hide-chart-button" (click)="showHideDiv()"> <span *ngIf="!selected">Show</span>
               <span *ngIf="selected">Hide</span> charts</a>
@@ -173,7 +173,7 @@
         </div>
         <div class="col-md-12 trade-margin">
           <div class="row">
-            <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form">
+            <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form margin-buy-top">
               <div class="row">
                 <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
                   <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
@@ -395,7 +395,7 @@
                 <!-- for sell section -->
               </div>
             </div>
-            <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form">
+            <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form margin-sell-order-box">
               <div class="row">
                 <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
                   <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->

@@ -275,15 +275,15 @@ export class TradeNowComponent implements OnInit {
                width:'200',
                height:'200',
                symbol: this.marketCurrencyId+'BE'+this.pairedCurrencyId,
-               interval: 'D',
+               interval: '60',
               container_id: "tv_chart_container",
               //  BEWARE: no trailing slash is expected in feed URL
-              datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart"),
+              datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart" , 60 * 60 * 1000),
               library_path: "../../assets/js/",
               locale: "en",
               // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
               drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
-              disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","create_volume_indicator_by_default"],
+              disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","create_volume_indicator_by_default_once","compare_symbol","header_compare"],
               enabled_features: ["study_templates"],
               charts_storage_url: 'http://saveload.tradingview.com',
               charts_storage_api_version: "1.1",
