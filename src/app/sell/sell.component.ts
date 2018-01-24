@@ -53,6 +53,8 @@ export class SellComponent implements OnInit, OnDestroy {
       }
       else if (this.getMessage == "CONFIRM_NOTIFICATION") {
         this.ngOnInit();
+      }else if(this.getMessage =="reloadWindow"){
+        this.ngOnInit();
       }
     });
   }
@@ -62,12 +64,12 @@ export class SellComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe(params => {
       this.orderId = +params['orderId'];
     });
+
     this.getOrderDetails();
 
   }
 
   clearInterval() {
-    this.subscription = undefined;
     clearInterval(this.subscription);
   }
 
@@ -118,10 +120,9 @@ export class SellComponent implements OnInit, OnDestroy {
     }
     else if (this.orderStatus == 'COMPLETED' && this.getMessage != "CONFIRM_NOTIFICATION") {
       try {
-        this.showTime = '';
         this.showTime = "Order Completed";
-        console.log("this.orderStatus", this.getMessage, this.orderStatus);
-        this.clearInterval();
+         this.clearInterval();
+       
       }
       catch (e) {
         console.log(this.subscription);
