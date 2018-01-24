@@ -146,10 +146,10 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
-      this.loading = true;
-      setTimeout(()=>{
-        this.loading = false;
-      },1000)
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000)
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -255,7 +255,7 @@ export class TradeNowComponent implements OnInit {
     this.order.volume = 0;
     this.order.price = 0;
     this.isLogIn();
-    
+
     this.setBuyTradingValue = "Limit Order";
     this.setSellTradingValue = "Limit Order";
     this.setBuyTradeValue("Limit Order");
@@ -268,30 +268,32 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-  getTradeViewChart(){
-         setTimeout(()=>{
-            var widget  = new TradingView.widget({
-              fullscreen: true,
-               width:'200',
-               height:'200',
-               symbol: this.marketCurrencyId+'BE'+this.pairedCurrencyId,
-               interval: '60',
-              container_id: "tv_chart_container",
-              //  BEWARE: no trailing slash is expected in feed URL
-              datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart" , 60 * 60 * 1000),
-              library_path: "../../assets/js/",
-              locale: "en",
-              // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
-              drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
-              disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","create_volume_indicator_by_default_once","compare_symbol","header_compare"],
-              enabled_features: ["study_templates"],
-              charts_storage_url: 'http://saveload.tradingview.com',
-              charts_storage_api_version: "1.1",
-              client_id: 'tradingview.com',
-              user_id: 'public_user_id'
-            });
-        },300)
-     
+  getTradeViewChart() {
+    setTimeout(() => {
+      var widget = new TradingView.widget({
+        fullscreen: true,
+        width: '200',
+        height: '200',
+        symbol: this.marketCurrencyId + 'BE' + this.pairedCurrencyId,
+        interval: '60',
+        container_id: "tv_chart_container",
+        //  BEWARE: no trailing slash is expected in feed URL
+        datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart", 60 * 60 * 1000),
+        library_path: "../../assets/js/",
+        locale: "en",
+        // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
+        drawings_access: { type: 'black', tools: [{ name: "Regression Trend" }] },
+        disabled_features: ["use_localstorage_for_settings", "header_symbol_search", "header_interval_dialog_button", "header_saveload", "compare_symbol", "header_compare", "symbol_info", "source_selection_markers", "left_toolbar"],
+        enabled_features: ["hide_left_toolbar_by_default", "hide_last_na_study_output", "dont_show_boolean_study_arguments"],
+        time_frames: [
+        ],
+        charts_storage_url: 'https://saveload.tradingview.com',
+        charts_storage_api_version: "1.1",
+        client_id: 'tradingview.com',
+        user_id: 'public_user_id'
+      });
+    }, 300)
+
   }
 
   getBuyOrderBookData() {
@@ -563,54 +565,14 @@ export class TradeNowComponent implements OnInit {
       this.getSellOrderBookData();
       this.getOurMarketData();
       this.getCoinMarketCapData();
-      if(this.jsonMessage=="PAID_NOTIFICATION" || this.jsonMessage=="receivedPayment" || this.jsonMessage=="ORDER_BOOK_NOTIFICATION" || this.jsonMessage==""){
-            this.pairName="NGN/BLN";
-             this.select(4, 3);
-            this.isActive(4, 3);
-      }else{
-          this.select(this.pairedCurrencyId, this.marketCurrencyId);
-          this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
-    }
-      // this.currecyList = success.data;
-      // let currencyId = this.currecyList[0].currencyId;
-      // this.currencyName = this.currecyList[0].currencyName;
-      // this.getCoinMarketCapData(this.currencyName, this.currecyList[0].currencyAbbreviation);
-      // let pairedCurrency;
-      // for (let i = 0; i < this.currecyList.length; i++) {
-      //   this.tradeNowService.getPairedCurrencies(this.currecyList[i].currencyId).subscribe(success => {
-      //     this.pairedCurrency[this.currecyList[i].currencyAbbreviation] = success.data;
-      //     pairedCurrency = this.pairedCurrency[this.currecyList[0].currencyAbbreviation];
-      //   });
-      // }
-      // setTimeout(() => {
-      //   this.marketCurrencyType = pairedCurrency[0].toCurrency[0].currencyType;
-      //   this.marketPrice = pairedCurrency[0].toCurrency[0].priceBTC;
-      //   this.pairedCurrencyType = pairedCurrency[0].pairedCurrency[0].currencyType;
-      //   this.pairId = pairedCurrency[0].pairId;
-      //   console.log(this.pairId);
-      //   // if(this.jsonMessage=="cancelPay"){
-      //   //    this.select(4, 3);
-      //   //   this.isActive(4, 3);
-      //   //    // this.pairId=4;
-      //   //   this.pairName="BLN/NGN";
-      //   // }else{
-      //   this.select(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.isActive(this.pairId, pairedCurrency[0].toCurrency[0].currencyId);
-      //   this.pairName = pairedCurrency[0].pairName;
-      // // }
-      //   let pairArray = this.pairName.split("/")
-      //   this.marketCurrency = pairArray[0];
-      //   this.pairedCurrency = pairArray[1];
-      //   let temp = this.pairedCurrency['BLN'];
-      //   this.minPrice =temp[0].lastPrice;
-      //   if (this.pairedCurrency == 'NGN') {
-      //     this.pairedCurrencyType = 'FIAT';
-      //   }
-      //   this.getUserBalance();
-      //   this.getBuyOrderBookData(this.pairId);
-      //   this.getSellOrderBookData(this.pairId);
-      //   this.getOurMarketData();
-      // }, 1000)
+      if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
+        this.pairName = "NGN/BLN";
+        this.select(4, 3);
+        this.isActive(4, 3);
+      } else {
+        this.select(this.pairedCurrencyId, this.marketCurrencyId);
+        this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
+      }
     }, error => {
     })
   }
@@ -620,11 +582,11 @@ export class TradeNowComponent implements OnInit {
       this.hideOrderCancelModel();
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
-      
+
     }, error => {
       this.hideOrderCancelModel();
       this.toastrService.error(error.json().message, "Error!");
-      
+
     })
   }
 
@@ -651,7 +613,7 @@ export class TradeNowComponent implements OnInit {
     if (pairedCurrency.currencyType != 'FIAT' && this.showHide) {
       this.getCoinMarketCapData();
     }
-    if(this.showHide) {
+    if (this.showHide) {
       this.getTradeViewChart();
     }
     this.buyPrice = '';
@@ -665,10 +627,10 @@ export class TradeNowComponent implements OnInit {
     this.sellTradingFee = 0.0;
     this.sellTotalPrice = 0.0;
     this.loading = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.loading = false;
-    },1000);
-    
+    }, 1000);
+
   }
 
   getUserBalance() {
@@ -851,7 +813,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.buyPrice == '') {
-        this.buyPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.sellOrderList = success.data.content;
@@ -866,7 +828,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.sellPrice == '') {
-        this.sellPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.buyOrderList = success.data.content;
@@ -953,9 +915,9 @@ export class TradeNowComponent implements OnInit {
     this.sellAmount = '';
     this.buyPrice = '';
     this.sellPrice = '';
-    setTimeout(()=>{
+    setTimeout(() => {
       this.loading = false;
-    },1000);
+    }, 1000);
   }
 
   // to get more orders on tradeHistory table on click of more
@@ -1049,7 +1011,7 @@ export class TradeNowComponent implements OnInit {
   showHideDiv() {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
-    if(this.showHide) {
+    if (this.showHide) {
       console.log(this.showHide);
       this.getCoinMarketCapData();
       this.getDataIn10Min();
@@ -1071,17 +1033,17 @@ export class TradeNowComponent implements OnInit {
   }
 
   isActive(marketCurrencyId, pairedCurrencyId) {
-    if(marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
+    if (marketCurrencyId == this.marketCurrencyId && pairedCurrencyId == this.pairedCurrencyId) {
       return true;
     }
-    
+
   }
 
   getDataIn10Min() {
-    if(this.showHide) {
+    if (this.showHide) {
       this.subscription = setInterval(() => {
-      this.getCoinMarketCapData();
-    }, 10000 * 60);
+        this.getCoinMarketCapData();
+      }, 10000 * 60);
     }
   }
 

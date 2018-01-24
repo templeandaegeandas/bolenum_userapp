@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router ,ActivatedRoute } from "@angular/router";
 import { HeaderService } from "./header.service";
 import { environment } from "../../environments/environment";
 import { AppEventEmiterService } from "../app.event.emmiter.service";
@@ -13,6 +13,7 @@ import { WebsocketService } from "../web-socket/web.socket.service";
 })
 export class HeaderComponent implements OnInit {
 	public isOpen = false;
+	public orderId:any;
 	public subMenu = false;
 	public address: any;
 	token: String;
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit {
 	constructor(
 		private headerService: HeaderService,
 		private websocketService: WebsocketService,
+		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private appEventEmiterService: AppEventEmiterService
 	) {
@@ -156,20 +158,33 @@ export class HeaderComponent implements OnInit {
 	/* Identify Notification Type on click of list of notifications */
 	getNotificationType(notifyType, notifyId) {
 		if (notifyType != "null" && notifyType == "PAID_NOTIFICATION") {
-			window.open(
-				"#/sell/" + notifyId,
-				"fullspace",
-				"width=1024,height=700"
-			);
+			 
+			 // this.activatedRoute.params.subscribe(params => {
+    //   			this.orderId = +params['orderId'];
+    //   			console.log("Order Id", this.orderId);
+    // 		});
+
+			// if(this.orderId == notifyId){
+			// 	this.appEventEmiterService.changeMessage("reloadWindow");
+			// }else
+			this.appEventEmiterService.changeMessage("reloadWindow");
+			this.router.navigate(['sell/' + notifyId]);
+
+			// window.open(
+			// 	"#/sell/" + notifyId,
+			// 	"fullspace",
+			// 	"width=1024,height=700"
+			// );
 		} else if (
 			notifyType != "null" &&
 			notifyType == "MATCHED_NOTIFICATION"
 		) {
-			window.open(
-				"#/trading/" + notifyId,
-				"fullspace",
-				"width=1024,height=700"
-			);
+			this.router.navigate(['trading/' + notifyId]);
+			// window.open(
+			// 	"#/trading/" + notifyId,
+			// 	"fullspace",
+			// 	"width=1024,height=700"
+			// );
 		}
 	}
 	/*End Of Function Identify Notification Type */

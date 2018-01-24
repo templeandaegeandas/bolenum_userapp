@@ -81,7 +81,6 @@ export class TradingComponent implements OnInit {
 
    clearInterval(){
      clearInterval(this.subscription);
-     this.subscription=undefined;
   }
 
   hasTradeNow() {
@@ -92,7 +91,7 @@ export class TradingComponent implements OnInit {
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && !this.isConfirmed) {
     console.log("status locked", this.subscription)
-      this.subscription = Observable.interval(1000).subscribe(() => {
+      this.subscription =setInterval(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {
           path = url[0].path;
@@ -114,7 +113,7 @@ export class TradingComponent implements OnInit {
           }
           catch (e) {
             console.log("exception handled");
-            this.subscription.unsubscribe();
+            this.clearInterval();
           }
         }
         // If the count down is over, write some text
@@ -126,11 +125,11 @@ export class TradingComponent implements OnInit {
             }
             catch (e) {
               console.log("exception handled");
-              this.subscription.unsubscribe();
+              this.clearInterval();
             }
           }
         }
-      });
+      },1000);
       // for timer
     }
     else if (this.orderStatus == 'COMPLETED') {
@@ -142,12 +141,12 @@ export class TradingComponent implements OnInit {
       }
       catch (e) {
         console.log("exception handled");
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
     }
     else if (this.orderStatus == 'SUBMITTED') {
       if (this.subscription != null) {
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
       try {
         document.getElementById("demo").innerHTML = "Order Submitted";
@@ -171,7 +170,7 @@ export class TradingComponent implements OnInit {
 
     else {
       if (this.subscription != null) {
-        this.subscription.unsubscribe();
+        this.clearInterval();
       }
       try {
         document.getElementById("demo").innerHTML = "Order Confirmed";
@@ -186,7 +185,7 @@ export class TradingComponent implements OnInit {
     this.tradingService.confirmPay(this.orderId).subscribe(success => {
       console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
-        this.subscription.unsubscribe();
+        this.clearInterval();
         this.clearInterval();
       }
       this.router.navigate(['/dispute/' + this.orderId])
@@ -198,7 +197,6 @@ export class TradingComponent implements OnInit {
 
   cancelPay() {
     if (this.subscription != null) {
-      this.subscription.unsubscribe();
       this.clearInterval();
     }
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
