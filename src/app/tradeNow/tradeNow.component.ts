@@ -282,8 +282,10 @@ export class TradeNowComponent implements OnInit {
               locale: "en",
               // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
               drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
-              disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","create_volume_indicator_by_default_once","compare_symbol","header_compare"],
-              enabled_features: ["study_templates"],
+             disabled_features: ["use_localstorage_for_settings","header_symbol_search","header_interval_dialog_button","header_saveload","compare_symbol","header_compare","symbol_info","source_selection_markers","left_toolbar"],
+              enabled_features: ["hide_left_toolbar_by_default","hide_last_na_study_output","dont_show_boolean_study_arguments"],
+              time_frames: [
+              ],
               charts_storage_url: 'http://saveload.tradingview.com',
               charts_storage_api_version: "1.1",
               client_id: 'tradingview.com',
