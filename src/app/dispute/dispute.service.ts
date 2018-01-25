@@ -8,7 +8,7 @@ export class DisputeService {
   constructor(private http: HttpClient) { }
 
   raiseDispute(formData) {
-    return this.http.postWithoutContentType("/api/v1/raise/dispute", formData)
-      .map(res => res.json());
+    // return this.http.postWithoutContentType("/api/v1/raise/dispute", formData)
+    //   .map(res => res.json());
   }
 }
