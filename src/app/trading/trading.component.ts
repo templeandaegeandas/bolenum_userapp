@@ -15,7 +15,7 @@ declare var $: any;
 export class TradingComponent implements OnInit {
 
   orderId: any;
-  bankName: string;
+  bankName: string; 
   branch: string;
   accountNumber: string;
   walletAddress: string;
@@ -90,7 +90,6 @@ export class TradingComponent implements OnInit {
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
     // Update the count down every 1 second
     if (this.orderStatus == 'LOCKED' && !this.isConfirmed) {
-    console.log("status locked", this.subscription)
       this.subscription =setInterval(() => {
         var path;
         this.activatedRoute.url.subscribe(url => {

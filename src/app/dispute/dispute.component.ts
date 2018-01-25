@@ -129,7 +129,7 @@ export class DisputeComponent implements OnInit {
       this.disputeService.raiseDispute(formData).subscribe(success => {
         // this.loading = false;
         this.toastrService.success(success.message, 'Success!')
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['market']);
       }, error => {
         console.log(error)
         this.toastrService.error(error.json().message, 'Error!')
@@ -142,16 +142,15 @@ export class DisputeComponent implements OnInit {
   this.isImageUploaderVisibile=true;
   this.showUploadedImage.nativeElement.src=URL.createObjectURL(fileInput.target.files[0]);
   this.showUploadedImageLink.nativeElement.href=URL.createObjectURL(fileInput.target.files[0]);
-   
-  this.getAddress=this.fileInput.nativeElement.files[0].name;// this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
+   this.getAddress=this.fileInput.nativeElement.files[0].name;// this.getImageLink=URL.createObjectURL(fileInput.target.files[0]);
 }
 
   cancelPay() {
     this.tradingService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
-      if (this.subscription != null) {
-        this.subscription.unsubscribe();
-      }
+      // if (this.subscription != null) {
+      //   this.subscription.unsubscribe();
+      // }
        this.router.navigate(['market']);
       this.toastrService.success(success.message, 'Success!')
     }, error => {
