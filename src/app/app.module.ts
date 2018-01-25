@@ -126,7 +126,7 @@ export function highchartsFactory() {
     RecaptchaFormsModule
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
-    // HttpClient,
+     HttpClient,
    { provide: Http, useClass: HttpClient },
     PrivateRouteAuthGuard,
     PublicRouteAuthGuard,
