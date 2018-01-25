@@ -802,13 +802,6 @@ export class ProfileComponent implements OnInit {
 
     this.isCustomerView = true;
     this.accounDetails = false;
-     this.getUserBankDetails();
-    if (this.getOurBankDetails.length === 2) {
-      this.addNewButton = false;
-      return;
-    } else {
-      this.addNewButton = true;
-    }
     this.profileService.customerBankData(this.bankDetails).subscribe(
       successData => {
         customerDetaisForm.resetForm();
