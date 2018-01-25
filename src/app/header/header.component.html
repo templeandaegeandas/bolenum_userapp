@@ -43,7 +43,7 @@
             <div class="dropdown padding-dropdown">
               <button class=" dropdown-toggle more-drop-down heading-sub-menu " type="button" data-toggle="dropdown">MORE
                 <span class="caret"></span></button>
-              <ul class="dropdown-menu more-dropDown-menu">
+              <ul class="dropdown-menu more-dropDown-menu more-menu-list ">
                 <li><a _ngcontent-c3="" routerlink="/about-bolenum-exchange" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/about-bolenum-exchange" href="#/about-bolenum-exchange"><i _ngcontent-c3=""></i>About</a></li>
                 <li><a _ngcontent-c3="" routerlink="/terms-service" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/terms-service" href="#/terms-service"><i _ngcontent-c3="" ></i>Term & Conditions</a></li>
               </ul>
@@ -51,9 +51,9 @@
           </li>
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/login">LOGIN</a></li>
           <li class="menufont heading-sub-menu" *ngIf="token==null" routerLinkActive="active"><a routerLink="/sign-up">SIGNUP</a></li>
-          <li class="dropdown menufont ">
+          <li class="dropdown menufont dropdown-margin">
             <a class="dropdown-toggle menufont heading-sub-menu drop-down-height" data-toggle="dropdown">{{fullName}}  <img [src]="profilePic" style="width: 47px;height: 47px;border-radius: 25px; margin-left:6px;"><img src="/assets/images/drop.png" class="drop-icon"></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu profile-dropdown">
               <li class="drop-down-font-size"><a routerLink="/wallet"><img src="assets/images/wallet.png" class="img-profile-icon">withdrawal</a></li>
               <li class="drop-down-font-size"><a routerLink="/wallet/deposit"> <img src="assets/images/wallet.png" class="img-profile-icon">Deposit</a></li>
               <li class="divider"></li>
@@ -66,21 +66,21 @@
           <!-- <li class="menufont bellmenu"><a routerLink="/notify"><img src="./assets/images/notifythree.png" class="bell-icon" title="Notification"></a></li> -->
           <li>
             <!-- test -->
-            <ul class="notificatiion-popup">
+            <ul class="notificatiion-popup notification-icon">
               <li class="dropdowns">
                 <a class="dropdown-toggle bell backgroun-bell-color count-underscore"
                 (click)="showDropdown()" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell-o"> </i><span class='notification-Bage' *ngIf= "countOfUnseeNotification>0"> {{countOfUnseeNotification}}</span>
                   <div class="notification-ring"></div>
                   </a>
-                <div class="top-dropdown-menu dropdown-menu notification-scroll" aria-labelledby="msg-dd1">
+                <div class="top-dropdown-menu dropdown-menu notification-scroll " aria-labelledby="msg-dd1">
                   <i class="dropdown-arr"></i>
-                  <div class="header clearfix text-center notification-text-font">
+                  <div class="header clearfix text-center navcolor notification-text-font ">
                     <strong>NOTIFICATIONS</strong>
                     <!-- <a href>Mark All as Read</a>
                     <a href>Settings</a> -->
                   </div>
-                  <div class="msg-list" *ngFor="let list of listOfUserNotification">
+                  <div class="msg-list msg-background" *ngFor="let list of listOfUserNotification">
                       <div class="msg-area border-notification">
                         <div class="notification-padding notification-text">
                           <p class="notification-text notify" (click)="getNotificationType(list.notificationType, list.notificationRelationId)"> {{list.message}} </p>

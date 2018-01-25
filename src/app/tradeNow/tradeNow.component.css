@@ -1243,7 +1243,7 @@ table thead tr th {
 /* for loader */
 
 .opecity-table {
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .tradeErrorTextColor {
@@ -2024,59 +2024,6 @@ thead.heading {
 }
 
 
-/*start media for mobile device*/
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-    .trade-width {
-        width: 100%;
-    }
-    .aside{
-        position: relative !important;
-    width: 100% !important;
-    top: 10px !important;
-
-    }
-    .aisde-right{
-        left:0px !important;
-    }
-
-    .trade-margin {
-        margin-top: 15px;
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-    .total-coin {
-        text-align: right;
-        margin-top: 0px;
-        margin-right: 16px;
-    }
-    h2 {
-        text-align: center;
-    }
-    .create-advertisement-button {
-        margin-left: 27%;
-    }
-    .sell-button-right {
-        text-align: right;
-        margin-top: -29px;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    h2 {
-        text-align: center;
-    }
-    .create-advertisement-button {
-        margin-left: 40%;
-    }
-    .sell-button-right {
-        text-align: right;
-        margin-top: -26px;
-    }
-    .trade-width {
-        width: 100%;
-    }
-}
 
 .total-currency-message {
     margin-top: 8px;
@@ -2656,14 +2603,7 @@ select option {
     margin: 5px;
 }
 
-@media (min-width: 992px) {
-    .col-md-offset-2 {
-        margin-left: 0;
-    }
-    /*.col-md-9 {
-        width: 85%;
-    }*/
-}
+
 
 /*.buy-table {
     margin-left: 28px;
@@ -2889,3 +2829,100 @@ toggle */
 .order-table-body-content {
     text-align: center;
 }
+
+
+/*start media for mobile device*/
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .trade-width {
+        width: 100%;
+    }
+    .aside{
+        /* position: relative !important;
+    width: 100% !important;
+    top: 10px !important; */
+    position: static !important;
+
+    }
+    .aisde-right{
+        left:0px !important;
+    }
+
+    .exchange-border-right {
+        border-left: 0 !important;
+        padding-left: 0px;
+        margin-bottom: 0px;
+    }
+    .pair-text{
+        margin-left: 80px;
+    }
+    .width-75{
+        width: 100% !important;
+    }
+    .width-25{
+        width: 100% !important;
+    }
+    .width-45 {
+        width: 100% !important;
+    }
+    .margin-buy-top{
+        margin-top: 21px !important;
+    }
+    .margin-sell-order-box{
+        margin-top: 26px;
+    }
+    .sellTradeBox{
+        margin-left: 0px;
+    }
+    .buyTradeBox{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .show-hide-button{
+        margin-bottom: 2px;
+    }
+    .trade-margin {
+        margin-top: 15px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .total-coin {
+        text-align: right;
+        margin-top: 0px;
+        margin-right: 16px;
+    }
+    h2 {
+        text-align: center;
+    }
+    .create-advertisement-button {
+        margin-left: 27%;
+    }
+    .sell-button-right {
+        text-align: right;
+        margin-top: -29px;
+    }
+    .navbar-brand img {
+        margin-top: 8px;
+        margin-left: 14px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    h2 {
+        text-align: center;
+    }
+    .create-advertisement-button {
+        margin-left: 40%;
+    }
+    .sell-button-right {
+        text-align: right;
+        margin-top: -26px;
+    }
+    .trade-width {
+        width: 100%;
+    }
+}
+
+
+
+/* media queries */

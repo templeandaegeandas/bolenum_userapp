@@ -984,9 +984,9 @@ table thead tr th {
     cursor: pointer;
 }
 
-.trade-table-cursor {
+/* .trade-table-cursor {
     cursor: pointer;
-}
+} */
 
 .popUp-padding {
     padding-left: 17px;
