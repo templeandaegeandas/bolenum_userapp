@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   passwordType :any = 'password';
   login = new Login("", "");
   loading = false;
+  afterloading: boolean = false;
   returnUrl: string;
   ip: String;
   deviceInfo: any;
@@ -31,24 +32,38 @@ export class LoginComponent implements OnInit {
     private deviceService: Ng2DeviceService) { }
   token: String;
   ngOnInit() {
+    this.loading = true;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if (this.token = this.route.snapshot.queryParams['token']) {
       this.verifyUserEmail(this.token);
 
     }
     this.loginService.getUserIpAddress().subscribe(success => {
+      
+      setTimeout(()=>{
+        this.loading = false;
+      },2000);
       this.ip = success.ip;
     });
   }
 
   loginUser(form) {
+   
     if (form.invalid) {
+       this.afterloading = true;
+       setTimeout(()=>{
+        this.afterloading = false;
+       },1000);
       return;
     }
     if (this.formModel.captcha == null) {
+      this.afterloading = true;
+       setTimeout(()=>{
+        this.afterloading = false;
+       },1000);
       return;
     }
-    this.loading = true;
+   
     this.deviceInfo = this.deviceService.getDeviceInfo();
     this.login.setIpAddress(this.ip);
     this.login.setBrowserName(this.deviceInfo.browser);
@@ -62,7 +77,7 @@ export class LoginComponent implements OnInit {
       if (success.status == 202) {
         this.twoFaOption = success.data
         this.is2FaOn = true;
-        this.loading = false;
+        
         return;
       }
       localStorage.setItem("userId", success.data.userId);
@@ -76,9 +91,9 @@ export class LoginComponent implements OnInit {
       }
       this.router.navigate([this.returnUrl]);
       window.scrollTo(0, 0);
-      this.loading = false;
+      
     }, error => {
-      this.loading = false;
+      
       this.toastrService.error(error.json().message, 'Error!');
     })
   }

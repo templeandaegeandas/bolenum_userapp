@@ -64,10 +64,10 @@
           <div class="col-xs-12 col-md-6 padding-0">
             <div class="exchange-border-right">
               <h2 class="tradeHeading-fontSze-fontFamily">EXCHANGE PAIR</h2>
-              <div class="exchange-pair-text">{{pairName}}</div>
+              <div class="exchange-pair-text pair-text">{{pairName}}</div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-6 padding-0">
+          <div class="col-xs-12 col-md-6 padding-0 show-hide-button">
             <div class="showHide-btn padding-20">
               <a class="btn btn-xs btn-warning" id="hide-chart-button" (click)="showHideDiv()"> <span *ngIf="!selected">Show</span>
               <span *ngIf="selected">Hide</span> charts</a>
@@ -78,7 +78,8 @@
           <div class="row tradeNow-background-img">
             <!-- new page -->
             <div>
-              <chart class="chart" [options]="options"></chart>
+              <!-- <chart class="chart" [options]="options"></chart> -->
+              <div id="tv_chart_container"></div>
             </div>
           </div>
         </div>
@@ -94,31 +95,31 @@
                       <tbody>
                         <tr>
                           <th>Last Price</th>
-                          <td><span class="market-summary-last-price green-color"> {{lastPrice | number:'1.8-8'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-last-price green-color"> {{lastPrice | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Volume</th>
-                          <td><span class="market-summary-volume green-color"> {{volume24h | number:'1.8-8'}}  </span></td>
+                          <td class="table-data" ><span class="market-summary-volume green-color"> {{volume24h | number:'1.8-8'}}  </span></td>
                         </tr>
                         <tr>
                           <th>Bid</th>
-                          <td><span class="market-summary-bid-price green-color">{{bid | number:'1.8-8'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-bid-price green-color">{{bid | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>Ask</th>
-                          <td><span class="market-summary-ask-price green-color">{{ask | number:'1.8-8'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-ask-price green-color">{{ask | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h High</th>
-                          <td><span class="market-summary-ask-price green-color">{{high24h | number:'1.8-8'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-ask-price green-color">{{high24h | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Low</th>
-                          <td><span class="market-summary-ask-price green-color">{{low24h | number:'1.8-8'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-ask-price green-color">{{low24h | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>24h Trade Count</th>
-                          <td><span class="market-summary-ask-price green-color">{{countTrade24h}}</span></td>
+                          <td class="table-data" ><span class="market-summary-ask-price green-color">{{countTrade24h}}</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -142,23 +143,23 @@
                       <tbody>
                         <tr>
                           <th>BTC Price</th>
-                          <td><span class="market-summary-last-price green-color"> {{coinList.price_btc | number:'1.8-8'}}</span></td>
+                          <td class="table-data"><span class="market-summary-last-price green-color"> {{coinList.price_btc | number:'1.8-8'}}</span></td>
                         </tr>
                         <tr>
                           <th>USD Price</th>
-                          <td><span class="market-summary-volume green-color"> ${{coinList.price_usd | number:'1.8-8'}}  </span></td>
+                          <td class="table-data" ><span class="market-summary-volume green-color"> ${{coinList.price_usd | number:'1.8-8'}}  </span></td>
                         </tr>
                         <tr>
                           <th>24h Volume USD</th>
-                          <td><span class="market-summary-bid-price green-color">${{coinList['24h_volume_usd'] | number:'1.2'}}</span></td>
+                          <td class="table-data" ><span class="market-summary-bid-price green-color">${{coinList['24h_volume_usd'] | number:'1.2'}}</span></td>
                         </tr>
                         <tr>
                           <th>Available Supply</th>
-                          <td><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} <span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span><span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></span></td>
+                          <td class="table-data" ><span class="market-summary-ask-price green-color">{{coinList.available_supply | number:'1.8-8'}} <span *ngIf="pairedCurrency=='NGN' || marketCurrency=='NGN'">{{marketCurrency}}</span><span *ngIf="pairedCurrency!='NGN' && marketCurrency!='NGN'">{{pairedCurrency}}</span></span></td>
                         </tr>
                         <tr>
-                          <th>Change 1h | 24h | 7d</th>
-                          <td><span class="market-summary-high">
+                          <th class="padding-table-coinMarket">Change 1h | 24h | 7d</th>
+                          <td class="table-data" ><span class="market-summary-high">
                             <span [ngClass]="{'positive': coinList.percent_change_1h > 0, 'negative': coinList.percent_change_1h < 0}">{{coinList.percent_change_1h}}% </span>| <span [ngClass]="{'positive': coinList.percent_change_24h > 0, 'negative': coinList.percent_change_24h < 0}">{{coinList.percent_change_24h}}%</span>                            | <span [ngClass]="{'positive': coinList.percent_change_7d > 0, 'negative': coinList.percent_change_7d < 0}">{{coinList.percent_change_7d}}%</span></span>
                           </td>
                         </tr>
@@ -172,7 +173,7 @@
         </div>
         <div class="col-md-12 trade-margin">
           <div class="row">
-            <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form">
+            <div class="col-md-6 width-45 trade-border buyTradeBox table-bg-color trade-Form margin-buy-top">
               <div class="row">
                 <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
                   <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
@@ -265,7 +266,7 @@
                         <div *ngIf="!isBuyMarket">
                           <div class="col-md-12 trade-field">
                             <div class="col-md-5">
-                              <label for="amount">Amount (in {{pairedCurrency}})</label>
+                              <label for="amount">Amounts (in {{pairedCurrency}})</label>
                             </div>
                             <div class="col-md-7">
                               <input type="text" placeholder="0.00000000" name="sellBuyVloume" #sellBuyVloume="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="email" [(ngModel)]="buyVolume" (ngModelChange)="oneBuyBtc()">
@@ -349,7 +350,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="buyDataAmount" #buyDataAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyAmount" (ngModelChange)="changedBuyList()">
+                              <input type="text" name="buyDataAmount" placeholder="0.00000000" #buyDataAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyAmount" (ngModelChange)="changedBuyList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
@@ -369,7 +370,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="buyDataPrice" #buyDataPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyPrice" (ngModelChange)="changedBuyList()">
+                              <input type="text" name="buyDataPrice" placeholder="0.00000000" #buyDataPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="buyPrice" (ngModelChange)="changedBuyList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
@@ -394,7 +395,7 @@
                 <!-- for sell section -->
               </div>
             </div>
-            <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form">
+            <div class="col-md-6 width-45 sellTradeBox trade-border table-bg-color trade-Form margin-sell-order-box">
               <div class="row">
                 <div class="col-md-12  trade-border-heading trade-heading-center heading-font trade-in-part ">
                   <!-- <span class="table-heading-content">TRADE IN {{pairName}} </span> -->
@@ -489,7 +490,7 @@
                               <label for="amount">Amount (in {{pairedCurrency}})</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="number" class="form-control" id="email" [(ngModel)]="sellVolume" (ngModelChange)="oneSellBtc()">
+                              <input type="text" placeholder="0.00000000" class="form-control" id="email" [(ngModel)]="sellVolume" (ngModelChange)="oneSellBtc()">
                             </div>
                           </div>
                           <div class="col-md-12 trade-field">
@@ -497,7 +498,7 @@
                               <label for="price">Price (in {{marketCurrency}})</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="number" class="form-control" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="sellPrice" [disabled]=true>
+                              <input type="text" class="form-control" placeholder="0.00000000" id="amount" title="Equivalent {{marketCurrency}} price for this order " name="amount" [(ngModel)]="sellPrice" [disabled]=true>
                             </div>
                           </div>
                           <div class="col-md-12 trade-field">
@@ -551,7 +552,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Amount of BLN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="sellBuyAmount" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
+                              <input type="text" name="sellBuyAmount" placeholder="0.00000000" #sellBuyAmount="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellAmount" (ngModelChange)="changedSellList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
@@ -571,7 +572,7 @@
                               <label for="email tradeSubheading-fontSze-fontFamily">Price in NGN:</label>
                             </div>
                             <div class="col-md-7">
-                              <input type="text" name="sellBuyPrice" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
+                              <input type="text" name="sellBuyPrice" placeholder="0.00000000" #sellBuyPrice="ngModel" pattern="^\.?(?!-)\d+(?:\.\d{1,9})?$" class="form-control" id="amount" [(ngModel)]="sellPrice" (ngModelChange)="changedSellList()">
                             </div>
                             <div class="col-md-12">
                               <div class="col-sm-5"></div>
@@ -724,7 +725,7 @@
                   </tr>
                   <tr *ngIf="myOrdersInBookLength >=10">
                     <td colspan="6">
-                      <p class="more_button" (clcik)="getMoreMyOrder()" title="click to show more list">more</p>
+                      <p class="more_button" (click)="getMoreMyOrder()" title="click to show more list">more</p>
                     </td>
                   </tr>
                   <div *ngIf="myOrdersInBookLength==0" class="hasTableData">
@@ -754,7 +755,7 @@
             </div>
             <div class="trade-History">
               <div class="loader spiner-position" *ngIf="isLoading"></div>
-              <table class="table table-scroll table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
+              <table class="table table-scroll table-striped table-responsive trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='marketTrade' [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr>
                     <th>Date</th>
@@ -861,7 +862,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createOrder()">Yes</button>
+              <button *ngIf="marketCurrency!='NGN' && pairedCurrency!='NGN'" type="button" class="btn confirm-Button button-Confirm"  (click)="createOrder()">Yes</button>
               <button *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'" type="button" class="btn confirm-Button button-Confirm" (click)="createFiatOrder()">Yes</button>
               <button type="button" class="btn confirm-Button button-Confirm" (click)="hideModel()">Close</button>
             </div>
@@ -989,4 +990,4 @@
       
     </div>
   </div>
-<!-- <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading> -->
+<ngx-loading [show]="loading" [config]="{backdropBackgroundColour: 'rgba(128,128,128,0.8)', backdropBorderRadius: '10px',fullScreenBackdrop: true}"></ngx-loading>

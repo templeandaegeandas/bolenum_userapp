@@ -69,7 +69,9 @@ export class WithdrawComponent implements OnInit {
   }
 
   getCurrencyList() {
+    this.loading = true;
     this.withdrawService.getCurrencyList().subscribe(success => {
+      this.loading = false;
       this.currencyData = success.data;
       if (this.currencyData.length > 0) {
         this.setItemValue = this.currencyData[0].currencyAbbreviation;

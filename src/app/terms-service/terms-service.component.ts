@@ -7,11 +7,15 @@ import { RouterModule, Routes, Router} from '@angular/router';
   styleUrls: ['./terms-service.component.css']
 })
 export class TermsServiceComponent implements OnInit {
-
+public loading: boolean = false;
   constructor() { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loading = true;
+    setTimeout(()=>{
+      this.loading = false;
+    },1000)
   }
 
 }

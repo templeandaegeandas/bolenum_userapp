@@ -9,9 +9,11 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { WebsocketService } from '../web-socket/web.socket.service';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
 import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs/Rx';
 
+declare var require: any;
 declare var $: any;
+declare var TradingView: any;
+declare var Datafeeds: any;
 
 @Component({
   selector: 'app-tradeNow',
@@ -21,6 +23,7 @@ declare var $: any;
 })
 export class TradeNowComponent implements OnInit {
   @ViewChild('buySellModel') public buySellModel: ModalDirective;
+  public pageSize: any = 10;
   public sellColor: boolean = false;
   public beforeActiveSELL: boolean = true;
   public buyColor: boolean = true;
@@ -53,7 +56,6 @@ export class TradeNowComponent implements OnInit {
   public beforeActiveMarket: boolean = false;
   public beforeActiveMyTrade: boolean = true;
   public currencyName: any;
-  public pageSize: any = 10;
   orders: any;
   currecyList: any;
   buyOrderList: any;
@@ -134,9 +136,9 @@ export class TradeNowComponent implements OnInit {
   pairedCurrencyId;
   marketCurrencyObj;
   pairedCurrencyObj;
-  marketBuyPrice;
-  marketSellPrice;
   subscription;
+  public tradingView;
+
   constructor(
     private tradeNowService: TradeNowService,
     private depositService: DepositService,
@@ -144,6 +146,10 @@ export class TradeNowComponent implements OnInit {
     private router: Router,
     private websocketService: WebsocketService,
     private appEventEmiterService: AppEventEmiterService) {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000)
     this.isLogIn();
     if (this.beforeLogin) {
       websocketService.connectForNonLoggedInUser();
@@ -249,6 +255,7 @@ export class TradeNowComponent implements OnInit {
     this.order.volume = 0;
     this.order.price = 0;
     this.isLogIn();
+
     this.setBuyTradingValue = "Limit Order";
     this.setSellTradingValue = "Limit Order";
     this.setBuyTradeValue("Limit Order");
@@ -261,17 +268,43 @@ export class TradeNowComponent implements OnInit {
 
   }
 
+  getTradeViewChart() {
+    setTimeout(() => {
+      var widget = new TradingView.widget({
+        fullscreen: true,
+        width: '200',
+        height: '200',
+        symbol: this.marketCurrencyId + 'BE' + this.pairedCurrencyId,
+        interval: '60',
+        container_id: "tv_chart_container",
+        //  BEWARE: no trailing slash is expected in feed URL
+        datafeed: new Datafeeds.UDFCompatibleDatafeed("/api/v1/user/chart", 60 * 60 * 1000),
+        library_path: "../../assets/js/",
+        locale: "en",
+        // Regression Trend-related functionality is not implemented yet, so it's hidden for a while
+        drawings_access: { type: 'black', tools: [{ name: "Regression Trend" }] },
+        disabled_features: ["use_localstorage_for_settings", "header_symbol_search", "header_interval_dialog_button", "header_saveload", "compare_symbol", "header_compare", "symbol_info", "source_selection_markers", "left_toolbar"],
+        enabled_features: ["hide_left_toolbar_by_default", "hide_last_na_study_output", "dont_show_boolean_study_arguments"],
+        time_frames: [
+        ],
+        charts_storage_url: 'https://saveload.tradingview.com',
+        charts_storage_api_version: "1.1",
+        client_id: 'tradingview.com',
+        user_id: 'public_user_id'
+      });
+    }, 300)
+
+  }
+
   getBuyOrderBookData() {
     this.totalBuy = 0.0;
     this.tradeNowService.buyOrderBook(this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
       this.buyOrderList = success.data.content;
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
-        this.marketBuyPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.marketBuyPrice = this.bid;
       }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
@@ -286,11 +319,11 @@ export class TradeNowComponent implements OnInit {
       this.sellOrderList = success.data.content;
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
-        this.marketSellPrice = this.bid;
+        this.lastPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.marketSellPrice = this.bid;
+        this.lastPrice = this.bid;
       }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
@@ -299,9 +332,18 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
+  /*getMarketPrice() {
+    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
+    this.marketPrice = success.data.priceBTC;
+    })
+  }*/
+
   oneBuyBtc() {
     this.order.price = this.marketPrice;
-    this.buyPrice = this.marketBuyPrice;
+    if (this.market1BtcEth == 'Infinity') {
+      this.market1BtcEth = 0;
+    }
+
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     if (this.buyPrice == undefined || this.buyVolume == undefined) {
       this.buyTotalPrice = 0;
@@ -312,7 +354,9 @@ export class TradeNowComponent implements OnInit {
 
   oneSellBtc() {
     this.order.price = this.marketPrice;
-    this.sellPrice = this.marketSellPrice;
+    if (this.market1BtcEth == 'Infinity') {
+      this.market1BtcEth = 0;
+    }
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
     if (this.sellPrice == undefined || this.sellVolume == undefined) {
       this.sellTotalPrice = 0;
@@ -501,7 +545,6 @@ export class TradeNowComponent implements OnInit {
       this.loading = false;
       this.toastrService.error(error.json().message, 'Error!');
     })
-
   }
 
   getCurrencyList() {
@@ -521,7 +564,7 @@ export class TradeNowComponent implements OnInit {
       this.getBuyOrderBookData();
       this.getSellOrderBookData();
       this.getOurMarketData();
-      // this.getCoinMarketCapData();
+      this.getCoinMarketCapData();
       if (this.jsonMessage == "PAID_NOTIFICATION" || this.jsonMessage == "receivedPayment" || this.jsonMessage == "ORDER_BOOK_NOTIFICATION" || this.jsonMessage == "") {
         this.pairName = "NGN/BLN";
         this.select(4, 3);
@@ -531,7 +574,6 @@ export class TradeNowComponent implements OnInit {
         this.isActive(this.pairedCurrencyId, this.marketCurrencyId);
       }
     }, error => {
-      this.getCurrencyList();
     })
   }
 
@@ -540,15 +582,16 @@ export class TradeNowComponent implements OnInit {
       this.hideOrderCancelModel();
       this.getMyOrdersFromBook();
       this.toastrService.success(success.message, "Success!");
+
     }, error => {
       this.hideOrderCancelModel();
       this.toastrService.error(error.json().message, "Error!");
+
     })
   }
 
   changePair(marketCurrency, pairedCurrency) {
     this.selectedRow = pairedCurrency.currencyId;
-    this.loading = true;
     this.marketCurrencyObj = marketCurrency;
     this.pairedCurrencyObj = pairedCurrency;
     this.marketCurrencyType = marketCurrency.currencyType;
@@ -570,6 +613,9 @@ export class TradeNowComponent implements OnInit {
     if (pairedCurrency.currencyType != 'FIAT' && this.showHide) {
       this.getCoinMarketCapData();
     }
+    if (this.showHide) {
+      this.getTradeViewChart();
+    }
     this.buyPrice = '';
     this.buyVolume = '';
     this.buyPriceWithFee = 0.0;
@@ -580,7 +626,11 @@ export class TradeNowComponent implements OnInit {
     this.sellPriceWithFee = 0.0;
     this.sellTradingFee = 0.0;
     this.sellTotalPrice = 0.0;
-    this.loading = false;
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+
   }
 
   getUserBalance() {
@@ -763,7 +813,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.buyPrice == '') {
-        this.buyPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.buyAmount, this.buyPrice, 'BUY', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.sellOrderList = success.data.content;
@@ -778,7 +828,7 @@ export class TradeNowComponent implements OnInit {
     }
     else {
       if (this.sellPrice == '') {
-        this.sellPrice = this.minPrice;
+        return;
       }
       this.tradeNowService.getListFiatOrders(this.sellAmount, this.sellPrice, 'SELL', this.marketCurrencyId, this.pairedCurrencyId).subscribe(success => {
         this.buyOrderList = success.data.content;
@@ -788,12 +838,15 @@ export class TradeNowComponent implements OnInit {
   }
 
   createAdvertisement(orderType) {
+    this.loading = true;
     if (orderType == 'BUY' && this.buyAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
+      this.loading = false;
       return;
     }
     if (orderType == 'SELL' && this.sellAmount < 1) {
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
+      this.loading = false;
       return;
     }
     if (orderType == 'BUY' && (this.buyAmount == '' || this.buyPrice == '')) {
@@ -801,6 +854,7 @@ export class TradeNowComponent implements OnInit {
       setTimeout(() => {
         this.hasData = !this.hasData;
       }, 3000);
+      this.loading = false;
       return;
 
     }
@@ -810,11 +864,13 @@ export class TradeNowComponent implements OnInit {
       setTimeout(() => {
         this.hasSellData = !this.hasSellData;
       }, 3000);
+      this.loading = false;
       return;
 
     }
     if ((orderType == 'BUY' && this.buyPrice < this.minPrice) || (orderType == 'SELL' && this.sellPrice < this.minPrice)) {
       this.toastrService.error("You can't place order less than " + this.minPrice + " NGN", "Error!");
+      this.loading = false;
       return;
     }
     if (orderType == 'BUY') {
@@ -826,12 +882,14 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.loading = false;
         this.getBuyOrderBookData();
         this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
         this.toastrService.error(error.json().message, "Error!");
+        this.loading = false;
       })
     }
     else {
@@ -843,27 +901,33 @@ export class TradeNowComponent implements OnInit {
       this.order.marketCurrency = this.marketCurrencyObj;
       this.order.pairedCurrency = this.pairedCurrencyObj;
       this.tradeNowService.createAdvertisment(this.order).subscribe(success => {
+        this.loading = false;
         this.getBuyOrderBookData();
         this.getSellOrderBookData();
         this.getMyOrdersFromBook();
         this.toastrService.success("Your order created successfully!", "Success!")
       }, error => {
         this.toastrService.error(error.json().message, "Error!");
+        this.loading = false;
       })
     }
     this.buyAmount = '';
     this.sellAmount = '';
     this.buyPrice = '';
     this.sellPrice = '';
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 
   // to get more orders on tradeHistory table on click of more
 
   getMoreOrders() {
     let currentPage = 1;
-    this.pageSize = this.pageSize + 10;
     this.isLoading = true;
     this.hasBlur = true;
+    this.pageSize = this.pageSize + 10;
+
     this.tradeNowService.getAllTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoading = false;
       this.hasBlur = false;
@@ -879,9 +943,9 @@ export class TradeNowComponent implements OnInit {
   getMoreMyTradeList() {
 
     let currentPage = 1;
-    this.pageSize = this.pageSize + 10;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
+    this.pageSize = this.pageSize + 10;
     this.tradeNowService.getTradedOrders(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isLoadingForMyTrade = false;
       this.hasBlurForMyTrading = false;
@@ -898,13 +962,13 @@ export class TradeNowComponent implements OnInit {
   getMoreMyOrder() {
 
     let currentPage = 1;
-    this.pageSize = this.pageSize + 10;
     this.isOpenOrders = true;
     this.hasBlurOpenOrders = true;
+    this.pageSize = this.pageSize + 10;
     this.tradeNowService.getMyOrdersFromBook(currentPage, this.pageSize, "createdOn", "desc").subscribe(success => {
       this.isOpenOrders = false;
       this.hasBlurOpenOrders = false;
-      this.myOrdersInBook = success.data;
+      this.myOrdersInBook = success.data.content;
       this.myOrdersInBookLength = this.myOrdersInBook.length;
 
 
@@ -947,10 +1011,11 @@ export class TradeNowComponent implements OnInit {
   showHideDiv() {
     this.showHide = !this.showHide;
     this.selected = !this.selected;
-    if(this.showHide) {
+    if (this.showHide) {
       console.log(this.showHide);
       this.getCoinMarketCapData();
       this.getDataIn10Min();
+      this.getTradeViewChart();
     }
     else {
       console.log("In Timer")
@@ -974,16 +1039,13 @@ export class TradeNowComponent implements OnInit {
 
   }
 
-
   getDataIn10Min() {
-    if(this.showHide) {
+    if (this.showHide) {
       this.subscription = setInterval(() => {
-      this.getCoinMarketCapData();
-    }, 10000 * 60);
+        this.getCoinMarketCapData();
+      }, 10000 * 60);
     }
   }
-
-
 
   getCoinMarketCapData() {
     let seturl = 'https://api.coinmarketcap.com/v1/ticker/' + this.pairedCurrencyObj.currencyName + '/?convert=' + this.marketCurrencyObj.currencyAbbreviation;

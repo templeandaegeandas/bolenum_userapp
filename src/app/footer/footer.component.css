@@ -153,7 +153,7 @@ img.img-resonsive {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     padding: 7px;
-    height: 46px;
+    height: 42px;
 }
 
 .input-group .form-control:first-child,
@@ -165,7 +165,7 @@ img.img-resonsive {
 .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    padding: 22px;
+    height: 42px;
 }
 
 .heading7:after {

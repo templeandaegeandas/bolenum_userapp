@@ -21,7 +21,7 @@
     </div>
     <div class="tab_container">
       <input id="tab1" type="radio" name="tabs" checked>
-      <label for="tab1" class="label-box-shadow box-tab ">
+      <label for="tab1" class="label-box-shadow box-tab " (click)=" showLoader()">
         <div class="img-tab lebel-image-margin">
         </div>
         <p class="sub_heading label_tab">Profile</p>
@@ -35,8 +35,8 @@
         </div>
       </label>
       <input id="tab3" type="radio" name="tabs">
-      <label for="tab3" class="label-box-shadow box-tab ">
-        <div class="img-tab2 lebel-image-margin" (click)="getKycDetailsUser()">
+      <label for="tab3" class="label-box-shadow box-tab " (click)="getKycDetailsUser()" >
+        <div class="img-tab2 lebel-image-margin" >
         </div>
         <p class="sub_heading label_tab">KYC Details</p>
       </label>

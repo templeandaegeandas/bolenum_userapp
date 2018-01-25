@@ -27,7 +27,9 @@
        "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/intl-tel-input/build/js/utils.js",
-        "../node_modules/intl-tel-input/build/js/intlTelInput.min.js"
+        "../node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+        "../src/assets/js/charting_library.min.js",
+        "../src/assets/js/datafeed.js"
 
       ],
     "environmentSource": "environments/environment.ts",
