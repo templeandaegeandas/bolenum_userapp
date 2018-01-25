@@ -1,65 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Request, XHRBackend, RequestOptions, Response, Http, RequestOptionsArgs, Headers } from '@angular/http';
+import { ToastrService } from 'toastr-ng2';
+import { RouterModule, Router} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class HttpClient {
+export class HttpClient  extends Http {
 
-  constructor(private http: Http) { }
-
-  createAuthorizationHeader(headers: Headers) {
-    if (localStorage.getItem("token")) {
-      headers.append("Authorization", localStorage.getItem("token"));
-    }
+  constructor(backend: XHRBackend, defaultOptions: RequestOptions,private router:Router , private toastrService: ToastrService, ) 
+  {
+    super(backend, defaultOptions);
   }
 
-  get(url) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(url, {
-      headers: headers
-    });
+  request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+
+        if (typeof url === 'string') {
+            if (!options) {
+              options = { headers: new Headers() };
+           }
+            this.setHeaders(options);
+          } else {
+             this.setHeaders(url);
+          }
+
+    return super.request(url, options).catch((error: Response) => {
+        if ((error.status === 401 || error.status === 403 || error.status === 0)) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+          this.toastrService.info('Session expired! Please login again', 'Info');
+        }
+          return Observable.throw(error);
+        });
   }
 
-  post(url, data) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.post(url, data, {
-      headers: headers
-    });
-  }
+      private setHeaders(objectToSetHeadersTo: Request | RequestOptionsArgs) {
+        objectToSetHeadersTo.headers.set("Authorization", localStorage.getItem("token"));
+   }
 
-  postWithoutContentType(url, data) {
-    let headers = new Headers();
-    headers.delete("Content-Type");
-    this.createAuthorizationHeader(headers);
-    return this.http.post(url, data, {
-      headers: headers
-    });
-  }
-
-  putWithoutContentType(url, data) {
-    let headers = new Headers();
-    headers.delete("Content-Type");
-    this.createAuthorizationHeader(headers);
-    return this.http.put(url, data, {
-      headers: headers
-    });
-  }
-
-  put(url, data) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.put(url, data, {
-      headers: headers
-    });
-  }
-
-  delete(url) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.delete(url, {
-      headers: headers
-    });
-  }
 
 }
