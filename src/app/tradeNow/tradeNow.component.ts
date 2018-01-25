@@ -637,12 +637,18 @@ export class TradeNowComponent implements OnInit {
     if (this.pairedCurrencyType != 'FIAT') {
       this.depositService.getCoin(this.pairedCurrencyType, this.pairedCurrency).subscribe(success => {
         this.pairedCurrencyBal = success.data.data.balance;
+        if (this.pairedCurrencyBal < 0) {
+          this.pairedCurrencyBal = 0;
+        }
       }, error => {
         this.pairedCurrencyBal = 0.0;
       })
       this.depositService.getCoin(this.marketCurrencyType, this.marketCurrency).subscribe(success => {
         if (success.data != null)
           this.marketCurrencyBal = success.data.data.balance;
+        if (this.marketCurrencyBal < 0) {
+          this.marketCurrencyBal = 0;
+        }
       }, error => {
         this.marketCurrencyBal = 0.0;
       })
