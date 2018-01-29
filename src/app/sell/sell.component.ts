@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./sell.component.css'],
   providers: [SellService]
 })
-export class SellComponent implements OnInit, OnDestroy {
+export class SellComponent implements OnInit{
   orderId: any;
   bankName: string;
   branch: string;
@@ -45,10 +45,13 @@ export class SellComponent implements OnInit, OnDestroy {
       console.log("Get message", this.getMessage);
       if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
+        if (this.subscription != null) {
+          clearInterval(this.subscription);
+        }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
         this.showTime = "Order Canceled";
         this.appEventEmiterService.changeMessage("cancelPay");
-        this.clearInterval();
+        //this.clearInterval();
         // this.ngOnInit(); 
       }
       else if (this.getMessage == "CONFIRM_NOTIFICATION") {
@@ -69,13 +72,11 @@ export class SellComponent implements OnInit, OnDestroy {
 
   }
 
-  clearInterval() {
-    clearInterval(this.subscription);
-  }
+  
 
-  ngOnDestroy() {
-    this.clearInterval();
-  }
+  // ngOnDestroy() {
+  //   this.clearInterval();
+  // }
 
   getOrderDetails() {
     this.sellService.orderDetails(this.orderId).subscribe(success => {
@@ -100,68 +101,42 @@ export class SellComponent implements OnInit, OnDestroy {
       this.isConfirmed = success.data.isConfirmed;
       this.isMatchedConfirm = success.data.isMatchedConfirm;
       this.dispute = success.data.isDispute;
-      this.startTradingTimer();
+      this.startTimer();
     }, error => this.router.navigate(['market']))
   }
 
+  clearInterval(){
+    console.log("in");
+     clearInterval(this.subscription);
 
-
-  startTradingTimer() {
-    var date = new Date(this.matchedOn);
-    var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
-    // Update the count down every 1 second
-    if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
-      this.subscription = setInterval(() => {
-        if (this.getMessage != "receivedPayment" && this.getMessage != "ORDER_BOOK_NOTIFICATION") {
-          this.startTimer(countDownDate);
-        }
-      }, 1000)
-
-    }
-    else if (this.orderStatus == 'COMPLETED' && this.getMessage != "CONFIRM_NOTIFICATION") {
-      try {
-        this.showTime = "Order Completed";
-         this.clearInterval();
-       
-      }
-      catch (e) {
-        console.log(this.subscription);
-      }
-    }
-    else if (this.orderStatus == 'SUBMITTED') {
-      try {
-        this.showTime = "Order Submitted";
-        this.clearInterval();
-      }
-      catch (e) {
-        console.log(this.subscription);
-      }
-    }
-    else if (this.orderStatus == 'LOCKED') {
-      try {
-        this.showTime = "Please wait for buyer to make payment";
-        this.clearInterval();
-      }
-      catch (e) {
-        console.log(this.subscription);
-      }
-    }
-    else {
-      try {
-        this.showTime = "Order Cancelled";
-        //this.clearInterval();
-      }
-      catch (e) {
-        console.log(this.subscription);
-      }
-    }
   }
 
-  startTimer(countDownDate) {
-    var path;
-    this.activatedRoute.url.subscribe(url => {
-      path = url[0].path;
-    })
+
+
+  // startTradingTimer() {
+  //   var date = new Date(this.matchedOn);
+  //   var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
+  //   // Update the count down every 1 second
+  //   if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
+  //     this.subscription = setInterval(() => {
+  //       if (this.getMessage != "receivedPayment" && this.getMessage != "ORDER_BOOK_NOTIFICATION") {
+  //         this.startTimer(countDownDate);
+  //       }
+  //     }, 1000)
+
+  //   }
+  //   else 
+  // }
+
+  startTimer() {
+     var date = new Date(this.matchedOn);
+    var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
+     if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
+       this.subscription =setInterval(() => {
+          var path;
+            this.activatedRoute.url.subscribe(url => {
+              path = url[0].path;
+          })
     // Get todays date and time
     var now = new Date().getTime();
     // Find the distance between now an the count down date
@@ -194,12 +169,74 @@ export class SellComponent implements OnInit, OnDestroy {
         }
       }
     }
+  },1000);
+}
+  else if (this.orderStatus == 'COMPLETED' && this.getMessage != "CONFIRM_NOTIFICATION") {
+       if (this.subscription != null) {
+        this.clearInterval();
+      }
+      try {
+        console.log("IN:;;;;;;;;;;;;;;");
+       this.showTime = "Order Completed";
+        this.clearInterval();
+      }
+      catch (e) {
+        console.log("exception handled");
+        this.clearInterval();
+      }
+    }
+    else if (this.orderStatus == 'SUBMITTED') {
+      try {
+        this.showTime = "Order Submitted";
+        this.clearInterval();
+      }
+      catch (e) {
+        console.log(this.subscription);
+      }
+    }
+    else if (this.orderStatus == 'LOCKED') {
+      try {
+         if (this.subscription != null) {
+          this.clearInterval();
+      }
+        this.showTime = "Please wait for buyer to make payment";
+        //this.clearInterval();
+      }
+      catch (e) {
+        console.log(this.subscription);
+      }
+    }
+     else if (this.orderStatus == 'CANCELLED') {
+       if (this.subscription != null) {
+        this.clearInterval();
+      }
+      try {
+        this.showTime = "Order Cancelled";
+        //this.clearInterval();
+      }
+      catch (e) {
+        console.log(this.subscription);
+      }
+    }
+    else {
+      if (this.subscription != null) {
+        this.clearInterval();
+      }
+      try {
+       this.showTime = "Order Confirmed";
+      }
+      catch (e) {
+        console.log("exception handled");
+      }
+    }
   }
 
   confirmPay() {
-    this.clearInterval();
     this.appEventEmiterService.changeMessage("receivedPayment");
     this.sellService.confirmPay(this.orderId).subscribe(success => {
+        if (this.subscription != null) {
+        this.clearInterval();
+      }
       this.getOrderDetails();
       this.toastrService.success("Trade Completed!", "Success!");
     }, error => {
@@ -208,7 +245,9 @@ export class SellComponent implements OnInit, OnDestroy {
   }
 
   cancelPay() {
-    this.clearInterval();
+    if (this.subscription != null) {
+      this.clearInterval();
+    }
     this.appEventEmiterService.changeMessage("cancelPay");
     this.sellService.cancelPay(this.orderId).subscribe(success => {
       this.getOrderDetails();
