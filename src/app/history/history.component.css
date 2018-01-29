@@ -19,6 +19,10 @@
 }
 */
 
+.btn-group.open .dropdown-toggle {
+    box-shadow: none;
+}
+
 .transaction-History-Property {
     border: 1px solid lightgray;
     height: 278px;
@@ -191,13 +195,17 @@ input[type="checkbox"]+label:before {
     content: "\00a0";
     display: inline-block;
     font: 16px/1em sans-serif;
-    height: 19px;
+    height: 13px;
     background-color: white;
     margin: 0 .25em 0 0;
     padding: 0;
     vertical-align: top;
-    width: 23px;
+    width: 16px;
     border-radius: 4px;
+}
+
+.drop-down-text{
+    font-size: 11px;
 }
 
 input[type="checkbox"]:checked+label:before {
