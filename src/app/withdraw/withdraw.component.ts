@@ -32,7 +32,7 @@ export class WithdrawComponent implements OnInit {
   data: any;
 
   constructor(private withdrawService: WithdrawService, private appEventEmiterService: AppEventEmiterService,
-     private toastrService: ToastrService) {
+    private toastrService: ToastrService) {
     this.appEventEmiterService.currentMessage.subscribe(message => {
       if (message == "WITHDRAW_NOTIFICATION") {
         this.getListOfUserWithdrawlTransaction(this.data);
@@ -48,7 +48,8 @@ export class WithdrawComponent implements OnInit {
   }
 
   withdrawAmount(form) {
-    if (form.invalid) {return;
+    if (form.invalid) {
+      return;
     }
     if (this.withdrawForm.withdrawAmount < this.minWithdrawAmount) {
       this.toastrService.error('You can not withdraw less than min withdraw limit', 'Error!');
@@ -56,7 +57,7 @@ export class WithdrawComponent implements OnInit {
     }
     this.loading = true;
     let currency: any;
-     currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
+    currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
     this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
       this.getCoin(currency.currencyAbbreviation);
       form.resetForm();
@@ -105,6 +106,9 @@ export class WithdrawComponent implements OnInit {
       if (successData.data != null) {
         this.address = successData.data.address;
         this.balance = successData.data.balance;
+        if (this.balance < 0) {
+          this.balance = 0;
+        }
       }
       this.loading = false;
     }, errorData => {
@@ -130,7 +134,7 @@ export class WithdrawComponent implements OnInit {
   getMoreTransactionList() {
     let currentPage: any;
     currentPage = 1;
-    this.pageSize = this.pageSize+10;
+    this.pageSize = this.pageSize + 10;
     this.isLoading = true;
     this.hasBlur = true;
     this.withdrawService.getListOfWithdrawlTransaction(currentPage, this.pageSize, "createdOn", "desc", this.data).subscribe(success => {

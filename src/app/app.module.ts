@@ -53,12 +53,13 @@ import { SellComponent } from './sell/sell.component';
 import { CreateAdvertiesmentComponent } from './create-advertiesment/create-advertiesment.component';
 import { DisputeComponent } from './dispute/dispute.component';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
-import { AuthenticatedHttpService } from './interceptor';
+// import { AuthenticatedHttpService } from './interceptor';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
 import { IntTelInputDirective } from  './directives/int.tel.input.directive';
 import { NotifyUserComponent } from './notify-user/notify-user.component';
+import { UserNotificationComponent } from './user-notification/user-notification.component';
 declare var require: any;
 export function highchartsFactory() {
   const hc = require('highcharts');
@@ -101,7 +102,8 @@ export function highchartsFactory() {
     CancelTradeComponent,
     FeesDetailsComponent,
     IntTelInputDirective,
-    NotifyUserComponent
+    NotifyUserComponent,
+    UserNotificationComponent
 
   ],
   imports: [
@@ -126,8 +128,8 @@ export function highchartsFactory() {
     RecaptchaFormsModule
   ],
   providers: [{ provide: HighchartsStatic, useFactory: highchartsFactory },
-    HttpClient,
-   { provide: Http, useClass: AuthenticatedHttpService },
+     HttpClient,
+   { provide: Http, useClass: HttpClient },
     PrivateRouteAuthGuard,
     PublicRouteAuthGuard,
     AppEventEmiterService,

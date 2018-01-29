@@ -29,8 +29,12 @@
     width: 300px;
     height: 200px;
 }
+.message-table{
+    table-layout: fixed;
+}
 .message-table tbody tr td{
     text-align: left;
+    word-break: break-all;
 }
 
 .payment-table th , td{

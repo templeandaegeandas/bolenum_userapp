@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-
+import { RequestOptions ,Headers } from '@angular/http';
 import { HttpClient } from '../app.client.interceptor';
 
 @Injectable()
@@ -25,7 +25,14 @@ export class ProfileService {
   }
 
   upload(formData) {
-    return this.http.postWithoutContentType("/api/v1/kyc/upload" , formData)
+     let headers = new Headers();
+      headers.delete("Content-Type");
+
+     let options = new RequestOptions({
+        headers: headers
+    });
+
+    return this.http.post("/api/v1/kyc/upload" , formData , options)
       .map(res => res.json());
   }
 
@@ -54,7 +61,13 @@ export class ProfileService {
 
   }
   uploadProfileImage(formData) {
-    return this.http.postWithoutContentType("/api/v1/user/upload/image", formData)
+     let headers = new Headers();
+      headers.delete("Content-Type");
+
+     let options = new RequestOptions({
+        headers: headers
+    });
+    return this.http.post("/api/v1/user/upload/image", formData, options)
       .map(res => res.json());
   }
 
