@@ -185,7 +185,6 @@ export class TradingComponent implements OnInit {
       console.log("subscription: ",this.subscription)
       if (this.subscription != null) {
         this.clearInterval();
-        this.clearInterval();
       }
       this.router.navigate(['/dispute/' + this.orderId])
       console.log(success);
