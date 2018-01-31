@@ -119,7 +119,7 @@ export class BeforLoginTradeNowComponent implements OnInit {
     this.loading = true;
     setTimeout(()=>{
       this.loading = false;
-    },3000)
+    },1000)
     this.getCurrencyList();
     this.getAllTradedOrders();
     this.userId = localStorage.getItem('userId');

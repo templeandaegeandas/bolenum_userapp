@@ -328,7 +328,7 @@ export class ProfileComponent implements OnInit {
           "setNumber",
           "+" + this.code + this.mobileNumber
         );
-      }, 500);
+      }, 1000);
     }
   }
 
