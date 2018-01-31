@@ -246,13 +246,13 @@ export class ProfileComponent implements OnInit {
     if (data == "MOBILE" && !this.isMobileVerified) {
       this.isMobileEdit = true;
       if (this.mobileNumber != null && this.mobileNumber != "undefined") {
-        setTimeout(() => {
-          console.log(this.code + this.mobileNumber);
+        // setTimeout(() => {
+        //   console.log(this.code + this.mobileNumber);
           $("#usred").intlTelInput(
             "setNumber",
             "+" + this.code + this.mobileNumber
           );
-        }, 500);
+        // }, 500);
       }
       this.getAllCountries();
     }
