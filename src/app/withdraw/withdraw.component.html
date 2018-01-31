@@ -86,7 +86,7 @@
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                     <td>{{tx.fee | number:'1.8-8'}}</td>
-                    <td>N/A</td>
+                    <td>{{tx.txStatus}}</td>
                   </tr>
                   <tr *ngIf="transactionLength >=10">
                     <td colspan="8">
