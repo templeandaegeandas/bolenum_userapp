@@ -136,6 +136,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.openTwoFaVerification('GOOGLE_AUTHENTICATOR');
     this.loading =true;
     setTimeout(()=>{
       this.loading = false;
