@@ -386,13 +386,21 @@ export class ProfileComponent implements OnInit {
 
   saveDetails(form) {
     this.loading = true;
-    if (form.invalid) return;
+    if (form.invalid){
+      this.loading = false;
+      return;
+    } 
+
+
+
     if (this.country == "Choose Country") {
       this.countryError = true;
+      this.loading = false;
       return;
     }
     if (this.state == "Choose State") {
       this.stateError = true;
+      this.loading = false;
       return;
     }
 
