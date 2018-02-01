@@ -156,6 +156,7 @@ export class TradeNowComponent implements OnInit {
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
+      console.log(this.jsonMessage);
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
         this.currecyList.map((value) => {
           value.market.map((marketValue) => {
@@ -466,6 +467,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   createFiatOrder() {
+     this.buySellModel.hide();
     if (this.order.volume < 1) {
       this.buySellModel.hide();
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
@@ -777,6 +779,7 @@ export class TradeNowComponent implements OnInit {
   // method to show table of market trade and my trade
 
   marketTradeList() {
+    this.getMoreOrders();
     this.marketTrade = true;
     this.myTrade = false;
     this.marketTradeColor = true;
@@ -947,7 +950,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMoreMyTradeList() {
-
     let currentPage = 1;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
