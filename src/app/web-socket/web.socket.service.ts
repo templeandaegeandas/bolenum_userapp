@@ -62,14 +62,7 @@ export class WebsocketService {
 
   response = (data) => {
     console.log(data)
-    if (data.CONFIRM_NOTIFICATION == 'CONFIRM_NOTIFICATION') {
-      this.appEventEmiterService.changeMessage(data.CONFIRM_NOTIFICATION);
-      this.router.navigate(['/sell/' + data.matchedOrderId]);
-    }
-    else if(data.MATCHED_NOTIFICATION == 'MATCHED_NOTIFICATION') {
-      this.router.navigate(['/trading/' + data.matchedOrderId]);
-    }
-    else if(data.MARKET_UPDATE == 'MARKET_UPDATE') {
+    if(data.MARKET_UPDATE == 'MARKET_UPDATE') {
       this.appEventEmiterService.changeMessage(data);
     }
     else {

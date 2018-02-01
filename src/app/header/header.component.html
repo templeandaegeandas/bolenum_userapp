@@ -88,7 +88,8 @@
                       </div>
                   </div>
                   <div class="msg-area  text-center seeall-Notification-border-top">
-                    <a class="see-more-notification notification-text-font pointer-icon" routerLink = "./userNotify">See all notifications</a>
+                    <a *ngIf="listOfUserNotificationLength > 0" class="see-more-notification notification-text-font pointer-icon" routerLink = "./userNotify">See all notifications</a>
+                    <span *ngIf="listOfUserNotificationLength==0" class="see-more-notification notification-text-font pointer-icon">No Notification</span>
                   </div>
                 </div>
               </li>
