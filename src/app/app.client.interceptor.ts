@@ -34,7 +34,7 @@ export class HttpClient extends Http {
           localStorage.clear();
             //handle authorization errors
             //in this example I am navigating to login.
-            this.toastrService.info("Error_Session_Expired: redirecting to login!",'Info');
+            // this.toastrService.info("Error_Session_Expired: redirecting to login!",'Info');
             window.location.href='#/login'
         }
         return Observable.throw(res);
