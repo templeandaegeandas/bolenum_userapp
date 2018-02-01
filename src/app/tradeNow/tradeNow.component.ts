@@ -1015,6 +1015,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   showHideDiv() {
+    this.loading = true;
     this.showHide = !this.showHide;
     this.selected = !this.selected;
     if (this.showHide) {
@@ -1022,11 +1023,20 @@ export class TradeNowComponent implements OnInit {
       this.getCoinMarketCapData();
       this.getDataIn10Min();
       this.getTradeViewChart();
+      setTimeout(()=>{
+        this.loading = false;
+      },1000);
     }
     else {
       console.log("In Timer")
       clearInterval(this.subscription);
+      setTimeout(()=>{
+        this.loading = false;
+      },1000);
     }
+    setTimeout(()=>{
+      this.loading = false;
+    },1000);
   }
 
   select(pairedCurrency, marketCurrency) {
