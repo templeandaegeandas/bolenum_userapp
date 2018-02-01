@@ -304,11 +304,11 @@ export class TradeNowComponent implements OnInit {
       this.buyOrderList = success.data.content;
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
-        this.marketBuyPrice = this.bid;
+        this.marketSellPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.marketBuyPrice = this.bid;
+        this.marketSellPrice = this.bid;
       }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
@@ -323,11 +323,11 @@ export class TradeNowComponent implements OnInit {
       this.sellOrderList = success.data.content;
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
-        this.marketSellPrice = this.bid;
+        this.marketBuyPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.marketSellPrice = this.bid;
+        this.marketBuyPrice = this.bid;
       }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
