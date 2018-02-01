@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="col-md-7 col-md-offset-4 button-padding">
-            <button class="submit-button text-uppercase button-font" type="submit">Submit</button>
+            <button class="submit-button text-uppercase button-font" type="submit"  >Submit</button>
           </div>
         </form>
         <!-- for table -->
@@ -108,4 +108,25 @@
     </div>
   </div>
 </div>
+  <!-- Modal -->
+  <div bsModal #feeModal="bs-modal" class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="hideModal()">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>You receive {{ amount.value  - withdrawFee | number:'1.1-8' }} {{setItemValue}}.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideModal()">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideModal()">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

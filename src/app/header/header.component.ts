@@ -52,7 +52,8 @@ export class HeaderComponent implements OnInit {
 				message == "USER_NOTIFICATION" ||
 				message == "DEPOSIT_NOTIFICATION" ||
 				message == "PAID_NOTIFICATION" ||
-				message == "DISPUTE_NOTIFICATION"
+				message == "DISPUTE_NOTIFICATION" ||
+				message == "MATCHED_NOTIFICATION"
 			) {
 				this.getCountOfUnseeNotification();
 				console.log(this.countOfUnseeNotification);
