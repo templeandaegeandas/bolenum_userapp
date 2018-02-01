@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav">
           <!-- <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li> -->
 
-          <li class="menufont heading-sub-menu" routerLinkActive="active"><a routerLink="/market">Market</a></li>
+          <li class="menufont heading-sub-menu" routerLinkActive="active"><a (click)="getCurrentRoute()" >Market</a></li>
           <li class="menufont heading-sub-menu" routerLinkActive="active"><a _ngcontent-c3="" routerlink="/feeDetails" target="_blank" ng-reflect-target="_blank" ng-reflect-router-link="/feeDetails"
               href="#/feeDetails"><i _ngcontent-c3=""></i>Fees</a></li>
 
@@ -88,7 +88,8 @@
                       </div>
                   </div>
                   <div class="msg-area  text-center seeall-Notification-border-top">
-                    <a class="see-more-notification notification-text-font pointer-icon" routerLink = "./userNotify">See all notifications</a>
+                    <a *ngIf="listOfUserNotificationLength > 0" class="see-more-notification notification-text-font pointer-icon" routerLink = "./userNotify">See all notifications</a>
+                    <span *ngIf="listOfUserNotificationLength==0" class="see-more-notification notification-text-font pointer-icon">No Notification</span>
                   </div>
                 </div>
               </li>

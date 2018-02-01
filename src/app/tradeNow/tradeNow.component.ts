@@ -136,6 +136,8 @@ export class TradeNowComponent implements OnInit {
   pairedCurrencyId;
   marketCurrencyObj;
   pairedCurrencyObj;
+  marketBuyPrice;
+  marketSellPrice;
   subscription;
   public tradingView;
 
@@ -156,6 +158,7 @@ export class TradeNowComponent implements OnInit {
     }
     this.appEventEmiterService.currentMessage.subscribe(message => {
       this.jsonMessage = message;
+      console.log(this.jsonMessage);
       if (this.jsonMessage.MARKET_UPDATE == "MARKET_UPDATE") {
         this.currecyList.map((value) => {
           value.market.map((marketValue) => {
@@ -302,9 +305,11 @@ export class TradeNowComponent implements OnInit {
       this.buyOrderList = success.data.content;
       if (this.buyOrderList.length > 0) {
         this.bid = this.buyOrderList[0].price;
+        this.marketSellPrice = this.bid;
       }
       else {
         this.bid = 0;
+        this.marketSellPrice = this.bid;
       }
       this.buyOrderList.map(value => {
         this.totalBuy += value.volume * value.price;
@@ -319,11 +324,11 @@ export class TradeNowComponent implements OnInit {
       this.sellOrderList = success.data.content;
       if (this.sellOrderList.length > 0) {
         this.bid = this.sellOrderList[0].price;
-        this.lastPrice = this.bid;
+        this.marketBuyPrice = this.bid;
       }
       else {
         this.bid = 0;
-        this.lastPrice = this.bid;
+        this.marketBuyPrice = this.bid;
       }
       this.sellOrderList.map(value => {
         this.totalSell += value.volume;
@@ -332,18 +337,9 @@ export class TradeNowComponent implements OnInit {
     })
   }
 
-  /*getMarketPrice() {
-    this.tradeNowService.getMarketPrice("ETH").subscribe(success => {
-    this.marketPrice = success.data.priceBTC;
-    })
-  }*/
-
   oneBuyBtc() {
     this.order.price = this.marketPrice;
-    if (this.market1BtcEth == 'Infinity') {
-      this.market1BtcEth = 0;
-    }
-
+    this.buyPrice = this.marketBuyPrice;
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
     if (this.buyPrice == undefined || this.buyVolume == undefined) {
       this.buyTotalPrice = 0;
@@ -354,9 +350,7 @@ export class TradeNowComponent implements OnInit {
 
   oneSellBtc() {
     this.order.price = this.marketPrice;
-    if (this.market1BtcEth == 'Infinity') {
-      this.market1BtcEth = 0;
-    }
+    this.sellPrice = this.marketSellPrice;
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
     if (this.sellPrice == undefined || this.sellVolume == undefined) {
       this.sellTotalPrice = 0;
@@ -466,6 +460,7 @@ export class TradeNowComponent implements OnInit {
   }
 
   createFiatOrder() {
+     this.buySellModel.hide();
     if (this.order.volume < 1) {
       this.buySellModel.hide();
       this.toastrService.error("You can't create order with less than 1.0 volume!", 'Error!');
@@ -777,6 +772,7 @@ export class TradeNowComponent implements OnInit {
   // method to show table of market trade and my trade
 
   marketTradeList() {
+    this.getMoreOrders();
     this.marketTrade = true;
     this.myTrade = false;
     this.marketTradeColor = true;
@@ -947,7 +943,6 @@ export class TradeNowComponent implements OnInit {
   }
 
   getMoreMyTradeList() {
-
     let currentPage = 1;
     this.isLoadingForMyTrade = true;
     this.hasBlurForMyTrading = true;
@@ -1023,20 +1018,20 @@ export class TradeNowComponent implements OnInit {
       this.getCoinMarketCapData();
       this.getDataIn10Min();
       this.getTradeViewChart();
-      setTimeout(()=>{
+      setTimeout(() => {
         this.loading = false;
-      },1000);
+      }, 1000);
     }
     else {
       console.log("In Timer")
       clearInterval(this.subscription);
-      setTimeout(()=>{
+      setTimeout(() => {
         this.loading = false;
-      },1000);
+      }, 1000);
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.loading = false;
-    },1000);
+    }, 1000);
   }
 
   select(pairedCurrency, marketCurrency) {
