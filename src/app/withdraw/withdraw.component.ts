@@ -15,7 +15,9 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 export class WithdrawComponent implements OnInit {
   @ViewChild('feeModal') public feeModal: ModalDirective;
-
+  public withrawForm:any;
+  public confirmDta:any;
+  public userWithdrawFees:any;
   public transactionLength: any;
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
@@ -59,19 +61,61 @@ export class WithdrawComponent implements OnInit {
       this.toastrService.error('You can not withdraw less than min withdraw limit', 'Error!');
       return;
     }
-    this.feeModal.show();
-    this.loading = true;
-    let currency: any;
-    currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
-    this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
-      this.getCoin(currency.currencyAbbreviation);
-      form.resetForm();
-      this.loading = false;
-      this.toastrService.success(success.message, 'Success!');
-    }, error => {
-      this.loading = false;
-      this.toastrService.error(error.json().message, 'Error!');
-    });
+    if(this.withdrawForm.withdrawAmount < this.withdrawFee){
+      this.toastrService.error('You can not withdraw less than withdraw fee', 'Error!');
+      return;
+    }
+    else if(this.withdrawForm.withdrawAmount == this.withdrawFee){
+      this.toastrService.error('You can not withdraw with equall withdraw fee', 'Error!');
+      return;
+    }
+    else if(this.withdrawForm.withdrawAmount > this.withdrawFee){
+      this.userWithdrawFees = this.withdrawForm.withdrawAmount - this.withdrawFee;
+      this.feeModal.show();
+  
+    }
+    // this.loading = true;
+    // let currency: any;
+    // currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
+    // this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
+    //   this.getCoin(currency.currencyAbbreviation);
+    //   form.resetForm();
+    //   this.loading = false;
+    //   this.toastrService.success(success.message, 'Success!');
+    // }, error => {
+    //   this.loading = false;
+    //   this.toastrService.error(error.json().message, 'Error!');
+    // });
+  }
+
+  confirmModal(data){
+    if(data == 'yes'){
+      this.feeModal.hide();
+      this.loading = true;
+      let currency: any;
+      currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
+      this.withdrawService.withdrawFromWallet(currency.currencyType, currency.currencyAbbreviation, this.withdrawForm).subscribe(success => {
+        this.getCoin(currency.currencyAbbreviation);
+        this.loading = false;
+        this.toastrService.success(success.message, 'Success!');
+      }, error => {
+        this.loading = false;
+        this.toastrService.error(error.json().message, 'Error!');
+      });
+    
+
+     this.loading = false;
+    }
+    else if(data == 'no'){
+      this.hideModals();
+      return ;
+    }
+
+  }
+
+  hideModals(){
+    this.feeModal.hide();
+    
   }
 
   getCurrencyList() {

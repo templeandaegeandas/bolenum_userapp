@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="">
-        <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm)">
+        <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm); ">
           <div class="col-md-8 col-md-offset-2 top-margin-field">
           </div>
           <div class="col-md-9 col-md-offset-1 withdraw-field">
@@ -116,14 +116,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" (click)="hideModal()">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Withdrawal</h4>
         </div>
         <div class="modal-body">
-          <p>You receive {{ amount.value  - withdrawFee | number:'1.1-8' }} {{setItemValue}}.</p>
+          <p>You receive {{userWithdrawFees | number:'1.1-8'}} </p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideModal()">Yes</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideModal()">No</button>
+            <button type="button" class="btn  popupbutton" (click)="confirmModal('yes')">Yes</button>
+          <button type="button" class="btn  popupbutton" (click)="confirmModal('no')" >No</button>
         </div>
       </div>
       

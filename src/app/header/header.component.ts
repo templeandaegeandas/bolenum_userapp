@@ -156,6 +156,12 @@ export class HeaderComponent implements OnInit {
 			);
 	}
 
+
+	getCurrentRoute(){
+		// this.appEventEmiterService.changeMessage("goToMarket");
+		this.router.navigate(["market"]);
+	}
+
 	/* Identify Notification Type on click of list of notifications */
 	getNotificationType(notifyType, notifyId) {
 		if (notifyType != "null" && notifyType == "PAID_NOTIFICATION") {
