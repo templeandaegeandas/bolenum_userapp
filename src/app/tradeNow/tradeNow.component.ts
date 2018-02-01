@@ -340,6 +340,9 @@ export class TradeNowComponent implements OnInit {
     this.order.price = this.marketPrice;
     this.buyPrice = this.marketBuyPrice;
     this.buyTotalPrice = this.buyPrice * this.buyVolume;
+    if(this.buyVolume == '') {
+      this.buyPrice = 0;
+    }
     if (this.buyPrice == undefined || this.buyVolume == undefined) {
       this.buyTotalPrice = 0;
     }
@@ -351,6 +354,9 @@ export class TradeNowComponent implements OnInit {
     this.order.price = this.marketPrice;
     this.sellPrice = this.marketSellPrice;
     this.sellTotalPrice = this.sellPrice * this.sellVolume;
+    if(this.sellVolume == '') {
+      this.sellPrice = 0;
+    }
     if (this.sellPrice == undefined || this.sellVolume == undefined) {
       this.sellTotalPrice = 0;
     }
