@@ -15,6 +15,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 export class WithdrawComponent implements OnInit {
   @ViewChild('feeModal') public feeModal: ModalDirective;
+  public withdrawFormData:any;
   public withrawForm:any;
   public confirmDta:any;
   public userWithdrawFees:any;
@@ -54,6 +55,7 @@ export class WithdrawComponent implements OnInit {
   }
 
   withdrawAmount(form) {
+    this.withdrawFormData = form;
     if (form.invalid) {
       return;
     }
@@ -98,6 +100,7 @@ export class WithdrawComponent implements OnInit {
         this.getCoin(currency.currencyAbbreviation);
         this.loading = false;
         this.toastrService.success(success.message, 'Success!');
+        this.withdrawFormData.resetForm();
       }, error => {
         this.loading = false;
         this.toastrService.error(error.json().message, 'Error!');

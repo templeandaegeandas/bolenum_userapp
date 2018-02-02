@@ -34,7 +34,7 @@
               <div class="form-group margin-error">
                 <input type="text" class="form-control input-field-withdraw" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required>
               </div>
-              <div *ngIf="address.invalid && withrawForm.submitted">
+              <div *ngIf="address.invalid && address.touched && withrawForm.submitted">
                   <p class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</p>
               </div>
             </div>
