@@ -249,6 +249,9 @@ a .bell {
     line-height: 16px;
      cursor: pointer;
 }
+.notification-text:hover{
+    color: #DB2828;
+}
 
 p .notify{
         margin: 0 0 0px;   
@@ -268,6 +271,11 @@ p .notify{
     float: right;
     padding: 0;
     margin-top: -8px;
+}
+
+.notification-heading{
+    color: #DB2828;
+    text-decoration: underline;
 }
 
 .header-menu .navbar.navbar-default {
@@ -364,8 +372,9 @@ img.img-profile-icon {
 }
 
 .notification-scroll{
-    overflow-y: scroll;
-    max-height: 320px;
+   
+    max-height: 341px;
+
 }
 
 strong{
@@ -373,6 +382,9 @@ strong{
 }
 .notification-text-font{
     font-size: 11px;
+}
+.notification-text-font:hover{
+    color: #DB2828;
 }
 
 .top-dropdown-menu {
@@ -534,9 +546,23 @@ strong{
         width: 100%;
         background-color: #f8f8f8;
     }
+    .notification-text:hover{
+        color: #DB2828;
+    }
+
+    .notification-scroll{
+   
+        border: 1px solid lightgray !important;
+        background-color: #fff;
+    }
     .dropdown-menu .divider {
         margin: 0px;
     }
+
+    .navbar-nav .open .dropdown-menu{
+        background-color: #fff;
+    }
+   
     .padding-dropdown {
         padding-top: 0px;
     }
@@ -615,14 +641,8 @@ strong{
         z-index: 1;
     }
 
-    .navcolor
-        {
-            background-color: black;
-            color: white;
-        }
-        .msg-background{
-            background: white;
-        }
+  
+       
 
         .more-menu-list{
             background-color: white !important;

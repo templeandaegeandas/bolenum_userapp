@@ -34,7 +34,7 @@
               <div class="form-group margin-error">
                 <input type="text" class="form-control input-field-withdraw" name="address" #address="ngModel" [(ngModel)]="withdrawForm.toAddress" required>
               </div>
-              <div *ngIf="address.invalid && address.touched && withrawForm.submitted">
+              <div *ngIf="address.invalid && withrawForm.submitted">
                   <p class="red-text-color error-message-font" *ngIf="address.errors.required">Please enter address</p>
               </div>
             </div>
@@ -108,25 +108,4 @@
     </div>
   </div>
 </div>
-  <!-- Modal -->
-  <div bsModal #feeModal="bs-modal" class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" (click)="hideModal()">&times;</button>
-          <h4 class="modal-title">Withdrawal</h4>
-        </div>
-        <div class="modal-body">
-          <p>You receive {{userWithdrawFees | number:'1.1-8'}} </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn  popupbutton" (click)="confirmModal('yes')">Yes</button>
-          <button type="button" class="btn  popupbutton" (click)="confirmModal('no')" >No</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
 <ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

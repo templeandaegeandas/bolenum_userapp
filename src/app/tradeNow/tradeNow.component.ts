@@ -1016,10 +1016,10 @@ export class TradeNowComponent implements OnInit {
   }
 
   showHideDiv() {
-    this.loading = true;
     this.showHide = !this.showHide;
     this.selected = !this.selected;
     if (this.showHide) {
+      this.loading = true;
       console.log(this.showHide);
       this.getCoinMarketCapData();
       this.getDataIn10Min();
