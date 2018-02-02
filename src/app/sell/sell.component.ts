@@ -132,6 +132,7 @@ export class SellComponent implements OnInit{
      var date = new Date(this.matchedOn);
     var countDownDate = new Date(date.setMinutes(date.getMinutes() + 40)).getTime();
      if (this.orderStatus == 'LOCKED' && this.isMatchedConfirm) {
+      this.clearInterval();
        this.subscription =setInterval(() => {
           var path;
             this.activatedRoute.url.subscribe(url => {

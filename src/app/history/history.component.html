@@ -14,7 +14,7 @@
                 <li role="menuitem">
                   <a class="dropdown-item">
                     <li>
-                      <input type="checkbox" id="c1" name="buy" [(ngModel)]="buyOrder" (change)="filterList()">
+                      <input type="checkbox" id="c1" name="buy" [(ngModel)]="buyOrder" (change)="filterList(event)">
                       <label for="c1" class="drop-down-text"> &nbsp; BUY ORDERS</label>
                     </li>
                   </a>
@@ -23,7 +23,7 @@
                 <li role="menuitem">
                   <a class="dropdown-item">
                     <li>
-                      <input type="checkbox" id="c2" name="sell" [(ngModel)]="sellOrder" (change)="filterList()">
+                      <input type="checkbox" id="c2" name="sell" [(ngModel)]="sellOrder" (change)="filterList(c2)">
                       <label for="c2" class="drop-down-text" > &nbsp; SELL ORDERS </label>
                     </li>
                   </a>
