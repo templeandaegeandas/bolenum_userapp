@@ -168,6 +168,7 @@ export class WithdrawComponent implements OnInit {
     });
     this.withdrawFees(currency.currencyId);
     this.getListOfUserWithdrawlTransaction(data);
+    this.withdrawFormData.resetForm();
   }
 
   getListOfUserWithdrawlTransaction(coinCode) {
