@@ -34,6 +34,7 @@ export class SellComponent implements OnInit{
   getMessage: any;
   isMatchedConfirm = false;
   dispute = false;
+  orderCancelled=true;
   constructor(
     private sellService: SellService,
     private router: Router,
@@ -45,11 +46,13 @@ export class SellComponent implements OnInit{
       console.log("Get message", this.getMessage);
       if (this.getMessage == "ORDER_CANCELLED") {
         this.dispute = false;
+        this.orderCancelled=false;
         if (this.subscription != null) {
           clearInterval(this.subscription);
         }
         toastrService.error("Your matching order cancelled! So your order is now in submitted state and added in order book!", "Error");
         this.showTime = "Order Canceled";
+        // this.orderCancelled=true;
         this.appEventEmiterService.changeMessage("cancelPay");
         //this.clearInterval();
         // this.ngOnInit(); 
@@ -213,7 +216,7 @@ export class SellComponent implements OnInit{
       }
       try {
         this.showTime = "Order Cancelled";
-        //this.clearInterval();
+        this.orderCancelled=false;
       }
       catch (e) {
         console.log(this.subscription);
