@@ -22,7 +22,7 @@
         <!-- for timer section -->
         <!-- button section -->
         <div class="col-sm-12">
-           <div class="col-sm-12">
+           <div class="col-sm-12" *ngIf="orderCancelled">
             <div class="col-sm-6 button-center">
               <button *ngIf="orderStatus=='LOCKED' && isMatchedConfirm" class="btn text-uppercase paid_button float-LR" type="submit" name="paid" (click)="confirmPay()">Received</button>
             </div>
