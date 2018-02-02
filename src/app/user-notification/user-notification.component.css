@@ -1,12 +1,12 @@
 .table-head-data{
-    text-align: center;
+    text-align: left;
 }
 table th{
-    text-align:center; 
+    text-align:left; 
 }
 
 table tbody td{
-    text-align: center;
+    text-align: left;
 }
 
 .row {

@@ -24,7 +24,7 @@ public formModel: FormModel = {};
 
       this.loading = false;
 
-    },3000)
+    },1000)
   }
 
   signUpUser(form) {

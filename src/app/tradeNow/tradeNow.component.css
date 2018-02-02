@@ -2896,8 +2896,8 @@ toggle */
     }
     .trade-margin {
         margin-top: 15px;
-        /* margin-left: 16px;
-        margin-right: 16px; */
+        margin-left: 0px;
+        margin-right: 0px;
     }
     .total-coin {
         text-align: right;
