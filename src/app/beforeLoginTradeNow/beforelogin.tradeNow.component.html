@@ -39,8 +39,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let pair of coinList.market" class="marketBodyColor" (click)=changePair(coinList,pair)  [ngClass]="{active: isActive(pair.currencyId)}">
-                      <th class="hand-icon table-content-font">{{pair.currencyAbbreviation}}</th>
+                    <tr *ngFor="let pair of coinList.market" class="marketBodyColor"  (click)=changePair(coinList,pair) >
+                      <th class="hand-icon table-content-font marketBodyColor">{{pair.currencyAbbreviation}}</th>
                       <th class="table-content-font"><span *ngIf="coinList.currencyAbbreviation=='BTC'">{{pair.priceBTC | number:'1.8-8'}}</span>
                       <span *ngIf="coinList.currencyAbbreviation=='ETH'">{{pair.priceETH | number:'1.8-8'}}</span>
                       <span *ngIf="coinList.currencyAbbreviation=='BLN'">{{pair.priceBLN | number:'1.8-8'}}</span>
@@ -80,7 +80,6 @@
                       <th>Price</th>
                       <th>{{pairedCurrency}}</th>
                       <th>{{marketCurrency}}</th>
-                      <!-- <th *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">Action</th> -->
                     </tr>
                   </thead>
                   <tbody class="table-content-font">
@@ -88,9 +87,6 @@
                       <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.price | number:'1.8-8'}}</td>
                       <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume | number:'1.8-8'}}</td>
                       <td class="trade-table-cursor" (click)="fillBuyData(sellOrder.volume,sellOrder.price)">{{sellOrder.volume * sellOrder.price | number:'1.8-8'}}</td>
-                      <td *ngIf="marketCurrency=='NGN' || pairedCurrency=='NGN'">
-                        <button class="trade-button-buy " (click)="showModel('BUY', sellOrder.volume, sellOrder.price, sellOrder.id)">BUY</button>
-                      </td>
                     </tr>
                   </tbody>
                 </table>
