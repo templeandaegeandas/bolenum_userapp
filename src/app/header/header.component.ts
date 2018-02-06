@@ -126,9 +126,8 @@ export class HeaderComponent implements OnInit {
 	}
 
 	showDropdown() {
-		this.getAllUserNotifications();
 		if (!this.subMenu) {
-			
+			this.getAllUserNotifications();
 		}
 		this.subMenu = !this.subMenu;
 	}
@@ -156,8 +155,7 @@ export class HeaderComponent implements OnInit {
 				}
 			);
 	}
-
-
+  
 	getCurrentRoute(){
 		// this.appEventEmiterService.changeMessage("goToMarket");
 		this.router.navigate(["market"]);
