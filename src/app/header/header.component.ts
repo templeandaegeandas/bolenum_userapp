@@ -126,8 +126,9 @@ export class HeaderComponent implements OnInit {
 	}
 
 	showDropdown() {
+		this.getAllUserNotifications();
 		if (!this.subMenu) {
-			this.getAllUserNotifications();
+			
 		}
 		this.subMenu = !this.subMenu;
 	}
