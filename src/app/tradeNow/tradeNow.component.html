@@ -15,7 +15,7 @@
 </div>
 <!-- for images -->
 <div class="container-fluid">
-  <div class="col-sm-12">
+  <div class="col-sm-12 market-market ">
     <div class="col-sm-3 padding-0">
       <div class="aside clearfix">
         <div class="text-center">
@@ -794,7 +794,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="trade-History">
+            <div class="trade-History width-20">
               <div class="loader spiner-position" *ngIf="isLoadingForMyTrade"></div>
               <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily" *ngIf='myTrade' [ngClass]="{'opecity-table':hasBlurForMyTrading}">
                 <thead class="table-Head ">
@@ -830,7 +830,7 @@
                   </tr>
                   <tr *ngIf=" myTradedListLength >=10 ">
                     <td colspan="6">
-                      <p class="more_button" (click)="getMoreMyTradeList()" title="click to show more list">more</p>
+                      <p *ngIf="myTradedList.length == 0" class="more_button" (click)="getMoreMyTradeList()" title="click to show more list">more</p>
                     </td>
                   </tr>
                   <div *ngIf=" myTradedListLength ==0 ">

@@ -59,6 +59,7 @@ import { CancelTradeComponent } from './cancel-trade/cancel-trade.component';
 import { FeesDetailsComponent } from './fees-details/fees-details.component';
 import { IntTelInputDirective } from  './directives/int.tel.input.directive';
 import { NotifyUserComponent } from './notify-user/notify-user.component';
+import { UserNotificationComponent } from './user-notification/user-notification.component';
 declare var require: any;
 export function highchartsFactory() {
   const hc = require('highcharts');
@@ -101,7 +102,8 @@ export function highchartsFactory() {
     CancelTradeComponent,
     FeesDetailsComponent,
     IntTelInputDirective,
-    NotifyUserComponent
+    NotifyUserComponent,
+    UserNotificationComponent
 
   ],
   imports: [

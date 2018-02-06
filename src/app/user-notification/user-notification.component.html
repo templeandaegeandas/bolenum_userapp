@@ -1,0 +1,46 @@
+
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 notification-user">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-head">User Notification</div>
+            <div class="panel-body">
+                <table class="table striped-table table-borderd ">
+                    <thead>
+                      <tr>
+                        <th width="150">Date</th>
+                        <th width="150">Message</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let notificationList of userNotify">
+                      <td>{{notificationList.createdOn| date}}</td>
+                      <td>{{notificationList.message}}</td>
+                    </tr>
+                   
+                  </tbody>
+                  
+                  </table>
+            </div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

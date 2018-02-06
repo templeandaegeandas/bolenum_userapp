@@ -48,7 +48,9 @@ export class HistoryComponent implements OnInit {
     })
   }
 
-  filterList() {
+  filterList(event) {
+    console.log("Event is", event);
+    event.stopPropagation();
     if (!this.buyOrder && this.sellOrder) {
       this.orderType = "sell";
     }

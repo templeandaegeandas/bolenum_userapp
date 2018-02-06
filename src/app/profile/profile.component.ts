@@ -136,6 +136,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.openTwoFaVerification('GOOGLE_AUTHENTICATOR');
     this.loading =true;
     setTimeout(()=>{
       this.loading = false;
@@ -245,13 +246,13 @@ export class ProfileComponent implements OnInit {
     if (data == "MOBILE" && !this.isMobileVerified) {
       this.isMobileEdit = true;
       if (this.mobileNumber != null && this.mobileNumber != "undefined") {
-        setTimeout(() => {
-          console.log(this.code + this.mobileNumber);
+        // setTimeout(() => {
+        //   console.log(this.code + this.mobileNumber);
           $("#usred").intlTelInput(
             "setNumber",
             "+" + this.code + this.mobileNumber
           );
-        }, 500);
+        // }, 500);
       }
       this.getAllCountries();
     }
@@ -328,7 +329,7 @@ export class ProfileComponent implements OnInit {
           "setNumber",
           "+" + this.code + this.mobileNumber
         );
-      }, 500);
+      }, 1000);
     }
   }
 
@@ -386,13 +387,21 @@ export class ProfileComponent implements OnInit {
 
   saveDetails(form) {
     this.loading = true;
-    if (form.invalid) return;
+    if (form.invalid){
+      this.loading = false;
+      return;
+    } 
+
+
+
     if (this.country == "Choose Country") {
       this.countryError = true;
+      this.loading = false;
       return;
     }
     if (this.state == "Choose State") {
       this.stateError = true;
+      this.loading = false;
       return;
     }
 

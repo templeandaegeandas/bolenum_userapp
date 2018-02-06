@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="">
-        <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm)">
+        <form #withrawForm=ngForm (submit)="withdrawAmount(withrawForm); ">
           <div class="col-md-8 col-md-offset-2 top-margin-field">
           </div>
           <div class="col-md-9 col-md-offset-1 withdraw-field">
@@ -56,15 +56,15 @@
             </div>
           </div>
           <div class="col-md-7 col-md-offset-4 button-padding">
-            <button class="submit-button text-uppercase button-font" type="submit">Submit</button>
+            <button class="submit-button text-uppercase button-font" type="submit"  >Submit</button>
           </div>
         </form>
         <!-- for table -->
         <div class="row">
           <div class="col-md-12 margin-Table">
-            <div class="tranction-Table">
+            <div class="tranction-Table table-responsive">
               <div class="loader spiner-position" *ngIf="isLoading"></div>
-              <table class="table table-striped trade-History-table border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
+              <table class="table table-striped trade-History-table table-responsive border-left table-Content tradeSubheading-fontSze-fontFamily " [ngClass]="{'opecity-table':hasBlur}">
                 <thead class="table-Head ">
                   <tr class="table-Heading">
                     <th class="ellipsis-heading">Transaction Hash</th>
@@ -86,7 +86,7 @@
                     <td>{{tx.createdOn | date}}</td>
                     <td>{{tx.createdOn | date:'shortTime'}}</td>
                     <td>{{tx.fee | number:'1.8-8'}}</td>
-                    <td>N/A</td>
+                    <td>{{tx.txStatus}}</td>
                   </tr>
                   <tr *ngIf="transactionLength >=10">
                     <td colspan="8">

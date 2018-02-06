@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild, ElementRef} from '@angular/core';
 import { WithdrawService } from './withdraw.service';
 import { WithdrawAmount } from './entity/withdraw.entity';
 import { ToastrService } from 'toastr-ng2';
 import { AppEventEmiterService } from '../app.event.emmiter.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-withdraw',
@@ -12,6 +14,10 @@ import { AppEventEmiterService } from '../app.event.emmiter.service';
 })
 
 export class WithdrawComponent implements OnInit {
+  @ViewChild('feeModal') public feeModal: ModalDirective;
+  public withrawForm:any;
+  public confirmDta:any;
+  public userWithdrawFees:any;
   public transactionLength: any;
   public hasBlur: boolean = false;
   public isLoading: boolean = false;
@@ -55,6 +61,14 @@ export class WithdrawComponent implements OnInit {
       this.toastrService.error('You can not withdraw less than min withdraw limit', 'Error!');
       return;
     }
+    if(this.withdrawForm.withdrawAmount < this.withdrawFee){
+      this.toastrService.error('You can not withdraw less than withdraw fee', 'Error!');
+      return;
+    }
+    else if(this.withdrawForm.withdrawAmount == this.withdrawFee){
+      this.toastrService.error('You can not withdraw with equall withdraw fee', 'Error!');
+      return;
+    }
     this.loading = true;
     let currency: any;
     currency = this.currencyData.find(x => x.currencyAbbreviation == this.setItemValue);
@@ -68,6 +82,8 @@ export class WithdrawComponent implements OnInit {
       this.toastrService.error(error.json().message, 'Error!');
     });
   }
+
+  
 
   getCurrencyList() {
     this.loading = true;
@@ -152,5 +168,9 @@ export class WithdrawComponent implements OnInit {
         this.minWithdrawAmount = success.data.minWithDrawAmount;
       }
     });
+  }
+
+  hideModal(){
+    this.feeModal.hide();
   }
 }

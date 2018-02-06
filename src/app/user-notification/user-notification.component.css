@@ -1,0 +1,30 @@
+.table-head-data{
+    text-align: left;
+}
+table th{
+    text-align:left; 
+}
+
+table tbody td{
+    text-align: left;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.notification-user{
+
+    margin-top: 25px;
+    margin-bottom: 106px;
+
+}
+.panel-head{
+    background-color: #DB2828 !important;
+    color: #fff;
+}
+
+.panel-body {
+    padding: 0px;
+}
+

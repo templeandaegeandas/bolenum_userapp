@@ -259,13 +259,19 @@
                               <button type="submit" class="btn btn-successsave profile-font butoon-font button-property-new ">Save Mobile Number</button>
                             </form>
                             <form *ngIf="isOtpEdit" #otpForm=ngForm (submit)="verifyOtp(otpForm)">
-                              <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" maxlength="6" id="usr" required onlynumber>
-                              <span *ngIf="otpField.invalid && otpForm.submitted">
+
+                               <div class="margin-btm">
+                     <!--  <p class="icon-name profile-font sub-heading-font-size lebel-heading level-font-weight">OTP</p> -->
+                      <input type="text" placeholder="OTP" class="from-newtext input-box-edit" name="otp" [(ngModel)]="otp" #otpField="ngModel" maxlength="6" id="usr" required onlynumber>
+                     <span *ngIf="otpField.invalid && otpForm.submitted">
                                        <span class="text-danger profile-font" *ngIf="otpField.errors.required error-msg-fontSize">Please enter otp</span>
                               </span>
                               <span *ngIf="otp == '' && !otpField.invalid && otpForm.submitted">
                                        <span class="text-danger profile-font error-msg-fontSize">Please enter otp</span>
                               </span>
+                    </div>
+                           <!--    <input type="text" class="from-newtext" name="otp" [(ngModel)]="otp" #otpField="ngModel" maxlength="6" id="usr" required onlynumber> -->
+                              
                               <button type="submit" class="btn btn-successsave profile-font button-font-size">Verify Otp</button>
                               <a (click)="reSendOtp()" class="profile-font content_text ">Resend Otp</a>
                             </form>

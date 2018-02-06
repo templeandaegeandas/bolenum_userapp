@@ -52,7 +52,8 @@ export class HeaderComponent implements OnInit {
 				message == "USER_NOTIFICATION" ||
 				message == "DEPOSIT_NOTIFICATION" ||
 				message == "PAID_NOTIFICATION" ||
-				message == "DISPUTE_NOTIFICATION"
+				message == "DISPUTE_NOTIFICATION" ||
+				message == "MATCHED_NOTIFICATION"
 			) {
 				this.getCountOfUnseeNotification();
 				console.log(this.countOfUnseeNotification);
@@ -153,6 +154,12 @@ export class HeaderComponent implements OnInit {
 					console.log(error);
 				}
 			);
+	}
+
+
+	getCurrentRoute(){
+		// this.appEventEmiterService.changeMessage("goToMarket");
+		this.router.navigate(["market"]);
 	}
 
 	/* Identify Notification Type on click of list of notifications */

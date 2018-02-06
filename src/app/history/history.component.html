@@ -14,8 +14,8 @@
                 <li role="menuitem">
                   <a class="dropdown-item">
                     <li>
-                      <input type="checkbox" id="c1" name="buy" [(ngModel)]="buyOrder" (change)="filterList()">
-                      <label for="c1"> &nbsp; BUY ORDERS</label>
+                      <input type="checkbox" id="c1" name="buy" [(ngModel)]="buyOrder" (change)="filterList(event)">
+                      <label for="c1" class="drop-down-text"> &nbsp; BUY ORDERS</label>
                     </li>
                   </a>
                 </li>
@@ -23,8 +23,8 @@
                 <li role="menuitem">
                   <a class="dropdown-item">
                     <li>
-                      <input type="checkbox" id="c2" name="sell" [(ngModel)]="sellOrder" (change)="filterList()">
-                      <label for="c2"> &nbsp; SELL ORDERS </label>
+                      <input type="checkbox" id="c2" name="sell" [(ngModel)]="sellOrder" (change)="filterList(c2)">
+                      <label for="c2" class="drop-down-text" > &nbsp; SELL ORDERS </label>
                     </li>
                   </a>
                 </li>
@@ -75,17 +75,17 @@
                 </td>
                 <!-- <td class="table-content">{{tx.orderStandard}}</td> -->
               </tr>
+              <tr *ngIf="txLength == 0">
+                <td colspan="6" >
+                   you don't have any transaction yet!.
+                </td>
+              </tr>
               <tr *ngIf="txLength >= 10">
                 <td colspan="6">
                   <p class="moreData" (click)="getMoreDta()" title="click to show more list" title="click to show more list">More</p>
                 </td>
               </tr>
-              <tr *ngIf="txLength == 0">
-                <td>
-                  <p class="no-transaction"> you don't have any transaction yet!</p>
-                </td>
-              </tr>
-            </tbody>
+             </tbody>
           </table>
         </div>
       </div>
