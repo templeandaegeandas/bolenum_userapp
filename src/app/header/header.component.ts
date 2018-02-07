@@ -155,7 +155,8 @@ export class HeaderComponent implements OnInit {
 				}
 			);
 	}
-  
+
+
 	getCurrentRoute(){
 		// this.appEventEmiterService.changeMessage("goToMarket");
 		this.router.navigate(["market"]);
